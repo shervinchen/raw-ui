@@ -1,0 +1,30 @@
+{
+  "name": "raw-ui",
+  "version": "0.0.1",
+  "description": "Minimalist and customizable React UI library for Web Applications.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shervinchen/raw-ui.git"
+  },
+  "keywords": [
+    "react",
+    "design-systems",
+    "typescript",
+    "react-components",
+    "ui-components",
+    "ui-library",
+    "ui-kit",
+    "vercel",
+    "raw-ui"
+  ],
+  "author": "shervinchen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shervinchen/raw-ui/issues"
+  },
+  "homepage": "https://github.com/shervinchen/raw-ui#readme"
+}
