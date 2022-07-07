@@ -11,6 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/shervinchen/raw-ui.git"
   },
+  "packageManager": "yarn@3.2.1",
   "keywords": [
     "react",
     "design-systems",
