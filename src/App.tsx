@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '../packages';
+import { Button } from '../components';
 
 function App() {
   return (

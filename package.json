@@ -12,8 +12,8 @@
   ],
   "scripts": {
     "build:clear": "rm -rf ./dist",
-    "build": "pnpm build:clear && rollup --config --environment NODE_ENV:production",
-    "dev": "rollup --config --environment NODE_ENV:development --watch",
+    "build": "pnpm build:clear && rollup --config scripts/rollup.config.js --environment NODE_ENV:production",
+    "dev": "rollup --config ./rollup.config.js --watch --environment NODE_ENV:development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
