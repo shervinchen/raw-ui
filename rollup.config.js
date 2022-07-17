@@ -19,6 +19,7 @@ const config = {
     replace({
       preventAssignment: true,
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      __dirname: '',
     }),
     resolve(),
     commonjs(),
