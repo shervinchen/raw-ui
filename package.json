@@ -60,6 +60,7 @@
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-serve": "^2.0.0",
     "rollup-plugin-terser": "^7.0.2",
+    "styled-jsx": "^5.0.2",
     "tslib": "^2.4.0",
     "typescript": "^4.7.4"
   },

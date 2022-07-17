@@ -1,5 +1,6 @@
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import { babel } from '@rollup/plugin-babel';
 import typescript from '@rollup/plugin-typescript';
 import postcss from 'rollup-plugin-postcss';
 import image from '@rollup/plugin-image';
@@ -21,6 +22,12 @@ const config = {
     }),
     resolve(),
     commonjs(),
+    babel({
+      include: ['src/**/*', 'components/**/*'],
+      exclude: '**/node_modules/**',
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      babelHelpers: 'bundled',
+    }),
     typescript({ tsconfig: './tsconfig.json' }),
     image(),
     postcss(),

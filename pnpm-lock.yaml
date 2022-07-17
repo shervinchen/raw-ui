@@ -23,6 +23,7 @@ specifiers:
   rollup-plugin-postcss: ^4.0.2
   rollup-plugin-serve: ^2.0.0
   rollup-plugin-terser: ^7.0.2
+  styled-jsx: ^5.0.2
   tslib: ^2.4.0
   typescript: ^4.7.4
 
@@ -49,6 +50,7 @@ devDependencies:
   rollup-plugin-postcss: 4.0.2_postcss@8.4.14
   rollup-plugin-serve: 2.0.0
   rollup-plugin-terser: 7.0.2_rollup@2.75.7
+  styled-jsx: 5.0.2_2sb3a56iojvze2npkgcccbebf4
   tslib: 2.4.0
   typescript: 4.7.4
 
@@ -2948,6 +2950,23 @@ packages:
 
   /style-inject/0.3.0:
     resolution: {integrity: sha512-IezA2qp+vcdlhJaVm5SOdPPTUu0FCEqfNSli2vRuSIBbu5Nq5UvygTk/VzeCqfLz2Atj3dVII5QBKGZRZ0edzw==}
+    dev: true
+
+  /styled-jsx/5.0.2_2sb3a56iojvze2npkgcccbebf4:
+    resolution: {integrity: sha512-LqPQrbBh3egD57NBcHET4qcgshPks+yblyhPlH2GY8oaDgKs8SK4C3dBh3oSJjgzJ3G5t1SYEZGHkP+QEpX9EQ==}
+    engines: {node: '>= 12.0.0'}
+    peerDependencies:
+      '@babel/core': '*'
+      babel-plugin-macros: '*'
+      react: '>= 16.8.0 || 17.x.x || ^18.0.0-0'
+    peerDependenciesMeta:
+      '@babel/core':
+        optional: true
+      babel-plugin-macros:
+        optional: true
+    dependencies:
+      '@babel/core': 7.18.6
+      react: 18.2.0
     dev: true
 
   /stylehacks/5.1.0_postcss@8.4.14:
