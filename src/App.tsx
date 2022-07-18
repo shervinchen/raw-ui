@@ -32,7 +32,7 @@ function App() {
   return (
     <div>
       <Container title="Button">
-        <Button text="button" type="primary" />
+        <Button type="primary">button</Button>
       </Container>
     </div>
   );

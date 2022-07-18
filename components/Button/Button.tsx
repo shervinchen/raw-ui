@@ -1,20 +1,36 @@
-import React, { FC } from 'react';
+import React, { FC, PropsWithChildren, MouseEvent } from 'react';
+import classNames from 'classnames';
 
 import { ButtonProps } from './Button.types';
 
-const Button: FC<ButtonProps> = ({
-  size = 'normal',
-  type = 'primary',
-  text,
+const Button: FC<PropsWithChildren<ButtonProps>> = ({
+  className,
+  size,
+  type,
+  htmlType,
+  disabled,
   onClick,
+  children,
+  ...restProps
 }) => {
+  const classes = classNames('raw-button', className, {
+    [`raw-button-${type}`]: type,
+    [`raw-button-${size}`]: size,
+  });
+
+  const clickHandler = (event: MouseEvent<HTMLButtonElement>) => {
+    if (disabled) return;
+    onClick && onClick(event);
+  };
+
   return (
     <button
-      type="button"
-      className={`raw-button raw-button-${size} raw-button-${type}`}
-      onClick={onClick}
+      type={htmlType}
+      className={classes}
+      onClick={clickHandler}
+      {...restProps}
     >
-      {text}
+      {children}
       <style jsx>{`
         .raw-button {
           display: flex;
@@ -41,6 +57,14 @@ const Button: FC<ButtonProps> = ({
       `}</style>
     </button>
   );
+};
+
+Button.defaultProps = {
+  className: '',
+  size: 'default',
+  type: 'default',
+  htmlType: 'button',
+  disabled: false,
 };
 
 export default Button;

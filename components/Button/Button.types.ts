@@ -1,8 +1,14 @@
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, ButtonHTMLAttributes } from 'react';
 
-export interface ButtonProps {
-  size?: 'small' | 'normal' | 'large';
-  type: 'primary' | 'secondary' | 'error';
-  text: string;
+interface BaseButtonProps {
+  className?: string;
+  size?: 'small' | 'default' | 'large';
+  type?: 'primary' | 'default' | 'danger';
+  htmlType?: ButtonHTMLAttributes<any>['type'];
+  disabled?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
+
+type NativeButtonProps = Omit<ButtonHTMLAttributes<any>, keyof BaseButtonProps>;
+
+export type ButtonProps = BaseButtonProps & NativeButtonProps;

@@ -13,6 +13,7 @@ specifiers:
   '@rollup/plugin-typescript': ^8.3.3
   '@types/react': ^18.0.15
   '@types/react-dom': ^18.0.6
+  classnames: ^2.3.1
   postcss: ^8.4.14
   react: ^18.2.0
   react-dom: ^18.2.0
@@ -40,6 +41,7 @@ devDependencies:
   '@rollup/plugin-typescript': 8.3.3_g4qkabtmybowem44p7ts7jnbqm
   '@types/react': 18.0.15
   '@types/react-dom': 18.0.6
+  classnames: 2.3.1
   postcss: 8.4.14
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -1663,6 +1665,10 @@ packages:
       readdirp: 3.6.0
     optionalDependencies:
       fsevents: 2.3.2
+    dev: true
+
+  /classnames/2.3.1:
+    resolution: {integrity: sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==}
     dev: true
 
   /color-convert/1.9.3:
