@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { RawProvider } from '../components';
+import { RawUIProvider } from '../components';
 import App from './App';
 
 const root = ReactDOM.createRoot(
@@ -8,7 +8,7 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <RawProvider>
+  <RawUIProvider>
     <App />
-  </RawProvider>
+  </RawUIProvider>
 );

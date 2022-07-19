@@ -1,9 +1,9 @@
 import React, { FC, PropsWithChildren } from 'react';
 
-import { RawUIContext } from '../utils/useRawUIContext';
+import { RawUIContext } from './ThemeContext';
 import BaseStyle from '../BaseStyle';
 
-const Provider: FC<PropsWithChildren> = ({ children }) => {
+const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
   const initialValue = {};
   return (
     <RawUIContext.Provider value={initialValue}>
@@ -13,4 +13,4 @@ const Provider: FC<PropsWithChildren> = ({ children }) => {
   );
 };
 
-export default Provider;
+export default ThemeProvider;
