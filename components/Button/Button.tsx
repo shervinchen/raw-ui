@@ -13,7 +13,7 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
   (
     {
       className = '',
-      size = 'default',
+      size = 'md',
       type = 'default',
       htmlType = 'button',
       disabled = false,
@@ -41,29 +41,113 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
         onClick={clickHandler}
         {...restProps}
       >
-        {children}
+        <span className="raw-button-text">{children}</span>
         <style jsx>{`
           .raw-button {
-            display: flex;
+            box-sizing: border-box;
+            position: relative;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            border-radius: 4px;
+            vertical-align: middle;
+            border: 1px solid;
+            border-radius: 6px;
+            font-size: 14px;
+            line-height: 20px;
+            min-width: min-content;
+            height: 40px;
+            font-weight: 400;
+            padding: 8px 16px;
+            transition-property: border-color, background, color, transform,
+              box-shadow;
+            transition-duration: 0.2s;
+            transition-timing-function: ease;
+            text-transform: capitalize;
             cursor: pointer;
-            min-width: 32px;
-            min-height: 32px;
-            background-color: aliceblue;
+            white-space: nowrap;
+            appearance: none;
+            outline: none;
+            user-select: none;
+          }
+
+          .raw-button-default {
+            color: #666;
+            background-color: #fff;
+            border-color: #eaeaea;
+          }
+
+          .raw-button-default:hover,
+          .raw-button-default:focus {
+            color: #000;
+            border-color: #000;
+          }
+
+          .raw-button-default:active {
+            background-color: #eaeaea;
           }
 
           .raw-button-primary {
-            background-color: aqua;
+            color: #fff;
+            background-color: #000;
+            border-color: #000;
           }
 
-          .raw-button-secondary {
-            background-color: burlywood;
+          .raw-button-primary:hover,
+          .raw-button-primary:focus {
+            color: #000;
+            background-color: #fff;
+          }
+
+          .raw-button-primary:active {
+            background-color: #eaeaea;
+          }
+
+          .raw-button-success {
+            color: #fff;
+            background-color: #0070f3;
+            border-color: #0070f3;
+          }
+
+          .raw-button-success:hover,
+          .raw-button-success:focus {
+            color: #0070f3;
+            background-color: #fff;
+          }
+
+          .raw-button-success:active {
+            background-color: #eaeaea;
+          }
+
+          .raw-button-warning {
+            color: #fff;
+            background-color: #f5a623;
+            border-color: #f5a623;
+          }
+
+          .raw-button-warning:hover,
+          .raw-button-warning:focus {
+            color: #f5a623;
+            background-color: #fff;
+          }
+
+          .raw-button-warning:active {
+            background-color: #eaeaea;
           }
 
           .raw-button-error {
-            background-color: red;
+            color: #fff;
+            background-color: #e00;
+            border-color: #e00;
+          }
+
+          .raw-button-error:hover,
+          .raw-button-error:focus {
+            color: #e00;
+            background-color: #fff;
+          }
+
+          .raw-button-error:active {
+            background-color: #eaeaea;
           }
         `}</style>
       </button>

@@ -2,8 +2,8 @@ import { MouseEventHandler, ButtonHTMLAttributes } from 'react';
 
 interface BaseButtonProps {
   className?: string;
-  size?: 'small' | 'default' | 'large';
-  type?: 'primary' | 'default' | 'danger';
+  size?: 'sm' | 'md' | 'lg';
+  type?: 'default' | 'primary' | 'success' | 'warning' | 'error';
   htmlType?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   disabled?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
