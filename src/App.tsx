@@ -97,6 +97,13 @@ function App() {
             <Button type="error">Error</Button>
           </Unit>
         </Wrapper>
+        <Wrapper title="Sizes">
+          <Unit layout="row">
+            <Button size="sm">Small</Button>
+            <Button>Medium</Button>
+            <Button size="lg">Large</Button>
+          </Unit>
+        </Wrapper>
       </Container>
     </div>
   );

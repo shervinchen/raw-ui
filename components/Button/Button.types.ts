@@ -5,6 +5,7 @@ interface BaseButtonProps {
   size?: 'sm' | 'md' | 'lg';
   type?: 'default' | 'primary' | 'success' | 'warning' | 'error';
   htmlType?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
+  loading?: boolean;
   disabled?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }

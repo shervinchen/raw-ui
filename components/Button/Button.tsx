@@ -16,6 +16,7 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
       size = 'md',
       type = 'default',
       htmlType = 'button',
+      loading = false,
       disabled = false,
       onClick,
       children,
@@ -29,7 +30,7 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
     });
 
     const clickHandler = (event: MouseEvent<HTMLButtonElement>) => {
-      if (disabled) return;
+      if (disabled || loading) return;
       onClick && onClick(event);
     };
 
@@ -52,12 +53,8 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
             vertical-align: middle;
             border: 1px solid;
             border-radius: 6px;
-            font-size: 14px;
-            line-height: 20px;
             min-width: min-content;
-            height: 40px;
             font-weight: 400;
-            padding: 8px 16px;
             transition-property: border-color, background, color, transform,
               box-shadow;
             transition-duration: 0.2s;
@@ -68,6 +65,27 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
             appearance: none;
             outline: none;
             user-select: none;
+          }
+
+          .raw-button-sm {
+            font-size: 12px;
+            line-height: 16px;
+            height: 34px;
+            padding: 8px 12px;
+          }
+
+          .raw-button-md {
+            font-size: 14px;
+            line-height: 20px;
+            height: 40px;
+            padding: 8px 16px;
+          }
+
+          .raw-button-lg {
+            font-size: 16px;
+            ling-height: 24px;
+            height: 46px;
+            padding: 10px 20px;
           }
 
           .raw-button-default {
