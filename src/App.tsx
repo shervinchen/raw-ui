@@ -110,16 +110,31 @@ function App() {
         </Wrapper>
         <Wrapper title="Variant">
           <Unit title="Outline" layout="row">
-            <Button type="primary" outline>
+            <Button type="primary" variant="outline">
               Primary
             </Button>
-            <Button type="success" outline>
+            <Button type="success" variant="outline">
               Success
             </Button>
-            <Button type="warning" outline>
+            <Button type="warning" variant="outline">
               Warning
             </Button>
-            <Button type="error" outline>
+            <Button type="error" variant="outline">
+              Error
+            </Button>
+          </Unit>
+          <Unit title="Ghost" layout="row">
+            <Button variant="ghost">Default</Button>
+            <Button type="primary" variant="ghost">
+              Primary
+            </Button>
+            <Button type="success" variant="ghost">
+              Success
+            </Button>
+            <Button type="warning" variant="ghost">
+              Warning
+            </Button>
+            <Button type="error" variant="ghost">
               Error
             </Button>
           </Unit>

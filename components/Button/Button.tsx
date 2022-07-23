@@ -15,8 +15,7 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
       className = '',
       size = 'md',
       type = 'default',
-      outline = false,
-      ghost = false,
+      variant,
       htmlType = 'button',
       loading = false,
       disabled = false,
@@ -29,8 +28,8 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
     const classes = classNames('raw-button', className, {
       [`raw-button-${type}`]: type,
       [`raw-button-${size}`]: size,
-      ['raw-button-outline']: outline,
-      ['raw-button-ghost']: ghost,
+      ['raw-button-outline']: variant === 'outline',
+      ['raw-button-ghost']: variant === 'ghost',
     });
 
     const clickHandler = (event: MouseEvent<HTMLButtonElement>) => {
@@ -184,7 +183,7 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
           }
 
           .raw-button-primary.raw-button-outline:active {
-            background-color: #000;
+            background-color: rgba(0, 0, 0, 0.8);
           }
 
           .raw-button-success.raw-button-outline {
@@ -200,7 +199,7 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
           }
 
           .raw-button-success.raw-button-outline:active {
-            background-color: #0070f3;
+            background-color: rgb(0, 112, 243, 0.8);
           }
 
           .raw-button-warning.raw-button-outline {
@@ -216,7 +215,7 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
           }
 
           .raw-button-warning.raw-button-outline:active {
-            background-color: #f5a623;
+            background-color: rgb(245, 166, 35, 0.8);
           }
 
           .raw-button-error.raw-button-outline {
@@ -232,7 +231,82 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
           }
 
           .raw-button-error.raw-button-outline:active {
-            background-color: #e00;
+            background-color: rgb(238, 0, 0, 0.8);
+          }
+
+          .raw-button-default.raw-button-ghost {
+            background-color: transparent;
+            border-color: transparent;
+          }
+
+          .raw-button-default.raw-button-ghost:hover,
+          .raw-button-default.raw-button-ghost:focus {
+            color: #666;
+            background-color: #e7e7e7;
+          }
+
+          .raw-button-default.raw-button-ghost:active {
+            background-color: #dcdcdc;
+          }
+
+          .raw-button-primary.raw-button-ghost {
+            color: #000;
+            background-color: transparent;
+            border-color: transparent;
+          }
+
+          .raw-button-primary.raw-button-ghost:hover,
+          .raw-button-primary.raw-button-ghost:focus {
+            background-color: #e7e7e7;
+          }
+
+          .raw-button-primary.raw-button-ghost:active {
+            background-color: #dcdcdc;
+          }
+
+          .raw-button-success.raw-button-ghost {
+            color: #0070f3;
+            background-color: transparent;
+            border-color: transparent;
+          }
+
+          .raw-button-success.raw-button-ghost:hover,
+          .raw-button-success.raw-button-ghost:focus {
+            background-color: #cce2fd;
+          }
+
+          .raw-button-success.raw-button-ghost:active {
+            background-color: #b3d4fb;
+          }
+
+          .raw-button-warning.raw-button-ghost {
+            color: #f5a623;
+            background-color: transparent;
+            border-color: transparent;
+          }
+
+          .raw-button-warning.raw-button-ghost:hover,
+          .raw-button-warning.raw-button-ghost:focus {
+            background-color: #fdedd3;
+          }
+
+          .raw-button-warning.raw-button-ghost:active {
+            background-color: #fce4bd;
+          }
+
+          .raw-button-error.raw-button-ghost {
+            color: #e00;
+            background-color: transparent;
+            border-color: transparent;
+          }
+
+          .raw-button-error.raw-button-ghost:hover,
+          .raw-button-error.raw-button-ghost:focus {
+            background-color: #fccccc;
+          }
+
+          .raw-button-error.raw-button-ghost:active {
+            background-color: #fab3b3;
           }
         `}</style>
       </button>

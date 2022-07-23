@@ -4,8 +4,7 @@ interface BaseButtonProps {
   className?: string;
   size?: 'sm' | 'md' | 'lg';
   type?: 'default' | 'primary' | 'success' | 'warning' | 'error';
-  outline?: boolean;
-  ghost?: boolean;
+  variant?: 'outline' | 'ghost';
   htmlType?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   loading?: boolean;
   disabled?: boolean;
