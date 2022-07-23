@@ -15,6 +15,8 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
       className = '',
       size = 'md',
       type = 'default',
+      outline = false,
+      ghost = false,
       htmlType = 'button',
       loading = false,
       disabled = false,
@@ -27,6 +29,8 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
     const classes = classNames('raw-button', className, {
       [`raw-button-${type}`]: type,
       [`raw-button-${size}`]: size,
+      ['raw-button-outline']: outline,
+      ['raw-button-ghost']: ghost,
     });
 
     const clickHandler = (event: MouseEvent<HTMLButtonElement>) => {
@@ -53,7 +57,6 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
             vertical-align: middle;
             border: 1px solid;
             border-radius: 6px;
-            min-width: min-content;
             font-weight: 400;
             transition-property: border-color, background, color, transform,
               box-shadow;
@@ -166,6 +169,70 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
 
           .raw-button-error:active {
             background-color: #eaeaea;
+          }
+
+          .raw-button-primary.raw-button-outline {
+            color: #000;
+            background-color: transparent;
+            border-color: #000;
+          }
+
+          .raw-button-primary.raw-button-outline:hover,
+          .raw-button-primary.raw-button-outline:focus {
+            color: #fff;
+            background-color: #000;
+          }
+
+          .raw-button-primary.raw-button-outline:active {
+            background-color: #000;
+          }
+
+          .raw-button-success.raw-button-outline {
+            color: #0070f3;
+            background-color: transparent;
+            border-color: #0070f3;
+          }
+
+          .raw-button-success.raw-button-outline:hover,
+          .raw-button-success.raw-button-outline:focus {
+            color: #fff;
+            background-color: #0070f3;
+          }
+
+          .raw-button-success.raw-button-outline:active {
+            background-color: #0070f3;
+          }
+
+          .raw-button-warning.raw-button-outline {
+            color: #f5a623;
+            background-color: transparent;
+            border-color: #f5a623;
+          }
+
+          .raw-button-warning.raw-button-outline:hover,
+          .raw-button-warning.raw-button-outline:focus {
+            color: #fff;
+            background-color: #f5a623;
+          }
+
+          .raw-button-warning.raw-button-outline:active {
+            background-color: #f5a623;
+          }
+
+          .raw-button-error.raw-button-outline {
+            color: #e00;
+            background-color: transparent;
+            border-color: #e00;
+          }
+
+          .raw-button-error.raw-button-outline:hover,
+          .raw-button-error.raw-button-outline:focus {
+            color: #fff;
+            background-color: #e00;
+          }
+
+          .raw-button-error.raw-button-outline:active {
+            background-color: #e00;
           }
         `}</style>
       </button>

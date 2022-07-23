@@ -34,7 +34,7 @@ const Wrapper: FC<PropsWithChildren<{ title: string }>> = ({
 }) => {
   return (
     <div className="wrapper">
-      <h3>{title}</h3>
+      <h2>{title}</h2>
       {children}
       <style jsx>
         {`
@@ -42,7 +42,7 @@ const Wrapper: FC<PropsWithChildren<{ title: string }>> = ({
             margin-bottom: 40px;
           }
 
-          .wrapper h3 {
+          .wrapper h2 {
             margin: 0 0 16px;
           }
         `}
@@ -51,16 +51,16 @@ const Wrapper: FC<PropsWithChildren<{ title: string }>> = ({
   );
 };
 
-const Unit: FC<PropsWithChildren<{ layout: 'row' | 'col' }>> = ({
-  layout,
-  children,
-}) => {
+const Unit: FC<
+  PropsWithChildren<{ title?: string; layout: 'row' | 'col' }>
+> = ({ title, layout, children }) => {
   return (
-    <div className={`unit unit-${layout}`}>
-      {children}
+    <div className="unit">
+      {title && <h3>{title}</h3>}
+      <div className={`unit-content unit-content-${layout}`}>{children}</div>
       <style jsx>
         {`
-          .unit {
+          .unit-content {
             display: flex;
             align-items: center;
           }
@@ -69,12 +69,16 @@ const Unit: FC<PropsWithChildren<{ layout: 'row' | 'col' }>> = ({
             margin-bottom: 12px;
           }
 
-          .unit-row {
+          .unit h3 {
+            margin: 0 0 16px;
+          }
+
+          .unit-content-row {
             flex-direction: row;
             column-gap: 16px;
           }
 
-          .unit-col {
+          .unit-content-col {
             flex-direction: column;
             row-gap: 16px;
           }
@@ -102,6 +106,22 @@ function App() {
             <Button size="sm">Small</Button>
             <Button>Medium</Button>
             <Button size="lg">Large</Button>
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Variant">
+          <Unit title="Outline" layout="row">
+            <Button type="primary" outline>
+              Primary
+            </Button>
+            <Button type="success" outline>
+              Success
+            </Button>
+            <Button type="warning" outline>
+              Warning
+            </Button>
+            <Button type="error" outline>
+              Error
+            </Button>
           </Unit>
         </Wrapper>
       </Container>
