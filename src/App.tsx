@@ -75,12 +75,12 @@ const Unit: FC<
 
           .unit-content-row {
             flex-direction: row;
-            column-gap: 16px;
+            column-gap: 32px;
           }
 
           .unit-content-col {
             flex-direction: column;
-            row-gap: 16px;
+            row-gap: 32px;
           }
         `}
       </style>
@@ -135,6 +135,21 @@ function App() {
               Warning
             </Button>
             <Button type="error" variant="ghost">
+              Error
+            </Button>
+          </Unit>
+          <Unit title="Shadow" layout="row">
+            <Button variant="shadow">Default</Button>
+            <Button type="primary" variant="shadow">
+              Primary
+            </Button>
+            <Button type="success" variant="shadow">
+              Success
+            </Button>
+            <Button type="warning" variant="shadow">
+              Warning
+            </Button>
+            <Button type="error" variant="shadow">
               Error
             </Button>
           </Unit>

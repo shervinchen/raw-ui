@@ -30,6 +30,7 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
       [`raw-button-${size}`]: size,
       ['raw-button-outline']: variant === 'outline',
       ['raw-button-ghost']: variant === 'ghost',
+      ['raw-button-shadow']: variant === 'shadow',
     });
 
     const clickHandler = (event: MouseEvent<HTMLButtonElement>) => {
@@ -307,6 +308,95 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
 
           .raw-button-error.raw-button-ghost:active {
             background-color: #fab3b3;
+          }
+
+          .raw-button-default.raw-button-shadow {
+            border-color: #fff;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+          }
+
+          .raw-button-default.raw-button-shadow:hover,
+          .raw-button-default.raw-button-shadow:focus {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            transform: translateY(-2px);
+          }
+
+          .raw-button-default.raw-button-shadow:active {
+            background-color: #fff;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+            transform: none;
+          }
+
+          .raw-button-primary.raw-button-shadow {
+            border-color: #000;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+          }
+
+          .raw-button-primary.raw-button-shadow:hover,
+          .raw-button-primary.raw-button-shadow:focus {
+            color: #fff;
+            background-color: #000;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            transform: translateY(-2px);
+          }
+
+          .raw-button-primary.raw-button-shadow:active {
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+            transform: none;
+          }
+
+          .raw-button-success.raw-button-shadow {
+            border-color: #0070f3;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+          }
+
+          .raw-button-success.raw-button-shadow:hover,
+          .raw-button-success.raw-button-shadow:focus {
+            color: #fff;
+            background-color: #0070f3;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            transform: translateY(-2px);
+          }
+
+          .raw-button-success.raw-button-shadow:active {
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+            transform: none;
+          }
+
+          .raw-button-warning.raw-button-shadow {
+            border-color: #f5a623;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+          }
+
+          .raw-button-warning.raw-button-shadow:hover,
+          .raw-button-warning.raw-button-shadow:focus {
+            color: #fff;
+            background-color: #f5a623;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            transform: translateY(-2px);
+          }
+
+          .raw-button-warning.raw-button-shadow:active {
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+            transform: none;
+          }
+
+          .raw-button-error.raw-button-shadow {
+            border-color: #e00;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+          }
+
+          .raw-button-error.raw-button-shadow:hover,
+          .raw-button-error.raw-button-shadow:focus {
+            color: #fff;
+            background-color: #e00;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            transform: translateY(-2px);
+          }
+
+          .raw-button-error.raw-button-shadow:active {
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+            transform: none;
           }
         `}</style>
       </button>
