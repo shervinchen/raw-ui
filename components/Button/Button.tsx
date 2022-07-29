@@ -33,6 +33,7 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
       ['raw-button-ghost']: variant === 'ghost' && !disabled,
       ['raw-button-shadow']: variant === 'shadow' && !disabled,
       ['raw-button-disabled']: disabled,
+      ['raw-button-loading']: loading,
     });
 
     const clickHandler = (event: MouseEvent<HTMLButtonElement>) => {

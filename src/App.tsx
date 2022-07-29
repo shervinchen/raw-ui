@@ -159,6 +159,11 @@ function App() {
             <Button disabled>Disabled</Button>
           </Unit>
         </Wrapper>
+        <Wrapper title="Loading">
+          <Unit layout="row">
+            <Button loading>Loading</Button>
+          </Unit>
+        </Wrapper>
       </Container>
     </div>
   );

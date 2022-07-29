@@ -88,7 +88,7 @@ export const styles = css`
   }
 
   .raw-button-success:active {
-    background-color: #eaeaea;
+    background-color: #d3e5ff;
   }
 
   .raw-button-warning {
@@ -104,7 +104,7 @@ export const styles = css`
   }
 
   .raw-button-warning:active {
-    background-color: #eaeaea;
+    background-color: #ffefcf;
   }
 
   .raw-button-error {
@@ -120,7 +120,7 @@ export const styles = css`
   }
 
   .raw-button-error:active {
-    background-color: #eaeaea;
+    background-color: #f7d4d6;
   }
 
   .raw-button-primary.raw-button-outline {
@@ -135,6 +135,10 @@ export const styles = css`
     background-color: #000;
   }
 
+  .raw-button-primary.raw-button-outline:active {
+    background-color: #333;
+  }
+
   .raw-button-success.raw-button-outline {
     color: #0070f3;
     background-color: transparent;
@@ -145,6 +149,10 @@ export const styles = css`
   .raw-button-success.raw-button-outline:focus {
     color: #fff;
     background-color: #0070f3;
+  }
+
+  .raw-button-success.raw-button-outline:active {
+    background-color: #3291ff;
   }
 
   .raw-button-warning.raw-button-outline {
@@ -159,6 +167,10 @@ export const styles = css`
     background-color: #f5a623;
   }
 
+  .raw-button-warning.raw-button-outline:active {
+    background-color: #f7b955;
+  }
+
   .raw-button-error.raw-button-outline {
     color: #e00;
     background-color: transparent;
@@ -169,6 +181,10 @@ export const styles = css`
   .raw-button-error.raw-button-outline:focus {
     color: #fff;
     background-color: #e00;
+  }
+
+  .raw-button-error.raw-button-outline:active {
+    background-color: #ff1a1a;
   }
 
   .raw-button-default.raw-button-ghost {
