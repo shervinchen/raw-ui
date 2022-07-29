@@ -334,4 +334,21 @@ export const styles = css`
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
     transform: none;
   }
+
+  .raw-button-disabled {
+    background-color: #fafafa;
+    color: #999;
+    border-color: #eaeaea;
+    cursor: not-allowed;
+  }
+
+  .raw-button-disabled:hover,
+  .raw-button-disabled:focus {
+    color: #999;
+    border-color: #eaeaea;
+  }
+
+  .raw-button-disabled:active {
+    background-color: #fafafa;
+  }
 `;

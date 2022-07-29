@@ -29,9 +29,10 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
     const classes = classNames('raw-button', className, {
       [`raw-button-${type}`]: type,
       [`raw-button-${size}`]: size,
-      ['raw-button-outline']: variant === 'outline',
-      ['raw-button-ghost']: variant === 'ghost',
-      ['raw-button-shadow']: variant === 'shadow',
+      ['raw-button-outline']: variant === 'outline' && !disabled,
+      ['raw-button-ghost']: variant === 'ghost' && !disabled,
+      ['raw-button-shadow']: variant === 'shadow' && !disabled,
+      ['raw-button-disabled']: disabled,
     });
 
     const clickHandler = (event: MouseEvent<HTMLButtonElement>) => {

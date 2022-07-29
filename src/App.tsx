@@ -154,6 +154,11 @@ function App() {
             </Button>
           </Unit>
         </Wrapper>
+        <Wrapper title="Disabled">
+          <Unit layout="row">
+            <Button disabled>Disabled</Button>
+          </Unit>
+        </Wrapper>
       </Container>
     </div>
   );
