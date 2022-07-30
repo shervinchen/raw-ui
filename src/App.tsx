@@ -156,7 +156,19 @@ function App() {
         </Wrapper>
         <Wrapper title="Disabled">
           <Unit layout="row">
-            <Button disabled>Disabled</Button>
+            <Button disabled>Default</Button>
+            <Button type="primary" disabled>
+              Primary
+            </Button>
+            <Button type="primary" variant="outline" disabled>
+              Outline
+            </Button>
+            <Button type="primary" variant="ghost" disabled>
+              Ghost
+            </Button>
+            <Button type="primary" variant="shadow" disabled>
+              Shadow
+            </Button>
           </Unit>
         </Wrapper>
         <Wrapper title="Loading">
