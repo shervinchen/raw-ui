@@ -16,7 +16,7 @@ const Container: FC<PropsWithChildren<{ title: string }>> = ({
             margin: 30px auto;
             border-radius: 4px;
             box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.3);
-            padding: 16px;
+            padding: 32px;
           }
 
           .container h1 {
@@ -154,6 +154,11 @@ function App() {
             </Button>
           </Unit>
         </Wrapper>
+        <Wrapper title="Loading">
+          <Unit layout="row">
+            <Button loading>Loading</Button>
+          </Unit>
+        </Wrapper>
         <Wrapper title="Disabled">
           <Unit layout="row">
             <Button disabled>Default</Button>
@@ -169,11 +174,6 @@ function App() {
             <Button type="primary" variant="shadow" disabled>
               Shadow
             </Button>
-          </Unit>
-        </Wrapper>
-        <Wrapper title="Loading">
-          <Unit layout="row">
-            <Button loading>Loading</Button>
           </Unit>
         </Wrapper>
       </Container>

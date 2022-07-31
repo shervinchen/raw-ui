@@ -32,12 +32,12 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
       ['raw-button-outline']: variant === 'outline',
       ['raw-button-ghost']: variant === 'ghost',
       ['raw-button-shadow']: variant === 'shadow',
-      ['raw-button-disabled']: disabled,
       ['raw-button-loading']: loading,
+      ['raw-button-disabled']: disabled,
     });
 
     const clickHandler = (event: MouseEvent<HTMLButtonElement>) => {
-      if (disabled || loading) return;
+      if (loading || disabled) return;
       onClick && onClick(event);
     };
 

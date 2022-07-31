@@ -351,6 +351,24 @@ export const styles = css`
     transform: none;
   }
 
+  .raw-button-default.raw-button-disabled {
+    background-color: #fafafa;
+    color: #999;
+    border-color: #eaeaea;
+    cursor: not-allowed;
+  }
+
+  .raw-button-default.raw-button-disabled:hover,
+  .raw-button-default.raw-button-disabled:focus {
+    color: #999;
+    border-color: #eaeaea;
+    background-color: #fafafa;
+  }
+
+  .raw-button-default.raw-button-disabled:active {
+    background-color: #fafafa;
+  }
+
   .raw-button-primary.raw-button-disabled,
   .raw-button-success.raw-button-disabled,
   .raw-button-warning.raw-button-disabled,
@@ -381,7 +399,6 @@ export const styles = css`
     background-color: #eaeaea;
   }
 
-  .raw-button-default.raw-button-disabled,
   .raw-button-outline.raw-button-disabled {
     background-color: #fafafa;
     color: #999;
@@ -389,8 +406,6 @@ export const styles = css`
     cursor: not-allowed;
   }
 
-  .raw-button-default.raw-button-disabled:hover,
-  .raw-button-default.raw-button-disabled:focus,
   .raw-button-outline.raw-button-disabled:hover,
   .raw-button-outline.raw-button-disabled:focus {
     color: #999;
@@ -398,7 +413,6 @@ export const styles = css`
     background-color: #fafafa;
   }
 
-  .raw-button-default.raw-button-disabled:active,
   .raw-button-outline.raw-button-disabled:active {
     background-color: #fafafa;
   }
@@ -421,9 +435,23 @@ export const styles = css`
     background-color: transparent;
   }
 
+  .raw-button-shadow.raw-button-disabled {
+    background-color: #eaeaea;
+    color: #999;
+    border-color: #eaeaea;
+    cursor: not-allowed;
+  }
+
   .raw-button-shadow.raw-button-disabled:hover,
   .raw-button-shadow.raw-button-disabled:focus {
+    color: #999;
+    border-color: #eaeaea;
+    background-color: #eaeaea;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
     transform: none;
+  }
+
+  .raw-button-shadow.raw-button-disabled:active {
+    background-color: #eaeaea;
   }
 `;
