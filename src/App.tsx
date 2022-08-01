@@ -1,5 +1,5 @@
 import React, { FC, PropsWithChildren } from 'react';
-import { Button } from '../components';
+import { Button, Loading } from '../components';
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
   title,
@@ -154,11 +154,6 @@ function App() {
             </Button>
           </Unit>
         </Wrapper>
-        <Wrapper title="Loading">
-          <Unit layout="row">
-            <Button loading>Loading</Button>
-          </Unit>
-        </Wrapper>
         <Wrapper title="Disabled">
           <Unit layout="row">
             <Button disabled>Default</Button>
@@ -174,6 +169,32 @@ function App() {
             <Button type="primary" variant="shadow" disabled>
               Shadow
             </Button>
+          </Unit>
+        </Wrapper>
+      </Container>
+      <Container title="Loading">
+        <Wrapper title="Type">
+          <Unit layout="row">
+            <Loading />
+            <Loading type="spin" />
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Size">
+          <Unit layout="row">
+            <Loading size={4} />
+            <Loading size={6} />
+            <Loading size={8} />
+          </Unit>
+          <Unit layout="row">
+            <Loading type="spin" size={16} />
+            <Loading type="spin" size={20} />
+            <Loading type="spin" size={32} />
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Text">
+          <Unit layout="row">
+            <Loading>Loading</Loading>
+            <Loading type="spin">Loading</Loading>
           </Unit>
         </Wrapper>
       </Container>
