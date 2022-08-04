@@ -4,10 +4,11 @@ import React, {
   Ref,
   PropsWithChildren,
   MouseEvent,
+  useMemo,
 } from 'react';
 import classNames from 'classnames';
 
-import { styles } from './Button.styles';
+import { getButtonCSS } from './Button.styles';
 import { ButtonProps } from './Button.types';
 
 const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
@@ -16,7 +17,7 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
       className = '',
       size = 'md',
       type = 'default',
-      variant,
+      variant = 'default',
       htmlType = 'button',
       loading = false,
       disabled = false,
@@ -26,15 +27,19 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
     },
     ref: Ref<HTMLButtonElement | null>
   ) => {
-    const classes = classNames('raw-button', className, {
-      [`raw-button-${type}`]: type,
-      [`raw-button-${size}`]: size,
-      ['raw-button-outline']: variant === 'outline',
-      ['raw-button-ghost']: variant === 'ghost',
-      ['raw-button-shadow']: variant === 'shadow',
-      ['raw-button-loading']: loading,
-      ['raw-button-disabled']: disabled,
-    });
+    const { className: resolveClassName, styles } = useMemo(
+      () =>
+        getButtonCSS({
+          type,
+          size,
+          variant,
+          loading,
+          disabled,
+        }),
+      [type, size, variant, loading, disabled]
+    );
+
+    const classes = classNames('raw-button', className, resolveClassName);
 
     const clickHandler = (event: MouseEvent<HTMLButtonElement>) => {
       if (loading || disabled) return;
@@ -50,7 +55,7 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
         {...restProps}
       >
         <span className="raw-button-text">{children}</span>
-        <style jsx>{styles}</style>
+        {styles}
       </button>
     );
   }
