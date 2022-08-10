@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { getButtonCSS } from './Button.styles';
+import { useButtonCSS } from './Button.styles';
 import { ButtonProps } from './Button.types';
 
 const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
@@ -27,17 +27,13 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
     },
     ref: Ref<HTMLButtonElement | null>
   ) => {
-    const { className: resolveClassName, styles } = useMemo(
-      () =>
-        getButtonCSS({
-          type,
-          size,
-          variant,
-          loading,
-          disabled,
-        }),
-      [type, size, variant, loading, disabled]
-    );
+    const { className: resolveClassName, styles } = useButtonCSS({
+      type,
+      size,
+      variant,
+      loading,
+      disabled,
+    });
 
     const classes = classNames('raw-button', className, resolveClassName);
 

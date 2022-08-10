@@ -1,7 +1,7 @@
 import css from 'styled-jsx/css';
 
 export const getDotLoadingStyles = ({ size, color }) => {
-  return css`
+  return css.resolve`
     .raw-dot-loading {
       display: inline-flex;
       align-items: center;
@@ -58,7 +58,7 @@ export const getDotLoadingStyles = ({ size, color }) => {
 };
 
 export const getSpinLoadingStyles = ({ size, color }) => {
-  return css`
+  return css.resolve`
     .raw-spin-loading {
       display: block;
       box-sizing: border-box;

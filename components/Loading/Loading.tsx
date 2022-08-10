@@ -8,18 +8,25 @@ const DotLoading: FC<PropsWithChildren<Omit<LoadingProps, 'type'>>> = (
   props
 ) => {
   const { className, color, size = 4, children, ...restProps } = props;
-  const classes = classNames('raw-dot-loading', className);
-  const styles = getDotLoadingStyles({ color, size });
+  const { className: resolveClassName, styles } = getDotLoadingStyles({
+    color,
+    size,
+  });
+  const classes = classNames('raw-dot-loading', className, resolveClassName);
 
   return (
     <div className={classes} {...restProps}>
-      <span className="raw-dot-loading-inner">
-        <i />
-        <i />
-        <i />
+      <span className={classNames('raw-dot-loading-inner', resolveClassName)}>
+        <i className={resolveClassName} />
+        <i className={resolveClassName} />
+        <i className={resolveClassName} />
       </span>
-      {children && <div className="raw-dot-loading-text">{children}</div>}
-      <style jsx>{styles}</style>
+      {children && (
+        <div className={classNames('raw-dot-loading-text', resolveClassName)}>
+          {children}
+        </div>
+      )}
+      {styles}
     </div>
   );
 };
@@ -28,20 +35,27 @@ const SpinLoading: FC<PropsWithChildren<Omit<LoadingProps, 'type'>>> = (
   props
 ) => {
   const { className, color, size = 20, children, ...restProps } = props;
-  const classes = classNames('raw-spin-loading', className);
-  const styles = getSpinLoadingStyles({ color, size });
+  const { className: resolveClassName, styles } = getSpinLoadingStyles({
+    color,
+    size,
+  });
+  const classes = classNames('raw-spin-loading', className, resolveClassName);
 
   return (
     <div className={classes} {...restProps}>
-      <div className="raw-spin-loading-wrapper">
-        <div className="raw-spin-loading-inner">
+      <div className={classNames('raw-spin-loading-wrapper', resolveClassName)}>
+        <div className={classNames('raw-spin-loading-inner', resolveClassName)}>
           {[...new Array(12)].map((_, index) => (
-            <span key={`raw-spin-${index}`} />
+            <span className={resolveClassName} key={`raw-spin-${index}`} />
           ))}
         </div>
       </div>
-      {children && <div className="raw-spin-loading-text">{children}</div>}
-      <style jsx>{styles}</style>
+      {children && (
+        <div className={classNames('raw-spin-loading-text', resolveClassName)}>
+          {children}
+        </div>
+      )}
+      {styles}
     </div>
   );
 };

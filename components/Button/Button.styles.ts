@@ -1,4 +1,6 @@
 import css from 'styled-jsx/css';
+import { RawUITheme } from '../Theme/preset/preset.type';
+import { useTheme } from '../Theme/theme-context';
 import {
   ButtonSizes,
   ButtonTypes,
@@ -11,7 +13,8 @@ import {
   ButtonActiveStyles,
 } from './Button.types';
 
-const getButtonStyles = (props: ButtonProps): ButtonStyles => {
+const useButtonStyles = (props: ButtonProps): ButtonStyles => {
+  const theme: RawUITheme = useTheme();
   const { size, type, variant, loading, disabled } = props;
 
   const sizes: {
@@ -19,21 +22,18 @@ const getButtonStyles = (props: ButtonProps): ButtonStyles => {
   } = {
     sm: {
       fontSize: '12px',
-      lineHeight: '16px',
       height: '34px',
-      padding: '8px 12px',
+      padding: '0 12px',
     },
     md: {
       fontSize: '14px',
-      lineHeight: '20px',
       height: '40px',
-      padding: '8px 16px',
+      padding: '0 16px',
     },
     lg: {
       fontSize: '16px',
-      lineHeight: '24px',
       height: '46px',
-      padding: '10px 20px',
+      padding: '0 20px',
     },
   };
 
@@ -44,117 +44,117 @@ const getButtonStyles = (props: ButtonProps): ButtonStyles => {
   } = {
     default: {
       default: {
-        backgroundColor: '#fff',
-        color: '#666',
-        borderColor: '#eaeaea',
+        backgroundColor: theme.palette.white,
+        color: theme.palette.accents7,
+        borderColor: theme.palette.accents2,
       },
       outline: {
-        backgroundColor: '#fff',
-        color: '#666',
-        borderColor: '#eaeaea',
+        backgroundColor: theme.palette.white,
+        color: theme.palette.accents7,
+        borderColor: theme.palette.accents2,
       },
       ghost: {
         backgroundColor: 'transparent',
-        color: '#666',
+        color: theme.palette.accents7,
         borderColor: 'transparent',
       },
       shadow: {
-        backgroundColor: '#fff',
-        color: '#666',
-        borderColor: '#fff',
-        boxShadow: '0 5px 10px rgba(0, 0, 0, 0.12)',
+        backgroundColor: theme.palette.white,
+        color: theme.palette.accents7,
+        borderColor: theme.palette.white,
+        boxShadow: theme.tokens.shadow.sm,
       },
     },
     primary: {
       default: {
-        backgroundColor: '#000',
-        color: '#fff',
-        borderColor: '#000',
+        backgroundColor: theme.palette.black,
+        color: theme.palette.white,
+        borderColor: theme.palette.black,
       },
       outline: {
         backgroundColor: 'transparent',
-        color: '#000',
-        borderColor: '#000',
+        color: theme.palette.black,
+        borderColor: theme.palette.black,
       },
       ghost: {
         backgroundColor: 'transparent',
-        color: '#000',
+        color: theme.palette.black,
         borderColor: 'transparent',
       },
       shadow: {
-        backgroundColor: '#000',
-        color: '#fff',
-        borderColor: '#000',
-        boxShadow: '0 5px 10px rgba(0, 0, 0, 0.12)',
+        backgroundColor: theme.palette.black,
+        color: theme.palette.white,
+        borderColor: theme.palette.black,
+        boxShadow: theme.tokens.shadow.sm,
       },
     },
     success: {
       default: {
-        backgroundColor: '#0070f3',
-        color: '#fff',
-        borderColor: '#0070f3',
+        backgroundColor: theme.palette.success5,
+        color: theme.palette.white,
+        borderColor: theme.palette.success5,
       },
       outline: {
         backgroundColor: 'transparent',
-        color: '#0070f3',
-        borderColor: '#0070f3',
+        color: theme.palette.success5,
+        borderColor: theme.palette.success5,
       },
       ghost: {
         backgroundColor: 'transparent',
-        color: '#0070f3',
+        color: theme.palette.success5,
         borderColor: 'transparent',
       },
       shadow: {
-        backgroundColor: '#0070f3',
-        color: '#fff',
-        borderColor: '#0070f3',
-        boxShadow: '0 5px 10px rgba(0, 0, 0, 0.12)',
+        backgroundColor: theme.palette.success5,
+        color: theme.palette.white,
+        borderColor: theme.palette.success5,
+        boxShadow: theme.tokens.shadow.sm,
       },
     },
     warning: {
       default: {
-        backgroundColor: '#f5a623',
-        color: '#fff',
-        borderColor: '#f5a623',
+        backgroundColor: theme.palette.warning5,
+        color: theme.palette.white,
+        borderColor: theme.palette.warning5,
       },
       outline: {
         backgroundColor: 'transparent',
-        color: '#f5a623',
-        borderColor: '#f5a623',
+        color: theme.palette.warning5,
+        borderColor: theme.palette.warning5,
       },
       ghost: {
         backgroundColor: 'transparent',
-        color: '#f5a623',
+        color: theme.palette.warning5,
         borderColor: 'transparent',
       },
       shadow: {
-        backgroundColor: '#f5a623',
-        color: '#fff',
-        borderColor: '#f5a623',
-        boxShadow: '0 5px 10px rgba(0, 0, 0, 0.12)',
+        backgroundColor: theme.palette.warning5,
+        color: theme.palette.white,
+        borderColor: theme.palette.warning5,
+        boxShadow: theme.tokens.shadow.sm,
       },
     },
     error: {
       default: {
-        backgroundColor: '#e00',
-        color: '#fff',
-        borderColor: '#e00',
+        backgroundColor: theme.palette.error5,
+        color: theme.palette.white,
+        borderColor: theme.palette.error5,
       },
       outline: {
         backgroundColor: 'transparent',
-        color: '#e00',
-        borderColor: '#e00',
+        color: theme.palette.error5,
+        borderColor: theme.palette.error5,
       },
       ghost: {
         backgroundColor: 'transparent',
-        color: '#e00',
+        color: theme.palette.error5,
         borderColor: 'transparent',
       },
       shadow: {
-        backgroundColor: '#e00',
-        color: '#fff',
-        borderColor: '#e00',
-        boxShadow: '0 5px 10px rgba(0, 0, 0, 0.12)',
+        backgroundColor: theme.palette.error5,
+        color: theme.palette.white,
+        borderColor: theme.palette.error5,
+        boxShadow: theme.tokens.shadow.sm,
       },
     },
   };
@@ -163,27 +163,27 @@ const getButtonStyles = (props: ButtonProps): ButtonStyles => {
     [key in ButtonVariants]: ButtonBasicStyles;
   } = {
     default: {
-      backgroundColor: '#eaeaea',
-      color: '#999',
-      borderColor: '#eaeaea',
+      backgroundColor: theme.palette.accents2,
+      color: theme.palette.accents5,
+      borderColor: theme.palette.accents2,
       cursor: 'not-allowed',
     },
     outline: {
-      backgroundColor: '#fafafa',
-      color: '#999',
-      borderColor: '#eaeaea',
+      backgroundColor: theme.palette.accents1,
+      color: theme.palette.accents5,
+      borderColor: theme.palette.accents2,
       cursor: 'not-allowed',
     },
     ghost: {
       backgroundColor: 'transparent',
-      color: 'rgba(153, 153, 153, 0.6)',
+      color: theme.palette.accents5,
       borderColor: 'transparent',
       cursor: 'not-allowed',
     },
     shadow: {
-      backgroundColor: '#eaeaea',
-      color: '#999',
-      borderColor: '#eaeaea',
+      backgroundColor: theme.palette.accents2,
+      color: theme.palette.accents5,
+      borderColor: theme.palette.accents2,
       cursor: 'not-allowed',
     },
   };
@@ -210,7 +210,8 @@ const getButtonStyles = (props: ButtonProps): ButtonStyles => {
   return defaultStyles;
 };
 
-const getButtonHoverStyles = (props: ButtonProps): ButtonHoverStyles => {
+const useButtonHoverStyles = (props: ButtonProps): ButtonHoverStyles => {
+  const theme: RawUITheme = useTheme();
   const { type, variant, loading, disabled } = props;
   const styles: {
     [key in ButtonTypes]: {
@@ -219,87 +220,87 @@ const getButtonHoverStyles = (props: ButtonProps): ButtonHoverStyles => {
   } = {
     default: {
       default: {
-        hoverColor: '#000',
-        hoverBorderColor: '#000',
+        hoverColor: theme.palette.black,
+        hoverBorderColor: theme.palette.black,
       },
       outline: {
-        hoverColor: '#000',
-        hoverBorderColor: '#000',
+        hoverColor: theme.palette.black,
+        hoverBorderColor: theme.palette.black,
       },
       ghost: {
-        hoverBackgroundColor: '#e7e7e7',
-        hoverColor: '#666',
+        hoverBackgroundColor: theme.palette.accents3,
+        hoverColor: theme.palette.accents7,
       },
       shadow: {
-        hoverBoxShadow: '0 8px 30px rgba(0, 0, 0, 0.12)',
+        hoverBoxShadow: theme.tokens.shadow.md,
         hoverTransform: 'translateY(-2px)',
       },
     },
     primary: {
       default: {
-        hoverColor: '#000',
-        hoverBackgroundColor: '#fff',
+        hoverColor: theme.palette.black,
+        hoverBackgroundColor: theme.palette.white,
       },
       outline: {
-        hoverColor: '#fff',
-        hoverBackgroundColor: '#000',
+        hoverColor: theme.palette.white,
+        hoverBackgroundColor: theme.palette.black,
       },
       ghost: {
-        hoverBackgroundColor: '#e7e7e7',
+        hoverBackgroundColor: theme.palette.accents3,
       },
       shadow: {
-        hoverBoxShadow: '0 8px 30px rgba(0, 0, 0, 0.12)',
+        hoverBoxShadow: theme.tokens.shadow.md,
         hoverTransform: 'translateY(-2px)',
       },
     },
     success: {
       default: {
-        hoverColor: '#0070f3',
-        hoverBackgroundColor: '#fff',
+        hoverColor: theme.palette.success5,
+        hoverBackgroundColor: theme.palette.white,
       },
       outline: {
-        hoverColor: '#fff',
-        hoverBackgroundColor: '#0070f3',
+        hoverColor: theme.palette.white,
+        hoverBackgroundColor: theme.palette.success5,
       },
       ghost: {
-        hoverBackgroundColor: '#cce2fd',
+        hoverBackgroundColor: theme.palette.success2,
       },
       shadow: {
-        hoverBoxShadow: '0 8px 30px rgba(0, 0, 0, 0.12)',
+        hoverBoxShadow: theme.tokens.shadow.md,
         hoverTransform: 'translateY(-2px)',
       },
     },
     warning: {
       default: {
-        hoverColor: '#f5a623',
-        hoverBackgroundColor: '#fff',
+        hoverColor: theme.palette.warning5,
+        hoverBackgroundColor: theme.palette.white,
       },
       outline: {
-        hoverColor: '#fff',
-        hoverBackgroundColor: '#f5a623',
+        hoverColor: theme.palette.white,
+        hoverBackgroundColor: theme.palette.warning5,
       },
       ghost: {
-        hoverBackgroundColor: '#fdedd3',
+        hoverBackgroundColor: theme.palette.warning2,
       },
       shadow: {
-        hoverBoxShadow: '0 8px 30px rgba(0, 0, 0, 0.12)',
+        hoverBoxShadow: theme.tokens.shadow.md,
         hoverTransform: 'translateY(-2px)',
       },
     },
     error: {
       default: {
-        hoverColor: '#e00',
-        hoverBackgroundColor: '#fff',
+        hoverColor: theme.palette.error5,
+        hoverBackgroundColor: theme.palette.white,
       },
       outline: {
-        hoverColor: '#fff',
-        hoverBackgroundColor: '#e00',
+        hoverColor: theme.palette.white,
+        hoverBackgroundColor: theme.palette.error5,
       },
       ghost: {
-        hoverBackgroundColor: '#fccccc',
+        hoverBackgroundColor: theme.palette.error2,
       },
       shadow: {
-        hoverBoxShadow: '0 8px 30px rgba(0, 0, 0, 0.12)',
+        hoverBoxShadow: theme.tokens.shadow.md,
         hoverTransform: 'translateY(-2px)',
       },
     },
@@ -309,25 +310,25 @@ const getButtonHoverStyles = (props: ButtonProps): ButtonHoverStyles => {
     [key in ButtonVariants]: ButtonHoverStyles;
   } = {
     default: {
-      hoverColor: '#999',
-      hoverBorderColor: '#eaeaea',
-      hoverBackgroundColor: '#eaeaea',
+      hoverColor: theme.palette.accents5,
+      hoverBorderColor: theme.palette.accents2,
+      hoverBackgroundColor: theme.palette.accents2,
     },
     outline: {
-      hoverColor: '#999',
-      hoverBorderColor: '#eaeaea',
-      hoverBackgroundColor: '#fafafa',
+      hoverColor: theme.palette.accents5,
+      hoverBorderColor: theme.palette.accents2,
+      hoverBackgroundColor: theme.palette.accents1,
     },
     ghost: {
-      hoverColor: 'rgba(153, 153, 153, 0.6)',
+      hoverColor: theme.palette.accents5,
       hoverBorderColor: 'transparent',
       hoverBackgroundColor: 'transparent',
     },
     shadow: {
-      hoverColor: '#999',
-      hoverBorderColor: '#eaeaea',
-      hoverBackgroundColor: '#eaeaea',
-      hoverBoxShadow: '0 5px 10px rgba(0, 0, 0, 0.12)',
+      hoverColor: theme.palette.accents5,
+      hoverBorderColor: theme.palette.accents2,
+      hoverBackgroundColor: theme.palette.accents2,
+      hoverBoxShadow: theme.tokens.shadow.sm,
       hoverTransform: 'none',
     },
   };
@@ -352,7 +353,8 @@ const getButtonHoverStyles = (props: ButtonProps): ButtonHoverStyles => {
   return defaultStyles;
 };
 
-const getButtonActiveStyles = (props: ButtonProps): ButtonActiveStyles => {
+const useButtonActiveStyles = (props: ButtonProps): ButtonActiveStyles => {
+  const theme: RawUITheme = useTheme();
   const { type, variant, loading, disabled } = props;
   const styles: {
     [key in ButtonTypes]: {
@@ -361,76 +363,76 @@ const getButtonActiveStyles = (props: ButtonProps): ButtonActiveStyles => {
   } = {
     default: {
       default: {
-        activeBackgroundColor: '#eaeaea',
+        activeBackgroundColor: theme.palette.accents2,
       },
       outline: {
-        activeBackgroundColor: '#eaeaea',
+        activeBackgroundColor: theme.palette.accents2,
       },
       ghost: {
-        activeBackgroundColor: '#dcdcdc',
+        activeBackgroundColor: theme.palette.accents4,
       },
       shadow: {
-        activeBoxShadow: '0 5px 10px rgba(0, 0, 0, 0.12)',
+        activeBoxShadow: theme.tokens.shadow.sm,
         activeTransform: 'none',
       },
     },
     primary: {
       default: {
-        activeBackgroundColor: '#eaeaea',
+        activeBackgroundColor: theme.palette.accents2,
       },
       outline: {
-        activeBackgroundColor: '#333',
+        activeBackgroundColor: theme.palette.accents9,
       },
       ghost: {
-        activeBackgroundColor: '#dcdcdc',
+        activeBackgroundColor: theme.palette.accents4,
       },
       shadow: {
-        activeBoxShadow: '0 5px 10px rgba(0, 0, 0, 0.12)',
+        activeBoxShadow: theme.tokens.shadow.sm,
         activeTransform: 'none',
       },
     },
     success: {
       default: {
-        activeBackgroundColor: '#d3e5ff',
+        activeBackgroundColor: theme.palette.success1,
       },
       outline: {
-        activeBackgroundColor: '#3291ff',
+        activeBackgroundColor: theme.palette.success4,
       },
       ghost: {
-        activeBackgroundColor: '#b3d4fb',
+        activeBackgroundColor: theme.palette.success3,
       },
       shadow: {
-        activeBoxShadow: '0 5px 10px rgba(0, 0, 0, 0.12)',
+        activeBoxShadow: theme.tokens.shadow.sm,
         activeTransform: 'none',
       },
     },
     warning: {
       default: {
-        activeBackgroundColor: '#ffefcf',
+        activeBackgroundColor: theme.palette.warning1,
       },
       outline: {
-        activeBackgroundColor: '#f7b955',
+        activeBackgroundColor: theme.palette.warning4,
       },
       ghost: {
-        activeBackgroundColor: '#fce4bd',
+        activeBackgroundColor: theme.palette.warning3,
       },
       shadow: {
-        activeBoxShadow: '0 5px 10px rgba(0, 0, 0, 0.12)',
+        activeBoxShadow: theme.tokens.shadow.sm,
         activeTransform: 'none',
       },
     },
     error: {
       default: {
-        activeBackgroundColor: '#f7d4d6',
+        activeBackgroundColor: theme.palette.error1,
       },
       outline: {
-        activeBackgroundColor: '#ff1a1a',
+        activeBackgroundColor: theme.palette.error4,
       },
       ghost: {
-        activeBackgroundColor: '#fab3b3',
+        activeBackgroundColor: theme.palette.error3,
       },
       shadow: {
-        activeBoxShadow: '0 5px 10px rgba(0, 0, 0, 0.12)',
+        activeBoxShadow: theme.tokens.shadow.sm,
         activeTransform: 'none',
       },
     },
@@ -440,16 +442,16 @@ const getButtonActiveStyles = (props: ButtonProps): ButtonActiveStyles => {
     [key in ButtonVariants]: ButtonActiveStyles;
   } = {
     default: {
-      activeBackgroundColor: '#eaeaea',
+      activeBackgroundColor: theme.palette.accents2,
     },
     outline: {
-      activeBackgroundColor: '#fafafa',
+      activeBackgroundColor: theme.palette.accents1,
     },
     ghost: {
       activeBackgroundColor: 'transparent',
     },
     shadow: {
-      activeBackgroundColor: '#eaeaea',
+      activeBackgroundColor: theme.palette.accents2,
     },
   };
 
@@ -473,10 +475,9 @@ const getButtonActiveStyles = (props: ButtonProps): ButtonActiveStyles => {
   return defaultStyles;
 };
 
-export const getButtonCSS = (props: ButtonProps) => {
+export const useButtonCSS = (props: ButtonProps) => {
   const {
     fontSize,
-    lineHeight,
     height,
     padding,
     backgroundColor,
@@ -484,7 +485,7 @@ export const getButtonCSS = (props: ButtonProps) => {
     color,
     boxShadow = 'none',
     cursor = 'pointer',
-  } = getButtonStyles(props);
+  } = useButtonStyles(props);
 
   const {
     hoverBackgroundColor,
@@ -492,13 +493,13 @@ export const getButtonCSS = (props: ButtonProps) => {
     hoverColor,
     hoverBoxShadow = 'none',
     hoverTransform = 'none',
-  } = getButtonHoverStyles(props);
+  } = useButtonHoverStyles(props);
 
   const {
     activeBackgroundColor,
     activeBoxShadow = 'none',
     activeTransform = 'none',
-  } = getButtonActiveStyles(props);
+  } = useButtonActiveStyles(props);
 
   return css.resolve`
     .raw-button {
@@ -512,7 +513,7 @@ export const getButtonCSS = (props: ButtonProps) => {
       border-radius: 6px;
       font-weight: 400;
       font-size: ${fontSize};
-      line-height: ${lineHeight};
+      line-height: 1;
       height: ${height};
       padding: ${padding};
       background-color: ${backgroundColor};
