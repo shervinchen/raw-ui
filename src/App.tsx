@@ -154,6 +154,23 @@ function App() {
             </Button>
           </Unit>
         </Wrapper>
+        <Wrapper title="Loading">
+          <Unit layout="row">
+            <Button loading>Default</Button>
+            <Button type="primary" loading>
+              Primary
+            </Button>
+            <Button type="success" variant="outline" loading>
+              Success
+            </Button>
+            <Button type="warning" variant="ghost" loading>
+              Warning
+            </Button>
+            <Button type="error" variant="shadow" loading>
+              Error
+            </Button>
+          </Unit>
+        </Wrapper>
         <Wrapper title="Disabled">
           <Unit layout="row">
             <Button disabled>Default</Button>

@@ -29,6 +29,11 @@ type NativeButtonProps = Omit<
 
 export type ButtonProps = BaseButtonProps & NativeButtonProps;
 
+export interface ButtonLoadingProps {
+  color: string;
+  backgroundColor: string;
+}
+
 export interface ButtonSizeStyles {
   fontSize?: string;
   lineHeight?: string;

@@ -13,7 +13,7 @@ import {
   ButtonActiveStyles,
 } from './Button.types';
 
-const useButtonStyles = (props: ButtonProps): ButtonStyles => {
+export const useButtonStyles = (props: ButtonProps): ButtonStyles => {
   const theme: RawUITheme = useTheme();
   const { size, type, variant, loading, disabled } = props;
 
@@ -159,6 +159,83 @@ const useButtonStyles = (props: ButtonProps): ButtonStyles => {
     },
   };
 
+  const loadingStyles: {
+    [key in ButtonTypes]: {
+      [key in ButtonVariants]: ButtonBasicStyles;
+    };
+  } = {
+    default: {
+      default: {
+        backgroundColor: theme.palette.white,
+      },
+      outline: {
+        backgroundColor: theme.palette.white,
+      },
+      ghost: {
+        backgroundColor: theme.palette.white,
+      },
+      shadow: {
+        backgroundColor: theme.palette.white,
+      },
+    },
+    primary: {
+      default: {
+        backgroundColor: theme.palette.black,
+      },
+      outline: {
+        backgroundColor: theme.palette.white,
+      },
+      ghost: {
+        backgroundColor: theme.palette.white,
+      },
+      shadow: {
+        backgroundColor: theme.palette.black,
+      },
+    },
+    success: {
+      default: {
+        backgroundColor: theme.palette.success5,
+      },
+      outline: {
+        backgroundColor: theme.palette.white,
+      },
+      ghost: {
+        backgroundColor: theme.palette.white,
+      },
+      shadow: {
+        backgroundColor: theme.palette.success5,
+      },
+    },
+    warning: {
+      default: {
+        backgroundColor: theme.palette.warning5,
+      },
+      outline: {
+        backgroundColor: theme.palette.white,
+      },
+      ghost: {
+        backgroundColor: theme.palette.white,
+      },
+      shadow: {
+        backgroundColor: theme.palette.warning5,
+      },
+    },
+    error: {
+      default: {
+        backgroundColor: theme.palette.error5,
+      },
+      outline: {
+        backgroundColor: theme.palette.white,
+      },
+      ghost: {
+        backgroundColor: theme.palette.white,
+      },
+      shadow: {
+        backgroundColor: theme.palette.error5,
+      },
+    },
+  };
+
   const disabledStyles: {
     [key in ButtonVariants]: ButtonBasicStyles;
   } = {
@@ -166,25 +243,19 @@ const useButtonStyles = (props: ButtonProps): ButtonStyles => {
       backgroundColor: theme.palette.accents2,
       color: theme.palette.accents5,
       borderColor: theme.palette.accents2,
-      cursor: 'not-allowed',
     },
     outline: {
       backgroundColor: theme.palette.accents1,
       color: theme.palette.accents5,
       borderColor: theme.palette.accents2,
-      cursor: 'not-allowed',
     },
     ghost: {
-      backgroundColor: 'transparent',
       color: theme.palette.accents5,
-      borderColor: 'transparent',
-      cursor: 'not-allowed',
     },
     shadow: {
       backgroundColor: theme.palette.accents2,
       color: theme.palette.accents5,
       borderColor: theme.palette.accents2,
-      cursor: 'not-allowed',
     },
   };
 
@@ -194,20 +265,24 @@ const useButtonStyles = (props: ButtonProps): ButtonStyles => {
     ...(sizes[size] || sizes['md']),
   };
 
-  if (disabled) {
-    return {
-      ...defaultStyles,
-      ...(type === 'default'
-        ? disabledStyles['outline']
-        : disabledStyles[variant] || disabledStyles['default']),
-    };
-  }
-
-  if (loading) {
-    // TODO
-  }
-
-  return defaultStyles;
+  return {
+    ...defaultStyles,
+    ...(loading
+      ? {
+          ...(loadingStyles?.[type || 'default']?.[variant || 'default'] ??
+            loadingStyles['default']['default']),
+          cursor: 'default',
+        }
+      : {}),
+    ...(disabled
+      ? {
+          ...(type === 'default'
+            ? disabledStyles['outline']
+            : disabledStyles[variant] || disabledStyles['default']),
+          cursor: 'not-allowed',
+        }
+      : {}),
+  };
 };
 
 const useButtonHoverStyles = (props: ButtonProps): ButtonHoverStyles => {
@@ -306,51 +381,11 @@ const useButtonHoverStyles = (props: ButtonProps): ButtonHoverStyles => {
     },
   };
 
-  const disabledStyles: {
-    [key in ButtonVariants]: ButtonHoverStyles;
-  } = {
-    default: {
-      hoverColor: theme.palette.accents5,
-      hoverBorderColor: theme.palette.accents2,
-      hoverBackgroundColor: theme.palette.accents2,
-    },
-    outline: {
-      hoverColor: theme.palette.accents5,
-      hoverBorderColor: theme.palette.accents2,
-      hoverBackgroundColor: theme.palette.accents1,
-    },
-    ghost: {
-      hoverColor: theme.palette.accents5,
-      hoverBorderColor: 'transparent',
-      hoverBackgroundColor: 'transparent',
-    },
-    shadow: {
-      hoverColor: theme.palette.accents5,
-      hoverBorderColor: theme.palette.accents2,
-      hoverBackgroundColor: theme.palette.accents2,
-      hoverBoxShadow: theme.tokens.shadow.sm,
-      hoverTransform: 'none',
-    },
-  };
-
   const defaultStyles =
     styles?.[type || 'default']?.[variant || 'default'] ??
     styles['default']['default'];
 
-  if (disabled) {
-    return {
-      ...defaultStyles,
-      ...(type === 'default'
-        ? disabledStyles['outline']
-        : disabledStyles[variant] || disabledStyles['default']),
-    };
-  }
-
-  if (loading) {
-    // TODO
-  }
-
-  return defaultStyles;
+  return loading || disabled ? {} : defaultStyles;
 };
 
 const useButtonActiveStyles = (props: ButtonProps): ButtonActiveStyles => {
@@ -438,41 +473,11 @@ const useButtonActiveStyles = (props: ButtonProps): ButtonActiveStyles => {
     },
   };
 
-  const disabledStyles: {
-    [key in ButtonVariants]: ButtonActiveStyles;
-  } = {
-    default: {
-      activeBackgroundColor: theme.palette.accents2,
-    },
-    outline: {
-      activeBackgroundColor: theme.palette.accents1,
-    },
-    ghost: {
-      activeBackgroundColor: 'transparent',
-    },
-    shadow: {
-      activeBackgroundColor: theme.palette.accents2,
-    },
-  };
-
   const defaultStyles =
     styles?.[type || 'default']?.[variant || 'default'] ??
     styles['default']['default'];
 
-  if (disabled) {
-    return {
-      ...defaultStyles,
-      ...(type === 'default'
-        ? disabledStyles['outline']
-        : disabledStyles[variant] || disabledStyles['default']),
-    };
-  }
-
-  if (loading) {
-    // TODO
-  }
-
-  return defaultStyles;
+  return loading || disabled ? {} : defaultStyles;
 };
 
 export const useButtonCSS = (props: ButtonProps) => {
@@ -530,10 +535,11 @@ export const useButtonCSS = (props: ButtonProps) => {
       appearance: none;
       outline: none;
       user-select: none;
+      overflow: hidden;
     }
 
-    .raw-button:hover,
-    .raw-button:focus {
+    .raw-button:not(.raw-loading-button):not(.raw-disabled-button):hover,
+    .raw-button:not(.raw-loading-button):not(.raw-disabled-button):focus {
       background-color: ${hoverBackgroundColor};
       border-color: ${hoverBorderColor};
       color: ${hoverColor};
@@ -541,10 +547,15 @@ export const useButtonCSS = (props: ButtonProps) => {
       transform: ${hoverTransform};
     }
 
-    .raw-button:active {
+    .raw-button:not(.raw-loading-button):not(.raw-disabled-button):active {
       background-color: ${activeBackgroundColor};
       box-shadow: ${activeBoxShadow};
       transform: ${activeTransform};
+    }
+
+    .raw-button-text {
+      position: relative;
+      z-index: 1;
     }
   `;
 };
