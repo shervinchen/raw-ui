@@ -1,4 +1,4 @@
-import { MouseEventHandler, ButtonHTMLAttributes } from 'react';
+import { MouseEventHandler, ButtonHTMLAttributes, ReactNode } from 'react';
 
 export type ButtonSizes = 'sm' | 'md' | 'lg';
 
@@ -19,6 +19,8 @@ interface BaseButtonProps {
   htmlType?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   loading?: boolean;
   disabled?: boolean;
+  icon?: ReactNode;
+  iconRight?: ReactNode;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
@@ -34,11 +36,18 @@ export interface ButtonLoadingProps {
   backgroundColor: string;
 }
 
+export interface ButtonIconProps {
+  isRight?: boolean;
+  isSingle?: boolean;
+  height: string;
+  horizontalPadding: string;
+}
+
 export interface ButtonSizeStyles {
   fontSize?: string;
   lineHeight?: string;
   height?: string;
-  padding?: string;
+  horizontalPadding?: string;
 }
 
 export interface ButtonBasicStyles {

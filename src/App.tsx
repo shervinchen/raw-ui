@@ -1,4 +1,5 @@
 import React, { FC, PropsWithChildren } from 'react';
+import { Search } from 'react-feather';
 import { Button, Loading } from '../components';
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
@@ -185,6 +186,16 @@ function App() {
             </Button>
             <Button type="primary" variant="shadow" disabled>
               Shadow
+            </Button>
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Icons">
+          <Unit layout="row">
+            <Button icon={<Search />} />
+            <Button icon={<Search />}>Search</Button>
+            <Button type="primary" icon={<Search />} />
+            <Button type="primary" icon={<Search />}>
+              Search
             </Button>
           </Unit>
         </Wrapper>

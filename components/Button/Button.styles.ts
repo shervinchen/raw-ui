@@ -23,17 +23,17 @@ export const useButtonStyles = (props: ButtonProps): ButtonStyles => {
     sm: {
       fontSize: '12px',
       height: '34px',
-      padding: '0 12px',
+      horizontalPadding: '12px',
     },
     md: {
       fontSize: '14px',
       height: '40px',
-      padding: '0 16px',
+      horizontalPadding: '16px',
     },
     lg: {
       fontSize: '16px',
       height: '46px',
-      padding: '0 20px',
+      horizontalPadding: '20px',
     },
   };
 
@@ -484,7 +484,7 @@ export const useButtonCSS = (props: ButtonProps) => {
   const {
     fontSize,
     height,
-    padding,
+    horizontalPadding,
     backgroundColor,
     borderColor,
     color,
@@ -520,7 +520,7 @@ export const useButtonCSS = (props: ButtonProps) => {
       font-size: ${fontSize};
       line-height: 1;
       height: ${height};
-      padding: ${padding};
+      padding: 0 ${horizontalPadding};
       background-color: ${backgroundColor};
       border-color: ${borderColor};
       color: ${color};
@@ -553,7 +553,13 @@ export const useButtonCSS = (props: ButtonProps) => {
       transform: ${activeTransform};
     }
 
-    .raw-button-text {
+    .raw-button.raw-childless-button {
+      width: ${height};
+      height: ${height};
+      padding: 0;
+    }
+
+    .raw-button-content {
       position: relative;
       z-index: 1;
     }
