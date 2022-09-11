@@ -1,6 +1,6 @@
 import React, { FC, PropsWithChildren } from 'react';
 import { Search } from 'react-feather';
-import { Button, Loading } from '../components';
+import { Button, Loading, ButtonGroup } from '../components';
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
   title,
@@ -193,6 +193,7 @@ function App() {
           <Unit layout="row">
             <Button icon={<Search />} />
             <Button icon={<Search />}>Search</Button>
+            <Button iconRight={<Search />}>Search</Button>
             <Button type="primary" icon={<Search />} />
             <Button type="primary" icon={<Search />}>
               Search
@@ -223,6 +224,78 @@ function App() {
           <Unit layout="row">
             <Loading>Loading</Loading>
             <Loading type="spin">Loading</Loading>
+          </Unit>
+        </Wrapper>
+      </Container>
+      <Container title="Button Group">
+        <Wrapper title="Types">
+          <Unit layout="row">
+            <ButtonGroup>
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup type="primary">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup type="success">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Variant">
+          <Unit layout="row">
+            <ButtonGroup type="primary" variant="outline">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup type="success" variant="outline">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Size">
+          <Unit layout="row">
+            <ButtonGroup size="sm">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup size="md">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+            <ButtonGroup size="lg">
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Vertical">
+          <Unit layout="row">
+            <ButtonGroup vertical>
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Disabled">
+          <Unit layout="row">
+            <ButtonGroup disabled>
+              <Button>One</Button>
+              <Button>Two</Button>
+              <Button>Three</Button>
+            </ButtonGroup>
           </Unit>
         </Wrapper>
       </Container>

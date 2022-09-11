@@ -285,7 +285,7 @@ export const useButtonStyles = (props: ButtonProps): ButtonStyles => {
   };
 };
 
-const useButtonHoverStyles = (props: ButtonProps): ButtonHoverStyles => {
+export const useButtonHoverStyles = (props: ButtonProps): ButtonHoverStyles => {
   const theme: RawUITheme = useTheme();
   const { type, variant, loading, disabled } = props;
   const styles: {
@@ -493,15 +493,15 @@ export const useButtonCSS = (props: ButtonProps) => {
   } = useButtonStyles(props);
 
   const {
-    hoverBackgroundColor,
-    hoverBorderColor,
-    hoverColor,
+    hoverBackgroundColor = backgroundColor,
+    hoverBorderColor = borderColor,
+    hoverColor = color,
     hoverBoxShadow = 'none',
     hoverTransform = 'none',
   } = useButtonHoverStyles(props);
 
   const {
-    activeBackgroundColor,
+    activeBackgroundColor = backgroundColor,
     activeBoxShadow = 'none',
     activeTransform = 'none',
   } = useButtonActiveStyles(props);
@@ -513,6 +513,7 @@ export const useButtonCSS = (props: ButtonProps) => {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
       vertical-align: middle;
       border: 1px solid;
       border-radius: 6px;
@@ -535,7 +536,6 @@ export const useButtonCSS = (props: ButtonProps) => {
       appearance: none;
       outline: none;
       user-select: none;
-      overflow: hidden;
     }
 
     .raw-button:not(.raw-loading-button):not(.raw-disabled-button):hover,

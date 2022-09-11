@@ -1,6 +1,4 @@
-import React, {
-  FC,
-} from 'react';
+import React, { FC } from 'react';
 import css from 'styled-jsx/css';
 import classNames from 'classnames';
 
@@ -21,6 +19,7 @@ const ButtonLoading: FC<React.PropsWithChildren<ButtonLoadingProps>> = ({
       display: flex;
       align-items: center;
       justify-content: center;
+      border-radius: inherit;
       z-index: 2;
       background-color: ${backgroundColor};
     }

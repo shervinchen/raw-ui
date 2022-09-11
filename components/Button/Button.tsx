@@ -11,10 +11,27 @@ import { useButtonStyles, useButtonCSS } from './Button.styles';
 import { ButtonProps } from './Button.types';
 import ButtonLoading from './ButtonLoading';
 import ButtonIcon from './ButtonIcon';
+import { useButtonGroupContext } from '../ButtonGroup/button-group-context';
+import { ButtonGroupConfig } from '../ButtonGroup/ButtonGroup.types';
+
+const mergeButtonGroupProps = (
+  buttonProps: ButtonProps,
+  config: ButtonGroupConfig
+): ButtonProps => {
+  if (!config.isButtonGroup) return buttonProps;
+  return {
+    ...buttonProps,
+    size: config.size,
+    type: config.type,
+    variant: config.variant,
+    disabled: config.disabled,
+  };
+};
 
 const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
-  (
-    {
+  (buttonProps, ref: Ref<HTMLButtonElement | null>) => {
+    const buttonGroupConfig = useButtonGroupContext();
+    const {
       className = '',
       size = 'md',
       type = 'default',
@@ -27,9 +44,8 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
       onClick,
       children,
       ...restProps
-    },
-    ref: Ref<HTMLButtonElement | null>
-  ) => {
+    } = mergeButtonGroupProps(buttonProps, buttonGroupConfig);
+
     const { horizontalPadding, height, color, backgroundColor } =
       useButtonStyles({
         type,
