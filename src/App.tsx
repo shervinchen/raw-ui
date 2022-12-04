@@ -1,6 +1,6 @@
 import React, { FC, PropsWithChildren } from 'react';
 import { Search } from 'react-feather';
-import { Button, Loading, ButtonGroup } from '../components';
+import { Button, Loading, ButtonGroup, Input } from '../components';
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
   title,
@@ -82,6 +82,7 @@ const Unit: FC<
           .unit-content-col {
             flex-direction: column;
             row-gap: 32px;
+            align-items: normal;
           }
         `}
       </style>
@@ -296,6 +297,14 @@ function App() {
               <Button>Two</Button>
               <Button>Three</Button>
             </ButtonGroup>
+          </Unit>
+        </Wrapper>
+      </Container>
+      <Container title="Input">
+        <Wrapper title="Types">
+          <Unit layout="col">
+            <Input />
+            <Input type="primary" />
           </Unit>
         </Wrapper>
       </Container>
