@@ -1,6 +1,6 @@
-import React, { FC, PropsWithChildren } from 'react';
-import { Search } from 'react-feather';
-import { Button, Loading, ButtonGroup, Input } from '../components';
+import React, { FC, PropsWithChildren } from "react";
+import { Search } from "react-feather";
+import { Button, Loading, ButtonGroup, Input } from "../components";
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
   title,
@@ -53,7 +53,7 @@ const Wrapper: FC<PropsWithChildren<{ title: string }>> = ({
 };
 
 const Unit: FC<
-  PropsWithChildren<{ title?: string; layout: 'row' | 'col' }>
+  PropsWithChildren<{ title?: string; layout: "row" | "col" }>
 > = ({ title, layout, children }) => {
   return (
     <div className="unit">
@@ -303,8 +303,8 @@ function App() {
       <Container title="Input">
         <Wrapper title="Types">
           <Unit layout="col">
-            <Input />
-            <Input type="primary" />
+            <Input placeholder="Placeholder..." />
+            {/* <Input type="primary" /> */}
           </Unit>
         </Wrapper>
       </Container>

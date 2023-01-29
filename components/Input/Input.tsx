@@ -2,25 +2,28 @@ import React, {
   PropsWithChildren,
   forwardRef,
   Ref,
+  FocusEvent,
   useEffect,
   useImperativeHandle,
   useMemo,
   useRef,
   useState,
-} from 'react';
-import classNames from 'classnames';
-import { InputProps } from './Input.types';
+} from "react";
+import classNames from "classnames";
+import { InputProps } from "./Input.types";
+import { useInputCSS } from "./Input.styles";
 
 const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
   (
     {
-      type = 'default',
-      htmlType = 'text',
-      placeholder = '',
-      initialValue = '',
+      type = "default",
+      htmlType = "text",
+      placeholder = "",
+      initialValue = "",
       disabled = false,
       readOnly = false,
-      className = '',
+      className = "",
+      autoComplete = 'off',
       value,
       onChange,
       onBlur,
@@ -29,27 +32,40 @@ const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
     },
     ref: Ref<HTMLInputElement | null>
   ) => {
-    const classes = classNames('raw-input', className);
+    const { className: resolveClassName, styles } = useInputCSS({});
+    const classes = classNames(
+      "raw-input",
+      className,
+      resolveClassName
+    );
 
-    const focusHandler = () => {};
+    const focusHandler = (event: FocusEvent<HTMLInputElement>) => {
+      onFocus && onFocus(event);
+    };
 
-    const blurHandler = () => {};
+    const blurHandler = (event: FocusEvent<HTMLInputElement>) => {
+      onBlur && onBlur(event);
+    };
 
     const changeHandler = () => {};
 
     return (
-      <input
-        type={htmlType}
-        ref={ref}
-        className={classes}
-        placeholder={placeholder}
-        disabled={disabled}
-        readOnly={readOnly}
-        onFocus={focusHandler}
-        onBlur={blurHandler}
-        onChange={changeHandler}
-        {...restProps}
-      />
+      <>
+        <input
+          ref={ref}
+          type={htmlType}
+          className={classes}
+          placeholder={placeholder}
+          disabled={disabled}
+          readOnly={readOnly}
+          onFocus={focusHandler}
+          onBlur={blurHandler}
+          onChange={changeHandler}
+          autoComplete={autoComplete}
+          {...restProps}
+        />
+        {styles}
+      </>
     );
   }
 );

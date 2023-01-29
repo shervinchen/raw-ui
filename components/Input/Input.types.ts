@@ -14,6 +14,7 @@ interface BaseInputProps {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   onFocus?: (e: FocusEvent<HTMLInputElement>) => void;
   onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
+  autoComplete?: string
   // label?: string
   // labelRight?: string
   // icon?: React.ReactNode
@@ -22,7 +23,6 @@ interface BaseInputProps {
   // clearable?: boolean
   // onClearClick?: (e: React.MouseEvent<HTMLDivElement>) => void
   // onIconClick?: (e: React.MouseEvent<HTMLDivElement>) => void
-  // autoComplete?: string
 }
 
 type NativeInputProps = Omit<
