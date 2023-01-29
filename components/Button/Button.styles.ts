@@ -559,7 +559,7 @@ export const useButtonCSS = (props: ButtonProps) => {
       padding: 0;
     }
 
-    .raw-button-content {
+    .raw-button :global(.raw-button-content) {
       position: relative;
       z-index: 1;
     }

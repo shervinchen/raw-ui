@@ -4,15 +4,15 @@ import React, {
   PropsWithChildren,
   Children,
   MouseEvent,
-} from 'react';
-import classNames from 'classnames';
+} from "react";
+import classNames from "classnames";
 
-import { useButtonStyles, useButtonCSS } from './Button.styles';
-import { ButtonProps } from './Button.types';
-import ButtonLoading from './ButtonLoading';
-import ButtonIcon from './ButtonIcon';
-import { useButtonGroupContext } from '../ButtonGroup/button-group-context';
-import { ButtonGroupConfig } from '../ButtonGroup/ButtonGroup.types';
+import { useButtonStyles, useButtonCSS } from "./Button.styles";
+import { ButtonProps } from "./Button.types";
+import ButtonLoading from "./ButtonLoading";
+import ButtonIcon from "./ButtonIcon";
+import { useButtonGroupContext } from "../ButtonGroup/button-group-context";
+import { ButtonGroupConfig } from "../ButtonGroup/ButtonGroup.types";
 
 const mergeButtonGroupProps = (
   buttonProps: ButtonProps,
@@ -32,11 +32,11 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
   (buttonProps, ref: Ref<HTMLButtonElement | null>) => {
     const buttonGroupConfig = useButtonGroupContext();
     const {
-      className = '',
-      size = 'md',
-      type = 'default',
-      variant = 'default',
-      htmlType = 'button',
+      className = "",
+      size = "md",
+      type = "default",
+      variant = "default",
+      htmlType = "button",
       loading = false,
       disabled = false,
       icon,
@@ -67,10 +67,10 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
     const isRight = Boolean(iconRight);
 
     const classes = classNames(
-      'raw-button',
-      loading && 'raw-loading-button',
-      disabled && 'raw-disabled-button',
-      isChildLess && 'raw-childless-button',
+      "raw-button",
+      loading && "raw-loading-button",
+      disabled && "raw-disabled-button",
+      isChildLess && "raw-childless-button",
       className,
       resolveClassName
     );
@@ -100,11 +100,7 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
             {icon}
           </ButtonIcon>
         )}
-        {!isChildLess && (
-          <span className={classNames('raw-button-content', resolveClassName)}>
-            {children}
-          </span>
-        )}
+        {!isChildLess && <span className="raw-button-content">{children}</span>}
         {iconRight && (
           <ButtonIcon
             isSingle={isChildLess}

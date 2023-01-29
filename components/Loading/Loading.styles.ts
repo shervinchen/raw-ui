@@ -8,7 +8,7 @@ export const getDotLoadingStyles = ({ size, color }) => {
       flex-direction: column;
     }
 
-    .raw-dot-loading-inner {
+    .raw-dot-loading :global(.raw-dot-loading-inner) {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -17,13 +17,13 @@ export const getDotLoadingStyles = ({ size, color }) => {
       user-select: none;
     }
 
-    .raw-dot-loading-text {
+    .raw-dot-loading :global(.raw-dot-loading-text) {
       font-size: 14px;
       color: ${color};
       margin-top: 0.5em;
     }
 
-    i {
+    .raw-dot-loading :global(.raw-dot-loading-inner > i) {
       width: ${size}px;
       height: ${size}px;
       border-radius: 50%;
@@ -33,11 +33,11 @@ export const getDotLoadingStyles = ({ size, color }) => {
       animation: loading-blink 1.4s infinite both;
     }
 
-    i:nth-child(2) {
+    .raw-dot-loading :global(.raw-dot-loading-inner > i:nth-child(2)) {
       animation-delay: 0.2s;
     }
 
-    i:nth-child(3) {
+    .raw-dot-loading :global(.raw-dot-loading-inner > i:nth-child(3)) {
       animation-delay: 0.4s;
     }
 
@@ -64,7 +64,7 @@ export const getSpinLoadingStyles = ({ size, color }) => {
       box-sizing: border-box;
     }
 
-    .raw-spin-loading-wrapper {
+    .raw-spin-loading :global(.raw-spin-loading-wrapper) {
       position: relative;
       left: 50%;
       top: 50%;
@@ -73,7 +73,7 @@ export const getSpinLoadingStyles = ({ size, color }) => {
       transform: translateX(-50%);
     }
 
-    .raw-spin-loading-inner {
+    .raw-spin-loading :global(.raw-spin-loading-inner) {
       position: absolute;
       left: 50%;
       top: 50%;
@@ -81,13 +81,13 @@ export const getSpinLoadingStyles = ({ size, color }) => {
       height: 100%;
     }
 
-    .raw-spin-loading-text {
+    .raw-spin-loading :global(.raw-spin-loading-text) {
       font-size: 14px;
       color: ${color};
       margin-top: 0.5em;
     }
 
-    span {
+    .raw-spin-loading :global(.raw-spin-loading-inner > span) {
       position: absolute;
       top: -3.9%;
       width: 24%;
@@ -98,62 +98,62 @@ export const getSpinLoadingStyles = ({ size, color }) => {
       animation: spinner 1.2s linear 0s infinite normal none running;
     }
 
-    span:nth-child(1) {
+    .raw-spin-loading :global(.raw-spin-loading-inner > span:nth-child(1)) {
       animation-delay: -1.2s;
       transform: rotate(0deg) translate(146%);
     }
 
-    span:nth-child(2) {
+    .raw-spin-loading :global(.raw-spin-loading-inner > span:nth-child(2)) {
       animation-delay: -1.1s;
       transform: rotate(30deg) translate(146%);
     }
 
-    span:nth-child(3) {
+    .raw-spin-loading :global(.raw-spin-loading-inner > span:nth-child(3)) {
       animation-delay: -1s;
       transform: rotate(60deg) translate(146%);
     }
 
-    span:nth-child(4) {
+    .raw-spin-loading :global(.raw-spin-loading-inner > span:nth-child(4)) {
       animation-delay: -0.9s;
       transform: rotate(90deg) translate(146%);
     }
 
-    span:nth-child(5) {
+    .raw-spin-loading :global(.raw-spin-loading-inner > span:nth-child(5)) {
       animation-delay: -0.8s;
       transform: rotate(120deg) translate(146%);
     }
 
-    span:nth-child(6) {
+    .raw-spin-loading :global(.raw-spin-loading-inner > span:nth-child(6)) {
       animation-delay: -0.7s;
       transform: rotate(150deg) translate(146%);
     }
 
-    span:nth-child(7) {
+    .raw-spin-loading :global(.raw-spin-loading-inner > span:nth-child(7)) {
       animation-delay: -0.6s;
       transform: rotate(180deg) translate(146%);
     }
 
-    span:nth-child(8) {
+    .raw-spin-loading :global(.raw-spin-loading-inner > span:nth-child(8)) {
       animation-delay: -0.5s;
       transform: rotate(210deg) translate(146%);
     }
 
-    span:nth-child(9) {
+    .raw-spin-loading :global(.raw-spin-loading-inner > span:nth-child(9)) {
       animation-delay: -0.4s;
       transform: rotate(240deg) translate(146%);
     }
 
-    span:nth-child(10) {
+    .raw-spin-loading :global(.raw-spin-loading-inner > span:nth-child(10)) {
       animation-delay: -0.3s;
       transform: rotate(270deg) translate(146%);
     }
 
-    span:nth-child(11) {
+    .raw-spin-loading :global(.raw-spin-loading-inner > span:nth-child(11)) {
       animation-delay: -0.2s;
       transform: rotate(300deg) translate(146%);
     }
 
-    span:nth-child(12) {
+    .raw-spin-loading :global(.raw-spin-loading-inner > span:nth-child(12)) {
       animation-delay: -0.1s;
       transform: rotate(330deg) translate(146%);
     }
