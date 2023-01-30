@@ -77,7 +77,7 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
 
     const clickHandler = (event: MouseEvent<HTMLButtonElement>) => {
       if (loading || disabled) return;
-      onClick && onClick(event);
+      onClick?.(event);
     };
 
     return (

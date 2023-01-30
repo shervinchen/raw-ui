@@ -2,6 +2,7 @@ import React, {
   PropsWithChildren,
   forwardRef,
   Ref,
+  ChangeEvent,
   FocusEvent,
   useEffect,
   useImperativeHandle,
@@ -12,6 +13,7 @@ import React, {
 import classNames from "classnames";
 import { InputProps } from "./Input.types";
 import { useInputCSS } from "./Input.styles";
+import { useControlled } from "../utils/hooks";
 
 const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
   (
@@ -19,7 +21,7 @@ const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
       type = "default",
       htmlType = "text",
       placeholder = "",
-      initialValue = "",
+      defaultValue = "",
       disabled = false,
       readOnly = false,
       className = "",
@@ -32,6 +34,10 @@ const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
     },
     ref: Ref<HTMLInputElement | null>
   ) => {
+    const [internalValue, setInternalValue] = useControlled({
+      defaultValue,
+      value,
+    })
     const { className: resolveClassName, styles } = useInputCSS({});
     const classes = classNames(
       "raw-input",
@@ -40,14 +46,18 @@ const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
     );
 
     const focusHandler = (event: FocusEvent<HTMLInputElement>) => {
-      onFocus && onFocus(event);
+      onFocus?.(event);
     };
 
     const blurHandler = (event: FocusEvent<HTMLInputElement>) => {
-      onBlur && onBlur(event);
+      onBlur?.(event);
     };
 
-    const changeHandler = () => {};
+    const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+      if (disabled || readOnly) return;
+      setInternalValue(event.target.value);
+      onChange?.(event);
+    };
 
     return (
       <>
@@ -55,6 +65,7 @@ const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
           ref={ref}
           type={htmlType}
           className={classes}
+          value={internalValue}
           placeholder={placeholder}
           disabled={disabled}
           readOnly={readOnly}

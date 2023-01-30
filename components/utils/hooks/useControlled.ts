@@ -1,4 +1,4 @@
-import { useState, SetStateAction } from "react";
+import { useState, SetStateAction, Dispatch } from "react";
 import { useCallbackRef } from "./useCallbackRef";
 
 interface UseControlledProps<T> {
@@ -36,10 +36,10 @@ export default function useControlled<T>({
         setUnControlledState(nextState);
       }
 
-      onChange?.(nextState);
+      onChange(nextState);
     },
     [value, isControlled, onChange, shouldUpdate]
   );
 
-  return [value, setValue] as const;
+  return [value, setValue] as [T, Dispatch<SetStateAction<T>>];
 }

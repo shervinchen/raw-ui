@@ -1,1 +1,1 @@
-// export { default as useHooks } from './useHooks';
+export { default as useControlled } from './useControlled';

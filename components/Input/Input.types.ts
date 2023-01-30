@@ -1,20 +1,20 @@
-import { InputHTMLAttributes, ChangeEvent, FocusEvent } from 'react';
+import { InputHTMLAttributes, ChangeEvent, MouseEvent, FocusEvent } from "react";
 
-type InputTypes = 'default' | 'primary' | 'success' | 'warning' | 'error';
+type InputTypes = "default" | "primary" | "success" | "warning" | "error";
 
 interface BaseInputProps {
   value?: string;
-  initialValue?: string;
+  defaultValue?: string;
   placeholder?: string;
   type?: InputTypes;
   htmlType?: string;
   readOnly?: boolean;
   disabled?: boolean;
   className?: string;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-  onFocus?: (e: FocusEvent<HTMLInputElement>) => void;
-  onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
-  autoComplete?: string
+  onChange?: (event: ChangeEvent<HTMLInputElement> | MouseEvent<HTMLDivElement>) => void;
+  onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
+  onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
+  autoComplete?: string;
   // label?: string
   // labelRight?: string
   // icon?: React.ReactNode

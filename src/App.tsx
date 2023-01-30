@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren } from "react";
+import React, { FC, PropsWithChildren, ChangeEvent, useState } from "react";
 import { Search } from "react-feather";
 import { Button, Loading, ButtonGroup, Input } from "../components";
 
@@ -91,6 +91,12 @@ const Unit: FC<
 };
 
 function App() {
+  const [inputValue, setInputValue] = useState("");
+
+  const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
+
   return (
     <div>
       <Container title="Button">
@@ -305,6 +311,20 @@ function App() {
           <Unit layout="col">
             <Input placeholder="Placeholder..." />
             {/* <Input type="primary" /> */}
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Default Value">
+          <Unit layout="col">
+            <Input defaultValue="default value" placeholder="Placeholder..." />
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Controlled Input">
+          <Unit layout="col">
+            <Input
+              value={inputValue}
+              onChange={handleChangeInput}
+              placeholder="Placeholder..."
+            />
           </Unit>
         </Wrapper>
       </Container>
