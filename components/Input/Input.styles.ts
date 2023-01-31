@@ -29,5 +29,11 @@ export const useInputCSS = (props: InputProps) => {
     .raw-input::placeholder {
       color: #999;
     }
+
+    .raw-input.raw-disabled-input {
+      background-color: #fafafa;
+      border-color: #eaeaea;
+      cursor: not-allowed;
+    }
   `
 }

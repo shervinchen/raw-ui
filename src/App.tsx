@@ -310,7 +310,6 @@ function App() {
         <Wrapper title="Types">
           <Unit layout="col">
             <Input placeholder="Placeholder..." />
-            {/* <Input type="primary" /> */}
           </Unit>
         </Wrapper>
         <Wrapper title="Default Value">
@@ -325,6 +324,11 @@ function App() {
               onChange={handleChangeInput}
               placeholder="Placeholder..."
             />
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Disabled">
+          <Unit layout="col">
+            <Input placeholder="Disabled" disabled />
           </Unit>
         </Wrapper>
       </Container>
