@@ -328,7 +328,13 @@ function App() {
         </Wrapper>
         <Wrapper title="Disabled">
           <Unit layout="col">
-            <Input placeholder="Disabled" disabled />
+            <Input placeholder="Disabled with placeholder" disabled />
+            <Input defaultValue="Disabled with value" disabled />
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Read Only">
+          <Unit layout="col">
+            <Input defaultValue="Read only with value" readOnly />
           </Unit>
         </Wrapper>
       </Container>

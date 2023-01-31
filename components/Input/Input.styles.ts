@@ -33,6 +33,7 @@ export const useInputCSS = (props: InputProps) => {
     .raw-input.raw-disabled-input {
       background-color: #fafafa;
       border-color: #eaeaea;
+      color: #666;
       cursor: not-allowed;
     }
   `
