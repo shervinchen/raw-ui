@@ -4,12 +4,30 @@ import { useTheme } from "../Theme/theme-context";
 import {
   InputBasicStyles,
   InputFocusStyles,
+  InputSizeStyles,
+  InputSizes,
   InputStyles,
   InputTypes,
 } from "./Input.types";
 
-const useInputStyles = ({ type, disabled }): InputStyles => {
+const useInputStyles = ({ type, size, disabled }): InputStyles => {
   const theme: RawUITheme = useTheme();
+  const sizes: {
+    [key in InputSizes]: InputSizeStyles
+  } = {
+    sm: {
+      fontSize: '14px',
+      height: '32px',
+    },
+    md: {
+      fontSize: '14px',
+      height: '40px',
+    },
+    lg: {
+      fontSize: '16px',
+      height: '48px',
+    }
+  };
   const styles: {
     [key in InputTypes]: InputBasicStyles;
   } = {
@@ -36,6 +54,7 @@ const useInputStyles = ({ type, disabled }): InputStyles => {
   };
   const defaultStyles = {
     ...(styles?.[type || "default"] ?? styles["default"]),
+    ...(sizes[size] || sizes['md']),
   };
   const disabledStyles = {
     backgroundColor: theme.palette.accents1,
@@ -78,14 +97,16 @@ const useInputFocusStyles = ({ type, disabled }): InputFocusStyles => {
   return disabled ? {} : defaultStyles;
 };
 
-export const useInputCSS = ({ type, disabled }) => {
+export const useInputCSS = ({ type, size, disabled }) => {
   const theme: RawUITheme = useTheme();
   const {
+    fontSize,
+    height,
     color,
     borderColor,
     backgroundColor = "transparent",
     cursor = "text",
-  } = useInputStyles({ type, disabled });
+  } = useInputStyles({ type, size, disabled });
   const { focusBorderColor = borderColor } = useInputFocusStyles({
     type,
     disabled,
@@ -95,11 +116,11 @@ export const useInputCSS = ({ type, disabled }) => {
     .raw-input {
       box-sizing: border-box;
       display: inline-flex;
-      height: 40px;
+      height: ${height};
       padding: 0 12px;
       line-height: normal;
       box-shadow: none;
-      font-size: 14px;
+      font-size: ${fontSize};
       background-color: ${backgroundColor};
       border: 1px solid ${borderColor};
       color: ${color};

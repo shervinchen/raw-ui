@@ -316,6 +316,24 @@ function App() {
             <Input type="error" placeholder="Error Type" />
           </Unit>
         </Wrapper>
+        <Wrapper title="Sizes">
+          <Unit layout="row">
+            <Input size="sm" placeholder="Small" />
+            <Input placeholder="Medium" />
+            <Input size="lg" placeholder="Large" />
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Disabled">
+          <Unit layout="col">
+            <Input placeholder="Disabled with placeholder" disabled />
+            <Input defaultValue="Disabled with value" disabled />
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Read Only">
+          <Unit layout="col">
+            <Input defaultValue="Read only with value" readOnly />
+          </Unit>
+        </Wrapper>
         <Wrapper title="Default Value">
           <Unit layout="col">
             <Input defaultValue="default value" placeholder="Placeholder..." />
@@ -328,17 +346,6 @@ function App() {
               onChange={handleChangeInput}
               placeholder="Placeholder..."
             />
-          </Unit>
-        </Wrapper>
-        <Wrapper title="Disabled">
-          <Unit layout="col">
-            <Input placeholder="Disabled with placeholder" disabled />
-            <Input defaultValue="Disabled with value" disabled />
-          </Unit>
-        </Wrapper>
-        <Wrapper title="Read Only">
-          <Unit layout="col">
-            <Input defaultValue="Read only with value" readOnly />
           </Unit>
         </Wrapper>
       </Container>

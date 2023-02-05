@@ -2,11 +2,14 @@ import { InputHTMLAttributes, ChangeEvent, MouseEvent, FocusEvent } from "react"
 
 export type InputTypes = "default" | "primary" | "success" | "warning" | "error";
 
+export type InputSizes = 'sm' | 'md' | 'lg';
+
 interface BaseInputProps {
   value?: string;
   defaultValue?: string;
   placeholder?: string;
   type?: InputTypes;
+  size?: InputSizes;
   htmlType?: string;
   readOnly?: boolean;
   disabled?: boolean;
@@ -32,7 +35,10 @@ type NativeInputProps = Omit<
 
 export type InputProps = BaseInputProps & NativeInputProps;
 
-export interface InputSizeStyles {}
+export interface InputSizeStyles {
+  fontSize?: string;
+  height?: string;
+}
 
 export interface InputBasicStyles {
   borderColor?: string;
