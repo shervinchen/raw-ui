@@ -38,7 +38,7 @@ const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
       defaultValue,
       value,
     })
-    const { className: resolveClassName, styles } = useInputCSS({});
+    const { className: resolveClassName, styles } = useInputCSS({ type, disabled });
     const classes = classNames(
       "raw-input",
       disabled && "raw-disabled-input",

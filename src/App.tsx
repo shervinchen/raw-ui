@@ -309,7 +309,11 @@ function App() {
       <Container title="Input">
         <Wrapper title="Types">
           <Unit layout="col">
-            <Input placeholder="Placeholder..." />
+            <Input placeholder="Default Type" />
+            <Input type="primary" placeholder="Primary Type" />
+            <Input type="success" placeholder="Success Type" />
+            <Input type="warning" placeholder="Warning Type" />
+            <Input type="error" placeholder="Error Type" />
           </Unit>
         </Wrapper>
         <Wrapper title="Default Value">

@@ -1,6 +1,6 @@
 import { InputHTMLAttributes, ChangeEvent, MouseEvent, FocusEvent } from "react";
 
-type InputTypes = "default" | "primary" | "success" | "warning" | "error";
+export type InputTypes = "default" | "primary" | "success" | "warning" | "error";
 
 interface BaseInputProps {
   value?: string;
@@ -31,3 +31,18 @@ type NativeInputProps = Omit<
 >;
 
 export type InputProps = BaseInputProps & NativeInputProps;
+
+export interface InputSizeStyles {}
+
+export interface InputBasicStyles {
+  borderColor?: string;
+  color?: string;
+  backgroundColor?: string;
+  cursor?: 'text' | 'not-allowed';
+}
+
+export type InputStyles = InputSizeStyles & InputBasicStyles
+
+export interface InputFocusStyles {
+  focusBorderColor?: string;
+}

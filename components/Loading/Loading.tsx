@@ -1,14 +1,14 @@
 import React, { FC, PropsWithChildren } from "react";
 import classNames from "classnames";
 
-import { getDotLoadingStyles, getSpinLoadingStyles } from "./Loading.styles";
+import { useDotLoadingCSS, useSpinLoadingCSS } from "./Loading.styles";
 import { LoadingProps } from "./Loading.types";
 
 const DotLoading: FC<PropsWithChildren<Omit<LoadingProps, "type">>> = (
   props
 ) => {
   const { className, color, size = 4, children, ...restProps } = props;
-  const { className: resolveClassName, styles } = getDotLoadingStyles({
+  const { className: resolveClassName, styles } = useDotLoadingCSS({
     color,
     size,
   });
@@ -31,7 +31,7 @@ const SpinLoading: FC<PropsWithChildren<Omit<LoadingProps, "type">>> = (
   props
 ) => {
   const { className, color, size = 20, children, ...restProps } = props;
-  const { className: resolveClassName, styles } = getSpinLoadingStyles({
+  const { className: resolveClassName, styles } = useSpinLoadingCSS({
     color,
     size,
   });

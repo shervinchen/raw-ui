@@ -17,16 +17,19 @@ export interface RawUIThemePalette {
   success3: string;
   success4: string;
   success5: string;
+  success6: string;
   warning1: string;
   warning2: string;
   warning3: string;
   warning4: string;
   warning5: string;
+  warning6: string;
   error1: string;
   error2: string;
   error3: string;
   error4: string;
   error5: string;
+  error6: string;
 }
 
 export interface RawUIThemeTokens {
