@@ -97,7 +97,7 @@ const useInputFocusStyles = ({ type, disabled }): InputFocusStyles => {
   return disabled ? {} : defaultStyles;
 };
 
-export const useInputCSS = ({ type, size, disabled }) => {
+export const useInputCSS = ({ type, size, width, disabled }) => {
   const theme: RawUITheme = useTheme();
   const {
     fontSize,
@@ -126,7 +126,7 @@ export const useInputCSS = ({ type, size, disabled }) => {
       color: ${color};
       outline: none;
       border-radius: 6px;
-      width: 100%;
+      width: ${width};
       min-width: 0;
       appearance: none;
       transition: border 0.2s ease 0s, color 0.2s ease 0s;

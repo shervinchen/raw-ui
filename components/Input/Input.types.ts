@@ -10,6 +10,7 @@ interface BaseInputProps {
   placeholder?: string;
   type?: InputTypes;
   size?: InputSizes;
+  width?: string;
   htmlType?: string;
   readOnly?: boolean;
   disabled?: boolean;

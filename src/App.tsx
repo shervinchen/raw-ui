@@ -323,6 +323,11 @@ function App() {
             <Input size="lg" placeholder="Large" />
           </Unit>
         </Wrapper>
+        <Wrapper title="Width">
+          <Unit layout="row">
+            <Input width="160px" placeholder="Customized width" />
+          </Unit>
+        </Wrapper>
         <Wrapper title="Disabled">
           <Unit layout="col">
             <Input placeholder="Disabled with placeholder" disabled />

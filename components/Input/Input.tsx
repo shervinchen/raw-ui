@@ -20,6 +20,7 @@ const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
     {
       type = "default",
       size = "md",
+      width = '100%',
       htmlType = "text",
       placeholder = "",
       defaultValue = "",
@@ -39,7 +40,7 @@ const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
       defaultValue,
       value,
     })
-    const { className: resolveClassName, styles } = useInputCSS({ type, size, disabled });
+    const { className: resolveClassName, styles } = useInputCSS({ type, size, width, disabled });
     const classes = classNames(
       "raw-input",
       disabled && "raw-disabled-input",
