@@ -10,7 +10,7 @@ import {
   InputTypes,
 } from "./Input.types";
 
-const useInputStyles = ({ type, size, disabled }): InputStyles => {
+export const useInputStyles = ({ type, size, disabled }): InputStyles => {
   const theme: RawUITheme = useTheme();
   const sizes: {
     [key in InputSizes]: InputSizeStyles
@@ -18,14 +18,17 @@ const useInputStyles = ({ type, size, disabled }): InputStyles => {
     sm: {
       fontSize: '14px',
       height: '32px',
+      horizontalPadding: '12px',
     },
     md: {
       fontSize: '14px',
       height: '40px',
+      horizontalPadding: '12px',
     },
     lg: {
       fontSize: '16px',
       height: '48px',
+      horizontalPadding: '12px',
     }
   };
   const styles: {
@@ -102,6 +105,7 @@ export const useInputCSS = ({ type, size, width, disabled }) => {
   const {
     fontSize,
     height,
+    horizontalPadding,
     color,
     borderColor,
     backgroundColor = "transparent",
@@ -117,7 +121,7 @@ export const useInputCSS = ({ type, size, width, disabled }) => {
       box-sizing: border-box;
       display: inline-flex;
       height: ${height};
-      padding: 0 12px;
+      padding: 0 ${horizontalPadding};
       line-height: normal;
       box-shadow: none;
       font-size: ${fontSize};

@@ -45,10 +45,11 @@ export const useButtonGroupCSS = (props: ButtonGroupProps) => {
     }
     .raw-button-group :global(.raw-button::before) {
       border: 1px solid ${borderColor};
+      z-index: 3;
     }
     .raw-button-group :global(.raw-button::after) {
       border: 1px solid transparent;
-      z-index: 1;
+      z-index: 3;
     }
     .raw-button-group
       :global(.raw-button:not(.raw-disabled-button):hover::after),

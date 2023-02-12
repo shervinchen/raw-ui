@@ -39,6 +39,7 @@ export type InputProps = BaseInputProps & NativeInputProps;
 export interface InputSizeStyles {
   fontSize?: string;
   height?: string;
+  horizontalPadding?: string;
 }
 
 export interface InputBasicStyles {
