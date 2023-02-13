@@ -1,5 +1,5 @@
 
-import React, { FC, PropsWithChildren, cloneElement, useMemo } from 'react';
+import React, { FC, PropsWithChildren, ReactElement, cloneElement, useMemo } from 'react';
 import classNames from 'classnames';
 import { InputGroupConfig, InputGroupProps } from './InputGroup.types';
 import { InputGroupContext } from './input-group-context';
@@ -40,12 +40,23 @@ const InputGroup: FC<PropsWithChildren<InputGroupProps>> = ({
       paddingLeft: horizontalPadding,
       paddingRight: horizontalPadding,
     }
-    getValidChildren(children).forEach(child => {
-      if (child.type === InputPrefix) {
-        style.paddingLeft = height;
+    const styles = [
+      {
+        component: InputPrefix,
+        name: 'paddingLeft',
+        value: height
+      },
+      {
+        component: InputSuffix,
+        name: 'paddingRight',
+        value: height
       }
-      if (child.type === InputSuffix) {
-        style.paddingRight = height;
+    ]
+    getValidChildren(children).forEach((child) => {
+      const result = styles.find(item => item.component === child.type)
+      if (result) {
+        const { name, value } = result
+        style[name] = value
       }
     })
     return {
