@@ -1,9 +1,12 @@
 
-import React, { FC, PropsWithChildren, useMemo } from 'react';
+import React, { FC, PropsWithChildren, cloneElement, useMemo } from 'react';
 import classNames from 'classnames';
 import { InputGroupConfig, InputGroupProps } from './InputGroup.types';
 import { InputGroupContext } from './input-group-context';
-import { useInputGroupCSS } from './InputGroup.styles';
+import Input from '../Input/Input'
+import { InputPrefix, InputSuffix } from '../Input/InputElement';
+import { getValidChildren } from '../utils/common';
+import { useInputStyles } from '../Input/Input.styles';
 
 const InputGroup: FC<PropsWithChildren<InputGroupProps>> = ({
   className = '',
@@ -25,24 +28,49 @@ const InputGroup: FC<PropsWithChildren<InputGroupProps>> = ({
     []
   );
 
-  const { className: resolveClassName, styles } = useInputGroupCSS({
-    type,
-    size,
-    disabled,
-    readOnly,
-  });
+  const { height, horizontalPadding } = useInputStyles({ type, size, disabled });
 
   const classes = classNames(
     'raw-input-group',
     className,
-    resolveClassName
   );
+
+  const getInputStyle = () => {
+    const style = {
+      paddingLeft: horizontalPadding,
+      paddingRight: horizontalPadding,
+    }
+    getValidChildren(children).forEach(child => {
+      if (child.type === InputPrefix) {
+        style.paddingLeft = height;
+      }
+      if (child.type === InputSuffix) {
+        style.paddingRight = height;
+      }
+    })
+    return {
+      style
+    };
+  }
+
+  const inputStyle = getInputStyle()
+
+  const cloneChildren = getValidChildren(children).map(child => {
+    return child.type !== Input ? child : cloneElement(child, inputStyle)
+  })
 
   return (
     <InputGroupContext.Provider value={initialConfig}>
       <div className={classes} {...resetProps}>
-        {children}
-        {styles}
+        {cloneChildren}
+        <style jsx>{`
+          .raw-input-group {
+            width: 100%;
+            display: inline-flex;
+            position: relative;
+          }
+        `}
+        </style>
       </div>
     </InputGroupContext.Provider>
   );

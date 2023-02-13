@@ -1,10 +1,13 @@
 import Input from "./Input";
-import InputElement from "./InputElement";
+import { InputPrefix, InputSuffix } from "./InputElement";
 
-export type InputComponentType = typeof Input & {
-  Element: typeof InputElement;
-};
+// export type InputComponentType = typeof Input & {
+//   Prefix: typeof InputPrefix;
+//   Suffix: typeof InputSuffix;
+// };
 
-(Input as InputComponentType).Element = InputElement;
+// (Input as InputComponentType).Prefix = InputPrefix;
+// (Input as InputComponentType).Suffix = InputSuffix;
 
-export default Input as InputComponentType;
+// export default Input as InputComponentType;
+

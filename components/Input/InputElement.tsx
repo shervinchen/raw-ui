@@ -5,6 +5,7 @@ import { useInputStyles } from "./Input.styles";
 
 interface BaseInputElementProps {
   className?: string;
+  placement?: "left" | "right";
 }
 
 type NativeInputElementProps = Omit<
@@ -14,7 +15,11 @@ type NativeInputElementProps = Omit<
 
 type InputElementProps = BaseInputElementProps & NativeInputElementProps;
 
+type InputPrefixProps = Omit<InputElementProps, "placement">;
+type InputSuffixProps = Omit<InputElementProps, "placement">;
+
 const InputElement: FC<PropsWithChildren<InputElementProps>> = ({
+  placement = "left",
   className = "",
   children,
   ...resetProps
@@ -30,6 +35,7 @@ const InputElement: FC<PropsWithChildren<InputElementProps>> = ({
         .raw-input-element {
           position: absolute;
           top: 0;
+          ${[placement]}: 0;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -44,4 +50,20 @@ const InputElement: FC<PropsWithChildren<InputElementProps>> = ({
   );
 };
 
-export default InputElement;
+export const InputPrefix: FC<InputPrefixProps> = ({
+  className = "",
+  ...resetProps
+}) => {
+  const classes = classNames("raw-input-prefix-element", className);
+
+  return <InputElement className={classes} placement="left" {...resetProps} />;
+};
+
+export const InputSuffix: FC<InputSuffixProps> = ({
+  className = "",
+  ...resetProps
+}) => {
+  const classes = classNames("raw-input-suffix-element", className);
+
+  return <InputElement className={classes} placement="right" {...resetProps} />;
+};
