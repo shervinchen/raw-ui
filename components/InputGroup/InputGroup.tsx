@@ -1,17 +1,22 @@
-
-import React, { FC, PropsWithChildren, ReactElement, cloneElement, useMemo } from 'react';
-import classNames from 'classnames';
-import { InputGroupConfig, InputGroupProps } from './InputGroup.types';
-import { InputGroupContext } from './input-group-context';
-import Input from '../Input/Input'
-import { InputPrefix, InputSuffix } from '../Input/InputElement';
-import { getValidChildren } from '../utils/common';
-import { useInputStyles } from '../Input/Input.styles';
+import React, {
+  FC,
+  PropsWithChildren,
+  ReactElement,
+  cloneElement,
+  useMemo,
+} from "react";
+import classNames from "classnames";
+import { InputGroupConfig, InputGroupProps } from "./InputGroup.types";
+import { InputGroupContext } from "./input-group-context";
+import Input from "../Input/Input";
+import { InputPrefix, InputSuffix } from "../Input/InputElement";
+import { getValidChildren } from "../utils/common";
+import { useInputStyles } from "../Input/Input.styles";
 
 const InputGroup: FC<PropsWithChildren<InputGroupProps>> = ({
-  className = '',
-  size = 'md',
-  type = 'default',
+  className = "",
+  size = "md",
+  type = "default",
   readOnly = false,
   disabled = false,
   children,
@@ -23,68 +28,68 @@ const InputGroup: FC<PropsWithChildren<InputGroupProps>> = ({
       type,
       readOnly,
       disabled,
-      isInputGroup: true
+      isInputGroup: true,
     }),
     []
   );
-
-  const { height, horizontalPadding } = useInputStyles({ type, size, disabled });
-
-  const classes = classNames(
-    'raw-input-group',
-    className,
-  );
+  const { height, horizontalPadding } = useInputStyles({
+    type,
+    size,
+    disabled,
+  });
+  const classes = classNames("raw-input-group", className);
 
   const getInputStyle = () => {
     const style = {
       paddingLeft: horizontalPadding,
       paddingRight: horizontalPadding,
-    }
+    };
     const styles = [
       {
-        component: InputPrefix,
-        name: 'paddingLeft',
-        value: height
+        type: InputPrefix,
+        property: "paddingLeft",
+        value: height,
       },
       {
-        component: InputSuffix,
-        name: 'paddingRight',
-        value: height
-      }
-    ]
+        type: InputSuffix,
+        property: "paddingRight",
+        value: height,
+      },
+    ];
     getValidChildren(children).forEach((child) => {
-      const result = styles.find(item => item.component === child.type)
+      const result = styles.find((item) => item.type === child.type);
       if (result) {
-        const { name, value } = result
-        style[name] = value
+        const { property, value } = result;
+        style[property] = value;
       }
-    })
-    return {
-      style
-    };
-  }
+    });
+    return style;
+  };
 
-  const inputStyle = getInputStyle()
+  const inputStyle = getInputStyle();
 
-  const cloneChildren = getValidChildren(children).map(child => {
-    return child.type !== Input ? child : cloneElement(child, inputStyle)
-  })
+  const cloneChildren = getValidChildren(children).map((child) => {
+    return child.type !== Input
+      ? child
+      : cloneElement(child, { style: inputStyle });
+  });
 
   return (
     <InputGroupContext.Provider value={initialConfig}>
       <div className={classes} {...resetProps}>
         {cloneChildren}
-        <style jsx>{`
-          .raw-input-group {
-            width: 100%;
-            display: inline-flex;
-            position: relative;
-          }
-        `}
+        <style jsx>
+          {`
+            .raw-input-group {
+              width: 100%;
+              display: inline-flex;
+              position: relative;
+            }
+          `}
         </style>
       </div>
     </InputGroupContext.Provider>
   );
-}
+};
 
 export default InputGroup;
