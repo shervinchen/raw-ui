@@ -15,8 +15,8 @@ type NativeInputElementProps = Omit<
 
 type InputElementProps = BaseInputElementProps & NativeInputElementProps;
 
-type InputPrefixProps = Omit<InputElementProps, "placement">;
-type InputSuffixProps = Omit<InputElementProps, "placement">;
+type InputLeftElementProps = Omit<InputElementProps, "placement">;
+type InputRightElementProps = Omit<InputElementProps, "placement">;
 
 const InputElement: FC<PropsWithChildren<InputElementProps>> = ({
   placement = "left",
@@ -50,20 +50,20 @@ const InputElement: FC<PropsWithChildren<InputElementProps>> = ({
   );
 };
 
-export const InputPrefix: FC<InputPrefixProps> = ({
+export const InputLeftElement: FC<InputLeftElementProps> = ({
   className = "",
   ...resetProps
 }) => {
-  const classes = classNames("raw-input-prefix-element", className);
+  const classes = classNames("raw-input-left-element", className);
 
   return <InputElement className={classes} placement="left" {...resetProps} />;
 };
 
-export const InputSuffix: FC<InputSuffixProps> = ({
+export const InputRightElement: FC<InputRightElementProps> = ({
   className = "",
   ...resetProps
 }) => {
-  const classes = classNames("raw-input-suffix-element", className);
+  const classes = classNames("raw-input-right-element", className);
 
   return <InputElement className={classes} placement="right" {...resetProps} />;
 };

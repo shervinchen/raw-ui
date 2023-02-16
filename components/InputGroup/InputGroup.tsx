@@ -9,7 +9,7 @@ import classNames from "classnames";
 import { InputGroupConfig, InputGroupProps } from "./InputGroup.types";
 import { InputGroupContext } from "./input-group-context";
 import Input from "../Input/Input";
-import { InputPrefix, InputSuffix } from "../Input/InputElement";
+import { InputLeftElement, InputRightElement } from "../Input/InputElement";
 import { getValidChildren } from "../utils/common";
 import { useInputStyles } from "../Input/Input.styles";
 
@@ -29,12 +29,12 @@ const getInputStyles = ({
   };
   const styles = [
     {
-      type: InputPrefix,
+      type: InputLeftElement,
       property: "paddingLeft",
       value: height,
     },
     {
-      type: InputSuffix,
+      type: InputRightElement,
       property: "paddingRight",
       value: height,
     },

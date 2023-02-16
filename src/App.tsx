@@ -1,6 +1,6 @@
 import React, { FC, PropsWithChildren, ChangeEvent, useState } from "react";
 import { Search, AlertCircle } from "react-feather";
-import { Button, Loading, ButtonGroup, Input, InputGroup, InputPrefix, InputSuffix } from "../components";
+import { Button, Loading, ButtonGroup, Input, InputGroup, InputLeftElement, InputRightElement } from "../components";
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
   title,
@@ -356,21 +356,21 @@ function App() {
         <Wrapper title="Inside Element">
           <Unit layout="row">
             <InputGroup>
-              <InputPrefix>
+              <InputLeftElement>
                 <Search size={16} />
-              </InputPrefix>
-              <Input placeholder="Prefix element" />
+              </InputLeftElement>
+              <Input placeholder="Inside left element" />
             </InputGroup>
             <InputGroup>
-              <Input placeholder="Suffix element" />
-              <InputSuffix>
+              <Input placeholder="Inside right element" />
+              <InputRightElement>
                 <AlertCircle size={16} />
-              </InputSuffix>
+              </InputRightElement>
             </InputGroup>
             <InputGroup>
-              <InputPrefix>$</InputPrefix>
+              <InputLeftElement>$</InputLeftElement>
               <Input placeholder="Enter amount" />
-              <InputSuffix>.0</InputSuffix>
+              <InputRightElement>.0</InputRightElement>
             </InputGroup>
           </Unit>
         </Wrapper>
