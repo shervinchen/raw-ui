@@ -13,6 +13,38 @@ import { InputPrefix, InputSuffix } from "../Input/InputElement";
 import { getValidChildren } from "../utils/common";
 import { useInputStyles } from "../Input/Input.styles";
 
+const getInputStyles = ({
+  type,
+  size,
+  disabled,
+}) => {
+  const { height, horizontalPadding } = useInputStyles({
+    type,
+    size,
+    disabled,
+  });
+  const style = {
+    paddingLeft: horizontalPadding,
+    paddingRight: horizontalPadding,
+  };
+  const styles = [
+    {
+      type: InputPrefix,
+      property: "paddingLeft",
+      value: height,
+    },
+    {
+      type: InputSuffix,
+      property: "paddingRight",
+      value: height,
+    },
+  ];
+  return {
+    style,
+    styles
+  }
+}
+
 const InputGroup: FC<PropsWithChildren<InputGroupProps>> = ({
   className = "",
   size = "md",
@@ -32,30 +64,15 @@ const InputGroup: FC<PropsWithChildren<InputGroupProps>> = ({
     }),
     []
   );
-  const { height, horizontalPadding } = useInputStyles({
-    type,
-    size,
-    disabled,
-  });
+  
   const classes = classNames("raw-input-group", className);
 
-  const getInputStyle = () => {
-    const style = {
-      paddingLeft: horizontalPadding,
-      paddingRight: horizontalPadding,
-    };
-    const styles = [
-      {
-        type: InputPrefix,
-        property: "paddingLeft",
-        value: height,
-      },
-      {
-        type: InputSuffix,
-        property: "paddingRight",
-        value: height,
-      },
-    ];
+  const getComputedInputStyle = () => {
+    const { style, styles } = getInputStyles({
+      type,
+      size,
+      disabled,
+    })
     getValidChildren(children).forEach((child) => {
       const result = styles.find((item) => item.type === child.type);
       if (result) {
@@ -66,12 +83,12 @@ const InputGroup: FC<PropsWithChildren<InputGroupProps>> = ({
     return style;
   };
 
-  const inputStyle = getInputStyle();
+  const computedInputStyle = getComputedInputStyle();
 
   const cloneChildren = getValidChildren(children).map((child) => {
     return child.type !== Input
       ? child
-      : cloneElement(child, { style: inputStyle });
+      : cloneElement(child, { style: computedInputStyle });
   });
 
   return (
