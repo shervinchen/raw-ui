@@ -1,6 +1,6 @@
 import React, { FC, PropsWithChildren, ChangeEvent, useState } from "react";
 import { Search, AlertCircle } from "react-feather";
-import { Button, Loading, ButtonGroup, Input, InputGroup, InputLeftElement, InputRightElement } from "../components";
+import { Button, Loading, ButtonGroup, Input, InputGroup, InputLeftElement, InputRightElement, InputLeftAddon, InputRightAddon } from "../components";
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
   title,
@@ -371,6 +371,31 @@ function App() {
               <InputLeftElement>$</InputLeftElement>
               <Input placeholder="Enter amount" />
               <InputRightElement>.0</InputRightElement>
+            </InputGroup>
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Addon">
+          <Unit layout="row">
+            <InputGroup>
+              <InputLeftAddon>
+                username
+              </InputLeftAddon>
+              <Input placeholder="Put in the username" />
+            </InputGroup>
+            <InputGroup>
+              <Input placeholder="https://github" />
+              <InputRightAddon>
+                .com
+              </InputRightAddon>
+            </InputGroup>
+            <InputGroup>
+              <InputLeftAddon>
+                https://
+              </InputLeftAddon>
+              <Input placeholder="your domain" />
+              <InputRightAddon>
+                .com
+              </InputRightAddon>
             </InputGroup>
           </Unit>
         </Wrapper>

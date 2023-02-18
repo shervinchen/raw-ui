@@ -10,6 +10,7 @@ import { InputGroupConfig, InputGroupProps } from "./InputGroup.types";
 import { InputGroupContext } from "./input-group-context";
 import Input from "../Input/Input";
 import { InputLeftElement, InputRightElement } from "../Input/InputElement";
+import { InputLeftAddon, InputRightAddon } from '../Input/InputAddon';
 import { getValidChildren } from "../utils/common";
 import { useInputStyles } from "../Input/Input.styles";
 
@@ -26,18 +27,38 @@ const getInputStyles = ({
   const style = {
     paddingLeft: horizontalPadding,
     paddingRight: horizontalPadding,
+    borderTopRightRadius: '6px',
+    borderBottomRightRadius: '6px',
+    borderTopLeftRadius: '6px',
+    borderBottomLeftRadius: '6px'
   };
   const styles = [
     {
       type: InputLeftElement,
-      property: "paddingLeft",
-      value: height,
+      newStyle: {
+        paddingLeft: height
+      }
     },
     {
       type: InputRightElement,
-      property: "paddingRight",
-      value: height,
+      newStyle: {
+        paddingRight: height
+      }
     },
+    {
+      type: InputLeftAddon,
+      newStyle: {
+        borderTopLeftRadius: '0px',
+        borderBottomLeftRadius: '0px',
+      }
+    },
+    {
+      type: InputRightAddon,
+      newStyle: {
+        borderTopRightRadius: '0px',
+        borderBottomRightRadius: '0px'
+      }
+    }
   ];
   return {
     style,
@@ -73,14 +94,15 @@ const InputGroup: FC<PropsWithChildren<InputGroupProps>> = ({
       size,
       disabled,
     })
+    let computedStyle = style;
     getValidChildren(children).forEach((child) => {
       const result = styles.find((item) => item.type === child.type);
       if (result) {
-        const { property, value } = result;
-        style[property] = value;
+        const { newStyle } = result;
+        computedStyle = { ...computedStyle, ...newStyle };
       }
     });
-    return style;
+    return computedStyle;
   };
 
   const computedInputStyle = getComputedInputStyle();
