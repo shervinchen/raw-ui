@@ -5,6 +5,7 @@ import { useInputStyles } from "./Input.styles";
 
 interface BaseInputElementProps {
   className?: string;
+  clickable?: boolean;
   placement?: "left" | "right";
 }
 
@@ -20,6 +21,7 @@ type InputRightElementProps = Omit<InputElementProps, "placement">;
 
 const InputElement: FC<PropsWithChildren<InputElementProps>> = ({
   placement = "left",
+  clickable = false,
   className = "",
   children,
   ...resetProps
@@ -43,7 +45,8 @@ const InputElement: FC<PropsWithChildren<InputElementProps>> = ({
           height: ${height};
           font-size: ${fontSize};
           color: ${color};
-          pointer-events: none;
+          pointer-events: ${clickable ? 'auto' : 'none'};
+          cursor: ${clickable ? 'pointer' : 'default'};
         }
       `}</style>
     </div>

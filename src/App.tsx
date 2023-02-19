@@ -1,5 +1,5 @@
 import React, { FC, PropsWithChildren, ChangeEvent, useState } from "react";
-import { Search, AlertCircle } from "react-feather";
+import { Search, AlertCircle, Eye, EyeOff } from "react-feather";
 import { Button, Loading, ButtonGroup, Input, InputGroup, InputLeftElement, InputRightElement, InputLeftAddon, InputRightAddon } from "../components";
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
@@ -92,6 +92,7 @@ const Unit: FC<
 
 function App() {
   const [inputValue, setInputValue] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -396,6 +397,16 @@ function App() {
               <InputRightAddon>
                 .com
               </InputRightAddon>
+            </InputGroup>
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Password">
+          <Unit layout="row">
+            <InputGroup>
+              <Input htmlType={passwordVisible ? 'text' : 'password'} placeholder="Enter password" />
+              <InputRightElement clickable onClick={() => setPasswordVisible(!passwordVisible)}>
+                { passwordVisible ? <EyeOff size={16} /> : <Eye size={16} /> }
+              </InputRightElement>
             </InputGroup>
           </Unit>
         </Wrapper>
