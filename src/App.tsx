@@ -1,6 +1,16 @@
 import React, { FC, PropsWithChildren, ChangeEvent, useState } from "react";
-import { Search, AlertCircle, Eye, EyeOff } from "react-feather";
-import { Button, Loading, ButtonGroup, Input, InputGroup, InputLeftElement, InputRightElement, InputLeftAddon, InputRightAddon } from "../components";
+import { Search, AlertCircle, Eye, EyeOff, X } from "react-feather";
+import {
+  Button,
+  Loading,
+  ButtonGroup,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
+  InputLeftAddon,
+  InputRightAddon,
+} from "../components";
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
   title,
@@ -91,12 +101,9 @@ const Unit: FC<
 };
 
 function App() {
-  const [inputValue, setInputValue] = useState("");
+  const [controllableValue, setControllableValue] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
-
-  const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
-  };
+  const [clearableValue, setClearableValue] = useState("");
 
   return (
     <div>
@@ -348,8 +355,10 @@ function App() {
         <Wrapper title="Controlled Input">
           <Unit layout="col">
             <Input
-              value={inputValue}
-              onChange={handleChangeInput}
+              value={controllableValue}
+              onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                setControllableValue(event.target.value);
+              }}
               placeholder="Placeholder..."
             />
           </Unit>
@@ -378,35 +387,54 @@ function App() {
         <Wrapper title="Addon">
           <Unit layout="row">
             <InputGroup>
-              <InputLeftAddon>
-                username
-              </InputLeftAddon>
+              <InputLeftAddon>username</InputLeftAddon>
               <Input placeholder="Put in the username" />
             </InputGroup>
             <InputGroup>
               <Input placeholder="https://github" />
-              <InputRightAddon>
-                .com
-              </InputRightAddon>
+              <InputRightAddon>.com</InputRightAddon>
             </InputGroup>
             <InputGroup>
-              <InputLeftAddon>
-                https://
-              </InputLeftAddon>
+              <InputLeftAddon>https://</InputLeftAddon>
               <Input placeholder="your domain" />
-              <InputRightAddon>
-                .com
-              </InputRightAddon>
+              <InputRightAddon>.com</InputRightAddon>
             </InputGroup>
           </Unit>
         </Wrapper>
         <Wrapper title="Password">
           <Unit layout="row">
             <InputGroup>
-              <Input htmlType={passwordVisible ? 'text' : 'password'} placeholder="Enter password" />
-              <InputRightElement clickable onClick={() => setPasswordVisible(!passwordVisible)}>
-                { passwordVisible ? <EyeOff size={16} /> : <Eye size={16} /> }
+              <Input
+                htmlType={passwordVisible ? "text" : "password"}
+                placeholder="Enter password"
+              />
+              <InputRightElement
+                clickable
+                onClick={() => setPasswordVisible(!passwordVisible)}
+              >
+                {passwordVisible ? <EyeOff size={16} /> : <Eye size={16} />}
               </InputRightElement>
+            </InputGroup>
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Clearable">
+          <Unit layout="row">
+            <InputGroup>
+              <Input
+                value={clearableValue}
+                onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                  setClearableValue(event.target.value)
+                }
+                placeholder="Clearable input"
+              />
+              {clearableValue !== "" && (
+                <InputRightElement
+                  clickable
+                  onClick={() => setClearableValue("")}
+                >
+                  <X size={16} />
+                </InputRightElement>
+              )}
             </InputGroup>
           </Unit>
         </Wrapper>
