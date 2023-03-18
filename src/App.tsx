@@ -5,11 +5,6 @@ import {
   Loading,
   ButtonGroup,
   Input,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
-  InputLeftAddon,
-  InputRightAddon,
 } from "../components";
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
@@ -365,61 +360,61 @@ function App() {
         </Wrapper>
         <Wrapper title="Inside Element">
           <Unit layout="row">
-            <InputGroup>
-              <InputLeftElement>
+            <Input.Group>
+              <Input.LeftElement>
                 <Search size={16} />
-              </InputLeftElement>
+              </Input.LeftElement>
               <Input placeholder="Inside left element" />
-            </InputGroup>
-            <InputGroup>
+            </Input.Group>
+            <Input.Group>
               <Input placeholder="Inside right element" />
-              <InputRightElement>
+              <Input.RightElement>
                 <AlertCircle size={16} />
-              </InputRightElement>
-            </InputGroup>
-            <InputGroup>
-              <InputLeftElement>$</InputLeftElement>
+              </Input.RightElement>
+            </Input.Group>
+            <Input.Group>
+              <Input.LeftElement>$</Input.LeftElement>
               <Input placeholder="Enter amount" />
-              <InputRightElement>.0</InputRightElement>
-            </InputGroup>
+              <Input.RightElement>.0</Input.RightElement>
+            </Input.Group>
           </Unit>
         </Wrapper>
         <Wrapper title="Addon">
           <Unit layout="row">
-            <InputGroup>
-              <InputLeftAddon>username</InputLeftAddon>
+            <Input.Group>
+              <Input.LeftAddon>username</Input.LeftAddon>
               <Input placeholder="Put in the username" />
-            </InputGroup>
-            <InputGroup>
+            </Input.Group>
+            <Input.Group>
               <Input placeholder="https://github" />
-              <InputRightAddon>.com</InputRightAddon>
-            </InputGroup>
-            <InputGroup>
-              <InputLeftAddon>https://</InputLeftAddon>
+              <Input.RightAddon>.com</Input.RightAddon>
+            </Input.Group>
+            <Input.Group>
+              <Input.LeftAddon>https://</Input.LeftAddon>
               <Input placeholder="your domain" />
-              <InputRightAddon>.com</InputRightAddon>
-            </InputGroup>
+              <Input.RightAddon>.com</Input.RightAddon>
+            </Input.Group>
           </Unit>
         </Wrapper>
         <Wrapper title="Password">
           <Unit layout="row">
-            <InputGroup>
+            <Input.Group>
               <Input
                 htmlType={passwordVisible ? "text" : "password"}
                 placeholder="Enter password"
               />
-              <InputRightElement
+              <Input.RightElement
                 clickable
                 onClick={() => setPasswordVisible(!passwordVisible)}
               >
                 {passwordVisible ? <EyeOff size={16} /> : <Eye size={16} />}
-              </InputRightElement>
-            </InputGroup>
+              </Input.RightElement>
+            </Input.Group>
           </Unit>
         </Wrapper>
         <Wrapper title="Clearable">
           <Unit layout="row">
-            <InputGroup>
+            <Input.Group>
               <Input
                 value={clearableValue}
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
@@ -428,14 +423,14 @@ function App() {
                 placeholder="Clearable input"
               />
               {clearableValue !== "" && (
-                <InputRightElement
+                <Input.RightElement
                   clickable
                   onClick={() => setClearableValue("")}
                 >
                   <X size={16} />
-                </InputRightElement>
+                </Input.RightElement>
               )}
-            </InputGroup>
+            </Input.Group>
           </Unit>
         </Wrapper>
       </Container>

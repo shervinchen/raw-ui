@@ -1,6 +1,6 @@
 import React, { FC, PropsWithChildren, HTMLAttributes } from "react";
 import classNames from "classnames";
-import { useInputGroupContext } from "../InputGroup/input-group-context";
+import { useInputGroupContext } from "./input-group-context";
 import { useInputStyles } from "./Input.styles";
 import { useTheme } from "../Theme/theme-context";
 import { RawUITheme } from "../Theme/preset/preset.type";
@@ -15,6 +15,10 @@ type NativeInputAddonProps = Omit<
 >;
 
 type InputAddonProps = BaseInputAddonProps & NativeInputAddonProps;
+
+interface InputAddonType extends FC<InputAddonProps> {
+  id: string;
+}
 
 const InputAddon: FC<PropsWithChildren<InputAddonProps>> = ({
   className = "",
@@ -55,7 +59,7 @@ const InputAddon: FC<PropsWithChildren<InputAddonProps>> = ({
   );
 };
 
-export const InputLeftAddon: FC<InputAddonProps> = ({
+const InputLeftAddon: InputAddonType = ({
   className = "",
   ...resetProps
 }) => {
@@ -66,7 +70,7 @@ export const InputLeftAddon: FC<InputAddonProps> = ({
   );
 };
 
-export const InputRightAddon: FC<InputAddonProps> = ({
+const InputRightAddon: InputAddonType = ({
   className = "",
   ...resetProps
 }) => {
@@ -76,3 +80,8 @@ export const InputRightAddon: FC<InputAddonProps> = ({
     <InputAddon className={classes} {...resetProps} />
   );
 };
+
+InputLeftAddon.id ="InputLeftAddon"
+InputRightAddon.id ="InputRightAddon"
+
+export { InputLeftAddon, InputRightAddon };

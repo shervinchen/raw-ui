@@ -1,5 +1,5 @@
 import { HTMLAttributes } from "react";
-import { InputSizes, InputTypes } from "../Input/Input.types";
+import { InputSizes, InputTypes } from "./Input.types";
 
 interface BaseInputGroupProps {
   className?: string;

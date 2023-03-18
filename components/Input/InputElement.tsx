@@ -1,6 +1,6 @@
 import React, { FC, PropsWithChildren, HTMLAttributes } from "react";
 import classNames from "classnames";
-import { useInputGroupContext } from "../InputGroup/input-group-context";
+import { useInputGroupContext } from "./input-group-context";
 import { useInputStyles } from "./Input.styles";
 
 interface BaseInputElementProps {
@@ -18,6 +18,14 @@ type InputElementProps = BaseInputElementProps & NativeInputElementProps;
 
 type InputLeftElementProps = Omit<InputElementProps, "placement">;
 type InputRightElementProps = Omit<InputElementProps, "placement">;
+
+interface InputLeftElementType extends FC<InputLeftElementProps> {
+  id: string;
+}
+
+interface InputRightElementType extends FC<InputRightElementProps> {
+  id: string;
+}
 
 const InputElement: FC<PropsWithChildren<InputElementProps>> = ({
   placement = "left",
@@ -53,7 +61,7 @@ const InputElement: FC<PropsWithChildren<InputElementProps>> = ({
   );
 };
 
-export const InputLeftElement: FC<InputLeftElementProps> = ({
+const InputLeftElement: InputLeftElementType = ({
   className = "",
   ...resetProps
 }) => {
@@ -62,7 +70,7 @@ export const InputLeftElement: FC<InputLeftElementProps> = ({
   return <InputElement className={classes} placement="left" {...resetProps} />;
 };
 
-export const InputRightElement: FC<InputRightElementProps> = ({
+const InputRightElement: InputRightElementType = ({
   className = "",
   ...resetProps
 }) => {
@@ -70,3 +78,8 @@ export const InputRightElement: FC<InputRightElementProps> = ({
 
   return <InputElement className={classes} placement="right" {...resetProps} />;
 };
+
+InputLeftElement.id ="InputLeftElement"
+InputRightElement.id ="InputRightElement"
+
+export { InputLeftElement, InputRightElement };

@@ -1,8 +1,21 @@
-import { InputHTMLAttributes, ChangeEvent, MouseEvent, FocusEvent } from "react";
+import {
+  InputHTMLAttributes,
+  ChangeEvent,
+  MouseEvent,
+  FocusEvent,
+  ForwardRefExoticComponent,
+  RefAttributes,
+  PropsWithChildren,
+} from "react";
 
-export type InputTypes = "default" | "primary" | "success" | "warning" | "error";
+export type InputTypes =
+  | "default"
+  | "primary"
+  | "success"
+  | "warning"
+  | "error";
 
-export type InputSizes = 'sm' | 'md' | 'lg';
+export type InputSizes = "sm" | "md" | "lg";
 
 interface BaseInputProps {
   value?: string;
@@ -15,7 +28,9 @@ interface BaseInputProps {
   readOnly?: boolean;
   disabled?: boolean;
   className?: string;
-  onChange?: (event: ChangeEvent<HTMLInputElement> | MouseEvent<HTMLDivElement>) => void;
+  onChange?: (
+    event: ChangeEvent<HTMLInputElement> | MouseEvent<HTMLDivElement>
+  ) => void;
   onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
   onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
   autoComplete?: string;
@@ -36,6 +51,12 @@ type NativeInputProps = Omit<
 
 export type InputProps = BaseInputProps & NativeInputProps;
 
+export type InputComponent = ForwardRefExoticComponent<
+  PropsWithChildren<InputProps> & RefAttributes<HTMLInputElement>
+> & {
+  id: string;
+};
+
 export interface InputSizeStyles {
   fontSize?: string;
   height?: string;
@@ -46,10 +67,10 @@ export interface InputBasicStyles {
   borderColor?: string;
   color?: string;
   backgroundColor?: string;
-  cursor?: 'text' | 'not-allowed';
+  cursor?: "text" | "not-allowed";
 }
 
-export type InputStyles = InputSizeStyles & InputBasicStyles
+export type InputStyles = InputSizeStyles & InputBasicStyles;
 
 export interface InputFocusStyles {
   focusBorderColor?: string;

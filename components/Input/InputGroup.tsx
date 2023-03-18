@@ -8,11 +8,8 @@ import React, {
 import classNames from "classnames";
 import { InputGroupConfig, InputGroupProps } from "./InputGroup.types";
 import { InputGroupContext } from "./input-group-context";
-import Input from "../Input/Input";
-import { InputLeftElement, InputRightElement } from "../Input/InputElement";
-import { InputLeftAddon, InputRightAddon } from '../Input/InputAddon';
 import { getValidChildren } from "../utils/common";
-import { useInputStyles } from "../Input/Input.styles";
+import { useInputStyles } from "./Input.styles";
 
 const getInputStyles = ({
   type,
@@ -34,26 +31,26 @@ const getInputStyles = ({
   };
   const styles = [
     {
-      type: InputLeftElement,
+      id: "InputLeftElement",
       newStyle: {
         paddingLeft: height
       }
     },
     {
-      type: InputRightElement,
+      id: "InputRightElement",
       newStyle: {
         paddingRight: height
       }
     },
     {
-      type: InputLeftAddon,
+      id: "InputLeftAddon",
       newStyle: {
         borderTopLeftRadius: '0px',
         borderBottomLeftRadius: '0px',
       }
     },
     {
-      type: InputRightAddon,
+      id: "InputRightAddon",
       newStyle: {
         borderTopRightRadius: '0px',
         borderBottomRightRadius: '0px'
@@ -96,7 +93,7 @@ const InputGroup: FC<PropsWithChildren<InputGroupProps>> = ({
     })
     let computedStyle = style;
     getValidChildren(children).forEach((child) => {
-      const result = styles.find((item) => item.type === child.type);
+      const result = styles.find((item) => item.id === (child.type as any).id);
       if (result) {
         const { newStyle } = result;
         computedStyle = { ...computedStyle, ...newStyle };
@@ -108,7 +105,7 @@ const InputGroup: FC<PropsWithChildren<InputGroupProps>> = ({
   const computedInputStyle = getComputedInputStyle();
 
   const cloneChildren = getValidChildren(children).map((child) => {
-    return child.type !== Input
+    return (child.type as any).id !== "Input"
       ? child
       : cloneElement(child, { style: computedInputStyle });
   });
