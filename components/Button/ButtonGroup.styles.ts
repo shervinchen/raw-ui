@@ -1,5 +1,5 @@
 import css from 'styled-jsx/css';
-import { useButtonHoverStyles, useButtonStyles } from '../Button/Button.styles';
+import { useButtonHoverStyles, useButtonStyles } from './Button.styles';
 import { ButtonGroupProps } from './ButtonGroup.types';
 
 export const useButtonGroupCSS = (props: ButtonGroupProps) => {

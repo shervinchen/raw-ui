@@ -11,8 +11,8 @@ import { useButtonStyles, useButtonCSS } from "./Button.styles";
 import { ButtonProps } from "./Button.types";
 import ButtonLoading from "./ButtonLoading";
 import ButtonIcon from "./ButtonIcon";
-import { useButtonGroupContext } from "../ButtonGroup/button-group-context";
-import { ButtonGroupConfig } from "../ButtonGroup/ButtonGroup.types";
+import { useButtonGroupContext } from "./button-group-context";
+import { ButtonGroupConfig } from "./ButtonGroup.types";
 
 const mergeButtonGroupProps = (
   buttonProps: ButtonProps,

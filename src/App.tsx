@@ -3,7 +3,6 @@ import { Search, AlertCircle, Eye, EyeOff, X } from "react-feather";
 import {
   Button,
   Loading,
-  ButtonGroup,
   Input,
 } from "../components";
 
@@ -240,72 +239,72 @@ function App() {
       <Container title="Button Group">
         <Wrapper title="Types">
           <Unit layout="row">
-            <ButtonGroup>
+            <Button.Group>
               <Button>One</Button>
               <Button>Two</Button>
               <Button>Three</Button>
-            </ButtonGroup>
-            <ButtonGroup type="primary">
+            </Button.Group>
+            <Button.Group type="primary">
               <Button>One</Button>
               <Button>Two</Button>
               <Button>Three</Button>
-            </ButtonGroup>
-            <ButtonGroup type="success">
+            </Button.Group>
+            <Button.Group type="success">
               <Button>One</Button>
               <Button>Two</Button>
               <Button>Three</Button>
-            </ButtonGroup>
+            </Button.Group>
           </Unit>
         </Wrapper>
         <Wrapper title="Variant">
           <Unit layout="row">
-            <ButtonGroup type="primary" variant="outline">
+            <Button.Group type="primary" variant="outline">
               <Button>One</Button>
               <Button>Two</Button>
               <Button>Three</Button>
-            </ButtonGroup>
-            <ButtonGroup type="success" variant="outline">
+            </Button.Group>
+            <Button.Group type="success" variant="outline">
               <Button>One</Button>
               <Button>Two</Button>
               <Button>Three</Button>
-            </ButtonGroup>
+            </Button.Group>
           </Unit>
         </Wrapper>
         <Wrapper title="Size">
           <Unit layout="row">
-            <ButtonGroup size="sm">
+            <Button.Group size="sm">
               <Button>One</Button>
               <Button>Two</Button>
               <Button>Three</Button>
-            </ButtonGroup>
-            <ButtonGroup size="md">
+            </Button.Group>
+            <Button.Group size="md">
               <Button>One</Button>
               <Button>Two</Button>
               <Button>Three</Button>
-            </ButtonGroup>
-            <ButtonGroup size="lg">
+            </Button.Group>
+            <Button.Group size="lg">
               <Button>One</Button>
               <Button>Two</Button>
               <Button>Three</Button>
-            </ButtonGroup>
+            </Button.Group>
           </Unit>
         </Wrapper>
         <Wrapper title="Vertical">
           <Unit layout="row">
-            <ButtonGroup vertical>
+            <Button.Group vertical>
               <Button>One</Button>
               <Button>Two</Button>
               <Button>Three</Button>
-            </ButtonGroup>
+            </Button.Group>
           </Unit>
         </Wrapper>
         <Wrapper title="Disabled">
           <Unit layout="row">
-            <ButtonGroup disabled>
+            <Button.Group disabled>
               <Button>One</Button>
               <Button>Two</Button>
               <Button>Three</Button>
-            </ButtonGroup>
+            </Button.Group>
           </Unit>
         </Wrapper>
       </Container>

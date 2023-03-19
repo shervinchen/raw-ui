@@ -3,7 +3,7 @@ import {
   ButtonSizes,
   ButtonTypes,
   ButtonVariants,
-} from '../Button/Button.types';
+} from './Button.types';
 
 type ButtonGroupVariants = 'default' | 'outline';
 
