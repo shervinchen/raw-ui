@@ -52,7 +52,7 @@ const Input: InputComponent = Object.assign(
         onFocus,
         ...restProps
       } = mergeInputGroupProps(inputProps, inputGroupConfig);
-      const [internalValue, setInternalValue] = useControlled({
+      const [internalValue, setInternalValue] = useControlled<string>({
         defaultValue,
         value,
       });

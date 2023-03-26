@@ -1,10 +1,6 @@
 import React, { FC, PropsWithChildren, ChangeEvent, useState } from "react";
 import { Search, AlertCircle, Eye, EyeOff, X } from "react-feather";
-import {
-  Button,
-  Loading,
-  Input,
-} from "../components";
+import { Button, Loading, Input, Checkbox } from "../components";
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
   title,
@@ -95,9 +91,11 @@ const Unit: FC<
 };
 
 function App() {
-  const [controllableValue, setControllableValue] = useState("");
+  const [controllableInputValue, setControllableInputValue] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [clearableValue, setClearableValue] = useState("");
+  const [controllableCheckboxValue, setControllableCheckboxValue] =
+    useState(false);
 
   return (
     <div>
@@ -349,9 +347,9 @@ function App() {
         <Wrapper title="Controlled Input">
           <Unit layout="col">
             <Input
-              value={controllableValue}
+              value={controllableInputValue}
               onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                setControllableValue(event.target.value);
+                setControllableInputValue(event.target.value);
               }}
               placeholder="Placeholder..."
             />
@@ -430,6 +428,35 @@ function App() {
                 </Input.RightElement>
               )}
             </Input.Group>
+          </Unit>
+        </Wrapper>
+      </Container>
+      <Container title="Checkbox">
+        <Wrapper title="Default">
+          <Unit layout="row">
+            <Checkbox />
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Checked">
+          <Unit layout="row">
+            <Checkbox defaultChecked />
+          </Unit>
+        </Wrapper>
+        <Wrapper title="With Label">
+          <Unit layout="row">
+            <Checkbox>Default</Checkbox>
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Controlled">
+          <Unit layout="row">
+            <Checkbox
+              checked={controllableCheckboxValue}
+              onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                setControllableCheckboxValue(event.target.checked);
+              }}
+            >
+              Default
+            </Checkbox>
           </Unit>
         </Wrapper>
       </Container>
