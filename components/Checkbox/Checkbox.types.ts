@@ -4,6 +4,7 @@ interface BaseCheckboxProps {
   checked?: boolean
   defaultChecked?: boolean
   disabled?: boolean
+  indeterminate?: boolean
   className?: string
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void
 }
@@ -17,4 +18,5 @@ export type CheckboxProps = BaseCheckboxProps & NativeCheckboxProps;
 
 export interface CheckboxIconProps {
   checked?: boolean
+  indeterminate?: boolean
 }

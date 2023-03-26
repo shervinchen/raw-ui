@@ -12,6 +12,7 @@ const Checkbox: FC<CheckboxProps> = ({
   defaultChecked = false,
   checked,
   disabled = false,
+  indeterminate = false,
   onChange,
   className = "",
   children,
@@ -29,13 +30,13 @@ const Checkbox: FC<CheckboxProps> = ({
 
   const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     if (isDisabled) return
-    setInternalValue(event.target.checked)
+    if (!indeterminate) setInternalValue(event.target.checked)
     onChange?.(event);
   }
 
   return (
     <label className={classes}>
-      <CheckboxIcon checked={internalValue} />
+      <CheckboxIcon checked={internalValue} indeterminate={indeterminate} />
       <input
         className="raw-checkbox-input"
         type="checkbox"

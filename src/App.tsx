@@ -459,6 +459,11 @@ function App() {
             </Checkbox>
           </Unit>
         </Wrapper>
+        <Wrapper title="Indeterminate">
+          <Unit layout="row">
+            <Checkbox indeterminate>Default</Checkbox>
+          </Unit>
+        </Wrapper>
       </Container>
     </div>
   );
