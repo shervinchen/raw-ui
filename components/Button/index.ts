@@ -8,4 +8,3 @@ export type ButtonComponentType = typeof Button & {
 (Button as ButtonComponentType).Group = ButtonGroup;
 
 export default Button as ButtonComponentType;
-

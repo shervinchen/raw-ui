@@ -4,6 +4,7 @@
   "compilerOptions": {
     "target": "es2015",
     "jsx": "preserve",
+    "lib": ["dom", "es2017"],
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,

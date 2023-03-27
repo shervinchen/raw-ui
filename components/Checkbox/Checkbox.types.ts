@@ -1,8 +1,11 @@
 import { ChangeEvent, InputHTMLAttributes } from "react"
 
+export type CheckboxValue = string | number
+
 interface BaseCheckboxProps {
   checked?: boolean
   defaultChecked?: boolean
+  value?: CheckboxValue
   disabled?: boolean
   indeterminate?: boolean
   className?: string

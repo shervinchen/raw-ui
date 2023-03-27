@@ -2,15 +2,18 @@ import React, {
   FC,
   ChangeEvent,
   useEffect,
+  useMemo,
 } from "react";
 import classNames from "classnames";
 import CheckboxIcon from "./CheckboxIcon";
 import { CheckboxProps } from "./Checkbox.types";
 import { useControlled } from "../utils/hooks";
+import { useCheckboxGroupContext } from "./checkbox-group-context";
 
 const Checkbox: FC<CheckboxProps> = ({
   defaultChecked = false,
   checked,
+  value: checkboxValue,
   disabled = false,
   indeterminate = false,
   onChange,
@@ -18,30 +21,39 @@ const Checkbox: FC<CheckboxProps> = ({
   children,
   ...restProps
 }) => {
+  const { inGroup, groupDisabled, groupValue, onGroupChange } = useCheckboxGroupContext()
   const [internalValue, setInternalValue] = useControlled<boolean>({
     defaultValue: defaultChecked,
     value: checked,
   });
-  const isDisabled = false
+  const isDisabled = inGroup ? groupDisabled || disabled : disabled;
   const classes = classNames(
     "raw-checkbox",
     className,
   );
 
+  const selfChecked = useMemo(() => {
+    if (!inGroup) {
+      return internalValue
+    }
+    return groupValue.includes(checkboxValue)
+  }, [internalValue, inGroup, groupValue, checkboxValue])
+
   const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     if (isDisabled) return
     if (!indeterminate) setInternalValue(event.target.checked)
+    if (inGroup) onGroupChange?.(checkboxValue, event.target.checked)
     onChange?.(event);
   }
 
   return (
     <label className={classes}>
-      <CheckboxIcon checked={internalValue} indeterminate={indeterminate} />
+      <CheckboxIcon checked={selfChecked} indeterminate={indeterminate} />
       <input
         className="raw-checkbox-input"
         type="checkbox"
         disabled={isDisabled}
-        checked={internalValue}
+        checked={selfChecked}
         onChange={changeHandler}
         {...restProps}
       />
@@ -52,7 +64,7 @@ const Checkbox: FC<CheckboxProps> = ({
           justify-content: center;
           align-items: center;
           cursor: ${isDisabled ? 'not-allowed' : 'pointer'};
-          opacity: ${isDisabled ? 0.75 : 1};
+          opacity: ${isDisabled ? 0.5 : 1};
         }
         .raw-checkbox-input {
           position: absolute;

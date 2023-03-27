@@ -1,6 +1,12 @@
 import React, { FC, PropsWithChildren, ChangeEvent, useState } from "react";
 import { Search, AlertCircle, Eye, EyeOff, X } from "react-feather";
-import { Button, Loading, Input, Checkbox } from "../components";
+import {
+  Button,
+  Loading,
+  Input,
+  Checkbox,
+  CheckboxGroupValue,
+} from "../components";
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
   title,
@@ -82,7 +88,7 @@ const Unit: FC<
           .unit-content-col {
             flex-direction: column;
             row-gap: 32px;
-            align-items: normal;
+            align-items: flex-start;
           }
         `}
       </style>
@@ -96,6 +102,29 @@ function App() {
   const [clearableValue, setClearableValue] = useState("");
   const [controllableCheckboxValue, setControllableCheckboxValue] =
     useState(false);
+  const [controllableCheckboxGroupValue, setControllableCheckboxGroupValue] =
+    useState<CheckboxGroupValue>(["react", "angular"]);
+  const [indeterminateWithGroupValue, setIndeterminateWithGroupValue] =
+    useState<CheckboxGroupValue>(["react", "angular"]);
+
+  const checkboxGroupOptions = [
+    {
+      name: "React",
+      value: "react",
+    },
+    {
+      name: "Vue",
+      value: "vue",
+    },
+    {
+      name: "Angular",
+      value: "angular",
+    },
+    {
+      name: "Svelte",
+      value: "svelte",
+    },
+  ];
 
   return (
     <div>
@@ -444,7 +473,7 @@ function App() {
         </Wrapper>
         <Wrapper title="With Label">
           <Unit layout="row">
-            <Checkbox>Default</Checkbox>
+            <Checkbox>Label</Checkbox>
           </Unit>
         </Wrapper>
         <Wrapper title="Controlled">
@@ -455,13 +484,83 @@ function App() {
                 setControllableCheckboxValue(event.target.checked);
               }}
             >
-              Default
+              Controlled
             </Checkbox>
           </Unit>
         </Wrapper>
         <Wrapper title="Indeterminate">
           <Unit layout="row">
-            <Checkbox indeterminate>Default</Checkbox>
+            <Checkbox indeterminate>Indeterminate</Checkbox>
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Disabled">
+          <Unit layout="row">
+            <Checkbox disabled>Disabled</Checkbox>
+            <Checkbox defaultChecked disabled>
+              Disabled
+            </Checkbox>
+            <Checkbox indeterminate disabled>
+              Disabled
+            </Checkbox>
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Group">
+          <Unit layout="col">
+            <Checkbox.Group defaultValue={["vue", "svelte"]}>
+              {checkboxGroupOptions.map((item) => (
+                <Checkbox value={item.value} key={item.value}>
+                  {item.name}
+                </Checkbox>
+              ))}
+            </Checkbox.Group>
+            <Checkbox.Group
+              value={controllableCheckboxGroupValue}
+              onChange={(groupValue) => {
+                setControllableCheckboxGroupValue(groupValue);
+              }}
+            >
+              {checkboxGroupOptions.map((item) => (
+                <Checkbox value={item.value} key={item.value}>
+                  {item.name}
+                </Checkbox>
+              ))}
+            </Checkbox.Group>
+            <Checkbox.Group
+              defaultValue={["react", "vue", "angular", "svelte"]}
+              disabled
+            >
+              {checkboxGroupOptions.map((item) => (
+                <Checkbox value={item.value} key={item.value}>
+                  {item.name}
+                </Checkbox>
+              ))}
+            </Checkbox.Group>
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Indeterminate with Group">
+          <Unit layout="col">
+            <Checkbox
+              indeterminate={
+                indeterminateWithGroupValue.length > 0 &&
+                indeterminateWithGroupValue.length < checkboxGroupOptions.length
+              }
+              checked={indeterminateWithGroupValue.length === checkboxGroupOptions.length}
+              onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                setIndeterminateWithGroupValue(event.target.checked ? checkboxGroupOptions.map(item => item.value) : [])
+              }}
+            >
+              Check All
+            </Checkbox>
+            <Checkbox.Group
+              value={indeterminateWithGroupValue}
+              onChange={setIndeterminateWithGroupValue}
+            >
+              {checkboxGroupOptions.map((item) => (
+                <Checkbox value={item.value} key={item.value}>
+                  {item.name}
+                </Checkbox>
+              ))}
+            </Checkbox.Group>
           </Unit>
         </Wrapper>
       </Container>
