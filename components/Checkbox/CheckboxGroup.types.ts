@@ -7,6 +7,7 @@ interface BaseCheckboxGroupProps {
   defaultValue?: CheckboxGroupValue;
   value?: CheckboxGroupValue;
   disabled?: boolean;
+  layout?: 'row' | 'column'
   onChange?: (value: CheckboxGroupValue) => void;
   className?: string;
 }

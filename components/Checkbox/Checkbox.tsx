@@ -61,7 +61,6 @@ const Checkbox: FC<CheckboxProps> = ({
       <style jsx>{`
         .raw-checkbox {
           display: inline-flex;
-          justify-content: center;
           align-items: center;
           cursor: ${isDisabled ? 'not-allowed' : 'pointer'};
           opacity: ${isDisabled ? 0.5 : 1};

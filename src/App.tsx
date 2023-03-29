@@ -534,6 +534,13 @@ function App() {
                   {item.name}
                 </Checkbox>
               ))}
+            </Checkbox.Group> 
+            <Checkbox.Group defaultValue={["vue", "svelte"]} layout="column">
+              {checkboxGroupOptions.map((item) => (
+                <Checkbox value={item.value} key={item.value}>
+                  {item.name}
+                </Checkbox>
+              ))}
             </Checkbox.Group>
           </Unit>
         </Wrapper>

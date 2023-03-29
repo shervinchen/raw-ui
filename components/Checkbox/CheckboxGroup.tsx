@@ -14,6 +14,7 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({
   defaultValue = [],
   disabled = false,
   className = '',
+  layout = 'row',
   onChange,
   children,
   ...restProps
@@ -49,10 +50,8 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({
         <style jsx>{`
           .raw-checkbox-group {
             display: flex;
-            flex-direction: row;
-          }
-          .raw-checkbox-group :global(.raw-checkbox:not(:last-child)) {
-            margin-right: 32px;
+            flex-direction: ${layout};
+            gap: 32px;
           }
         `}</style>
       </div>
