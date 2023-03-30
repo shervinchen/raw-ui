@@ -16,3 +16,7 @@ export * from './Input/InputGroup.types'
 export { default as Checkbox } from './Checkbox';
 export * from './Checkbox/Checkbox.types'
 export * from './Checkbox/CheckboxGroup.types'
+
+export { default as Radio } from './Radio';
+export * from './Radio/Radio.types'
+export * from './Radio/RadioGroup.types'

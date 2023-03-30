@@ -6,6 +6,8 @@ import {
   Input,
   Checkbox,
   CheckboxGroupValue,
+  Radio,
+  RadioValue,
 } from "../components";
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
@@ -106,8 +108,10 @@ function App() {
     useState<CheckboxGroupValue>(["react", "angular"]);
   const [indeterminateWithGroupValue, setIndeterminateWithGroupValue] =
     useState<CheckboxGroupValue>(["react", "angular"]);
+  const [controllableRadioValue, setControllableRadioValue] = useState(false);
+  const [controllableRadioGroupValue, setControllableRadioGroupValue] = useState<RadioValue>('angular')
 
-  const checkboxGroupOptions = [
+  const groupOptions = [
     {
       name: "React",
       value: "react",
@@ -507,7 +511,7 @@ function App() {
         <Wrapper title="Group">
           <Unit layout="col">
             <Checkbox.Group defaultValue={["vue", "svelte"]}>
-              {checkboxGroupOptions.map((item) => (
+              {groupOptions.map((item) => (
                 <Checkbox value={item.value} key={item.value}>
                   {item.name}
                 </Checkbox>
@@ -519,7 +523,7 @@ function App() {
                 setControllableCheckboxGroupValue(groupValue);
               }}
             >
-              {checkboxGroupOptions.map((item) => (
+              {groupOptions.map((item) => (
                 <Checkbox value={item.value} key={item.value}>
                   {item.name}
                 </Checkbox>
@@ -529,14 +533,14 @@ function App() {
               defaultValue={["react", "vue", "angular", "svelte"]}
               disabled
             >
-              {checkboxGroupOptions.map((item) => (
+              {groupOptions.map((item) => (
                 <Checkbox value={item.value} key={item.value}>
                   {item.name}
                 </Checkbox>
               ))}
             </Checkbox.Group> 
             <Checkbox.Group defaultValue={["vue", "svelte"]} layout="column">
-              {checkboxGroupOptions.map((item) => (
+              {groupOptions.map((item) => (
                 <Checkbox value={item.value} key={item.value}>
                   {item.name}
                 </Checkbox>
@@ -549,11 +553,11 @@ function App() {
             <Checkbox
               indeterminate={
                 indeterminateWithGroupValue.length > 0 &&
-                indeterminateWithGroupValue.length < checkboxGroupOptions.length
+                indeterminateWithGroupValue.length < groupOptions.length
               }
-              checked={indeterminateWithGroupValue.length === checkboxGroupOptions.length}
+              checked={indeterminateWithGroupValue.length === groupOptions.length}
               onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                setIndeterminateWithGroupValue(event.target.checked ? checkboxGroupOptions.map(item => item.value) : [])
+                setIndeterminateWithGroupValue(event.target.checked ? groupOptions.map(item => item.value) : [])
               }}
             >
               Check All
@@ -562,12 +566,89 @@ function App() {
               value={indeterminateWithGroupValue}
               onChange={setIndeterminateWithGroupValue}
             >
-              {checkboxGroupOptions.map((item) => (
+              {groupOptions.map((item) => (
                 <Checkbox value={item.value} key={item.value}>
                   {item.name}
                 </Checkbox>
               ))}
             </Checkbox.Group>
+          </Unit>
+        </Wrapper>
+      </Container>
+      <Container title="Radio">
+        <Wrapper title="Default">
+          <Unit layout="row">
+            <Radio />
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Checked">
+          <Unit layout="row">
+            <Radio defaultChecked />
+          </Unit>
+        </Wrapper>
+        <Wrapper title="With Label">
+          <Unit layout="row">
+            <Radio>Label</Radio>
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Controlled">
+          <Unit layout="row">
+            <Radio
+              checked={controllableRadioValue}
+              onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                setControllableRadioValue(event.target.checked);
+              }}
+            >
+              Controlled
+            </Radio>
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Disabled">
+          <Unit layout="row">
+            <Radio disabled>Disabled</Radio>
+            <Radio defaultChecked disabled>
+              Disabled
+            </Radio>
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Group">
+          <Unit layout="col">
+            <Radio.Group defaultValue="vue">
+              {groupOptions.map((item) => (
+                <Radio value={item.value} key={item.value}>
+                  {item.name}
+                </Radio>
+              ))}
+            </Radio.Group>
+            <Radio.Group
+              value={controllableRadioGroupValue}
+              onChange={(groupValue) => {
+                setControllableRadioGroupValue(groupValue);
+              }}
+            >
+              {groupOptions.map((item) => (
+                <Radio value={item.value} key={item.value}>
+                  {item.name}
+                </Radio>
+              ))}
+            </Radio.Group>
+            <Radio.Group
+              defaultValue="svelte"
+              disabled
+            >
+              {groupOptions.map((item) => (
+                <Radio value={item.value} key={item.value}>
+                  {item.name}
+                </Radio>
+              ))}
+            </Radio.Group> 
+            <Radio.Group defaultValue="vue" layout="column">
+              {groupOptions.map((item) => (
+                <Radio value={item.value} key={item.value}>
+                  {item.name}
+                </Radio>
+              ))}
+            </Radio.Group>
           </Unit>
         </Wrapper>
       </Container>

@@ -48,7 +48,6 @@ const Checkbox: FC<CheckboxProps> = ({
 
   return (
     <label className={classes}>
-      <CheckboxIcon checked={selfChecked} indeterminate={indeterminate} />
       <input
         className="raw-checkbox-input"
         type="checkbox"
@@ -57,13 +56,16 @@ const Checkbox: FC<CheckboxProps> = ({
         onChange={changeHandler}
         {...restProps}
       />
+      <CheckboxIcon checked={selfChecked} indeterminate={indeterminate} />
       {children && <span className="raw-checkbox-text">{children}</span>}
       <style jsx>{`
         .raw-checkbox {
+          position: relative;
           display: inline-flex;
           align-items: center;
           cursor: ${isDisabled ? 'not-allowed' : 'pointer'};
           opacity: ${isDisabled ? 0.5 : 1};
+          gap: 8px;
         }
         .raw-checkbox-input {
           position: absolute;
@@ -80,7 +82,6 @@ const Checkbox: FC<CheckboxProps> = ({
         .raw-checkbox-text {
           font-size: 14px;
           line-height: normal;
-          margin-left: 8px;
           user-select: none;
         }
       `}</style>
