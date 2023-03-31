@@ -1,4 +1,4 @@
-import React, { FC, ChangeEvent, useEffect, useMemo } from "react";
+import React, { FC, ChangeEvent, useEffect, useMemo, PropsWithChildren } from "react";
 import classNames from "classnames";
 import { RadioProps } from "./Radio.types";
 import { useControlled } from "../utils/hooks";
@@ -6,7 +6,7 @@ import { RawUITheme } from "../Theme/preset/preset.type";
 import { useTheme } from "../Theme/theme-context";
 import { useRadioGroupContext } from "./radio-group-context";
 
-const Radio: FC<RadioProps> = ({
+const Radio: FC<PropsWithChildren<RadioProps>> = ({
   defaultChecked = false,
   checked,
   value: radioValue,
@@ -76,6 +76,8 @@ const Radio: FC<RadioProps> = ({
             z-index: -1;
             font-size: 0;
             background-color: transparent;
+            overflow: hidden;
+            visibility: hidden;
           }
           .raw-radio-inner {
             position: relative;

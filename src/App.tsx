@@ -8,6 +8,7 @@ import {
   CheckboxGroupValue,
   Radio,
   RadioValue,
+  Toggle,
 } from "../components";
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
@@ -110,6 +111,7 @@ function App() {
     useState<CheckboxGroupValue>(["react", "angular"]);
   const [controllableRadioValue, setControllableRadioValue] = useState(false);
   const [controllableRadioGroupValue, setControllableRadioGroupValue] = useState<RadioValue>('angular')
+  const [controllableToggleValue, setControllableToggleValue] = useState(false)
 
   const groupOptions = [
     {
@@ -649,6 +651,34 @@ function App() {
                 </Radio>
               ))}
             </Radio.Group>
+          </Unit>
+        </Wrapper>
+      </Container>
+      <Container title="Toggle">
+        <Wrapper title="Default">
+          <Unit layout="row">
+            <Toggle />
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Checked">
+          <Unit layout="row">
+            <Toggle defaultChecked />
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Controlled">
+          <Unit layout="row">
+            <Toggle
+              checked={controllableToggleValue}
+              onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                setControllableToggleValue(event.target.checked);
+              }}
+            />
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Disabled">
+          <Unit layout="row">
+            <Toggle disabled />
+            <Toggle defaultChecked disabled />
           </Unit>
         </Wrapper>
       </Container>

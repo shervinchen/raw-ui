@@ -3,6 +3,7 @@ import React, {
   ChangeEvent,
   useEffect,
   useMemo,
+  PropsWithChildren,
 } from "react";
 import classNames from "classnames";
 import CheckboxIcon from "./CheckboxIcon";
@@ -10,7 +11,7 @@ import { CheckboxProps } from "./Checkbox.types";
 import { useControlled } from "../utils/hooks";
 import { useCheckboxGroupContext } from "./checkbox-group-context";
 
-const Checkbox: FC<CheckboxProps> = ({
+const Checkbox: FC<PropsWithChildren<CheckboxProps>> = ({
   defaultChecked = false,
   checked,
   value: checkboxValue,
@@ -78,6 +79,8 @@ const Checkbox: FC<CheckboxProps> = ({
           z-index: -1;
           font-size: 0;
           background-color: transparent;
+          overflow: hidden;
+          visibility: hidden;
         }
         .raw-checkbox-text {
           font-size: 14px;

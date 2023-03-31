@@ -20,3 +20,6 @@ export * from './Checkbox/CheckboxGroup.types'
 export { default as Radio } from './Radio';
 export * from './Radio/Radio.types'
 export * from './Radio/RadioGroup.types'
+
+export { default as Toggle } from './Toggle'
+export * from './Toggle/Toggle.types'

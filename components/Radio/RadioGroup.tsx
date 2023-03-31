@@ -1,6 +1,7 @@
 
 import React, {
   FC,
+  PropsWithChildren,
   useEffect,
   useMemo,
 } from "react";
@@ -10,7 +11,7 @@ import { useControlled } from "../utils/hooks";
 import { RadioValue } from "./Radio.types";
 import { RadioGroupContext } from "./radio-group-context";
 
-const RadioGroup: FC<RadioGroupProps> = ({
+const RadioGroup: FC<PropsWithChildren<RadioGroupProps>> = ({
   value: radioGroupValue,
   defaultValue = '',
   disabled = false,

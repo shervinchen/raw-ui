@@ -1,6 +1,7 @@
 
 import React, {
   FC,
+  PropsWithChildren,
   useEffect,
   useMemo,
 } from "react";
@@ -9,7 +10,7 @@ import { CheckboxGroupConfig, CheckboxGroupProps, CheckboxGroupValue } from "./C
 import { useControlled } from "../utils/hooks";
 import { CheckboxGroupContext } from "./checkbox-group-context";
 
-const CheckboxGroup: FC<CheckboxGroupProps> = ({
+const CheckboxGroup: FC<PropsWithChildren<CheckboxGroupProps>> = ({
   value: checkboxGroupValue,
   defaultValue = [],
   disabled = false,
