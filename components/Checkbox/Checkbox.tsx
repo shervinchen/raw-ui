@@ -10,6 +10,7 @@ import CheckboxIcon from "./CheckboxIcon";
 import { CheckboxProps } from "./Checkbox.types";
 import { useControlled } from "../utils/hooks";
 import { useCheckboxGroupContext } from "./checkbox-group-context";
+import { VisuallyHiddenInput } from "../VisuallyHidden";
 
 const Checkbox: FC<PropsWithChildren<CheckboxProps>> = ({
   defaultChecked = false,
@@ -22,34 +23,32 @@ const Checkbox: FC<PropsWithChildren<CheckboxProps>> = ({
   children,
   ...restProps
 }) => {
-  const { inGroup, groupDisabled, groupValue, onGroupChange } = useCheckboxGroupContext()
+  const { inGroup, groupDisabled, groupValue, onGroupChange } =
+    useCheckboxGroupContext();
   const [internalValue, setInternalValue] = useControlled<boolean>({
     defaultValue: defaultChecked,
     value: checked,
   });
   const isDisabled = inGroup ? groupDisabled || disabled : disabled;
-  const classes = classNames(
-    "raw-checkbox",
-    className,
-  );
+  const classes = classNames("raw-checkbox", className);
 
   const selfChecked = useMemo(() => {
     if (!inGroup) {
-      return internalValue
+      return internalValue;
     }
-    return groupValue.includes(checkboxValue)
-  }, [internalValue, inGroup, groupValue, checkboxValue])
+    return groupValue.includes(checkboxValue);
+  }, [internalValue, inGroup, groupValue, checkboxValue]);
 
   const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    if (isDisabled) return
-    if (!indeterminate) setInternalValue(event.target.checked)
-    if (inGroup) onGroupChange?.(checkboxValue, event.target.checked)
+    if (isDisabled) return;
+    if (!indeterminate) setInternalValue(event.target.checked);
+    if (inGroup) onGroupChange?.(checkboxValue, event.target.checked);
     onChange?.(event);
-  }
+  };
 
   return (
     <label className={classes}>
-      <input
+      <VisuallyHiddenInput
         className="raw-checkbox-input"
         type="checkbox"
         disabled={isDisabled}
@@ -64,23 +63,9 @@ const Checkbox: FC<PropsWithChildren<CheckboxProps>> = ({
           position: relative;
           display: inline-flex;
           align-items: center;
-          cursor: ${isDisabled ? 'not-allowed' : 'pointer'};
+          cursor: ${isDisabled ? "not-allowed" : "pointer"};
           opacity: ${isDisabled ? 0.5 : 1};
           gap: 8px;
-        }
-        .raw-checkbox-input {
-          position: absolute;
-          opacity: 0;
-          outline: none;
-          width: 0;
-          height: 0;
-          margin: 0;
-          padding: 0;
-          z-index: -1;
-          font-size: 0;
-          background-color: transparent;
-          overflow: hidden;
-          visibility: hidden;
         }
         .raw-checkbox-text {
           font-size: 14px;
@@ -89,7 +74,7 @@ const Checkbox: FC<PropsWithChildren<CheckboxProps>> = ({
         }
       `}</style>
     </label>
-  )
-}
+  );
+};
 
 export default Checkbox;

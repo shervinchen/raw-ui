@@ -5,6 +5,7 @@ import { useControlled } from "../utils/hooks";
 import { RawUITheme } from "../Theme/preset/preset.type";
 import { useTheme } from "../Theme/theme-context";
 import { useToggleCSS } from "./Toggle.styles";
+import { VisuallyHiddenInput } from "../VisuallyHidden";
 
 const Toggle: FC<ToggleProps> = ({
   defaultChecked = false,
@@ -34,7 +35,7 @@ const Toggle: FC<ToggleProps> = ({
 
   return (
     <label className={toggleClasses}>
-      <input
+      <VisuallyHiddenInput
         className="raw-toggle-input"
         type="checkbox"
         disabled={disabled}

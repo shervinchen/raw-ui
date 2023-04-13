@@ -50,20 +50,6 @@ export const useToggleCSS = ({ checked, disabled }) => {
       display: inline-flex;
       cursor: ${disabled ? "not-allowed" : "pointer"};
     }
-    .raw-toggle :global(.raw-toggle-input) {
-      position: absolute;
-      opacity: 0;
-      outline: none;
-      width: 0;
-      height: 0;
-      margin: 0;
-      padding: 0;
-      z-index: -1;
-      font-size: 0;
-      background-color: transparent;
-      overflow: hidden;
-      visibility: hidden;
-    }
     .raw-toggle :global(.raw-toggle-inner) {
       box-sizing: border-box;
       width: 28px;

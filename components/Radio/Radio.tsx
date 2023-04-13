@@ -1,10 +1,17 @@
-import React, { FC, ChangeEvent, useEffect, useMemo, PropsWithChildren } from "react";
+import React, {
+  FC,
+  ChangeEvent,
+  useEffect,
+  useMemo,
+  PropsWithChildren,
+} from "react";
 import classNames from "classnames";
 import { RadioProps } from "./Radio.types";
 import { useControlled } from "../utils/hooks";
 import { RawUITheme } from "../Theme/preset/preset.type";
 import { useTheme } from "../Theme/theme-context";
 import { useRadioGroupContext } from "./radio-group-context";
+import { VisuallyHiddenInput } from "../VisuallyHidden";
 
 const Radio: FC<PropsWithChildren<RadioProps>> = ({
   defaultChecked = false,
@@ -17,7 +24,8 @@ const Radio: FC<PropsWithChildren<RadioProps>> = ({
   ...restProps
 }) => {
   const theme: RawUITheme = useTheme();
-  const { inGroup, groupDisabled, groupValue, onGroupChange } = useRadioGroupContext()
+  const { inGroup, groupDisabled, groupValue, onGroupChange } =
+    useRadioGroupContext();
   const [internalValue, setInternalValue] = useControlled<boolean>({
     defaultValue: defaultChecked,
     value: checked,
@@ -25,10 +33,10 @@ const Radio: FC<PropsWithChildren<RadioProps>> = ({
   const isDisabled = inGroup ? groupDisabled || disabled : disabled;
   const selfChecked = useMemo(() => {
     if (!inGroup) {
-      return internalValue
+      return internalValue;
     }
-    return groupValue === radioValue
-  }, [internalValue, inGroup, groupValue, radioValue])
+    return groupValue === radioValue;
+  }, [internalValue, inGroup, groupValue, radioValue]);
 
   const radioClasses = classNames("raw-radio", className);
   const radioInnerClasses = classNames(
@@ -39,13 +47,13 @@ const Radio: FC<PropsWithChildren<RadioProps>> = ({
   const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     if (isDisabled) return;
     setInternalValue(event.target.checked);
-    if (inGroup) onGroupChange?.(radioValue)
+    if (inGroup) onGroupChange?.(radioValue);
     onChange?.(event);
   };
 
   return (
     <label className={radioClasses}>
-      <input
+      <VisuallyHiddenInput
         className="raw-radio-input"
         type="radio"
         disabled={isDisabled}
@@ -64,20 +72,6 @@ const Radio: FC<PropsWithChildren<RadioProps>> = ({
             cursor: ${isDisabled ? "not-allowed" : "pointer"};
             opacity: ${isDisabled ? 0.5 : 1};
             gap: 8px;
-          }
-          .raw-radio-input {
-            position: absolute;
-            opacity: 0;
-            outline: none;
-            width: 0;
-            height: 0;
-            margin: 0;
-            padding: 0;
-            z-index: -1;
-            font-size: 0;
-            background-color: transparent;
-            overflow: hidden;
-            visibility: hidden;
           }
           .raw-radio-inner {
             position: relative;
