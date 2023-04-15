@@ -10,6 +10,7 @@ import {
   RadioValue,
   Toggle,
   Select,
+  SelectValue,
 } from "../components";
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
@@ -114,6 +115,8 @@ function App() {
   const [controllableRadioGroupValue, setControllableRadioGroupValue] =
     useState<RadioValue>("angular");
   const [controllableToggleValue, setControllableToggleValue] = useState(false);
+  const [controllableSelectValue, setControllableSelectValue] =
+    useState<SelectValue>();
 
   const groupOptions = [
     {
@@ -472,6 +475,33 @@ function App() {
         <Wrapper title="Default">
           <Unit layout="row">
             <Select width="200px" placeholder="Select option">
+              <Select.Option value="1">Option 1</Select.Option>
+              <Select.Option value="2">Option 2</Select.Option>
+            </Select>
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Selected">
+          <Unit layout="row">
+            <Select
+              width="200px"
+              placeholder="Select option"
+              defaultValue={"1"}
+            >
+              <Select.Option value="1">Option 1</Select.Option>
+              <Select.Option value="2">Option 2</Select.Option>
+            </Select>
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Controlled">
+          <Unit layout="row">
+            <Select
+              width="200px"
+              placeholder="Select option"
+              value={controllableSelectValue}
+              onChange={(value) => {
+                setControllableSelectValue(value);
+              }}
+            >
               <Select.Option value="1">Option 1</Select.Option>
               <Select.Option value="2">Option 2</Select.Option>
             </Select>
