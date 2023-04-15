@@ -111,8 +111,9 @@ function App() {
   const [indeterminateWithGroupValue, setIndeterminateWithGroupValue] =
     useState<CheckboxGroupValue>(["react", "angular"]);
   const [controllableRadioValue, setControllableRadioValue] = useState(false);
-  const [controllableRadioGroupValue, setControllableRadioGroupValue] = useState<RadioValue>('angular')
-  const [controllableToggleValue, setControllableToggleValue] = useState(false)
+  const [controllableRadioGroupValue, setControllableRadioGroupValue] =
+    useState<RadioValue>("angular");
+  const [controllableToggleValue, setControllableToggleValue] = useState(false);
 
   const groupOptions = [
     {
@@ -487,9 +488,44 @@ function App() {
         <Wrapper title="Disabled Option">
           <Unit layout="row">
             <Select width="200px" placeholder="Select option">
-              <Select.Option value="1" disabled>Option 1</Select.Option>
+              <Select.Option value="1" disabled>
+                Option 1
+              </Select.Option>
               <Select.Option value="2">Option 2</Select.Option>
             </Select>
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Set Parent Element">
+          <Unit layout="row">
+            <div
+              id="parentElement"
+              style={{
+                position: "relative",
+                overflowY: "auto",
+                width: "400px",
+                height: "200px",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  height: "400px",
+                }}
+              >
+                <Select
+                  width="200px"
+                  placeholder="Select option"
+                  getPopupContainer={() =>
+                    document.querySelector("#parentElement")
+                  }
+                >
+                  <Select.Option value="1">Option 1</Select.Option>
+                  <Select.Option value="2">Option 2</Select.Option>
+                </Select>
+              </div>
+            </div>
           </Unit>
         </Wrapper>
       </Container>
@@ -567,7 +603,7 @@ function App() {
                   {item.name}
                 </Checkbox>
               ))}
-            </Checkbox.Group> 
+            </Checkbox.Group>
             <Checkbox.Group defaultValue={["vue", "svelte"]} layout="column">
               {groupOptions.map((item) => (
                 <Checkbox value={item.value} key={item.value}>
@@ -584,9 +620,15 @@ function App() {
                 indeterminateWithGroupValue.length > 0 &&
                 indeterminateWithGroupValue.length < groupOptions.length
               }
-              checked={indeterminateWithGroupValue.length === groupOptions.length}
+              checked={
+                indeterminateWithGroupValue.length === groupOptions.length
+              }
               onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                setIndeterminateWithGroupValue(event.target.checked ? groupOptions.map(item => item.value) : [])
+                setIndeterminateWithGroupValue(
+                  event.target.checked
+                    ? groupOptions.map((item) => item.value)
+                    : []
+                );
               }}
             >
               Check All
@@ -661,16 +703,13 @@ function App() {
                 </Radio>
               ))}
             </Radio.Group>
-            <Radio.Group
-              defaultValue="svelte"
-              disabled
-            >
+            <Radio.Group defaultValue="svelte" disabled>
               {groupOptions.map((item) => (
                 <Radio value={item.value} key={item.value}>
                   {item.name}
                 </Radio>
               ))}
-            </Radio.Group> 
+            </Radio.Group>
             <Radio.Group defaultValue="vue" layout="column">
               {groupOptions.map((item) => (
                 <Radio value={item.value} key={item.value}>
