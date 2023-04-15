@@ -39,6 +39,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
       dropdownClassName = "",
       dropdownHeight = "none",
       getPopupContainer,
+      onChange,
       children,
       ...restProps
     },
@@ -89,6 +90,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
 
     const changeHandler = (optionValue) => {
       setInternalValue(optionValue);
+      onChange?.(optionValue);
       if (!multiple) {
         setDropdownVisible(false);
       }

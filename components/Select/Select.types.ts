@@ -17,6 +17,7 @@ interface BaseSelectProps {
   dropdownClassName?: string;
   dropdownHeight?: string;
   getPopupContainer?: () => HTMLElement | null;
+  onChange?: (value: SelectValue) => void
 }
 
 type NativeSelectProps = Omit<
