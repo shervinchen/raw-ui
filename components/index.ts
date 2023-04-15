@@ -23,3 +23,8 @@ export * from './Radio/RadioGroup.types'
 
 export { default as Toggle } from './Toggle'
 export * from './Toggle/Toggle.types'
+
+export { default as Select } from './Select'
+export * from './Select/Select.types'
+export * from './Select/SelectOption.types'
+export * from './Select/SelectDropdown.types'

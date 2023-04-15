@@ -9,6 +9,7 @@ import {
   Radio,
   RadioValue,
   Toggle,
+  Select,
 } from "../components";
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
@@ -463,6 +464,32 @@ function App() {
                 </Input.RightElement>
               )}
             </Input.Group>
+          </Unit>
+        </Wrapper>
+      </Container>
+      <Container title="Select">
+        <Wrapper title="Default">
+          <Unit layout="row">
+            <Select width="200px" placeholder="Select option">
+              <Select.Option value="1">Option 1</Select.Option>
+              <Select.Option value="2">Option 2</Select.Option>
+            </Select>
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Disabled Select">
+          <Unit layout="row">
+            <Select width="200px" placeholder="Select option" disabled>
+              <Select.Option value="1">Option 1</Select.Option>
+              <Select.Option value="2">Option 2</Select.Option>
+            </Select>
+          </Unit>
+        </Wrapper>
+        <Wrapper title="Disabled Option">
+          <Unit layout="row">
+            <Select width="200px" placeholder="Select option">
+              <Select.Option value="1" disabled>Option 1</Select.Option>
+              <Select.Option value="2">Option 2</Select.Option>
+            </Select>
           </Unit>
         </Wrapper>
       </Container>
