@@ -23,7 +23,9 @@ const SelectInput = forwardRef<HTMLInputElement | null, SelectInputProps>(
 
     useEffect(() => {
       if (visible) {
-        ref.current?.focus();
+        ref.current?.focus({
+          preventScroll: true 
+        });
       }
     }, [visible]);
 
