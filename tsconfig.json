@@ -2,9 +2,10 @@
   "include": ["src/**/*", "components/**/*"],
   "exclude": ["node_modules"],
   "compilerOptions": {
-    "target": "es2015",
+    "target": "ESNext",
     "jsx": "preserve",
-    "lib": ["dom", "es2017"],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "module": "ESNext",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
