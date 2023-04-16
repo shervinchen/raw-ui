@@ -9,6 +9,7 @@ import classNames from "classnames";
 import { CheckboxGroupConfig, CheckboxGroupProps, CheckboxGroupValue } from "./CheckboxGroup.types";
 import { useControlled } from "../utils/hooks";
 import { CheckboxGroupContext } from "./checkbox-group-context";
+import { CheckboxValue } from "./Checkbox.types";
 
 const CheckboxGroup: FC<PropsWithChildren<CheckboxGroupProps>> = ({
   value: checkboxGroupValue,
@@ -29,7 +30,7 @@ const CheckboxGroup: FC<PropsWithChildren<CheckboxGroupProps>> = ({
     className,
   );
 
-  const groupChangeHandler = (checkboxValue, checked) => {
+  const groupChangeHandler = (checkboxValue?: CheckboxValue, checked?: boolean) => {
     const nextGroupValue = checked ? [...internalValue, checkboxValue] : internalValue.filter(value => value !== checkboxValue)
     setInternalValue(nextGroupValue)
     onChange?.(nextGroupValue)

@@ -1,10 +1,4 @@
-
-import React, {
-  FC,
-  PropsWithChildren,
-  useEffect,
-  useMemo,
-} from "react";
+import React, { FC, PropsWithChildren, useEffect, useMemo } from "react";
 import classNames from "classnames";
 import { RadioGroupConfig, RadioGroupProps } from "./RadioGroup.types";
 import { useControlled } from "../utils/hooks";
@@ -13,10 +7,10 @@ import { RadioGroupContext } from "./radio-group-context";
 
 const RadioGroup: FC<PropsWithChildren<RadioGroupProps>> = ({
   value: radioGroupValue,
-  defaultValue = '',
+  defaultValue = "",
   disabled = false,
-  className = '',
-  layout = 'row',
+  className = "",
+  layout = "row",
   onChange,
   children,
   ...restProps
@@ -25,25 +19,22 @@ const RadioGroup: FC<PropsWithChildren<RadioGroupProps>> = ({
     defaultValue,
     value: radioGroupValue,
   });
-  const classes = classNames(
-    "raw-radio-group",
-    className,
-  );
+  const classes = classNames("raw-radio-group", className);
 
-  const groupChangeHandler = (checkboxValue) => {
-    setInternalValue(checkboxValue)
-    onChange?.(checkboxValue)
-  }
+  const groupChangeHandler = (radioValue?: RadioValue) => {
+    setInternalValue(radioValue);
+    onChange?.(radioValue);
+  };
 
   const radioGroupConfig = useMemo<RadioGroupConfig>(() => {
     return {
       groupValue: internalValue,
       groupDisabled: disabled,
       inGroup: true,
-      onGroupChange: groupChangeHandler
-    }
-  }, [internalValue, disabled])
-  
+      onGroupChange: groupChangeHandler,
+    };
+  }, [internalValue, disabled]);
+
   return (
     <RadioGroupContext.Provider value={radioGroupConfig}>
       <div className={classes} {...restProps}>
@@ -57,7 +48,7 @@ const RadioGroup: FC<PropsWithChildren<RadioGroupProps>> = ({
         `}</style>
       </div>
     </RadioGroupContext.Provider>
-  )
-}
+  );
+};
 
-export default RadioGroup
+export default RadioGroup;

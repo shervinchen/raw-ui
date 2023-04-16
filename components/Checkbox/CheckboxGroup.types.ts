@@ -1,7 +1,7 @@
 import { HTMLAttributes } from "react";
 import { CheckboxValue } from "./Checkbox.types";
 
-export type CheckboxGroupValue = CheckboxValue[]
+export type CheckboxGroupValue = (CheckboxValue | undefined)[]
 
 interface BaseCheckboxGroupProps {
   defaultValue?: CheckboxGroupValue;
@@ -24,5 +24,5 @@ export interface CheckboxGroupConfig {
   groupDisabled: boolean
   groupValue: CheckboxGroupValue
   inGroup: boolean
-  onGroupChange?: (checkboxValue: CheckboxValue, checked: boolean) => void
+  onGroupChange?: (checkboxValue?: CheckboxValue, checked?: boolean) => void
 }

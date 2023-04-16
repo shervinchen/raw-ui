@@ -17,7 +17,7 @@ export type InputTypes =
 
 export type InputSizes = "sm" | "md" | "lg";
 
-interface BaseInputProps {
+export interface BaseInputProps {
   value?: string;
   defaultValue?: string;
   placeholder?: string;

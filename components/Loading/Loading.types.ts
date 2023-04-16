@@ -1,6 +1,6 @@
 import { HTMLAttributes } from 'react';
 
-interface BaseLoadingProps {
+export interface BaseLoadingProps {
   type?: 'dot' | 'spin';
   color?: string;
   className?: string;

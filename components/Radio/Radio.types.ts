@@ -1,8 +1,8 @@
 import { ChangeEvent, InputHTMLAttributes } from "react"
 
-export type RadioValue = string | number
+export type RadioValue = string | number | undefined
 
-interface BaseRadioProps {
+export interface BaseRadioProps {
   checked?: boolean
   defaultChecked?: boolean
   value?: RadioValue

@@ -52,6 +52,7 @@ const Input: InputComponent = Object.assign(
         onFocus,
         ...restProps
       } = mergeInputGroupProps(inputProps, inputGroupConfig);
+      const inputRef = useRef<HTMLInputElement>(null);
       const [internalValue, setInternalValue] = useControlled<string>({
         defaultValue,
         value,
@@ -83,10 +84,12 @@ const Input: InputComponent = Object.assign(
         onChange?.(event);
       };
 
+      useImperativeHandle(ref, () => inputRef.current);
+
       return (
         <>
           <input
-            ref={ref}
+            ref={inputRef}
             type={htmlType}
             className={classes}
             value={internalValue}

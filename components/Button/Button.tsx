@@ -4,6 +4,8 @@ import React, {
   PropsWithChildren,
   Children,
   MouseEvent,
+  useRef,
+  useImperativeHandle,
 } from "react";
 import classNames from "classnames";
 
@@ -45,6 +47,7 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
       children,
       ...restProps
     } = mergeButtonGroupProps(buttonProps, buttonGroupConfig);
+    const buttonRef = useRef<HTMLButtonElement>(null);
 
     const { horizontalPadding, height, color, backgroundColor } =
       useButtonStyles({
@@ -80,9 +83,11 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
       onClick?.(event);
     };
 
+    useImperativeHandle(ref, () => buttonRef.current);
+
     return (
       <button
-        ref={ref}
+        ref={buttonRef}
         type={htmlType}
         className={classes}
         onClick={clickHandler}

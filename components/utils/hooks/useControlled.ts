@@ -5,7 +5,7 @@ interface UseControlledProps<T> {
   value?: T;
   defaultValue?: T | (() => T);
   onChange?: (value: T) => void;
-  shouldUpdate?: (prevState: T, nextState: T) => boolean;
+  shouldUpdate?: (prevState?: T, nextState?: T) => boolean;
 }
 
 type SetStateFn<T> = (prevState?: T) => T;

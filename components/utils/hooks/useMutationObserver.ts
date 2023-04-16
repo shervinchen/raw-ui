@@ -7,12 +7,12 @@ const defaultOptions: MutationObserverInit = {
 };
 
 const useMutationObserver = (
-  ref: MutableRefObject<HTMLElement | null>,
+  ref: MutableRefObject<HTMLElement | null> | undefined,
   callback: MutationCallback,
   options: MutationObserverInit = defaultOptions
 ) => {
   useEffect(() => {
-    if (!ref.current) return;
+    if (!ref?.current) return;
     const observer = new MutationObserver(callback);
     observer.observe(ref.current, options);
     return () => {

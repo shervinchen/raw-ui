@@ -1,6 +1,7 @@
 import css from 'styled-jsx/css';
+import { LoadingProps } from './Loading.types';
 
-export const useDotLoadingCSS = ({ size, color }) => {
+export const useDotLoadingCSS = ({ size = 4, color }: LoadingProps) => {
   return css.resolve`
     .raw-dot-loading {
       display: inline-flex;
@@ -57,7 +58,7 @@ export const useDotLoadingCSS = ({ size, color }) => {
   `;
 };
 
-export const useSpinLoadingCSS = ({ size, color }) => {
+export const useSpinLoadingCSS = ({ size = 20, color }: LoadingProps) => {
   return css.resolve`
     .raw-spin-loading {
       display: block;

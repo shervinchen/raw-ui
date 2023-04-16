@@ -1,6 +1,6 @@
 import { HTMLAttributes } from "react";
 
-interface BaseSelectDropdownProps {
+export interface BaseSelectDropdownProps {
   visible: boolean
   className?: string
 }

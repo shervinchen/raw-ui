@@ -4,26 +4,34 @@ import React, {
   InputHTMLAttributes,
   Ref,
   forwardRef,
+  useImperativeHandle,
+  useRef,
 } from "react";
 
 export const VisuallyHiddenInput = forwardRef<
   HTMLInputElement,
   InputHTMLAttributes<HTMLInputElement>
 >((props, ref: Ref<HTMLInputElement | null>) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useImperativeHandle(ref, () => inputRef.current);
+
   return (
     <>
-      <input ref={ref} {...props} />
-      <style jsx>{`
-        border: 0;
-        clip: rect(0, 0, 0, 0);
-        height: 1px;
-        width: 1px;
-        margin: -1px;
-        padding: 0;
-        overflow: hidden;
-        white-space: nowrap;
-        position: absolute;
-      `}</style>
+      <input ref={inputRef} {...props} />
+      <style jsx>
+        {`
+          border: 0;
+          clip: rect(0, 0, 0, 0);
+          height: 1px;
+          width: 1px;
+          margin: -1px;
+          padding: 0;
+          overflow: hidden;
+          white-space: nowrap;
+          position: absolute;
+        `}
+      </style>
     </>
   );
 });

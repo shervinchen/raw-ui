@@ -1,9 +1,15 @@
 import css from "styled-jsx/css";
 import { RawUITheme } from "../Theme/preset/preset.type";
 import { useTheme } from "../Theme/theme-context";
-import { ToggleStatus, ToggleStyles } from "./Toggle.types";
+import { ToggleProps, ToggleStatus, ToggleStyles } from "./Toggle.types";
 
-const useToggleStyles = ({ status, disabled }): ToggleStyles => {
+const useToggleStyles = ({
+  status,
+  disabled,
+}: {
+  status?: ToggleStatus;
+  disabled?: boolean;
+}): ToggleStyles => {
   const theme: RawUITheme = useTheme();
 
   const styles: {
@@ -19,7 +25,7 @@ const useToggleStyles = ({ status, disabled }): ToggleStyles => {
     },
   };
 
-  const defaultStyles = styles[status];
+  const defaultStyles = styles?.[status || "unChecked"] ?? styles["unChecked"];
   const disabledStyles = {
     unChecked: {
       backgroundColor: theme.palette.accents1,
@@ -33,11 +39,13 @@ const useToggleStyles = ({ status, disabled }): ToggleStyles => {
 
   return {
     ...defaultStyles,
-    ...(disabled ? disabledStyles[status] : {}),
+    ...(disabled
+      ? disabledStyles?.[status || "unChecked"] ?? disabledStyles["unChecked"]
+      : {}),
   };
 };
 
-export const useToggleCSS = ({ checked, disabled }) => {
+export const useToggleCSS = ({ checked, disabled }: ToggleProps) => {
   const theme: RawUITheme = useTheme();
   const { backgroundColor, borderColor } = useToggleStyles({
     status: checked ? "checked" : "unChecked",

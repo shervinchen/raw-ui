@@ -14,7 +14,7 @@ const useClickAway = <E extends Event = Event>(
   }, [onClickAway]);
 
   useEffect(() => {
-    const handler = (event) => {
+    const handler = (event: any) => {
       const { current: el } = ref;
       el && !el.contains(event.target) && savedCallback.current(event);
     };

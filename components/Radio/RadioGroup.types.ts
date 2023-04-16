@@ -21,5 +21,5 @@ export interface RadioGroupConfig {
   groupDisabled: boolean
   groupValue: RadioValue
   inGroup: boolean
-  onGroupChange?: (checkboxValue: RadioValue) => void
+  onGroupChange?: (radioValue?: RadioValue) => void
 }

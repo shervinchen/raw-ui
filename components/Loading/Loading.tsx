@@ -7,7 +7,7 @@ import { LoadingProps } from "./Loading.types";
 const DotLoading: FC<PropsWithChildren<Omit<LoadingProps, "type">>> = (
   props
 ) => {
-  const { className, color, size = 4, children, ...restProps } = props;
+  const { className, color, size, children, ...restProps } = props;
   const { className: resolveClassName, styles } = useDotLoadingCSS({
     color,
     size,
@@ -30,7 +30,7 @@ const DotLoading: FC<PropsWithChildren<Omit<LoadingProps, "type">>> = (
 const SpinLoading: FC<PropsWithChildren<Omit<LoadingProps, "type">>> = (
   props
 ) => {
-  const { className, color, size = 20, children, ...restProps } = props;
+  const { className, color, size, children, ...restProps } = props;
   const { className: resolveClassName, styles } = useSpinLoadingCSS({
     color,
     size,

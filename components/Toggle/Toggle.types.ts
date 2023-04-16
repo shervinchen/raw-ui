@@ -1,6 +1,6 @@
 import { ChangeEvent, InputHTMLAttributes } from "react"
 
-interface BaseToggleProps {
+export interface BaseToggleProps {
   checked?: boolean
   defaultChecked?: boolean
   disabled?: boolean

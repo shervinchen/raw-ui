@@ -4,13 +4,14 @@ import { useTheme } from "../Theme/theme-context";
 import {
   InputBasicStyles,
   InputFocusStyles,
+  InputProps,
   InputSizeStyles,
   InputSizes,
   InputStyles,
   InputTypes,
 } from "./Input.types";
 
-export const useInputStyles = ({ type, size, disabled }): InputStyles => {
+export const useInputStyles = ({ type, size, disabled }: InputProps): InputStyles => {
   const theme: RawUITheme = useTheme();
   const sizes: {
     [key in InputSizes]: InputSizeStyles
@@ -57,9 +58,9 @@ export const useInputStyles = ({ type, size, disabled }): InputStyles => {
   };
   const defaultStyles = {
     ...(styles?.[type || "default"] ?? styles["default"]),
-    ...(sizes[size] || sizes['md']),
+    ...(sizes?.[size || 'md'] ?? sizes['md']),
   };
-  const disabledStyles = {
+  const disabledStyles: InputBasicStyles = {
     backgroundColor: theme.palette.accents1,
     borderColor: theme.palette.accents2,
     color: theme.palette.accents7,
@@ -72,7 +73,7 @@ export const useInputStyles = ({ type, size, disabled }): InputStyles => {
   };
 };
 
-const useInputFocusStyles = ({ type, disabled }): InputFocusStyles => {
+const useInputFocusStyles = ({ type, disabled }: InputProps): InputFocusStyles => {
   const theme: RawUITheme = useTheme();
   const styles: {
     [key in InputTypes]: InputFocusStyles;
@@ -100,7 +101,7 @@ const useInputFocusStyles = ({ type, disabled }): InputFocusStyles => {
   return disabled ? {} : defaultStyles;
 };
 
-export const useInputCSS = ({ type, size, width, disabled }) => {
+export const useInputCSS = ({ type, size, width, disabled }: InputProps) => {
   const theme: RawUITheme = useTheme();
   const {
     fontSize,

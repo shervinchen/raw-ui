@@ -88,7 +88,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
       }
     }
 
-    const changeHandler = (optionValue) => {
+    const changeHandler = (optionValue?: string | number) => {
       setInternalValue(optionValue);
       onChange?.(optionValue);
       if (!multiple) {

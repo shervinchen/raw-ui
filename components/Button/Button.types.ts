@@ -11,7 +11,7 @@ export type ButtonTypes =
 
 export type ButtonVariants = 'default' | 'outline' | 'ghost' | 'shadow';
 
-interface BaseButtonProps {
+export interface BaseButtonProps {
   className?: string;
   size?: ButtonSizes;
   type?: ButtonTypes;
@@ -32,15 +32,15 @@ type NativeButtonProps = Omit<
 export type ButtonProps = BaseButtonProps & NativeButtonProps;
 
 export interface ButtonLoadingProps {
-  color: string;
-  backgroundColor: string;
+  color?: string;
+  backgroundColor?: string;
 }
 
 export interface ButtonIconProps {
   isRight?: boolean;
   isSingle?: boolean;
-  height: string;
-  horizontalPadding: string;
+  height?: string;
+  horizontalPadding?: string;
 }
 
 export interface ButtonSizeStyles {

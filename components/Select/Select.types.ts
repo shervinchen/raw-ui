@@ -1,10 +1,10 @@
 import { HTMLAttributes, MutableRefObject } from "react";
 
-export type SelectValue = string | number | (string | number)[];
+export type SelectValue = string | number | (string | number)[] | undefined;
 
 export type SelectSize = "sm" | "md" | "lg";
 
-interface BaseSelectProps {
+export interface BaseSelectProps {
   value?: SelectValue;
   defaultValue?: SelectValue;
   width?: string;
@@ -35,7 +35,7 @@ export type SelectRef = {
 
 export interface SelectConfig {
   selectValue?: SelectValue;
-  onSelectChange?: (optionValue: string | number) => void;
+  onSelectChange?: (optionValue?: string | number) => void;
   selectRef?: MutableRefObject<HTMLElement | null>;
   getPopupContainer?: () => HTMLElement | null;
   dropdownHeight?: string;

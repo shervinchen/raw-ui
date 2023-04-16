@@ -13,7 +13,6 @@ const root = path.join(__dirname, '../');
 const packageJson = require(path.join(root, 'package.json'));
 const componentsPath = path.join(root, 'components');
 const distPath = path.join(root, 'dist');
-const scriptsPath = path.join(root, 'scripts');
 
 const config = [
   {
@@ -31,17 +30,18 @@ const config = [
         sourcemap: true,
       },
     ],
+    external: id => /^react|react-dom/.test(id),
     plugins: [
       external(),
       resolve(),
       commonjs(),
-      typescript({ tsconfig: path.join(scriptsPath, 'tsconfig.json') }),
       babel({
         presets: ['@babel/preset-env'],
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
         exclude: '**/node_modules/**',
         babelHelpers: 'bundled',
       }),
+      typescript({ tsconfig: './tsconfig.json' }),
       image(),
       postcss(),
       terser(),

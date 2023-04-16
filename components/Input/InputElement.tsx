@@ -53,8 +53,8 @@ const InputElement: FC<PropsWithChildren<InputElementProps>> = ({
           height: ${height};
           font-size: ${fontSize};
           color: ${color};
-          pointer-events: ${clickable ? 'auto' : 'none'};
-          cursor: ${clickable ? 'pointer' : 'default'};
+          pointer-events: ${clickable ? "auto" : "none"};
+          cursor: ${clickable ? "pointer" : "default"};
         }
       `}</style>
     </div>
@@ -79,7 +79,7 @@ const InputRightElement: InputRightElementType = ({
   return <InputElement className={classes} placement="right" {...resetProps} />;
 };
 
-InputLeftElement.id ="InputLeftElement"
-InputRightElement.id ="InputRightElement"
+InputLeftElement.id = "InputLeftElement";
+InputRightElement.id = "InputRightElement";
 
 export { InputLeftElement, InputRightElement };
