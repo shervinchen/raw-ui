@@ -16,7 +16,7 @@ type NativeInputAddonProps = Omit<
 
 type InputAddonProps = BaseInputAddonProps & NativeInputAddonProps;
 
-interface InputAddonType extends FC<InputAddonProps> {
+export type InputAddonType = FC<InputAddonProps> & {
   id: string;
 }
 
@@ -74,4 +74,4 @@ const InputRightAddon: InputAddonType = ({ className = "", ...resetProps }) => {
 InputLeftAddon.id = "InputLeftAddon";
 InputRightAddon.id = "InputRightAddon";
 
-export { InputLeftAddon, InputRightAddon };
+export { InputAddon, InputLeftAddon, InputRightAddon };

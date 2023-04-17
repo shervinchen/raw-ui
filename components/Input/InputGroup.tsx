@@ -6,7 +6,7 @@ import React, {
   useMemo,
 } from "react";
 import classNames from "classnames";
-import { InputGroupConfig, InputGroupProps } from "./InputGroup.types";
+import { InputGroupChild, InputGroupConfig, InputGroupProps } from "./InputGroup.types";
 import { InputGroupContext } from "./input-group-context";
 import { getValidChildren } from "../utils/common";
 import { useInputStyles } from "./Input.styles";
@@ -89,7 +89,7 @@ const InputGroup: FC<PropsWithChildren<InputGroupProps>> = ({
     });
     let computedStyle = style;
     getValidChildren(children).forEach((child) => {
-      const result = styles.find((item) => item.id === (child.type as any).id);
+      const result = styles.find((item) => item.id === (child.type as InputGroupChild).id);
       if (result) {
         const { newStyle } = result;
         computedStyle = { ...computedStyle, ...newStyle };
@@ -101,7 +101,7 @@ const InputGroup: FC<PropsWithChildren<InputGroupProps>> = ({
   const computedInputStyle = getComputedInputStyle();
 
   const cloneChildren = getValidChildren(children).map((child) => {
-    return (child.type as any).id !== "Input"
+    return (child.type as InputGroupChild).id !== "Input"
       ? child
       : cloneElement(child, { style: computedInputStyle });
   });

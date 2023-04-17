@@ -16,14 +16,7 @@ type NativeInputElementProps = Omit<
 
 type InputElementProps = BaseInputElementProps & NativeInputElementProps;
 
-type InputLeftElementProps = Omit<InputElementProps, "placement">;
-type InputRightElementProps = Omit<InputElementProps, "placement">;
-
-interface InputLeftElementType extends FC<InputLeftElementProps> {
-  id: string;
-}
-
-interface InputRightElementType extends FC<InputRightElementProps> {
+export type InputElementType = FC<Omit<InputElementProps, "placement">> & {
   id: string;
 }
 
@@ -61,7 +54,7 @@ const InputElement: FC<PropsWithChildren<InputElementProps>> = ({
   );
 };
 
-const InputLeftElement: InputLeftElementType = ({
+const InputLeftElement: InputElementType = ({
   className = "",
   ...resetProps
 }) => {
@@ -70,7 +63,7 @@ const InputLeftElement: InputLeftElementType = ({
   return <InputElement className={classes} placement="left" {...resetProps} />;
 };
 
-const InputRightElement: InputRightElementType = ({
+const InputRightElement: InputElementType = ({
   className = "",
   ...resetProps
 }) => {
