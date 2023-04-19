@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, MouseEvent } from "react";
+import React, { FC, PropsWithChildren, MouseEvent, useMemo } from "react";
 import classNames from "classnames";
 import { SelectOptionProps } from "./SelectOption.types";
 import { RawUITheme } from "../Theme/preset/preset.type";
@@ -13,10 +13,17 @@ const SelectOption: FC<PropsWithChildren<SelectOptionProps>> = ({
   ...restProps
 }) => {
   const theme: RawUITheme = useTheme();
-  const { selectValue, onSelectChange, selectDisabled } = useSelectContext();
+  const { multiple, selectValue, onSelectChange, selectDisabled } =
+    useSelectContext();
   const classes = classNames("raw-select-option", className);
-  const isDisabled = selectDisabled || disabled
-  const isSelected = selectValue === value;
+  const isDisabled = selectDisabled || disabled;
+  const isSelected = useMemo(() => {
+    if (Array.isArray(selectValue)) {
+      return multiple ? selectValue.includes(value) : false;
+    } else {
+      return multiple ? false : selectValue === value;
+    }
+  }, [multiple, selectValue, value]);
 
   const clickHandler = (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();

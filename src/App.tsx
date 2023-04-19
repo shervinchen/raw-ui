@@ -118,7 +118,7 @@ function App() {
   const [controllableSelectValue, setControllableSelectValue] =
     useState<SelectValue>();
 
-  const groupOptions = [
+  const optionsData = [
     {
       name: "React",
       value: "react",
@@ -507,11 +507,36 @@ function App() {
             </Select>
           </Unit>
         </Wrapper>
+        <Wrapper title="Multiple">
+          <Unit layout="row">
+            <Select
+              width="200px"
+              placeholder="Select option"
+              multiple
+              defaultValue={['react', 'vue']}
+            >
+              {optionsData.map((item) => (
+                <Select.Option value={item.value} key={item.value}>{item.name}</Select.Option>
+              ))}
+            </Select>
+          </Unit>
+        </Wrapper>
         <Wrapper title="Disabled Select">
           <Unit layout="row">
             <Select width="200px" placeholder="Select option" disabled>
               <Select.Option value="1">Option 1</Select.Option>
               <Select.Option value="2">Option 2</Select.Option>
+            </Select>
+            <Select
+              width="200px"
+              placeholder="Select option"
+              disabled
+              multiple
+              defaultValue={['react', 'vue']}
+            >
+              {optionsData.map((item) => (
+                <Select.Option value={item.value} key={item.value}>{item.name}</Select.Option>
+              ))}
             </Select>
           </Unit>
         </Wrapper>
@@ -606,7 +631,7 @@ function App() {
         <Wrapper title="Group">
           <Unit layout="col">
             <Checkbox.Group defaultValue={["vue", "svelte"]}>
-              {groupOptions.map((item) => (
+              {optionsData.map((item) => (
                 <Checkbox value={item.value} key={item.value}>
                   {item.name}
                 </Checkbox>
@@ -618,7 +643,7 @@ function App() {
                 setControllableCheckboxGroupValue(groupValue);
               }}
             >
-              {groupOptions.map((item) => (
+              {optionsData.map((item) => (
                 <Checkbox value={item.value} key={item.value}>
                   {item.name}
                 </Checkbox>
@@ -628,14 +653,14 @@ function App() {
               defaultValue={["react", "vue", "angular", "svelte"]}
               disabled
             >
-              {groupOptions.map((item) => (
+              {optionsData.map((item) => (
                 <Checkbox value={item.value} key={item.value}>
                   {item.name}
                 </Checkbox>
               ))}
             </Checkbox.Group>
             <Checkbox.Group defaultValue={["vue", "svelte"]} layout="column">
-              {groupOptions.map((item) => (
+              {optionsData.map((item) => (
                 <Checkbox value={item.value} key={item.value}>
                   {item.name}
                 </Checkbox>
@@ -648,15 +673,15 @@ function App() {
             <Checkbox
               indeterminate={
                 indeterminateWithGroupValue.length > 0 &&
-                indeterminateWithGroupValue.length < groupOptions.length
+                indeterminateWithGroupValue.length < optionsData.length
               }
               checked={
-                indeterminateWithGroupValue.length === groupOptions.length
+                indeterminateWithGroupValue.length === optionsData.length
               }
               onChange={(event: ChangeEvent<HTMLInputElement>) => {
                 setIndeterminateWithGroupValue(
                   event.target.checked
-                    ? groupOptions.map((item) => item.value)
+                    ? optionsData.map((item) => item.value)
                     : []
                 );
               }}
@@ -667,7 +692,7 @@ function App() {
               value={indeterminateWithGroupValue}
               onChange={setIndeterminateWithGroupValue}
             >
-              {groupOptions.map((item) => (
+              {optionsData.map((item) => (
                 <Checkbox value={item.value} key={item.value}>
                   {item.name}
                 </Checkbox>
@@ -715,7 +740,7 @@ function App() {
         <Wrapper title="Group">
           <Unit layout="col">
             <Radio.Group defaultValue="vue">
-              {groupOptions.map((item) => (
+              {optionsData.map((item) => (
                 <Radio value={item.value} key={item.value}>
                   {item.name}
                 </Radio>
@@ -727,21 +752,21 @@ function App() {
                 setControllableRadioGroupValue(groupValue);
               }}
             >
-              {groupOptions.map((item) => (
+              {optionsData.map((item) => (
                 <Radio value={item.value} key={item.value}>
                   {item.name}
                 </Radio>
               ))}
             </Radio.Group>
             <Radio.Group defaultValue="svelte" disabled>
-              {groupOptions.map((item) => (
+              {optionsData.map((item) => (
                 <Radio value={item.value} key={item.value}>
                   {item.name}
                 </Radio>
               ))}
             </Radio.Group>
             <Radio.Group defaultValue="vue" layout="column">
-              {groupOptions.map((item) => (
+              {optionsData.map((item) => (
                 <Radio value={item.value} key={item.value}>
                   {item.name}
                 </Radio>

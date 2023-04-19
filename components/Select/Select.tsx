@@ -7,11 +7,13 @@ import React, {
   useState,
   useRef,
   useImperativeHandle,
+  ReactElement,
 } from "react";
 import { ChevronDown } from "react-feather";
 import classNames from "classnames";
 import {
   SelectConfig,
+  SelectOptionValue,
   SelectProps,
   SelectRef,
   SelectValue,
@@ -23,6 +25,45 @@ import { getValidChildren } from "../utils/common";
 import { SelectContext } from "./select-context";
 import SelectDropdown from "./SelectDropdown";
 import SelectInput from "./SelectInput";
+import SelectTag from "./SelectTag";
+
+const getInternalValue = (multiple: boolean, value: SelectValue) => {
+  if (Array.isArray(value)) {
+    return multiple ? value : undefined;
+  } else {
+    return multiple ? undefined : value;
+  }
+};
+
+const getNewInternalValue = (
+  multiple: boolean,
+  prevValue: SelectValue,
+  nextValue: SelectOptionValue
+) => {
+  if (multiple) {
+    if (Array.isArray(prevValue)) {
+      const isExist = prevValue.includes(nextValue);
+      return isExist
+        ? prevValue.filter((item) => item !== nextValue)
+        : [...prevValue, nextValue];
+    } else {
+      return [nextValue];
+    }
+  } else {
+    return nextValue;
+  }
+};
+
+const sortSelectedOptions = (
+  selectedValue: SelectOptionValue[],
+  selectedOption: ReactElement[]
+): ReactElement[] => {
+  return selectedOption.sort(
+    (a, b) =>
+      selectedValue.indexOf(a.props.value) -
+      selectedValue.indexOf(b.props.value)
+  );
+};
 
 const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
   (
@@ -50,29 +91,17 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
     const inputRef = useRef<HTMLInputElement>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const [internalValue, setInternalValue] = useControlled<SelectValue>({
-      defaultValue,
-      value,
+      defaultValue: getInternalValue(multiple, defaultValue),
+      value: getInternalValue(multiple, value),
     });
     const [selectFocus, setSelectFocus] = useState(false);
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const selectClasses = classNames(
       "raw-select",
       (selectFocus || dropdownVisible) && "active",
+      multiple && "multiple",
       className
     );
-
-    const selectedContent = useMemo(() => {
-      const selectedOption = getValidChildren(children).find(
-        (option) => option.props.value === internalValue
-      );
-      if (internalValue === undefined) {
-        return undefined;
-      } else {
-        return selectedOption !== undefined
-          ? selectedOption.props.children
-          : "";
-      }
-    }, [internalValue]);
 
     const clickHandler = (event: MouseEvent<HTMLDivElement>) => {
       event.stopPropagation();
@@ -84,13 +113,18 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
 
     const mouseDownHandler = (event: MouseEvent<HTMLDivElement>) => {
       if (dropdownVisible) {
-        event.preventDefault()
+        event.preventDefault();
       }
-    }
+    };
 
-    const changeHandler = (optionValue?: string | number) => {
-      setInternalValue(optionValue);
-      onChange?.(optionValue);
+    const changeHandler = (optionValue?: SelectOptionValue) => {
+      const newInternalValue = getNewInternalValue(
+        multiple,
+        internalValue,
+        optionValue
+      );
+      setInternalValue(newInternalValue);
+      onChange?.(newInternalValue);
       if (!multiple) {
         setDropdownVisible(false);
       }
@@ -102,6 +136,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
 
     const selectConfig = useMemo<SelectConfig>(() => {
       return {
+        multiple,
         selectValue: internalValue,
         onSelectChange: changeHandler,
         selectRef,
@@ -131,6 +166,58 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
       [inputRef, dropdownRef]
     );
 
+    const SelectContent = (): ReactElement => {
+      if (internalValue === undefined)
+        return <span className="raw-select-placeholder">Select option</span>;
+
+      const selectedOptions = getValidChildren(children).filter((option) => {
+        if (Array.isArray(internalValue)) {
+          return multiple ? internalValue.includes(option.props.value) : false;
+        } else {
+          return multiple ? false : internalValue === option.props.value;
+        }
+      });
+
+      const isEmptyValue =
+        (!Array.isArray(internalValue) && internalValue === "") ||
+        (Array.isArray(internalValue) && internalValue.length === 0);
+
+      if (selectedOptions.length === 0) {
+        if (isEmptyValue) {
+          return <span className="raw-select-placeholder">Select option</span>;
+        } else {
+          return <span className="raw-select-content"></span>;
+        }
+      }
+
+      if (multiple) {
+        return (
+          <div className="raw-select-tag-content">
+            {sortSelectedOptions(
+              internalValue as SelectOptionValue[],
+              selectedOptions
+            ).map((option) => (
+              <SelectTag
+                key={option.props.value}
+                disabled={disabled}
+                onDeleteTag={() => {
+                  changeHandler(option.props.value);
+                }}
+              >
+                {option.props.children}
+              </SelectTag>
+            ))}
+          </div>
+        );
+      } else {
+        return (
+          <span className="raw-select-content">
+            {selectedOptions[0].props.children}
+          </span>
+        );
+      }
+    };
+
     return (
       <SelectContext.Provider value={selectConfig}>
         <div
@@ -141,11 +228,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
           {...restProps}
         >
           <div className="raw-select-inner">
-            {selectedContent !== undefined ? (
-              <span className="raw-select-content">{selectedContent}</span>
-            ) : (
-              <span className="raw-select-placeholder">Select option</span>
-            )}
+            <SelectContent />
             <SelectInput
               ref={inputRef}
               visible={dropdownVisible}
@@ -183,25 +266,36 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
               cursor: ${disabled ? "not-allowed" : "pointer"};
               user-select: none;
             }
+            .raw-select.multiple {
+              height: auto;
+              min-height: 40px;
+            }
             .raw-select-inner {
               display: inline-flex;
               width: 100%;
+            }
+            .raw-select :global(.raw-select-placeholder) {
+              max-width: 100%;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
               font-size: 14px;
-              line-height: 40px;
+              color: ${theme.palette.accents5};
             }
-            .raw-select-placeholder {
+            .raw-select :global(.raw-select-content) {
               max-width: 100%;
               overflow: hidden;
               white-space: nowrap;
               text-overflow: ellipsis;
-              color: ${theme.palette.accents5}
+              font-size: 14px;
+              color: ${disabled ? theme.palette.accents6 : theme.palette.black};
             }
-            .raw-select-content {
-              max-width: 100%;
-              overflow: hidden;
-              white-space: nowrap;
-              text-overflow: ellipsis;
-              color: ${disabled ? theme.palette.accents6 : theme.palette.black };
+            .raw-select :global(.raw-select-tag-content) {
+              display: flex;
+              flex-wrap: wrap;
+              padding-top: 4px;
+              padding-bottom: 4px;
+              margin: -2px;
             }
             .raw-select-arrow {
               display: inline-flex;
@@ -209,7 +303,8 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
               position: absolute;
               right: 12px;
               top: 50%;
-              transform: translateY(-50%) rotate(${dropdownVisible ? '180' : '0'}deg);
+              transform: translateY(-50%)
+                rotate(${dropdownVisible ? "180" : "0"}deg);
               pointer-events: none;
               transition: transform 0.15s ease;
               color: ${theme.palette.accents7};
