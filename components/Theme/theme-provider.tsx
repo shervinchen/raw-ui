@@ -8,7 +8,7 @@ import Theme from './theme';
 const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = ({
   children,
   themeType,
-  themes = [],
+  // themes = [],
 }) => {
   const currentTheme = useMemo(() => {
     return Theme.getPresetStaticTheme();

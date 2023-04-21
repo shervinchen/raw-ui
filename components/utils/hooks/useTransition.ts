@@ -6,7 +6,7 @@ type Canceller = {
 
 function setAnimationFrameTimeout(
   callback: () => void,
-  timeout: number = 0
+  timeout = 0
 ) {
   const startTime = performance.now();
   const canceller: Canceller = {};

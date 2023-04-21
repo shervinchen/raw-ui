@@ -1,7 +1,6 @@
 import React, {
   FC,
   ChangeEvent,
-  useEffect,
   useMemo,
   PropsWithChildren,
 } from "react";
@@ -107,5 +106,7 @@ const Radio: FC<PropsWithChildren<RadioProps>> = ({
     </label>
   );
 };
+
+Radio.displayName = 'RawRadio';
 
 export default Radio;

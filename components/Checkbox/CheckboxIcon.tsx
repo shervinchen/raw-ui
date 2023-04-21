@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import { Check, Minus } from "react-feather";
 import { CheckboxIconProps } from "./Checkbox.types";
 import { RawUITheme } from "../Theme/preset/preset.type";

@@ -38,7 +38,7 @@ const InputElement: FC<PropsWithChildren<InputElementProps>> = ({
         .raw-input-element {
           position: absolute;
           top: 0;
-          ${[placement]}: 0;
+          ${placement}: 0;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -54,7 +54,7 @@ const InputElement: FC<PropsWithChildren<InputElementProps>> = ({
   );
 };
 
-const InputLeftElement: InputElementType = ({
+const InputLeftElement: FC<Omit<InputElementProps, "placement">> = ({
   className = "",
   ...resetProps
 }) => {
@@ -63,7 +63,7 @@ const InputLeftElement: InputElementType = ({
   return <InputElement className={classes} placement="left" {...resetProps} />;
 };
 
-const InputRightElement: InputElementType = ({
+const InputRightElement: FC<Omit<InputElementProps, "placement">> = ({
   className = "",
   ...resetProps
 }) => {
@@ -72,7 +72,14 @@ const InputRightElement: InputElementType = ({
   return <InputElement className={classes} placement="right" {...resetProps} />;
 };
 
-InputLeftElement.id = "InputLeftElement";
-InputRightElement.id = "InputRightElement";
+const RawInputLeftElement: InputElementType = Object.assign(
+  InputLeftElement,
+  { id: "InputLeftElement" }
+);
 
-export { InputLeftElement, InputRightElement };
+const RawInputRightElement: InputElementType = Object.assign(
+  InputRightElement,
+  { id: "InputRightElement" }
+);
+
+export { RawInputLeftElement, RawInputRightElement };

@@ -59,19 +59,26 @@ const InputAddon: FC<PropsWithChildren<InputAddonProps>> = ({
   );
 };
 
-const InputLeftAddon: InputAddonType = ({ className = "", ...resetProps }) => {
+const InputLeftAddon: FC<InputAddonProps> = ({ className = "", ...resetProps }) => {
   const classes = classNames("raw-input-left-addon", className);
 
   return <InputAddon className={classes} {...resetProps} />;
 };
 
-const InputRightAddon: InputAddonType = ({ className = "", ...resetProps }) => {
+const InputRightAddon: FC<InputAddonProps> = ({ className = "", ...resetProps }) => {
   const classes = classNames("raw-input-right-addon", className);
 
   return <InputAddon className={classes} {...resetProps} />;
 };
 
-InputLeftAddon.id = "InputLeftAddon";
-InputRightAddon.id = "InputRightAddon";
+const RawInputLeftAddon: InputAddonType = Object.assign(
+  InputLeftAddon,
+  { id: "InputLeftAddon" }
+);
 
-export { InputAddon, InputLeftAddon, InputRightAddon };
+const RawInputRightAddon: InputAddonType = Object.assign(
+  InputRightAddon,
+  { id: "InputRightAddon" }
+);
+
+export { RawInputLeftAddon, RawInputRightAddon };

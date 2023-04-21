@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react';
+import { createContext, useContext } from 'react';
 import { InputGroupConfig } from './InputGroup.types';
 
 const defaultContext: InputGroupConfig = {

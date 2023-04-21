@@ -122,4 +122,6 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
   }
 );
 
+Button.displayName = 'RawButton';
+
 export default Button;

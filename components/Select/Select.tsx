@@ -1,6 +1,5 @@
 import React, {
   forwardRef,
-  Ref,
   PropsWithChildren,
   MouseEvent,
   useMemo,
@@ -71,11 +70,11 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
       defaultValue,
       value,
       width = "100%",
-      size = "md",
+      // size = "md",
       disabled = false,
       multiple = false,
-      clearable = false,
-      placeholder = "",
+      // clearable = false,
+      // placeholder = "",
       className = "",
       dropdownClassName = "",
       dropdownHeight = "none",
@@ -198,7 +197,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
               selectedOptions
             ).map((option) => (
               <SelectTag
-                key={option.props.value}
+                key={option.props.value as SelectOptionValue}
                 disabled={disabled}
                 onDeleteTag={() => {
                   changeHandler(option.props.value);
@@ -325,5 +324,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
     );
   }
 );
+
+Select.displayName = 'RawSelect';
 
 export default Select;

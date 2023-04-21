@@ -1,9 +1,7 @@
-import React, { FC, ChangeEvent, useEffect, useMemo } from "react";
+import React, { FC, ChangeEvent } from "react";
 import classNames from "classnames";
 import { ToggleProps } from "./Toggle.types";
 import { useControlled } from "../utils/hooks";
-import { RawUITheme } from "../Theme/preset/preset.type";
-import { useTheme } from "../Theme/theme-context";
 import { useToggleCSS } from "./Toggle.styles";
 import { VisuallyHiddenInput } from "../VisuallyHidden";
 
@@ -15,7 +13,6 @@ const Toggle: FC<ToggleProps> = ({
   className = "",
   ...restProps
 }) => {
-  const theme: RawUITheme = useTheme();
   const [internalValue, setInternalValue] = useControlled<boolean>({
     defaultValue: defaultChecked,
     value: checked,
@@ -50,5 +47,7 @@ const Toggle: FC<ToggleProps> = ({
     </label>
   );
 };
+
+Toggle.displayName = 'RawToggle';
 
 export default Toggle;

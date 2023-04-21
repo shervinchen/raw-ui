@@ -2,7 +2,6 @@
 import React, {
   FC,
   PropsWithChildren,
-  useEffect,
   useMemo,
 } from "react";
 import classNames from "classnames";

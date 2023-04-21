@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, useEffect, useMemo } from "react";
+import React, { FC, PropsWithChildren, useMemo } from "react";
 import classNames from "classnames";
 import { RadioGroupConfig, RadioGroupProps } from "./RadioGroup.types";
 import { useControlled } from "../utils/hooks";

@@ -62,4 +62,6 @@ const SelectDropdown = forwardRef<
   );
 });
 
+SelectDropdown.displayName = 'RawSelectDropdown';
+
 export default SelectDropdown;

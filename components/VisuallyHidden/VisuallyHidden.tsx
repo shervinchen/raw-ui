@@ -8,7 +8,7 @@ import React, {
   useRef,
 } from "react";
 
-export const VisuallyHiddenInput = forwardRef<
+const VisuallyHiddenInput = forwardRef<
   HTMLInputElement,
   InputHTMLAttributes<HTMLInputElement>
 >((props, ref: Ref<HTMLInputElement | null>) => {
@@ -36,7 +36,7 @@ export const VisuallyHiddenInput = forwardRef<
   );
 });
 
-export const VisuallyHidden: FC<HTMLAttributes<HTMLSpanElement>> = (props) => {
+const VisuallyHidden: FC<HTMLAttributes<HTMLSpanElement>> = (props) => {
   return (
     <>
       <span {...props} />
@@ -54,3 +54,8 @@ export const VisuallyHidden: FC<HTMLAttributes<HTMLSpanElement>> = (props) => {
     </>
   );
 };
+
+VisuallyHiddenInput.displayName = 'RawVisuallyHiddenInput';
+VisuallyHidden.displayName = 'RawVisuallyHidden';
+
+export { VisuallyHiddenInput, VisuallyHidden };

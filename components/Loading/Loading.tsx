@@ -41,7 +41,7 @@ const SpinLoading: FC<PropsWithChildren<Omit<LoadingProps, "type">>> = (
     <div className={classes} {...restProps}>
       <div className="raw-spin-loading-wrapper">
         <div className="raw-spin-loading-inner">
-          {[...new Array(12)].map((_, index) => (
+          {[...new Array<number>(12)].map((_, index) => (
             <span key={`raw-spin-${index}`} />
           ))}
         </div>
@@ -73,5 +73,7 @@ const Loading: FC<PropsWithChildren<LoadingProps>> = ({
     </SpinLoading>
   );
 };
+
+Loading.displayName = 'RawLoading';
 
 export default Loading;

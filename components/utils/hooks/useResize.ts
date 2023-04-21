@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 const useResize = (
   handler: () => void,
-  immediatelyInvoke: boolean = true
+  immediatelyInvoke = true
 ): void => {
   useEffect(() => {
     if (immediatelyInvoke) {

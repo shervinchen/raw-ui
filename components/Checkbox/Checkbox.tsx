@@ -1,7 +1,6 @@
 import React, {
   FC,
   ChangeEvent,
-  useEffect,
   useMemo,
   PropsWithChildren,
 } from "react";
@@ -76,5 +75,7 @@ const Checkbox: FC<PropsWithChildren<CheckboxProps>> = ({
     </label>
   );
 };
+
+Checkbox.displayName = 'RawCheckbox';
 
 export default Checkbox;

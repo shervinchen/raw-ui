@@ -1,7 +1,6 @@
 import {
   InputHTMLAttributes,
   ChangeEvent,
-  MouseEvent,
   FocusEvent,
   ForwardRefExoticComponent,
   RefAttributes,

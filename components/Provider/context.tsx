@@ -1,6 +1,8 @@
-import React, { Context, createContext, useContext } from 'react';
+import { Context, createContext, useContext } from 'react';
 
-export interface RawUIContextParams {}
+export interface RawUIContextParams {
+  onThemeChange?: () => void;
+}
 
 const defaultParams: RawUIContextParams = {};
 

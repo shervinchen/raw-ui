@@ -47,4 +47,6 @@ const SelectInput = forwardRef<HTMLInputElement | null, SelectInputProps>(
   }
 );
 
+SelectInput.displayName = 'RawSelectInput';
+
 export default SelectInput;
