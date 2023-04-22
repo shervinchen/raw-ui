@@ -20,6 +20,7 @@ module.exports = {
         'plugin:@typescript-eslint/recommended',
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
         'plugin:react/recommended',
+        'prettier',
       ],
       parserOptions: {
         project: ['./tsconfig.json'],
