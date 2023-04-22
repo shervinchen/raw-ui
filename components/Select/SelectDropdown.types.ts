@@ -1,8 +1,8 @@
-import { HTMLAttributes } from "react";
+import { HTMLAttributes } from 'react';
 
 export interface BaseSelectDropdownProps {
-  visible: boolean
-  className?: string
+  visible: boolean;
+  className?: string;
 }
 
 type NativeSelectDropdownProps = Omit<
@@ -10,4 +10,5 @@ type NativeSelectDropdownProps = Omit<
   keyof BaseSelectDropdownProps
 >;
 
-export type SelectDropdownProps = BaseSelectDropdownProps & NativeSelectDropdownProps;
+export type SelectDropdownProps = BaseSelectDropdownProps &
+  NativeSelectDropdownProps;

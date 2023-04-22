@@ -1,7 +1,7 @@
-import React, { FC, PropsWithChildren, MouseEvent } from "react";
-import { X } from "react-feather";
-import { RawUITheme } from "../Theme/preset/preset.type";
-import { useTheme } from "../Theme/theme-context";
+import React, { FC, PropsWithChildren, MouseEvent } from 'react';
+import { X } from 'react-feather';
+import { RawUITheme } from '../Theme/preset/preset.type';
+import { useTheme } from '../Theme/theme-context';
 
 interface SelectTagProps {
   disabled: boolean;
@@ -49,7 +49,7 @@ const SelectTag: FC<PropsWithChildren<SelectTagProps>> = ({
           display: inline-flex;
           align-items: center;
           transition: color 0.15s ease;
-          cursor: ${disabled ? "not-allowed" : "pointer"};
+          cursor: ${disabled ? 'not-allowed' : 'pointer'};
           color: ${theme.palette.accents5};
         }
         .raw-select-tag-icon:hover {

@@ -5,16 +5,16 @@ import {
   ForwardRefExoticComponent,
   RefAttributes,
   PropsWithChildren,
-} from "react";
+} from 'react';
 
 export type InputTypes =
-  | "default"
-  | "primary"
-  | "success"
-  | "warning"
-  | "error";
+  | 'default'
+  | 'primary'
+  | 'success'
+  | 'warning'
+  | 'error';
 
-export type InputSizes = "sm" | "md" | "lg";
+export type InputSizes = 'sm' | 'md' | 'lg';
 
 export interface BaseInputProps {
   value?: string;
@@ -56,7 +56,7 @@ export interface InputBasicStyles {
   borderColor?: string;
   color?: string;
   backgroundColor?: string;
-  cursor?: "text" | "not-allowed";
+  cursor?: 'text' | 'not-allowed';
 }
 
 export type InputStyles = InputSizeStyles & InputBasicStyles;

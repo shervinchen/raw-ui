@@ -30,7 +30,7 @@ const config = [
         sourcemap: true,
       },
     ],
-    external: id => /^react|react-dom/.test(id),
+    external: (id) => /^react|react-dom/.test(id),
     plugins: [
       external(),
       resolve(),

@@ -1,10 +1,10 @@
-import Select from './Select'
-import SelectOption from './SelectOption'
+import Select from './Select';
+import SelectOption from './SelectOption';
 
 export type SelectComponentType = typeof Select & {
-  Option: typeof SelectOption
+  Option: typeof SelectOption;
 };
 
-(Select as SelectComponentType).Option = SelectOption
+(Select as SelectComponentType).Option = SelectOption;
 
-export default Select as SelectComponentType
+export default Select as SelectComponentType;

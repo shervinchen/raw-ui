@@ -1,6 +1,6 @@
-import { RefObject, useEffect, useRef } from "react";
+import { RefObject, useEffect, useRef } from 'react';
 
-const defaultEvents = ["mousedown", "touchstart"];
+const defaultEvents = ['mousedown', 'touchstart'];
 
 const useClickAway = <E extends Event = Event>(
   ref: RefObject<HTMLElement | null>,

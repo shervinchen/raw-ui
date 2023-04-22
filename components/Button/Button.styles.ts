@@ -278,7 +278,8 @@ export const useButtonStyles = (props: ButtonProps): ButtonStyles => {
       ? {
           ...(type === 'default'
             ? disabledStyles['outline']
-            : disabledStyles?.[variant || 'default'] ?? disabledStyles['default']),
+            : disabledStyles?.[variant || 'default'] ??
+              disabledStyles['default']),
           cursor: 'not-allowed',
         }
       : {}),

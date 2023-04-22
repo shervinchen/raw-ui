@@ -1,15 +1,10 @@
-import React, {
-  FC,
-  ChangeEvent,
-  useMemo,
-  PropsWithChildren,
-} from "react";
-import classNames from "classnames";
-import CheckboxIcon from "./CheckboxIcon";
-import { CheckboxProps } from "./Checkbox.types";
-import { useControlled } from "../utils/hooks";
-import { useCheckboxGroupContext } from "./checkbox-group-context";
-import { VisuallyHiddenInput } from "../VisuallyHidden";
+import React, { FC, ChangeEvent, useMemo, PropsWithChildren } from 'react';
+import classNames from 'classnames';
+import CheckboxIcon from './CheckboxIcon';
+import { CheckboxProps } from './Checkbox.types';
+import { useControlled } from '../utils/hooks';
+import { useCheckboxGroupContext } from './checkbox-group-context';
+import { VisuallyHiddenInput } from '../VisuallyHidden';
 
 const Checkbox: FC<PropsWithChildren<CheckboxProps>> = ({
   defaultChecked = false,
@@ -18,7 +13,7 @@ const Checkbox: FC<PropsWithChildren<CheckboxProps>> = ({
   disabled = false,
   indeterminate = false,
   onChange,
-  className = "",
+  className = '',
   children,
   ...restProps
 }) => {
@@ -29,7 +24,7 @@ const Checkbox: FC<PropsWithChildren<CheckboxProps>> = ({
     value: checked,
   });
   const isDisabled = inGroup ? groupDisabled || disabled : disabled;
-  const classes = classNames("raw-checkbox", className);
+  const classes = classNames('raw-checkbox', className);
 
   const selfChecked = useMemo(() => {
     if (!inGroup) {
@@ -62,7 +57,7 @@ const Checkbox: FC<PropsWithChildren<CheckboxProps>> = ({
           position: relative;
           display: inline-flex;
           align-items: center;
-          cursor: ${isDisabled ? "not-allowed" : "pointer"};
+          cursor: ${isDisabled ? 'not-allowed' : 'pointer'};
           opacity: ${isDisabled ? 0.5 : 1};
           gap: 8px;
         }

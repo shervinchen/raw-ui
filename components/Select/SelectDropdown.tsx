@@ -3,14 +3,14 @@ import React, {
   PropsWithChildren,
   useRef,
   useImperativeHandle,
-} from "react";
-import classNames from "classnames";
-import { SelectDropdownProps } from "./SelectDropdown.types";
-import { useTransition } from "../utils/hooks";
-import { RawUITheme } from "../Theme/preset/preset.type";
-import { useTheme } from "../Theme/theme-context";
-import { useSelectContext } from "./select-context";
-import Popup from "../Popup";
+} from 'react';
+import classNames from 'classnames';
+import { SelectDropdownProps } from './SelectDropdown.types';
+import { useTransition } from '../utils/hooks';
+import { RawUITheme } from '../Theme/preset/preset.type';
+import { useTheme } from '../Theme/theme-context';
+import { useSelectContext } from './select-context';
+import Popup from '../Popup';
 
 const SelectDropdown = forwardRef<
   HTMLDivElement | null,
@@ -21,10 +21,7 @@ const SelectDropdown = forwardRef<
   const { dropdownHeight, selectRef, getPopupContainer } = useSelectContext();
   const { stage: dropdownTransitionStage, shouldMount: dropdownShouldMount } =
     useTransition(visible, 150);
-  const dropdownClasses = classNames(
-    "raw-select-dropdown",
-    className
-  );
+  const dropdownClasses = classNames('raw-select-dropdown', className);
 
   useImperativeHandle<HTMLDivElement | null, HTMLDivElement | null>(
     ref,
@@ -42,7 +39,7 @@ const SelectDropdown = forwardRef<
         ref={dropdownRef}
         className={dropdownClasses}
         style={{
-          opacity: dropdownTransitionStage === "enter" ? 1 : 0,
+          opacity: dropdownTransitionStage === 'enter' ? 1 : 0,
         }}
       >
         {children}

@@ -1,5 +1,5 @@
-import { useState, SetStateAction, Dispatch } from "react";
-import { useCallbackRef } from "./useCallbackRef";
+import { useState, SetStateAction, Dispatch } from 'react';
+import { useCallbackRef } from './useCallbackRef';
 
 interface UseControlledProps<T> {
   value?: T;
@@ -14,7 +14,8 @@ export default function useControlled<T>({
   value: controlledState,
   defaultValue,
   onChange: onChangeProp,
-  shouldUpdate: shouldUpdateProp = (prevState, nextState) => prevState !== nextState,
+  shouldUpdate: shouldUpdateProp = (prevState, nextState) =>
+    prevState !== nextState,
 }: UseControlledProps<T>) {
   const isControlled = controlledState !== undefined;
   const [unControlledState, setUnControlledState] = useState(defaultValue);
@@ -26,7 +27,7 @@ export default function useControlled<T>({
     (nextValue: SetStateAction<T>) => {
       const setter = nextValue as SetStateFn<T>;
       const nextState =
-        typeof nextValue === "function" ? setter(value) : nextValue;
+        typeof nextValue === 'function' ? setter(value) : nextValue;
 
       if (!shouldUpdate(value, nextState)) {
         return;

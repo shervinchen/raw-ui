@@ -1,5 +1,5 @@
-import { createContext, useContext } from "react";
-import { RadioGroupConfig } from "./RadioGroup.types";
+import { createContext, useContext } from 'react';
+import { RadioGroupConfig } from './RadioGroup.types';
 
 const defaultContext: RadioGroupConfig = {
   groupDisabled: false,

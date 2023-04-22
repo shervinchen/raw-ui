@@ -1,6 +1,6 @@
-import css from "styled-jsx/css";
-import { RawUITheme } from "../Theme/preset/preset.type";
-import { useTheme } from "../Theme/theme-context";
+import css from 'styled-jsx/css';
+import { RawUITheme } from '../Theme/preset/preset.type';
+import { useTheme } from '../Theme/theme-context';
 import {
   InputBasicStyles,
   InputFocusStyles,
@@ -9,12 +9,16 @@ import {
   InputSizes,
   InputStyles,
   InputTypes,
-} from "./Input.types";
+} from './Input.types';
 
-export const useInputStyles = ({ type, size, disabled }: InputProps): InputStyles => {
+export const useInputStyles = ({
+  type,
+  size,
+  disabled,
+}: InputProps): InputStyles => {
   const theme: RawUITheme = useTheme();
   const sizes: {
-    [key in InputSizes]: InputSizeStyles
+    [key in InputSizes]: InputSizeStyles;
   } = {
     sm: {
       fontSize: '14px',
@@ -30,7 +34,7 @@ export const useInputStyles = ({ type, size, disabled }: InputProps): InputStyle
       fontSize: '16px',
       height: '48px',
       horizontalPadding: '12px',
-    }
+    },
   };
   const styles: {
     [key in InputTypes]: InputBasicStyles;
@@ -57,14 +61,14 @@ export const useInputStyles = ({ type, size, disabled }: InputProps): InputStyle
     },
   };
   const defaultStyles = {
-    ...(styles?.[type || "default"] ?? styles["default"]),
+    ...(styles?.[type || 'default'] ?? styles['default']),
     ...(sizes?.[size || 'md'] ?? sizes['md']),
   };
   const disabledStyles: InputBasicStyles = {
     backgroundColor: theme.palette.accents1,
     borderColor: theme.palette.accents2,
     color: theme.palette.accents7,
-    cursor: "not-allowed",
+    cursor: 'not-allowed',
   };
 
   return {
@@ -73,7 +77,10 @@ export const useInputStyles = ({ type, size, disabled }: InputProps): InputStyle
   };
 };
 
-const useInputFocusStyles = ({ type, disabled }: InputProps): InputFocusStyles => {
+const useInputFocusStyles = ({
+  type,
+  disabled,
+}: InputProps): InputFocusStyles => {
   const theme: RawUITheme = useTheme();
   const styles: {
     [key in InputTypes]: InputFocusStyles;
@@ -95,7 +102,7 @@ const useInputFocusStyles = ({ type, disabled }: InputProps): InputFocusStyles =
     },
   };
   const defaultStyles = {
-    ...(styles?.[type || "default"] ?? styles["default"]),
+    ...(styles?.[type || 'default'] ?? styles['default']),
   };
 
   return disabled ? {} : defaultStyles;
@@ -109,8 +116,8 @@ export const useInputCSS = ({ type, size, width, disabled }: InputProps) => {
     horizontalPadding,
     color,
     borderColor,
-    backgroundColor = "transparent",
-    cursor = "text",
+    backgroundColor = 'transparent',
+    cursor = 'text',
   } = useInputStyles({ type, size, disabled });
   const { focusBorderColor = borderColor } = useInputFocusStyles({
     type,

@@ -17,6 +17,7 @@
     "lint": "pnpm lint:eslint && pnpm lint:tsc",
     "lint:eslint": "eslint --cache --ext .ts,.tsx .",
     "lint:tsc": "tsc --noEmit",
+    "prettier": "prettier --write .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -63,6 +64,7 @@
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.32.2",
     "postcss": "^8.4.14",
+    "prettier": "2.8.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-feather": "^2.0.10",

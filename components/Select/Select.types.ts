@@ -1,10 +1,10 @@
-import { HTMLAttributes, MutableRefObject } from "react";
+import { HTMLAttributes, MutableRefObject } from 'react';
 
-export type SelectOptionValue = string | number | undefined
+export type SelectOptionValue = string | number | undefined;
 
 export type SelectValue = SelectOptionValue | SelectOptionValue[] | undefined;
 
-export type SelectSize = "sm" | "md" | "lg";
+export type SelectSize = 'sm' | 'md' | 'lg';
 
 export interface BaseSelectProps {
   value?: SelectValue;
@@ -19,7 +19,7 @@ export interface BaseSelectProps {
   dropdownClassName?: string;
   dropdownHeight?: string;
   getPopupContainer?: () => HTMLElement | null;
-  onChange?: (value: SelectValue) => void
+  onChange?: (value: SelectValue) => void;
 }
 
 type NativeSelectProps = Omit<

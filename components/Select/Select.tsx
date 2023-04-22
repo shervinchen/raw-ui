@@ -7,24 +7,24 @@ import React, {
   useRef,
   useImperativeHandle,
   ReactElement,
-} from "react";
-import { ChevronDown } from "react-feather";
-import classNames from "classnames";
+} from 'react';
+import { ChevronDown } from 'react-feather';
+import classNames from 'classnames';
 import {
   SelectConfig,
   SelectOptionValue,
   SelectProps,
   SelectRef,
   SelectValue,
-} from "./Select.types";
-import { useClickAway, useControlled } from "../utils/hooks";
-import { RawUITheme } from "../Theme/preset/preset.type";
-import { useTheme } from "../Theme/theme-context";
-import { getValidChildren } from "../utils/common";
-import { SelectContext } from "./select-context";
-import SelectDropdown from "./SelectDropdown";
-import SelectInput from "./SelectInput";
-import SelectTag from "./SelectTag";
+} from './Select.types';
+import { useClickAway, useControlled } from '../utils/hooks';
+import { RawUITheme } from '../Theme/preset/preset.type';
+import { useTheme } from '../Theme/theme-context';
+import { getValidChildren } from '../utils/common';
+import { SelectContext } from './select-context';
+import SelectDropdown from './SelectDropdown';
+import SelectInput from './SelectInput';
+import SelectTag from './SelectTag';
 
 const getInternalValue = (multiple: boolean, value: SelectValue) => {
   if (Array.isArray(value)) {
@@ -69,15 +69,15 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
     {
       defaultValue,
       value,
-      width = "100%",
+      width = '100%',
       // size = "md",
       disabled = false,
       multiple = false,
       // clearable = false,
       // placeholder = "",
-      className = "",
-      dropdownClassName = "",
-      dropdownHeight = "none",
+      className = '',
+      dropdownClassName = '',
+      dropdownHeight = 'none',
       getPopupContainer,
       onChange,
       children,
@@ -96,9 +96,9 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
     const [selectFocus, setSelectFocus] = useState(false);
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const selectClasses = classNames(
-      "raw-select",
-      (selectFocus || dropdownVisible) && "active",
-      multiple && "multiple",
+      'raw-select',
+      (selectFocus || dropdownVisible) && 'active',
+      multiple && 'multiple',
       className
     );
 
@@ -152,7 +152,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
           setDropdownVisible(false);
         }
       },
-      ["click"]
+      ['click']
     );
 
     useImperativeHandle(
@@ -178,7 +178,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
       });
 
       const isEmptyValue =
-        (!Array.isArray(internalValue) && internalValue === "") ||
+        (!Array.isArray(internalValue) && internalValue === '') ||
         (Array.isArray(internalValue) && internalValue.length === 0);
 
       if (selectedOptions.length === 0) {
@@ -262,7 +262,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
                 : theme.palette.white};
               transition: border-color 0.15s ease, color 0.15s ease,
                 box-shadow 0.15s ease;
-              cursor: ${disabled ? "not-allowed" : "pointer"};
+              cursor: ${disabled ? 'not-allowed' : 'pointer'};
               user-select: none;
             }
             .raw-select.multiple {
@@ -303,7 +303,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
               right: 12px;
               top: 50%;
               transform: translateY(-50%)
-                rotate(${dropdownVisible ? "180" : "0"}deg);
+                rotate(${dropdownVisible ? '180' : '0'}deg);
               pointer-events: none;
               transition: transform 0.15s ease;
               color: ${theme.palette.accents7};

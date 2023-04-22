@@ -1,15 +1,15 @@
-import { ChangeEvent, InputHTMLAttributes } from "react"
+import { ChangeEvent, InputHTMLAttributes } from 'react';
 
-export type CheckboxValue = string | number | undefined
+export type CheckboxValue = string | number | undefined;
 
 export interface BaseCheckboxProps {
-  checked?: boolean
-  defaultChecked?: boolean
-  value?: CheckboxValue
-  disabled?: boolean
-  indeterminate?: boolean
-  className?: string
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
+  checked?: boolean;
+  defaultChecked?: boolean;
+  value?: CheckboxValue;
+  disabled?: boolean;
+  indeterminate?: boolean;
+  className?: string;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 type NativeCheckboxProps = Omit<
@@ -20,6 +20,6 @@ type NativeCheckboxProps = Omit<
 export type CheckboxProps = BaseCheckboxProps & NativeCheckboxProps;
 
 export interface CheckboxIconProps {
-  checked?: boolean
-  indeterminate?: boolean
+  checked?: boolean;
+  indeterminate?: boolean;
 }

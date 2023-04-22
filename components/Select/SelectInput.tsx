@@ -3,8 +3,8 @@ import React, {
   useEffect,
   useImperativeHandle,
   useRef,
-} from "react";
-import { VisuallyHiddenInput } from "../VisuallyHidden";
+} from 'react';
+import { VisuallyHiddenInput } from '../VisuallyHidden';
 
 type SelectInputProps = {
   visible: boolean;
@@ -24,7 +24,7 @@ const SelectInput = forwardRef<HTMLInputElement | null, SelectInputProps>(
     useEffect(() => {
       if (visible) {
         ref.current?.focus({
-          preventScroll: true 
+          preventScroll: true,
         });
       }
     }, [visible]);

@@ -6,13 +6,13 @@ import React, {
   FocusEvent,
   useImperativeHandle,
   useRef,
-} from "react";
-import classNames from "classnames";
-import { InputComponent, InputProps } from "./Input.types";
-import { useInputCSS } from "./Input.styles";
-import { useControlled } from "../utils/hooks";
-import { InputGroupConfig } from "./InputGroup.types";
-import { useInputGroupContext } from "./input-group-context";
+} from 'react';
+import classNames from 'classnames';
+import { InputComponent, InputProps } from './Input.types';
+import { useInputCSS } from './Input.styles';
+import { useControlled } from '../utils/hooks';
+import { InputGroupConfig } from './InputGroup.types';
+import { useInputGroupContext } from './input-group-context';
 
 const mergeInputGroupProps = (
   inputProps: InputProps,
@@ -32,16 +32,16 @@ const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
   (inputProps, ref: Ref<HTMLInputElement | null>) => {
     const inputGroupConfig = useInputGroupContext();
     const {
-      type = "default",
-      size = "md",
-      width = "100%",
-      htmlType = "text",
-      placeholder = "",
-      defaultValue = "",
+      type = 'default',
+      size = 'md',
+      width = '100%',
+      htmlType = 'text',
+      placeholder = '',
+      defaultValue = '',
       disabled = false,
       readOnly = false,
-      className = "",
-      autoComplete = "off",
+      className = '',
+      autoComplete = 'off',
       value,
       onChange,
       onBlur,
@@ -60,8 +60,8 @@ const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
       disabled,
     });
     const classes = classNames(
-      "raw-input",
-      disabled && "raw-disabled-input",
+      'raw-input',
+      disabled && 'raw-disabled-input',
       className,
       resolveClassName
     );
@@ -102,13 +102,10 @@ const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
       </>
     );
   }
-)
+);
 
 Input.displayName = 'RawInput';
 
-const RawInput: InputComponent = Object.assign(
-  Input,
-  { id: "Input" }
-);
+const RawInput: InputComponent = Object.assign(Input, { id: 'Input' });
 
 export default RawInput;

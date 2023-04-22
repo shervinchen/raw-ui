@@ -1,8 +1,8 @@
-import Button from "./Button";
-import ButtonGroup from './ButtonGroup'
+import Button from './Button';
+import ButtonGroup from './ButtonGroup';
 
 export type ButtonComponentType = typeof Button & {
-  Group: typeof ButtonGroup
+  Group: typeof ButtonGroup;
 };
 
 (Button as ButtonComponentType).Group = ButtonGroup;

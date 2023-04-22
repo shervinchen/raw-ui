@@ -1,7 +1,7 @@
-import { HTMLAttributes } from "react";
-import { InputComponent, InputSizes, InputTypes } from "./Input.types";
-import { InputAddonType } from "./InputAddon";
-import { InputElementType } from "./InputElement";
+import { HTMLAttributes } from 'react';
+import { InputComponent, InputSizes, InputTypes } from './Input.types';
+import { InputAddonType } from './InputAddon';
+import { InputElementType } from './InputElement';
 
 interface BaseInputGroupProps {
   className?: string;
@@ -18,7 +18,10 @@ type NativeInputGroupProps = Omit<
 
 export type InputGroupProps = BaseInputGroupProps & NativeInputGroupProps;
 
-export type InputGroupChild = InputAddonType | InputElementType | InputComponent
+export type InputGroupChild =
+  | InputAddonType
+  | InputElementType
+  | InputComponent;
 
 export interface InputGroupConfig {
   size?: InputSizes;

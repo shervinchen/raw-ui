@@ -1,9 +1,9 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 const useClickAnyWhere = (handler: (event: Event) => void) => {
   useEffect(() => {
-    document.addEventListener("click", handler);
-    return () => document.removeEventListener("click", handler);
+    document.addEventListener('click', handler);
+    return () => document.removeEventListener('click', handler);
   }, [handler]);
 };
 

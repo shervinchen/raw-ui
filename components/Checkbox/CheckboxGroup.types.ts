@@ -1,13 +1,13 @@
-import { HTMLAttributes } from "react";
-import { CheckboxValue } from "./Checkbox.types";
+import { HTMLAttributes } from 'react';
+import { CheckboxValue } from './Checkbox.types';
 
-export type CheckboxGroupValue = (CheckboxValue | undefined)[]
+export type CheckboxGroupValue = (CheckboxValue | undefined)[];
 
 interface BaseCheckboxGroupProps {
   defaultValue?: CheckboxGroupValue;
   value?: CheckboxGroupValue;
   disabled?: boolean;
-  layout?: 'row' | 'column'
+  layout?: 'row' | 'column';
   onChange?: (value: CheckboxGroupValue) => void;
   className?: string;
 }
@@ -21,8 +21,8 @@ export type CheckboxGroupProps = BaseCheckboxGroupProps &
   NativeCheckboxGroupProps;
 
 export interface CheckboxGroupConfig {
-  groupDisabled: boolean
-  groupValue: CheckboxGroupValue
-  inGroup: boolean
-  onGroupChange?: (checkboxValue?: CheckboxValue, checked?: boolean) => void
+  groupDisabled: boolean;
+  groupValue: CheckboxGroupValue;
+  inGroup: boolean;
+  onGroupChange?: (checkboxValue?: CheckboxValue, checked?: boolean) => void;
 }

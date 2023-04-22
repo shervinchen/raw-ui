@@ -1,5 +1,5 @@
-import React, { FC, PropsWithChildren, ChangeEvent, useState } from "react";
-import { Search, AlertCircle, Eye, EyeOff, X } from "react-feather";
+import React, { FC, PropsWithChildren, ChangeEvent, useState } from 'react';
+import { Search, AlertCircle, Eye, EyeOff, X } from 'react-feather';
 import {
   Button,
   Loading,
@@ -11,7 +11,7 @@ import {
   Toggle,
   Select,
   SelectValue,
-} from "../components";
+} from '../components';
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
   title,
@@ -64,7 +64,7 @@ const Wrapper: FC<PropsWithChildren<{ title: string }>> = ({
 };
 
 const Unit: FC<
-  PropsWithChildren<{ title?: string; layout: "row" | "col" }>
+  PropsWithChildren<{ title?: string; layout: 'row' | 'col' }>
 > = ({ title, layout, children }) => {
   return (
     <div className="unit">
@@ -102,38 +102,38 @@ const Unit: FC<
 };
 
 function App() {
-  const [controllableInputValue, setControllableInputValue] = useState("");
+  const [controllableInputValue, setControllableInputValue] = useState('');
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [clearableValue, setClearableValue] = useState("");
+  const [clearableValue, setClearableValue] = useState('');
   const [controllableCheckboxValue, setControllableCheckboxValue] =
     useState(false);
   const [controllableCheckboxGroupValue, setControllableCheckboxGroupValue] =
-    useState<CheckboxGroupValue>(["react", "angular"]);
+    useState<CheckboxGroupValue>(['react', 'angular']);
   const [indeterminateWithGroupValue, setIndeterminateWithGroupValue] =
-    useState<CheckboxGroupValue>(["react", "angular"]);
+    useState<CheckboxGroupValue>(['react', 'angular']);
   const [controllableRadioValue, setControllableRadioValue] = useState(false);
   const [controllableRadioGroupValue, setControllableRadioGroupValue] =
-    useState<RadioValue>("angular");
+    useState<RadioValue>('angular');
   const [controllableToggleValue, setControllableToggleValue] = useState(false);
   const [controllableSelectValue, setControllableSelectValue] =
     useState<SelectValue>();
 
   const optionsData = [
     {
-      name: "React",
-      value: "react",
+      name: 'React',
+      value: 'react',
     },
     {
-      name: "Vue",
-      value: "vue",
+      name: 'Vue',
+      value: 'vue',
     },
     {
-      name: "Angular",
-      value: "angular",
+      name: 'Angular',
+      value: 'angular',
     },
     {
-      name: "Svelte",
-      value: "svelte",
+      name: 'Svelte',
+      value: 'svelte',
     },
   ];
 
@@ -437,7 +437,7 @@ function App() {
           <Unit layout="row">
             <Input.Group>
               <Input
-                htmlType={passwordVisible ? "text" : "password"}
+                htmlType={passwordVisible ? 'text' : 'password'}
                 placeholder="Enter password"
               />
               <Input.RightElement
@@ -459,10 +459,10 @@ function App() {
                 }
                 placeholder="Clearable input"
               />
-              {clearableValue !== "" && (
+              {clearableValue !== '' && (
                 <Input.RightElement
                   clickable
-                  onClick={() => setClearableValue("")}
+                  onClick={() => setClearableValue('')}
                 >
                   <X size={16} />
                 </Input.RightElement>
@@ -485,7 +485,7 @@ function App() {
             <Select
               width="200px"
               placeholder="Select option"
-              defaultValue={"1"}
+              defaultValue={'1'}
             >
               <Select.Option value="1">Option 1</Select.Option>
               <Select.Option value="2">Option 2</Select.Option>
@@ -516,7 +516,9 @@ function App() {
               defaultValue={['react', 'vue']}
             >
               {optionsData.map((item) => (
-                <Select.Option value={item.value} key={item.value}>{item.name}</Select.Option>
+                <Select.Option value={item.value} key={item.value}>
+                  {item.name}
+                </Select.Option>
               ))}
             </Select>
           </Unit>
@@ -535,7 +537,9 @@ function App() {
               defaultValue={['react', 'vue']}
             >
               {optionsData.map((item) => (
-                <Select.Option value={item.value} key={item.value}>{item.name}</Select.Option>
+                <Select.Option value={item.value} key={item.value}>
+                  {item.name}
+                </Select.Option>
               ))}
             </Select>
           </Unit>
@@ -555,25 +559,25 @@ function App() {
             <div
               id="parentElement"
               style={{
-                position: "relative",
-                overflowY: "auto",
-                width: "400px",
-                height: "200px",
+                position: 'relative',
+                overflowY: 'auto',
+                width: '400px',
+                height: '200px',
               }}
             >
               <div
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  height: "400px",
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: '400px',
                 }}
               >
                 <Select
                   width="200px"
                   placeholder="Select option"
                   getPopupContainer={() =>
-                    document.querySelector("#parentElement")
+                    document.querySelector('#parentElement')
                   }
                 >
                   <Select.Option value="1">Option 1</Select.Option>
@@ -630,7 +634,7 @@ function App() {
         </Wrapper>
         <Wrapper title="Group">
           <Unit layout="col">
-            <Checkbox.Group defaultValue={["vue", "svelte"]}>
+            <Checkbox.Group defaultValue={['vue', 'svelte']}>
               {optionsData.map((item) => (
                 <Checkbox value={item.value} key={item.value}>
                   {item.name}
@@ -650,7 +654,7 @@ function App() {
               ))}
             </Checkbox.Group>
             <Checkbox.Group
-              defaultValue={["react", "vue", "angular", "svelte"]}
+              defaultValue={['react', 'vue', 'angular', 'svelte']}
               disabled
             >
               {optionsData.map((item) => (
@@ -659,7 +663,7 @@ function App() {
                 </Checkbox>
               ))}
             </Checkbox.Group>
-            <Checkbox.Group defaultValue={["vue", "svelte"]} layout="column">
+            <Checkbox.Group defaultValue={['vue', 'svelte']} layout="column">
               {optionsData.map((item) => (
                 <Checkbox value={item.value} key={item.value}>
                   {item.name}

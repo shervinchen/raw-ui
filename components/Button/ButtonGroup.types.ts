@@ -1,8 +1,5 @@
 import { HTMLAttributes } from 'react';
-import {
-  ButtonSizes,
-  ButtonTypes,
-} from './Button.types';
+import { ButtonSizes, ButtonTypes } from './Button.types';
 
 type ButtonGroupVariants = 'default' | 'outline';
 

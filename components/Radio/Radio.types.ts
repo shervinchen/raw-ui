@@ -1,14 +1,14 @@
-import { ChangeEvent, InputHTMLAttributes } from "react"
+import { ChangeEvent, InputHTMLAttributes } from 'react';
 
-export type RadioValue = string | number | undefined
+export type RadioValue = string | number | undefined;
 
 export interface BaseRadioProps {
-  checked?: boolean
-  defaultChecked?: boolean
-  value?: RadioValue
-  disabled?: boolean
-  className?: string
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
+  checked?: boolean;
+  defaultChecked?: boolean;
+  value?: RadioValue;
+  disabled?: boolean;
+  className?: string;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 type NativeRadioProps = Omit<
@@ -16,4 +16,4 @@ type NativeRadioProps = Omit<
   keyof BaseRadioProps
 >;
 
-export type RadioProps = BaseRadioProps & NativeRadioProps
+export type RadioProps = BaseRadioProps & NativeRadioProps;

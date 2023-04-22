@@ -1,12 +1,12 @@
-import React, { FC, PropsWithChildren, HTMLAttributes } from "react";
-import classNames from "classnames";
-import { useInputGroupContext } from "./input-group-context";
-import { useInputStyles } from "./Input.styles";
+import React, { FC, PropsWithChildren, HTMLAttributes } from 'react';
+import classNames from 'classnames';
+import { useInputGroupContext } from './input-group-context';
+import { useInputStyles } from './Input.styles';
 
 interface BaseInputElementProps {
   className?: string;
   clickable?: boolean;
-  placement?: "left" | "right";
+  placement?: 'left' | 'right';
 }
 
 type NativeInputElementProps = Omit<
@@ -16,20 +16,20 @@ type NativeInputElementProps = Omit<
 
 type InputElementProps = BaseInputElementProps & NativeInputElementProps;
 
-export type InputElementType = FC<Omit<InputElementProps, "placement">> & {
+export type InputElementType = FC<Omit<InputElementProps, 'placement'>> & {
   id: string;
-}
+};
 
 const InputElement: FC<PropsWithChildren<InputElementProps>> = ({
-  placement = "left",
+  placement = 'left',
   clickable = false,
-  className = "",
+  className = '',
   children,
   ...resetProps
 }) => {
   const { type, size, disabled } = useInputGroupContext();
   const { fontSize, height, color } = useInputStyles({ type, size, disabled });
-  const classes = classNames("raw-input-element", className);
+  const classes = classNames('raw-input-element', className);
 
   return (
     <div className={classes} {...resetProps}>
@@ -46,40 +46,39 @@ const InputElement: FC<PropsWithChildren<InputElementProps>> = ({
           height: ${height};
           font-size: ${fontSize};
           color: ${color};
-          pointer-events: ${clickable ? "auto" : "none"};
-          cursor: ${clickable ? "pointer" : "default"};
+          pointer-events: ${clickable ? 'auto' : 'none'};
+          cursor: ${clickable ? 'pointer' : 'default'};
         }
       `}</style>
     </div>
   );
 };
 
-const InputLeftElement: FC<Omit<InputElementProps, "placement">> = ({
-  className = "",
+const InputLeftElement: FC<Omit<InputElementProps, 'placement'>> = ({
+  className = '',
   ...resetProps
 }) => {
-  const classes = classNames("raw-input-left-element", className);
+  const classes = classNames('raw-input-left-element', className);
 
   return <InputElement className={classes} placement="left" {...resetProps} />;
 };
 
-const InputRightElement: FC<Omit<InputElementProps, "placement">> = ({
-  className = "",
+const InputRightElement: FC<Omit<InputElementProps, 'placement'>> = ({
+  className = '',
   ...resetProps
 }) => {
-  const classes = classNames("raw-input-right-element", className);
+  const classes = classNames('raw-input-right-element', className);
 
   return <InputElement className={classes} placement="right" {...resetProps} />;
 };
 
-const RawInputLeftElement: InputElementType = Object.assign(
-  InputLeftElement,
-  { id: "InputLeftElement" }
-);
+const RawInputLeftElement: InputElementType = Object.assign(InputLeftElement, {
+  id: 'InputLeftElement',
+});
 
 const RawInputRightElement: InputElementType = Object.assign(
   InputRightElement,
-  { id: "InputRightElement" }
+  { id: 'InputRightElement' }
 );
 
 export { RawInputLeftElement, RawInputRightElement };

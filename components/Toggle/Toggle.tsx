@@ -1,16 +1,16 @@
-import React, { FC, ChangeEvent } from "react";
-import classNames from "classnames";
-import { ToggleProps } from "./Toggle.types";
-import { useControlled } from "../utils/hooks";
-import { useToggleCSS } from "./Toggle.styles";
-import { VisuallyHiddenInput } from "../VisuallyHidden";
+import React, { FC, ChangeEvent } from 'react';
+import classNames from 'classnames';
+import { ToggleProps } from './Toggle.types';
+import { useControlled } from '../utils/hooks';
+import { useToggleCSS } from './Toggle.styles';
+import { VisuallyHiddenInput } from '../VisuallyHidden';
 
 const Toggle: FC<ToggleProps> = ({
   defaultChecked = false,
   checked,
   disabled = false,
   onChange,
-  className = "",
+  className = '',
   ...restProps
 }) => {
   const [internalValue, setInternalValue] = useControlled<boolean>({
@@ -21,8 +21,8 @@ const Toggle: FC<ToggleProps> = ({
     checked: internalValue,
     disabled,
   });
-  const toggleClasses = classNames("raw-toggle", className, resolveClassName);
-  const toggleInnerClasses = classNames("raw-toggle-inner");
+  const toggleClasses = classNames('raw-toggle', className, resolveClassName);
+  const toggleInnerClasses = classNames('raw-toggle-inner');
 
   const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     if (disabled) return;

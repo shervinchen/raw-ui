@@ -1,8 +1,8 @@
-import React, { FC } from "react";
-import { Check, Minus } from "react-feather";
-import { CheckboxIconProps } from "./Checkbox.types";
-import { RawUITheme } from "../Theme/preset/preset.type";
-import { useTheme } from "../Theme/theme-context";
+import React, { FC } from 'react';
+import { Check, Minus } from 'react-feather';
+import { CheckboxIconProps } from './Checkbox.types';
+import { RawUITheme } from '../Theme/preset/preset.type';
+import { useTheme } from '../Theme/theme-context';
 
 const CheckboxIcon: FC<CheckboxIconProps> = ({ checked, indeterminate }) => {
   const theme: RawUITheme = useTheme();
@@ -23,8 +23,12 @@ const CheckboxIcon: FC<CheckboxIconProps> = ({ checked, indeterminate }) => {
           width: 14px;
           height: 14px;
           border: 1px solid
-            ${checked && !indeterminate ? theme.palette.black : theme.palette.accents7};
-          background-color: ${checked && !indeterminate ? theme.palette.black : "transparent"};
+            ${checked && !indeterminate
+              ? theme.palette.black
+              : theme.palette.accents7};
+          background-color: ${checked && !indeterminate
+            ? theme.palette.black
+            : 'transparent'};
           border-radius: 3px;
         }
         .raw-checkbox-icon {

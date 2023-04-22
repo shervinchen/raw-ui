@@ -1,11 +1,11 @@
-import { HTMLAttributes } from "react";
-import { RadioValue } from "./Radio.types";
+import { HTMLAttributes } from 'react';
+import { RadioValue } from './Radio.types';
 
 interface BaseRadioGroupProps {
   defaultValue?: RadioValue;
   value?: RadioValue;
   disabled?: boolean;
-  layout?: 'row' | 'column'
+  layout?: 'row' | 'column';
   onChange?: (value: RadioValue) => void;
   className?: string;
 }
@@ -18,8 +18,8 @@ type NativeRadioGroupProps = Omit<
 export type RadioGroupProps = BaseRadioGroupProps & NativeRadioGroupProps;
 
 export interface RadioGroupConfig {
-  groupDisabled: boolean
-  groupValue: RadioValue
-  inGroup: boolean
-  onGroupChange?: (radioValue?: RadioValue) => void
+  groupDisabled: boolean;
+  groupValue: RadioValue;
+  inGroup: boolean;
+  onGroupChange?: (radioValue?: RadioValue) => void;
 }

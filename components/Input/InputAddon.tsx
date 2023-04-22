@@ -1,9 +1,9 @@
-import React, { FC, PropsWithChildren, HTMLAttributes } from "react";
-import classNames from "classnames";
-import { useInputGroupContext } from "./input-group-context";
-import { useInputStyles } from "./Input.styles";
-import { useTheme } from "../Theme/theme-context";
-import { RawUITheme } from "../Theme/preset/preset.type";
+import React, { FC, PropsWithChildren, HTMLAttributes } from 'react';
+import classNames from 'classnames';
+import { useInputGroupContext } from './input-group-context';
+import { useInputStyles } from './Input.styles';
+import { useTheme } from '../Theme/theme-context';
+import { RawUITheme } from '../Theme/preset/preset.type';
 
 interface BaseInputAddonProps {
   className?: string;
@@ -18,17 +18,17 @@ type InputAddonProps = BaseInputAddonProps & NativeInputAddonProps;
 
 export type InputAddonType = FC<InputAddonProps> & {
   id: string;
-}
+};
 
 const InputAddon: FC<PropsWithChildren<InputAddonProps>> = ({
-  className = "",
+  className = '',
   children,
   ...resetProps
 }) => {
   const theme: RawUITheme = useTheme();
   const { type, size, disabled } = useInputGroupContext();
   const { fontSize } = useInputStyles({ type, size, disabled });
-  const classes = classNames("raw-input-addon", className);
+  const classes = classNames('raw-input-addon', className);
 
   return (
     <div className={classes} {...resetProps}>
@@ -59,26 +59,30 @@ const InputAddon: FC<PropsWithChildren<InputAddonProps>> = ({
   );
 };
 
-const InputLeftAddon: FC<InputAddonProps> = ({ className = "", ...resetProps }) => {
-  const classes = classNames("raw-input-left-addon", className);
+const InputLeftAddon: FC<InputAddonProps> = ({
+  className = '',
+  ...resetProps
+}) => {
+  const classes = classNames('raw-input-left-addon', className);
 
   return <InputAddon className={classes} {...resetProps} />;
 };
 
-const InputRightAddon: FC<InputAddonProps> = ({ className = "", ...resetProps }) => {
-  const classes = classNames("raw-input-right-addon", className);
+const InputRightAddon: FC<InputAddonProps> = ({
+  className = '',
+  ...resetProps
+}) => {
+  const classes = classNames('raw-input-right-addon', className);
 
   return <InputAddon className={classes} {...resetProps} />;
 };
 
-const RawInputLeftAddon: InputAddonType = Object.assign(
-  InputLeftAddon,
-  { id: "InputLeftAddon" }
-);
+const RawInputLeftAddon: InputAddonType = Object.assign(InputLeftAddon, {
+  id: 'InputLeftAddon',
+});
 
-const RawInputRightAddon: InputAddonType = Object.assign(
-  InputRightAddon,
-  { id: "InputRightAddon" }
-);
+const RawInputRightAddon: InputAddonType = Object.assign(InputRightAddon, {
+  id: 'InputRightAddon',
+});
 
 export { RawInputLeftAddon, RawInputRightAddon };

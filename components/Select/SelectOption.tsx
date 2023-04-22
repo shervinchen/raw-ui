@@ -1,21 +1,21 @@
-import React, { FC, PropsWithChildren, MouseEvent, useMemo } from "react";
-import classNames from "classnames";
-import { SelectOptionProps } from "./SelectOption.types";
-import { RawUITheme } from "../Theme/preset/preset.type";
-import { useTheme } from "../Theme/theme-context";
-import { useSelectContext } from "./select-context";
+import React, { FC, PropsWithChildren, MouseEvent, useMemo } from 'react';
+import classNames from 'classnames';
+import { SelectOptionProps } from './SelectOption.types';
+import { RawUITheme } from '../Theme/preset/preset.type';
+import { useTheme } from '../Theme/theme-context';
+import { useSelectContext } from './select-context';
 
 const SelectOption: FC<PropsWithChildren<SelectOptionProps>> = ({
   value,
   disabled = false,
-  className = "",
+  className = '',
   children,
   ...restProps
 }) => {
   const theme: RawUITheme = useTheme();
   const { multiple, selectValue, onSelectChange, selectDisabled } =
     useSelectContext();
-  const classes = classNames("raw-select-option", className);
+  const classes = classNames('raw-select-option', className);
   const isDisabled = selectDisabled || disabled;
   const isSelected = useMemo(() => {
     if (Array.isArray(selectValue)) {
@@ -56,7 +56,7 @@ const SelectOption: FC<PropsWithChildren<SelectOptionProps>> = ({
             ? theme.palette.accents2
             : theme.palette.white};
           transition: background-color 0.15s ease;
-          cursor: ${isDisabled ? "not-allowed" : "pointer"};
+          cursor: ${isDisabled ? 'not-allowed' : 'pointer'};
           user-select: none;
         }
         .raw-select-option-content {

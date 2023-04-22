@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 type SSRState = {
   isBrowser: boolean;
@@ -7,7 +7,7 @@ type SSRState = {
 
 const isBrowser = (): boolean => {
   return Boolean(
-    typeof window !== "undefined" &&
+    typeof window !== 'undefined' &&
       window.document &&
       window.document.createElement
   );

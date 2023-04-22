@@ -1,5 +1,5 @@
-import { createContext, useContext } from "react";
-import { CheckboxGroupConfig } from "./CheckboxGroup.types";
+import { createContext, useContext } from 'react';
+import { CheckboxGroupConfig } from './CheckboxGroup.types';
 
 const defaultContext: CheckboxGroupConfig = {
   groupDisabled: false,

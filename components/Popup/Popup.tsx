@@ -5,15 +5,15 @@ import React, {
   useEffect,
   useState,
   MouseEvent,
-} from "react";
-import { createPortal } from "react-dom";
-import { PopupProps } from "./Popup.types";
+} from 'react';
+import { createPortal } from 'react-dom';
+import { PopupProps } from './Popup.types';
 import {
   useClickAnyWhere,
   useMutationObserver,
   usePortal,
   useResize,
-} from "../utils/hooks";
+} from '../utils/hooks';
 
 interface PopupRect {
   top: number;
@@ -92,10 +92,10 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
 
   useEffect(() => {
     if (!targetRef?.current) return;
-    targetRef.current.addEventListener("mouseenter", updatePopupRect);
+    targetRef.current.addEventListener('mouseenter', updatePopupRect);
     return () => {
       if (!targetRef?.current) return;
-      targetRef.current.removeEventListener("mouseenter", updatePopupRect);
+      targetRef.current.removeEventListener('mouseenter', updatePopupRect);
     };
   }, [targetRef]);
 

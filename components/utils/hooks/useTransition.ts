@@ -1,13 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 type Canceller = {
   id?: number;
 };
 
-function setAnimationFrameTimeout(
-  callback: () => void,
-  timeout = 0
-) {
+function setAnimationFrameTimeout(callback: () => void, timeout = 0) {
   const startTime = performance.now();
   const canceller: Canceller = {};
 
@@ -29,10 +26,10 @@ function clearAnimationFrameTimeout(canceller: Canceller) {
   if (canceller.id) cancelAnimationFrame(canceller.id);
 }
 
-export type Stage = "from" | "enter" | "leave";
+export type Stage = 'from' | 'enter' | 'leave';
 
 const useTransition = (state: boolean, timeout: number) => {
-  const [stage, setStage] = useState<Stage>(state ? "enter" : "from");
+  const [stage, setStage] = useState<Stage>(state ? 'enter' : 'from');
   const timer = useRef<Canceller>({});
   const [shouldMount, setShouldMount] = useState(state);
 
@@ -41,13 +38,13 @@ const useTransition = (state: boolean, timeout: number) => {
       clearAnimationFrameTimeout(timer.current);
 
       if (state) {
-        setStage("from");
+        setStage('from');
         setShouldMount(true);
         timer.current = setAnimationFrameTimeout(() => {
-          setStage("enter");
+          setStage('enter');
         });
       } else {
-        setStage("leave");
+        setStage('leave');
         timer.current = setAnimationFrameTimeout(() => {
           setShouldMount(false);
         }, timeout);
@@ -64,6 +61,6 @@ const useTransition = (state: boolean, timeout: number) => {
     stage,
     shouldMount,
   };
-}
+};
 
 export default useTransition;

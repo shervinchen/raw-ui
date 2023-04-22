@@ -1,7 +1,7 @@
-import css from "styled-jsx/css";
-import { RawUITheme } from "../Theme/preset/preset.type";
-import { useTheme } from "../Theme/theme-context";
-import { ToggleProps, ToggleStatus, ToggleStyles } from "./Toggle.types";
+import css from 'styled-jsx/css';
+import { RawUITheme } from '../Theme/preset/preset.type';
+import { useTheme } from '../Theme/theme-context';
+import { ToggleProps, ToggleStatus, ToggleStyles } from './Toggle.types';
 
 const useToggleStyles = ({
   status,
@@ -25,7 +25,7 @@ const useToggleStyles = ({
     },
   };
 
-  const defaultStyles = styles?.[status || "unChecked"] ?? styles["unChecked"];
+  const defaultStyles = styles?.[status || 'unChecked'] ?? styles['unChecked'];
   const disabledStyles = {
     unChecked: {
       backgroundColor: theme.palette.accents1,
@@ -40,7 +40,7 @@ const useToggleStyles = ({
   return {
     ...defaultStyles,
     ...(disabled
-      ? disabledStyles?.[status || "unChecked"] ?? disabledStyles["unChecked"]
+      ? disabledStyles?.[status || 'unChecked'] ?? disabledStyles['unChecked']
       : {}),
   };
 };
@@ -48,7 +48,7 @@ const useToggleStyles = ({
 export const useToggleCSS = ({ checked, disabled }: ToggleProps) => {
   const theme: RawUITheme = useTheme();
   const { backgroundColor, borderColor } = useToggleStyles({
-    status: checked ? "checked" : "unChecked",
+    status: checked ? 'checked' : 'unChecked',
     disabled,
   });
 
@@ -56,7 +56,7 @@ export const useToggleCSS = ({ checked, disabled }: ToggleProps) => {
     .raw-toggle {
       position: relative;
       display: inline-flex;
-      cursor: ${disabled ? "not-allowed" : "pointer"};
+      cursor: ${disabled ? 'not-allowed' : 'pointer'};
     }
     .raw-toggle :global(.raw-toggle-inner) {
       box-sizing: border-box;
@@ -81,7 +81,7 @@ export const useToggleCSS = ({ checked, disabled }: ToggleProps) => {
       background-color: ${disabled
         ? theme.palette.accents2
         : theme.palette.white};
-      transform: ${checked ? "translate(14px, -50%)" : "translate(0, -50%)"};
+      transform: ${checked ? 'translate(14px, -50%)' : 'translate(0, -50%)'};
     }
   `;
 };

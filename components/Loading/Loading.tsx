@@ -1,10 +1,10 @@
-import React, { FC, PropsWithChildren } from "react";
-import classNames from "classnames";
+import React, { FC, PropsWithChildren } from 'react';
+import classNames from 'classnames';
 
-import { useDotLoadingCSS, useSpinLoadingCSS } from "./Loading.styles";
-import { LoadingProps } from "./Loading.types";
+import { useDotLoadingCSS, useSpinLoadingCSS } from './Loading.styles';
+import { LoadingProps } from './Loading.types';
 
-const DotLoading: FC<PropsWithChildren<Omit<LoadingProps, "type">>> = (
+const DotLoading: FC<PropsWithChildren<Omit<LoadingProps, 'type'>>> = (
   props
 ) => {
   const { className, color, size, children, ...restProps } = props;
@@ -12,7 +12,7 @@ const DotLoading: FC<PropsWithChildren<Omit<LoadingProps, "type">>> = (
     color,
     size,
   });
-  const classes = classNames("raw-dot-loading", className, resolveClassName);
+  const classes = classNames('raw-dot-loading', className, resolveClassName);
 
   return (
     <div className={classes} {...restProps}>
@@ -27,7 +27,7 @@ const DotLoading: FC<PropsWithChildren<Omit<LoadingProps, "type">>> = (
   );
 };
 
-const SpinLoading: FC<PropsWithChildren<Omit<LoadingProps, "type">>> = (
+const SpinLoading: FC<PropsWithChildren<Omit<LoadingProps, 'type'>>> = (
   props
 ) => {
   const { className, color, size, children, ...restProps } = props;
@@ -35,7 +35,7 @@ const SpinLoading: FC<PropsWithChildren<Omit<LoadingProps, "type">>> = (
     color,
     size,
   });
-  const classes = classNames("raw-spin-loading", className, resolveClassName);
+  const classes = classNames('raw-spin-loading', className, resolveClassName);
 
   return (
     <div className={classes} {...restProps}>
@@ -46,24 +46,20 @@ const SpinLoading: FC<PropsWithChildren<Omit<LoadingProps, "type">>> = (
           ))}
         </div>
       </div>
-      {children && (
-        <div className="raw-spin-loading-text">
-          {children}
-        </div>
-      )}
+      {children && <div className="raw-spin-loading-text">{children}</div>}
       {styles}
     </div>
   );
 };
 
 const Loading: FC<PropsWithChildren<LoadingProps>> = ({
-  type = "dot",
-  color = "#666",
-  className = "",
+  type = 'dot',
+  color = '#666',
+  className = '',
   children,
   ...restProps
 }) => {
-  return type === "dot" ? (
+  return type === 'dot' ? (
     <DotLoading color={color} className={className} {...restProps}>
       {children}
     </DotLoading>

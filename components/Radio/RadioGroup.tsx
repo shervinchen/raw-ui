@@ -1,16 +1,16 @@
-import React, { FC, PropsWithChildren, useMemo } from "react";
-import classNames from "classnames";
-import { RadioGroupConfig, RadioGroupProps } from "./RadioGroup.types";
-import { useControlled } from "../utils/hooks";
-import { RadioValue } from "./Radio.types";
-import { RadioGroupContext } from "./radio-group-context";
+import React, { FC, PropsWithChildren, useMemo } from 'react';
+import classNames from 'classnames';
+import { RadioGroupConfig, RadioGroupProps } from './RadioGroup.types';
+import { useControlled } from '../utils/hooks';
+import { RadioValue } from './Radio.types';
+import { RadioGroupContext } from './radio-group-context';
 
 const RadioGroup: FC<PropsWithChildren<RadioGroupProps>> = ({
   value: radioGroupValue,
-  defaultValue = "",
+  defaultValue = '',
   disabled = false,
-  className = "",
-  layout = "row",
+  className = '',
+  layout = 'row',
   onChange,
   children,
   ...restProps
@@ -19,7 +19,7 @@ const RadioGroup: FC<PropsWithChildren<RadioGroupProps>> = ({
     defaultValue,
     value: radioGroupValue,
   });
-  const classes = classNames("raw-radio-group", className);
+  const classes = classNames('raw-radio-group', className);
 
   const groupChangeHandler = (radioValue?: RadioValue) => {
     setInternalValue(radioValue);

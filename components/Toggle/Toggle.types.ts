@@ -1,11 +1,11 @@
-import { ChangeEvent, InputHTMLAttributes } from "react"
+import { ChangeEvent, InputHTMLAttributes } from 'react';
 
 export interface BaseToggleProps {
-  checked?: boolean
-  defaultChecked?: boolean
-  disabled?: boolean
-  className?: string
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
+  checked?: boolean;
+  defaultChecked?: boolean;
+  disabled?: boolean;
+  className?: string;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 type NativeToggleProps = Omit<
@@ -13,11 +13,11 @@ type NativeToggleProps = Omit<
   keyof BaseToggleProps
 >;
 
-export type ToggleProps = BaseToggleProps & NativeToggleProps
+export type ToggleProps = BaseToggleProps & NativeToggleProps;
 
 export interface ToggleStyles {
   borderColor?: string;
   backgroundColor?: string;
 }
 
-export type ToggleStatus = 'unChecked' | 'checked'
+export type ToggleStatus = 'unChecked' | 'checked';

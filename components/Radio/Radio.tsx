@@ -1,16 +1,11 @@
-import React, {
-  FC,
-  ChangeEvent,
-  useMemo,
-  PropsWithChildren,
-} from "react";
-import classNames from "classnames";
-import { RadioProps } from "./Radio.types";
-import { useControlled } from "../utils/hooks";
-import { RawUITheme } from "../Theme/preset/preset.type";
-import { useTheme } from "../Theme/theme-context";
-import { useRadioGroupContext } from "./radio-group-context";
-import { VisuallyHiddenInput } from "../VisuallyHidden";
+import React, { FC, ChangeEvent, useMemo, PropsWithChildren } from 'react';
+import classNames from 'classnames';
+import { RadioProps } from './Radio.types';
+import { useControlled } from '../utils/hooks';
+import { RawUITheme } from '../Theme/preset/preset.type';
+import { useTheme } from '../Theme/theme-context';
+import { useRadioGroupContext } from './radio-group-context';
+import { VisuallyHiddenInput } from '../VisuallyHidden';
 
 const Radio: FC<PropsWithChildren<RadioProps>> = ({
   defaultChecked = false,
@@ -18,7 +13,7 @@ const Radio: FC<PropsWithChildren<RadioProps>> = ({
   value: radioValue,
   disabled = false,
   onChange,
-  className = "",
+  className = '',
   children,
   ...restProps
 }) => {
@@ -37,10 +32,10 @@ const Radio: FC<PropsWithChildren<RadioProps>> = ({
     return groupValue === radioValue;
   }, [internalValue, inGroup, groupValue, radioValue]);
 
-  const radioClasses = classNames("raw-radio", className);
+  const radioClasses = classNames('raw-radio', className);
   const radioInnerClasses = classNames(
-    "raw-radio-inner",
-    selfChecked && "checked"
+    'raw-radio-inner',
+    selfChecked && 'checked'
   );
 
   const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -68,7 +63,7 @@ const Radio: FC<PropsWithChildren<RadioProps>> = ({
             position: relative;
             display: inline-flex;
             align-items: center;
-            cursor: ${isDisabled ? "not-allowed" : "pointer"};
+            cursor: ${isDisabled ? 'not-allowed' : 'pointer'};
             opacity: ${isDisabled ? 0.5 : 1};
             gap: 8px;
           }
@@ -81,7 +76,7 @@ const Radio: FC<PropsWithChildren<RadioProps>> = ({
             border-radius: 50%;
           }
           .raw-radio-inner:after {
-            content: "";
+            content: '';
             display: block;
             width: 8px;
             height: 8px;

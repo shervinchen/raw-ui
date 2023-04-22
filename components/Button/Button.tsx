@@ -6,15 +6,15 @@ import React, {
   MouseEvent,
   useRef,
   useImperativeHandle,
-} from "react";
-import classNames from "classnames";
+} from 'react';
+import classNames from 'classnames';
 
-import { useButtonStyles, useButtonCSS } from "./Button.styles";
-import { ButtonProps } from "./Button.types";
-import ButtonLoading from "./ButtonLoading";
-import ButtonIcon from "./ButtonIcon";
-import { useButtonGroupContext } from "./button-group-context";
-import { ButtonGroupConfig } from "./ButtonGroup.types";
+import { useButtonStyles, useButtonCSS } from './Button.styles';
+import { ButtonProps } from './Button.types';
+import ButtonLoading from './ButtonLoading';
+import ButtonIcon from './ButtonIcon';
+import { useButtonGroupContext } from './button-group-context';
+import { ButtonGroupConfig } from './ButtonGroup.types';
 
 const mergeButtonGroupProps = (
   buttonProps: ButtonProps,
@@ -34,11 +34,11 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
   (buttonProps, ref: Ref<HTMLButtonElement | null>) => {
     const buttonGroupConfig = useButtonGroupContext();
     const {
-      className = "",
-      size = "md",
-      type = "default",
-      variant = "default",
-      htmlType = "button",
+      className = '',
+      size = 'md',
+      type = 'default',
+      variant = 'default',
+      htmlType = 'button',
       loading = false,
       disabled = false,
       icon,
@@ -70,10 +70,10 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
     const isRight = Boolean(iconRight);
 
     const classes = classNames(
-      "raw-button",
-      loading && "raw-loading-button",
-      disabled && "raw-disabled-button",
-      isChildLess && "raw-childless-button",
+      'raw-button',
+      loading && 'raw-loading-button',
+      disabled && 'raw-disabled-button',
+      isChildLess && 'raw-childless-button',
       className,
       resolveClassName
     );
