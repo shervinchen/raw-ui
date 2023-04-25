@@ -38,7 +38,7 @@ npm install raw-ui --save
 
 Wrap the root of your application with `RawUIProvider`, and then you can use any component
 
-```tsx
+```jsx
 import { RawUIProvider, Button } from 'raw-ui';
 
 const App = () => (
