@@ -5,7 +5,7 @@
     </a>
   </p>
   <h1>Raw UI</h1>
-  <p>Minimalist and customizable React UI library for Web Applications</p>
+  <p>A minimalist and customizable React UI library for web applications.</p>
   <a href="https://www.npmjs.com/package/raw-ui"><img src="https://img.shields.io/npm/dm/raw-ui.svg?style=flat"></a>
   <a href="https://gitHub.com/shervinchen/raw-ui/issues"><img src="https://img.shields.io/github/issues/shervinchen/raw-ui"></a>
   <a href="https://github.com/shervinchen/raw-ui/blob/main/LICENSE"><img src="https://img.shields.io/github/license/shervinchen/raw-ui"></a>
