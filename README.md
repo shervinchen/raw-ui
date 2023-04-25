@@ -13,12 +13,12 @@
 
 ## Features
 
-- Minimalist UI design style
-- Simple and extensible component API
-- Written in TypeScript with predictable static types
-- Provide dark mode theme
-- Customizable theme based on CSS-in-JS
-- Compatible with SSR(Server Side Rendering)
+- Minimal UI design style.
+- Simple and extensible component API.
+- Written in TypeScript with predictable static types.
+- Provides a dark mode theme.
+- Customizable theme based on CSS-in-JS.
+- Compatible with SSR(Server Side Rendering).
 
 ## Install
 
