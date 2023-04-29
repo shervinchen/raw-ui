@@ -1,4 +1,3 @@
-import path from 'path';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
@@ -9,14 +8,11 @@ import postcss from 'rollup-plugin-postcss';
 import image from '@rollup/plugin-image';
 import dts from 'rollup-plugin-dts';
 
-const root = path.join(__dirname, '../');
-const packageJson = require(path.join(root, 'package.json'));
-const componentsPath = path.join(root, 'components');
-const distPath = path.join(root, 'dist');
+const packageJson = require('./package.json');
 
 const config = [
   {
-    input: path.join(componentsPath, 'index.ts'),
+    input: 'components/index.ts',
     output: [
       {
         file: packageJson.main,
@@ -41,15 +37,15 @@ const config = [
         exclude: '**/node_modules/**',
         babelHelpers: 'bundled',
       }),
-      typescript({ tsconfig: './tsconfig.json' }),
+      typescript({ tsconfig: './tsconfig.build.json' }),
       image(),
       postcss(),
       terser(),
     ],
   },
   {
-    input: path.join(componentsPath, 'index.ts'),
-    output: [{ file: path.join(distPath, 'index.d.ts'), format: 'esm' }],
+    input: 'components/index.ts',
+    output: [{ file: 'dist/index.d.ts', format: 'esm' }],
     external: [/\.css$/],
     plugins: [dts()],
   },

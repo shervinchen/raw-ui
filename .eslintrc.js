@@ -4,6 +4,11 @@ module.exports = {
     es2021: true,
     node: true,
   },
+  parserOptions: {
+    project: ['./tsconfig.json'],
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+  },
   overrides: [
     {
       files: ['**/*.ts', '**/*.tsx'],
@@ -22,11 +27,6 @@ module.exports = {
         'plugin:react/recommended',
         'prettier',
       ],
-      parserOptions: {
-        project: ['./tsconfig.json'],
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-      },
       rules: {
         '@typescript-eslint/no-unsafe-return': 'off',
         '@typescript-eslint/no-explicit-any': 'off',

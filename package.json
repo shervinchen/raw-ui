@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "build:clear": "rm -rf ./dist",
-    "build": "pnpm build:clear && rollup --config scripts/rollup.config.js --environment NODE_ENV:production",
+    "build": "pnpm build:clear && rollup --config rollup.build.config.js --environment NODE_ENV:production",
     "dev": "rollup --config ./rollup.config.js --watch --environment NODE_ENV:development",
     "lint": "pnpm lint:eslint && pnpm lint:tsc",
     "lint:eslint": "eslint --cache --ext .ts,.tsx .",
