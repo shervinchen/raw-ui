@@ -9,7 +9,7 @@ import serve from 'rollup-plugin-serve';
 import livereload from 'rollup-plugin-livereload';
 
 const config = {
-  input: 'src/index.tsx',
+  input: 'demo/index.tsx',
   output: {
     file: 'build/index.js',
     format: 'umd',
@@ -24,7 +24,7 @@ const config = {
     resolve(),
     commonjs(),
     babel({
-      include: ['src/**/*', 'packages/**/*'],
+      include: ['demo/**/*', 'packages/**/*'],
       exclude: '**/node_modules/**',
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
       babelHelpers: 'bundled',

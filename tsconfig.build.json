@@ -1,6 +1,6 @@
 {
   "include": ["packages/**/*"],
-  "exclude": ["node_modules", "src"],
+  "exclude": ["node_modules", "demo"],
   "compilerOptions": {
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
