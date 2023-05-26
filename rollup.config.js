@@ -24,7 +24,7 @@ const config = {
     resolve(),
     commonjs(),
     babel({
-      include: ['src/**/*', 'components/**/*'],
+      include: ['src/**/*', 'packages/**/*'],
       exclude: '**/node_modules/**',
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
       babelHelpers: 'bundled',

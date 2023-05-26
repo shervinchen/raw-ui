@@ -1,5 +1,5 @@
 {
-  "include": ["components/**/*"],
+  "include": ["packages/**/*"],
   "exclude": ["node_modules", "src"],
   "compilerOptions": {
     "target": "ESNext",
@@ -11,9 +11,9 @@
     "baseUrl": "./",
     "paths": {
       "*": ["*"],
-      "raw-ui": ["components/index.ts"],
-      "components/*": [
-        "components/*"
+      "raw-ui": ["packages/index.ts"],
+      "packages/*": [
+        "packages/*"
       ]
     },
     "resolveJsonModule": true,

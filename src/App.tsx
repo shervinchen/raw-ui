@@ -11,7 +11,7 @@ import {
   Toggle,
   Select,
   SelectValue,
-} from '../components';
+} from '../packages';
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
   title,

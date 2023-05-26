@@ -12,7 +12,7 @@ const packageJson = require('./package.json');
 
 const config = [
   {
-    input: 'components/index.ts',
+    input: 'packages/index.ts',
     output: [
       {
         file: packageJson.main,
@@ -44,7 +44,7 @@ const config = [
     ],
   },
   {
-    input: 'components/index.ts',
+    input: 'packages/index.ts',
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
     external: [/\.css$/],
     plugins: [dts()],
