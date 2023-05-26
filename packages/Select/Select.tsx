@@ -111,9 +111,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
     };
 
     const mouseDownHandler = (event: MouseEvent<HTMLDivElement>) => {
-      if (dropdownVisible) {
-        event.preventDefault();
-      }
+      event.preventDefault();
     };
 
     const changeHandler = (optionValue?: SelectOptionValue) => {
