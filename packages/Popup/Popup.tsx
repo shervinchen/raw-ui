@@ -5,6 +5,7 @@ import React, {
   useEffect,
   useState,
   MouseEvent,
+  useCallback,
 } from 'react';
 import { createPortal } from 'react-dom';
 import { PopupProps } from './Popup.types';
@@ -75,10 +76,10 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
     event.preventDefault();
   };
 
-  const updatePopupRect = () => {
+  const updatePopupRect = useCallback(() => {
     const rect = computePopupRect(targetRef, getPopupContainer);
     setPopupRect(rect);
-  };
+  }, [getPopupContainer, targetRef]);
 
   useResize(updatePopupRect);
 
@@ -91,13 +92,14 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
   useMutationObserver(targetRef, updatePopupRect);
 
   useEffect(() => {
-    if (!targetRef?.current) return;
-    targetRef.current.addEventListener('mouseenter', updatePopupRect);
+    const targetNode = targetRef?.current ?? null;
+    if (!targetNode) return;
+    targetNode.addEventListener('mouseenter', updatePopupRect);
     return () => {
-      if (!targetRef?.current) return;
-      targetRef.current.removeEventListener('mouseenter', updatePopupRect);
+      if (!targetNode) return;
+      targetNode.removeEventListener('mouseenter', updatePopupRect);
     };
-  }, [targetRef]);
+  }, [targetRef, updatePopupRect]);
 
   if (!targetRef) return null;
   if (!portal) return null;

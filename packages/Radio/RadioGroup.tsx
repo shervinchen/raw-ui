@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, useMemo } from 'react';
+import React, { FC, PropsWithChildren, useCallback, useMemo } from 'react';
 import classNames from 'classnames';
 import { RadioGroupConfig, RadioGroupProps } from './RadioGroup.types';
 import { useControlled } from '../utils/hooks';
@@ -21,10 +21,13 @@ const RadioGroup: FC<PropsWithChildren<RadioGroupProps>> = ({
   });
   const classes = classNames('raw-radio-group', className);
 
-  const groupChangeHandler = (radioValue?: RadioValue) => {
-    setInternalValue(radioValue);
-    onChange?.(radioValue);
-  };
+  const groupChangeHandler = useCallback(
+    (radioValue?: RadioValue) => {
+      setInternalValue(radioValue);
+      onChange?.(radioValue);
+    },
+    [onChange, setInternalValue]
+  );
 
   const radioGroupConfig = useMemo<RadioGroupConfig>(() => {
     return {
@@ -33,7 +36,7 @@ const RadioGroup: FC<PropsWithChildren<RadioGroupProps>> = ({
       inGroup: true,
       onGroupChange: groupChangeHandler,
     };
-  }, [internalValue, disabled]);
+  }, [internalValue, disabled, groupChangeHandler]);
 
   return (
     <RadioGroupContext.Provider value={radioGroupConfig}>

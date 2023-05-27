@@ -9,7 +9,7 @@ import { InputGroupContext } from './input-group-context';
 import { getValidChildren } from '../utils/common';
 import { useInputStyles } from './Input.styles';
 
-const getInputStyles = ({ type, size, disabled }: InputGroupProps) => {
+const useComputedInputStyles = ({ type, size, disabled }: InputGroupProps) => {
   const { height, horizontalPadding } = useInputStyles({
     type,
     size,
@@ -74,13 +74,13 @@ const InputGroup: FC<PropsWithChildren<InputGroupProps>> = ({
       disabled,
       isInputGroup: true,
     }),
-    []
+    [disabled, readOnly, size, type]
   );
 
   const classes = classNames('raw-input-group', className);
 
-  const getComputedInputStyle = () => {
-    const { style, styles } = getInputStyles({
+  const useComputedInputStyle = () => {
+    const { style, styles } = useComputedInputStyles({
       type,
       size,
       disabled,
@@ -98,7 +98,7 @@ const InputGroup: FC<PropsWithChildren<InputGroupProps>> = ({
     return computedStyle;
   };
 
-  const computedInputStyle = getComputedInputStyle();
+  const computedInputStyle = useComputedInputStyle();
 
   const cloneChildren = getValidChildren(children).map((child) => {
     return (child.type as InputGroupChild).id !== 'Input'

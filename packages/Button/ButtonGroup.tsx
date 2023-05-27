@@ -23,7 +23,7 @@ const ButtonGroup: FC<PropsWithChildren<ButtonGroupProps>> = ({
       disabled,
       isButtonGroup: true,
     }),
-    []
+    [disabled, size, type, variant]
   );
 
   const { className: resolveClassName, styles } = useButtonGroupCSS({

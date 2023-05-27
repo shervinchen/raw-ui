@@ -7,12 +7,12 @@ import Theme from './theme';
 
 const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = ({
   children,
-  themeType,
+  // themeType,
   // themes = [],
 }) => {
   const currentTheme = useMemo(() => {
     return Theme.getPresetStaticTheme();
-  }, [themeType]);
+  }, []);
 
   return (
     <ThemeContext.Provider value={currentTheme}>

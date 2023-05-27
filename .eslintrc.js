@@ -9,6 +9,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
+  extends: ['next/core-web-vitals'],
   overrides: [
     {
       files: ['**/*.ts', '**/*.tsx'],
@@ -25,6 +26,8 @@ module.exports = {
         'plugin:@typescript-eslint/recommended',
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
         'plugin:react/recommended',
+        'plugin:@next/next/recommended',
+        'next/core-web-vitals',
         'prettier',
       ],
       rules: {

@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, useMemo } from 'react';
+import React, { FC, PropsWithChildren, useCallback, useMemo } from 'react';
 import classNames from 'classnames';
 import {
   CheckboxGroupConfig,
@@ -25,16 +25,16 @@ const CheckboxGroup: FC<PropsWithChildren<CheckboxGroupProps>> = ({
   });
   const classes = classNames('raw-checkbox-group', className);
 
-  const groupChangeHandler = (
-    checkboxValue?: CheckboxValue,
-    checked?: boolean
-  ) => {
-    const nextGroupValue = checked
-      ? [...internalValue, checkboxValue]
-      : internalValue.filter((value) => value !== checkboxValue);
-    setInternalValue(nextGroupValue);
-    onChange?.(nextGroupValue);
-  };
+  const groupChangeHandler = useCallback(
+    (checkboxValue?: CheckboxValue, checked?: boolean) => {
+      const nextGroupValue = checked
+        ? [...internalValue, checkboxValue]
+        : internalValue.filter((value) => value !== checkboxValue);
+      setInternalValue(nextGroupValue);
+      onChange?.(nextGroupValue);
+    },
+    [internalValue, onChange, setInternalValue]
+  );
 
   const checkboxGroupConfig = useMemo<CheckboxGroupConfig>(() => {
     return {
@@ -43,7 +43,7 @@ const CheckboxGroup: FC<PropsWithChildren<CheckboxGroupProps>> = ({
       inGroup: true,
       onGroupChange: groupChangeHandler,
     };
-  }, [internalValue, disabled]);
+  }, [internalValue, disabled, groupChangeHandler]);
 
   return (
     <CheckboxGroupContext.Provider value={checkboxGroupConfig}>

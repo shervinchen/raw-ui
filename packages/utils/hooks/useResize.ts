@@ -8,7 +8,7 @@ const useResize = (handler: () => void, immediatelyInvoke = true): void => {
 
     window.addEventListener('resize', handler);
     return () => window.removeEventListener('resize', handler);
-  }, []);
+  }, [handler, immediatelyInvoke]);
 };
 
 export default useResize;

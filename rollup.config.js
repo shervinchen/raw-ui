@@ -33,7 +33,7 @@ const config = {
     image(),
     postcss(),
     serve({
-      contentBase: ['', 'public'],
+      contentBase: ['', 'demo'],
       host: 'localhost',
       port: 3000,
     }),

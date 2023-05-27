@@ -18,7 +18,7 @@ const useMutationObserver = (
     return () => {
       observer.disconnect();
     };
-  }, [ref]);
+  }, [callback, options, ref]);
 };
 
 export default useMutationObserver;

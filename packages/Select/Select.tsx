@@ -7,6 +7,7 @@ import React, {
   useRef,
   useImperativeHandle,
   ReactElement,
+  useCallback,
 } from 'react';
 import { ChevronDown } from 'react-feather';
 import classNames from 'classnames';
@@ -114,18 +115,21 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
       event.preventDefault();
     };
 
-    const changeHandler = (optionValue?: SelectOptionValue) => {
-      const newInternalValue = getNewInternalValue(
-        multiple,
-        internalValue,
-        optionValue
-      );
-      setInternalValue(newInternalValue);
-      onChange?.(newInternalValue);
-      if (!multiple) {
-        setDropdownVisible(false);
-      }
-    };
+    const changeHandler = useCallback(
+      (optionValue?: SelectOptionValue) => {
+        const newInternalValue = getNewInternalValue(
+          multiple,
+          internalValue,
+          optionValue
+        );
+        setInternalValue(newInternalValue);
+        onChange?.(newInternalValue);
+        if (!multiple) {
+          setDropdownVisible(false);
+        }
+      },
+      [internalValue, multiple, onChange, setInternalValue]
+    );
 
     const focusHandler = () => setSelectFocus(true);
 
@@ -141,7 +145,14 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
         getPopupContainer,
         selectDisabled: disabled,
       };
-    }, [internalValue, selectRef, disabled]);
+    }, [
+      multiple,
+      internalValue,
+      changeHandler,
+      dropdownHeight,
+      getPopupContainer,
+      disabled,
+    ]);
 
     useClickAway(
       selectRef,
