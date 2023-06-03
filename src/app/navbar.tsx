@@ -2,9 +2,12 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { GitHub, Moon } from 'react-feather';
 
 export default function Navbar() {
+  const pathname = usePathname();
+
   return (
     <header className="header-container">
       <nav className="nav-wrapper">
@@ -13,6 +16,32 @@ export default function Navbar() {
           <span className="title">Raw UI</span>
         </Link>
         <div className="menu-wrapper">
+          <Link
+            href="/"
+            className={
+              pathname.startsWith('/') ? 'menu-item active' : 'menu-item'
+            }
+          >
+            Home
+          </Link>
+          <Link
+            href="/guide"
+            className={
+              pathname.startsWith('/guide') ? 'menu-item active' : 'menu-item'
+            }
+          >
+            Guide
+          </Link>
+          <Link
+            href="/components"
+            className={
+              pathname.startsWith('/components')
+                ? 'menu-item active'
+                : 'menu-item'
+            }
+          >
+            Components
+          </Link>
           <Link href="https://github.com/shervinchen/raw-ui">
             <GitHub size={24} color="#000" />
           </Link>
@@ -42,7 +71,7 @@ export default function Navbar() {
           align-items: center;
         }
         .nav-wrapper :global(.logo-wrapper) {
-          gap: 10px;
+          gap: 8px;
           margin-right: auto;
         }
         .logo-wrapper .title {
@@ -52,7 +81,14 @@ export default function Navbar() {
         .menu-wrapper {
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 16px;
+        }
+        :global(.menu-item) {
+          color: #666;
+        }
+        :global(.menu-item:hover),
+        :global(.menu-item.active) {
+          color: #000;
         }
       `}</style>
     </header>

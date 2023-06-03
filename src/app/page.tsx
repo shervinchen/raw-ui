@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { GitHub } from 'react-feather';
 import { Button } from '@/packages';
 
@@ -16,7 +17,9 @@ export default function Page() {
         </h2>
         <div className="buttons">
           <Button type="primary">Get Started</Button>
-          <Button icon={<GitHub />}>Github</Button>
+          <Link href="https://github.com/shervinchen/raw-ui">
+            <Button icon={<GitHub />}>Github</Button>
+          </Link>
         </div>
       </main>
       <style jsx>{`
