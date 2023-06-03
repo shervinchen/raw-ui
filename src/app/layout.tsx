@@ -1,4 +1,6 @@
 import StyledJsxRegistry from './registry';
+import './global.css';
+import Navbar from './navbar';
 
 export default function RootLayout({
   children,
@@ -8,7 +10,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <StyledJsxRegistry>{children}</StyledJsxRegistry>
+        <StyledJsxRegistry>
+          <Navbar />
+          {children}
+        </StyledJsxRegistry>
       </body>
     </html>
   );
