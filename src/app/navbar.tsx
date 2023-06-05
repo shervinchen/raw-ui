@@ -7,10 +7,11 @@ import { GitHub, Moon } from 'react-feather';
 
 export default function Navbar() {
   const pathname = usePathname();
+  const routeName = pathname.split('/')[1];
 
   return (
     <header className="header-container">
-      <nav className="nav-wrapper">
+      <nav className="navbar-wrapper">
         <Link href="/" className="logo-wrapper">
           <Image src="/logo.svg" alt="logo" width={24} height={24} />
           <span className="title">Raw UI</span>
@@ -18,26 +19,20 @@ export default function Navbar() {
         <div className="menu-wrapper">
           <Link
             href="/"
-            className={
-              pathname.startsWith('/') ? 'menu-item active' : 'menu-item'
-            }
+            className={routeName === '' ? 'menu-item active' : 'menu-item'}
           >
             Home
           </Link>
           <Link
             href="/guide"
-            className={
-              pathname.startsWith('/guide') ? 'menu-item active' : 'menu-item'
-            }
+            className={routeName === 'guide' ? 'menu-item active' : 'menu-item'}
           >
             Guide
           </Link>
           <Link
             href="/components"
             className={
-              pathname.startsWith('/components')
-                ? 'menu-item active'
-                : 'menu-item'
+              routeName === 'components' ? 'menu-item active' : 'menu-item'
             }
           >
             Components
@@ -57,7 +52,7 @@ export default function Navbar() {
           box-shadow: inset 0 -1px 0 0 #eaeaea;
           z-index: 1;
         }
-        .nav-wrapper {
+        .navbar-wrapper {
           display: flex;
           align-items: center;
           max-width: 1440px;
@@ -66,11 +61,11 @@ export default function Navbar() {
           margin-left: auto;
           margin-right: auto;
         }
-        .nav-wrapper :global(a) {
+        .navbar-wrapper :global(a) {
           display: flex;
           align-items: center;
         }
-        .nav-wrapper :global(.logo-wrapper) {
+        .navbar-wrapper :global(.logo-wrapper) {
           gap: 8px;
           margin-right: auto;
         }

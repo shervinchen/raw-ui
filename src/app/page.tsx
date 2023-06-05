@@ -27,7 +27,7 @@ export default function Page() {
           display: flex;
           align-items: center;
           justify-content: center;
-          height: calc(100vh - 64px);
+          min-height: calc(100vh - 64px);
           padding: 0 24px;
         }
         .hero-wrapper {
