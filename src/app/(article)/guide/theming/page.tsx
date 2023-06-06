@@ -1,5 +1,7 @@
 'use client';
 
+import MDXContent from './theming.mdx';
+
 export default function Page() {
-  return <h1>theming</h1>;
+  return <MDXContent />;
 }

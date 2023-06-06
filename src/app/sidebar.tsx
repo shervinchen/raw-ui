@@ -6,7 +6,6 @@ import { SIDEBARS } from '@/data/sidebars';
 
 export default function Sidebar() {
   const pathname = usePathname();
-  console.log(pathname);
   const sidebarData = SIDEBARS.find(
     (item) => item.name === pathname.split('/')[1]
   ).children;
