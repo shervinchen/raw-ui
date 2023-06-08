@@ -1,0 +1,29 @@
+# Installation
+
+## Install
+
+### pnpm
+
+```bash
+pnpm add raw-ui
+```
+
+### npm
+
+```bash
+npm install raw-ui --save
+```
+
+## Usage
+
+Wrap the root of your application with `RawUIProvider`, and then you can use any component
+
+```jsx
+import { RawUIProvider, Button } from 'raw-ui';
+
+const App = () => (
+  <RawUIProvider>
+    <Button>Default</Button>
+  </RawUIProvider>
+);
+```

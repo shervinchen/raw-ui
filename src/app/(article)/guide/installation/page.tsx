@@ -1,6 +1,6 @@
 'use client';
 
-import MDXContent from './introduction.mdx';
+import MDXContent from './installation.mdx';
 
 export default function Page() {
   return <MDXContent />;
