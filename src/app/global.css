@@ -41,3 +41,7 @@ body {
 .sidebar-scrollbar:hover::-webkit-scrollbar-thumb:hover {
   background-color: hsla(0, 0%, 45%, 0.4);
 }
+
+pre > code {
+  display: grid;
+}
