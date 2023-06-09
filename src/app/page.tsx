@@ -7,53 +7,21 @@ import { Button } from '@/packages';
 
 export default function Page() {
   return (
-    <div className="home-container">
-      <main className="hero-wrapper">
+    <div className="flex items-center justify-center min-h-[calc(100vh-64px)] py-0 px-6">
+      <main className="flex flex-col items-center justify-center max-w-8xl text-center gap-6">
         <Image src="/logo.svg" alt="logo" width={100} height={100} />
-        <h1 className="title">Raw UI</h1>
-        <h2 className="description">
+        <h1 className="text-6xl font-bold text-black">Raw UI</h1>
+        <h2 className="text-2xl font-medium text-[#666]">
           A minimalist and customizable React component library for web
           applications.
         </h2>
-        <div className="buttons">
+        <div className="flex gap-3">
           <Button type="primary">Get Started</Button>
           <Link href="https://github.com/shervinchen/raw-ui">
             <Button icon={<GitHub />}>Github</Button>
           </Link>
         </div>
       </main>
-      <style jsx>{`
-        .home-container {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          min-height: calc(100vh - 64px);
-          padding: 0 24px;
-        }
-        .hero-wrapper {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          max-width: 1440px;
-          text-align: center;
-        }
-        .title {
-          font-size: 60px;
-          font-weight: 700;
-          color: #000;
-        }
-        .description {
-          font-size: 24px;
-          font-weight: 500;
-          color: #666;
-        }
-        .buttons {
-          display: flex;
-          gap: 12px;
-          margin-top: 40px;
-        }
-      `}</style>
     </div>
   );
 }
