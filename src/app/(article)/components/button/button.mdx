@@ -1,0 +1,251 @@
+import { Search } from 'react-feather';
+import { Button } from '@/packages';
+import Unit from '@/demo/Unit';
+
+# Button
+
+Used to trigger an operation.
+
+## Import
+
+```tsx
+import { Button } from 'raw-ui';
+```
+
+## Types
+
+<Unit layout="row">
+  <Button>Default</Button>
+  <Button type="primary">Primary</Button>
+  <Button type="success">Success</Button>
+  <Button type="warning">Warning</Button>
+  <Button type="error">Error</Button>
+</Unit>
+
+```tsx
+<Button>Default</Button>
+<Button type="primary">Primary</Button>
+<Button type="success">Success</Button>
+<Button type="warning">Warning</Button>
+<Button type="error">Error</Button>
+```
+
+## Sizes
+
+<Unit layout="row">
+  <Button size="sm">Small</Button>
+  <Button>Medium</Button>
+  <Button size="lg">Large</Button>
+</Unit>
+
+```tsx
+<Button size="sm">Small</Button>
+<Button>Medium</Button>
+<Button size="lg">Large</Button>
+```
+
+## Variant
+
+### Outline
+
+<Unit layout="row">
+  <Button type="primary" variant="outline">
+    Primary
+  </Button>
+  <Button type="success" variant="outline">
+    Success
+  </Button>
+  <Button type="warning" variant="outline">
+    Warning
+  </Button>
+  <Button type="error" variant="outline">
+    Error
+  </Button>
+</Unit>
+
+```tsx
+<Button type="primary" variant="outline">
+  Primary
+</Button>
+<Button type="success" variant="outline">
+  Success
+</Button>
+<Button type="warning" variant="outline">
+  Warning
+</Button>
+<Button type="error" variant="outline">
+  Error
+</Button>
+```
+
+### Ghost
+
+<Unit layout="row">
+  <Button variant="ghost">Default</Button>
+  <Button type="primary" variant="ghost">
+    Primary
+  </Button>
+  <Button type="success" variant="ghost">
+    Success
+  </Button>
+  <Button type="warning" variant="ghost">
+    Warning
+  </Button>
+  <Button type="error" variant="ghost">
+    Error
+  </Button>
+</Unit>
+
+```tsx
+<Button variant="ghost">Default</Button>
+<Button type="primary" variant="ghost">
+  Primary
+</Button>
+<Button type="success" variant="ghost">
+  Success
+</Button>
+<Button type="warning" variant="ghost">
+  Warning
+</Button>
+<Button type="error" variant="ghost">
+  Error
+</Button>
+```
+
+### Shadow
+
+<Unit layout="row">
+  <Button variant="shadow">Default</Button>
+  <Button type="primary" variant="shadow">
+    Primary
+  </Button>
+  <Button type="success" variant="shadow">
+    Success
+  </Button>
+  <Button type="warning" variant="shadow">
+    Warning
+  </Button>
+  <Button type="error" variant="shadow">
+    Error
+  </Button>
+</Unit>
+
+```tsx
+<Button variant="shadow">Default</Button>
+<Button type="primary" variant="shadow">
+  Primary
+</Button>
+<Button type="success" variant="shadow">
+  Success
+</Button>
+<Button type="warning" variant="shadow">
+  Warning
+</Button>
+<Button type="error" variant="shadow">
+  Error
+</Button>
+```
+
+## Loading
+
+<Unit layout="row">
+  <Button loading>Default</Button>
+  <Button type="primary" loading>
+    Primary
+  </Button>
+  <Button type="success" variant="outline" loading>
+    Success
+  </Button>
+  <Button type="warning" variant="ghost" loading>
+    Warning
+  </Button>
+  <Button type="error" variant="shadow" loading>
+    Error
+  </Button>
+</Unit>
+
+```tsx
+<Button loading>Default</Button>
+<Button type="primary" loading>
+  Primary
+</Button>
+<Button type="success" variant="outline" loading>
+  Success
+</Button>
+<Button type="warning" variant="ghost" loading>
+  Warning
+</Button>
+<Button type="error" variant="shadow" loading>
+  Error
+</Button>
+```
+
+## Disabled
+
+<Unit layout="row">
+  <Button disabled>Default</Button>
+  <Button type="primary" disabled>
+    Primary
+  </Button>
+  <Button type="primary" variant="outline" disabled>
+    Outline
+  </Button>
+  <Button type="primary" variant="ghost" disabled>
+    Ghost
+  </Button>
+  <Button type="primary" variant="shadow" disabled>
+    Shadow
+  </Button>
+</Unit>
+
+```tsx
+<Button disabled>Default</Button>
+<Button type="primary" disabled>
+  Primary
+</Button>
+<Button type="primary" variant="outline" disabled>
+  Outline
+</Button>
+<Button type="primary" variant="ghost" disabled>
+  Ghost
+</Button>
+<Button type="primary" variant="shadow" disabled>
+  Shadow
+</Button>
+```
+
+## Icons
+
+<Unit layout="row">
+  <Button icon={<Search />} />
+  <Button icon={<Search />}>Search</Button>
+  <Button iconRight={<Search />}>Search</Button>
+  <Button type="primary" icon={<Search />} />
+  <Button type="primary" icon={<Search />}>
+    Search
+  </Button>
+</Unit>
+
+```tsx
+<Button icon={<Search />} />
+<Button icon={<Search />}>Search</Button>
+<Button iconRight={<Search />}>Search</Button>
+<Button type="primary" icon={<Search />} />
+<Button type="primary" icon={<Search />}>
+  Search
+</Button>
+```
+
+## API
+
+| Prop      | Description                             | Type                                                        | Default   |
+| --------- | --------------------------------------- | ----------------------------------------------------------- | --------- |
+| type      | button type                             | 'default' \| 'primary' \| 'success' \| 'warning' \| 'error' | 'default' |
+| size      | button size                             | 'sm' \| 'md' \| 'lg'                                        | 'md'      |
+| variant   | button variant                          | 'outline' \| 'ghost' \| 'shadow'                            | 'outline' |
+| loading   | set the loading status of button        | boolean                                                     | false     |
+| disabled  | disable button                          | boolean                                                     | false     |
+| icon      | render an icon on the left of the text  | React.ReactNode                                             | -         |
+| iconRight | render an icon on the right of the text | React.ReactNode                                             | -         |
+| onClick   | click handler                           | React.MouseEventHandler                                     | -         |
+| ...       | native props                            | React.ButtonHTMLAttributes                                  | -         |

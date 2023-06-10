@@ -5,7 +5,7 @@ import fs from 'fs'
 
 const options = {
   // Use one of Shiki's packaged themes
-  theme: 'github-light',
+  theme: 'one-dark-pro',
   // Or your own JSON theme
   // theme: JSON.parse(
   //   fs.readFileSync(require.resolve('./themes/dark.json'), 'utf-8')
