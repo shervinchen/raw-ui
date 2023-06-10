@@ -40,15 +40,15 @@ export const SIDEBARS = [
             name: 'Button',
             url: '/components/button',
           },
-          {
-            name: 'Button Group',
-            url: '/components/button-group',
-          },
         ],
       },
       {
         name: 'Data Entry',
         children: [
+          {
+            name: 'Button Group',
+            url: '/components/button-group',
+          },
           {
             name: 'Checkbox',
             url: '/components/checkbox',

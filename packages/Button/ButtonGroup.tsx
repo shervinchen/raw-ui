@@ -2,8 +2,18 @@ import React, { FC, PropsWithChildren, useMemo } from 'react';
 import classNames from 'classnames';
 
 import { ButtonGroupContext } from './button-group-context';
-import { ButtonGroupProps, ButtonGroupConfig } from './ButtonGroup.types';
+import {
+  ButtonGroupProps,
+  ButtonGroupConfig,
+  ButtonGroupVariant,
+} from './ButtonGroup.types';
 import { useButtonGroupCSS } from './ButtonGroup.styles';
+
+const buttonGroupVariants: ButtonGroupVariant[] = [
+  'default',
+  'outline',
+  'ghost',
+];
 
 const ButtonGroup: FC<PropsWithChildren<ButtonGroupProps>> = ({
   size = 'md',
@@ -15,21 +25,26 @@ const ButtonGroup: FC<PropsWithChildren<ButtonGroupProps>> = ({
   vertical = false,
   ...resetProps
 }) => {
+  const buttonGroupVariant: ButtonGroupVariant = buttonGroupVariants.includes(
+    variant
+  )
+    ? variant
+    : 'default';
   const initialConfig = useMemo<ButtonGroupConfig>(
     () => ({
       size,
       type,
-      variant,
+      variant: buttonGroupVariant,
       disabled,
       isButtonGroup: true,
     }),
-    [disabled, size, type, variant]
+    [disabled, size, type, buttonGroupVariant]
   );
 
   const { className: resolveClassName, styles } = useButtonGroupCSS({
     type,
     size,
-    variant,
+    variant: buttonGroupVariant,
     disabled,
   });
 

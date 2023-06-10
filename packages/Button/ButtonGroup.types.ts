@@ -1,13 +1,13 @@
 import { HTMLAttributes } from 'react';
 import { ButtonSizes, ButtonTypes } from './Button.types';
 
-type ButtonGroupVariants = 'default' | 'outline';
+export type ButtonGroupVariant = 'default' | 'outline' | 'ghost';
 
 interface BaseButtonGroupProps {
   className?: string;
   size?: ButtonSizes;
   type?: ButtonTypes;
-  variant?: ButtonGroupVariants;
+  variant?: ButtonGroupVariant;
   disabled?: boolean;
   vertical?: boolean;
 }
@@ -22,7 +22,7 @@ export type ButtonGroupProps = BaseButtonGroupProps & NativeButtonGroupProps;
 export interface ButtonGroupConfig {
   size?: ButtonSizes;
   type?: ButtonTypes;
-  variant?: ButtonGroupVariants;
+  variant?: ButtonGroupVariant;
   disabled?: boolean;
   isButtonGroup: boolean;
 }

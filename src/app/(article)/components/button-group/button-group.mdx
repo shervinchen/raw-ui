@@ -1,0 +1,262 @@
+import { ButtonGroup, Button } from '@/packages';
+import Unit from '@/demo/Unit';
+
+# ButtonGroup
+
+A set of related buttons.
+
+## Import
+
+```tsx
+import { ButtonGroup } from 'raw-ui';
+```
+
+## Types
+
+<Unit layout="col">
+  <Button.Group>
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+  <Button.Group type="primary">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+  <Button.Group type="success">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+  <Button.Group type="warning">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+  <Button.Group type="error">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+</Unit>
+
+```tsx
+<Button.Group>
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</Button.Group>
+<Button.Group type="primary">
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</Button.Group>
+<Button.Group type="success">
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</Button.Group>
+<Button.Group type="warning">
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</Button.Group>
+<Button.Group type="error">
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</Button.Group>
+```
+
+## Size
+
+<Unit layout="row">
+  <Button.Group size="sm">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+  <Button.Group size="md">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+  <Button.Group size="lg">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+</Unit>
+
+```tsx
+<Button.Group size="sm">
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</Button.Group>
+<Button.Group size="md">
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</Button.Group>
+<Button.Group size="lg">
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</Button.Group>
+```
+
+## Variant
+
+### Outline
+
+<Unit layout="col">
+  <Button.Group type="primary" variant="outline">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+  <Button.Group type="success" variant="outline">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+  <Button.Group type="warning" variant="outline">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+  <Button.Group type="error" variant="outline">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+</Unit>
+
+```tsx
+<Button.Group type="primary" variant="outline">
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</Button.Group>
+<Button.Group type="success" variant="outline">
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</Button.Group>
+<Button.Group type="warning" variant="outline">
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</Button.Group>
+<Button.Group type="error" variant="outline">
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</Button.Group>
+```
+
+### Ghost
+
+<Unit layout="col">
+  <Button.Group variant="ghost">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+  <Button.Group type="primary" variant="ghost">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+  <Button.Group type="success" variant="ghost">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+  <Button.Group type="warning" variant="ghost">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+  <Button.Group type="error" variant="ghost">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+</Unit>
+
+```tsx
+<Button.Group variant="ghost">
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</Button.Group>
+<Button.Group type="primary" variant="ghost">
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</Button.Group>
+<Button.Group type="success" variant="ghost">
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</Button.Group>
+<Button.Group type="warning" variant="ghost">
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</Button.Group>
+<Button.Group type="error" variant="ghost">
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</Button.Group>
+```
+
+## Vertical
+
+<Unit layout="row">
+  <Button.Group vertical>
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+</Unit>
+
+```tsx
+<Button.Group vertical>
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</Button.Group>
+```
+
+## Disabled
+
+<Unit layout="row">
+  <Button.Group disabled>
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+</Unit>
+
+```tsx
+<Button.Group disabled>
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</Button.Group>
+```
+
+## API
+
+| Prop     | Description                 | Type                                                        | Default   |
+| -------- | --------------------------- | ----------------------------------------------------------- | --------- |
+| type     | button type                 | 'default' \| 'primary' \| 'success' \| 'warning' \| 'error' | 'default' |
+| size     | button size                 | 'sm' \| 'md' \| 'lg'                                        | 'md'      |
+| variant  | button variant              | 'outline' \| 'ghost'                                        | 'outline' |
+| vertical | show all buttons vertically | boolean                                                     | false     |
+| disabled | disable all buttons         | boolean                                                     | false     |
