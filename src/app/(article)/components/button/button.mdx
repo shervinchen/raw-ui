@@ -1,6 +1,16 @@
 import { Search } from 'react-feather';
 import { Button } from '@/packages';
 import Unit from '@/demo/Unit';
+import {
+  DemoButtonTypes,
+  DemoButtonSizes,
+  DemoButtonVariantOutline,
+  DemoButtonVariantGhost,
+  DemoButtonVariantShadow,
+  DemoButtonLoading,
+  DemoButtonDisabled,
+  DemoButtonIcon,
+} from '@/demo/button';
 
 # Button
 
@@ -14,13 +24,7 @@ import { Button } from 'raw-ui';
 
 ## Types
 
-<Unit layout="row">
-  <Button>Default</Button>
-  <Button type="primary">Primary</Button>
-  <Button type="success">Success</Button>
-  <Button type="warning">Warning</Button>
-  <Button type="error">Error</Button>
-</Unit>
+<DemoButtonTypes />
 
 ```tsx
 <Button>Default</Button>
@@ -32,11 +36,7 @@ import { Button } from 'raw-ui';
 
 ## Sizes
 
-<Unit layout="row">
-  <Button size="sm">Small</Button>
-  <Button>Medium</Button>
-  <Button size="lg">Large</Button>
-</Unit>
+<DemoButtonSizes />
 
 ```tsx
 <Button size="sm">Small</Button>
@@ -48,20 +48,7 @@ import { Button } from 'raw-ui';
 
 ### Outline
 
-<Unit layout="row">
-  <Button type="primary" variant="outline">
-    Primary
-  </Button>
-  <Button type="success" variant="outline">
-    Success
-  </Button>
-  <Button type="warning" variant="outline">
-    Warning
-  </Button>
-  <Button type="error" variant="outline">
-    Error
-  </Button>
-</Unit>
+<DemoButtonVariantOutline />
 
 ```tsx
 <Button type="primary" variant="outline">
@@ -80,21 +67,7 @@ import { Button } from 'raw-ui';
 
 ### Ghost
 
-<Unit layout="row">
-  <Button variant="ghost">Default</Button>
-  <Button type="primary" variant="ghost">
-    Primary
-  </Button>
-  <Button type="success" variant="ghost">
-    Success
-  </Button>
-  <Button type="warning" variant="ghost">
-    Warning
-  </Button>
-  <Button type="error" variant="ghost">
-    Error
-  </Button>
-</Unit>
+<DemoButtonVariantGhost />
 
 ```tsx
 <Button variant="ghost">Default</Button>
@@ -114,21 +87,7 @@ import { Button } from 'raw-ui';
 
 ### Shadow
 
-<Unit layout="row">
-  <Button variant="shadow">Default</Button>
-  <Button type="primary" variant="shadow">
-    Primary
-  </Button>
-  <Button type="success" variant="shadow">
-    Success
-  </Button>
-  <Button type="warning" variant="shadow">
-    Warning
-  </Button>
-  <Button type="error" variant="shadow">
-    Error
-  </Button>
-</Unit>
+<DemoButtonVariantShadow />
 
 ```tsx
 <Button variant="shadow">Default</Button>
@@ -148,21 +107,7 @@ import { Button } from 'raw-ui';
 
 ## Loading
 
-<Unit layout="row">
-  <Button loading>Default</Button>
-  <Button type="primary" loading>
-    Primary
-  </Button>
-  <Button type="success" variant="outline" loading>
-    Success
-  </Button>
-  <Button type="warning" variant="ghost" loading>
-    Warning
-  </Button>
-  <Button type="error" variant="shadow" loading>
-    Error
-  </Button>
-</Unit>
+<DemoButtonLoading />
 
 ```tsx
 <Button loading>Default</Button>
@@ -182,21 +127,7 @@ import { Button } from 'raw-ui';
 
 ## Disabled
 
-<Unit layout="row">
-  <Button disabled>Default</Button>
-  <Button type="primary" disabled>
-    Primary
-  </Button>
-  <Button type="primary" variant="outline" disabled>
-    Outline
-  </Button>
-  <Button type="primary" variant="ghost" disabled>
-    Ghost
-  </Button>
-  <Button type="primary" variant="shadow" disabled>
-    Shadow
-  </Button>
-</Unit>
+<DemoButtonDisabled />
 
 ```tsx
 <Button disabled>Default</Button>
@@ -216,15 +147,7 @@ import { Button } from 'raw-ui';
 
 ## Icons
 
-<Unit layout="row">
-  <Button icon={<Search />} />
-  <Button icon={<Search />}>Search</Button>
-  <Button iconRight={<Search />}>Search</Button>
-  <Button type="primary" icon={<Search />} />
-  <Button type="primary" icon={<Search />}>
-    Search
-  </Button>
-</Unit>
+<DemoButtonIcon />
 
 ```tsx
 <Button icon={<Search />} />
