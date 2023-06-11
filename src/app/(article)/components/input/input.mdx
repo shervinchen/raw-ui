@@ -1,0 +1,188 @@
+import {
+  DemoInputTypes,
+  DemoInputSizes,
+  DemoInputWidth,
+  DemoInputDisabled,
+  DemoInputReadOnly,
+  DemoInputDefaultValue,
+  DemoInputInsideElement,
+  DemoInputAddon,
+  DemoInputPassword,
+  DemoInputClearable,
+} from '@/demo/input';
+
+# Input
+
+Retrieve text input from a user.
+
+## Import
+
+```tsx
+import { Input } from 'raw-ui';
+```
+
+## Types
+
+<DemoInputTypes />
+
+```tsx
+<Input placeholder="Default Type" />
+<Input type="primary" placeholder="Primary Type" />
+<Input type="success" placeholder="Success Type" />
+<Input type="warning" placeholder="Warning Type" />
+<Input type="error" placeholder="Error Type" />
+```
+
+## Sizes
+
+<DemoInputSizes />
+
+```tsx
+<Input size="sm" placeholder="Small" />
+<Input placeholder="Medium" />
+<Input size="lg" placeholder="Large" />
+```
+
+## Width
+
+<DemoInputWidth />
+
+```tsx
+<Input width="160px" placeholder="Customized width" />
+```
+
+## Disabled
+
+<DemoInputDisabled />
+
+```tsx
+<Input placeholder="Disabled with placeholder" disabled />
+<Input defaultValue="Disabled with value" disabled />
+```
+
+## Read Only
+
+<DemoInputReadOnly />
+
+```tsx
+<Input defaultValue="Read only with value" readOnly />
+```
+
+## Default Value
+
+<DemoInputDefaultValue />
+
+```tsx
+<Input defaultValue="default value" placeholder="Placeholder..." />
+```
+
+## Controlled
+
+```tsx
+export function App() {
+  const [value, setValue] = useState('');
+
+  return (
+    <Input
+      value={value}
+      onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+        setValue(event.target.value);
+      }}
+      placeholder="Placeholder..."
+    />
+  );
+}
+```
+
+## Inside Element
+
+<DemoInputInsideElement />
+
+```tsx
+<Input.Group>
+  <Input.LeftElement>
+    <Search size={16} />
+  </Input.LeftElement>
+  <Input placeholder="Inside left element" />
+</Input.Group>
+<Input.Group>
+  <Input placeholder="Inside right element" />
+  <Input.RightElement>
+    <AlertCircle size={16} />
+  </Input.RightElement>
+</Input.Group>
+<Input.Group>
+  <Input.LeftElement>$</Input.LeftElement>
+  <Input placeholder="Enter amount" />
+  <Input.RightElement>.0</Input.RightElement>
+</Input.Group>
+```
+
+## Addon
+
+<DemoInputAddon />
+
+```tsx
+<Input.Group>
+  <Input.LeftAddon>username</Input.LeftAddon>
+  <Input placeholder="Put in the username" />
+</Input.Group>
+<Input.Group>
+  <Input placeholder="https://github" />
+  <Input.RightAddon>.com</Input.RightAddon>
+</Input.Group>
+<Input.Group>
+  <Input.LeftAddon>https://</Input.LeftAddon>
+  <Input placeholder="your domain" />
+  <Input.RightAddon>.com</Input.RightAddon>
+</Input.Group>
+```
+
+## Password
+
+<DemoInputPassword />
+
+```tsx
+export function App() {
+  const [visible, setVisible] = useState(false);
+
+  return (
+    <Input.Group>
+      <Input
+        htmlType={visible ? 'text' : 'password'}
+        placeholder="Enter password"
+      />
+      <Input.RightElement clickable onClick={() => setVisible(!visible)}>
+        {setVisible ? <EyeOff size={16} /> : <Eye size={16} />}
+      </Input.RightElement>
+    </Input.Group>
+  );
+}
+```
+
+## Clearable
+
+<DemoInputClearable />
+
+```tsx
+export function App() {
+  const [value, setValue] = useState('');
+
+  return (
+    <Input.Group>
+      <Input
+        value={value}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          setValue(event.target.value)
+        }
+        placeholder="Clearable input"
+      />
+      {value !== '' && (
+        <Input.RightElement clickable onClick={() => setValue('')}>
+          <X size={16} />
+        </Input.RightElement>
+      )}
+    </Input.Group>
+  );
+}
+```

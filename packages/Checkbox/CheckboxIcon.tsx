@@ -20,8 +20,8 @@ const CheckboxIcon: FC<CheckboxIconProps> = ({ checked, indeterminate }) => {
       <style jsx>{`
         .raw-checkbox-inner {
           position: relative;
-          width: 14px;
-          height: 14px;
+          width: 16px;
+          height: 16px;
           border: 1px solid
             ${checked && !indeterminate
               ? theme.palette.black

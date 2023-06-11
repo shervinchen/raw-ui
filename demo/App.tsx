@@ -1,7 +1,5 @@
 import React, { FC, PropsWithChildren, ChangeEvent, useState } from 'react';
-import { Search, AlertCircle, Eye, EyeOff, X } from 'react-feather';
 import {
-  Button,
   Loading,
   Input,
   Radio,
@@ -40,6 +38,19 @@ import {
   DemoButtonGroupVariantOutline,
   DemoButtonGroupVertical,
 } from './button-group';
+import {
+  DemoInputAddon,
+  DemoInputClearable,
+  DemoInputControlled,
+  DemoInputDefaultValue,
+  DemoInputDisabled,
+  DemoInputInsideElement,
+  DemoInputPassword,
+  DemoInputReadOnly,
+  DemoInputSizes,
+  DemoInputTypes,
+  DemoInputWidth,
+} from './input';
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
   title,
@@ -69,9 +80,6 @@ const Container: FC<PropsWithChildren<{ title: string }>> = ({
 };
 
 function App() {
-  const [controllableInputValue, setControllableInputValue] = useState('');
-  const [passwordVisible, setPasswordVisible] = useState(false);
-  const [clearableValue, setClearableValue] = useState('');
   const [controllableRadioValue, setControllableRadioValue] = useState(false);
   const [controllableRadioGroupValue, setControllableRadioGroupValue] =
     useState<RadioValue>('angular');
@@ -168,127 +176,37 @@ function App() {
       </Container>
       <Container title="Input">
         <Wrapper title="Types">
-          <Unit layout="col">
-            <Input placeholder="Default Type" />
-            <Input type="primary" placeholder="Primary Type" />
-            <Input type="success" placeholder="Success Type" />
-            <Input type="warning" placeholder="Warning Type" />
-            <Input type="error" placeholder="Error Type" />
-          </Unit>
+          <DemoInputTypes />
         </Wrapper>
         <Wrapper title="Sizes">
-          <Unit layout="row">
-            <Input size="sm" placeholder="Small" />
-            <Input placeholder="Medium" />
-            <Input size="lg" placeholder="Large" />
-          </Unit>
+          <DemoInputSizes />
         </Wrapper>
         <Wrapper title="Width">
-          <Unit layout="row">
-            <Input width="160px" placeholder="Customized width" />
-          </Unit>
+          <DemoInputWidth />
         </Wrapper>
         <Wrapper title="Disabled">
-          <Unit layout="col">
-            <Input placeholder="Disabled with placeholder" disabled />
-            <Input defaultValue="Disabled with value" disabled />
-          </Unit>
+          <DemoInputDisabled />
         </Wrapper>
         <Wrapper title="Read Only">
-          <Unit layout="col">
-            <Input defaultValue="Read only with value" readOnly />
-          </Unit>
+          <DemoInputReadOnly />
         </Wrapper>
         <Wrapper title="Default Value">
-          <Unit layout="col">
-            <Input defaultValue="default value" placeholder="Placeholder..." />
-          </Unit>
+          <DemoInputDefaultValue />
         </Wrapper>
         <Wrapper title="Controlled Input">
-          <Unit layout="col">
-            <Input
-              value={controllableInputValue}
-              onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                setControllableInputValue(event.target.value);
-              }}
-              placeholder="Placeholder..."
-            />
-          </Unit>
+          <DemoInputControlled />
         </Wrapper>
         <Wrapper title="Inside Element">
-          <Unit layout="row">
-            <Input.Group>
-              <Input.LeftElement>
-                <Search size={16} />
-              </Input.LeftElement>
-              <Input placeholder="Inside left element" />
-            </Input.Group>
-            <Input.Group>
-              <Input placeholder="Inside right element" />
-              <Input.RightElement>
-                <AlertCircle size={16} />
-              </Input.RightElement>
-            </Input.Group>
-            <Input.Group>
-              <Input.LeftElement>$</Input.LeftElement>
-              <Input placeholder="Enter amount" />
-              <Input.RightElement>.0</Input.RightElement>
-            </Input.Group>
-          </Unit>
+          <DemoInputInsideElement />
         </Wrapper>
         <Wrapper title="Addon">
-          <Unit layout="row">
-            <Input.Group>
-              <Input.LeftAddon>username</Input.LeftAddon>
-              <Input placeholder="Put in the username" />
-            </Input.Group>
-            <Input.Group>
-              <Input placeholder="https://github" />
-              <Input.RightAddon>.com</Input.RightAddon>
-            </Input.Group>
-            <Input.Group>
-              <Input.LeftAddon>https://</Input.LeftAddon>
-              <Input placeholder="your domain" />
-              <Input.RightAddon>.com</Input.RightAddon>
-            </Input.Group>
-          </Unit>
+          <DemoInputAddon />
         </Wrapper>
         <Wrapper title="Password">
-          <Unit layout="row">
-            <Input.Group>
-              <Input
-                htmlType={passwordVisible ? 'text' : 'password'}
-                placeholder="Enter password"
-              />
-              <Input.RightElement
-                clickable
-                onClick={() => setPasswordVisible(!passwordVisible)}
-              >
-                {passwordVisible ? <EyeOff size={16} /> : <Eye size={16} />}
-              </Input.RightElement>
-            </Input.Group>
-          </Unit>
+          <DemoInputPassword />
         </Wrapper>
         <Wrapper title="Clearable">
-          <Unit layout="row">
-            <Input.Group>
-              <Input
-                value={clearableValue}
-                onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                  setClearableValue(event.target.value)
-                }
-                placeholder="Clearable input"
-              />
-              {clearableValue !== '' && (
-                <Input.RightElement
-                  clickable
-                  onClick={() => setClearableValue('')}
-                >
-                  <X size={16} />
-                </Input.RightElement>
-              )}
-            </Input.Group>
-          </Unit>
+          <DemoInputClearable />
         </Wrapper>
       </Container>
       <Container title="Select">

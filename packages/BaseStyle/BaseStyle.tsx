@@ -35,7 +35,7 @@ const BaseStyle: FC<PropsWithChildren<unknown>> = ({ children }) => {
           *,
           *:before,
           *:after {
-            box-sizing: inherit;
+            box-sizing: border-box;
             text-rendering: geometricPrecision;
             -webkit-tap-highlight-color: transparent;
           }
