@@ -1,6 +1,9 @@
-import { Checkbox } from '@/packages';
-import Unit from '@/demo/Unit';
 import {
+  DemoCheckboxDefault,
+  DemoCheckboxChecked,
+  DemoCheckboxWithLabel,
+  DemoCheckboxIndeterminate,
+  DemoCheckboxDisabled,
   DemoCheckboxGroup,
   DemoCheckboxGroupWithIndeterminate,
 } from '@/demo/checkbox';
@@ -17,9 +20,7 @@ import { Checkbox } from 'raw-ui';
 
 ## Default
 
-<Unit layout="row">
-  <Checkbox />
-</Unit>
+<DemoCheckboxDefault />
 
 ```tsx
 <Checkbox />
@@ -27,9 +28,7 @@ import { Checkbox } from 'raw-ui';
 
 ## Checked
 
-<Unit layout="row">
-  <Checkbox defaultChecked />
-</Unit>
+<DemoCheckboxChecked />
 
 ```tsx
 <Checkbox defaultChecked />
@@ -37,9 +36,7 @@ import { Checkbox } from 'raw-ui';
 
 ## With Label
 
-<Unit layout="row">
-  <Checkbox>Label</Checkbox>
-</Unit>
+<DemoCheckboxWithLabel />
 
 ```tsx
 <Checkbox>Label</Checkbox>
@@ -66,9 +63,7 @@ export default function App() {
 
 ## Indeterminate
 
-<Unit layout="row">
-  <Checkbox indeterminate>Indeterminate</Checkbox>
-</Unit>
+<DemoCheckboxIndeterminate />
 
 ```tsx
 <Checkbox indeterminate>Indeterminate</Checkbox>
@@ -76,15 +71,7 @@ export default function App() {
 
 ## Disabled
 
-<Unit layout="row">
-  <Checkbox disabled>Disabled</Checkbox>
-  <Checkbox defaultChecked disabled>
-    Disabled
-  </Checkbox>
-  <Checkbox indeterminate disabled>
-    Disabled
-  </Checkbox>
-</Unit>
+<DemoCheckboxDisabled />
 
 ```tsx
 <Checkbox disabled>Disabled</Checkbox>
