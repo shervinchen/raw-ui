@@ -13,6 +13,17 @@ import {
   SelectValue,
 } from '../packages';
 import Unit from './Unit';
+import Wrapper from './Wrapper';
+import {
+  DemoCheckboxChecked,
+  DemoCheckboxControlled,
+  DemoCheckboxDefault,
+  DemoCheckboxDisabled,
+  DemoCheckboxGroup,
+  DemoCheckboxGroupWithIndeterminate,
+  DemoCheckboxIndeterminate,
+  DemoCheckboxWithLabel,
+} from './checkbox';
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
   title,
@@ -41,39 +52,10 @@ const Container: FC<PropsWithChildren<{ title: string }>> = ({
   );
 };
 
-const Wrapper: FC<PropsWithChildren<{ title: string }>> = ({
-  title,
-  children,
-}) => {
-  return (
-    <div className="wrapper">
-      <h2>{title}</h2>
-      {children}
-      <style jsx>
-        {`
-          .wrapper:not(:last-child) {
-            margin-bottom: 40px;
-          }
-
-          .wrapper h2 {
-            margin: 0 0 16px;
-          }
-        `}
-      </style>
-    </div>
-  );
-};
-
 function App() {
   const [controllableInputValue, setControllableInputValue] = useState('');
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [clearableValue, setClearableValue] = useState('');
-  const [controllableCheckboxValue, setControllableCheckboxValue] =
-    useState(false);
-  const [controllableCheckboxGroupValue, setControllableCheckboxGroupValue] =
-    useState<CheckboxGroupValue>(['react', 'angular']);
-  const [indeterminateWithGroupValue, setIndeterminateWithGroupValue] =
-    useState<CheckboxGroupValue>(['react', 'angular']);
   const [controllableRadioValue, setControllableRadioValue] = useState(false);
   const [controllableRadioGroupValue, setControllableRadioGroupValue] =
     useState<RadioValue>('angular');
@@ -553,119 +535,28 @@ function App() {
       </Container>
       <Container title="Checkbox">
         <Wrapper title="Default">
-          <Unit layout="row">
-            <Checkbox />
-          </Unit>
+          <DemoCheckboxDefault />
         </Wrapper>
         <Wrapper title="Checked">
-          <Unit layout="row">
-            <Checkbox defaultChecked />
-          </Unit>
+          <DemoCheckboxChecked />
         </Wrapper>
         <Wrapper title="With Label">
-          <Unit layout="row">
-            <Checkbox>Label</Checkbox>
-          </Unit>
+          <DemoCheckboxWithLabel />
         </Wrapper>
         <Wrapper title="Controlled">
-          <Unit layout="row">
-            <Checkbox
-              checked={controllableCheckboxValue}
-              onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                setControllableCheckboxValue(event.target.checked);
-              }}
-            >
-              Controlled
-            </Checkbox>
-          </Unit>
+          <DemoCheckboxControlled />
         </Wrapper>
         <Wrapper title="Indeterminate">
-          <Unit layout="row">
-            <Checkbox indeterminate>Indeterminate</Checkbox>
-          </Unit>
+          <DemoCheckboxIndeterminate />
         </Wrapper>
         <Wrapper title="Disabled">
-          <Unit layout="row">
-            <Checkbox disabled>Disabled</Checkbox>
-            <Checkbox defaultChecked disabled>
-              Disabled
-            </Checkbox>
-            <Checkbox indeterminate disabled>
-              Disabled
-            </Checkbox>
-          </Unit>
+          <DemoCheckboxDisabled />
         </Wrapper>
         <Wrapper title="Group">
-          <Unit layout="col">
-            <Checkbox.Group defaultValue={['vue', 'svelte']}>
-              {optionsData.map((item) => (
-                <Checkbox value={item.value} key={item.value}>
-                  {item.name}
-                </Checkbox>
-              ))}
-            </Checkbox.Group>
-            <Checkbox.Group
-              value={controllableCheckboxGroupValue}
-              onChange={(groupValue) => {
-                setControllableCheckboxGroupValue(groupValue);
-              }}
-            >
-              {optionsData.map((item) => (
-                <Checkbox value={item.value} key={item.value}>
-                  {item.name}
-                </Checkbox>
-              ))}
-            </Checkbox.Group>
-            <Checkbox.Group
-              defaultValue={['react', 'vue', 'angular', 'svelte']}
-              disabled
-            >
-              {optionsData.map((item) => (
-                <Checkbox value={item.value} key={item.value}>
-                  {item.name}
-                </Checkbox>
-              ))}
-            </Checkbox.Group>
-            <Checkbox.Group defaultValue={['vue', 'svelte']} layout="column">
-              {optionsData.map((item) => (
-                <Checkbox value={item.value} key={item.value}>
-                  {item.name}
-                </Checkbox>
-              ))}
-            </Checkbox.Group>
-          </Unit>
+          <DemoCheckboxGroup />
         </Wrapper>
         <Wrapper title="Indeterminate with Group">
-          <Unit layout="col">
-            <Checkbox
-              indeterminate={
-                indeterminateWithGroupValue.length > 0 &&
-                indeterminateWithGroupValue.length < optionsData.length
-              }
-              checked={
-                indeterminateWithGroupValue.length === optionsData.length
-              }
-              onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                setIndeterminateWithGroupValue(
-                  event.target.checked
-                    ? optionsData.map((item) => item.value)
-                    : []
-                );
-              }}
-            >
-              Check All
-            </Checkbox>
-            <Checkbox.Group
-              value={indeterminateWithGroupValue}
-              onChange={setIndeterminateWithGroupValue}
-            >
-              {optionsData.map((item) => (
-                <Checkbox value={item.value} key={item.value}>
-                  {item.name}
-                </Checkbox>
-              ))}
-            </Checkbox.Group>
-          </Unit>
+          <DemoCheckboxGroupWithIndeterminate />
         </Wrapper>
       </Container>
       <Container title="Radio">

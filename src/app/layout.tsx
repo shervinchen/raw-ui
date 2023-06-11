@@ -1,6 +1,9 @@
+'use client';
+
 import StyledJsxRegistry from './registry';
 import './global.css';
 import Navbar from './navbar';
+import { RawUIProvider } from '@/packages';
 
 export default function RootLayout({
   children,
@@ -11,8 +14,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <StyledJsxRegistry>
-          <Navbar />
-          {children}
+          <RawUIProvider>
+            <Navbar />
+            {children}
+          </RawUIProvider>
         </StyledJsxRegistry>
       </body>
     </html>

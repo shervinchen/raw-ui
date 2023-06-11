@@ -57,12 +57,12 @@ const BaseStyle: FC<PropsWithChildren<unknown>> = ({ children }) => {
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             -webkit-box-align: center;
             align-items: center;
-            color: #0070f3;
-            text-decoration: 'none';
+            color: inherit;
+            text-decoration: none;
           }
 
           a:hover {
-            text-decoration: 'none';
+            text-decoration: none;
           }
 
           button,
