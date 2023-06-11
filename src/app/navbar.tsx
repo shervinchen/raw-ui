@@ -10,7 +10,7 @@ export default function Navbar() {
   const routeName = pathname.split('/')[1];
 
   return (
-    <header className="sticky top-0 w-full bg-white	shadow-[inset_0_-1px_0_0_#eaeaea] z-[1]">
+    <header className="sticky top-0 w-full bg-white	shadow-[inset_0_-1px_0_0_#eaeaea] z-[100]">
       <nav className="flex items-center max-w-[90rem] h-16 py-0 px-6 mx-auto">
         <Link href="/" className="flex items-center gap-2	mr-auto">
           <Image src="/logo.svg" alt="logo" width={24} height={24} />

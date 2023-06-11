@@ -1,5 +1,11 @@
-import { ButtonGroup, Button } from '@/packages';
-import Unit from '@/demo/Unit';
+import {
+  DemoButtonGroupTypes,
+  DemoButtonGroupSizes,
+  DemoButtonGroupVariantOutline,
+  DemoButtonGroupVariantGhost,
+  DemoButtonGroupVertical,
+  DemoButtonGroupDisabled,
+} from '@/demo/button-group';
 
 # ButtonGroup
 
@@ -13,33 +19,7 @@ import { ButtonGroup } from 'raw-ui';
 
 ## Types
 
-<Unit layout="col">
-  <Button.Group>
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-  <Button.Group type="primary">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-  <Button.Group type="success">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-  <Button.Group type="warning">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-  <Button.Group type="error">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-</Unit>
+<DemoButtonGroupTypes />
 
 ```tsx
 <Button.Group>
@@ -71,23 +51,7 @@ import { ButtonGroup } from 'raw-ui';
 
 ## Size
 
-<Unit layout="row">
-  <Button.Group size="sm">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-  <Button.Group size="md">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-  <Button.Group size="lg">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-</Unit>
+<DemoButtonGroupSizes />
 
 ```tsx
 <Button.Group size="sm">
@@ -111,28 +75,7 @@ import { ButtonGroup } from 'raw-ui';
 
 ### Outline
 
-<Unit layout="col">
-  <Button.Group type="primary" variant="outline">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-  <Button.Group type="success" variant="outline">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-  <Button.Group type="warning" variant="outline">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-  <Button.Group type="error" variant="outline">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-</Unit>
+<DemoButtonGroupVariantOutline />
 
 ```tsx
 <Button.Group type="primary" variant="outline">
@@ -159,33 +102,7 @@ import { ButtonGroup } from 'raw-ui';
 
 ### Ghost
 
-<Unit layout="col">
-  <Button.Group variant="ghost">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-  <Button.Group type="primary" variant="ghost">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-  <Button.Group type="success" variant="ghost">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-  <Button.Group type="warning" variant="ghost">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-  <Button.Group type="error" variant="ghost">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-</Unit>
+<DemoButtonGroupVariantGhost />
 
 ```tsx
 <Button.Group variant="ghost">
@@ -217,13 +134,7 @@ import { ButtonGroup } from 'raw-ui';
 
 ## Vertical
 
-<Unit layout="row">
-  <Button.Group vertical>
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-</Unit>
+<DemoButtonGroupVertical />
 
 ```tsx
 <Button.Group vertical>
@@ -235,13 +146,7 @@ import { ButtonGroup } from 'raw-ui';
 
 ## Disabled
 
-<Unit layout="row">
-  <Button.Group disabled>
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-</Unit>
+<DemoButtonGroupDisabled />
 
 ```tsx
 <Button.Group disabled>

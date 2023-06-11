@@ -32,6 +32,14 @@ import {
   DemoButtonVariantOutline,
   DemoButtonVariantShadow,
 } from './button';
+import {
+  DemoButtonGroupDisabled,
+  DemoButtonGroupSizes,
+  DemoButtonGroupTypes,
+  DemoButtonGroupVariantGhost,
+  DemoButtonGroupVariantOutline,
+  DemoButtonGroupVertical,
+} from './button-group';
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
   title,
@@ -142,74 +150,20 @@ function App() {
       </Container>
       <Container title="Button Group">
         <Wrapper title="Types">
-          <Unit layout="row">
-            <Button.Group>
-              <Button>One</Button>
-              <Button>Two</Button>
-              <Button>Three</Button>
-            </Button.Group>
-            <Button.Group type="primary">
-              <Button>One</Button>
-              <Button>Two</Button>
-              <Button>Three</Button>
-            </Button.Group>
-            <Button.Group type="success">
-              <Button>One</Button>
-              <Button>Two</Button>
-              <Button>Three</Button>
-            </Button.Group>
-          </Unit>
+          <DemoButtonGroupTypes />
         </Wrapper>
         <Wrapper title="Variant">
-          <Unit layout="row">
-            <Button.Group type="primary" variant="outline">
-              <Button>One</Button>
-              <Button>Two</Button>
-              <Button>Three</Button>
-            </Button.Group>
-            <Button.Group type="success" variant="outline">
-              <Button>One</Button>
-              <Button>Two</Button>
-              <Button>Three</Button>
-            </Button.Group>
-          </Unit>
+          <DemoButtonGroupVariantOutline title="Outline" />
+          <DemoButtonGroupVariantGhost title="Ghost" />
         </Wrapper>
         <Wrapper title="Size">
-          <Unit layout="row">
-            <Button.Group size="sm">
-              <Button>One</Button>
-              <Button>Two</Button>
-              <Button>Three</Button>
-            </Button.Group>
-            <Button.Group size="md">
-              <Button>One</Button>
-              <Button>Two</Button>
-              <Button>Three</Button>
-            </Button.Group>
-            <Button.Group size="lg">
-              <Button>One</Button>
-              <Button>Two</Button>
-              <Button>Three</Button>
-            </Button.Group>
-          </Unit>
+          <DemoButtonGroupSizes />
         </Wrapper>
         <Wrapper title="Vertical">
-          <Unit layout="row">
-            <Button.Group vertical>
-              <Button>One</Button>
-              <Button>Two</Button>
-              <Button>Three</Button>
-            </Button.Group>
-          </Unit>
+          <DemoButtonGroupVertical />
         </Wrapper>
         <Wrapper title="Disabled">
-          <Unit layout="row">
-            <Button.Group disabled>
-              <Button>One</Button>
-              <Button>Two</Button>
-              <Button>Three</Button>
-            </Button.Group>
-          </Unit>
+          <DemoButtonGroupDisabled />
         </Wrapper>
       </Container>
       <Container title="Input">
