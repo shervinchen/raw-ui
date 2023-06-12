@@ -186,3 +186,17 @@ export function App() {
   );
 }
 ```
+
+## API
+
+| Prop         | Description                  | Type                                                        | Default   |
+| ------------ | ---------------------------- | ----------------------------------------------------------- | --------- |
+| type         | input type                   | 'default' \| 'primary' \| 'success' \| 'warning' \| 'error' | 'default' |
+| size         | input size                   | 'sm' \| 'md' \| 'lg'                                        | 'md'      |
+| width        | input width                  | string                                                      | 'md'      |
+| disabled     | disable input                | boolean                                                     | false     |
+| readOnly     | read only input              | boolean                                                     | false     |
+| defaultValue | default value (uncontrolled) | string                                                      | -         |
+| value        | input value (controlled)     | string                                                      | -         |
+| onChange     | change event handler         | (event: React.ChangeEvent\<HTMLInputElement\>) => void      | -         |
+| ...          | native props                 | React.InputHTMLAttributes                                   | -         |
