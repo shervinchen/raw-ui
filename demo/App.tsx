@@ -51,6 +51,14 @@ import {
   DemoInputTypes,
   DemoInputWidth,
 } from './input';
+import {
+  DemoRadioChecked,
+  DemoRadioControlled,
+  DemoRadioDefault,
+  DemoRadioDisabled,
+  DemoRadioGroup,
+  DemoRadioWithLabel,
+} from './radio';
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
   title,
@@ -80,9 +88,6 @@ const Container: FC<PropsWithChildren<{ title: string }>> = ({
 };
 
 function App() {
-  const [controllableRadioValue, setControllableRadioValue] = useState(false);
-  const [controllableRadioGroupValue, setControllableRadioGroupValue] =
-    useState<RadioValue>('angular');
   const [controllableToggleValue, setControllableToggleValue] = useState(false);
   const [controllableSelectValue, setControllableSelectValue] =
     useState<SelectValue>();
@@ -354,76 +359,22 @@ function App() {
       </Container>
       <Container title="Radio">
         <Wrapper title="Default">
-          <Unit layout="row">
-            <Radio />
-          </Unit>
+          <DemoRadioDefault />
         </Wrapper>
         <Wrapper title="Checked">
-          <Unit layout="row">
-            <Radio defaultChecked />
-          </Unit>
+          <DemoRadioChecked />
         </Wrapper>
         <Wrapper title="With Label">
-          <Unit layout="row">
-            <Radio>Label</Radio>
-          </Unit>
+          <DemoRadioWithLabel />
         </Wrapper>
         <Wrapper title="Controlled">
-          <Unit layout="row">
-            <Radio
-              checked={controllableRadioValue}
-              onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                setControllableRadioValue(event.target.checked);
-              }}
-            >
-              Controlled
-            </Radio>
-          </Unit>
+          <DemoRadioControlled />
         </Wrapper>
         <Wrapper title="Disabled">
-          <Unit layout="row">
-            <Radio disabled>Disabled</Radio>
-            <Radio defaultChecked disabled>
-              Disabled
-            </Radio>
-          </Unit>
+          <DemoRadioDisabled />
         </Wrapper>
         <Wrapper title="Group">
-          <Unit layout="col">
-            <Radio.Group defaultValue="vue">
-              {optionsData.map((item) => (
-                <Radio value={item.value} key={item.value}>
-                  {item.name}
-                </Radio>
-              ))}
-            </Radio.Group>
-            <Radio.Group
-              value={controllableRadioGroupValue}
-              onChange={(groupValue) => {
-                setControllableRadioGroupValue(groupValue);
-              }}
-            >
-              {optionsData.map((item) => (
-                <Radio value={item.value} key={item.value}>
-                  {item.name}
-                </Radio>
-              ))}
-            </Radio.Group>
-            <Radio.Group defaultValue="svelte" disabled>
-              {optionsData.map((item) => (
-                <Radio value={item.value} key={item.value}>
-                  {item.name}
-                </Radio>
-              ))}
-            </Radio.Group>
-            <Radio.Group defaultValue="vue" layout="column">
-              {optionsData.map((item) => (
-                <Radio value={item.value} key={item.value}>
-                  {item.name}
-                </Radio>
-              ))}
-            </Radio.Group>
-          </Unit>
+          <DemoRadioGroup />
         </Wrapper>
       </Container>
       <Container title="Toggle">

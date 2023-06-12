@@ -1,0 +1,163 @@
+import {
+  DemoRadioDefault,
+  DemoRadioChecked,
+  DemoRadioWithLabel,
+  DemoRadioDisabled,
+  DemoRadioGroup,
+} from '@/demo/radio';
+
+# Radio
+
+Provides single user input from a selection of options.
+
+## Import
+
+```tsx
+import { Radio } from 'raw-ui';
+```
+
+## Default
+
+<DemoRadioDefault />
+
+```tsx
+<Radio />
+```
+
+## Checked
+
+<DemoRadioChecked />
+
+```tsx
+<Radio defaultChecked />
+```
+
+## With Label
+
+<DemoRadioWithLabel />
+
+```tsx
+<Radio>Label</Radio>
+```
+
+## Controlled
+
+```tsx
+export function App() {
+  const [value, setValue] = useState(false);
+
+  return (
+    <Unit layout="row">
+      <Radio
+        checked={value}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          setValue(event.target.checked);
+        }}
+      >
+        Controlled
+      </Radio>
+    </Unit>
+  );
+}
+```
+
+## Disabled
+
+<DemoRadioDisabled />
+
+```tsx
+<Radio disabled>Disabled</Radio>
+<Radio defaultChecked disabled>
+  Disabled
+</Radio>
+```
+
+## Group
+
+<DemoRadioGroup />
+
+```tsx
+const optionsData = [
+  {
+    name: 'React',
+    value: 'react',
+  },
+  {
+    name: 'Vue',
+    value: 'vue',
+  },
+  {
+    name: 'Angular',
+    value: 'angular',
+  },
+  {
+    name: 'Svelte',
+    value: 'svelte',
+  },
+];
+
+export function App() {
+  const [radioGroupValue, setRadioGroupValue] = useState<RadioValue>('angular');
+
+  return (
+    <>
+      <Radio.Group defaultValue="vue">
+        {optionsData.map((item) => (
+          <Radio value={item.value} key={item.value}>
+            {item.name}
+          </Radio>
+        ))}
+      </Radio.Group>
+      <Radio.Group
+        value={radioGroupValue}
+        onChange={(groupValue) => {
+          setRadioGroupValue(groupValue);
+        }}
+      >
+        {optionsData.map((item) => (
+          <Radio value={item.value} key={item.value}>
+            {item.name}
+          </Radio>
+        ))}
+      </Radio.Group>
+      <Radio.Group defaultValue="svelte" disabled>
+        {optionsData.map((item) => (
+          <Radio value={item.value} key={item.value}>
+            {item.name}
+          </Radio>
+        ))}
+      </Radio.Group>
+      <Radio.Group defaultValue="vue" layout="column">
+        {optionsData.map((item) => (
+          <Radio value={item.value} key={item.value}>
+            {item.name}
+          </Radio>
+        ))}
+      </Radio.Group>
+    </>
+  );
+}
+```
+
+## API
+
+### Radio
+
+| Prop           | Description                   | Type                                                   | Default |
+| -------------- | ----------------------------- | ------------------------------------------------------ | ------- |
+| defaultChecked | selected or not (in single)   | boolean                                                | false   |
+| value          | unique ident value (in group) | string \| number                                       | -       |
+| disabled       | disable current radio         | boolean                                                | false   |
+| onChange       | change event                  | (event: React.ChangeEvent\<HTMLInputElement\>) => void | -       |
+| ...            | native props                  | React.InputHTMLAttributes                              | -       |
+
+### Radio.Group
+
+| Prop         | Description                       | Type                              | Default |
+| ------------ | --------------------------------- | --------------------------------- | ------- |
+| defaultValue | default value (uncontrolled)      | string \| number                  | -       |
+| value        | selected child radio (controlled) | string \| number                  | -       |
+| disabled     | disable all radios                | boolean                           | false   |
+| layout       | vertical layout                   | boolean                           | false   |
+| onChange     | change event                      | (value: string \| number) => void | -       |
+| ...          | native props                      | React.HTMLAttributes              | -       |
