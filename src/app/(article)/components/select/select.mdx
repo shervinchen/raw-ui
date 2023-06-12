@@ -174,16 +174,17 @@ const optionsData = [
 
 ### Select
 
-| Prop         | Description                           | Type                                                           | Default |
-| ------------ | ------------------------------------- | -------------------------------------------------------------- | ------- |
-| defaultValue | default selected value (uncontrolled) | string \| number \| Array\<string \| number\>                  | -       |
-| value        | selected value (controlled)           | string \| number \| Array\<string \| number\>                  | -       |
-| placeholder  | select placeholder                    | string                                                         | -       |
-| width        | select width                          | string                                                         | '100%'  |
-| disabled     | disable select                        | boolean                                                        | false   |
-| multiple     | support multiple selection            | boolean                                                        | false   |
-| onChange     | change event handler                  | (value: string \| number \| Array\<string \| number\>) => void | -       |
-| ...          | native props                          | React.HTMLAttributes                                           | -       |
+| Prop              | Description                                  | Type                         | Default |
+| ----------------- | -------------------------------------------- | ---------------------------- | ------- |
+| defaultValue      | default selected value (uncontrolled)        | SelectValue                  | -       |
+| value             | selected value (controlled)                  | SelectValue                  | -       |
+| placeholder       | select placeholder                           | string                       | -       |
+| width             | select width                                 | string                       | '100%'  |
+| disabled          | disable select                               | boolean                      | false   |
+| multiple          | support multiple selection                   | boolean                      | false   |
+| onChange          | change event handler                         | (value: SelectValue) => void | -       |
+| getPopupContainer | set the parent element of dropdown rendering | () => HTMLElement \| null    | -       |
+| ...               | native props                                 | React.HTMLAttributes         | -       |
 
 ### Select.Option
 
@@ -192,3 +193,21 @@ const optionsData = [
 | value    | unique identification value | string \| number     | -       |
 | disabled | disable current option      | boolean              | false   |
 | ...      | native props                | React.HTMLAttributes | -       |
+
+## Type
+
+```tsx
+import { SelectOptionValue, SelectValue } from 'raw-ui';
+```
+
+### SelectOptionValue
+
+```tsx
+type SelectOptionValue = string | number | undefined;
+```
+
+### SelectValue
+
+```tsx
+type SelectValue = SelectOptionValue | SelectOptionValue[] | undefined;
+```
