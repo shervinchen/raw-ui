@@ -75,7 +75,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
       disabled = false,
       multiple = false,
       // clearable = false,
-      // placeholder = "",
+      placeholder = 'Select option',
       className = '',
       dropdownClassName = '',
       dropdownHeight = 'none',
@@ -176,7 +176,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
 
     const SelectContent = (): ReactElement => {
       if (internalValue === undefined)
-        return <span className="raw-select-placeholder">Select option</span>;
+        return <span className="raw-select-placeholder">{placeholder}</span>;
 
       const selectedOptions = getValidChildren(children).filter((option) => {
         if (Array.isArray(internalValue)) {
@@ -192,7 +192,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
 
       if (selectedOptions.length === 0) {
         if (isEmptyValue) {
-          return <span className="raw-select-placeholder">Select option</span>;
+          return <span className="raw-select-placeholder">{placeholder}</span>;
         } else {
           return <span className="raw-select-content"></span>;
         }

@@ -59,6 +59,15 @@ import {
   DemoRadioGroup,
   DemoRadioWithLabel,
 } from './radio';
+import {
+  DemoSelectControlled,
+  DemoSelectDefault,
+  DemoSelectDisabled,
+  DemoSelectDisabledOption,
+  DemoSelectMultiple,
+  DemoSelectSelected,
+  DemoSelectSetParentElement,
+} from './select';
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
   title,
@@ -89,27 +98,6 @@ const Container: FC<PropsWithChildren<{ title: string }>> = ({
 
 function App() {
   const [controllableToggleValue, setControllableToggleValue] = useState(false);
-  const [controllableSelectValue, setControllableSelectValue] =
-    useState<SelectValue>();
-
-  const optionsData = [
-    {
-      name: 'React',
-      value: 'react',
-    },
-    {
-      name: 'Vue',
-      value: 'vue',
-    },
-    {
-      name: 'Angular',
-      value: 'angular',
-    },
-    {
-      name: 'Svelte',
-      value: 'svelte',
-    },
-  ];
 
   return (
     <div>
@@ -216,119 +204,25 @@ function App() {
       </Container>
       <Container title="Select">
         <Wrapper title="Default">
-          <Unit layout="row">
-            <Select width="200px" placeholder="Select option">
-              <Select.Option value="1">Option 1</Select.Option>
-              <Select.Option value="2">Option 2</Select.Option>
-            </Select>
-          </Unit>
+          <DemoSelectDefault />
         </Wrapper>
         <Wrapper title="Selected">
-          <Unit layout="row">
-            <Select
-              width="200px"
-              placeholder="Select option"
-              defaultValue={'1'}
-            >
-              <Select.Option value="1">Option 1</Select.Option>
-              <Select.Option value="2">Option 2</Select.Option>
-            </Select>
-          </Unit>
+          <DemoSelectSelected />
         </Wrapper>
         <Wrapper title="Controlled">
-          <Unit layout="row">
-            <Select
-              width="200px"
-              placeholder="Select option"
-              value={controllableSelectValue}
-              onChange={(value) => {
-                setControllableSelectValue(value);
-              }}
-            >
-              <Select.Option value="1">Option 1</Select.Option>
-              <Select.Option value="2">Option 2</Select.Option>
-            </Select>
-          </Unit>
+          <DemoSelectControlled />
         </Wrapper>
         <Wrapper title="Multiple">
-          <Unit layout="row">
-            <Select
-              width="200px"
-              placeholder="Select option"
-              multiple
-              defaultValue={['react', 'vue']}
-            >
-              {optionsData.map((item) => (
-                <Select.Option value={item.value} key={item.value}>
-                  {item.name}
-                </Select.Option>
-              ))}
-            </Select>
-          </Unit>
+          <DemoSelectMultiple />
         </Wrapper>
         <Wrapper title="Disabled Select">
-          <Unit layout="row">
-            <Select width="200px" placeholder="Select option" disabled>
-              <Select.Option value="1">Option 1</Select.Option>
-              <Select.Option value="2">Option 2</Select.Option>
-            </Select>
-            <Select
-              width="200px"
-              placeholder="Select option"
-              disabled
-              multiple
-              defaultValue={['react', 'vue']}
-            >
-              {optionsData.map((item) => (
-                <Select.Option value={item.value} key={item.value}>
-                  {item.name}
-                </Select.Option>
-              ))}
-            </Select>
-          </Unit>
+          <DemoSelectDisabled />
         </Wrapper>
         <Wrapper title="Disabled Option">
-          <Unit layout="row">
-            <Select width="200px" placeholder="Select option">
-              <Select.Option value="1" disabled>
-                Option 1
-              </Select.Option>
-              <Select.Option value="2">Option 2</Select.Option>
-            </Select>
-          </Unit>
+          <DemoSelectDisabledOption />
         </Wrapper>
         <Wrapper title="Set Parent Element">
-          <Unit layout="row">
-            <div
-              id="parentElement"
-              style={{
-                position: 'relative',
-                overflowY: 'auto',
-                width: '400px',
-                height: '200px',
-              }}
-            >
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  height: '400px',
-                }}
-              >
-                <Select
-                  width="200px"
-                  placeholder="Select option"
-                  getPopupContainer={() =>
-                    document.querySelector('#parentElement')
-                  }
-                >
-                  <Select.Option value="1">Option 1</Select.Option>
-                  <Select.Option value="2">Option 2</Select.Option>
-                </Select>
-              </div>
-            </div>
-          </Unit>
+          <DemoSelectSetParentElement />
         </Wrapper>
       </Container>
       <Container title="Checkbox">

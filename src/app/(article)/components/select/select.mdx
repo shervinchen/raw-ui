@@ -1,0 +1,194 @@
+import {
+  DemoSelectDefault,
+  DemoSelectSelected,
+  DemoSelectMultiple,
+  DemoSelectDisabled,
+  DemoSelectDisabledOption,
+  DemoSelectSetParentElement,
+} from '@/demo/select';
+
+# Select
+
+Display a dropdown list of items.
+
+## Import
+
+```tsx
+import { Select } from 'raw-ui';
+```
+
+## Default
+
+<DemoSelectDefault />
+
+```tsx
+<Select width="200px" placeholder="Select option">
+  <Select.Option value="1">Option 1</Select.Option>
+  <Select.Option value="2">Option 2</Select.Option>
+</Select>
+```
+
+## Selected
+
+<DemoSelectSelected />
+
+```tsx
+<Select width="200px" placeholder="Select option" defaultValue="1">
+  <Select.Option value="1">Option 1</Select.Option>
+  <Select.Option value="2">Option 2</Select.Option>
+</Select>
+```
+
+## Controlled
+
+```tsx
+export function App() {
+  const [selectValue, setSelectValue] = useState<SelectValue>();
+
+  return (
+    <Select
+      width="200px"
+      placeholder="Select option"
+      value={selectValue}
+      onChange={(value) => {
+        setSelectValue(value);
+      }}
+    >
+      <Select.Option value="1">Option 1</Select.Option>
+      <Select.Option value="2">Option 2</Select.Option>
+    </Select>
+  );
+}
+```
+
+## Multiple
+
+<DemoSelectMultiple />
+
+```tsx
+const optionsData = [
+  {
+    name: 'React',
+    value: 'react',
+  },
+  {
+    name: 'Vue',
+    value: 'vue',
+  },
+  {
+    name: 'Angular',
+    value: 'angular',
+  },
+  {
+    name: 'Svelte',
+    value: 'svelte',
+  },
+];
+
+<Select
+  width="200px"
+  placeholder="Select option"
+  multiple
+  defaultValue={['react', 'vue']}
+>
+  {optionsData.map((item) => (
+    <Select.Option value={item.value} key={item.value}>
+      {item.name}
+    </Select.Option>
+  ))}
+</Select>;
+```
+
+## Disabled Select
+
+<DemoSelectDisabled />
+
+```tsx
+<Select width="200px" placeholder="Select option" disabled>
+  <Select.Option value="1">Option 1</Select.Option>
+  <Select.Option value="2">Option 2</Select.Option>
+</Select>
+<Select
+  width="200px"
+  placeholder="Select option"
+  disabled
+  multiple
+  defaultValue={['react', 'vue']}
+>
+  {optionsData.map((item) => (
+    <Select.Option value={item.value} key={item.value}>
+      {item.name}
+    </Select.Option>
+  ))}
+</Select>
+```
+
+## Disabled Option
+
+<DemoSelectDisabledOption />
+
+```tsx
+<Select width="200px" placeholder="Select option">
+  <Select.Option value="1" disabled>
+    Option 1
+  </Select.Option>
+  <Select.Option value="2">Option 2</Select.Option>
+</Select>
+```
+
+## Set Parent Element
+
+<DemoSelectSetParentElement />
+
+```tsx
+<div
+  id="parentElement"
+  style={{
+    position: 'relative',
+    overflowY: 'auto',
+    width: '400px',
+    height: '200px',
+  }}
+>
+  <div
+    style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '400px',
+    }}
+  >
+    <Select
+      width="200px"
+      placeholder="Select option"
+      getPopupContainer={() => document.querySelector('#parentElement')}
+    >
+      <Select.Option value="1">Option 1</Select.Option>
+      <Select.Option value="2">Option 2</Select.Option>
+    </Select>
+  </div>
+</div>
+```
+
+## API
+
+### Select
+
+| Prop         | Description                           | Type                                                           | Default |
+| ------------ | ------------------------------------- | -------------------------------------------------------------- | ------- |
+| defaultValue | default selected value (uncontrolled) | string \| number \| Array\<string \| number\>                  | -       |
+| value        | selected value (controlled)           | string \| number \| Array\<string \| number\>                  | -       |
+| placeholder  | select placeholder                    | string                                                         | -       |
+| width        | select width                          | string                                                         | '100%'  |
+| disabled     | disable select                        | boolean                                                        | false   |
+| multiple     | support multiple selection            | boolean                                                        | false   |
+| onChange     | change event handler                  | (value: string \| number \| Array\<string \| number\>) => void | -       |
+| ...          | native props                          | React.HTMLAttributes                                           | -       |
+
+### Select.Option
+
+| Prop     | Description                 | Type                 | Default |
+| -------- | --------------------------- | -------------------- | ------- |
+| value    | unique identification value | string \| number     | -       |
+| disabled | disable current option      | boolean              | false   |
+| ...      | native props                | React.HTMLAttributes | -       |
