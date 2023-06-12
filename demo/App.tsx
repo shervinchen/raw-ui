@@ -1,13 +1,5 @@
 import React, { FC, PropsWithChildren, ChangeEvent, useState } from 'react';
-import {
-  Loading,
-  Input,
-  Radio,
-  RadioValue,
-  Toggle,
-  Select,
-  SelectValue,
-} from '../packages';
+import { Loading } from '../packages';
 import Unit from './Unit';
 import Wrapper from './Wrapper';
 import {
@@ -68,6 +60,12 @@ import {
   DemoSelectSelected,
   DemoSelectSetParentElement,
 } from './select';
+import {
+  DemoToggleChecked,
+  DemoToggleControlled,
+  DemoToggleDefault,
+  DemoToggleDisabled,
+} from './toggle';
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
   title,
@@ -97,8 +95,6 @@ const Container: FC<PropsWithChildren<{ title: string }>> = ({
 };
 
 function App() {
-  const [controllableToggleValue, setControllableToggleValue] = useState(false);
-
   return (
     <div>
       <Container title="Button">
@@ -273,30 +269,16 @@ function App() {
       </Container>
       <Container title="Toggle">
         <Wrapper title="Default">
-          <Unit layout="row">
-            <Toggle />
-          </Unit>
+          <DemoToggleDefault />
         </Wrapper>
         <Wrapper title="Checked">
-          <Unit layout="row">
-            <Toggle defaultChecked />
-          </Unit>
+          <DemoToggleChecked />
         </Wrapper>
         <Wrapper title="Controlled">
-          <Unit layout="row">
-            <Toggle
-              checked={controllableToggleValue}
-              onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                setControllableToggleValue(event.target.checked);
-              }}
-            />
-          </Unit>
+          <DemoToggleControlled />
         </Wrapper>
         <Wrapper title="Disabled">
-          <Unit layout="row">
-            <Toggle disabled />
-            <Toggle defaultChecked disabled />
-          </Unit>
+          <DemoToggleDisabled />
         </Wrapper>
       </Container>
     </div>

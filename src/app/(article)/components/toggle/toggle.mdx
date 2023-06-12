@@ -1,0 +1,68 @@
+import {
+  DemoToggleDefault,
+  DemoToggleChecked,
+  DemoToggleControlled,
+  DemoToggleDisabled,
+} from '@/demo/toggle';
+
+# Toggle
+
+Displays a boolean value.
+
+## Import
+
+```tsx
+import { Toggle } from 'raw-ui';
+```
+
+## Default
+
+<DemoToggleDefault />
+
+```tsx
+<Toggle />
+```
+
+## Checked
+
+<DemoToggleChecked />
+
+```tsx
+<Toggle defaultChecked />
+```
+
+## Controlled
+
+```tsx
+export function App() {
+  const [value, setValue] = useState(false);
+
+  return (
+    <Toggle
+      checked={value}
+      onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+        setValue(event.target.checked);
+      }}
+    />
+  );
+}
+```
+
+## Disabled
+
+<DemoToggleDisabled />
+
+```tsx
+<Toggle disabled />
+<Toggle defaultChecked disabled />
+```
+
+## API
+
+| Prop           | Description                              | Type                                                   | Default |
+| -------------- | ---------------------------------------- | ------------------------------------------------------ | ------- |
+| defaultChecked | checked or not by default (uncontrolled) | boolean                                                | false   |
+| checked        | checked or not (controlled)              | boolean                                                | false   |
+| disabled       | disable toggle                           | boolean                                                | false   |
+| onChange       | change event handler                     | (event: React.ChangeEvent\<HTMLInputElement\>) => void | -       |
+| ...            | native props                             | React.LabelHTMLAttributes                              | -       |
