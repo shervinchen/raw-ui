@@ -212,3 +212,28 @@ export default function App() {
   );
 }
 ```
+
+## API
+
+### Checkbox
+
+| Prop           | Description                                 | Type                                                   | Default |
+| -------------- | ------------------------------------------- | ------------------------------------------------------ | ------- |
+| defaultChecked | checked or not by default                   | boolean                                                | false   |
+| checked        | checked or not                              | boolean                                                | false   |
+| value          | unique identification value (only in group) | string \| number                                       | -       |
+| indeterminate  | Partially checked                           | boolean                                                | false   |
+| disabled       | disable current checkbox                    | boolean                                                | false   |
+| onChange       | change event handler                        | (event: React.ChangeEvent\<HTMLInputElement\>) => void | -       |
+| ...            | native props                                | React.LabelHTMLAttributes                              | -       |
+
+### CheckboxGroup
+
+| Prop         | Description                          | Type                                       | Default |
+| ------------ | ------------------------------------ | ------------------------------------------ | ------- |
+| defaultValue | default checked items (uncontrolled) | Array\<string \| number\>                  | -       |
+| value        | checked items (controlled)           | Array\<string \| number\>                  | -       |
+| disabled     | disable all items                    | boolean                                    | false   |
+| layout       | vertical layout                      | 'row' \| 'column'                          | 'row'   |
+| onChange     | change event handler                 | (value: Array\<string \| number\>) => void | -       |
+| ...          | native props                         | React.HTMLAttributes                       | -       |

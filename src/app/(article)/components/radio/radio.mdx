@@ -143,21 +143,22 @@ export function App() {
 
 ### Radio
 
-| Prop           | Description                   | Type                                                   | Default |
-| -------------- | ----------------------------- | ------------------------------------------------------ | ------- |
-| defaultChecked | selected or not (in single)   | boolean                                                | false   |
-| value          | unique ident value (in group) | string \| number                                       | -       |
-| disabled       | disable current radio         | boolean                                                | false   |
-| onChange       | change event                  | (event: React.ChangeEvent\<HTMLInputElement\>) => void | -       |
-| ...            | native props                  | React.InputHTMLAttributes                              | -       |
+| Prop           | Description                                 | Type                                                   | Default |
+| -------------- | ------------------------------------------- | ------------------------------------------------------ | ------- |
+| defaultChecked | selected or not by default (in single)      | boolean                                                | false   |
+| checked        | selected or not (in single)                 | boolean                                                | false   |
+| value          | unique identification value (only in group) | string \| number                                       | -       |
+| disabled       | disable current radio                       | boolean                                                | false   |
+| onChange       | change event handler                        | (event: React.ChangeEvent\<HTMLInputElement\>) => void | -       |
+| ...            | native props                                | React.InputHTMLAttributes                              | -       |
 
 ### Radio.Group
 
-| Prop         | Description                       | Type                              | Default |
-| ------------ | --------------------------------- | --------------------------------- | ------- |
-| defaultValue | default value (uncontrolled)      | string \| number                  | -       |
-| value        | selected child radio (controlled) | string \| number                  | -       |
-| disabled     | disable all radios                | boolean                           | false   |
-| layout       | vertical layout                   | boolean                           | false   |
-| onChange     | change event                      | (value: string \| number) => void | -       |
-| ...          | native props                      | React.HTMLAttributes              | -       |
+| Prop         | Description                           | Type                                       | Default |
+| ------------ | ------------------------------------- | ------------------------------------------ | ------- |
+| defaultValue | default selected items (uncontrolled) | Array\<string \| number\>                  | -       |
+| value        | selected items (controlled)           | Array\<string \| number\>                  | -       |
+| disabled     | disable all items                     | boolean                                    | false   |
+| layout       | vertical layout                       | 'row' \| 'column'                          | 'row'   |
+| onChange     | change event handler                  | (value: Array\<string \| number\>) => void | -       |
+| ...          | native props                          | React.HTMLAttributes                       | -       |
