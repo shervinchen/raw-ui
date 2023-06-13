@@ -1,0 +1,54 @@
+import {
+  DemoLoadingTypes,
+  DemoLoadingSizes,
+  DemoLoadingText,
+} from '@/demo/loading';
+
+# Loading
+
+Indicate an action running in the background.
+
+## Import
+
+```tsx
+import { Loading } from 'raw-ui';
+```
+
+## Types
+
+<DemoLoadingTypes />
+
+```tsx
+<Loading />
+<Loading type="spin" />
+```
+
+## Sizes
+
+<DemoLoadingSizes />
+
+```tsx
+<Loading size={4} />
+<Loading size={6} />
+<Loading size={8} />
+<Loading type="spin" size={16} />
+<Loading type="spin" size={20} />
+<Loading type="spin" size={32} />
+```
+
+## With Text
+
+<DemoLoadingText />
+
+```tsx
+<Loading>Loading</Loading>
+<Loading type="spin">Loading</Loading>
+```
+
+## API
+
+| Prop | Description  | Type                 | Default                                |
+| ---- | ------------ | -------------------- | -------------------------------------- |
+| type | loading type | 'spin' \| 'dot'      | 'dot'                                  |
+| size | input size   | number               | 4 (type = 'dot') \| 20 (type = 'spin') |
+| ...  | native props | React.HTMLAttributes | -                                      |
