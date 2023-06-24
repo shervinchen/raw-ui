@@ -2,7 +2,7 @@
 
 import StyledJsxRegistry from './registry';
 import './global.css';
-import Navbar from './navbar';
+import Navbar from './components/navbar';
 import { RawUIProvider } from '@/packages';
 
 export default function RootLayout({

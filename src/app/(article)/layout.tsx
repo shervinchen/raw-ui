@@ -1,7 +1,7 @@
 'use client';
 
-import Sidebar from '../sidebar';
-import Toc from '../toc';
+import Sidebar from '../components/sidebar';
+import Toc from '../components/toc';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
