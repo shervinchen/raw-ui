@@ -11,7 +11,7 @@ export default function Sidebar() {
   ).children;
 
   return (
-    <aside className="hidden sticky top-16 md:flex flex-col gap-4 w-[200px] h-[calc(100vh-64px)] overflow-y-auto overflow-x-hidden py-4 sidebar-scrollbar">
+    <aside className="hidden sticky top-16 md:flex flex-col gap-4 w-[200px] h-[calc(100vh-64px)] overflow-y-auto overflow-x-hidden py-4 scrollbar">
       {sidebarData.map((section) => (
         <div key={section.name}>
           <span className="text-sm text-[#888]">{section.name}</span>

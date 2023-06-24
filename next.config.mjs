@@ -1,7 +1,8 @@
 import nextMDX from '@next/mdx';
 import remarkGfm from 'remark-gfm';
-import rehypePrettyCode from 'rehype-pretty-code'
-import fs from 'fs'
+import rehypePrettyCode from 'rehype-pretty-code';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 const options = {
   // Use one of Shiki's packaged themes
@@ -20,7 +21,7 @@ const options = {
     // Prevent lines from collapsing in `display: grid` mode, and
     // allow empty lines to be copy/pasted
     if (node.children.length === 0) {
-      node.children = [{type: 'text', value: ' '}];
+      node.children = [{ type: 'text', value: ' ' }];
     }
   },
   onVisitHighlightedLine(node) {
@@ -44,7 +45,19 @@ const withMDX = nextMDX({
   extension: /\.mdx?$/,
   options: {
     remarkPlugins: [remarkGfm],
-    rehypePlugins: [[rehypePrettyCode, options]],
+    rehypePlugins: [
+      [rehypePrettyCode, options],
+      rehypeSlug,
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: 'append',
+          properties: {
+            className: ['anchor'],
+          },
+        },
+      ],
+    ],
     // If you use `MDXProvider`, uncomment the following line.
     // providerImportSource: "@mdx-js/react",
   },
