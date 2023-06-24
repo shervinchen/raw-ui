@@ -17,11 +17,6 @@ interface Heading {
   items?: Heading[];
 }
 
-type HeadingElement = {
-  target: Element;
-  isIntersecting: boolean;
-};
-
 const getNestedHeadings = (
   headingElements: HTMLHeadingElement[]
 ): Heading[] => {
@@ -114,17 +109,19 @@ const useIntersectionObserver = (
   setActiveId: Dispatch<SetStateAction<string>>
 ) => {
   const headingElementsRef: MutableRefObject<{
-    [key: string]: HeadingElement;
+    [key: string]: IntersectionObserverEntry;
   }> = useRef({});
 
   useEffect(() => {
-    const callback: IntersectionObserverCallback = (headings) => {
+    const callback: IntersectionObserverCallback = (
+      headings: IntersectionObserverEntry[]
+    ) => {
       headingElementsRef.current = headings.reduce((map, headingElement) => {
-        map[headingElement.target.id] = headingElement as HeadingElement;
+        map[headingElement.target.id] = headingElement;
         return map;
       }, headingElementsRef.current);
 
-      const visibleHeadings: HeadingElement[] = [];
+      const visibleHeadings: IntersectionObserverEntry[] = [];
       Object.keys(headingElementsRef.current).forEach((key) => {
         const headingElement = headingElementsRef.current[key];
         if (headingElement.isIntersecting) visibleHeadings.push(headingElement);
