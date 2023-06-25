@@ -9,6 +9,7 @@ import {
   useState,
 } from 'react';
 import classNames from 'classnames';
+import { usePathname } from 'next/navigation';
 
 interface Heading {
   id: string;
@@ -50,7 +51,7 @@ const getNestedHeadings = (
   return headings;
 };
 
-const useHeadingsData = () => {
+const useHeadingsData = (pathname: string) => {
   const [nestedHeadings, setNestedHeadings] = useState<Heading[]>([]);
 
   useEffect(() => {
@@ -60,7 +61,7 @@ const useHeadingsData = () => {
 
     const newNestedHeadings = getNestedHeadings(headingElements);
     setNestedHeadings(newNestedHeadings);
-  }, []);
+  }, [pathname]);
 
   return { nestedHeadings };
 };
@@ -106,7 +107,8 @@ const Headings = ({
 );
 
 const useIntersectionObserver = (
-  setActiveId: Dispatch<SetStateAction<string>>
+  setActiveId: Dispatch<SetStateAction<string>>,
+  pathname: string
 ) => {
   const headingElementsRef: MutableRefObject<{
     [key: string]: IntersectionObserverEntry;
@@ -151,14 +153,15 @@ const useIntersectionObserver = (
     headingElements.forEach((element) => observer.observe(element));
 
     return () => observer.disconnect();
-  }, [setActiveId]);
+  }, [setActiveId, pathname]);
 };
 
 export default function Toc() {
+  const pathname = usePathname();
   const [activeId, setActiveId] = useState();
-  const { nestedHeadings } = useHeadingsData();
+  const { nestedHeadings } = useHeadingsData(pathname);
 
-  useIntersectionObserver(setActiveId);
+  useIntersectionObserver(setActiveId, pathname);
 
   return (
     <nav
