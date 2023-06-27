@@ -1,11 +1,6 @@
-import {
-  DemoButtonGroupTypes,
-  DemoButtonGroupSizes,
-  DemoButtonGroupVariantOutline,
-  DemoButtonGroupVariantGhost,
-  DemoButtonGroupVertical,
-  DemoButtonGroupDisabled,
-} from '@/demo/button-group';
+import Unit from '@/demo/Unit';
+import { ButtonGroup } from '@/packages';
+import Playground from '@/src/app/components/playground';
 
 # ButtonGroup
 
@@ -19,142 +14,160 @@ import { ButtonGroup } from 'raw-ui';
 
 ## Types
 
-<DemoButtonGroupTypes />
-
-```tsx
-<Button.Group>
-  <Button>One</Button>
-  <Button>Two</Button>
-  <Button>Three</Button>
-</Button.Group>
-<Button.Group type="primary">
-  <Button>One</Button>
-  <Button>Two</Button>
-  <Button>Three</Button>
-</Button.Group>
-<Button.Group type="success">
-  <Button>One</Button>
-  <Button>Two</Button>
-  <Button>Three</Button>
-</Button.Group>
-<Button.Group type="warning">
-  <Button>One</Button>
-  <Button>Two</Button>
-  <Button>Three</Button>
-</Button.Group>
-<Button.Group type="error">
-  <Button>One</Button>
-  <Button>Two</Button>
-  <Button>Three</Button>
-</Button.Group>
-```
+<Playground
+  scope={{ Unit, ButtonGroup }}
+  code={`
+<Unit layout="col">
+  <Button.Group>
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+  <Button.Group type="primary">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+  <Button.Group type="success">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+  <Button.Group type="warning">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+  <Button.Group type="error">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+</Unit>
+`}
+/>
 
 ## Size
 
-<DemoButtonGroupSizes />
-
-```tsx
-<Button.Group size="sm">
-  <Button>One</Button>
-  <Button>Two</Button>
-  <Button>Three</Button>
-</Button.Group>
-<Button.Group size="md">
-  <Button>One</Button>
-  <Button>Two</Button>
-  <Button>Three</Button>
-</Button.Group>
-<Button.Group size="lg">
-  <Button>One</Button>
-  <Button>Two</Button>
-  <Button>Three</Button>
-</Button.Group>
-```
+<Playground
+  scope={{ Unit, ButtonGroup }}
+  code={`
+<Unit layout="row">
+  <Button.Group size="sm">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+  <Button.Group size="md">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+  <Button.Group size="lg">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+</Unit>
+`}
+/>
 
 ## Variant
 
 ### Outline
 
-<DemoButtonGroupVariantOutline />
-
-```tsx
-<Button.Group type="primary" variant="outline">
-  <Button>One</Button>
-  <Button>Two</Button>
-  <Button>Three</Button>
-</Button.Group>
-<Button.Group type="success" variant="outline">
-  <Button>One</Button>
-  <Button>Two</Button>
-  <Button>Three</Button>
-</Button.Group>
-<Button.Group type="warning" variant="outline">
-  <Button>One</Button>
-  <Button>Two</Button>
-  <Button>Three</Button>
-</Button.Group>
-<Button.Group type="error" variant="outline">
-  <Button>One</Button>
-  <Button>Two</Button>
-  <Button>Three</Button>
-</Button.Group>
-```
+<Playground
+  scope={{ Unit, ButtonGroup }}
+  code={`
+<Unit layout="col">
+  <Button.Group type="primary" variant="outline">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+  <Button.Group type="success" variant="outline">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+  <Button.Group type="warning" variant="outline">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+  <Button.Group type="error" variant="outline">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+</Unit>
+`}
+/>
 
 ### Ghost
 
-<DemoButtonGroupVariantGhost />
-
-```tsx
-<Button.Group variant="ghost">
-  <Button>One</Button>
-  <Button>Two</Button>
-  <Button>Three</Button>
-</Button.Group>
-<Button.Group type="primary" variant="ghost">
-  <Button>One</Button>
-  <Button>Two</Button>
-  <Button>Three</Button>
-</Button.Group>
-<Button.Group type="success" variant="ghost">
-  <Button>One</Button>
-  <Button>Two</Button>
-  <Button>Three</Button>
-</Button.Group>
-<Button.Group type="warning" variant="ghost">
-  <Button>One</Button>
-  <Button>Two</Button>
-  <Button>Three</Button>
-</Button.Group>
-<Button.Group type="error" variant="ghost">
-  <Button>One</Button>
-  <Button>Two</Button>
-  <Button>Three</Button>
-</Button.Group>
-```
+<Playground
+  scope={{ Unit, ButtonGroup }}
+  code={`
+<Unit layout="col">
+  <Button.Group variant="ghost">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+  <Button.Group type="primary" variant="ghost">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+  <Button.Group type="success" variant="ghost">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+  <Button.Group type="warning" variant="ghost">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+  <Button.Group type="error" variant="ghost">
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+</Unit>
+`}
+/>
 
 ## Vertical
 
-<DemoButtonGroupVertical />
-
-```tsx
-<Button.Group vertical>
-  <Button>One</Button>
-  <Button>Two</Button>
-  <Button>Three</Button>
-</Button.Group>
-```
+<Playground
+  scope={{ Unit, ButtonGroup }}
+  code={`
+<Unit layout="row">
+  <Button.Group vertical>
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+</Unit>
+`}
+/>
 
 ## Disabled
 
-<DemoButtonGroupDisabled />
-
-```tsx
-<Button.Group disabled>
-  <Button>One</Button>
-  <Button>Two</Button>
-  <Button>Three</Button>
-</Button.Group>
-```
+<Playground
+  scope={{ Unit, ButtonGroup }}
+  code={`
+<Unit layout="row">
+  <Button.Group disabled>
+    <Button>One</Button>
+    <Button>Two</Button>
+    <Button>Three</Button>
+  </Button.Group>
+</Unit>
+`}
+/>
 
 ## API
 
