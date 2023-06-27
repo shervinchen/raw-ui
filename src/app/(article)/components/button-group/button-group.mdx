@@ -1,5 +1,5 @@
 import Unit from '@/demo/Unit';
-import { ButtonGroup } from '@/packages';
+import { Button } from '@/packages';
 import Playground from '@/src/app/components/playground';
 
 # ButtonGroup
@@ -9,13 +9,13 @@ A set of related buttons.
 ## Import
 
 ```tsx
-import { ButtonGroup } from 'raw-ui';
+import { Button } from 'raw-ui';
 ```
 
 ## Types
 
 <Playground
-  scope={{ Unit, ButtonGroup }}
+  scope={{ Unit, Button }}
   code={`
 <Unit layout="col">
   <Button.Group>
@@ -50,7 +50,7 @@ import { ButtonGroup } from 'raw-ui';
 ## Size
 
 <Playground
-  scope={{ Unit, ButtonGroup }}
+  scope={{ Unit, Button }}
   code={`
 <Unit layout="row">
   <Button.Group size="sm">
@@ -77,7 +77,7 @@ import { ButtonGroup } from 'raw-ui';
 ### Outline
 
 <Playground
-  scope={{ Unit, ButtonGroup }}
+  scope={{ Unit, Button }}
   code={`
 <Unit layout="col">
   <Button.Group type="primary" variant="outline">
@@ -107,7 +107,7 @@ import { ButtonGroup } from 'raw-ui';
 ### Ghost
 
 <Playground
-  scope={{ Unit, ButtonGroup }}
+  scope={{ Unit, Button }}
   code={`
 <Unit layout="col">
   <Button.Group variant="ghost">
@@ -142,7 +142,7 @@ import { ButtonGroup } from 'raw-ui';
 ## Vertical
 
 <Playground
-  scope={{ Unit, ButtonGroup }}
+  scope={{ Unit, Button }}
   code={`
 <Unit layout="row">
   <Button.Group vertical>
@@ -157,7 +157,7 @@ import { ButtonGroup } from 'raw-ui';
 ## Disabled
 
 <Playground
-  scope={{ Unit, ButtonGroup }}
+  scope={{ Unit, Button }}
   code={`
 <Unit layout="row">
   <Button.Group disabled>

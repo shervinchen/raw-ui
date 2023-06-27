@@ -16,7 +16,7 @@ const DynamicLive: FC<Props> = ({ code, scope }) => {
         <LivePreview />
         <LiveError />
       </div>
-      <LiveEditor />
+      <LiveEditor language="tsx" />
     </LiveProvider>
   );
 };

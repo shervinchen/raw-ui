@@ -1,12 +1,6 @@
-import {
-  DemoCheckboxDefault,
-  DemoCheckboxChecked,
-  DemoCheckboxWithLabel,
-  DemoCheckboxIndeterminate,
-  DemoCheckboxDisabled,
-  DemoCheckboxGroup,
-  DemoCheckboxGroupWithIndeterminate,
-} from '@/demo/checkbox';
+import Unit from '@/demo/Unit';
+import { Checkbox } from '@/packages';
+import Playground from '@/src/app/components/playground';
 
 # Checkbox
 
@@ -20,198 +14,205 @@ import { Checkbox } from 'raw-ui';
 
 ## Default
 
-<DemoCheckboxDefault />
-
-```tsx
+<Playground
+  scope={{ Unit, Checkbox }}
+  code={`
 <Checkbox />
-```
+`}
+/>
 
 ## Checked
 
-<DemoCheckboxChecked />
-
-```tsx
+<Playground
+  scope={{ Unit, Checkbox }}
+  code={`
 <Checkbox defaultChecked />
-```
+`}
+/>
 
 ## With Label
 
-<DemoCheckboxWithLabel />
-
-```tsx
+<Playground
+  scope={{ Unit, Checkbox }}
+  code={`
 <Checkbox>Label</Checkbox>
-```
+`}
+/>
 
 ## Controlled
 
-```tsx
-export default function App() {
-  const [isChecked, setIsChecked] = useState(false);
+<Playground
+  scope={{ Unit, Checkbox }}
+  code={`
+() => {
+  const [checkboxValue, setCheckboxValue] = React.useState(false);
 
-  return (
-    <Checkbox
-      checked={isChecked}
-      onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-        setIsChecked(event.target.checked);
-      }}
-    >
-      Controlled
-    </Checkbox>
-  );
+return (
+<Checkbox
+checked={checkboxValue}
+onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+setCheckboxValue(event.target.checked);
+}} >
+Controlled
+</Checkbox>
+);
 }
-```
+`}
+/>
 
 ## Indeterminate
 
-<DemoCheckboxIndeterminate />
-
-```tsx
+<Playground
+  scope={{ Unit, Checkbox }}
+  code={`
 <Checkbox indeterminate>Indeterminate</Checkbox>
-```
+`}
+/>
 
 ## Disabled
 
-<DemoCheckboxDisabled />
-
-```tsx
-<Checkbox disabled>Disabled</Checkbox>
-<Checkbox defaultChecked disabled>
-  Disabled
-</Checkbox>
-<Checkbox indeterminate disabled>
-  Disabled
-</Checkbox>
-```
+<Playground
+  scope={{ Unit, Checkbox }}
+  code={`
+<Unit layout="row">
+  <Checkbox disabled>Disabled</Checkbox>
+  <Checkbox defaultChecked disabled>
+    Disabled
+  </Checkbox>
+  <Checkbox indeterminate disabled>
+    Disabled
+  </Checkbox>
+</Unit>
+`}
+/>
 
 ## Group
 
-<DemoCheckboxGroup />
+<Playground
+  scope={{ Unit, Checkbox }}
+  code={`
+() => {
+  const optionsData = React.useMemo(() => [
+    {
+      name: 'React',
+      value: 'react',
+    },
+    {
+      name: 'Vue',
+      value: 'vue',
+    },
+    {
+      name: 'Angular',
+      value: 'angular',
+    },
+    {
+      name: 'Svelte',
+      value: 'svelte',
+    },
+  ], []);
 
-```tsx
-const optionsData = [
-  {
-    name: 'React',
-    value: 'react',
-  },
-  {
-    name: 'Vue',
-    value: 'vue',
-  },
-  {
-    name: 'Angular',
-    value: 'angular',
-  },
-  {
-    name: 'Svelte',
-    value: 'svelte',
-  },
-];
+const [checkboxGroupValue, setCheckboxGroupValue] =
+React.useState<CheckboxGroupValue>(['react', 'angular']);
 
-export default function App() {
-  const [checkboxGroupValue, setCheckboxGroupValue] =
-    useState<CheckboxGroupValue>(['react', 'angular']);
-
-  return (
-    <>
-      <Checkbox.Group defaultValue={['vue', 'svelte']}>
-        {optionsData.map((item) => (
-          <Checkbox value={item.value} key={item.value}>
-            {item.name}
-          </Checkbox>
-        ))}
-      </Checkbox.Group>
-      <Checkbox.Group
-        value={checkboxGroupValue}
-        onChange={(groupValue) => {
-          setCheckboxGroupValue(groupValue);
-        }}
-      >
-        {optionsData.map((item) => (
-          <Checkbox value={item.value} key={item.value}>
-            {item.name}
-          </Checkbox>
-        ))}
-      </Checkbox.Group>
-      <Checkbox.Group
-        defaultValue={['react', 'vue', 'angular', 'svelte']}
-        disabled
-      >
-        {optionsData.map((item) => (
-          <Checkbox value={item.value} key={item.value}>
-            {item.name}
-          </Checkbox>
-        ))}
-      </Checkbox.Group>
-      <Checkbox.Group defaultValue={['vue', 'svelte']} layout="column">
-        {optionsData.map((item) => (
-          <Checkbox value={item.value} key={item.value}>
-            {item.name}
-          </Checkbox>
-        ))}
-      </Checkbox.Group>
-    </>
-  );
+return (
+<Unit layout="col">
+<Checkbox.Group defaultValue={['vue', 'svelte']}>
+{optionsData.map((item) => (
+<Checkbox value={item.value} key={item.value}>
+{item.name}
+</Checkbox>
+))}
+</Checkbox.Group>
+<Checkbox.Group
+value={checkboxGroupValue}
+onChange={(groupValue) => {
+setCheckboxGroupValue(groupValue);
+}} >
+{optionsData.map((item) => (
+<Checkbox value={item.value} key={item.value}>
+{item.name}
+</Checkbox>
+))}
+</Checkbox.Group>
+<Checkbox.Group
+defaultValue={['react', 'vue', 'angular', 'svelte']}
+disabled >
+{optionsData.map((item) => (
+<Checkbox value={item.value} key={item.value}>
+{item.name}
+</Checkbox>
+))}
+</Checkbox.Group>
+<Checkbox.Group defaultValue={['vue', 'svelte']} layout="column">
+{optionsData.map((item) => (
+<Checkbox value={item.value} key={item.value}>
+{item.name}
+</Checkbox>
+))}
+</Checkbox.Group>
+</Unit>
+);
 }
-```
+`}
+/>
 
 ## Indeterminate with Group
 
-<DemoCheckboxGroupWithIndeterminate />
+<Playground
+  scope={{ Unit, Checkbox }}
+  code={`
+() => {
+  const optionsData = React.useMemo(() => [
+    {
+      name: 'React',
+      value: 'react',
+    },
+    {
+      name: 'Vue',
+      value: 'vue',
+    },
+    {
+      name: 'Angular',
+      value: 'angular',
+    },
+    {
+      name: 'Svelte',
+      value: 'svelte',
+    },
+  ], []);
 
-```tsx
-const optionsData = [
-  {
-    name: 'React',
-    value: 'react',
-  },
-  {
-    name: 'Vue',
-    value: 'vue',
-  },
-  {
-    name: 'Angular',
-    value: 'angular',
-  },
-  {
-    name: 'Svelte',
-    value: 'svelte',
-  },
-];
+const [checkboxGroupValue, setCheckboxGroupValue] =
+React.useState<CheckboxGroupValue>(['react', 'angular']);
 
-export default function App() {
-  const [checkboxGroupValue, setCheckboxGroupValue] =
-    useState<CheckboxGroupValue>(['react', 'angular']);
-
-  return (
-    <>
-      <Checkbox
+return (
+<Unit layout="col">
+<Checkbox
         indeterminate={
           checkboxGroupValue.length > 0 &&
-          checkboxGroupValue.length < optionsData.length
-        }
-        checked={checkboxGroupValue.length === optionsData.length}
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-          setCheckboxGroupValue(
-            event.target.checked ? optionsData.map((item) => item.value) : []
-          );
-        }}
-      >
-        Check All
-      </Checkbox>
-      <Checkbox.Group
-        value={checkboxGroupValue}
-        onChange={setCheckboxGroupValue}
-      >
-        {optionsData.map((item) => (
-          <Checkbox value={item.value} key={item.value}>
-            {item.name}
-          </Checkbox>
-        ))}
-      </Checkbox.Group>
-    </Unit>
-  );
+checkboxGroupValue.length < optionsData.length
 }
-```
+checked={checkboxGroupValue.length === optionsData.length}
+onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+setCheckboxGroupValue(
+event.target.checked ? optionsData.map((item) => item.value) : []
+);
+}} >
+Check All
+</Checkbox>
+<Checkbox.Group
+value={checkboxGroupValue}
+onChange={setCheckboxGroupValue} >
+{optionsData.map((item) => (
+<Checkbox value={item.value} key={item.value}>
+{item.name}
+</Checkbox>
+))}
+</Checkbox.Group>
+</Unit>
+);
+}
+`}
+/>
 
 ## API
 
