@@ -47,15 +47,16 @@ import { Checkbox } from 'raw-ui';
 () => {
   const [checkboxValue, setCheckboxValue] = React.useState(false);
 
-return (
-<Checkbox
-checked={checkboxValue}
-onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-setCheckboxValue(event.target.checked);
-}} >
-Controlled
-</Checkbox>
-);
+  return (
+    <Checkbox
+      checked={checkboxValue}
+      onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+        setCheckboxValue(event.target.checked);
+      }}
+    >
+      Controlled
+    </Checkbox>
+  );
 }
 `}
 />
@@ -111,47 +112,49 @@ Controlled
     },
   ], []);
 
-const [checkboxGroupValue, setCheckboxGroupValue] =
-React.useState<CheckboxGroupValue>(['react', 'angular']);
+  const [checkboxGroupValue, setCheckboxGroupValue] =
+    React.useState<CheckboxGroupValue>(['react', 'angular']);
 
-return (
-<Unit layout="col">
-<Checkbox.Group defaultValue={['vue', 'svelte']}>
-{optionsData.map((item) => (
-<Checkbox value={item.value} key={item.value}>
-{item.name}
-</Checkbox>
-))}
-</Checkbox.Group>
-<Checkbox.Group
-value={checkboxGroupValue}
-onChange={(groupValue) => {
-setCheckboxGroupValue(groupValue);
-}} >
-{optionsData.map((item) => (
-<Checkbox value={item.value} key={item.value}>
-{item.name}
-</Checkbox>
-))}
-</Checkbox.Group>
-<Checkbox.Group
-defaultValue={['react', 'vue', 'angular', 'svelte']}
-disabled >
-{optionsData.map((item) => (
-<Checkbox value={item.value} key={item.value}>
-{item.name}
-</Checkbox>
-))}
-</Checkbox.Group>
-<Checkbox.Group defaultValue={['vue', 'svelte']} layout="column">
-{optionsData.map((item) => (
-<Checkbox value={item.value} key={item.value}>
-{item.name}
-</Checkbox>
-))}
-</Checkbox.Group>
-</Unit>
-);
+  return (
+    <Unit layout="col">
+      <Checkbox.Group defaultValue={['vue', 'svelte']}>
+        {optionsData.map((item) => (
+          <Checkbox value={item.value} key={item.value}>
+            {item.name}
+          </Checkbox>
+        ))}
+      </Checkbox.Group>
+      <Checkbox.Group
+        value={checkboxGroupValue}
+        onChange={(groupValue) => {
+          setCheckboxGroupValue(groupValue);
+        }}
+      >
+        {optionsData.map((item) => (
+          <Checkbox value={item.value} key={item.value}>
+            {item.name}
+          </Checkbox>
+        ))}
+      </Checkbox.Group>
+      <Checkbox.Group
+        defaultValue={['react', 'vue', 'angular', 'svelte']}
+        disabled
+      >
+        {optionsData.map((item) => (
+          <Checkbox value={item.value} key={item.value}>
+            {item.name}
+          </Checkbox>
+        ))}
+      </Checkbox.Group>
+      <Checkbox.Group defaultValue={['vue', 'svelte']} layout="column">
+        {optionsData.map((item) => (
+          <Checkbox value={item.value} key={item.value}>
+            {item.name}
+          </Checkbox>
+        ))}
+      </Checkbox.Group>
+    </Unit>
+  );
 }
 `}
 />
@@ -181,35 +184,37 @@ disabled >
     },
   ], []);
 
-const [checkboxGroupValue, setCheckboxGroupValue] =
-React.useState<CheckboxGroupValue>(['react', 'angular']);
+  const [checkboxGroupValue, setCheckboxGroupValue] =
+    React.useState<CheckboxGroupValue>(['react', 'angular']);
 
-return (
-<Unit layout="col">
-<Checkbox
+  return (
+    <Unit layout="col">
+      <Checkbox
         indeterminate={
           checkboxGroupValue.length > 0 &&
-checkboxGroupValue.length < optionsData.length
-}
-checked={checkboxGroupValue.length === optionsData.length}
-onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-setCheckboxGroupValue(
-event.target.checked ? optionsData.map((item) => item.value) : []
-);
-}} >
-Check All
-</Checkbox>
-<Checkbox.Group
-value={checkboxGroupValue}
-onChange={setCheckboxGroupValue} >
-{optionsData.map((item) => (
-<Checkbox value={item.value} key={item.value}>
-{item.name}
-</Checkbox>
-))}
-</Checkbox.Group>
-</Unit>
-);
+          checkboxGroupValue.length < optionsData.length
+        }
+        checked={checkboxGroupValue.length === optionsData.length}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          setCheckboxGroupValue(
+            event.target.checked ? optionsData.map((item) => item.value) : []
+          );
+        }}
+      >
+        Check All
+      </Checkbox>
+      <Checkbox.Group
+        value={checkboxGroupValue}
+        onChange={setCheckboxGroupValue}
+      >
+        {optionsData.map((item) => (
+          <Checkbox value={item.value} key={item.value}>
+            {item.name}
+          </Checkbox>
+        ))}
+      </Checkbox.Group>
+    </Unit>
+  );
 }
 `}
 />

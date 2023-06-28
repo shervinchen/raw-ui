@@ -3,5 +3,5 @@ module.exports = {
     'eslint --cache --fix',
     'prettier --write --ignore-unknown',
   ],
-  '*.{json,md,mdx,html,css}': 'prettier --write --ignore-unknown',
+  '*.{json,md,html,css}': 'prettier --write --ignore-unknown',
 };
