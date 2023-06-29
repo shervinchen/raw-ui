@@ -1,8 +1,7 @@
-import {
-  DemoLoadingTypes,
-  DemoLoadingSizes,
-  DemoLoadingText,
-} from '@/demo/loading';
+import Unit from '@/demo/Unit';
+import { Loading } from '@/packages';
+import Playground from '@/src/app/components/playground';
+
 
 # Loading
 
@@ -16,34 +15,47 @@ import { Loading } from 'raw-ui';
 
 ## Types
 
-<DemoLoadingTypes />
-
-```tsx
-<Loading />
-<Loading type="spin" />
-```
+<Playground
+  scope={{ Unit, Loading }}
+  code={`
+<Unit layout="row">
+  <Loading />
+  <Loading type="spin" />
+</Unit>
+`}
+/>
 
 ## Sizes
 
-<DemoLoadingSizes />
-
-```tsx
-<Loading size={4} />
-<Loading size={6} />
-<Loading size={8} />
-<Loading type="spin" size={16} />
-<Loading type="spin" size={20} />
-<Loading type="spin" size={32} />
-```
+<Playground
+  scope={{ Unit, Loading }}
+  code={`
+<>
+  <Unit layout="row">
+    <Loading size={4} />
+    <Loading size={6} />
+    <Loading size={8} />
+  </Unit>
+  <Unit layout="row">
+    <Loading type="spin" size={16} />
+    <Loading type="spin" size={20} />
+    <Loading type="spin" size={32} />
+  </Unit>
+</>
+`}
+/>
 
 ## With Text
 
-<DemoLoadingText />
-
-```tsx
-<Loading>Loading</Loading>
-<Loading type="spin">Loading</Loading>
-```
+<Playground
+  scope={{ Unit, Loading }}
+  code={`
+<Unit layout="row">
+  <Loading>Loading</Loading>
+  <Loading type="spin">Loading</Loading>
+</Unit>
+`}
+/>
 
 ## API
 
