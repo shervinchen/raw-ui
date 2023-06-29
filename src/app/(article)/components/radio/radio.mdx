@@ -1,10 +1,6 @@
-import {
-  DemoRadioDefault,
-  DemoRadioChecked,
-  DemoRadioWithLabel,
-  DemoRadioDisabled,
-  DemoRadioGroup,
-} from '@/demo/radio';
+import Unit from '@/demo/Unit';
+import { Radio } from '@/packages';
+import Playground from '@/src/app/components/playground';
 
 # Radio
 
@@ -18,89 +14,96 @@ import { Radio } from 'raw-ui';
 
 ## Default
 
-<DemoRadioDefault />
-
-```tsx
+<Playground
+  scope={{ Unit, Radio }}
+  code={`
 <Radio />
-```
+`}
+/>
 
 ## Checked
 
-<DemoRadioChecked />
-
-```tsx
+<Playground
+  scope={{ Unit, Radio }}
+  code={`
 <Radio defaultChecked />
-```
+`}
+/>
 
 ## With Label
 
-<DemoRadioWithLabel />
-
-```tsx
+<Playground
+  scope={{ Unit, Radio }}
+  code={`
 <Radio>Label</Radio>
-```
+`}
+/>
 
 ## Controlled
 
-```tsx
-export function App() {
-  const [value, setValue] = useState(false);
+<Playground
+  scope={{ Unit, Radio }}
+  code={`
+() => {
+  const [value, setValue] = React.useState(false);
 
   return (
-    <Unit layout="row">
-      <Radio
-        checked={value}
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-          setValue(event.target.checked);
-        }}
-      >
-        Controlled
-      </Radio>
-    </Unit>
+    <Radio
+      checked={value}
+      onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+        setValue(event.target.checked);
+      }}
+    >
+      Controlled
+    </Radio>
   );
 }
-```
+`}
+/>
 
 ## Disabled
 
-<DemoRadioDisabled />
-
-```tsx
-<Radio disabled>Disabled</Radio>
-<Radio defaultChecked disabled>
-  Disabled
-</Radio>
-```
+<Playground
+  scope={{ Unit, Radio }}
+  code={`
+<Unit layout="row">
+  <Radio disabled>Disabled</Radio>
+  <Radio defaultChecked disabled>
+    Disabled
+  </Radio>
+</Unit>
+`}
+/>
 
 ## Group
 
-<DemoRadioGroup />
+<Playground
+  scope={{ Unit, Radio }}
+  code={`
+() => {
+  const optionsData = React.useMemo(() => [
+    {
+      name: 'React',
+      value: 'react',
+    },
+    {
+      name: 'Vue',
+      value: 'vue',
+    },
+    {
+      name: 'Angular',
+      value: 'angular',
+    },
+    {
+      name: 'Svelte',
+      value: 'svelte',
+    },
+  ], []);
 
-```tsx
-const optionsData = [
-  {
-    name: 'React',
-    value: 'react',
-  },
-  {
-    name: 'Vue',
-    value: 'vue',
-  },
-  {
-    name: 'Angular',
-    value: 'angular',
-  },
-  {
-    name: 'Svelte',
-    value: 'svelte',
-  },
-];
-
-export function App() {
-  const [radioGroupValue, setRadioGroupValue] = useState<RadioValue>('angular');
+  const [radioGroupValue, setRadioGroupValue] = React.useState<RadioValue>('angular');
 
   return (
-    <>
+    <Unit layout="col">
       <Radio.Group defaultValue="vue">
         {optionsData.map((item) => (
           <Radio value={item.value} key={item.value}>
@@ -134,10 +137,11 @@ export function App() {
           </Radio>
         ))}
       </Radio.Group>
-    </>
+    </Unit>
   );
 }
-```
+`}
+/>
 
 ## API
 
