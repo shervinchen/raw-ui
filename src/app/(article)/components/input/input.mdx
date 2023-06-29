@@ -1,15 +1,7 @@
-import {
-  DemoInputTypes,
-  DemoInputSizes,
-  DemoInputWidth,
-  DemoInputDisabled,
-  DemoInputReadOnly,
-  DemoInputDefaultValue,
-  DemoInputInsideElement,
-  DemoInputAddon,
-  DemoInputPassword,
-  DemoInputClearable,
-} from '@/demo/input';
+import { AlertCircle, Eye, EyeOff, Search, X } from 'react-feather';
+import Unit from '@/demo/Unit';
+import { Input } from '@/packages';
+import Playground from '@/src/app/components/playground';
 
 # Input
 
@@ -23,64 +15,78 @@ import { Input } from 'raw-ui';
 
 ## Types
 
-<DemoInputTypes />
-
-```tsx
-<Input placeholder="Default Type" />
-<Input type="primary" placeholder="Primary Type" />
-<Input type="success" placeholder="Success Type" />
-<Input type="warning" placeholder="Warning Type" />
-<Input type="error" placeholder="Error Type" />
-```
+<Playground
+  scope={{ Unit, Input }}
+  code={`
+<Unit layout="col">
+  <Input placeholder="Default Type" />
+  <Input type="primary" placeholder="Primary Type" />
+  <Input type="success" placeholder="Success Type" />
+  <Input type="warning" placeholder="Warning Type" />
+  <Input type="error" placeholder="Error Type" />
+</Unit>
+`}
+/>
 
 ## Sizes
 
-<DemoInputSizes />
-
-```tsx
-<Input size="sm" placeholder="Small" />
-<Input placeholder="Medium" />
-<Input size="lg" placeholder="Large" />
-```
+<Playground
+  scope={{ Unit, Input }}
+  code={`
+<Unit layout="col">
+  <Input size="sm" placeholder="Small" />
+  <Input placeholder="Medium" />
+  <Input size="lg" placeholder="Large" />
+</Unit>
+`}
+/>
 
 ## Width
 
-<DemoInputWidth />
-
-```tsx
+<Playground
+  scope={{ Unit, Input }}
+  code={`
 <Input width="160px" placeholder="Customized width" />
-```
+`}
+/>
 
 ## Disabled
 
-<DemoInputDisabled />
-
-```tsx
-<Input placeholder="Disabled with placeholder" disabled />
-<Input defaultValue="Disabled with value" disabled />
-```
+<Playground
+  scope={{ Unit, Input }}
+  code={`
+<Unit layout="col">
+  <Input placeholder="Disabled with placeholder" disabled />
+  <Input defaultValue="Disabled with value" disabled />
+</Unit>
+`}
+/>
 
 ## Read Only
 
-<DemoInputReadOnly />
-
-```tsx
+<Playground
+  scope={{ Unit, Input }}
+  code={`
 <Input defaultValue="Read only with value" readOnly />
-```
+`}
+/>
 
 ## Default Value
 
-<DemoInputDefaultValue />
-
-```tsx
+<Playground
+  scope={{ Unit, Input }}
+  code={`
 <Input defaultValue="default value" placeholder="Placeholder..." />
-```
+`}
+/>
 
 ## Controlled
 
-```tsx
-export function App() {
-  const [value, setValue] = useState('');
+<Playground
+  scope={{ Unit, Input }}
+  code={`
+() => {
+  const [value, setValue] = React.useState('');
 
   return (
     <Input
@@ -92,59 +98,66 @@ export function App() {
     />
   );
 }
-```
+`}
+/>
 
 ## Inside Element
 
-<DemoInputInsideElement />
-
-```tsx
-<Input.Group>
-  <Input.LeftElement>
-    <Search size={16} />
-  </Input.LeftElement>
-  <Input placeholder="Inside left element" />
-</Input.Group>
-<Input.Group>
-  <Input placeholder="Inside right element" />
-  <Input.RightElement>
-    <AlertCircle size={16} />
-  </Input.RightElement>
-</Input.Group>
-<Input.Group>
-  <Input.LeftElement>$</Input.LeftElement>
-  <Input placeholder="Enter amount" />
-  <Input.RightElement>.0</Input.RightElement>
-</Input.Group>
-```
+<Playground
+  scope={{ Unit, Input, AlertCircle, Search }}
+  code={`
+<Unit layout="col">
+  <Input.Group>
+    <Input.LeftElement>
+      <Search size={16} />
+    </Input.LeftElement>
+    <Input placeholder="Inside left element" />
+  </Input.Group>
+  <Input.Group>
+    <Input placeholder="Inside right element" />
+    <Input.RightElement>
+      <AlertCircle size={16} />
+    </Input.RightElement>
+  </Input.Group>
+  <Input.Group>
+    <Input.LeftElement>$</Input.LeftElement>
+    <Input placeholder="Enter amount" />
+    <Input.RightElement>.0</Input.RightElement>
+  </Input.Group>
+</Unit>
+`}
+/>
 
 ## Addon
 
-<DemoInputAddon />
-
-```tsx
-<Input.Group>
-  <Input.LeftAddon>username</Input.LeftAddon>
-  <Input placeholder="Put in the username" />
-</Input.Group>
-<Input.Group>
-  <Input placeholder="https://github" />
-  <Input.RightAddon>.com</Input.RightAddon>
-</Input.Group>
-<Input.Group>
-  <Input.LeftAddon>https://</Input.LeftAddon>
-  <Input placeholder="your domain" />
-  <Input.RightAddon>.com</Input.RightAddon>
-</Input.Group>
-```
+<Playground
+  scope={{ Unit, Input }}
+  code={`
+<Unit layout="col">
+  <Input.Group>
+    <Input.LeftAddon>username</Input.LeftAddon>
+    <Input placeholder="Put in the username" />
+  </Input.Group>
+  <Input.Group>
+    <Input placeholder="https://github" />
+    <Input.RightAddon>.com</Input.RightAddon>
+  </Input.Group>
+  <Input.Group>
+    <Input.LeftAddon>https://</Input.LeftAddon>
+    <Input placeholder="your domain" />
+    <Input.RightAddon>.com</Input.RightAddon>
+  </Input.Group>
+</Unit>
+`}
+/>
 
 ## Password
 
-<DemoInputPassword />
-
-```tsx
-export function App() {
-  const [visible, setVisible] = useState(false);
+<Playground
+  scope={{ Unit, Input, Eye, EyeOff }}
+  code={`
+() => {
+  const [visible, setVisible] = React.useState(false);
 
   return (
     <Input.Group>
@@ -158,15 +171,16 @@ export function App() {
     </Input.Group>
   );
 }
-```
+`}
+/>
 
 ## Clearable
 
-<DemoInputClearable />
-
-```tsx
-export function App() {
-  const [value, setValue] = useState('');
+<Playground
+  scope={{ Unit, Input, X }}
+  code={`
+() => {
+  const [value, setValue] = React.useState('');
 
   return (
     <Input.Group>
@@ -185,7 +199,8 @@ export function App() {
     </Input.Group>
   );
 }
-```
+`}
+/>
 
 ## API
 
