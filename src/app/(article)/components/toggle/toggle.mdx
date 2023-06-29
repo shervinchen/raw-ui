@@ -1,9 +1,6 @@
-import {
-  DemoToggleDefault,
-  DemoToggleChecked,
-  DemoToggleControlled,
-  DemoToggleDisabled,
-} from '@/demo/toggle';
+import Unit from '@/demo/Unit';
+import { Toggle } from '@/packages';
+import Playground from '@/src/app/components/playground';
 
 # Toggle
 
@@ -17,45 +14,55 @@ import { Toggle } from 'raw-ui';
 
 ## Default
 
-<DemoToggleDefault />
-
-```tsx
+<Playground
+  scope={{ Unit, Toggle }}
+  code={`
 <Toggle />
-```
+`}
+/>
 
 ## Checked
 
-<DemoToggleChecked />
-
-```tsx
+<Playground
+  scope={{ Unit, Toggle }}
+  code={`
 <Toggle defaultChecked />
-```
+`}
+/>
 
 ## Controlled
 
-```tsx
-export function App() {
-  const [value, setValue] = useState(false);
+<Playground
+  scope={{ Unit, Toggle }}
+  code={`
+() => {
+  const [value, setValue] = React.useState(false);
 
   return (
-    <Toggle
-      checked={value}
-      onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(event.target.checked);
-      }}
-    />
+    <Unit layout="row">
+      <Toggle
+        checked={value}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          setValue(event.target.checked);
+        }}
+      />
+    </Unit>
   );
 }
-```
+`}
+/>
 
 ## Disabled
 
-<DemoToggleDisabled />
-
-```tsx
-<Toggle disabled />
-<Toggle defaultChecked disabled />
-```
+<Playground
+  scope={{ Unit, Toggle }}
+  code={`
+<Unit layout="row">
+  <Toggle disabled />
+  <Toggle defaultChecked disabled />
+</Unit>
+`}
+/>
 
 ## API
 
