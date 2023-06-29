@@ -1,11 +1,6 @@
-import {
-  DemoSelectDefault,
-  DemoSelectSelected,
-  DemoSelectMultiple,
-  DemoSelectDisabled,
-  DemoSelectDisabledOption,
-  DemoSelectSetParentElement,
-} from '@/demo/select';
+import Unit from '@/demo/Unit';
+import { Select } from '@/packages';
+import Playground from '@/src/app/components/playground';
 
 # Select
 
@@ -19,128 +14,169 @@ import { Select } from 'raw-ui';
 
 ## Default
 
-<DemoSelectDefault />
-
-```tsx
+<Playground
+  scope={{ Unit, Select }}
+  code={`
 <Select width="200px" placeholder="Select option">
   <Select.Option value="1">Option 1</Select.Option>
   <Select.Option value="2">Option 2</Select.Option>
 </Select>
-```
+`}
+/>
 
 ## Selected
 
-<DemoSelectSelected />
-
-```tsx
+<Playground
+  scope={{ Unit, Select }}
+  code={`
 <Select width="200px" placeholder="Select option" defaultValue="1">
   <Select.Option value="1">Option 1</Select.Option>
   <Select.Option value="2">Option 2</Select.Option>
 </Select>
-```
+`}
+/>
 
 ## Controlled
 
-```tsx
-export function App() {
-  const [selectValue, setSelectValue] = useState<SelectValue>();
+<Playground
+  scope={{ Unit, Select }}
+  code={`
+() => {
+  const [selectValue, setSelectValue] = React.useState<SelectValue>();
+
+  return (
+    <Unit layout="row">
+      <Select
+        width="200px"
+        placeholder="Select option"
+        value={selectValue}
+        onChange={(value) => {
+          setSelectValue(value);
+        }}
+      >
+        <Select.Option value="1">Option 1</Select.Option>
+        <Select.Option value="2">Option 2</Select.Option>
+      </Select>
+    </Unit>
+  );
+}
+`}
+/>
+
+## Multiple
+
+<Playground
+  scope={{ Unit, Select }}
+  code={`
+() => {
+  const optionsData = React.useMemo(() => [
+    {
+      name: 'React',
+      value: 'react',
+    },
+    {
+      name: 'Vue',
+      value: 'vue',
+    },
+    {
+      name: 'Angular',
+      value: 'angular',
+    },
+    {
+      name: 'Svelte',
+      value: 'svelte',
+    },
+  ], []);
 
   return (
     <Select
       width="200px"
       placeholder="Select option"
-      value={selectValue}
-      onChange={(value) => {
-        setSelectValue(value);
-      }}
+      multiple
+      defaultValue={['react', 'vue']}
     >
-      <Select.Option value="1">Option 1</Select.Option>
-      <Select.Option value="2">Option 2</Select.Option>
+      {optionsData.map((item) => (
+        <Select.Option value={item.value} key={item.value}>
+          {item.name}
+        </Select.Option>
+      ))}
     </Select>
   );
 }
-```
-
-## Multiple
-
-<DemoSelectMultiple />
-
-```tsx
-const optionsData = [
-  {
-    name: 'React',
-    value: 'react',
-  },
-  {
-    name: 'Vue',
-    value: 'vue',
-  },
-  {
-    name: 'Angular',
-    value: 'angular',
-  },
-  {
-    name: 'Svelte',
-    value: 'svelte',
-  },
-];
-
-<Select
-  width="200px"
-  placeholder="Select option"
-  multiple
-  defaultValue={['react', 'vue']}
->
-  {optionsData.map((item) => (
-    <Select.Option value={item.value} key={item.value}>
-      {item.name}
-    </Select.Option>
-  ))}
-</Select>;
-```
+`}
+/>
 
 ## Disabled Select
 
-<DemoSelectDisabled />
+<Playground
+  scope={{ Unit, Select }}
+  code={`
+() => {
+  const optionsData = React.useMemo(() => [
+    {
+      name: 'React',
+      value: 'react',
+    },
+    {
+      name: 'Vue',
+      value: 'vue',
+    },
+    {
+      name: 'Angular',
+      value: 'angular',
+    },
+    {
+      name: 'Svelte',
+      value: 'svelte',
+    },
+  ], []);
 
-```tsx
-<Select width="200px" placeholder="Select option" disabled>
-  <Select.Option value="1">Option 1</Select.Option>
-  <Select.Option value="2">Option 2</Select.Option>
-</Select>
-<Select
-  width="200px"
-  placeholder="Select option"
-  disabled
-  multiple
-  defaultValue={['react', 'vue']}
->
-  {optionsData.map((item) => (
-    <Select.Option value={item.value} key={item.value}>
-      {item.name}
-    </Select.Option>
-  ))}
-</Select>
-```
+  return (
+    <Unit layout="row">
+      <Select width="200px" placeholder="Select option" disabled>
+        <Select.Option value="1">Option 1</Select.Option>
+        <Select.Option value="2">Option 2</Select.Option>
+      </Select>
+      <Select
+        width="200px"
+        placeholder="Select option"
+        disabled
+        multiple
+        defaultValue={['react', 'vue']}
+      >
+        {optionsData.map((item) => (
+          <Select.Option value={item.value} key={item.value}>
+            {item.name}
+          </Select.Option>
+        ))}
+      </Select>
+    </Unit>
+  );
+}
+`}
+/>
 
 ## Disabled Option
 
-<DemoSelectDisabledOption />
-
-```tsx
-<Select width="200px" placeholder="Select option">
-  <Select.Option value="1" disabled>
-    Option 1
-  </Select.Option>
-  <Select.Option value="2">Option 2</Select.Option>
-</Select>
-```
+<Playground
+  scope={{ Unit, Select }}
+  code={`
+<Unit layout="row">
+  <Select width="200px" placeholder="Select option">
+    <Select.Option value="1" disabled>
+      Option 1
+    </Select.Option>
+    <Select.Option value="2">Option 2</Select.Option>
+  </Select>
+</Unit>
+`}
+/>
 
 ## Set Parent Element
 
-<DemoSelectSetParentElement />
-
-```tsx
+<Playground
+  scope={{ Unit, Select }}
+  code={`
 <div
   id="parentElement"
   style={{
@@ -168,7 +204,8 @@ const optionsData = [
     </Select>
   </div>
 </div>
-```
+`}
+/>
 
 ## API
 
