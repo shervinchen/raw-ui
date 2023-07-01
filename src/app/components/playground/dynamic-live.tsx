@@ -13,64 +13,76 @@ interface Props {
 
 const prismTheme: PrismTheme = {
   plain: {
-    color: '#666',
+    color: '#888',
     backgroundColor: '#fff',
   },
   styles: [
     {
-      types: ['prolog', 'constant', 'builtin'],
-      style: {
-        color: '#f81ce5',
-      },
-    },
-    {
-      types: ['inserted', 'function'],
-      style: {
-        color: '#0070f3',
-      },
-    },
-    {
-      types: ['deleted'],
-      style: {
-        color: '#e00',
-      },
-    },
-    {
-      types: ['changed'],
-      style: {
-        color: '#50e3c2',
-      },
-    },
-    {
-      types: ['punctuation', 'symbol'],
-      style: {
-        color: '#999',
-      },
-    },
-    {
-      types: ['string', 'char', 'tag', 'selector'],
-      style: {
-        color: '#f81ce5',
-      },
-    },
-    {
-      types: ['keyword', 'variable'],
-      style: {
-        color: '#7928ca',
-        fontStyle: 'italic',
-      },
-    },
-    {
-      types: ['comment'],
+      types: [
+        'comment',
+        'prolog',
+        'constant',
+        'builtin',
+        'punctuation',
+        'symbol',
+      ],
       style: {
         color: '#999',
         opacity: 0.5,
       },
     },
     {
+      types: ['tag'],
+      style: {
+        color: '#444',
+      },
+    },
+    {
+      types: ['function'],
+      style: {
+        color: '#0070f3',
+      },
+    },
+    {
+      types: ['selector'],
+      style: {
+        color: '#eeebff',
+      },
+    },
+    {
       types: ['attr-name'],
       style: {
         color: '#f5a623',
+      },
+    },
+    {
+      types: ['keyword', 'variable'],
+      style: {
+        color: '#f81ce5',
+      },
+    },
+    {
+      types: ['string', 'char'],
+      style: {
+        color: '#7928ca',
+      },
+    },
+    {
+      types: ['deleted'],
+      style: {
+        textDecorationLine: 'line-through',
+      },
+    },
+    {
+      types: ['inserted'],
+      style: {
+        textDecorationLine: 'underline',
+      },
+    },
+    {
+      types: ['changed'],
+      style: {
+        color: '#50e3c2',
       },
     },
   ],

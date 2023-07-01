@@ -3,14 +3,20 @@
 @tailwind utilities;
 
 :root {
-  --accents-1: #fafafa;
-  --accents-2: #eaeaea;
-  --accents-3: #999;
-  --accents-4: #888;
-  --accents-5: #666;
-  --accents-6: #444;
-  --accents-7: #333;
-  --accents-8: #111;
+  --shiki-color-text: #888;
+  --shiki-color-background: #fafafa;
+  --shiki-token-constant: #444;
+  --shiki-token-string: #7928ca;
+  --shiki-token-comment: rgb(153, 153, 153, 0.5);
+  --shiki-token-keyword: #f81ce5;
+  --shiki-token-parameter: #f5a623;
+  --shiki-token-function: #0070f3;
+  --shiki-token-string-expression: #7928ca;
+  --shiki-token-punctuation: rgb(153, 153, 153, 0.5);
+  --shiki-token-link: #0070f3;
+}
+
+.dark {
 }
 
 body {
