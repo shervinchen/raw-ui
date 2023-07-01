@@ -19,7 +19,7 @@ const DynamicLive: FC<Props> = ({ code, scope }) => {
     <LiveProvider code={code} scope={scope} theme={prismTheme}>
       <div>
         <LivePreview />
-        <LiveError />
+        <LiveError className="bg-white text-[#e00] border-2 border-dotted border-[#e00]" />
       </div>
       <LiveEditor
         language="tsx"
