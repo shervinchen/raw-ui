@@ -6,13 +6,13 @@
   --shiki-color-text: #888;
   --shiki-color-background: #fafafa;
   --shiki-token-constant: #444;
-  --shiki-token-string: #7928ca;
+  --shiki-token-string: #444;
   --shiki-token-comment: rgb(153, 153, 153, 0.5);
   --shiki-token-keyword: #f81ce5;
   --shiki-token-parameter: #f5a623;
   --shiki-token-function: #0070f3;
-  --shiki-token-string-expression: #7928ca;
-  --shiki-token-punctuation: rgb(153, 153, 153, 0.5);
+  --shiki-token-string-expression: #444;
+  --shiki-token-punctuation: #999;
   --shiki-token-link: #0070f3;
 }
 

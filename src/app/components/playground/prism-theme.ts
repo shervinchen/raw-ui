@@ -8,21 +8,20 @@ export const getPrismTheme = (theme: RawUITheme): PrismTheme => ({
   },
   styles: [
     {
-      types: [
-        'comment',
-        'prolog',
-        'constant',
-        'builtin',
-        'punctuation',
-        'symbol',
-      ],
+      types: ['comment', 'prolog', 'constant', 'builtin', 'symbol'],
       style: {
         color: theme.palette.accents5,
         opacity: 0.5,
       },
     },
     {
-      types: ['tag'],
+      types: ['punctuation'],
+      style: {
+        color: theme.palette.accents5,
+      },
+    },
+    {
+      types: ['tag', 'string', 'char'],
       style: {
         color: theme.palette.accents8,
       },
@@ -49,12 +48,6 @@ export const getPrismTheme = (theme: RawUITheme): PrismTheme => ({
       types: ['keyword', 'variable'],
       style: {
         color: '#f81ce5',
-      },
-    },
-    {
-      types: ['string', 'char'],
-      style: {
-        color: '#7928ca',
       },
     },
     {
