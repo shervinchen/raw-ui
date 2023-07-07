@@ -9,8 +9,8 @@ export interface RawUIThemePalette {
   accents8: string;
   accents9: string;
   accents10: string;
-  white: string;
-  black: string;
+  background: string;
+  foreground: string;
   link: string;
   success1: string;
   success2: string;

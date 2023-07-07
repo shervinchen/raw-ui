@@ -53,7 +53,9 @@ const SelectTag: FC<PropsWithChildren<SelectTagProps>> = ({
           color: ${theme.palette.accents5};
         }
         .raw-select-tag-icon:hover {
-          color: ${disabled ? theme.palette.accents5 : theme.palette.black};
+          color: ${disabled
+            ? theme.palette.accents5
+            : theme.palette.foreground};
         }
       `}</style>
     </div>

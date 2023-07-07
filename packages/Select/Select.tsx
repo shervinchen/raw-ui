@@ -268,7 +268,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
               border-radius: 6px;
               background-color: ${disabled
                 ? theme.palette.accents1
-                : theme.palette.white};
+                : theme.palette.background};
               transition: border-color 0.15s ease, color 0.15s ease,
                 box-shadow 0.15s ease;
               cursor: ${disabled ? 'not-allowed' : 'pointer'};
@@ -296,7 +296,9 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
               white-space: nowrap;
               text-overflow: ellipsis;
               font-size: 14px;
-              color: ${disabled ? theme.palette.accents6 : theme.palette.black};
+              color: ${disabled
+                ? theme.palette.accents6
+                : theme.palette.foreground};
             }
             .raw-select :global(.raw-select-tag-content) {
               display: flex;
@@ -321,11 +323,13 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
             .raw-select:hover {
               border-color: ${disabled
                 ? theme.palette.accents2
-                : theme.palette.black};
+                : theme.palette.foreground};
             }
             .raw-select.active .raw-select-arrow,
             .raw-select:hover .raw-select-arrow {
-              color: ${disabled ? theme.palette.accents7 : theme.palette.black};
+              color: ${disabled
+                ? theme.palette.accents7
+                : theme.palette.foreground};
             }
           `}</style>
         </div>

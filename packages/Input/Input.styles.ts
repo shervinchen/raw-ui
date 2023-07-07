@@ -40,23 +40,23 @@ export const useInputStyles = ({
     [key in InputTypes]: InputBasicStyles;
   } = {
     default: {
-      color: theme.palette.black,
+      color: theme.palette.foreground,
       borderColor: theme.palette.accents2,
     },
     primary: {
-      color: theme.palette.black,
-      borderColor: theme.palette.black,
+      color: theme.palette.foreground,
+      borderColor: theme.palette.foreground,
     },
     success: {
-      color: theme.palette.black,
+      color: theme.palette.foreground,
       borderColor: theme.palette.success5,
     },
     warning: {
-      color: theme.palette.black,
+      color: theme.palette.foreground,
       borderColor: theme.palette.warning5,
     },
     error: {
-      color: theme.palette.black,
+      color: theme.palette.foreground,
       borderColor: theme.palette.error5,
     },
   };
@@ -89,7 +89,7 @@ const useInputFocusStyles = ({
       focusBorderColor: theme.palette.accents7,
     },
     primary: {
-      focusBorderColor: theme.palette.black,
+      focusBorderColor: theme.palette.foreground,
     },
     success: {
       focusBorderColor: theme.palette.success5,

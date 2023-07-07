@@ -48,13 +48,13 @@ const SelectOption: FC<PropsWithChildren<SelectOptionProps>> = ({
           color: ${isDisabled
             ? theme.palette.accents6
             : isSelected
-            ? theme.palette.black
+            ? theme.palette.foreground
             : theme.palette.accents7};
           background-color: ${isDisabled
             ? theme.palette.accents1
             : isSelected
             ? theme.palette.accents2
-            : theme.palette.white};
+            : theme.palette.background};
           transition: background-color 0.15s ease;
           cursor: ${isDisabled ? 'not-allowed' : 'pointer'};
           user-select: none;
@@ -74,7 +74,7 @@ const SelectOption: FC<PropsWithChildren<SelectOptionProps>> = ({
           color: ${isDisabled
             ? theme.palette.accents6
             : isSelected
-            ? theme.palette.black
+            ? theme.palette.foreground
             : theme.palette.accents9};
         }
       `}</style>

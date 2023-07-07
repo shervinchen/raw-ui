@@ -72,7 +72,7 @@ const Radio: FC<PropsWithChildren<RadioProps>> = ({
             width: 14px;
             height: 14px;
             border: 1px solid
-              ${selfChecked ? theme.palette.black : theme.palette.accents7};
+              ${selfChecked ? theme.palette.foreground : theme.palette.accents7};
             border-radius: 50%;
           }
           .raw-radio-inner:after {
@@ -84,7 +84,7 @@ const Radio: FC<PropsWithChildren<RadioProps>> = ({
             position: absolute;
             top: 50%;
             left: 50%;
-            background-color: ${theme.palette.black};
+            background-color: ${theme.palette.foreground};
             transition: transform 0.15s ease;
             transform: translate(-50%, -50%) scale(0);
           }

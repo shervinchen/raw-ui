@@ -48,7 +48,7 @@ const SelectDropdown = forwardRef<
             padding: 6px 0;
             border-radius: 6px;
             box-shadow: ${theme.tokens.shadow.lg};
-            background-color: ${theme.palette.white};
+            background-color: ${theme.palette.background};
             max-height: ${dropdownHeight};
             overflow-y: auto;
             transition: opacity 0.15s ease;

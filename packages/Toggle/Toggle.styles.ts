@@ -20,8 +20,8 @@ const useToggleStyles = ({
       borderColor: theme.palette.accents2,
     },
     checked: {
-      backgroundColor: theme.palette.black,
-      borderColor: theme.palette.black,
+      backgroundColor: theme.palette.foreground,
+      borderColor: theme.palette.foreground,
     },
   };
 
@@ -80,7 +80,7 @@ export const useToggleCSS = ({ checked, disabled }: ToggleProps) => {
       border-radius: 50%;
       background-color: ${disabled
         ? theme.palette.accents2
-        : theme.palette.white};
+        : theme.palette.background};
       transform: ${checked ? 'translate(14px, -50%)' : 'translate(0, -50%)'};
     }
   `;

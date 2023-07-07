@@ -11,7 +11,7 @@ const CheckboxIcon: FC<CheckboxIconProps> = ({ checked, indeterminate }) => {
     <span className="raw-checkbox-inner">
       <div className="raw-checkbox-icon">
         {checked && !indeterminate && (
-          <Check size={12} color={theme.palette.white} strokeWidth={3} />
+          <Check size={12} color={theme.palette.background} strokeWidth={3} />
         )}
         {indeterminate && (
           <Minus size={12} color={theme.palette.accents7} strokeWidth={3} />
@@ -24,10 +24,10 @@ const CheckboxIcon: FC<CheckboxIconProps> = ({ checked, indeterminate }) => {
           height: 16px;
           border: 1px solid
             ${checked && !indeterminate
-              ? theme.palette.black
+              ? theme.palette.foreground
               : theme.palette.accents7};
           background-color: ${checked && !indeterminate
-            ? theme.palette.black
+            ? theme.palette.foreground
             : 'transparent'};
           border-radius: 3px;
         }

@@ -44,12 +44,12 @@ export const useButtonStyles = (props: ButtonProps): ButtonStyles => {
   } = {
     default: {
       default: {
-        backgroundColor: theme.palette.white,
+        backgroundColor: theme.palette.background,
         color: theme.palette.accents7,
         borderColor: theme.palette.accents2,
       },
       outline: {
-        backgroundColor: theme.palette.white,
+        backgroundColor: theme.palette.background,
         color: theme.palette.accents7,
         borderColor: theme.palette.accents2,
       },
@@ -59,39 +59,39 @@ export const useButtonStyles = (props: ButtonProps): ButtonStyles => {
         borderColor: 'transparent',
       },
       shadow: {
-        backgroundColor: theme.palette.white,
+        backgroundColor: theme.palette.background,
         color: theme.palette.accents7,
-        borderColor: theme.palette.white,
+        borderColor: theme.palette.background,
         boxShadow: theme.tokens.shadow.sm,
       },
     },
     primary: {
       default: {
-        backgroundColor: theme.palette.black,
-        color: theme.palette.white,
-        borderColor: theme.palette.black,
+        backgroundColor: theme.palette.foreground,
+        color: theme.palette.background,
+        borderColor: theme.palette.foreground,
       },
       outline: {
         backgroundColor: 'transparent',
-        color: theme.palette.black,
-        borderColor: theme.palette.black,
+        color: theme.palette.foreground,
+        borderColor: theme.palette.foreground,
       },
       ghost: {
         backgroundColor: 'transparent',
-        color: theme.palette.black,
+        color: theme.palette.foreground,
         borderColor: 'transparent',
       },
       shadow: {
-        backgroundColor: theme.palette.black,
-        color: theme.palette.white,
-        borderColor: theme.palette.black,
+        backgroundColor: theme.palette.foreground,
+        color: theme.palette.background,
+        borderColor: theme.palette.foreground,
         boxShadow: theme.tokens.shadow.sm,
       },
     },
     success: {
       default: {
         backgroundColor: theme.palette.success5,
-        color: theme.palette.white,
+        color: theme.palette.background,
         borderColor: theme.palette.success5,
       },
       outline: {
@@ -106,7 +106,7 @@ export const useButtonStyles = (props: ButtonProps): ButtonStyles => {
       },
       shadow: {
         backgroundColor: theme.palette.success5,
-        color: theme.palette.white,
+        color: theme.palette.background,
         borderColor: theme.palette.success5,
         boxShadow: theme.tokens.shadow.sm,
       },
@@ -114,7 +114,7 @@ export const useButtonStyles = (props: ButtonProps): ButtonStyles => {
     warning: {
       default: {
         backgroundColor: theme.palette.warning5,
-        color: theme.palette.white,
+        color: theme.palette.background,
         borderColor: theme.palette.warning5,
       },
       outline: {
@@ -129,7 +129,7 @@ export const useButtonStyles = (props: ButtonProps): ButtonStyles => {
       },
       shadow: {
         backgroundColor: theme.palette.warning5,
-        color: theme.palette.white,
+        color: theme.palette.background,
         borderColor: theme.palette.warning5,
         boxShadow: theme.tokens.shadow.sm,
       },
@@ -137,7 +137,7 @@ export const useButtonStyles = (props: ButtonProps): ButtonStyles => {
     error: {
       default: {
         backgroundColor: theme.palette.error5,
-        color: theme.palette.white,
+        color: theme.palette.background,
         borderColor: theme.palette.error5,
       },
       outline: {
@@ -152,7 +152,7 @@ export const useButtonStyles = (props: ButtonProps): ButtonStyles => {
       },
       shadow: {
         backgroundColor: theme.palette.error5,
-        color: theme.palette.white,
+        color: theme.palette.background,
         borderColor: theme.palette.error5,
         boxShadow: theme.tokens.shadow.sm,
       },
@@ -166,30 +166,30 @@ export const useButtonStyles = (props: ButtonProps): ButtonStyles => {
   } = {
     default: {
       default: {
-        backgroundColor: theme.palette.white,
+        backgroundColor: theme.palette.background,
       },
       outline: {
-        backgroundColor: theme.palette.white,
+        backgroundColor: theme.palette.background,
       },
       ghost: {
-        backgroundColor: theme.palette.white,
+        backgroundColor: theme.palette.background,
       },
       shadow: {
-        backgroundColor: theme.palette.white,
+        backgroundColor: theme.palette.background,
       },
     },
     primary: {
       default: {
-        backgroundColor: theme.palette.black,
+        backgroundColor: theme.palette.foreground,
       },
       outline: {
-        backgroundColor: theme.palette.white,
+        backgroundColor: theme.palette.background,
       },
       ghost: {
-        backgroundColor: theme.palette.white,
+        backgroundColor: theme.palette.background,
       },
       shadow: {
-        backgroundColor: theme.palette.black,
+        backgroundColor: theme.palette.foreground,
       },
     },
     success: {
@@ -197,10 +197,10 @@ export const useButtonStyles = (props: ButtonProps): ButtonStyles => {
         backgroundColor: theme.palette.success5,
       },
       outline: {
-        backgroundColor: theme.palette.white,
+        backgroundColor: theme.palette.background,
       },
       ghost: {
-        backgroundColor: theme.palette.white,
+        backgroundColor: theme.palette.background,
       },
       shadow: {
         backgroundColor: theme.palette.success5,
@@ -211,10 +211,10 @@ export const useButtonStyles = (props: ButtonProps): ButtonStyles => {
         backgroundColor: theme.palette.warning5,
       },
       outline: {
-        backgroundColor: theme.palette.white,
+        backgroundColor: theme.palette.background,
       },
       ghost: {
-        backgroundColor: theme.palette.white,
+        backgroundColor: theme.palette.background,
       },
       shadow: {
         backgroundColor: theme.palette.warning5,
@@ -225,10 +225,10 @@ export const useButtonStyles = (props: ButtonProps): ButtonStyles => {
         backgroundColor: theme.palette.error5,
       },
       outline: {
-        backgroundColor: theme.palette.white,
+        backgroundColor: theme.palette.background,
       },
       ghost: {
-        backgroundColor: theme.palette.white,
+        backgroundColor: theme.palette.background,
       },
       shadow: {
         backgroundColor: theme.palette.error5,
@@ -296,12 +296,12 @@ export const useButtonHoverStyles = (props: ButtonProps): ButtonHoverStyles => {
   } = {
     default: {
       default: {
-        hoverColor: theme.palette.black,
-        hoverBorderColor: theme.palette.black,
+        hoverColor: theme.palette.foreground,
+        hoverBorderColor: theme.palette.foreground,
       },
       outline: {
-        hoverColor: theme.palette.black,
-        hoverBorderColor: theme.palette.black,
+        hoverColor: theme.palette.foreground,
+        hoverBorderColor: theme.palette.foreground,
       },
       ghost: {
         hoverBackgroundColor: theme.palette.accents3,
@@ -314,12 +314,12 @@ export const useButtonHoverStyles = (props: ButtonProps): ButtonHoverStyles => {
     },
     primary: {
       default: {
-        hoverColor: theme.palette.black,
-        hoverBackgroundColor: theme.palette.white,
+        hoverColor: theme.palette.foreground,
+        hoverBackgroundColor: theme.palette.background,
       },
       outline: {
-        hoverColor: theme.palette.white,
-        hoverBackgroundColor: theme.palette.black,
+        hoverColor: theme.palette.background,
+        hoverBackgroundColor: theme.palette.foreground,
       },
       ghost: {
         hoverBackgroundColor: theme.palette.accents3,
@@ -332,10 +332,10 @@ export const useButtonHoverStyles = (props: ButtonProps): ButtonHoverStyles => {
     success: {
       default: {
         hoverColor: theme.palette.success5,
-        hoverBackgroundColor: theme.palette.white,
+        hoverBackgroundColor: theme.palette.background,
       },
       outline: {
-        hoverColor: theme.palette.white,
+        hoverColor: theme.palette.background,
         hoverBackgroundColor: theme.palette.success5,
       },
       ghost: {
@@ -349,10 +349,10 @@ export const useButtonHoverStyles = (props: ButtonProps): ButtonHoverStyles => {
     warning: {
       default: {
         hoverColor: theme.palette.warning5,
-        hoverBackgroundColor: theme.palette.white,
+        hoverBackgroundColor: theme.palette.background,
       },
       outline: {
-        hoverColor: theme.palette.white,
+        hoverColor: theme.palette.background,
         hoverBackgroundColor: theme.palette.warning5,
       },
       ghost: {
@@ -366,10 +366,10 @@ export const useButtonHoverStyles = (props: ButtonProps): ButtonHoverStyles => {
     error: {
       default: {
         hoverColor: theme.palette.error5,
-        hoverBackgroundColor: theme.palette.white,
+        hoverBackgroundColor: theme.palette.background,
       },
       outline: {
-        hoverColor: theme.palette.white,
+        hoverColor: theme.palette.background,
         hoverBackgroundColor: theme.palette.error5,
       },
       ghost: {
