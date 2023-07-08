@@ -1,1 +1,3 @@
-export { default } from './theme-provider';
+export * from './theme';
+export * from './preset/preset.type';
+export { useTheme } from './theme-context';

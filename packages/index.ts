@@ -2,6 +2,8 @@
 
 export { default as RawUIProvider } from './Provider';
 
+export * from './Theme';
+
 export { default as Button } from './Button';
 export * from './Button/Button.types';
 export * from './Button/ButtonGroup.types';

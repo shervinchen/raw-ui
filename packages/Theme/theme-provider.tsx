@@ -1,18 +1,45 @@
-import React, { FC, PropsWithChildren, useMemo } from 'react';
+import React, {
+  FC,
+  PropsWithChildren,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
 import { ThemeContext } from './theme-context';
 import BaseStyle from '../BaseStyle';
-import { ThemeProviderProps } from './theme.type';
+import { AllThemesConfig, ThemeProviderProps } from './theme.type';
 import Theme from './theme';
+import { RawUITheme } from './preset/preset.type';
 
 const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = ({
   children,
-  // themeType,
-  // themes = [],
+  themeType,
+  themes = [],
 }) => {
-  const currentTheme = useMemo(() => {
+  const [allThemes, setAllThemes] = useState<AllThemesConfig>({
+    themes: Theme.getPresetThemes(),
+  });
+
+  const currentTheme = useMemo<RawUITheme>(() => {
+    const theme = allThemes.themes.find((item) => item.type === themeType);
+    if (theme) return theme;
     return Theme.getPresetStaticTheme();
-  }, []);
+  }, [allThemes, themeType]);
+
+  useEffect(() => {
+    if (!themes?.length) return;
+    setAllThemes((last) => {
+      const safeThemes = themes.filter((item) =>
+        Theme.isAvailableThemeType(item.type)
+      );
+      const nextThemes = Theme.getPresetThemes().concat(safeThemes);
+      return {
+        ...last,
+        themes: nextThemes,
+      };
+    });
+  }, [themes]);
 
   return (
     <ThemeContext.Provider value={currentTheme}>
