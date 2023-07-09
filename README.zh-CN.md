@@ -1,7 +1,7 @@
 <div align="center">
   <p>
     <a href="https://raw-ui.vercel.app">
-      <img width="128" src="https://github.com/shervinchen/raw-ui/blob/main/public/logo.svg" alt="Raw UI" />
+      <img width="128" src="https://github.com/shervinchen/raw-ui/blob/main/public/logo-dark.svg" alt="Raw UI" />
     </a>
   </p>
   <h1>Raw UI</h1>
