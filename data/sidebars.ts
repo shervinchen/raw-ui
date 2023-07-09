@@ -26,6 +26,10 @@ export const SIDEBARS = [
             name: 'Theming',
             url: '/guide/theming',
           },
+          {
+            name: 'Custom Styles',
+            url: '/guide/custom-styles',
+          },
         ],
       },
     ],

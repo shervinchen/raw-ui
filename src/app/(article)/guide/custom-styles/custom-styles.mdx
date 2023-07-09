@@ -1,0 +1,59 @@
+# Custom Styles
+
+There are several ways to customize the style of a component.
+
+## styled-jsx/css (recommended)
+
+Raw UI uses `styled-jsx` as the CSS styling solution, which provides method to customize the styles accordingly:
+
+```tsx
+import css from 'styled-jsx/css';
+import { Button } from "raw-ui";
+
+const { className, styles } = css.resolve`
+  .raw-button {
+    color: #f81ce5;
+  }
+`
+
+const CustomButton = () => (
+  <>
+    <Button className={className}>Custom</Button>
+    {styles}
+  </>
+);
+
+export default CustomButton;
+```
+
+## ClassName
+
+You can override the style by defining a `className` on the component:
+
+```tsx
+import { Button } from 'raw-ui';
+
+const CustomButton = () => (
+  <Button className="custom-button">Custom</Button>
+);
+```
+
+then add style in css file:
+
+```css
+.custom-button {
+  color: #f81ce5;
+}
+```
+
+## Inline styles
+
+Defining an inline style will also correctly override the component.
+
+```tsx
+import { Button } from 'raw-ui';
+
+const CustomButton = () => (
+  <Button style={{ color: '#f81ce5' }}>Custom</Button>
+);
+```
