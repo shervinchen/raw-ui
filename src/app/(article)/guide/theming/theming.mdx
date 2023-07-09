@@ -1,89 +1,125 @@
-## h2 Heading
+# Theming
 
-### h3 Heading
+Raw UI supports `light` and `dark` themes by default, you can also create your own themes.
 
-#### h4 Heading
+## Switch themes
 
-##### h5 Heading
+To switch in the default themes you only need to set the value of themeType, you can follow the steps below:
 
-###### h6 Heading
+1. Make sure `RawUIProvider` are already on the root component.
+2. Update the value of `themeType`, and the theme of all components will follow automatically.
 
-## Emphasis
+```tsx
+import { RawUIProvider } from 'raw-ui';
 
-**This is bold text**
+const App = () => {
+  const [themeType, setThemeType] = useState('light');
 
-_This is italic text_
+  const switchThemes = () => {
+    setThemeType(lastValue => (lastValue === 'dark' ? 'light' : 'dark'));
+  }
 
-~~Strikethrough~~
-
-## Blockquotes
-
-> Develop. Preview. Ship. – Vercel
-
-## Lists
-
-Unordered
-
-- Lorem ipsum dolor sit amet
-- Consectetur adipiscing elit
-- Integer molestie lorem at massa
-
-Ordered
-
-1. Lorem ipsum dolor sit amet
-2. Consectetur adipiscing elit
-3. Integer molestie lorem at massa
-
-## Code
-
-Inline `code`
-
-```jsx
-export default function Nextra({ Component, pageProps }) {
   return (
-    <>
-      <Head>
-        <link
-          rel="alternate"
-          type="application/rss+xml"
-          title="RSS"
-          href="/feed.xml"
-        />
-        <link
-          rel="preload"
-          href="/fonts/Inter-roman.latin.var.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-      </Head>
-      <Component {...pageProps} />
-    </>
-  );
-}
+    <RawUIProvider themeType={themeType}>
+      <YourComponent onClick={switchThemes} />
+    </RawUIProvider>
+  )
+};
 ```
 
-## Tables
+## Customizing theme
 
-| **Option** | **Description**                                                                                                             |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------- |
-| First      | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. |
-| Second     | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. |
-| Third      | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. |
+Customizing a theme is very simple in Raw UI, you just need to provide a new theme object, and all the components will change automatically.
 
-## Links
+```tsx
+import { RawUIProvider, Theme } from 'raw-ui';
 
-- [Next.js](https://nextjs.org)
-- [Nextra](https://nextra.vercel.app/)
-- [Vercel](http://vercel.com)
+const myTheme = Theme.createFromLight({
+  type: 'myTheme',
+  palette: {
+    success: '#000',
+  },
+});
 
-### Footnotes
+const App = () => (
+  <RawUIProvider themes={[myTheme]} themeType="myTheme">
+    <YourAppComponent />
+  </RawUIProvider>
+);
+```
 
-- Footnote [^1].
-- Footnote [^2].
+Function `Theme.createFromLight` allows you to fork a new theme based on Light Theme,
+Of course, you can also create a new theme based on the dark style: `Theme.createFromDark`, Or create a theme based on your own theme:
 
-[^1]: Footnote **can have markup**
+```tsx
+const myBaseTheme = { ... }
 
-    and multiple paragraphs.
+const myTheme = Theme.create(myBaseTheme, {
+  type: 'myTheme',
+  palette: {
+    success: '#000',
+  },
+})
+```
 
-[^2]: Footnote text.
+## Get types
+
+When you need to know the detailed type definition when modifying the theme, you can refer to the existing
+ [type file](https://github.com/shervinchen/raw-ui/blob/main/packages/Theme/preset/preset.type.ts),
+ which corresponds to project that support TypeScript, you can refer to the type directly in the package:
+
+```tsx
+import {
+  RawUITheme,
+  RawUIThemePalette,
+  RawUIThemeTokens
+} from 'raw-ui';
+
+const myPalette: Partial<RawUIThemePalette> = {
+  ...
+};
+
+const myTokens: Partial<RawUIThemeTokens> = {
+  ...
+};
+
+const myTheme: RawUITheme = {
+  type: 'myTheme',
+  palette: myPalette,
+  tokens: myTokens
+};
+```
+
+## Build components
+
+You can use the preset theme hooks to get the theme states to create your own components.
+
+```tsx
+import { useTheme } from 'raw-ui';
+
+const MyComponent = () => {
+  const theme = useTheme();
+
+  return (
+    <div style={{ color: theme.palette.success }}>
+      <span>hello world!</span>
+    </div>
+  )
+};
+```
+
+## Theme APIs
+
+```tsx
+import { Theme } from 'raw-ui';
+```
+
+`Theme` contains some static methods that are useful when working with custom themes:
+
+- `Theme.createFromCustom` - create a new theme object.
+- `Theme.createFromDark` - create a new theme object based on Dark Theme.
+- `Theme.createFromLight` - create a new theme object based on Light Theme.
+- `Theme.isAvailableThemeType` - Check if the name of the theme is available.
+- `Theme.hasUserCustomTheme` - Check if a list of themes has a custom.
+- `Theme.getPresetThemes` - Get a default list of themes.
+- `Theme.getPresetStaticTheme` - Get the theme loaded by Geist UI default.
