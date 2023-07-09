@@ -1,6 +1,9 @@
 import React, { FC, PropsWithChildren } from 'react';
+import { useTheme } from '../Theme';
 
 const BaseStyle: FC<PropsWithChildren<unknown>> = ({ children }) => {
+  const theme = useTheme();
+
   return (
     <>
       {children}
@@ -8,8 +11,8 @@ const BaseStyle: FC<PropsWithChildren<unknown>> = ({ children }) => {
         {`
           html,
           body {
-            background-color: #fff;
-            color: #000;
+            background-color: ${theme.palette.background};
+            color: ${theme.palette.foreground};
           }
 
           html {

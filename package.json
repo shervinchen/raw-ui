@@ -107,6 +107,7 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
+    "next-themes": "^0.2.1",
     "prism-react-renderer": "^2.0.6",
     "react-live": "^4.1.3"
   }

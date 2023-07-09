@@ -4,7 +4,7 @@ import { RawUITheme } from '@/packages/Theme/preset/preset.type';
 export const getPrismTheme = (theme: RawUITheme): PrismTheme => ({
   plain: {
     color: theme.palette.accents6,
-    backgroundColor: '#fff',
+    backgroundColor: theme.palette.background,
   },
   styles: [
     {

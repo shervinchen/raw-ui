@@ -14,6 +14,7 @@ const RawUIProvider: FC<PropsWithChildren<RawUIProviderProps>> = ({
   children,
 }) => {
   const initialValue = {};
+
   return (
     <RawUIContent.Provider value={initialValue}>
       <ThemeProvider themes={themes} themeType={themeType}>
