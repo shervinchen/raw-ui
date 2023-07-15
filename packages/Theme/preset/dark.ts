@@ -1,18 +1,18 @@
 import { RawUITheme, RawUIThemePalette, RawUIThemeTokens } from './preset.type';
 
 export const palette: RawUIThemePalette = {
-  accents1: '#111',
-  accents2: '#333',
-  accents3: '#444',
-  accents4: '#666',
-  accents5: '#888',
-  accents6: '#999',
+  accents1: '#111111',
+  accents2: '#333333',
+  accents3: '#444444',
+  accents4: '#666666',
+  accents5: '#888888',
+  accents6: '#999999',
   accents7: '#dcdcdc',
   accents8: '#e7e7e7',
   accents9: '#eaeaea',
   accents10: '#fafafa',
-  background: '#000',
-  foreground: '#fff',
+  background: '#000000',
+  foreground: '#ffffff',
   link: '#3291ff',
   success1: '#d3e5ff',
   success2: '#cce2fd',
@@ -30,7 +30,7 @@ export const palette: RawUIThemePalette = {
   error2: '#fccccc',
   error3: '#fab3b3',
   error4: '#ff1a1a',
-  error5: '#e00',
+  error5: '#ee0000',
   error6: '#c50000',
 };
 

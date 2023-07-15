@@ -1,5 +1,7 @@
 'use client';
 
+import MDXContent from './colors.mdx';
+
 export default function Page() {
-  return <h1>colors</h1>;
+  return <MDXContent />;
 }

@@ -26,7 +26,9 @@ export default function Page() {
           applications.
         </h2>
         <div className="flex gap-3">
-          <Button type="primary">Get Started</Button>
+          <Link href="/guide">
+            <Button type="primary">Get Started</Button>
+          </Link>
           <Link href="https://github.com/shervinchen/raw-ui">
             <Button icon={<GitHub />}>Github</Button>
           </Link>

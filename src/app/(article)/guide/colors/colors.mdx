@@ -1,0 +1,31 @@
+import ColorCard from '@/src/app/components/color-card/color-card';
+
+# Colors
+
+You can use any color anywhere, all colors change with the theme.
+
+```tsx
+import { useTheme } from 'raw-ui';
+
+const myComponent = () => {
+  const { palette } = useTheme();
+
+  return <p style={{ color: palette.accents_1 }}>myComponent</p>
+};
+```
+
+## Normal
+
+<ColorCard type="normal" />
+
+## Success
+
+<ColorCard type="success" />
+
+## Warning
+
+<ColorCard type="warning" />
+
+## Error
+
+<ColorCard type="error" />
