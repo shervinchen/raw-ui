@@ -1,6 +1,9 @@
-'use client';
+import { Metadata } from 'next';
+import MDXContent from './mdx-content';
 
-import MDXContent from './custom-styles.mdx';
+export const metadata: Metadata = {
+  title: 'Custom Styles - Raw UI',
+};
 
 export default function Page() {
   return <MDXContent />;

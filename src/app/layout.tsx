@@ -1,21 +1,12 @@
-'use client';
-
-import { useTheme } from 'next-themes';
+import { Metadata } from 'next';
 import StyledJsxRegistry from './registry';
 import './global.css';
-import Navbar from './components/navbar';
-import { RawUIProvider } from '@/packages';
-import { NextThemesProviders } from './next-themes-provider';
+import { LayoutProvider } from './layout-provider';
 
-const LayoutContent = ({ children }: { children: React.ReactNode }) => {
-  const { theme } = useTheme();
-
-  return (
-    <RawUIProvider themeType={theme}>
-      <Navbar />
-      {children}
-    </RawUIProvider>
-  );
+export const metadata: Metadata = {
+  title: 'Raw UI',
+  description:
+    'A minimalist and customizable React component library for web applications.',
 };
 
 export default function RootLayout({
@@ -27,9 +18,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="bg-white dark:bg-black">
         <StyledJsxRegistry>
-          <NextThemesProviders>
-            <LayoutContent>{children}</LayoutContent>
-          </NextThemesProviders>
+          <LayoutProvider>{children}</LayoutProvider>
         </StyledJsxRegistry>
       </body>
     </html>

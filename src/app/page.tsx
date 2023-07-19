@@ -1,9 +1,7 @@
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { GitHub } from 'react-feather';
-import { Button } from '@/packages';
+import { Button } from './client-lib';
 import ThemeSwitch from './components/theme-switch/theme-switch';
 
 export default function Page() {

@@ -1,6 +1,9 @@
-'use client';
+import { Metadata } from 'next';
+import MDXContent from './mdx-content';
 
-import MDXContent from './checkbox.mdx';
+export const metadata: Metadata = {
+  title: 'Checkbox - Raw UI',
+};
 
 export default function Page() {
   return <MDXContent />;
