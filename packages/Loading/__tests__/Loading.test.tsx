@@ -21,9 +21,14 @@ describe('Loading', () => {
     });
   });
 
-  test('should render text', () => {
+  test('should render text with dot type', () => {
     const { container } = render(<Loading>Loading</Loading>);
     expect(container.querySelector('.raw-dot-loading-text')).toBeTruthy();
+  });
+
+  test('should render text with spin type', () => {
+    const { container } = render(<Loading type="spin">Loading</Loading>);
+    expect(container.querySelector('.raw-spin-loading-text')).toBeTruthy();
   });
 
   test('should support custom size', () => {
