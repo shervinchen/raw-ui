@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading should match the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="raw-dot-loading jsx-2553539443"
+  >
+    <span
+      class="raw-dot-loading-inner"
+    >
+      <i />
+      <i />
+      <i />
+    </span>
+  </div>
+</DocumentFragment>
+`;

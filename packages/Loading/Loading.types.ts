@@ -1,7 +1,9 @@
 import { HTMLAttributes } from 'react';
 
+export type LoadingType = 'dot' | 'spin';
+
 export interface BaseLoadingProps {
-  type?: 'dot' | 'spin';
+  type?: LoadingType;
   color?: string;
   className?: string;
   size?: number;

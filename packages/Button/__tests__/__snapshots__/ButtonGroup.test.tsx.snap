@@ -3,10 +3,10 @@
 exports[`ButtonGroup should match the snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="raw-button-group horizontal"
+    class="raw-button-group horizontal jsx-3984540175"
   >
     <button
-      class="raw-button raw-md-button"
+      class="raw-button raw-md-button jsx-3093377779"
       type="button"
     >
       <span
@@ -16,7 +16,7 @@ exports[`ButtonGroup should match the snapshot 1`] = `
       </span>
     </button>
     <button
-      class="raw-button raw-md-button"
+      class="raw-button raw-md-button jsx-3093377779"
       type="button"
     >
       <span
@@ -26,7 +26,7 @@ exports[`ButtonGroup should match the snapshot 1`] = `
       </span>
     </button>
     <button
-      class="raw-button raw-md-button"
+      class="raw-button raw-md-button jsx-3093377779"
       type="button"
     >
       <span

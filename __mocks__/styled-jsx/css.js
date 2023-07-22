@@ -1,4 +1,4 @@
-module.exports = {
-  resolve: () => ({ className: '', styles: '' }),
-  global: () => '',
-};
+// module.exports = {
+//   resolve: () => ({ className: '', styles: '' }),
+//   global: () => '',
+// };
