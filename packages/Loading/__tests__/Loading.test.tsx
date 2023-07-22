@@ -9,6 +9,11 @@ describe('Loading', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
+  test('should support custom class name', () => {
+    const { container } = render(<Loading className="custom-loading" />);
+    expect(container.firstChild).toHaveClass('custom-loading');
+  });
+
   ['dot', 'spin'].forEach((item: LoadingType) => {
     test(`should render ${item} type`, () => {
       const { container } = render(<Loading type={item} />);

@@ -16,6 +16,17 @@ describe('ButtonGroup', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
+  test('should support custom class name', () => {
+    const { container } = render(
+      <Button.Group className="custom-button-group">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </Button.Group>
+    );
+    expect(container.firstChild).toHaveClass('custom-button-group');
+  });
+
   test('should render the correct number of child', () => {
     const { container } = render(
       <Button.Group>

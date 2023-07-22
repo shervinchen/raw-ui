@@ -18,6 +18,13 @@ describe('Button', () => {
     expect(button).toEqual(ref.current);
   });
 
+  test('should support custom class name', () => {
+    const { container } = render(
+      <Button className="custom-button">Text</Button>
+    );
+    expect(container.firstChild).toHaveClass('custom-button');
+  });
+
   test('should trigger event when clicked', async () => {
     const clickHandler = jest.fn();
     const { container } = render(<Button onClick={clickHandler}>Text</Button>);
