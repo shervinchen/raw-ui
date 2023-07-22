@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Search } from 'react-feather';
-import Button from '../Button';
+import Button from '..';
 import { ButtonSizes, ButtonTypes, ButtonVariants } from '../Button.types';
 
 describe('Button', () => {
@@ -61,12 +61,7 @@ describe('Button', () => {
   });
 
   test('should support disabled', () => {
-    const clickHandler = jest.fn();
-    const { container } = render(
-      <Button disabled onClick={clickHandler}>
-        Text
-      </Button>
-    );
+    const { container } = render(<Button disabled>Text</Button>);
     const button = container.firstChild;
     expect(button).toHaveClass('raw-disabled-button');
     expect(button).toBeDisabled();

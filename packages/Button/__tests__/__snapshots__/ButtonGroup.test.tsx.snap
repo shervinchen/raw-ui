@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonGroup should match the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="raw-button-group horizontal"
+  >
+    <button
+      class="raw-button raw-md-button"
+      type="button"
+    >
+      <span
+        class="raw-button-content"
+      >
+        One
+      </span>
+    </button>
+    <button
+      class="raw-button raw-md-button"
+      type="button"
+    >
+      <span
+        class="raw-button-content"
+      >
+        Two
+      </span>
+    </button>
+    <button
+      class="raw-button raw-md-button"
+      type="button"
+    >
+      <span
+        class="raw-button-content"
+      >
+        Three
+      </span>
+    </button>
+  </div>
+</DocumentFragment>
+`;
