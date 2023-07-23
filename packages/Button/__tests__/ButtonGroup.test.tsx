@@ -77,6 +77,22 @@ describe('ButtonGroup', () => {
     });
   });
 
+  test('should get default style when variant is unknown', () => {
+    const { container } = render(
+      <Button.Group variant={'unknown' as ButtonGroupVariant}>
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </Button.Group>
+    );
+    const buttons = container.querySelectorAll('.raw-button');
+    buttons.forEach((button) => {
+      expect(getComputedStyle(button).backgroundColor).toBe(
+        'rgb(255, 255, 255)'
+      );
+    });
+  });
+
   test('should support vertical', () => {
     const { container } = render(
       <Button.Group vertical>

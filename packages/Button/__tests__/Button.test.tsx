@@ -1,9 +1,14 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, renderHook } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Search } from 'react-feather';
 import Button from '..';
 import { ButtonSizes, ButtonTypes, ButtonVariants } from '../Button.types';
+import {
+  useButtonActiveStyles,
+  useButtonHoverStyles,
+  useButtonStyles,
+} from '../Button.styles';
 
 describe('Button', () => {
   test('should match the snapshot', () => {
@@ -54,6 +59,259 @@ describe('Button', () => {
     });
   });
 
+  test('should get default style when type is unknown or falsy', () => {
+    const { result: result1 } = renderHook(() =>
+      useButtonStyles({
+        type: 'unknown' as ButtonTypes,
+        size: 'md',
+        variant: 'default',
+        loading: false,
+        disabled: false,
+      })
+    );
+    const { result: result2 } = renderHook(() =>
+      useButtonStyles({
+        type: undefined as ButtonTypes,
+        size: 'md',
+        variant: 'default',
+        loading: false,
+        disabled: false,
+      })
+    );
+    expect(result1.current.backgroundColor).toBe('#ffffff');
+    expect(result2.current.backgroundColor).toBe('#ffffff');
+  });
+
+  test('should get default loading style when type is unknown or falsy', () => {
+    const { result: result1 } = renderHook(() =>
+      useButtonStyles({
+        type: 'unknown' as ButtonTypes,
+        size: 'md',
+        variant: 'default',
+        loading: true,
+        disabled: false,
+      })
+    );
+    const { result: result2 } = renderHook(() =>
+      useButtonStyles({
+        type: undefined as ButtonTypes,
+        size: 'md',
+        variant: 'default',
+        loading: true,
+        disabled: false,
+      })
+    );
+    expect(result1.current.backgroundColor).toBe('#ffffff');
+    expect(result2.current.backgroundColor).toBe('#ffffff');
+  });
+
+  test('should get default style when variant is unknown or falsy', () => {
+    const { result: result1 } = renderHook(() =>
+      useButtonStyles({
+        type: 'default',
+        size: 'md',
+        variant: 'unknown' as ButtonVariants,
+        loading: false,
+        disabled: false,
+      })
+    );
+    const { result: result2 } = renderHook(() =>
+      useButtonStyles({
+        type: 'default',
+        size: 'md',
+        variant: undefined as ButtonVariants,
+        loading: false,
+        disabled: false,
+      })
+    );
+    expect(result1.current.backgroundColor).toBe('#ffffff');
+    expect(result2.current.backgroundColor).toBe('#ffffff');
+  });
+
+  test('should get default loading style when variant is unknown or falsy', () => {
+    const { result: result1 } = renderHook(() =>
+      useButtonStyles({
+        type: 'default',
+        size: 'md',
+        variant: 'unknown' as ButtonVariants,
+        loading: true,
+        disabled: false,
+      })
+    );
+    const { result: result2 } = renderHook(() =>
+      useButtonStyles({
+        type: 'default',
+        size: 'md',
+        variant: undefined as ButtonVariants,
+        loading: true,
+        disabled: false,
+      })
+    );
+    expect(result1.current.backgroundColor).toBe('#ffffff');
+    expect(result2.current.backgroundColor).toBe('#ffffff');
+  });
+
+  test('should get default disabled style when type is unknown or falsy', () => {
+    const { result: result1 } = renderHook(() =>
+      useButtonStyles({
+        type: 'unknown' as ButtonTypes,
+        size: 'md',
+        variant: 'default',
+        loading: false,
+        disabled: true,
+      })
+    );
+    const { result: result2 } = renderHook(() =>
+      useButtonStyles({
+        type: undefined as ButtonTypes,
+        size: 'md',
+        variant: 'default',
+        loading: false,
+        disabled: true,
+      })
+    );
+    expect(result1.current.backgroundColor).toBe('#eaeaea');
+    expect(result2.current.backgroundColor).toBe('#eaeaea');
+  });
+
+  test('should get default disabled style when variant is unknown or falsy', () => {
+    const { result: result1 } = renderHook(() =>
+      useButtonStyles({
+        type: undefined as ButtonTypes,
+        size: 'md',
+        variant: 'unknown' as ButtonVariants,
+        loading: false,
+        disabled: true,
+      })
+    );
+    const { result: result2 } = renderHook(() =>
+      useButtonStyles({
+        type: undefined as ButtonTypes,
+        size: 'md',
+        variant: undefined as ButtonVariants,
+        loading: false,
+        disabled: true,
+      })
+    );
+    expect(result1.current.backgroundColor).toBe('#eaeaea');
+    expect(result2.current.backgroundColor).toBe('#eaeaea');
+  });
+
+  test('should get default hover style when type is unknown or falsy', () => {
+    const { result: result1 } = renderHook(() =>
+      useButtonHoverStyles({
+        type: 'unknown' as ButtonTypes,
+        size: 'md',
+        variant: 'default',
+        loading: false,
+        disabled: false,
+      })
+    );
+    const { result: result2 } = renderHook(() =>
+      useButtonHoverStyles({
+        type: undefined as ButtonTypes,
+        size: 'md',
+        variant: 'default',
+        loading: false,
+        disabled: false,
+      })
+    );
+    expect(result1.current.hoverColor).toBe('#000000');
+    expect(result2.current.hoverColor).toBe('#000000');
+  });
+
+  test('should get default hover style when variant is unknown or falsy', () => {
+    const { result: result1 } = renderHook(() =>
+      useButtonHoverStyles({
+        type: 'default',
+        size: 'md',
+        variant: 'unknown' as ButtonVariants,
+        loading: false,
+        disabled: false,
+      })
+    );
+    const { result: result2 } = renderHook(() =>
+      useButtonHoverStyles({
+        type: 'default',
+        size: 'md',
+        variant: undefined as ButtonVariants,
+        loading: false,
+        disabled: false,
+      })
+    );
+    expect(result1.current.hoverColor).toBe('#000000');
+    expect(result2.current.hoverColor).toBe('#000000');
+  });
+
+  test('should get default active style when type is unknown or falsy', () => {
+    const { result: result1 } = renderHook(() =>
+      useButtonActiveStyles({
+        type: 'unknown' as ButtonTypes,
+        size: 'md',
+        variant: 'default',
+        loading: false,
+        disabled: false,
+      })
+    );
+    const { result: result2 } = renderHook(() =>
+      useButtonActiveStyles({
+        type: undefined as ButtonTypes,
+        size: 'md',
+        variant: 'default',
+        loading: false,
+        disabled: false,
+      })
+    );
+    expect(result1.current.activeBackgroundColor).toBe('#eaeaea');
+    expect(result2.current.activeBackgroundColor).toBe('#eaeaea');
+  });
+
+  test('should get default active style when variant is unknown or falsy', () => {
+    const { result: result1 } = renderHook(() =>
+      useButtonActiveStyles({
+        type: 'default',
+        size: 'md',
+        variant: 'unknown' as ButtonVariants,
+        loading: false,
+        disabled: false,
+      })
+    );
+    const { result: result2 } = renderHook(() =>
+      useButtonActiveStyles({
+        type: 'default',
+        size: 'md',
+        variant: undefined as ButtonVariants,
+        loading: false,
+        disabled: false,
+      })
+    );
+    expect(result1.current.activeBackgroundColor).toBe('#eaeaea');
+    expect(result2.current.activeBackgroundColor).toBe('#eaeaea');
+  });
+
+  test('should get md size when size is unknown or falsy', () => {
+    const { result: result1 } = renderHook(() =>
+      useButtonStyles({
+        type: 'default',
+        size: 'unknown' as ButtonSizes,
+        variant: 'default',
+        loading: false,
+        disabled: false,
+      })
+    );
+    const { result: result2 } = renderHook(() =>
+      useButtonStyles({
+        type: 'default',
+        size: undefined as ButtonSizes,
+        variant: 'default',
+        loading: false,
+        disabled: false,
+      })
+    );
+    expect(result1.current.height).toBe('40px');
+    expect(result2.current.height).toBe('40px');
+  });
+
   test('should support loading', async () => {
     const clickHandler = jest.fn();
     const { container } = render(
@@ -84,6 +342,7 @@ describe('Button', () => {
   test('should support icon with text', () => {
     const { container } = render(<Button icon={<Search />}>Search</Button>);
     expect(container.querySelector('.raw-button-icon')).toBeTruthy();
+    expect(container.querySelector('.button-icon-single')).toBeFalsy();
     expect(container.querySelector('.raw-button-content')).toBeTruthy();
   });
 
@@ -92,6 +351,7 @@ describe('Button', () => {
       <Button iconRight={<Search />}>Search</Button>
     );
     expect(container.querySelector('.raw-button-icon')).toBeTruthy();
+    expect(container.querySelector('.button-icon-single')).toBeFalsy();
     expect(container.querySelector('.button-icon-right')).toBeTruthy();
   });
 });

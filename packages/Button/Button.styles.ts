@@ -389,7 +389,9 @@ export const useButtonHoverStyles = (props: ButtonProps): ButtonHoverStyles => {
   return loading || disabled ? {} : defaultStyles;
 };
 
-const useButtonActiveStyles = (props: ButtonProps): ButtonActiveStyles => {
+export const useButtonActiveStyles = (
+  props: ButtonProps
+): ButtonActiveStyles => {
   const theme: RawUITheme = useTheme();
   const { type, variant, loading, disabled } = props;
   const styles: {
@@ -508,6 +510,21 @@ export const useButtonCSS = (props: ButtonProps) => {
   } = useButtonActiveStyles(props);
 
   return css.resolve`
+    .raw-button:not(.raw-loading-button):not(.raw-disabled-button):hover,
+    .raw-button:not(.raw-loading-button):not(.raw-disabled-button):focus {
+      background-color: ${hoverBackgroundColor};
+      border-color: ${hoverBorderColor};
+      color: ${hoverColor};
+      box-shadow: ${hoverBoxShadow};
+      transform: ${hoverTransform};
+    }
+
+    .raw-button:not(.raw-loading-button):not(.raw-disabled-button):active {
+      background-color: ${activeBackgroundColor};
+      box-shadow: ${activeBoxShadow};
+      transform: ${activeTransform};
+    }
+
     .raw-button {
       box-sizing: border-box;
       position: relative;
@@ -537,21 +554,6 @@ export const useButtonCSS = (props: ButtonProps) => {
       appearance: none;
       outline: none;
       user-select: none;
-    }
-
-    .raw-button:not(.raw-loading-button):not(.raw-disabled-button):hover,
-    .raw-button:not(.raw-loading-button):not(.raw-disabled-button):focus {
-      background-color: ${hoverBackgroundColor};
-      border-color: ${hoverBorderColor};
-      color: ${hoverColor};
-      box-shadow: ${hoverBoxShadow};
-      transform: ${hoverTransform};
-    }
-
-    .raw-button:not(.raw-loading-button):not(.raw-disabled-button):active {
-      background-color: ${activeBackgroundColor};
-      box-shadow: ${activeBoxShadow};
-      transform: ${activeTransform};
     }
 
     .raw-button.raw-childless-button {

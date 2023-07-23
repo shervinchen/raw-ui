@@ -3,7 +3,7 @@
 exports[`Button should match the snapshot 1`] = `
 <DocumentFragment>
   <button
-    class="raw-button raw-md-button jsx-3093377779"
+    class="raw-button raw-md-button jsx-2168746361"
     type="button"
   >
     <span

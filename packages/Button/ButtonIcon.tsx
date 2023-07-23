@@ -6,7 +6,7 @@ import { ButtonIconProps } from './Button.types';
 
 const ButtonIcon: FC<PropsWithChildren<ButtonIconProps>> = ({
   isRight = false,
-  isSingle = false,
+  isSingle,
   height,
   horizontalPadding,
   children,
