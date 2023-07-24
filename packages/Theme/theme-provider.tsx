@@ -22,7 +22,9 @@ const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = ({
   });
 
   const currentTheme = useMemo<RawUITheme>(() => {
-    const theme = allThemes.themes.find((item) => item.type === themeType);
+    const theme = allThemes.themes.find((themeItem) => {
+      return themeItem.type === themeType;
+    });
     if (theme) return theme;
     return Theme.getPresetStaticTheme();
   }, [allThemes, themeType]);
@@ -30,9 +32,10 @@ const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = ({
   useEffect(() => {
     if (!themes?.length) return;
     setAllThemes((last) => {
-      const safeThemes = themes.filter((item) =>
-        Theme.isAvailableThemeType(item.type)
-      );
+      const safeThemes = themes.filter((themeItem) => {
+        if (!themeItem) return false;
+        return Theme.isAvailableThemeType(themeItem.type);
+      });
       const nextThemes = Theme.getPresetThemes().concat(safeThemes);
       return {
         ...last,

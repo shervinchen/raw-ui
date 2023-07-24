@@ -8,8 +8,6 @@ const mergeTheme = <T extends Record<string, unknown>>(
   source: T,
   target: T
 ): T => {
-  if (!isObject(target) || !isObject(source)) return source;
-
   const sourceKeys = Object.keys(source) as Array<keyof T>;
   const result: {
     [key in keyof T]?: unknown;
@@ -49,14 +47,22 @@ const isAvailableThemeType = (type?: string): boolean => {
 };
 
 const hasUserCustomTheme = (themes: Array<RawUITheme> = []): boolean => {
-  return !!themes.find((item) => isAvailableThemeType(item.type));
+  if (!themes) return false;
+  return !!themes.find((themeItem) => {
+    if (!themeItem) return false;
+    return isAvailableThemeType(themeItem.type);
+  });
 };
 
 const createFromCustom = (
   baseTheme: RawUITheme,
   customTheme: RawUIUserTheme
 ): RawUITheme => {
-  if (!isAvailableThemeType(customTheme.type)) {
+  if (
+    !isObject(baseTheme) ||
+    !isObject(customTheme) ||
+    !isAvailableThemeType(customTheme.type)
+  ) {
     throw new Error('Duplicate or unavailable theme type');
   }
 

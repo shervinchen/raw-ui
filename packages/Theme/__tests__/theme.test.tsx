@@ -131,7 +131,7 @@ describe('Theme', () => {
     expect(text.style.color).toBe('rgb(0, 0, 0)');
   });
 
-  test('should not support duplicate theme', () => {
+  test('should not support duplicate or unavailable theme', () => {
     expect(() => {
       Theme.createFromCustom(Theme.getPresetStaticTheme(), {
         type: 'light',
@@ -139,6 +139,17 @@ describe('Theme', () => {
           accents1: '#000',
         },
       });
+    }).toThrow('Duplicate or unavailable theme type');
+    expect(() => {
+      Theme.createFromCustom(null, {
+        type: 'light',
+        palette: {
+          accents1: '#000',
+        },
+      });
+    }).toThrow('Duplicate or unavailable theme type');
+    expect(() => {
+      Theme.createFromCustom(Theme.getPresetStaticTheme(), null);
     }).toThrow('Duplicate or unavailable theme type');
   });
 
@@ -168,15 +179,31 @@ describe('Theme', () => {
       false
     );
     expect(Theme.hasUserCustomTheme()).toBe(false);
+    expect(Theme.hasUserCustomTheme([null])).toBe(false);
+    expect(Theme.hasUserCustomTheme(null)).toBe(false);
   });
 
-  test('should use source theme when target or source is not object', () => {
-    const myTheme = Theme.createFromCustom(null, {
-      type: 'myTheme',
-      palette: {
-        accents1: '#000',
-      },
-    });
-    expect(myTheme).toBe(null);
+  test('should return default theme when theme is falsy', () => {
+    const TestContent = () => {
+      const theme = useTheme();
+
+      return (
+        <p data-testid="text" style={{ color: theme.palette.foreground }}>
+          text
+        </p>
+      );
+    };
+
+    const TestApp = () => {
+      return (
+        <RawUIProvider themeType="myTheme" themes={[null]}>
+          <TestContent />
+        </RawUIProvider>
+      );
+    };
+
+    const { getByTestId } = render(<TestApp />);
+    const text = getByTestId('text');
+    expect(text.style.color).toBe('rgb(0, 0, 0)');
   });
 });
