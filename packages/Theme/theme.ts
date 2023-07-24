@@ -19,9 +19,7 @@ const mergeTheme = <T extends Record<string, unknown>>(
     const sourceValue = source[key];
     const targetValue = target[key];
 
-    if (Array.isArray(sourceValue) && Array.isArray(targetValue)) {
-      result[key] = targetValue.concat(sourceValue);
-    } else if (isObject(sourceValue) && isObject(targetValue)) {
+    if (isObject(sourceValue) && isObject(targetValue)) {
       result[key] = mergeTheme(sourceValue as Record<string, unknown>, {
         ...(targetValue as Record<string, unknown>),
       });

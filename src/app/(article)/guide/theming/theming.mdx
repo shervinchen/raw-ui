@@ -37,7 +37,7 @@ import { RawUIProvider, Theme } from 'raw-ui';
 const myTheme = Theme.createFromLight({
   type: 'myTheme',
   palette: {
-    success: '#000',
+    accents1: '#000',
   },
 });
 
@@ -54,10 +54,10 @@ Of course, you can also create a new theme based on the dark style: `Theme.creat
 ```tsx
 const myBaseTheme = { ... }
 
-const myTheme = Theme.create(myBaseTheme, {
+const myTheme = Theme.createFromCustom(myBaseTheme, {
   type: 'myTheme',
   palette: {
-    success: '#000',
+    accents1: '#000',
   },
 })
 ```
