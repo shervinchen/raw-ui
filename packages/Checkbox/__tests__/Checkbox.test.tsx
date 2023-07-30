@@ -1,0 +1,205 @@
+import React from 'react';
+import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import Checkbox from '..';
+
+const optionsData = [
+  {
+    name: 'React',
+    value: 'react',
+    disabled: false,
+  },
+  {
+    name: 'Vue',
+    value: 'vue',
+    disabled: false,
+  },
+  {
+    name: 'Angular',
+    value: 'angular',
+    disabled: false,
+  },
+  {
+    name: 'Svelte',
+    value: 'svelte',
+    disabled: true,
+  },
+];
+
+describe('Checkbox', () => {
+  test('should match the snapshot', () => {
+    const { asFragment } = render(<Checkbox />);
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  test('should support custom class name', () => {
+    const { container } = render(<Checkbox className="custom-checkbox" />);
+    expect(container.firstChild).toHaveClass('custom-checkbox');
+  });
+
+  test('should trigger event when clicked', async () => {
+    const clickHandler = jest.fn();
+    const { container } = render(<Checkbox onClick={clickHandler} />);
+    const checkbox = container.firstChild;
+    await userEvent.click(checkbox as Element);
+    expect(clickHandler).toHaveBeenCalledTimes(1);
+  });
+
+  test('should support uncontrolled value', () => {
+    const { container } = render(<Checkbox defaultChecked />);
+    const checkboxInput = container.querySelector('.raw-checkbox-input');
+    expect(checkboxInput).toBeChecked();
+  });
+
+  test('should support label text', () => {
+    const { queryByText } = render(<Checkbox>Label</Checkbox>);
+    expect(queryByText('Label')).toBeInTheDocument();
+  });
+
+  test('should support indeterminate', () => {
+    const { container } = render(
+      <Checkbox indeterminate>Indeterminate</Checkbox>
+    );
+    const checkboxInput = container.querySelector('.raw-checkbox-input');
+    expect(checkboxInput).toBePartiallyChecked();
+  });
+
+  test('should support disabled', async () => {
+    const { container } = render(<Checkbox disabled />);
+    const checkbox = container.firstChild;
+    const checkboxInput = container.querySelector('.raw-checkbox-input');
+    expect(checkboxInput).toBeDisabled();
+    await userEvent.click(checkbox as Element);
+    expect(checkboxInput).not.toBeChecked();
+  });
+
+  test('should support controlled value', async () => {
+    const onChange = jest.fn();
+
+    const { container } = render(
+      <Checkbox checked={true} onChange={onChange}>
+        Controlled
+      </Checkbox>
+    );
+    const checkbox = container.firstChild;
+    const checkboxInput = container.querySelector('.raw-checkbox-input');
+    expect(checkboxInput).toBeChecked();
+    await userEvent.click(checkbox as Element);
+    expect(onChange).toHaveBeenCalledTimes(1);
+  });
+
+  test('should support checkbox group uncontrolled value', async () => {
+    const Component = () => (
+      <Checkbox.Group defaultValue={['react', 'vue']}>
+        {optionsData.map((item) => (
+          <Checkbox value={item.value} key={item.value}>
+            {item.name}
+          </Checkbox>
+        ))}
+      </Checkbox.Group>
+    );
+    const { container } = render(<Component />);
+    const checkboxOne = container.querySelectorAll('input')[0];
+    const checkboxTwo = container.querySelectorAll('input')[1];
+    const checkboxThree = container.querySelectorAll('input')[2];
+    const checkboxFour = container.querySelectorAll('input')[3];
+    expect(checkboxOne).toBeChecked();
+    expect(checkboxTwo).toBeChecked();
+    expect(checkboxThree).not.toBeChecked();
+    expect(checkboxFour).not.toBeChecked();
+    await userEvent.click(checkboxTwo);
+    await userEvent.click(checkboxThree);
+    await userEvent.click(checkboxFour);
+    expect(checkboxOne).toBeChecked();
+    expect(checkboxTwo).not.toBeChecked();
+    expect(checkboxThree).toBeChecked();
+    expect(checkboxFour).toBeChecked();
+  });
+
+  test('should support checkbox group controlled value', async () => {
+    let checked = ['react', 'vue'];
+
+    const onChange = jest.fn((value: string[]) => {
+      checked = value;
+    });
+
+    const Component = (props) => (
+      <Checkbox.Group {...props}>
+        {optionsData.map((item) => (
+          <Checkbox value={item.value} key={item.value}>
+            {item.name}
+          </Checkbox>
+        ))}
+      </Checkbox.Group>
+    );
+
+    const { container, rerender } = render(
+      <Component value={checked} onChange={onChange} />
+    );
+
+    const [checkboxOne, checkboxTwo, checkboxThree] = Array.from(
+      container.querySelectorAll('input')
+    );
+
+    expect(checkboxOne).toBeChecked();
+    expect(checkboxTwo).toBeChecked();
+    expect(checkboxThree).not.toBeChecked();
+
+    await userEvent.click(checkboxThree);
+
+    rerender(<Component />);
+
+    expect(onChange).toHaveBeenCalledTimes(1);
+    expect(checked).toEqual(['react', 'vue', 'angular']);
+  });
+
+  test('should support checkbox group disabled', async () => {
+    const Component = () => (
+      <Checkbox.Group defaultValue={[]} disabled>
+        <Checkbox value="react">React</Checkbox>
+        <Checkbox value="vue">Vue</Checkbox>
+        <Checkbox value="angular" disabled>
+          Angular
+        </Checkbox>
+        <Checkbox value="svelte" disabled={false}>
+          Svelte
+        </Checkbox>
+      </Checkbox.Group>
+    );
+    const { container } = render(<Component />);
+    const [checkboxOne, checkboxTwo, checkboxThree, checkboxFour] = Array.from(
+      container.querySelectorAll('input')
+    );
+    expect(checkboxOne).toBeDisabled();
+    expect(checkboxTwo).toBeDisabled();
+    expect(checkboxThree).toBeDisabled();
+    expect(checkboxFour).toBeDisabled();
+
+    await userEvent.click(checkboxOne);
+    await userEvent.click(checkboxTwo);
+    await userEvent.click(checkboxThree);
+    await userEvent.click(checkboxFour);
+
+    expect(checkboxOne).not.toBeChecked();
+    expect(checkboxTwo).not.toBeChecked();
+    expect(checkboxThree).not.toBeChecked();
+    expect(checkboxFour).not.toBeChecked();
+  });
+
+  test('should support row and col layout in checkbox group', () => {
+    const Component = ({ layout }: { layout: 'row' | 'column' }) => (
+      <Checkbox.Group defaultValue={['react', 'vue']} layout={layout}>
+        {optionsData.map((item) => (
+          <Checkbox value={item.value} key={item.value}>
+            {item.name}
+          </Checkbox>
+        ))}
+      </Checkbox.Group>
+    );
+    const { container, rerender } = render(<Component layout="row" />);
+    const checkboxGroup = container.firstChild as Element;
+    expect(getComputedStyle(checkboxGroup).flexDirection).toBe('row');
+    rerender(<Component layout="column" />);
+    expect(getComputedStyle(checkboxGroup).flexDirection).toBe('column');
+  });
+});

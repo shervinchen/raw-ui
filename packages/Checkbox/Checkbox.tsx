@@ -1,4 +1,11 @@
-import React, { FC, ChangeEvent, useMemo, PropsWithChildren } from 'react';
+import React, {
+  FC,
+  ChangeEvent,
+  useMemo,
+  PropsWithChildren,
+  useRef,
+  useEffect,
+} from 'react';
 import classNames from 'classnames';
 import CheckboxIcon from './CheckboxIcon';
 import { CheckboxProps } from './Checkbox.types';
@@ -23,6 +30,7 @@ const Checkbox: FC<PropsWithChildren<CheckboxProps>> = ({
     defaultValue: defaultChecked,
     value: checked,
   });
+  const checkboxRef = useRef<HTMLInputElement>(null);
   const isDisabled = inGroup ? groupDisabled || disabled : disabled;
   const classes = classNames('raw-checkbox', className);
 
@@ -40,9 +48,16 @@ const Checkbox: FC<PropsWithChildren<CheckboxProps>> = ({
     onChange?.(event);
   };
 
+  useEffect(() => {
+    if (checkboxRef.current) {
+      checkboxRef.current.indeterminate = indeterminate;
+    }
+  }, [indeterminate]);
+
   return (
     <label className={classes}>
       <VisuallyHiddenInput
+        ref={checkboxRef}
         className="raw-checkbox-input"
         type="checkbox"
         disabled={isDisabled}
