@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Checkbox from '..';
+import { CheckboxProps } from '../Checkbox.types';
 
 const optionsData = [
   {
@@ -76,15 +77,27 @@ describe('Checkbox', () => {
   test('should support controlled value', async () => {
     const onChange = jest.fn();
 
-    const { container } = render(
-      <Checkbox checked={true} onChange={onChange}>
-        Controlled
-      </Checkbox>
-    );
+    const Component = (props: CheckboxProps) => {
+      const [checked, setChecked] = useState(false);
+
+      return (
+        <Checkbox
+          checked={checked}
+          onChange={(event: ChangeEvent<HTMLInputElement>) => {
+            setChecked(event.target.checked);
+            props.onChange?.(event);
+          }}
+        >
+          Controlled
+        </Checkbox>
+      );
+    };
+    const { container } = render(<Component onChange={onChange} />);
     const checkbox = container.firstChild;
     const checkboxInput = container.querySelector('.raw-checkbox-input');
-    expect(checkboxInput).toBeChecked();
+    expect(checkboxInput).not.toBeChecked();
     await userEvent.click(checkbox as Element);
+    expect(checkboxInput).toBeChecked();
     expect(onChange).toHaveBeenCalledTimes(1);
   });
 
