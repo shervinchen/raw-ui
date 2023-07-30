@@ -137,20 +137,22 @@ describe('Checkbox', () => {
       <Component value={checked} onChange={onChange} />
     );
 
-    const [checkboxOne, checkboxTwo, checkboxThree] = Array.from(
+    const [checkboxOne, checkboxTwo, checkboxThree, checkboxFour] = Array.from(
       container.querySelectorAll('input')
     );
 
     expect(checkboxOne).toBeChecked();
     expect(checkboxTwo).toBeChecked();
     expect(checkboxThree).not.toBeChecked();
+    expect(checkboxFour).not.toBeChecked();
 
     await userEvent.click(checkboxThree);
+    rerender(<Component value={checked} onChange={onChange} />);
+    await userEvent.click(checkboxFour);
+    rerender(<Component value={checked} onChange={onChange} />);
 
-    rerender(<Component />);
-
-    expect(onChange).toHaveBeenCalledTimes(1);
-    expect(checked).toEqual(['react', 'vue', 'angular']);
+    expect(onChange).toHaveBeenCalledTimes(2);
+    expect(checked).toEqual(['react', 'vue', 'angular', 'svelte']);
   });
 
   test('should support checkbox group disabled', async () => {
