@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toggle should match the snapshot 1`] = `
+<DocumentFragment>
+  <label
+    class="raw-toggle jsx-2283230529"
+  >
+    <input
+      class="jsx-1802955700 raw-toggle-input"
+      type="checkbox"
+    />
+    <span
+      class="raw-toggle-inner"
+    >
+      <div
+        class="raw-toggle-thumb"
+      />
+    </span>
+  </label>
+</DocumentFragment>
+`;
