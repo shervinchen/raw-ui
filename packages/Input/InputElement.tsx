@@ -21,9 +21,9 @@ export type InputElementType = FC<Omit<InputElementProps, 'placement'>> & {
 };
 
 const InputElement: FC<PropsWithChildren<InputElementProps>> = ({
-  placement = 'left',
+  placement,
   clickable = false,
-  className = '',
+  className,
   children,
   ...resetProps
 }) => {

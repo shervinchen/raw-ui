@@ -129,7 +129,7 @@ export function DemoInputPassword() {
           placeholder="Enter password"
         />
         <Input.RightElement clickable onClick={() => setVisible(!visible)}>
-          {setVisible ? <EyeOff size={16} /> : <Eye size={16} />}
+          {visible ? <EyeOff size={16} /> : <Eye size={16} />}
         </Input.RightElement>
       </Input.Group>
     </Unit>

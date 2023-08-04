@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input should match the snapshot 1`] = `
+<DocumentFragment>
+  <input
+    autocomplete="off"
+    class="raw-input jsx-4270648937"
+    placeholder=""
+    type="text"
+    value=""
+  />
+</DocumentFragment>
+`;

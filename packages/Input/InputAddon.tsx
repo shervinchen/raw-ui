@@ -21,7 +21,7 @@ export type InputAddonType = FC<InputAddonProps> & {
 };
 
 const InputAddon: FC<PropsWithChildren<InputAddonProps>> = ({
-  className = '',
+  className,
   children,
   ...resetProps
 }) => {

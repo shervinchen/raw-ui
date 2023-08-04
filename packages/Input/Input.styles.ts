@@ -77,7 +77,7 @@ export const useInputStyles = ({
   };
 };
 
-const useInputFocusStyles = ({
+export const useInputFocusStyles = ({
   type,
   disabled,
 }: InputProps): InputFocusStyles => {
