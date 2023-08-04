@@ -71,9 +71,6 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
 
     const classes = classNames(
       'raw-button',
-      type !== 'default' && `raw-${type}-button`,
-      `raw-${size}-button`,
-      variant !== 'default' && `raw-${variant}-button`,
       loading && 'raw-loading-button',
       disabled && 'raw-disabled-button',
       isChildLess && 'raw-childless-button',

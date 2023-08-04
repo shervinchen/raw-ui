@@ -6,7 +6,7 @@ exports[`ButtonGroup should match the snapshot 1`] = `
     class="raw-button-group horizontal jsx-3984540175"
   >
     <button
-      class="raw-button raw-md-button jsx-2168746361"
+      class="raw-button jsx-2168746361"
       type="button"
     >
       <span
@@ -16,7 +16,7 @@ exports[`ButtonGroup should match the snapshot 1`] = `
       </span>
     </button>
     <button
-      class="raw-button raw-md-button jsx-2168746361"
+      class="raw-button jsx-2168746361"
       type="button"
     >
       <span
@@ -26,7 +26,7 @@ exports[`ButtonGroup should match the snapshot 1`] = `
       </span>
     </button>
     <button
-      class="raw-button raw-md-button jsx-2168746361"
+      class="raw-button jsx-2168746361"
       type="button"
     >
       <span

@@ -10,6 +10,19 @@ import {
   useButtonStyles,
 } from '../Button.styles';
 
+const typeColorMap = {
+  primary: 'rgb(0, 0, 0)',
+  success: 'rgb(0, 112, 243)',
+  warning: 'rgb(245, 166, 35)',
+  error: 'rgb(238, 0, 0)',
+};
+
+const sizeHeightMap = {
+  sm: '34px',
+  md: '40px',
+  lg: '46px',
+};
+
 describe('Button', () => {
   test('should match the snapshot', () => {
     const { asFragment } = render(<Button>Default</Button>);
@@ -41,22 +54,51 @@ describe('Button', () => {
   ['primary', 'success', 'warning', 'error'].forEach((item: ButtonTypes) => {
     test(`should render ${item} type`, () => {
       const { container } = render(<Button type={item}>Text</Button>);
-      expect(container.firstChild).toHaveClass(`raw-${item}-button`);
+      const button = container.firstChild as Element;
+      expect(getComputedStyle(button).backgroundColor).toBe(typeColorMap[item]);
     });
   });
 
   ['sm', 'md', 'lg'].forEach((item: ButtonSizes) => {
     test(`should render ${item} size`, () => {
       const { container } = render(<Button size={item}>Text</Button>);
-      expect(container.firstChild).toHaveClass(`raw-${item}-button`);
+      const button = container.firstChild as Element;
+      expect(getComputedStyle(button).height).toBe(sizeHeightMap[item]);
     });
   });
 
-  ['outline', 'ghost', 'shadow'].forEach((item: ButtonVariants) => {
-    test(`should render ${item} variant`, () => {
-      const { container } = render(<Button variant={item}>Text</Button>);
-      expect(container.firstChild).toHaveClass(`raw-${item}-button`);
-    });
+  test('should render outline variant', () => {
+    const { container } = render(
+      <Button type="primary" variant="outline">
+        Text
+      </Button>
+    );
+    const button = container.firstChild as Element;
+    expect(getComputedStyle(button).color).toBe('rgb(0, 0, 0)');
+    expect(getComputedStyle(button).borderColor).toBe('#000000');
+  });
+
+  test('should render ghost variant', () => {
+    const { container } = render(
+      <Button type="primary" variant="ghost">
+        Text
+      </Button>
+    );
+    const button = container.firstChild as Element;
+    expect(getComputedStyle(button).backgroundColor).toBe('transparent');
+    expect(getComputedStyle(button).borderColor).toBe('transparent');
+  });
+
+  test('should render shadow variant', () => {
+    const { container } = render(
+      <Button type="primary" variant="shadow">
+        Text
+      </Button>
+    );
+    const button = container.firstChild as Element;
+    expect(getComputedStyle(button).boxShadow).toBe(
+      '0 5px 10px rgba(0, 0, 0, 0.12)'
+    );
   });
 
   test('should get default style when type is unknown or falsy', () => {

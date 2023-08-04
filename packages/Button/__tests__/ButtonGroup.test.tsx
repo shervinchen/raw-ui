@@ -4,6 +4,19 @@ import Button from '..';
 import { ButtonSizes, ButtonTypes } from '../Button.types';
 import { ButtonGroupVariant } from '../ButtonGroup.types';
 
+const typeColorMap = {
+  primary: 'rgb(0, 0, 0)',
+  success: 'rgb(0, 112, 243)',
+  warning: 'rgb(245, 166, 35)',
+  error: 'rgb(238, 0, 0)',
+};
+
+const sizeHeightMap = {
+  sm: '34px',
+  md: '40px',
+  lg: '46px',
+};
+
 describe('ButtonGroup', () => {
   test('should match the snapshot', () => {
     const { asFragment } = render(
@@ -47,7 +60,12 @@ describe('ButtonGroup', () => {
           <Button>Three</Button>
         </Button.Group>
       );
-      expect(container.querySelectorAll(`.raw-${item}-button`).length).toBe(3);
+      const buttons = container.querySelectorAll(`.raw-button`);
+      buttons.forEach((button) => {
+        expect(getComputedStyle(button).backgroundColor).toBe(
+          typeColorMap[item]
+        );
+      });
     });
   });
 
@@ -60,20 +78,38 @@ describe('ButtonGroup', () => {
           <Button>Three</Button>
         </Button.Group>
       );
-      expect(container.querySelectorAll(`.raw-${item}-button`).length).toBe(3);
+      const buttons = container.querySelectorAll(`.raw-button`);
+      buttons.forEach((button) => {
+        expect(getComputedStyle(button).height).toBe(sizeHeightMap[item]);
+      });
     });
   });
 
-  ['outline', 'ghost'].forEach((item: ButtonGroupVariant) => {
-    test(`should render ${item} variant`, () => {
-      const { container } = render(
-        <Button.Group variant={item}>
-          <Button>One</Button>
-          <Button>Two</Button>
-          <Button>Three</Button>
-        </Button.Group>
-      );
-      expect(container.querySelectorAll(`.raw-${item}-button`).length).toBe(3);
+  test('should render outline variant', () => {
+    const { container } = render(
+      <Button.Group type="primary" variant="outline">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </Button.Group>
+    );
+    const buttons = container.querySelectorAll(`.raw-button`);
+    buttons.forEach((button) => {
+      expect(getComputedStyle(button).color).toBe('rgb(0, 0, 0)');
+    });
+  });
+
+  test('should render ghost variant', () => {
+    const { container } = render(
+      <Button.Group type="primary" variant="ghost">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </Button.Group>
+    );
+    const buttons = container.querySelectorAll(`.raw-button`);
+    buttons.forEach((button) => {
+      expect(getComputedStyle(button).backgroundColor).toBe('transparent');
     });
   });
 
