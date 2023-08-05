@@ -3,7 +3,7 @@ import { RawUITheme } from '../Theme/preset/preset.type';
 import { useTheme } from '../Theme/theme-context';
 import { ToggleProps, ToggleStatus, ToggleStyles } from './Toggle.types';
 
-const useToggleStyles = ({
+export const useToggleStyles = ({
   status,
   disabled,
 }: {

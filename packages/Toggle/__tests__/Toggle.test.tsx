@@ -1,8 +1,9 @@
 import React, { ChangeEvent, useState } from 'react';
-import { render } from '@testing-library/react';
+import { render, renderHook } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Toggle from '..';
-import { ToggleProps } from '../Toggle.types';
+import { ToggleProps, ToggleStatus } from '../Toggle.types';
+import { useToggleStyles } from '../Toggle.styles';
 
 describe('Toggle', () => {
   test('should match the snapshot', () => {
@@ -62,5 +63,43 @@ describe('Toggle', () => {
     expect(toggleInput).toBeDisabled();
     await userEvent.click(toggle as Element);
     expect(toggleInput).not.toBeChecked();
+  });
+
+  test('should get default style when status is unknown or falsy', () => {
+    const { result: result1 } = renderHook(() =>
+      useToggleStyles({
+        status: 'unknown' as ToggleStatus,
+        disabled: false,
+      })
+    );
+
+    const { result: result2 } = renderHook(() =>
+      useToggleStyles({
+        status: undefined as ToggleStatus,
+        disabled: false,
+      })
+    );
+
+    expect(result1.current.backgroundColor).toBe('#eaeaea');
+    expect(result2.current.backgroundColor).toBe('#eaeaea');
+  });
+
+  test('should get default disabled style when status is unknown or falsy', () => {
+    const { result: result1 } = renderHook(() =>
+      useToggleStyles({
+        status: 'unknown' as ToggleStatus,
+        disabled: true,
+      })
+    );
+
+    const { result: result2 } = renderHook(() =>
+      useToggleStyles({
+        status: undefined as ToggleStatus,
+        disabled: true,
+      })
+    );
+
+    expect(result1.current.backgroundColor).toBe('#fafafa');
+    expect(result2.current.backgroundColor).toBe('#fafafa');
   });
 });
