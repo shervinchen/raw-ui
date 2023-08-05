@@ -6,6 +6,7 @@ exports[`Checkbox should match the snapshot 1`] = `
     class="jsx-4106493912 raw-checkbox"
   >
     <input
+      aria-checked="false"
       class="jsx-1802955700 raw-checkbox-input"
       type="checkbox"
     />

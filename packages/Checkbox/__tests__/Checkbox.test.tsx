@@ -101,6 +101,15 @@ describe('Checkbox', () => {
     expect(onChange).toHaveBeenCalledTimes(1);
   });
 
+  test('should not change value when indeterminate', async () => {
+    const { container } = render(<Checkbox indeterminate />);
+    const checkbox = container.firstChild;
+    const checkboxInput = container.querySelector('.raw-checkbox-input');
+    expect(checkboxInput).toBePartiallyChecked();
+    await userEvent.click(checkbox as Element);
+    expect(checkboxInput).toBePartiallyChecked();
+  });
+
   test('should support checkbox group uncontrolled value', async () => {
     const Component = () => (
       <Checkbox.Group defaultValue={['react', 'vue']}>

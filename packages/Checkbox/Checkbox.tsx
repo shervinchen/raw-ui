@@ -4,7 +4,6 @@ import React, {
   useMemo,
   PropsWithChildren,
   useRef,
-  useEffect,
 } from 'react';
 import classNames from 'classnames';
 import CheckboxIcon from './CheckboxIcon';
@@ -48,12 +47,6 @@ const Checkbox: FC<PropsWithChildren<CheckboxProps>> = ({
     onChange?.(event);
   };
 
-  useEffect(() => {
-    if (checkboxRef.current) {
-      checkboxRef.current.indeterminate = indeterminate;
-    }
-  }, [indeterminate]);
-
   return (
     <label className={classes}>
       <VisuallyHiddenInput
@@ -63,6 +56,7 @@ const Checkbox: FC<PropsWithChildren<CheckboxProps>> = ({
         disabled={isDisabled}
         checked={selfChecked}
         onChange={changeHandler}
+        aria-checked={indeterminate ? 'mixed' : selfChecked ? 'true' : 'false'}
         {...restProps}
       />
       <CheckboxIcon checked={selfChecked} indeterminate={indeterminate} />
