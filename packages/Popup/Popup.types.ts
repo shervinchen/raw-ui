@@ -6,3 +6,9 @@ export interface PopupProps {
   targetRef?: MutableRefObject<HTMLElement | null>;
   getPopupContainer?: () => HTMLElement | null;
 }
+
+export interface PopupRect {
+  top: number;
+  left: number;
+  width: number;
+}
