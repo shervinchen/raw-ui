@@ -39,6 +39,7 @@ const SelectInput = forwardRef<HTMLInputElement | null, SelectInputProps>(
           readOnly
           unselectable="on"
           aria-expanded={visible}
+          data-testid="selectInput"
           onBlur={onBlur}
           onFocus={onFocus}
         />

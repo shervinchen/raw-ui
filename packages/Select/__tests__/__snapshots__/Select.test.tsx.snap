@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select should match the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="jsx-1324625606 raw-select"
+  >
+    <div
+      class="jsx-1324625606 raw-select-inner"
+    >
+      <span
+        class="raw-select-placeholder"
+      >
+        Select option
+      </span>
+      <input
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        class="jsx-1802955700 "
+        data-testid="selectInput"
+        readonly=""
+        role="combobox"
+        type="search"
+        unselectable="on"
+      />
+    </div>
+    <div
+      class="jsx-1324625606 raw-select-arrow"
+    >
+      <svg
+        fill="none"
+        height="16"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <polyline
+          points="6 9 12 15 18 9"
+        />
+      </svg>
+    </div>
+  </div>
+</DocumentFragment>
+`;
