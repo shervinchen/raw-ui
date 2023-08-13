@@ -38,6 +38,8 @@
     "strict": false,
     "noEmit": true,
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "incremental": true,
+    "tsBuildInfoFile": "tsconfig.tsbuildinfo"
   }
 }

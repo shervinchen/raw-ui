@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Select from '..';
 import { SelectProps, SelectValue } from '../Select.types';
@@ -43,9 +43,13 @@ describe('Select', () => {
       </Select>
     );
     const selectInput = screen.getByTestId('selectInput');
-    ref?.current?.focus();
+    act(() => {
+      ref?.current?.focus();
+    });
     expect(selectInput).toHaveFocus();
-    ref?.current?.blur();
+    act(() => {
+      ref?.current?.blur();
+    });
     expect(selectInput).not.toHaveFocus();
   });
 
