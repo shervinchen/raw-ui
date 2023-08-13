@@ -51,23 +51,25 @@ describe('ButtonGroup', () => {
     expect(container.querySelectorAll('.raw-button').length).toBe(3);
   });
 
-  ['primary', 'success', 'warning', 'error'].forEach((item: ButtonTypes) => {
-    test(`should render ${item} type`, () => {
-      const { container } = render(
-        <Button.Group type={item}>
-          <Button>One</Button>
-          <Button>Two</Button>
-          <Button>Three</Button>
-        </Button.Group>
-      );
-      const buttons = container.querySelectorAll(`.raw-button`);
-      buttons.forEach((button) => {
-        expect(getComputedStyle(button).backgroundColor).toBe(
-          typeColorMap[item]
+  ['primary', 'success', 'warning', 'error'].forEach(
+    (item: Exclude<ButtonTypes, 'default'>) => {
+      test(`should render ${item} type`, () => {
+        const { container } = render(
+          <Button.Group type={item}>
+            <Button>One</Button>
+            <Button>Two</Button>
+            <Button>Three</Button>
+          </Button.Group>
         );
+        const buttons = container.querySelectorAll(`.raw-button`);
+        buttons.forEach((button) => {
+          expect(getComputedStyle(button).backgroundColor).toBe(
+            typeColorMap[item]
+          );
+        });
       });
-    });
-  });
+    }
+  );
 
   ['sm', 'md', 'lg'].forEach((item: ButtonSizes) => {
     test(`should render ${item} size`, () => {

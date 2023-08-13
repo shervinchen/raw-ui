@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { render } from '@testing-library/react';
-import { Button, RawUIProvider, useTheme, Theme } from '../..';
+import { Button, RawUIProvider, useTheme, Theme, RawUITheme } from '../..';
 import userEvent from '@testing-library/user-event';
+import { RawUIUserTheme } from '../theme.type';
 
 describe('Theme', () => {
   test('should support switch themes', async () => {
@@ -141,7 +142,7 @@ describe('Theme', () => {
       });
     }).toThrow('Duplicate or unavailable theme type');
     expect(() => {
-      Theme.createFromCustom(null, {
+      Theme.createFromCustom(null as unknown as RawUITheme, {
         type: 'light',
         palette: {
           accents1: '#000',
@@ -149,7 +150,10 @@ describe('Theme', () => {
       });
     }).toThrow('Duplicate or unavailable theme type');
     expect(() => {
-      Theme.createFromCustom(Theme.getPresetStaticTheme(), null);
+      Theme.createFromCustom(
+        Theme.getPresetStaticTheme(),
+        null as unknown as RawUIUserTheme
+      );
     }).toThrow('Duplicate or unavailable theme type');
   });
 
@@ -179,8 +183,12 @@ describe('Theme', () => {
       false
     );
     expect(Theme.hasUserCustomTheme()).toBe(false);
-    expect(Theme.hasUserCustomTheme([null])).toBe(false);
-    expect(Theme.hasUserCustomTheme(null)).toBe(false);
+    expect(Theme.hasUserCustomTheme([null as unknown as RawUITheme])).toBe(
+      false
+    );
+    expect(Theme.hasUserCustomTheme(null as unknown as RawUITheme[])).toBe(
+      false
+    );
   });
 
   test('should return default theme when theme is falsy', () => {
@@ -196,7 +204,10 @@ describe('Theme', () => {
 
     const TestApp = () => {
       return (
-        <RawUIProvider themeType="myTheme" themes={[null]}>
+        <RawUIProvider
+          themeType="myTheme"
+          themes={[null as unknown as RawUITheme]}
+        >
           <TestContent />
         </RawUIProvider>
       );

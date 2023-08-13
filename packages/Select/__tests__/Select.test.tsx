@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { act, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Select from '..';
 import { SelectProps, SelectValue } from '../Select.types';
@@ -43,9 +43,9 @@ describe('Select', () => {
       </Select>
     );
     const selectInput = screen.getByTestId('selectInput');
-    ref.current.focus();
+    ref?.current?.focus();
     expect(selectInput).toHaveFocus();
-    ref.current.blur();
+    ref?.current?.blur();
     expect(selectInput).not.toHaveFocus();
   });
 
@@ -87,7 +87,7 @@ describe('Select', () => {
         <Select.Option value="2">Option 2</Select.Option>
       </Select>
     );
-    expect(document.querySelector('.raw-select').innerHTML).toContain(
+    expect(document.querySelector('.raw-select')?.innerHTML).toContain(
       'Option 1'
     );
   });
@@ -117,7 +117,7 @@ describe('Select', () => {
     await userEvent.click(select);
     await userEvent.click(option1);
     setTimeout(() => {
-      expect(document.querySelector('.raw-select').innerHTML).toContain(
+      expect(document.querySelector('.raw-select')?.innerHTML).toContain(
         'Option 1'
       );
     }, 150);
@@ -133,8 +133,8 @@ describe('Select', () => {
         ))}
       </Select>
     );
-    expect(document.querySelector('.raw-select').innerHTML).toContain('React');
-    expect(document.querySelector('.raw-select').innerHTML).toContain('Vue');
+    expect(document.querySelector('.raw-select')?.innerHTML).toContain('React');
+    expect(document.querySelector('.raw-select')?.innerHTML).toContain('Vue');
   });
 
   test('should support select disabled', async () => {
@@ -163,12 +163,12 @@ describe('Select', () => {
     const option2 = document.querySelectorAll('.raw-select-option')[1];
     await userEvent.click(select);
     await userEvent.click(option1);
-    expect(document.querySelector('.raw-select').innerHTML).not.toContain(
+    expect(document.querySelector('.raw-select')?.innerHTML).not.toContain(
       'Option 1'
     );
     await userEvent.click(option2);
     setTimeout(() => {
-      expect(document.querySelector('.raw-select').innerHTML).toContain(
+      expect(document.querySelector('.raw-select')?.innerHTML).toContain(
         'Option 2'
       );
     }, 150);

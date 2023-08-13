@@ -75,7 +75,7 @@ describe('Toggle', () => {
 
     const { result: result2 } = renderHook(() =>
       useToggleStyles({
-        status: undefined as ToggleStatus,
+        status: undefined as unknown as ToggleStatus,
         disabled: false,
       })
     );
@@ -94,7 +94,7 @@ describe('Toggle', () => {
 
     const { result: result2 } = renderHook(() =>
       useToggleStyles({
-        status: undefined as ToggleStatus,
+        status: undefined as unknown as ToggleStatus,
         disabled: true,
       })
     );

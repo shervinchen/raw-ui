@@ -3,6 +3,7 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Checkbox from '..';
 import { CheckboxProps } from '../Checkbox.types';
+import { CheckboxGroupProps } from '../CheckboxGroup.types';
 
 const optionsData = [
   {
@@ -145,7 +146,7 @@ describe('Checkbox', () => {
       checked = value;
     });
 
-    const Component = (props) => (
+    const Component = (props: CheckboxGroupProps) => (
       <Checkbox.Group {...props}>
         {optionsData.map((item) => (
           <Checkbox value={item.value} key={item.value}>

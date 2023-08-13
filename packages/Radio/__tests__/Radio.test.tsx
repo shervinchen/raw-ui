@@ -3,6 +3,7 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Radio from '..';
 import { RadioProps } from '../Radio.types';
+import { RadioGroupProps } from '../RadioGroup.types';
 
 const optionsData = [
   {
@@ -123,7 +124,7 @@ describe('Radio', () => {
       checked = value;
     });
 
-    const Component = (props) => (
+    const Component = (props: RadioGroupProps) => (
       <Radio.Group {...props}>
         {optionsData.map((item) => (
           <Radio value={item.value} key={item.value}>

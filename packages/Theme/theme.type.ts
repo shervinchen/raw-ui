@@ -1,4 +1,4 @@
-import { DeepPartial } from '@/packages/utils';
+import { DeepPartial } from '../../packages/utils';
 import { RawUITheme } from './preset/preset.type';
 
 export interface ThemeProviderProps {

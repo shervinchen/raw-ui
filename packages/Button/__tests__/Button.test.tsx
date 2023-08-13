@@ -51,13 +51,17 @@ describe('Button', () => {
     expect(clickHandler).toHaveBeenCalledTimes(1);
   });
 
-  ['primary', 'success', 'warning', 'error'].forEach((item: ButtonTypes) => {
-    test(`should render ${item} type`, () => {
-      const { container } = render(<Button type={item}>Text</Button>);
-      const button = container.firstChild as Element;
-      expect(getComputedStyle(button).backgroundColor).toBe(typeColorMap[item]);
-    });
-  });
+  ['primary', 'success', 'warning', 'error'].forEach(
+    (item: Exclude<ButtonTypes, 'default'>) => {
+      test(`should render ${item} type`, () => {
+        const { container } = render(<Button type={item}>Text</Button>);
+        const button = container.firstChild as Element;
+        expect(getComputedStyle(button).backgroundColor).toBe(
+          typeColorMap[item]
+        );
+      });
+    }
+  );
 
   ['sm', 'md', 'lg'].forEach((item: ButtonSizes) => {
     test(`should render ${item} size`, () => {
@@ -113,7 +117,7 @@ describe('Button', () => {
     );
     const { result: result2 } = renderHook(() =>
       useButtonStyles({
-        type: undefined as ButtonTypes,
+        type: undefined as unknown as ButtonTypes,
         size: 'md',
         variant: 'default',
         loading: false,
@@ -136,7 +140,7 @@ describe('Button', () => {
     );
     const { result: result2 } = renderHook(() =>
       useButtonStyles({
-        type: undefined as ButtonTypes,
+        type: undefined as unknown as ButtonTypes,
         size: 'md',
         variant: 'default',
         loading: true,
@@ -161,7 +165,7 @@ describe('Button', () => {
       useButtonStyles({
         type: 'default',
         size: 'md',
-        variant: undefined as ButtonVariants,
+        variant: undefined as unknown as ButtonVariants,
         loading: false,
         disabled: false,
       })
@@ -184,7 +188,7 @@ describe('Button', () => {
       useButtonStyles({
         type: 'default',
         size: 'md',
-        variant: undefined as ButtonVariants,
+        variant: undefined as unknown as ButtonVariants,
         loading: true,
         disabled: false,
       })
@@ -205,7 +209,7 @@ describe('Button', () => {
     );
     const { result: result2 } = renderHook(() =>
       useButtonStyles({
-        type: undefined as ButtonTypes,
+        type: undefined as unknown as ButtonTypes,
         size: 'md',
         variant: 'default',
         loading: false,
@@ -219,7 +223,7 @@ describe('Button', () => {
   test('should get default disabled style when variant is unknown or falsy', () => {
     const { result: result1 } = renderHook(() =>
       useButtonStyles({
-        type: undefined as ButtonTypes,
+        type: undefined as unknown as ButtonTypes,
         size: 'md',
         variant: 'unknown' as ButtonVariants,
         loading: false,
@@ -228,9 +232,9 @@ describe('Button', () => {
     );
     const { result: result2 } = renderHook(() =>
       useButtonStyles({
-        type: undefined as ButtonTypes,
+        type: undefined as unknown as ButtonTypes,
         size: 'md',
-        variant: undefined as ButtonVariants,
+        variant: undefined as unknown as ButtonVariants,
         loading: false,
         disabled: true,
       })
@@ -251,7 +255,7 @@ describe('Button', () => {
     );
     const { result: result2 } = renderHook(() =>
       useButtonHoverStyles({
-        type: undefined as ButtonTypes,
+        type: undefined as unknown as ButtonTypes,
         size: 'md',
         variant: 'default',
         loading: false,
@@ -276,7 +280,7 @@ describe('Button', () => {
       useButtonHoverStyles({
         type: 'default',
         size: 'md',
-        variant: undefined as ButtonVariants,
+        variant: undefined as unknown as ButtonVariants,
         loading: false,
         disabled: false,
       })
@@ -297,7 +301,7 @@ describe('Button', () => {
     );
     const { result: result2 } = renderHook(() =>
       useButtonActiveStyles({
-        type: undefined as ButtonTypes,
+        type: undefined as unknown as ButtonTypes,
         size: 'md',
         variant: 'default',
         loading: false,
@@ -322,7 +326,7 @@ describe('Button', () => {
       useButtonActiveStyles({
         type: 'default',
         size: 'md',
-        variant: undefined as ButtonVariants,
+        variant: undefined as unknown as ButtonVariants,
         loading: false,
         disabled: false,
       })
@@ -344,7 +348,7 @@ describe('Button', () => {
     const { result: result2 } = renderHook(() =>
       useButtonStyles({
         type: 'default',
-        size: undefined as ButtonSizes,
+        size: undefined as unknown as ButtonSizes,
         variant: 'default',
         loading: false,
         disabled: false,

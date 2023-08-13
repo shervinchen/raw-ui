@@ -95,13 +95,15 @@ describe('Input', () => {
     expect(onChange).toHaveBeenCalledTimes(1);
   });
 
-  ['primary', 'success', 'warning', 'error'].forEach((item: InputTypes) => {
-    test(`should render ${item} type`, () => {
-      const { container } = render(<Input type={item} />);
-      const input = container.firstChild as Element;
-      expect(getComputedStyle(input).borderColor).toBe(typeColorMap[item]);
-    });
-  });
+  ['primary', 'success', 'warning', 'error'].forEach(
+    (item: Exclude<InputTypes, 'default'>) => {
+      test(`should render ${item} type`, () => {
+        const { container } = render(<Input type={item} />);
+        const input = container.firstChild as Element;
+        expect(getComputedStyle(input).borderColor).toBe(typeColorMap[item]);
+      });
+    }
+  );
 
   ['sm', 'md', 'lg'].forEach((item: InputSizes) => {
     test(`should render ${item} size`, () => {
@@ -160,7 +162,10 @@ describe('Input', () => {
         <Input.RightElement>.0</Input.RightElement>
       </Input.Group>
     );
-    const leftElement = container.querySelector('.raw-input-left-element');
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+    const leftElement = container.querySelector(
+      '.raw-input-left-element'
+    ) as Element;
     expect(getComputedStyle(leftElement).pointerEvents).toBe('auto');
     expect(getComputedStyle(leftElement).cursor).toBe('pointer');
   });
@@ -201,7 +206,7 @@ describe('Input', () => {
     );
     const { result: result2 } = renderHook(() =>
       useInputStyles({
-        type: undefined as InputTypes,
+        type: undefined as unknown as InputTypes,
         size: 'md',
         disabled: false,
       })
@@ -221,7 +226,7 @@ describe('Input', () => {
     const { result: result2 } = renderHook(() =>
       useInputStyles({
         type: 'default',
-        size: undefined as InputSizes,
+        size: undefined as unknown as InputSizes,
         disabled: false,
       })
     );
@@ -238,7 +243,7 @@ describe('Input', () => {
     );
     const { result: result2 } = renderHook(() =>
       useInputFocusStyles({
-        type: undefined as InputTypes,
+        type: undefined as unknown as InputTypes,
         disabled: false,
       })
     );
