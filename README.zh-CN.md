@@ -8,6 +8,7 @@
   <p>一个极简风格、可定制的 React 组件库，用于构建 Web 应用程序</p>
   <p>
     <a href="https://www.npmjs.com/package/raw-ui"><img src="https://img.shields.io/npm/dm/raw-ui.svg?style=flat"></a>
+    <a href="https://codecov.io/gh/shervinchen/raw-ui"><img src="https://img.shields.io/codecov/c/github/shervinchen/raw-ui/master.svg"/></a>
     <a href="https://gitHub.com/shervinchen/raw-ui/issues"><img src="https://img.shields.io/github/issues/shervinchen/raw-ui"></a>
     <a href="https://github.com/shervinchen/raw-ui/blob/main/LICENSE"><img src="https://img.shields.io/github/license/shervinchen/raw-ui"></a>
   </p>
