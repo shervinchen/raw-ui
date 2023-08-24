@@ -45,7 +45,7 @@ const SelectDropdown = forwardRef<
         {children}
         <style jsx>{`
           .raw-select-dropdown {
-            padding: 6px 0;
+            padding: 8px;
             border-radius: 6px;
             box-shadow: ${theme.tokens.shadow.lg};
             background-color: ${theme.palette.background};

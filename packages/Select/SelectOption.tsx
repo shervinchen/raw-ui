@@ -1,4 +1,5 @@
 import React, { FC, PropsWithChildren, MouseEvent, useMemo } from 'react';
+import { Check } from 'react-feather';
 import classNames from 'classnames';
 import { SelectOptionProps } from './SelectOption.types';
 import { RawUITheme } from '../Theme/preset/preset.type';
@@ -35,7 +36,14 @@ const SelectOption: FC<PropsWithChildren<SelectOptionProps>> = ({
 
   return (
     <div className={classes} {...restProps} onClick={clickHandler}>
-      <span className="raw-select-option-content">{children}</span>
+      <div className="raw-select-option-content">
+        <span className="raw-select-option-text">{children}</span>
+        {isSelected && (
+          <div className="raw-select-option-check">
+            <Check size={16} color={theme.palette.accents7} />
+          </div>
+        )}
+      </div>
       <style jsx>{`
         .raw-select-option {
           box-sizing: border-box;
@@ -47,35 +55,33 @@ const SelectOption: FC<PropsWithChildren<SelectOptionProps>> = ({
           font-size: 14px;
           color: ${isDisabled
             ? theme.palette.accents6
-            : isSelected
-            ? theme.palette.foreground
             : theme.palette.accents7};
-          background-color: ${isDisabled
-            ? theme.palette.accents1
-            : isSelected
-            ? theme.palette.accents2
-            : theme.palette.background};
+          background-color: ${theme.palette.background};
+          border-radius: 6px;
           transition: background-color 0.15s ease;
           cursor: ${isDisabled ? 'not-allowed' : 'pointer'};
           user-select: none;
         }
+        .raw-select-option:hover {
+          background-color: ${isDisabled
+            ? theme.palette.background
+            : theme.palette.accents2};
+        }
         .raw-select-option-content {
-          max-width: 100%;
+          display: flex;
+          align-items: center;
+          width: 100%;
+        }
+        .raw-select-option-text {
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
         }
-        .raw-select-option:hover {
-          background-color: ${isDisabled
-            ? theme.palette.accents1
-            : isSelected
-            ? theme.palette.accents2
-            : theme.palette.accents1};
-          color: ${isDisabled
-            ? theme.palette.accents6
-            : isSelected
-            ? theme.palette.foreground
-            : theme.palette.accents9};
+        .raw-select-option-check {
+          display: inline-flex;
+          align-items: center;
+          margin-left: auto;
+          flex-shrink: 0;
         }
       `}</style>
     </div>

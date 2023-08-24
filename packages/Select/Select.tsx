@@ -117,6 +117,9 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
 
     const changeHandler = useCallback(
       (optionValue?: SelectOptionValue) => {
+        if (!multiple) {
+          setDropdownVisible(false);
+        }
         const newInternalValue = getNewInternalValue(
           multiple,
           internalValue,
@@ -124,9 +127,6 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
         );
         setInternalValue(newInternalValue);
         onChange?.(newInternalValue);
-        if (!multiple) {
-          setDropdownVisible(false);
-        }
       },
       [internalValue, multiple, onChange, setInternalValue]
     );
