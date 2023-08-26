@@ -11,6 +11,7 @@ import { RawUITheme } from '../Theme/preset/preset.type';
 import { useTheme } from '../Theme/theme-context';
 import { useSelectContext } from './select-context';
 import Popup from '../Popup';
+import { computePopupPosition } from '../Popup/computePopupPosition';
 
 const SelectDropdown = forwardRef<
   HTMLDivElement | null,
@@ -22,6 +23,10 @@ const SelectDropdown = forwardRef<
   const { stage: dropdownTransitionStage, shouldMount: dropdownShouldMount } =
     useTransition(visible, 150);
   const dropdownClasses = classNames('raw-select-dropdown', className);
+  const selectRect = selectRef?.current?.getBoundingClientRect() ?? null;
+  const dropdownWidth = selectRect
+    ? selectRect.width || selectRect.right - selectRect.left
+    : 0;
 
   useImperativeHandle<HTMLDivElement | null, HTMLDivElement | null>(
     ref,
@@ -33,6 +38,17 @@ const SelectDropdown = forwardRef<
       name="dropdown"
       visible={dropdownShouldMount}
       targetRef={selectRef}
+      getPopupPlacement={() => {
+        const { bottom, left } = computePopupPosition(
+          selectRef,
+          getPopupContainer
+        );
+        return {
+          top: bottom,
+          left,
+          transform: 'translate(0, 0)',
+        };
+      }}
       getPopupContainer={getPopupContainer}
     >
       <div
@@ -45,7 +61,9 @@ const SelectDropdown = forwardRef<
         {children}
         <style jsx>{`
           .raw-select-dropdown {
+            width: ${dropdownWidth}px;
             padding: 8px;
+            margin-top: 2px;
             border-radius: 6px;
             box-shadow: ${theme.tokens.shadow.lg};
             background-color: ${theme.palette.background};

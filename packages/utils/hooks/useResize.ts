@@ -8,7 +8,8 @@ const useResize = (handler: () => void, immediatelyInvoke = true): void => {
 
     window.addEventListener('resize', handler);
     return () => window.removeEventListener('resize', handler);
-  }, [handler, immediatelyInvoke]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 };
 
 export default useResize;

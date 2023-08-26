@@ -65,6 +65,12 @@ import {
   DemoToggleDisabled,
 } from './toggle';
 import { DemoLoadingSizes, DemoLoadingText, DemoLoadingTypes } from './loading';
+import {
+  DemoTooltipDefault,
+  DemoTooltipDisabled,
+  DemoTooltipHideArrow,
+  DemoTooltipPlacement,
+} from './tooltip';
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
   title,
@@ -263,6 +269,20 @@ function App() {
         </Wrapper>
         <Wrapper title="Disabled">
           <DemoToggleDisabled />
+        </Wrapper>
+      </Container>
+      <Container title="Tooltip">
+        <Wrapper title="Default">
+          <DemoTooltipDefault />
+        </Wrapper>
+        <Wrapper title="Hide Arrow">
+          <DemoTooltipHideArrow />
+        </Wrapper>
+        <Wrapper title="Disabled">
+          <DemoTooltipDisabled />
+        </Wrapper>
+        <Wrapper title="Placement">
+          <DemoTooltipPlacement />
         </Wrapper>
       </Container>
     </div>

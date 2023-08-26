@@ -4,30 +4,29 @@ import React, {
   useEffect,
   useState,
   MouseEvent,
-  useCallback,
 } from 'react';
 import { createPortal } from 'react-dom';
-import { PopupProps, PopupRect } from './Popup.types';
+import { PopupProps, PopupPlacement } from './Popup.types';
 import {
   useClickAnyWhere,
   useMutationObserver,
   usePortal,
   useResize,
 } from '../utils/hooks';
-import { computePopupRect } from './computePopupRect';
 
 const Popup: FC<PropsWithChildren<PopupProps>> = ({
   name,
   visible,
   targetRef,
+  getPopupPlacement,
   getPopupContainer,
   children,
 }) => {
   const portal = usePortal(name, getPopupContainer);
-  const [popupRect, setPopupRect] = useState<PopupRect>({
-    top: 0,
+  const [popupPlacement, setPopupPlacement] = useState<PopupPlacement>({
     left: 0,
-    width: 0,
+    top: 0,
+    transform: 'translate(0, 0)',
   });
 
   const clickHandler = (event: MouseEvent<HTMLDivElement>) => {
@@ -40,33 +39,29 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
     event.preventDefault();
   };
 
-  const updatePopupRect = useCallback(() => {
-    const rect = computePopupRect(targetRef, getPopupContainer);
-    setPopupRect(rect);
-  }, [getPopupContainer, targetRef]);
+  const updatePopupPosition = () => {
+    setPopupPlacement(getPopupPlacement());
+  };
 
-  useResize(updatePopupRect);
+  useResize(updatePopupPosition);
 
   useClickAnyWhere(() => {
-    const { top, left } = computePopupRect(targetRef, getPopupContainer);
-    /* istanbul ignore next */
-    const shouldUpdate = top !== popupRect.top || left !== popupRect.left;
-    /* istanbul ignore next */
-    if (shouldUpdate) updatePopupRect();
+    updatePopupPosition();
   });
 
-  useMutationObserver(targetRef, updatePopupRect);
+  useMutationObserver(targetRef, updatePopupPosition);
 
   useEffect(() => {
     const targetNode = targetRef?.current ?? null;
     if (!targetNode) return;
-    targetNode.addEventListener('mouseenter', updatePopupRect);
+    targetNode.addEventListener('mouseenter', updatePopupPosition);
     /* istanbul ignore next */
     return () => {
       if (!targetNode) return;
-      targetNode.removeEventListener('mouseenter', updatePopupRect);
+      targetNode.removeEventListener('mouseenter', updatePopupPosition);
     };
-  }, [targetRef, updatePopupRect]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [targetRef]);
 
   if (!targetRef) return null;
   if (!portal) return null;
@@ -83,9 +78,9 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
         <style jsx>{`
           .raw-popup {
             position: absolute;
-            top: ${popupRect.top + 2}px;
-            left: ${popupRect.left}px;
-            width: ${popupRect.width}px;
+            top: ${popupPlacement.top}px;
+            left: ${popupPlacement.left}px;
+            transform: ${popupPlacement.transform};
           }
         `}</style>
       </div>

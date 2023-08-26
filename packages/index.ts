@@ -30,3 +30,6 @@ export { default as Select } from './Select';
 export * from './Select/Select.types';
 export * from './Select/SelectOption.types';
 export * from './Select/SelectDropdown.types';
+
+export { default as Tooltip } from './Tooltip';
+export * from './Tooltip/Tooltip.types';
