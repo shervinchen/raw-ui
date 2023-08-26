@@ -1,6 +1,6 @@
 {
   "name": "raw-ui",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Minimalist and customizable React UI library for Web Applications.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -16,7 +16,7 @@
     "dev": "rollup --config ./rollup.config.js --watch --environment NODE_ENV:development",
     "docs:dev": "next dev --port 8000",
     "docs:build": "next build",
-    "changeset": "changeset",
+    "changeset": "changeset && changeset version",
     "release": "pnpm build && changeset publish",
     "lint": "pnpm lint:eslint && pnpm lint:tsc",
     "lint:eslint": "eslint --cache --ext .ts,.tsx .",
