@@ -76,6 +76,15 @@ export const SIDEBARS = [
         ],
       },
       {
+        name: 'Data Display',
+        children: [
+          {
+            name: 'Tooltip',
+            url: '/components/tooltip',
+          },
+        ],
+      },
+      {
         name: 'Feedback',
         children: [
           {

@@ -1,0 +1,164 @@
+import Unit from '@/demo/Unit';
+import { Tooltip } from '@/packages';
+import Playground from '@/src/app/components/playground';
+
+# Tooltip
+
+Displays additional information on hover.
+
+## Import
+
+```tsx
+import { Tooltip } from 'raw-ui';
+```
+
+## Default
+
+<Playground
+  scope={{ Tooltip }}
+  code={`
+<Tooltip content="I am a tooltip">Hover me</Tooltip>
+`}
+/>
+
+## Hide Arrow
+
+<Playground
+  scope={{ Tooltip }}
+  code={`
+<Tooltip content="I am a tooltip" hideArrow>Hover me</Tooltip>
+`}
+/>
+
+## Disabled
+
+<Playground
+  scope={{ Tooltip }}
+  code={`
+<Tooltip content="I am a tooltip" disabled>Hover me</Tooltip>
+`}
+/>
+
+## Placement
+
+<Playground
+  scope={{ Unit, Tooltip }}
+  code={`
+<Unit layout="col">
+  <Unit layout="row">
+    <Tooltip
+      content="I am a tooltip with different placement"
+      placement="topLeft"
+    >
+      Top Left
+    </Tooltip>
+    <Tooltip
+      content="I am a tooltip with different placement"
+      placement="top"
+    >
+      Top
+    </Tooltip>
+    <Tooltip
+      content="I am a tooltip with different placement"
+      placement="topRight"
+    >
+      Top Right
+    </Tooltip>
+  </Unit>
+  <Unit layout="row">
+    <Tooltip
+      content="I am a tooltip with different placement"
+      placement="bottomLeft"
+    >
+      Bottom Left
+    </Tooltip>
+    <Tooltip
+      content="I am a tooltip with different placement"
+      placement="bottom"
+    >
+      Bottom
+    </Tooltip>
+    <Tooltip
+      content="I am a tooltip with different placement"
+      placement="bottomRight"
+    >
+      Bottom Right
+    </Tooltip>
+  </Unit>
+  <Unit layout="row">
+    <Tooltip
+      content="I am a tooltip with different placement"
+      placement="leftTop"
+    >
+      Left Top
+    </Tooltip>
+    <Tooltip
+      content="I am a tooltip with different placement"
+      placement="left"
+    >
+      Left
+    </Tooltip>
+    <Tooltip
+      content="I am a tooltip with different placement"
+      placement="leftBottom"
+    >
+      Left Bottom
+    </Tooltip>
+  </Unit>
+  <Unit layout="row">
+    <Tooltip
+      content="I am a tooltip with different placement"
+      placement="rightTop"
+    >
+      Right Top
+    </Tooltip>
+    <Tooltip
+      content="I am a tooltip with different placement"
+      placement="right"
+    >
+      Right
+    </Tooltip>
+    <Tooltip
+      content="I am a tooltip with different placement"
+      placement="rightBottom"
+    >
+      Right Bottom
+    </Tooltip>
+  </Unit>
+</Unit>
+`}
+/>
+
+## API
+
+| Prop           | Description                              | Type                                                   | Default |
+| -------------- | ---------------------------------------- | ------------------------------------------------------ | ------- |
+| content        | content of tooltip                       | React.ReactNode                                        | -       |
+| hideArrow      | hide tooltip arrow                       | boolean                                                | false   |
+| disabled       | disable tooltip                          | boolean                                                | false   |
+| placement      | position of the tooltip                  | TooltipPlacement                                       | 'top'   |
+| ...            | native props                             | React.HTMLAttributes                                   | -       |
+
+## Type
+
+```tsx
+import { TooltipPlacement } from 'raw-ui';
+```
+
+### TooltipPlacement
+
+```tsx
+type TooltipPlacement =
+  | 'top'
+  | 'topLeft'
+  | 'topRight'
+  | 'left'
+  | 'leftTop'
+  | 'leftBottom'
+  | 'bottom'
+  | 'bottomLeft'
+  | 'bottomRight'
+  | 'right'
+  | 'rightTop'
+  | 'rightBottom';
+```

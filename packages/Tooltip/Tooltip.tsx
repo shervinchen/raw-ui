@@ -55,18 +55,21 @@ const Tooltip: FC<TooltipProps> = ({
         >
           {!hideArrow && <TooltipArrow targetRef={ref} placement={placement} />}
           {content}
-          <style jsx>{`
-            .raw-tooltip-content {
-              background-color: ${theme.palette.foreground};
-              color: ${theme.palette.background};
-              border-radius: 6px;
-              font-size: 14px;
-              padding: 8px 12px;
-              transition: opacity 0.05s ease;
-            }
-          `}</style>
         </div>
       </Popup>
+      <style jsx>{`
+        .raw-tooltip {
+          display: inline-flex;
+        }
+        .raw-tooltip-content {
+          background-color: ${theme.palette.foreground};
+          color: ${theme.palette.background};
+          border-radius: 6px;
+          font-size: 14px;
+          padding: 8px 12px;
+          transition: opacity 0.05s ease;
+        }
+      `}</style>
     </div>
   );
 };
