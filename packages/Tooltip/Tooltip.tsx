@@ -30,14 +30,16 @@ const Tooltip: FC<TooltipProps> = ({
   };
 
   return (
-    <div
-      ref={ref}
-      className={classes}
-      onMouseEnter={() => mouseHandler(true)}
-      onMouseLeave={() => mouseHandler(false)}
-      {...restProps}
-    >
-      {children}
+    <>
+      <div
+        ref={ref}
+        className={classes}
+        onMouseEnter={() => mouseHandler(true)}
+        onMouseLeave={() => mouseHandler(false)}
+        {...restProps}
+      >
+        {children}
+      </div>
       <Popup
         name="tooltip"
         visible={shouldMount}
@@ -70,7 +72,7 @@ const Tooltip: FC<TooltipProps> = ({
           transition: opacity 0.05s ease;
         }
       `}</style>
-    </div>
+    </>
   );
 };
 
