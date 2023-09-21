@@ -16,6 +16,7 @@ const Popover: FC<PopoverProps> = ({
   disabled = false,
   className = '',
   getPopupContainer,
+  onChange,
   children,
   ...restProps
 }) => {
@@ -31,6 +32,7 @@ const Popover: FC<PopoverProps> = ({
   const clickHandler = () => {
     if (!disabled) {
       setInternalValue(!internalValue);
+      onChange?.(!internalValue);
     }
   };
 

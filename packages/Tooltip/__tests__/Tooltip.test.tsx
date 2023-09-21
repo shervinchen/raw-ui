@@ -19,7 +19,7 @@ describe('Tooltip', () => {
     expect(container.firstChild).toHaveClass('custom-tooltip');
   });
 
-  test('should show tooltip when mouse over', () => {
+  test('should show tooltip when mouse over target', () => {
     render(<Tooltip content="I am a tooltip">Hover me</Tooltip>);
     const element = document.querySelector('.raw-tooltip');
     fireEvent.mouseOver(element);
@@ -28,7 +28,7 @@ describe('Tooltip', () => {
     }, 50);
   });
 
-  test('should hide tooltip when mouse out', () => {
+  test('should hide tooltip when mouse out target', () => {
     render(<Tooltip content="I am a tooltip">Hover me</Tooltip>);
     const element = document.querySelector('.raw-tooltip');
     fireEvent.mouseOver(element);
@@ -36,6 +36,19 @@ describe('Tooltip', () => {
       expect('I am a tooltip').toBeInTheDocument();
     }, 50);
     fireEvent.mouseOut(element);
+    setTimeout(() => {
+      expect('I am a tooltip').not.toBeInTheDocument();
+    }, 50);
+  });
+
+  test('should support disabled tooltip', () => {
+    render(
+      <Tooltip content="I am a tooltip" disabled>
+        Hover me
+      </Tooltip>
+    );
+    const element = document.querySelector('.raw-tooltip');
+    fireEvent.mouseOver(element);
     setTimeout(() => {
       expect('I am a tooltip').not.toBeInTheDocument();
     }, 50);

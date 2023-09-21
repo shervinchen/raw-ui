@@ -72,6 +72,7 @@ import {
   DemoTooltipPlacement,
 } from './tooltip';
 import {
+  DemoPopoverControlled,
   DemoPopoverDefault,
   DemoPopoverDisabled,
   DemoPopoverHideArrow,
@@ -303,6 +304,9 @@ function App() {
         </Wrapper>
         <Wrapper title="Placement">
           <DemoPopoverPlacement />
+        </Wrapper>
+        <Wrapper title="Controlled">
+          <DemoPopoverControlled />
         </Wrapper>
       </Container>
     </div>

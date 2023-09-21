@@ -133,6 +133,29 @@ import { Popover } from 'raw-ui';
 `}
 />
 
+## Controlled
+
+<Playground
+  scope={{ Popover }}
+  code={`
+() => {
+  const [value, setValue] = React.useState(false);
+
+  return (
+    <Popover
+      content="I am a controlled popover"
+      value={value}
+      onChange={(nextValue) => {
+        setValue(nextValue);
+      }}
+    >
+      Click me
+    </Popover>
+  );
+}
+`}
+/>
+
 ## API
 
 | Prop           | Description                              | Type                                                   | Default |

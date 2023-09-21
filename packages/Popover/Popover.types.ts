@@ -11,6 +11,7 @@ interface BasePopoverProps {
   hideArrow?: boolean;
   disabled?: boolean;
   className?: string;
+  onChange?: (value: boolean) => void;
   getPopupContainer?: () => HTMLElement | null;
 }
 

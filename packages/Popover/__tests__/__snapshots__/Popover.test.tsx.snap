@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Popover should match the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="jsx-3037783176 raw-popover"
+  >
+    Click me
+  </div>
+</DocumentFragment>
+`;

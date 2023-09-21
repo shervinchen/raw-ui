@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Unit from '../Unit';
 import { Popover } from '@/packages';
 
@@ -113,5 +114,21 @@ export function DemoPopoverPlacement() {
         </Popover>
       </Unit>
     </Unit>
+  );
+}
+
+export function DemoPopoverControlled() {
+  const [value, setValue] = useState(false);
+
+  return (
+    <Popover
+      content="I am a controlled popover"
+      value={value}
+      onChange={(nextValue) => {
+        setValue(nextValue);
+      }}
+    >
+      Click me
+    </Popover>
   );
 }
