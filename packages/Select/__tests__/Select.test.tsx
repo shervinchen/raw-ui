@@ -45,12 +45,10 @@ describe('Select', () => {
     const selectInput = screen.getByTestId('selectInput');
     act(() => {
       ref?.current?.focus();
-    });
-    expect(selectInput).toHaveFocus();
-    act(() => {
+      expect(selectInput).toHaveFocus();
       ref?.current?.blur();
+      expect(selectInput).not.toHaveFocus();
     });
-    expect(selectInput).not.toHaveFocus();
   });
 
   test('should support custom class name', () => {
