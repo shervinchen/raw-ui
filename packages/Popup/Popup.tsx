@@ -6,7 +6,7 @@ import React, {
   MouseEvent,
 } from 'react';
 import { createPortal } from 'react-dom';
-import { PopupProps, PopupPlacement } from './Popup.types';
+import { PopupProps, PopupPosition } from './Popup.types';
 import {
   useClickAnyWhere,
   useMutationObserver,
@@ -18,12 +18,12 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
   name,
   visible,
   targetRef,
-  getPopupPlacement,
+  getPopupPosition,
   getPopupContainer,
   children,
 }) => {
   const portal = usePortal(name, getPopupContainer);
-  const [popupPlacement, setPopupPlacement] = useState<PopupPlacement>({
+  const [popupPosition, setPopupPosition] = useState<PopupPosition>({
     left: 0,
     top: 0,
     transform: 'translate(0, 0)',
@@ -35,12 +35,12 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
     event.preventDefault();
   };
 
-  const mouseDownHandler = (event: MouseEvent<HTMLDivElement>) => {
-    event.preventDefault();
-  };
+  // const mouseDownHandler = (event: MouseEvent<HTMLDivElement>) => {
+  //   event.preventDefault();
+  // };
 
   const updatePopupPosition = () => {
-    setPopupPlacement(getPopupPlacement());
+    setPopupPosition(getPopupPosition());
   };
 
   useResize(updatePopupPosition);
@@ -71,16 +71,16 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
       <div
         className="raw-popup"
         onClick={clickHandler}
-        onMouseDown={mouseDownHandler}
+        // onMouseDown={mouseDownHandler}
         data-testid="popup"
       >
         {children}
         <style jsx>{`
           .raw-popup {
             position: absolute;
-            top: ${popupPlacement.top}px;
-            left: ${popupPlacement.left}px;
-            transform: ${popupPlacement.transform};
+            top: ${popupPosition.top}px;
+            left: ${popupPosition.left}px;
+            transform: ${popupPosition.transform};
           }
         `}</style>
       </div>

@@ -39,6 +39,8 @@ export const tokens: RawUIThemeTokens = {
     sm: '0 5px 10px rgba(0, 0, 0, 0.12)',
     md: '0 8px 30px rgba(0, 0, 0, 0.12)',
     lg: '0 30px 60px rgba(0, 0, 0, 0.12)',
+    popup:
+      '0 0 #0000, 0 0 #0000, 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
   },
 };
 

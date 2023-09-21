@@ -37,6 +37,7 @@ export interface RawUIThemeTokens {
     sm: string;
     md: string;
     lg: string;
+    popup: string;
   };
 }
 

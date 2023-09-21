@@ -71,6 +71,12 @@ import {
   DemoTooltipHideArrow,
   DemoTooltipPlacement,
 } from './tooltip';
+import {
+  DemoPopoverDefault,
+  DemoPopoverDisabled,
+  DemoPopoverHideArrow,
+  DemoPopoverPlacement,
+} from './popover';
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
   title,
@@ -283,6 +289,20 @@ function App() {
         </Wrapper>
         <Wrapper title="Placement">
           <DemoTooltipPlacement />
+        </Wrapper>
+      </Container>
+      <Container title="Popover">
+        <Wrapper title="Default">
+          <DemoPopoverDefault />
+        </Wrapper>
+        <Wrapper title="Hide Arrow">
+          <DemoPopoverHideArrow />
+        </Wrapper>
+        <Wrapper title="Disabled">
+          <DemoPopoverDisabled />
+        </Wrapper>
+        <Wrapper title="Placement">
+          <DemoPopoverPlacement />
         </Wrapper>
       </Container>
     </div>

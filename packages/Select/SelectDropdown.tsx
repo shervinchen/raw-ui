@@ -11,7 +11,7 @@ import { RawUITheme } from '../Theme/preset/preset.type';
 import { useTheme } from '../Theme/theme-context';
 import { useSelectContext } from './select-context';
 import Popup from '../Popup';
-import { computePopupPosition } from '../Popup/computePopupPosition';
+import { computePopupCoordinates } from '../Popup/computePopup';
 
 const SelectDropdown = forwardRef<
   HTMLDivElement | null,
@@ -20,8 +20,7 @@ const SelectDropdown = forwardRef<
   const theme: RawUITheme = useTheme();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const { dropdownHeight, selectRef, getPopupContainer } = useSelectContext();
-  const { stage: dropdownTransitionStage, shouldMount: dropdownShouldMount } =
-    useTransition(visible, 150);
+  const { stage: dropdownTransitionStage } = useTransition(visible, 0);
   const dropdownClasses = classNames('raw-select-dropdown', className);
   const selectRect = selectRef?.current?.getBoundingClientRect() ?? null;
   const dropdownWidth = selectRect
@@ -36,10 +35,10 @@ const SelectDropdown = forwardRef<
   return (
     <Popup
       name="dropdown"
-      visible={dropdownShouldMount}
+      visible={visible}
       targetRef={selectRef}
-      getPopupPlacement={() => {
-        const { bottom, left } = computePopupPosition(
+      getPopupPosition={() => {
+        const { bottom, left } = computePopupCoordinates(
           selectRef,
           getPopupContainer
         );
@@ -65,7 +64,8 @@ const SelectDropdown = forwardRef<
             padding: 8px;
             margin-top: 2px;
             border-radius: 6px;
-            box-shadow: ${theme.tokens.shadow.lg};
+            border: 1px solid ${theme.palette.accents2};
+            box-shadow: ${theme.tokens.shadow.popup};
             background-color: ${theme.palette.background};
             max-height: ${dropdownHeight};
             overflow-y: auto;

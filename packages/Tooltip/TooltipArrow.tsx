@@ -1,42 +1,28 @@
-import { FC, useMemo } from 'react';
-import { TooltipArrowOffset, TooltipArrowProps } from './Tooltip.types';
-import {
-  computeTooltipArrowPosition,
-  getTargetRect,
-} from './computeTooltipPosition';
+import { FC } from 'react';
+import css from 'styled-jsx/css';
+import { TooltipArrowProps } from './Tooltip.types';
+import PopupArrow from '../Popup/PopupArrow';
 import { useTheme } from '../Theme';
 
 const TooltipArrow: FC<TooltipArrowProps> = ({ targetRef, placement }) => {
   const theme = useTheme();
-  const arrowOffset = useMemo<TooltipArrowOffset>(() => {
-    const { width, height } = getTargetRect(targetRef);
-    return {
-      x: `${width / 2}px`,
-      y: `${height / 2}px`,
-    };
-  }, [targetRef]);
-  const { left, top, right, bottom, transform } = computeTooltipArrowPosition(
-    arrowOffset,
-    placement
-  );
+
+  const { className, styles } = css.resolve`
+    .raw-popup-arrow {
+      background-color: ${theme.palette.foreground};
+    }
+  `;
 
   return (
-    <span>
-      <style jsx>{`
-        span {
-          width: 6px;
-          height: 6px;
-          border: 0;
-          background-color: ${theme.palette.foreground};
-          position: absolute;
-          left: ${left};
-          top: ${top};
-          right: ${right};
-          bottom: ${bottom};
-          transform: ${transform};
-        }
-      `}</style>
-    </span>
+    <>
+      <PopupArrow
+        targetRef={targetRef}
+        placement={placement}
+        className={className}
+        withBorder={false}
+      />
+      {styles}
+    </>
   );
 };
 

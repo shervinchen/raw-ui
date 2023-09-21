@@ -18,7 +18,8 @@ const useMutationObserver = (
     return () => {
       observer.disconnect();
     };
-  }, [callback, options, ref]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ref]);
 };
 
 export default useMutationObserver;

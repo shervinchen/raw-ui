@@ -161,7 +161,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
           setDropdownVisible(false);
         }
       },
-      ['click']
+      ['mousedown']
     );
 
     useImperativeHandle(

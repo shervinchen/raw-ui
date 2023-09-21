@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import Popup from '..';
 import { MutableRefObject, useRef } from 'react';
 
-const mockGetPopupPlacement = jest.fn().mockReturnValue({
+const mockGetPopupPosition = jest.fn().mockReturnValue({
   top: 0,
   left: 0,
   bottom: 0,
@@ -25,7 +25,7 @@ const Component = ({
       name="testPopup"
       visible={visible}
       targetRef={targetRef}
-      getPopupPlacement={mockGetPopupPlacement}
+      getPopupPosition={mockGetPopupPosition}
       getPopupContainer={getPopupContainer}
     >
       Popup Content
@@ -80,7 +80,7 @@ describe('Popup', () => {
         getPopupContainer={getPopupContainerMock}
       />
     );
-    expect(mockGetPopupPlacement).toHaveBeenCalledTimes(1);
+    expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
     const newTargetRefMock = {
       current: document.createElement('div'),
     };
@@ -91,7 +91,7 @@ describe('Popup', () => {
         getPopupContainer={getPopupContainerMock}
       />
     );
-    expect(mockGetPopupPlacement).toHaveBeenCalledTimes(1);
+    expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
   });
 
   test('should update popup position when window resize', () => {
@@ -102,11 +102,11 @@ describe('Popup', () => {
         getPopupContainer={getPopupContainerMock}
       />
     );
-    expect(mockGetPopupPlacement).toHaveBeenCalledTimes(1);
+    expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
     act(() => {
       window.dispatchEvent(new Event('resize'));
     });
-    expect(mockGetPopupPlacement).toHaveBeenCalledTimes(2);
+    expect(mockGetPopupPosition).toHaveBeenCalledTimes(2);
   });
 
   test('should update popup position when document click', () => {
@@ -117,11 +117,11 @@ describe('Popup', () => {
         getPopupContainer={getPopupContainerMock}
       />
     );
-    expect(mockGetPopupPlacement).toHaveBeenCalledTimes(1);
+    expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
     act(() => {
       document.dispatchEvent(new MouseEvent('click'));
     });
-    expect(mockGetPopupPlacement).toHaveBeenCalledTimes(2);
+    expect(mockGetPopupPosition).toHaveBeenCalledTimes(2);
   });
 
   test('should update popup position when mouse over', () => {
@@ -132,11 +132,11 @@ describe('Popup', () => {
         getPopupContainer={getPopupContainerMock}
       />
     );
-    expect(mockGetPopupPlacement).toHaveBeenCalledTimes(1);
+    expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
     act(() => {
       targetRefMock.current.dispatchEvent(new Event('mouseenter'));
     });
-    expect(mockGetPopupPlacement).toHaveBeenCalledTimes(2);
+    expect(mockGetPopupPosition).toHaveBeenCalledTimes(2);
   });
 
   test('should render to specified container', () => {
@@ -180,11 +180,11 @@ describe('Popup', () => {
 
   test('should not trigger mouse over event when target is empty', () => {
     render(<Component visible getPopupContainer={getPopupContainerMock} />);
-    expect(mockGetPopupPlacement).toHaveBeenCalledTimes(1);
+    expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
     act(() => {
       targetRefMock.current.dispatchEvent(new Event('mouseenter'));
     });
-    expect(mockGetPopupPlacement).toHaveBeenCalledTimes(1);
+    expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
   });
 
   test('should not trigger mouse over event when event is removed', () => {
@@ -195,11 +195,11 @@ describe('Popup', () => {
         getPopupContainer={getPopupContainerMock}
       />
     );
-    expect(mockGetPopupPlacement).toHaveBeenCalledTimes(1);
+    expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
     unmount();
     act(() => {
       targetRefMock.current.dispatchEvent(new Event('mouseenter'));
     });
-    expect(mockGetPopupPlacement).toHaveBeenCalledTimes(1);
+    expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
   });
 });

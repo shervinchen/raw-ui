@@ -1,11 +1,11 @@
 import { MutableRefObject } from 'react';
-import { computePopupPosition } from '../Popup/computePopupPosition';
 import {
-  TooltipArrowOffset,
-  TooltipArrowPosition,
-  TooltipPlacement,
-  TooltipPosition,
-} from './Tooltip.types';
+  PopupArrowOffset,
+  PopupArrowPosition,
+  PopupCoordinates,
+  PopupPlacement,
+  PopupPosition,
+} from './Popup.types';
 
 export const getTargetRect = (
   targetRef?: MutableRefObject<HTMLElement | null>
@@ -24,12 +24,52 @@ export const getTargetRect = (
   };
 };
 
-export const computeTooltipPosition = (
-  placement: TooltipPlacement,
+const getElementOffset = (element?: HTMLElement | null) => {
+  if (!element) return { offsetTop: 0, offsetLeft: 0 };
+  const { top, left } = element.getBoundingClientRect();
+  return { offsetTop: top, offsetLeft: left };
+};
+
+export const computePopupCoordinates = (
+  targetRef?: MutableRefObject<HTMLElement | null>,
+  getContainer?: () => HTMLElement | null
+): PopupCoordinates => {
+  const targetRect = targetRef?.current?.getBoundingClientRect() ?? null;
+  const bodyRect = document.body.getBoundingClientRect();
+  const container = getContainer?.() ?? null;
+  const { offsetTop, offsetLeft } = getElementOffset(container);
+
+  if (!targetRect) {
+    return {
+      top: 0,
+      left: 0,
+      bottom: 0,
+      right: 0,
+    };
+  }
+
+  return {
+    top: container
+      ? targetRect.top + container.scrollTop - offsetTop
+      : targetRect.top - bodyRect.top,
+    bottom: container
+      ? targetRect.bottom + container.scrollTop - offsetTop
+      : targetRect.bottom - bodyRect.top,
+    left: container
+      ? targetRect.left + container.scrollLeft - offsetLeft
+      : targetRect.left - bodyRect.left,
+    right: container
+      ? targetRect.right + container.scrollLeft - offsetLeft
+      : targetRect.right - bodyRect.left,
+  };
+};
+
+export const computePopupPosition = (
+  placement: PopupPlacement,
   targetRef?: MutableRefObject<HTMLElement | null>,
   getPopupContainer?: () => HTMLElement | null
 ) => {
-  const { top, bottom, left, right } = computePopupPosition(
+  const { top, bottom, left, right } = computePopupCoordinates(
     targetRef,
     getPopupContainer
   );
@@ -37,7 +77,7 @@ export const computeTooltipPosition = (
   const offset = 6;
 
   const placements: {
-    [key in TooltipPlacement]: TooltipPosition;
+    [key in PopupPlacement]: PopupPosition;
   } = {
     top: {
       top: top - offset,
@@ -104,50 +144,51 @@ export const computeTooltipPosition = (
   return placements[placement] || placements['top'];
 };
 
-export const computeTooltipArrowPosition = (
-  arrowOffset: TooltipArrowOffset,
-  placement: TooltipPlacement
+export const computePopupArrowPosition = (
+  arrowOffset: PopupArrowOffset,
+  arrowDistance: string,
+  placement: PopupPlacement
 ) => {
   const placements: {
-    [key in TooltipPlacement]: TooltipArrowPosition;
+    [key in PopupPlacement]: PopupArrowPosition;
   } = {
     top: {
       top: 'auto',
       right: 'auto',
       left: '50%',
-      bottom: '3px',
+      bottom: arrowDistance,
       transform: 'translate(-50%, 100%) rotate(45deg)',
     },
     topLeft: {
       top: 'auto',
       right: 'auto',
       left: `${arrowOffset.x}`,
-      bottom: '3px',
+      bottom: arrowDistance,
       transform: 'translate(0, 100%) rotate(45deg)',
     },
     topRight: {
       top: 'auto',
       right: `${arrowOffset.x}`,
       left: 'auto',
-      bottom: '3px',
+      bottom: arrowDistance,
       transform: 'translate(0, 100%) rotate(45deg)',
     },
     bottom: {
-      top: '3px',
+      top: arrowDistance,
       right: 'auto',
       left: '50%',
       bottom: 'auto',
       transform: 'translate(-50%, -100%) rotate(45deg)',
     },
     bottomLeft: {
-      top: '3px',
+      top: arrowDistance,
       right: 'auto',
       left: `${arrowOffset.x}`,
       bottom: 'auto',
       transform: 'translate(0, -100%) rotate(45deg)',
     },
     bottomRight: {
-      top: '3px',
+      top: arrowDistance,
       right: `${arrowOffset.x}`,
       left: 'auto',
       bottom: 'auto',
@@ -155,21 +196,21 @@ export const computeTooltipArrowPosition = (
     },
     left: {
       top: '50%',
-      right: '3px',
+      right: arrowDistance,
       left: 'auto',
       bottom: 'auto',
       transform: 'translate(100%, -50%) rotate(45deg)',
     },
     leftTop: {
       top: `${arrowOffset.y}`,
-      right: '3px',
+      right: arrowDistance,
       left: 'auto',
       bottom: 'auto',
       transform: 'translate(100%, -50%) rotate(45deg)',
     },
     leftBottom: {
       top: 'auto',
-      right: '3px',
+      right: arrowDistance,
       left: 'auto',
       bottom: `${arrowOffset.y}`,
       transform: 'translate(100%, 50%) rotate(45deg)',
@@ -177,21 +218,21 @@ export const computeTooltipArrowPosition = (
     right: {
       top: '50%',
       right: 'auto',
-      left: '3px',
+      left: arrowDistance,
       bottom: 'auto',
       transform: 'translate(-100%, -50%) rotate(45deg)',
     },
     rightTop: {
       top: `${arrowOffset.y}`,
       right: 'auto',
-      left: '3px',
+      left: arrowDistance,
       bottom: 'auto',
       transform: 'translate(-100%, -50%) rotate(45deg)',
     },
     rightBottom: {
       top: 'auto',
       right: 'auto',
-      left: '3px',
+      left: arrowDistance,
       bottom: `${arrowOffset.y}`,
       transform: 'translate(-100%, 50%) rotate(45deg)',
     },

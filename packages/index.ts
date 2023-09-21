@@ -33,3 +33,6 @@ export * from './Select/SelectDropdown.types';
 
 export { default as Tooltip } from './Tooltip';
 export * from './Tooltip/Tooltip.types';
+
+export { default as Popover } from './Popover';
+export * from './Popover/Popover.types';
