@@ -1,6 +1,8 @@
 import { HTMLAttributes, MutableRefObject, ReactNode } from 'react';
 import { PopupPlacement } from '../Popup/Popup.types';
 
+export type TooltipPlacement = PopupPlacement;
+
 interface BaseTooltipProps {
   content: ReactNode;
   placement?: PopupPlacement;

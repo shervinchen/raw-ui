@@ -1,0 +1,168 @@
+import Unit from '@/demo/Unit';
+import { Popover } from '@/packages';
+import Playground from '@/src/app/components/playground';
+
+# Popover
+
+The floating box popped by clicking.
+
+## Import
+
+```tsx
+import { Popover } from 'raw-ui';
+```
+
+## Default
+
+<Playground
+  scope={{ Popover }}
+  code={`
+<Popover content="I am a popover">Click me</Popover>
+`}
+/>
+
+## Hide Arrow
+
+<Playground
+  scope={{ Popover }}
+  code={`
+<Popover content="I am a popover" hideArrow>
+  Click me
+</Popover>
+`}
+/>
+
+## Disabled
+
+<Playground
+  scope={{ Popover }}
+  code={`
+<Popover content="I am a popover" disabled>
+  Click me
+</Popover>
+`}
+/>
+
+## Placement
+
+<Playground
+  scope={{ Unit, Popover }}
+  code={`
+<Unit layout="col">
+  <Unit layout="row">
+    <Popover
+      content="I am a popover with different placement"
+      placement="topLeft"
+    >
+      Top Left
+    </Popover>
+    <Popover
+      content="I am a popover with different placement"
+      placement="top"
+    >
+      Top
+    </Popover>
+    <Popover
+      content="I am a popover with different placement"
+      placement="topRight"
+    >
+      Top Right
+    </Popover>
+  </Unit>
+  <Unit layout="row">
+    <Popover
+      content="I am a popover with different placement"
+      placement="bottomLeft"
+    >
+      Bottom Left
+    </Popover>
+    <Popover
+      content="I am a popover with different placement"
+      placement="bottom"
+    >
+      Bottom
+    </Popover>
+    <Popover
+      content="I am a popover with different placement"
+      placement="bottomRight"
+    >
+      Bottom Right
+    </Popover>
+  </Unit>
+  <Unit layout="row">
+    <Popover
+      content="I am a popover with different placement"
+      placement="leftTop"
+    >
+      Left Top
+    </Popover>
+    <Popover
+      content="I am a popover with different placement"
+      placement="left"
+    >
+      Left
+    </Popover>
+    <Popover
+      content="I am a popover with different placement"
+      placement="leftBottom"
+    >
+      Left Bottom
+    </Popover>
+  </Unit>
+  <Unit layout="row">
+    <Popover
+      content="I am a popover with different placement"
+      placement="rightTop"
+    >
+      Right Top
+    </Popover>
+    <Popover
+      content="I am a popover with different placement"
+      placement="right"
+    >
+      Right
+    </Popover>
+    <Popover
+      content="I am a popover with different placement"
+      placement="rightBottom"
+    >
+      Right Bottom
+    </Popover>
+  </Unit>
+</Unit>
+`}
+/>
+
+## API
+
+| Prop           | Description                              | Type                                                   | Default |
+| -------------- | ---------------------------------------- | ------------------------------------------------------ | ------- |
+| content        | content of popover                       | React.ReactNode                                        | -       |
+| hideArrow      | hide popover arrow                       | boolean                                                | false   |
+| disabled       | disable popover                          | boolean                                                | false   |
+| placement      | position of the popover                  | PopoverPlacement                                       | 'top'   |
+| ...            | native props                             | React.HTMLAttributes                                   | -       |
+
+## Type
+
+```tsx
+import { PopoverPlacement } from 'raw-ui';
+```
+
+### PopoverPlacement
+
+```tsx
+type PopoverPlacement =
+  | 'top'
+  | 'topLeft'
+  | 'topRight'
+  | 'left'
+  | 'leftTop'
+  | 'leftBottom'
+  | 'bottom'
+  | 'bottomLeft'
+  | 'bottomRight'
+  | 'right'
+  | 'rightTop'
+  | 'rightBottom';
+```

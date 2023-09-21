@@ -79,6 +79,10 @@ export const SIDEBARS = [
         name: 'Data Display',
         children: [
           {
+            name: 'Popover',
+            url: '/components/popover',
+          },
+          {
             name: 'Tooltip',
             url: '/components/tooltip',
           },

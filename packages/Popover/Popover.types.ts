@@ -1,6 +1,8 @@
 import { HTMLAttributes, MutableRefObject, ReactNode } from 'react';
 import { PopupPlacement } from '../Popup/Popup.types';
 
+export type PopoverPlacement = PopupPlacement;
+
 interface BasePopoverProps {
   content: ReactNode;
   value?: boolean;
