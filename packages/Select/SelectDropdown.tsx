@@ -20,7 +20,7 @@ const SelectDropdown = forwardRef<
   const theme: RawUITheme = useTheme();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const { dropdownHeight, selectRef, getPopupContainer } = useSelectContext();
-  const { stage: dropdownTransitionStage } = useTransition(visible, 0);
+  const { stage: dropdownTransitionStage } = useTransition(visible, 50, 0);
   const dropdownClasses = classNames('raw-select-dropdown', className);
   const selectRect = selectRef?.current?.getBoundingClientRect() ?? null;
   const dropdownWidth = selectRect
@@ -65,7 +65,7 @@ const SelectDropdown = forwardRef<
             margin-top: 2px;
             border-radius: 6px;
             border: 1px solid ${theme.palette.accents2};
-            box-shadow: ${theme.tokens.shadow.popup};
+            box-shadow: ${theme.tokens.shadow.sm};
             background-color: ${theme.palette.background};
             max-height: ${dropdownHeight};
             overflow-y: auto;

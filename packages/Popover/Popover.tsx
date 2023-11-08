@@ -1,4 +1,4 @@
-import React, { FC, useRef } from 'react';
+import React, { FC, PropsWithChildren, useRef } from 'react';
 import classNames from 'classnames';
 import { PopoverProps } from './Popover.types';
 import { useClickAway, useControlled, useTransition } from '../utils/hooks';
@@ -7,7 +7,7 @@ import { computePopupPosition } from '../Popup/computePopup';
 import { useTheme } from '../Theme';
 import PopoverArrow from './PopoverArrow';
 
-const Popover: FC<PopoverProps> = ({
+const Popover: FC<PropsWithChildren<PopoverProps>> = ({
   content,
   defaultValue = false,
   value,
@@ -26,7 +26,7 @@ const Popover: FC<PopoverProps> = ({
     defaultValue,
     value,
   });
-  const { stage, shouldMount } = useTransition(internalValue, 50);
+  const { stage, shouldMount } = useTransition(internalValue, 50, 50);
   const classes = classNames('raw-popover', className);
 
   const clickHandler = () => {
@@ -79,7 +79,7 @@ const Popover: FC<PopoverProps> = ({
           color: ${theme.palette.foreground};
           border-radius: 6px;
           border: 1px solid ${theme.palette.accents2};
-          box-shadow: ${theme.tokens.shadow.popup};
+          box-shadow: ${theme.tokens.shadow.sm};
           font-size: 14px;
           padding: 8px 12px;
           transition: opacity 0.05s ease;

@@ -78,6 +78,11 @@ import {
   DemoPopoverHideArrow,
   DemoPopoverPlacement,
 } from './popover';
+import {
+  DemoModalDefault,
+  DemoModalNotCloseOnOverlayClick,
+  DemoModalWidth,
+} from './modal';
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
   title,
@@ -307,6 +312,17 @@ function App() {
         </Wrapper>
         <Wrapper title="Controlled">
           <DemoPopoverControlled />
+        </Wrapper>
+      </Container>
+      <Container title="Modal">
+        <Wrapper title="Default">
+          <DemoModalDefault />
+        </Wrapper>
+        <Wrapper title="Not Close On Overlay Click">
+          <DemoModalNotCloseOnOverlayClick />
+        </Wrapper>
+        <Wrapper title="Width">
+          <DemoModalWidth />
         </Wrapper>
       </Container>
     </div>

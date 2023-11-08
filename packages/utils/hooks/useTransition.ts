@@ -28,7 +28,11 @@ function clearAnimationFrameTimeout(canceller: Canceller) {
 
 export type Stage = 'from' | 'enter' | 'leave';
 
-const useTransition = (state: boolean, timeout: number) => {
+const useTransition = (
+  state: boolean,
+  enterTimeout: number,
+  leaveTimeout: number
+) => {
   const [stage, setStage] = useState<Stage>(state ? 'enter' : 'from');
   const timer = useRef<Canceller>({});
   const [shouldMount, setShouldMount] = useState(state);
@@ -42,19 +46,19 @@ const useTransition = (state: boolean, timeout: number) => {
         setShouldMount(true);
         timer.current = setAnimationFrameTimeout(() => {
           setStage('enter');
-        });
+        }, enterTimeout);
       } else {
         setStage('leave');
         timer.current = setAnimationFrameTimeout(() => {
           setShouldMount(false);
-        }, timeout);
+        }, leaveTimeout);
       }
 
       return () => {
         clearAnimationFrameTimeout(timer.current);
       };
     },
-    [state, timeout]
+    [state, enterTimeout, leaveTimeout]
   );
 
   return {

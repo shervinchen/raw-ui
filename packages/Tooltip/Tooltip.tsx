@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from 'react';
+import React, { FC, PropsWithChildren, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { TooltipProps } from './Tooltip.types';
 import { useTransition } from '../utils/hooks';
@@ -7,7 +7,7 @@ import { computePopupPosition } from '../Popup/computePopup';
 import TooltipArrow from './TooltipArrow';
 import { useTheme } from '../Theme';
 
-const Tooltip: FC<TooltipProps> = ({
+const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
   content,
   placement = 'top',
   hideArrow = false,
@@ -20,7 +20,7 @@ const Tooltip: FC<TooltipProps> = ({
   const ref = useRef<HTMLDivElement>(null);
   const theme = useTheme();
   const [visible, setVisible] = useState(false);
-  const { stage, shouldMount } = useTransition(visible, 50);
+  const { stage, shouldMount } = useTransition(visible, 50, 50);
   const classes = classNames('raw-tooltip', className);
 
   const mouseHandler = (nextValue: boolean) => {

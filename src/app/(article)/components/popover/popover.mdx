@@ -161,9 +161,12 @@ import { Popover } from 'raw-ui';
 | Prop           | Description                              | Type                                                   | Default |
 | -------------- | ---------------------------------------- | ------------------------------------------------------ | ------- |
 | content        | content of popover                       | React.ReactNode                                        | -       |
+| defaultValue   | default visible or not (uncontrolled)    | boolean                                                | false   |
+| value          | visible or not (controlled)              | boolean                                                | -       |
 | hideArrow      | hide popover arrow                       | boolean                                                | false   |
 | disabled       | disable popover                          | boolean                                                | false   |
 | placement      | position of the popover                  | PopoverPlacement                                       | 'top'   |
+| onChange       | change event handler                     | (value: boolean) => void                               | -       |
 | ...            | native props                             | React.HTMLAttributes                                   | -       |
 
 ## Type

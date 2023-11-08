@@ -36,3 +36,6 @@ export * from './Tooltip/Tooltip.types';
 
 export { default as Popover } from './Popover';
 export * from './Popover/Popover.types';
+
+export { default as Modal } from './Modal';
+export * from './Modal/Modal.types';

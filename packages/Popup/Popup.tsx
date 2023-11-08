@@ -35,9 +35,11 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
     event.preventDefault();
   };
 
-  // const mouseDownHandler = (event: MouseEvent<HTMLDivElement>) => {
-  //   event.preventDefault();
-  // };
+  const mouseDownHandler = (event: MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+    event.nativeEvent.stopImmediatePropagation();
+    // event.preventDefault();
+  };
 
   const updatePopupPosition = () => {
     setPopupPosition(getPopupPosition());
@@ -71,7 +73,7 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
       <div
         className="raw-popup"
         onClick={clickHandler}
-        // onMouseDown={mouseDownHandler}
+        onMouseDown={mouseDownHandler}
         data-testid="popup"
       >
         {children}

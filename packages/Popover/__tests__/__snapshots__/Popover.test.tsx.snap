@@ -3,7 +3,7 @@
 exports[`Popover should match the snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="jsx-3037783176 raw-popover"
+    class="jsx-3851428059 raw-popover"
   >
     Click me
   </div>
