@@ -1,0 +1,117 @@
+import Unit from '@/demo/Unit';
+import { Button, Modal } from '@/packages';
+import Playground from '@/src/app/components/playground';
+
+# Modal
+
+Display popup content that requires attention or provides additional information.
+
+## Import
+
+```tsx
+import { Modal } from 'raw-ui';
+```
+
+## Default
+
+<Playground
+  scope={{ Button, Modal }}
+  code={`
+() => {
+  const [visible, setVisible] = React.useState(false);
+
+  const openModal = () => setVisible(true);
+
+  const closeModal = () => {
+    setVisible(false);
+  };
+
+  return (
+    <>
+      <Button onClick={openModal}>Open Modal</Button>
+      <Modal visible={visible} onClose={closeModal}>
+        <Modal.Header>Modal Title</Modal.Header>
+        <Modal.Body>
+          <div>This is a modal.</div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={closeModal}>Cancel</Button>
+          <Button type="primary" onClick={closeModal}>
+            Confirm
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+}
+`}
+/>
+
+## Not Close Modal on Overlay Click
+
+<Playground
+  scope={{ Button, Modal }}
+  code={`
+() => {
+  const [visible, setVisible] = React.useState(false);
+
+  const openModal = () => setVisible(true);
+
+  const closeModal = () => {
+    setVisible(false);
+  };
+
+  return (
+    <>
+      <Button onClick={openModal}>Open Modal</Button>
+      <Modal
+        visible={visible}
+        onClose={closeModal}
+        closeOnOverlayClick={false}
+      >
+        <Modal.Header>Modal Title</Modal.Header>
+        <Modal.Body>
+          <div>This is a modal.</div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={closeModal}>Cancel</Button>
+          <Button type="primary" onClick={closeModal}>
+            Confirm
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+}
+`}
+/>
+
+## API
+
+### Modal
+
+| Prop                | Description                           | Type                                                   | Default |
+| ------------------- | ------------------------------------- | ------------------------------------------------------ | ------- |
+| visible             | open or close (controlled)            | boolean                                                | false   |
+| closeOnOverlayClick | whether or not close on overlay click | boolean                                                | false   |
+| width               | modal width                           | string                                                 | '540px' |
+| onClose             | close event handler                   | () => void                                             | -       |
+| ...                 | native props                          | React.HTMLAttributes                                   | -       |
+
+### Modal.Header
+
+| Prop | Description  | Type                 | Default |
+| ---- | ------------ | -------------------- | ------- |
+| ...  | native props | React.HTMLAttributes | -       |
+
+### Modal.Body
+
+| Prop | Description  | Type                 | Default |
+| ---- | ------------ | -------------------- | ------- |
+| ...  | native props | React.HTMLAttributes | -       |
+
+### Modal.Footer
+
+| Prop | Description  | Type                 | Default |
+| ---- | ------------ | -------------------- | ------- |
+| ...  | native props | React.HTMLAttributes | -       |

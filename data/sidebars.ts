@@ -95,6 +95,10 @@ export const SIDEBARS = [
             name: 'Loading',
             url: '/components/loading',
           },
+          {
+            name: 'Modal',
+            url: '/components/modal',
+          },
         ],
       },
     ],
