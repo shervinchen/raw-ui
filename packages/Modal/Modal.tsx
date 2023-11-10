@@ -1,5 +1,6 @@
 import React, { FC, PropsWithChildren, useCallback, useMemo } from 'react';
 import { createPortal } from 'react-dom';
+import classNames from 'classnames';
 import { ModalProps } from './Modal.types';
 import { useControlled, usePortal } from '../utils/hooks';
 import Overlay from '../Overlay';
@@ -11,20 +12,22 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
   visible,
   width = '540px',
   closeOnOverlayClick = true,
+  className = '',
   onClose,
   children,
   ...restProps
 }) => {
   const portal = usePortal('modal');
-  const [internalValue, setInternalValue] = useControlled<boolean>({
+  const [internalVisible, setInternalVisible] = useControlled<boolean>({
     defaultValue: false,
     value: visible,
   });
+  const classes = classNames('raw-modal-wrapper', className);
 
   const closeModal = useCallback(() => {
-    setInternalValue(false);
+    setInternalVisible(false);
     onClose?.();
-  }, [onClose, setInternalValue]);
+  }, [onClose, setInternalVisible]);
 
   const modalConfig: ModalConfig = useMemo(
     () => ({
@@ -39,12 +42,15 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
 
   return createPortal(
     <ModalContext.Provider value={modalConfig}>
-      <Overlay visible={internalValue}>
-        <ModalWrapper visible={internalValue} {...restProps}>
-          <ModalCloseButton />
-          {children}
-        </ModalWrapper>
-      </Overlay>
+      <Overlay visible={internalVisible} />
+      <ModalWrapper
+        visible={internalVisible}
+        className={classes}
+        {...restProps}
+      >
+        <ModalCloseButton />
+        {children}
+      </ModalWrapper>
     </ModalContext.Provider>,
     portal
   );

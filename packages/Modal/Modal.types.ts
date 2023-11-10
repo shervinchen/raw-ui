@@ -4,6 +4,7 @@ interface BaseModalProps {
   visible?: boolean;
   width?: string;
   closeOnOverlayClick?: boolean;
+  className?: string;
   onClose?: () => void;
 }
 

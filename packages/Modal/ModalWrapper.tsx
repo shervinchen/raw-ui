@@ -5,16 +5,18 @@ import { useModalContext } from './modal-context';
 
 interface ModalWrapperProps {
   visible?: boolean;
+  className?: string;
 }
 
 const ModalWrapper: FC<PropsWithChildren<ModalWrapperProps>> = ({
   visible,
+  className = '',
   children,
   ...restProps
 }) => {
   const theme = useTheme();
-  const { stage, shouldMount } = useTransition(visible, 50, 350);
   const { width, closeOnOverlayClick, closeModal } = useModalContext();
+  const { stage, shouldMount } = useTransition(visible, 50, 350);
 
   const clickModalContainerHandler = () => {
     if (closeOnOverlayClick) {
@@ -30,15 +32,20 @@ const ModalWrapper: FC<PropsWithChildren<ModalWrapperProps>> = ({
     shouldMount && (
       <div className="raw-modal-container" onClick={clickModalContainerHandler}>
         <div
-          className="raw-modal-wrapper"
-          style={{
-            opacity: stage === 'enter' ? 1 : 0,
-            transform:
-              stage === 'enter'
-                ? 'translate3d(0px, 0px, 0px)'
-                : 'translate3d(0px, -30px, 0px)',
-          }}
+          className={className}
           onClick={clickModalHandler}
+          style={
+            stage === 'enter'
+              ? {
+                  opacity: 1,
+                  transform: 'translate3d(0px, 0px, 0px)',
+                }
+              : {
+                  opacity: 0,
+                  transform: 'translate3d(0px, -30px, 0px)',
+                }
+          }
+          data-testid="modalWrapper"
           {...restProps}
         >
           {children}
@@ -52,6 +59,7 @@ const ModalWrapper: FC<PropsWithChildren<ModalWrapperProps>> = ({
             bottom: 0;
             width: 100%;
             height: 100%;
+            z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -69,8 +77,8 @@ const ModalWrapper: FC<PropsWithChildren<ModalWrapperProps>> = ({
             color: ${theme.palette.foreground};
             font-size: 16px;
             box-shadow: ${theme.tokens.shadow.lg};
-            transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s,
-              transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+            transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             margin: auto;
           }
         `}</style>
