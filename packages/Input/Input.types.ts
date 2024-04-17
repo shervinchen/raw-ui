@@ -1,11 +1,4 @@
-import {
-  InputHTMLAttributes,
-  ChangeEvent,
-  FocusEvent,
-  ForwardRefExoticComponent,
-  RefAttributes,
-  PropsWithChildren,
-} from 'react';
+import { InputHTMLAttributes, ChangeEvent, FocusEvent } from 'react';
 
 export type InputTypes =
   | 'default'
@@ -39,12 +32,6 @@ type NativeInputProps = Omit<
 >;
 
 export type InputProps = BaseInputProps & NativeInputProps;
-
-export type InputComponent = ForwardRefExoticComponent<
-  PropsWithChildren<InputProps> & RefAttributes<HTMLInputElement>
-> & {
-  id: string;
-};
 
 export interface InputSizeStyles {
   fontSize?: string;

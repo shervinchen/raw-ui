@@ -16,10 +16,6 @@ type NativeInputElementProps = Omit<
 
 type InputElementProps = BaseInputElementProps & NativeInputElementProps;
 
-export type InputElementType = FC<Omit<InputElementProps, 'placement'>> & {
-  id: string;
-};
-
 const InputElement: FC<PropsWithChildren<InputElementProps>> = ({
   placement,
   clickable = false,
@@ -72,13 +68,4 @@ const InputRightElement: FC<Omit<InputElementProps, 'placement'>> = ({
   return <InputElement className={classes} placement="right" {...resetProps} />;
 };
 
-const RawInputLeftElement: InputElementType = Object.assign(InputLeftElement, {
-  id: 'InputLeftElement',
-});
-
-const RawInputRightElement: InputElementType = Object.assign(
-  InputRightElement,
-  { id: 'InputRightElement' }
-);
-
-export { RawInputLeftElement, RawInputRightElement };
+export { InputLeftElement, InputRightElement };

@@ -1,13 +1,12 @@
 import React, { FC, PropsWithChildren, cloneElement, useMemo } from 'react';
 import classNames from 'classnames';
-import {
-  InputGroupChild,
-  InputGroupConfig,
-  InputGroupProps,
-} from './InputGroup.types';
+import { InputGroupConfig, InputGroupProps } from './InputGroup.types';
 import { InputGroupContext } from './input-group-context';
 import { getValidChildren } from '../utils/common';
 import { useInputStyles } from './Input.styles';
+import Input from './Input';
+import { InputLeftElement, InputRightElement } from './InputElement';
+import { InputLeftAddon, InputRightAddon } from './InputAddon';
 
 const useComputedInputStyles = ({ type, size, disabled }: InputGroupProps) => {
   const { height, horizontalPadding } = useInputStyles({
@@ -25,26 +24,26 @@ const useComputedInputStyles = ({ type, size, disabled }: InputGroupProps) => {
   };
   const styles = [
     {
-      id: 'InputLeftElement',
+      type: InputLeftElement,
       newStyle: {
         paddingLeft: height,
       },
     },
     {
-      id: 'InputRightElement',
+      type: InputRightElement,
       newStyle: {
         paddingRight: height,
       },
     },
     {
-      id: 'InputLeftAddon',
+      type: InputLeftAddon,
       newStyle: {
         borderTopLeftRadius: '0px',
         borderBottomLeftRadius: '0px',
       },
     },
     {
-      id: 'InputRightAddon',
+      type: InputRightAddon,
       newStyle: {
         borderTopRightRadius: '0px',
         borderBottomRightRadius: '0px',
@@ -87,9 +86,7 @@ const InputGroup: FC<PropsWithChildren<InputGroupProps>> = ({
     });
     let computedStyle = style;
     getValidChildren(children).forEach((child) => {
-      const result = styles.find(
-        (item) => item.id === (child.type as InputGroupChild).id
-      );
+      const result = styles.find((item) => item.type === child.type);
       if (result) {
         const { newStyle } = result;
         computedStyle = { ...computedStyle, ...newStyle };
@@ -101,7 +98,7 @@ const InputGroup: FC<PropsWithChildren<InputGroupProps>> = ({
   const computedInputStyle = useComputedInputStyle();
 
   const cloneChildren = getValidChildren(children).map((child) => {
-    return (child.type as InputGroupChild).id !== 'Input'
+    return child.type !== Input
       ? child
       : cloneElement(child, { style: computedInputStyle });
   });

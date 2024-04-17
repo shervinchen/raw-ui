@@ -8,7 +8,7 @@ import React, {
   useRef,
 } from 'react';
 import classNames from 'classnames';
-import { InputComponent, InputProps } from './Input.types';
+import { InputProps } from './Input.types';
 import { useInputCSS } from './Input.styles';
 import { useControlled } from '../utils/hooks';
 import { InputGroupConfig } from './InputGroup.types';
@@ -106,6 +106,4 @@ const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
 
 Input.displayName = 'RawInput';
 
-const RawInput: InputComponent = Object.assign(Input, { id: 'Input' });
-
-export default RawInput;
+export default Input;

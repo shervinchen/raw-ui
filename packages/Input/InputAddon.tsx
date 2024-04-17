@@ -16,10 +16,6 @@ type NativeInputAddonProps = Omit<
 
 type InputAddonProps = BaseInputAddonProps & NativeInputAddonProps;
 
-export type InputAddonType = FC<InputAddonProps> & {
-  id: string;
-};
-
 const InputAddon: FC<PropsWithChildren<InputAddonProps>> = ({
   className,
   children,
@@ -77,12 +73,4 @@ const InputRightAddon: FC<InputAddonProps> = ({
   return <InputAddon className={classes} {...resetProps} />;
 };
 
-const RawInputLeftAddon: InputAddonType = Object.assign(InputLeftAddon, {
-  id: 'InputLeftAddon',
-});
-
-const RawInputRightAddon: InputAddonType = Object.assign(InputRightAddon, {
-  id: 'InputRightAddon',
-});
-
-export { RawInputLeftAddon, RawInputRightAddon };
+export { InputLeftAddon, InputRightAddon };
