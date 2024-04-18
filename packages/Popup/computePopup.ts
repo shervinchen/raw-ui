@@ -7,6 +7,8 @@ import {
   PopupPosition,
 } from './Popup.types';
 
+export const arrowSize = 8;
+
 export const getTargetRect = (
   targetRef?: MutableRefObject<HTMLElement | null>
 ) => {
@@ -74,69 +76,68 @@ export const computePopupPosition = (
     getPopupContainer
   );
   const { width, height } = getTargetRect(targetRef);
-  const offset = 6;
 
   const placements: {
     [key in PopupPlacement]: PopupPosition;
   } = {
     top: {
-      top: top - offset,
+      top: top - arrowSize,
       left: left + width / 2,
       transform: 'translate(-50%, -100%)',
     },
     topLeft: {
-      top: top - offset,
+      top: top - arrowSize,
       left,
       transform: 'translate(0, -100%)',
     },
     topRight: {
-      top: top - offset,
+      top: top - arrowSize,
       left: left + width,
       transform: 'translate(-100%, -100%)',
     },
     bottom: {
-      top: bottom + offset,
+      top: bottom + arrowSize,
       left: left + width / 2,
       transform: 'translate(-50%, 0)',
     },
     bottomLeft: {
-      top: bottom + offset,
+      top: bottom + arrowSize,
       left,
       transform: 'translate(0, 0)',
     },
     bottomRight: {
-      top: bottom + offset,
+      top: bottom + arrowSize,
       left: left + width,
       transform: 'translate(-100%, 0)',
     },
     left: {
       top: top + height / 2,
-      left: left - offset,
+      left: left - arrowSize,
       transform: 'translate(-100%, -50%)',
     },
     leftTop: {
       top,
-      left: left - offset,
+      left: left - arrowSize,
       transform: 'translate(-100%, 0)',
     },
     leftBottom: {
       top: top + height,
-      left: left - offset,
+      left: left - arrowSize,
       transform: 'translate(-100%, -100%)',
     },
     right: {
       top: top + height / 2,
-      left: right + offset,
+      left: right + arrowSize,
       transform: 'translate(0, -50%)',
     },
     rightTop: {
       top,
-      left: right + offset,
+      left: right + arrowSize,
       transform: 'translate(0, 0)',
     },
     rightBottom: {
       top: top + height,
-      left: right + offset,
+      left: right + arrowSize,
       transform: 'translate(0, -100%)',
     },
   };

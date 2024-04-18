@@ -1,6 +1,10 @@
 import { FC, useMemo } from 'react';
 import classNames from 'classnames';
-import { getTargetRect, computePopupArrowPosition } from './computePopup';
+import {
+  getTargetRect,
+  computePopupArrowPosition,
+  arrowSize,
+} from './computePopup';
 import { PopupArrowProps, PopupArrowOffset } from './Popup.types';
 
 const PopupArrow: FC<PopupArrowProps> = ({
@@ -18,7 +22,7 @@ const PopupArrow: FC<PopupArrowProps> = ({
   }, [targetRef]);
   const { left, top, right, bottom, transform } = computePopupArrowPosition(
     arrowOffset,
-    withBorder ? '4px' : '3px',
+    withBorder ? `${arrowSize / 2 + 1}px` : `${arrowSize / 2}px`,
     placement
   );
   const classes = classNames('raw-popup-arrow', className);
@@ -27,8 +31,8 @@ const PopupArrow: FC<PopupArrowProps> = ({
     <span className={classes}>
       <style jsx>{`
         .raw-popup-arrow {
-          width: 6px;
-          height: 6px;
+          width: ${arrowSize}px;
+          height: ${arrowSize}px;
           position: absolute;
           left: ${left};
           top: ${top};
