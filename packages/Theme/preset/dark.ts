@@ -36,9 +36,9 @@ export const palette: RawUIThemePalette = {
 
 export const tokens: RawUIThemeTokens = {
   shadow: {
-    sm: '0 0 0 1px #333',
-    md: '0 0 0 1px #333',
-    lg: '0 0 0 1px #333',
+    sm: 'none',
+    md: 'none',
+    lg: 'none',
   },
 };
 
