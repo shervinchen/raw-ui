@@ -24,6 +24,8 @@ const optionsData = [
 ];
 
 describe('Select', () => {
+  jest.useFakeTimers();
+
   test('should match the snapshot', () => {
     const { asFragment } = render(
       <Select>
@@ -95,6 +97,7 @@ describe('Select', () => {
   });
 
   test('should support controlled value', async () => {
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const onChange = jest.fn();
 
     const Component = (props: SelectProps) => {
@@ -115,14 +118,11 @@ describe('Select', () => {
     };
     const { container } = render(<Component onChange={onChange} />);
     const select = container.firstChild as Element;
-    const option1 = document.querySelectorAll('.raw-select-option')[0];
-    await userEvent.click(select);
-    await userEvent.click(option1);
-    setTimeout(() => {
-      expect(document.querySelector('.raw-select')?.innerHTML).toContain(
-        'Option 1'
-      );
-    }, 150);
+    await user.click(select);
+    await user.click(document.querySelectorAll('.raw-select-option')[0]);
+    expect(document.querySelector('.raw-select')?.innerHTML).toContain(
+      'Option 1'
+    );
   });
 
   test('should support multiple value', () => {
@@ -140,6 +140,7 @@ describe('Select', () => {
   });
 
   test('should support select disabled', async () => {
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const { container } = render(
       <Select disabled>
         <Select.Option value="1">Option 1</Select.Option>
@@ -147,11 +148,12 @@ describe('Select', () => {
       </Select>
     );
     const select = container.firstChild as Element;
-    await userEvent.click(select);
+    await user.click(select);
     expect(document.querySelectorAll('.raw-select-option').length).toBe(0);
   });
 
   test('should support option disabled', async () => {
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const { container } = render(
       <Select>
         <Select.Option value="1" disabled>
@@ -161,18 +163,14 @@ describe('Select', () => {
       </Select>
     );
     const select = container.firstChild as Element;
-    const option1 = document.querySelectorAll('.raw-select-option')[0];
-    const option2 = document.querySelectorAll('.raw-select-option')[1];
-    await userEvent.click(select);
-    await userEvent.click(option1);
+    await user.click(select);
+    await user.click(document.querySelectorAll('.raw-select-option')[0]);
     expect(document.querySelector('.raw-select')?.innerHTML).not.toContain(
       'Option 1'
     );
-    await userEvent.click(option2);
-    setTimeout(() => {
-      expect(document.querySelector('.raw-select')?.innerHTML).toContain(
-        'Option 2'
-      );
-    }, 150);
+    await user.click(document.querySelectorAll('.raw-select-option')[1]);
+    expect(document.querySelector('.raw-select')?.innerHTML).toContain(
+      'Option 2'
+    );
   });
 });
