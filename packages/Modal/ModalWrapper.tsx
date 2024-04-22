@@ -11,7 +11,7 @@ interface ModalWrapperProps {
 
 const ModalWrapper: FC<PropsWithChildren<ModalWrapperProps>> = ({
   visible,
-  className = '',
+  className,
   children,
   ...restProps
 }) => {

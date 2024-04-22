@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { Button, Modal, ModalProps } from '../..';
 
 describe('Modal', () => {
+  jest.useFakeTimers();
+
   const closeHandler = jest.fn();
 
   const Component = (props: ModalProps) => {
@@ -88,20 +90,30 @@ describe('Modal', () => {
   test('should open modal and close modal when click target', () => {
     const { getByTestId } = render(<Component closeOnOverlayClick={true} />);
     fireEvent.click(getByTestId('openModal'));
-    setTimeout(() => {
-      expect('This is a modal.').toBeInTheDocument();
-    }, 50);
+    jest.runAllTimers();
+    expect(screen.getByText('This is a modal.')).toBeInTheDocument();
     fireEvent.click(document.querySelector('.raw-modal-container'));
-    setTimeout(() => {
-      expect('This is a modal.').not.toBeInTheDocument();
-      expect(closeHandler).toHaveBeenCalledTimes(1);
-    }, 350);
+    jest.runAllTimers();
+    expect(
+      document.querySelector('.raw-modal-container')
+    ).not.toBeInTheDocument();
+    expect(closeHandler).toHaveBeenCalledTimes(1);
   });
 
   test('should not close modal when disabled overlay clicked', () => {
     const { getByTestId } = render(<Component closeOnOverlayClick={false} />);
     fireEvent.click(getByTestId('openModal'));
     fireEvent.click(document.querySelector('.raw-modal-container'));
+    expect(closeHandler).toHaveBeenCalledTimes(0);
+  });
+
+  test('should not propagate the click event', () => {
+    const { getByTestId } = render(<Component closeOnOverlayClick={true} />);
+    fireEvent.click(getByTestId('openModal'));
+    const modalWrapper = screen.getByTestId('modalWrapper') as Element;
+    expect(screen.getByText('This is a modal.')).toBeInTheDocument();
+    fireEvent.click(modalWrapper);
+    expect(screen.getByText('This is a modal.')).toBeInTheDocument();
     expect(closeHandler).toHaveBeenCalledTimes(0);
   });
 });
