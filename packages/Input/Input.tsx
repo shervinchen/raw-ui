@@ -75,7 +75,6 @@ const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
     };
 
     const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-      if (disabled || readOnly) return;
       setInternalValue(event.target.value);
       onChange?.(event);
     };
