@@ -6,7 +6,7 @@ const defaultOptions: MutationObserverInit = {
   subtree: true,
 };
 
-const useMutationObserver = (
+export const useMutationObserver = (
   ref: MutableRefObject<HTMLElement | null> | undefined,
   callback: MutationCallback,
   options: MutationObserverInit = defaultOptions
@@ -21,5 +21,3 @@ const useMutationObserver = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ref]);
 };
-
-export default useMutationObserver;

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { render, act, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Popover from '..';
 import { PopoverProps } from '../Popover.types';
-import userEvent from '@testing-library/user-event';
+import * as useControlled from '../../utils/hooks/useControlled';
 
 describe('Popover', () => {
   test('should match the snapshot', () => {
@@ -59,6 +60,21 @@ describe('Popover', () => {
     });
   });
 
+  test('should not trigger click outside logic when popover is invisible', async () => {
+    const mockSetValueFunc = jest.fn();
+    jest
+      .spyOn(useControlled, 'useControlled')
+      .mockImplementation(() => [false, mockSetValueFunc]);
+    render(<Popover content="I am a popover">Click me</Popover>);
+    act(() => {
+      document.dispatchEvent(new MouseEvent('click'));
+    });
+    await waitFor(() => {
+      expect(mockSetValueFunc).toHaveBeenCalledTimes(0);
+    });
+    (useControlled.useControlled as jest.Mock).mockRestore();
+  });
+
   test('should support disabled popover', async () => {
     const user = userEvent.setup();
     const { getByTestId } = render(
@@ -92,7 +108,6 @@ describe('Popover', () => {
         </Popover>
       );
     };
-
     const { getByTestId } = render(
       <Component content="I am a controlled popover" onChange={onChange} />
     );

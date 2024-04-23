@@ -10,7 +10,7 @@ interface UseControlledProps<T> {
 
 type SetStateFn<T> = (prevState?: T) => T;
 
-export default function useControlled<T>({
+export function useControlled<T>({
   value: controlledState,
   defaultValue,
   onChange: onChangeProp,

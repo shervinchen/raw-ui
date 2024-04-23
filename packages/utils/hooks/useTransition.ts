@@ -28,7 +28,7 @@ function clearAnimationFrameTimeout(canceller: Canceller) {
 
 export type Stage = 'from' | 'enter' | 'leave';
 
-const useTransition = (
+export const useTransition = (
   state: boolean,
   enterTimeout: number,
   leaveTimeout: number
@@ -66,5 +66,3 @@ const useTransition = (
     shouldMount,
   };
 };
-
-export default useTransition;

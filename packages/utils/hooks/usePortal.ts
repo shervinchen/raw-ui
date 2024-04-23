@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import useSSR from './useSSR';
+import { useSSR } from './useSSR';
 
 const namespace = 'raw-ui';
 
@@ -9,7 +9,7 @@ const createElement = (id: string): HTMLElement => {
   return element;
 };
 
-const usePortal = (
+export const usePortal = (
   name: string,
   getContainer?: () => HTMLElement | null
 ): HTMLElement | null => {
@@ -33,5 +33,3 @@ const usePortal = (
 
   return portal;
 };
-
-export default usePortal;

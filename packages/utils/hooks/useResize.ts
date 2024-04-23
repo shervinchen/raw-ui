@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 
-const useResize = (handler: () => void, immediatelyInvoke = true): void => {
+export const useResize = (
+  handler: () => void,
+  immediatelyInvoke = true
+): void => {
   useEffect(() => {
     if (immediatelyInvoke) {
       handler();
@@ -11,5 +14,3 @@ const useResize = (handler: () => void, immediatelyInvoke = true): void => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 };
-
-export default useResize;
