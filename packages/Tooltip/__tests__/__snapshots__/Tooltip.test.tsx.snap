@@ -4,6 +4,7 @@ exports[`Tooltip should match the snapshot 1`] = `
 <DocumentFragment>
   <div
     class="jsx-1329010130 raw-tooltip"
+    data-testid="tooltipTarget"
   >
     Hover me
   </div>

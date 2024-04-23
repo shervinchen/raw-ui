@@ -227,6 +227,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
     return (
       <SelectContext.Provider value={selectConfig}>
         <div
+          data-testid="selectContainer"
           className={selectClasses}
           ref={selectRef}
           onClick={clickHandler}

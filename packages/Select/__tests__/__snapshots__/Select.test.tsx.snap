@@ -4,6 +4,7 @@ exports[`Select should match the snapshot 1`] = `
 <DocumentFragment>
   <div
     class="jsx-1324625606 raw-select"
+    data-testid="selectContainer"
   >
     <div
       class="jsx-1324625606 raw-select-inner"

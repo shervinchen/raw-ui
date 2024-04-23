@@ -48,7 +48,13 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
 
   return (
     <>
-      <div ref={ref} className={classes} onClick={clickHandler} {...restProps}>
+      <div
+        data-testid="popoverTarget"
+        ref={ref}
+        className={classes}
+        onClick={clickHandler}
+        {...restProps}
+      >
         {children}
       </div>
       <Popup

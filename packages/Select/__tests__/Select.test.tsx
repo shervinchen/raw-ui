@@ -83,15 +83,13 @@ describe('Select', () => {
   });
 
   test('should support uncontrolled value', () => {
-    render(
+    const { getByTestId } = render(
       <Select defaultValue="1">
         <Select.Option value="1">Option 1</Select.Option>
         <Select.Option value="2">Option 2</Select.Option>
       </Select>
     );
-    expect(document.querySelector('.raw-select')?.innerHTML).toContain(
-      'Option 1'
-    );
+    expect(getByTestId('selectContainer').innerHTML).toContain('Option 1');
   });
 
   test('should support controlled value', async () => {
@@ -114,17 +112,17 @@ describe('Select', () => {
         </Select>
       );
     };
-    const { container } = render(<Component onChange={onChange} />);
+    const { container, getByTestId } = render(
+      <Component onChange={onChange} />
+    );
     const select = container.firstChild as Element;
     await user.click(select);
     await user.click(document.querySelectorAll('.raw-select-option')[0]);
-    expect(document.querySelector('.raw-select')?.innerHTML).toContain(
-      'Option 1'
-    );
+    expect(getByTestId('selectContainer').innerHTML).toContain('Option 1');
   });
 
   test('should support multiple value', () => {
-    render(
+    const { getByTestId } = render(
       <Select multiple defaultValue={['react', 'vue']}>
         {optionsData.map((item) => (
           <Select.Option value={item.value} key={item.value}>
@@ -133,8 +131,8 @@ describe('Select', () => {
         ))}
       </Select>
     );
-    expect(document.querySelector('.raw-select')?.innerHTML).toContain('React');
-    expect(document.querySelector('.raw-select')?.innerHTML).toContain('Vue');
+    expect(getByTestId('selectContainer').innerHTML).toContain('React');
+    expect(getByTestId('selectContainer').innerHTML).toContain('Vue');
   });
 
   test('should support select disabled', async () => {
@@ -152,7 +150,7 @@ describe('Select', () => {
 
   test('should support option disabled', async () => {
     const user = userEvent.setup();
-    const { container } = render(
+    const { container, getByTestId } = render(
       <Select>
         <Select.Option value="1" disabled>
           Option 1
@@ -163,12 +161,8 @@ describe('Select', () => {
     const select = container.firstChild as Element;
     await user.click(select);
     await user.click(document.querySelectorAll('.raw-select-option')[0]);
-    expect(document.querySelector('.raw-select')?.innerHTML).not.toContain(
-      'Option 1'
-    );
+    expect(getByTestId('selectContainer').innerHTML).not.toContain('Option 1');
     await user.click(document.querySelectorAll('.raw-select-option')[1]);
-    expect(document.querySelector('.raw-select')?.innerHTML).toContain(
-      'Option 2'
-    );
+    expect(getByTestId('selectContainer').innerHTML).toContain('Option 2');
   });
 });

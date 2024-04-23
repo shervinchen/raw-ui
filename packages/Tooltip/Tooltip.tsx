@@ -32,6 +32,7 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
   return (
     <>
       <div
+        data-testid="tooltipTarget"
         ref={ref}
         className={classes}
         onMouseEnter={() => mouseHandler(true)}
