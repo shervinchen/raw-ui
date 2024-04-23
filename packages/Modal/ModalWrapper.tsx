@@ -5,18 +5,16 @@ import { useTransition } from '../utils/hooks';
 import { useModalContext } from './modal-context';
 
 interface ModalWrapperProps {
-  visible?: boolean;
   className?: string;
 }
 
 const ModalWrapper: FC<PropsWithChildren<ModalWrapperProps>> = ({
-  visible,
   className,
   children,
   ...restProps
 }) => {
   const theme = useTheme();
-  const { width, closeOnOverlayClick, closeModal } = useModalContext();
+  const { visible, width, closeOnOverlayClick, closeModal } = useModalContext();
   const { stage, shouldMount } = useTransition(visible, 50, 350);
 
   const clickModalContainerHandler = () => {

@@ -36,7 +36,9 @@ describe('Popover', () => {
     await user.click(element);
     expect(screen.getByTestId('popoverContent')).toBeInTheDocument();
     await user.click(element);
-    expect(screen.queryByTestId('popoverContent')).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.queryByTestId('popoverContent')).not.toBeInTheDocument();
+    });
   });
 
   test('should hide popover when click outside', async () => {
@@ -62,7 +64,9 @@ describe('Popover', () => {
     );
     const element = document.querySelector('.raw-popover');
     await user.click(element);
-    expect(screen.queryByTestId('popoverContent')).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.queryByTestId('popoverContent')).not.toBeInTheDocument();
+    });
   });
 
   test('should support controlled value', async () => {

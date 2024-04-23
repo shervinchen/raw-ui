@@ -1,6 +1,7 @@
 import React from 'react';
 
 export interface ModalConfig {
+  visible?: boolean;
   width?: string;
   closeOnOverlayClick?: boolean;
   closeModal?: () => void;

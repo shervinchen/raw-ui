@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
-import { fireEvent, render, renderHook } from '@testing-library/react';
+import { render, renderHook } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Input from '..';
 import { InputProps, InputSizes, InputTypes } from '../Input.types';
@@ -52,16 +52,17 @@ describe('Input', () => {
   test('should support blur event', () => {
     const onBlur = jest.fn();
     const { container } = render(<Input onBlur={onBlur} />);
-    const input = container.firstChild as Element;
-    fireEvent.blur(input);
+    const input = container.firstChild as HTMLElement;
+    input.focus();
+    input.blur();
     expect(onBlur).toHaveBeenCalledTimes(1);
   });
 
   test('should support focus event', () => {
     const onFocus = jest.fn();
     const { container } = render(<Input onFocus={onFocus} />);
-    const input = container.firstChild as Element;
-    fireEvent.focus(input);
+    const input = container.firstChild as HTMLElement;
+    input.focus();
     expect(onFocus).toHaveBeenCalledTimes(1);
   });
 
@@ -71,7 +72,7 @@ describe('Input', () => {
     expect(input).toHaveValue('default value');
   });
 
-  test('should support controlled value', () => {
+  test('should support controlled value', async () => {
     const onChange = jest.fn();
 
     const Component = (props: InputProps) => {
@@ -90,9 +91,9 @@ describe('Input', () => {
     const { container } = render(<Component onChange={onChange} />);
     const input = container.firstChild as Element;
     expect(input).toHaveValue('');
-    fireEvent.change(input, { target: { value: 'test text' } });
+    await userEvent.type(input, 'test text');
     expect(input).toHaveValue('test text');
-    expect(onChange).toHaveBeenCalledTimes(1);
+    expect(onChange).toHaveBeenCalledTimes(9);
   });
 
   ['primary', 'success', 'warning', 'error'].forEach(
@@ -119,24 +120,24 @@ describe('Input', () => {
     expect(getComputedStyle(input).width).toBe('160px');
   });
 
-  test('should support disabled', () => {
+  test('should support disabled', async () => {
     const onChange = jest.fn();
     const { container } = render(<Input disabled onChange={onChange} />);
     const input = container.firstChild as Element;
     expect(input).toBeDisabled();
     expect(input).toHaveValue('');
-    fireEvent.change(input, { target: { value: 'test text' } });
+    await userEvent.type(input, 'test text');
     expect(input).toHaveValue('');
     expect(onChange).toHaveBeenCalledTimes(0);
   });
 
-  test('should support readonly', () => {
+  test('should support readonly', async () => {
     const onChange = jest.fn();
     const { container } = render(<Input readOnly onChange={onChange} />);
     const input = container.firstChild as Element;
     expect(input).toHaveAttribute('readonly');
     expect(input).toHaveValue('');
-    fireEvent.change(input, { target: { value: 'test text' } });
+    await userEvent.type(input, 'test text');
     expect(input).toHaveValue('');
     expect(onChange).toHaveBeenCalledTimes(0);
   });

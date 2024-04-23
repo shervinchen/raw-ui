@@ -31,11 +31,12 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
 
   const modalConfig: ModalConfig = useMemo(
     () => ({
+      visible: internalVisible,
       width,
       closeOnOverlayClick,
       closeModal,
     }),
-    [closeModal, width, closeOnOverlayClick]
+    [internalVisible, closeModal, width, closeOnOverlayClick]
   );
 
   if (!portal) return null;
@@ -43,11 +44,7 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
   return createPortal(
     <ModalContext.Provider value={modalConfig}>
       <Overlay visible={internalVisible} />
-      <ModalWrapper
-        visible={internalVisible}
-        className={classes}
-        {...restProps}
-      >
+      <ModalWrapper className={classes} {...restProps}>
         <ModalCloseButton />
         {children}
       </ModalWrapper>

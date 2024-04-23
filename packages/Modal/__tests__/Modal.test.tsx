@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { act, render } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import { Button, Modal, ModalProps } from '../..';
 import userEvent from '@testing-library/user-event';
 
@@ -91,7 +91,7 @@ describe('Modal', () => {
     const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const { getByTestId } = render(<Component closeOnOverlayClick={true} />);
     await user.click(getByTestId('openModal'));
-    const modalContainer = getByTestId('modalContainer');
+    const modalContainer = screen.getByTestId('modalContainer');
     expect(modalContainer).toBeInTheDocument();
     await user.click(modalContainer);
     act(() => {

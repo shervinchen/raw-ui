@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import Tooltip from '..';
 import userEvent from '@testing-library/user-event';
 
@@ -36,7 +36,9 @@ describe('Tooltip', () => {
     const tooltipContent = screen.getByTestId('tooltipContent');
     expect(tooltipContent).toBeInTheDocument();
     await user.unhover(element);
-    expect(tooltipContent).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(tooltipContent).not.toBeInTheDocument();
+    });
   });
 
   test('should support disabled tooltip', async () => {
@@ -48,6 +50,8 @@ describe('Tooltip', () => {
     );
     const element = document.querySelector('.raw-tooltip');
     await user.hover(element);
-    expect(screen.queryByTestId('tooltipContent')).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.queryByTestId('tooltipContent')).not.toBeInTheDocument();
+    });
   });
 });
