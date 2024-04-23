@@ -54,6 +54,7 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
           style={{
             opacity: stage === 'enter' ? 1 : 0,
           }}
+          data-testid="tooltipContent"
         >
           {!hideArrow && <TooltipArrow targetRef={ref} placement={placement} />}
           {content}
