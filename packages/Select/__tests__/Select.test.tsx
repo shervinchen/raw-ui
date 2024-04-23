@@ -24,8 +24,6 @@ const optionsData = [
 ];
 
 describe('Select', () => {
-  jest.useFakeTimers();
-
   test('should match the snapshot', () => {
     const { asFragment } = render(
       <Select>
@@ -47,10 +45,12 @@ describe('Select', () => {
     const selectInput = screen.getByTestId('selectInput');
     act(() => {
       ref?.current?.focus();
-      expect(selectInput).toHaveFocus();
-      ref?.current?.blur();
-      expect(selectInput).not.toHaveFocus();
     });
+    expect(selectInput).toHaveFocus();
+    act(() => {
+      ref?.current?.blur();
+    });
+    expect(selectInput).not.toHaveFocus();
   });
 
   test('should support custom class name', () => {
@@ -97,6 +97,7 @@ describe('Select', () => {
   });
 
   test('should support controlled value', async () => {
+    jest.useFakeTimers();
     const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const onChange = jest.fn();
 
@@ -123,6 +124,7 @@ describe('Select', () => {
     expect(document.querySelector('.raw-select')?.innerHTML).toContain(
       'Option 1'
     );
+    jest.useRealTimers();
   });
 
   test('should support multiple value', () => {
@@ -140,6 +142,7 @@ describe('Select', () => {
   });
 
   test('should support select disabled', async () => {
+    jest.useFakeTimers();
     const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const { container } = render(
       <Select disabled>
@@ -150,9 +153,11 @@ describe('Select', () => {
     const select = container.firstChild as Element;
     await user.click(select);
     expect(document.querySelectorAll('.raw-select-option').length).toBe(0);
+    jest.useRealTimers();
   });
 
   test('should support option disabled', async () => {
+    jest.useFakeTimers();
     const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const { container } = render(
       <Select>
@@ -172,5 +177,6 @@ describe('Select', () => {
     expect(document.querySelector('.raw-select')?.innerHTML).toContain(
       'Option 2'
     );
+    jest.useRealTimers();
   });
 });

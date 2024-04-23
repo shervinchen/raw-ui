@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import { Button, Modal, ModalProps } from '../..';
+import userEvent from '@testing-library/user-event';
 
 describe('Modal', () => {
-  jest.useFakeTimers();
-
   const closeHandler = jest.fn();
 
   const Component = (props: ModalProps) => {
@@ -87,33 +86,42 @@ describe('Modal', () => {
     expect(getComputedStyle(modalWrapper).maxWidth).toBe('400px');
   });
 
-  test('should open modal and close modal when click target', () => {
+  test('should open modal and close modal when click target', async () => {
+    jest.useFakeTimers();
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const { getByTestId } = render(<Component closeOnOverlayClick={true} />);
-    fireEvent.click(getByTestId('openModal'));
-    jest.runAllTimers();
-    expect(screen.getByText('This is a modal.')).toBeInTheDocument();
-    fireEvent.click(document.querySelector('.raw-modal-container'));
-    jest.runAllTimers();
-    expect(
-      document.querySelector('.raw-modal-container')
-    ).not.toBeInTheDocument();
+    await user.click(getByTestId('openModal'));
+    const modalContainer = getByTestId('modalContainer');
+    expect(modalContainer).toBeInTheDocument();
+    await user.click(modalContainer);
+    act(() => {
+      jest.runAllTimers();
+    });
+    expect(modalContainer).not.toBeInTheDocument();
     expect(closeHandler).toHaveBeenCalledTimes(1);
+    jest.useRealTimers();
   });
 
-  test('should not close modal when disabled overlay clicked', () => {
+  test('should not close modal when disabled overlay clicked', async () => {
+    jest.useFakeTimers();
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const { getByTestId } = render(<Component closeOnOverlayClick={false} />);
-    fireEvent.click(getByTestId('openModal'));
-    fireEvent.click(document.querySelector('.raw-modal-container'));
+    await user.click(getByTestId('openModal'));
+    await user.click(getByTestId('modalContainer'));
     expect(closeHandler).toHaveBeenCalledTimes(0);
+    jest.useRealTimers();
   });
 
-  test('should not propagate the click event', () => {
+  test('should not propagate the click event', async () => {
+    jest.useFakeTimers();
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const { getByTestId } = render(<Component closeOnOverlayClick={true} />);
-    fireEvent.click(getByTestId('openModal'));
-    const modalWrapper = screen.getByTestId('modalWrapper') as Element;
-    expect(screen.getByText('This is a modal.')).toBeInTheDocument();
-    fireEvent.click(modalWrapper);
-    expect(screen.getByText('This is a modal.')).toBeInTheDocument();
+    await user.click(getByTestId('openModal'));
+    const modalWrapper = getByTestId('modalWrapper');
+    expect(getByTestId('modalContainer')).toBeInTheDocument();
+    await user.click(modalWrapper);
+    expect(getByTestId('modalContainer')).toBeInTheDocument();
     expect(closeHandler).toHaveBeenCalledTimes(0);
+    jest.useRealTimers();
   });
 });

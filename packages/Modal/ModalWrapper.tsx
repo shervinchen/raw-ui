@@ -35,6 +35,7 @@ const ModalWrapper: FC<PropsWithChildren<ModalWrapperProps>> = ({
         <div
           className="raw-modal-container"
           onClick={clickModalContainerHandler}
+          data-testid="modalContainer"
         >
           <div
             className={className}
