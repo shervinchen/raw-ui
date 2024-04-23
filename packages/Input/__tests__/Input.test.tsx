@@ -163,10 +163,7 @@ describe('Input', () => {
         <Input.RightElement>.0</Input.RightElement>
       </Input.Group>
     );
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-    const leftElement = container.querySelector(
-      '.raw-input-left-element'
-    ) as Element;
+    const leftElement = container.querySelector('.raw-input-left-element');
     expect(getComputedStyle(leftElement).pointerEvents).toBe('auto');
     expect(getComputedStyle(leftElement).cursor).toBe('pointer');
   });

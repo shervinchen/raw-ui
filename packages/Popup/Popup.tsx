@@ -4,6 +4,7 @@ import React, {
   useEffect,
   useState,
   MouseEvent,
+  useCallback,
 } from 'react';
 import { createPortal } from 'react-dom';
 import { PopupProps, PopupPosition } from './Popup.types';
@@ -37,9 +38,9 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
     event.stopPropagation();
   };
 
-  const updatePopupPosition = () => {
+  const updatePopupPosition = useCallback(() => {
     setPopupPosition(getPopupPosition());
-  };
+  }, [getPopupPosition]);
 
   useResize(updatePopupPosition);
 
@@ -51,15 +52,11 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
 
   useEffect(() => {
     const targetNode = targetRef?.current ?? null;
-    if (!targetNode) return;
-    targetNode.addEventListener('mouseenter', updatePopupPosition);
-    /* istanbul ignore next */
+    targetNode?.addEventListener('mouseenter', updatePopupPosition);
     return () => {
-      if (!targetNode) return;
-      targetNode.removeEventListener('mouseenter', updatePopupPosition);
+      targetNode?.removeEventListener('mouseenter', updatePopupPosition);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [targetRef]);
+  }, [targetRef, updatePopupPosition]);
 
   if (!targetRef) return null;
   if (!portal) return null;
