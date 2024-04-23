@@ -14,6 +14,7 @@ const Overlay: FC<OverlayProps> = ({ visible, onClick, ...restProps }) => {
   return (
     shouldMount && (
       <div
+        data-testid="overlay"
         className="raw-overlay"
         onClick={clickHandler}
         style={{

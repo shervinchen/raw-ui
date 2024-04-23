@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Overlay should match the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="jsx-251717942 raw-overlay"
+    data-testid="overlay"
+    style="opacity: 0;"
+  />
+</DocumentFragment>
+`;

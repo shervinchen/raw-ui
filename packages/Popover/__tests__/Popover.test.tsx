@@ -28,7 +28,9 @@ describe('Popover', () => {
       <Popover content="I am a popover">Click me</Popover>
     );
     await user.click(getByTestId('popoverTarget'));
-    expect(screen.getByTestId('popoverContent')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByTestId('popoverContent')).toBeInTheDocument();
+    });
   });
 
   test('should switch whether or not popover is visible when click target', async () => {
@@ -38,7 +40,9 @@ describe('Popover', () => {
     );
     const target = getByTestId('popoverTarget');
     await user.click(target);
-    expect(screen.getByTestId('popoverContent')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByTestId('popoverContent')).toBeInTheDocument();
+    });
     await user.click(target);
     await waitFor(() => {
       expect(screen.queryByTestId('popoverContent')).not.toBeInTheDocument();
@@ -51,7 +55,9 @@ describe('Popover', () => {
       <Popover content="I am a popover">Click me</Popover>
     );
     await user.click(getByTestId('popoverTarget'));
-    expect(screen.getByTestId('popoverContent')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByTestId('popoverContent')).toBeInTheDocument();
+    });
     act(() => {
       document.dispatchEvent(new MouseEvent('click'));
     });
@@ -112,7 +118,9 @@ describe('Popover', () => {
       <Component content="I am a controlled popover" onChange={onChange} />
     );
     await user.click(getByTestId('popoverTarget'));
-    expect(screen.getByTestId('popoverContent')).toBeInTheDocument();
-    expect(onChange).toHaveBeenCalledTimes(1);
+    await waitFor(() => {
+      expect(screen.getByTestId('popoverContent')).toBeInTheDocument();
+      expect(onChange).toHaveBeenCalledTimes(1);
+    });
   });
 });
