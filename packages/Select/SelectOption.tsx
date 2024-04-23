@@ -28,8 +28,6 @@ const SelectOption: FC<PropsWithChildren<SelectOptionProps>> = ({
 
   const clickHandler = (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
-    event.nativeEvent.stopImmediatePropagation();
-    event.preventDefault();
     if (isDisabled) return;
     onSelectChange?.(value);
   };

@@ -31,14 +31,10 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
 
   const clickHandler = (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
-    event.nativeEvent.stopImmediatePropagation();
-    event.preventDefault();
   };
 
   const mouseDownHandler = (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
-    event.nativeEvent.stopImmediatePropagation();
-    // event.preventDefault();
   };
 
   const updatePopupPosition = () => {

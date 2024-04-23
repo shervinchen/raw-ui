@@ -105,8 +105,6 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
 
     const clickHandler = (event: MouseEvent<HTMLDivElement>) => {
       event.stopPropagation();
-      event.nativeEvent.stopImmediatePropagation();
-      event.preventDefault();
       if (disabled) return;
       setDropdownVisible(!dropdownVisible);
     };

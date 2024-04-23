@@ -16,9 +16,7 @@ const SelectTag: FC<PropsWithChildren<SelectTagProps>> = ({
   const theme: RawUITheme = useTheme();
 
   const clickHandler = (event: MouseEvent<HTMLDivElement>) => {
-    event.preventDefault();
     event.stopPropagation();
-    event.nativeEvent.stopImmediatePropagation();
     if (disabled) return;
     onDeleteTag(event);
   };
