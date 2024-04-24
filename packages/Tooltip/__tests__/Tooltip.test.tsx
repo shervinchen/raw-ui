@@ -22,25 +22,24 @@ describe('Tooltip', () => {
 
   test('should show tooltip when mouse over target', async () => {
     const user = userEvent.setup();
-    const { getByTestId } = render(
+    const { getByTestId, findByTestId } = render(
       <Tooltip content="I am a tooltip">Hover me</Tooltip>
     );
     await user.hover(getByTestId('tooltipTarget'));
-    expect(screen.getByText('I am a tooltip')).toBeInTheDocument();
+    expect(await findByTestId('tooltipContent')).toBeInTheDocument();
   });
 
   test('should hide tooltip when mouse out target', async () => {
     const user = userEvent.setup();
-    const { getByTestId } = render(
+    const { getByTestId, findByTestId } = render(
       <Tooltip content="I am a tooltip">Hover me</Tooltip>
     );
     const target = getByTestId('tooltipTarget');
     await user.hover(target);
-    const tooltipContent = screen.getByTestId('tooltipContent');
-    expect(tooltipContent).toBeInTheDocument();
+    expect(await findByTestId('tooltipContent')).toBeInTheDocument();
     await user.unhover(target);
     await waitFor(() => {
-      expect(tooltipContent).not.toBeInTheDocument();
+      expect(screen.queryByTestId('tooltipContent')).not.toBeInTheDocument();
     });
   });
 

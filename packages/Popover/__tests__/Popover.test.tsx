@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { render, act, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Popover from '..';
 import { PopoverProps } from '../Popover.types';
-import * as useControlled from '../../utils/hooks/useControlled';
 
 describe('Popover', () => {
   test('should match the snapshot', () => {
@@ -24,25 +23,21 @@ describe('Popover', () => {
 
   test('should show popover when click target', async () => {
     const user = userEvent.setup();
-    const { getByTestId } = render(
+    const { getByTestId, findByTestId } = render(
       <Popover content="I am a popover">Click me</Popover>
     );
     await user.click(getByTestId('popoverTarget'));
-    await waitFor(() => {
-      expect(screen.getByTestId('popoverContent')).toBeInTheDocument();
-    });
+    expect(await findByTestId('popoverContent')).toBeInTheDocument();
   });
 
   test('should switch whether or not popover is visible when click target', async () => {
     const user = userEvent.setup();
-    const { getByTestId } = render(
+    const { getByTestId, findByTestId } = render(
       <Popover content="I am a popover">Click me</Popover>
     );
     const target = getByTestId('popoverTarget');
     await user.click(target);
-    await waitFor(() => {
-      expect(screen.getByTestId('popoverContent')).toBeInTheDocument();
-    });
+    expect(await findByTestId('popoverContent')).toBeInTheDocument();
     await user.click(target);
     await waitFor(() => {
       expect(screen.queryByTestId('popoverContent')).not.toBeInTheDocument();
@@ -51,34 +46,15 @@ describe('Popover', () => {
 
   test('should hide popover when click outside', async () => {
     const user = userEvent.setup();
-    const { getByTestId } = render(
+    const { getByTestId, findByTestId } = render(
       <Popover content="I am a popover">Click me</Popover>
     );
     await user.click(getByTestId('popoverTarget'));
-    await waitFor(() => {
-      expect(screen.getByTestId('popoverContent')).toBeInTheDocument();
-    });
-    act(() => {
-      document.dispatchEvent(new MouseEvent('click'));
-    });
+    expect(await findByTestId('popoverContent')).toBeInTheDocument();
+    await user.click(document.body);
     await waitFor(() => {
       expect(screen.queryByTestId('popoverContent')).not.toBeInTheDocument();
     });
-  });
-
-  test('should not trigger click outside logic when popover is invisible', async () => {
-    const mockSetValueFunc = jest.fn();
-    jest
-      .spyOn(useControlled, 'useControlled')
-      .mockImplementation(() => [false, mockSetValueFunc]);
-    render(<Popover content="I am a popover">Click me</Popover>);
-    act(() => {
-      document.dispatchEvent(new MouseEvent('click'));
-    });
-    await waitFor(() => {
-      expect(mockSetValueFunc).toHaveBeenCalledTimes(0);
-    });
-    (useControlled.useControlled as jest.Mock).mockRestore();
   });
 
   test('should support disabled popover', async () => {
@@ -114,13 +90,11 @@ describe('Popover', () => {
         </Popover>
       );
     };
-    const { getByTestId } = render(
+    const { getByTestId, findByTestId } = render(
       <Component content="I am a controlled popover" onChange={onChange} />
     );
     await user.click(getByTestId('popoverTarget'));
-    await waitFor(() => {
-      expect(screen.getByTestId('popoverContent')).toBeInTheDocument();
-      expect(onChange).toHaveBeenCalledTimes(1);
-    });
+    expect(await findByTestId('popoverContent')).toBeInTheDocument();
+    expect(onChange).toHaveBeenCalledTimes(1);
   });
 });

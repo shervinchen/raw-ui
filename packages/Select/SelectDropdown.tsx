@@ -51,6 +51,7 @@ const SelectDropdown = forwardRef<
       getPopupContainer={getPopupContainer}
     >
       <div
+        data-testid="selectDropdown"
         ref={dropdownRef}
         className={dropdownClasses}
         style={{

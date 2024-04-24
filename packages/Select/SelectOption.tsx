@@ -20,7 +20,7 @@ const SelectOption: FC<PropsWithChildren<SelectOptionProps>> = ({
   const isDisabled = selectDisabled || disabled;
   const isSelected = useMemo(() => {
     if (Array.isArray(selectValue)) {
-      return multiple ? selectValue.includes(value) : false;
+      return selectValue.includes(value);
     } else {
       return multiple ? false : selectValue === value;
     }
@@ -33,7 +33,12 @@ const SelectOption: FC<PropsWithChildren<SelectOptionProps>> = ({
   };
 
   return (
-    <div className={classes} {...restProps} onClick={clickHandler}>
+    <div
+      data-testid="selectOption"
+      className={classes}
+      {...restProps}
+      onClick={clickHandler}
+    >
       <div className="raw-select-option-content">
         <span className="raw-select-option-text">{children}</span>
         {isSelected && (

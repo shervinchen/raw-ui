@@ -24,7 +24,11 @@ const SelectTag: FC<PropsWithChildren<SelectTagProps>> = ({
   return (
     <div className="raw-select-tag">
       <div className="raw-select-tag-text">{children}</div>
-      <div className="raw-select-tag-icon" onClick={clickHandler}>
+      <div
+        data-testid="selectTagIcon"
+        className="raw-select-tag-icon"
+        onClick={clickHandler}
+      >
         <X size={14} />
       </div>
       <style jsx>{`

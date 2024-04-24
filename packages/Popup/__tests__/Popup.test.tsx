@@ -1,4 +1,4 @@
-import { act, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Popup from '..';
 import { MutableRefObject, useRef } from 'react';
@@ -103,13 +103,12 @@ describe('Popup', () => {
       />
     );
     expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
-    act(() => {
-      window.dispatchEvent(new Event('resize'));
-    });
+    fireEvent(window, new Event('resize'));
     expect(mockGetPopupPosition).toHaveBeenCalledTimes(2);
   });
 
-  test('should update popup position when document click', () => {
+  test('should update popup position when document click', async () => {
+    const user = userEvent.setup();
     render(
       <Component
         visible
@@ -118,13 +117,11 @@ describe('Popup', () => {
       />
     );
     expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
-    act(() => {
-      document.dispatchEvent(new MouseEvent('click'));
-    });
+    await user.click(document.body);
     expect(mockGetPopupPosition).toHaveBeenCalledTimes(2);
   });
 
-  test('should update popup position when mouse over', () => {
+  test('should update popup position when mouse over', async () => {
     render(
       <Component
         visible
@@ -133,9 +130,7 @@ describe('Popup', () => {
       />
     );
     expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
-    act(() => {
-      targetRefMock.current.dispatchEvent(new Event('mouseenter'));
-    });
+    await userEvent.hover(targetRefMock.current);
     expect(mockGetPopupPosition).toHaveBeenCalledTimes(2);
   });
 
@@ -178,16 +173,14 @@ describe('Popup', () => {
     expect(popup).toBeInTheDocument();
   });
 
-  test('should not trigger mouse over event when target is empty', () => {
+  test('should not trigger mouse over event when target is empty', async () => {
     render(<Component visible getPopupContainer={getPopupContainerMock} />);
     expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
-    act(() => {
-      targetRefMock.current.dispatchEvent(new Event('mouseenter'));
-    });
+    await userEvent.hover(targetRefMock.current);
     expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
   });
 
-  test('should not trigger mouse over event when event is removed', () => {
+  test('should not trigger mouse over event when event is removed', async () => {
     const { unmount } = render(
       <Component
         visible
@@ -197,9 +190,7 @@ describe('Popup', () => {
     );
     expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
     unmount();
-    act(() => {
-      targetRefMock.current.dispatchEvent(new Event('mouseenter'));
-    });
+    await userEvent.hover(targetRefMock.current);
     expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
   });
 });

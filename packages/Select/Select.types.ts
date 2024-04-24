@@ -32,7 +32,6 @@ export type SelectProps = BaseSelectProps & NativeSelectProps;
 export type SelectRef = {
   focus: () => void;
   blur: () => void;
-  scrollTo?: (options?: ScrollToOptions) => void;
 };
 
 export interface SelectConfig {

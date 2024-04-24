@@ -39,9 +39,7 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
   useClickAway(
     ref,
     () => {
-      if (internalValue) {
-        setInternalValue(false);
-      }
+      setInternalValue(false);
     },
     ['click']
   );

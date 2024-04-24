@@ -155,9 +155,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
     useClickAway(
       selectRef,
       () => {
-        if (dropdownVisible) {
-          setDropdownVisible(false);
-        }
+        setDropdownVisible(false);
       },
       ['mousedown']
     );
@@ -167,20 +165,20 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
       () => ({
         focus: () => inputRef.current?.focus(),
         blur: () => inputRef.current?.blur(),
-        scrollTo: (options) => dropdownRef.current?.scrollTo(options),
       }),
-      [inputRef, dropdownRef]
+      [inputRef]
     );
 
     const SelectContent = (): ReactElement => {
-      if (internalValue === undefined)
+      if (internalValue === undefined) {
         return <span className="raw-select-placeholder">{placeholder}</span>;
+      }
 
       const selectedOptions = getValidChildren(children).filter((option) => {
         if (Array.isArray(internalValue)) {
-          return multiple ? internalValue.includes(option.props.value) : false;
+          return internalValue.includes(option.props.value);
         } else {
-          return multiple ? false : internalValue === option.props.value;
+          return internalValue === option.props.value;
         }
       });
 
