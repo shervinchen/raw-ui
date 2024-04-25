@@ -23,6 +23,7 @@
 - Provides a dark mode theme.
 - Powerful theme customization based on CSS-in-JS.
 - Compatible with SSR(Server Side Rendering).
+- Unit testing with 100% coverage.
 
 ## Install
 
