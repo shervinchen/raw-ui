@@ -4,12 +4,23 @@ import userEvent from '@testing-library/user-event';
 import Popover from '..';
 import { PopoverProps } from '../Popover.types';
 
+const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+
 describe('Popover', () => {
   test('should match the snapshot', () => {
     const { asFragment } = render(
       <Popover content="I am a popover">Click me</Popover>
     );
     expect(asFragment()).toMatchSnapshot();
+  });
+
+  test('should show popover when default value is true', async () => {
+    const { findByTestId } = render(
+      <Popover defaultValue content="I am a popover">
+        Click me
+      </Popover>
+    );
+    expect(await findByTestId('popoverContent')).toBeInTheDocument();
   });
 
   test('should support custom class name', () => {
@@ -22,7 +33,6 @@ describe('Popover', () => {
   });
 
   test('should show popover when click target', async () => {
-    const user = userEvent.setup();
     const { getByTestId, findByTestId } = render(
       <Popover content="I am a popover">Click me</Popover>
     );
@@ -31,7 +41,6 @@ describe('Popover', () => {
   });
 
   test('should switch whether or not popover is visible when click target', async () => {
-    const user = userEvent.setup();
     const { getByTestId, findByTestId } = render(
       <Popover content="I am a popover">Click me</Popover>
     );
@@ -45,7 +54,6 @@ describe('Popover', () => {
   });
 
   test('should hide popover when click outside', async () => {
-    const user = userEvent.setup();
     const { getByTestId, findByTestId } = render(
       <Popover content="I am a popover">Click me</Popover>
     );
@@ -58,7 +66,6 @@ describe('Popover', () => {
   });
 
   test('should support disabled popover', async () => {
-    const user = userEvent.setup();
     const { getByTestId } = render(
       <Popover content="I am a popover" disabled>
         Click me
@@ -71,7 +78,6 @@ describe('Popover', () => {
   });
 
   test('should support controlled value', async () => {
-    const user = userEvent.setup();
     const onChange = jest.fn();
 
     const Component = (props: PopoverProps) => {
@@ -96,5 +102,26 @@ describe('Popover', () => {
     await user.click(getByTestId('popoverTarget'));
     expect(await findByTestId('popoverContent')).toBeInTheDocument();
     expect(onChange).toHaveBeenCalledTimes(1);
+  });
+
+  test('should support set parent container element', () => {
+    render(
+      <div
+        id="parentElement"
+        style={{
+          position: 'relative',
+          overflowY: 'auto',
+          width: '400px',
+          height: '200px',
+        }}
+      >
+        <Popover
+          content="I am a popover"
+          getPopupContainer={() => document.querySelector('#parentElement')}
+        >
+          Click me
+        </Popover>
+      </div>
+    );
   });
 });

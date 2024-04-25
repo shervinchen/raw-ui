@@ -3,6 +3,8 @@ import { render, screen, waitFor } from '@testing-library/react';
 import Tooltip from '..';
 import userEvent from '@testing-library/user-event';
 
+const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+
 describe('Tooltip', () => {
   test('should match the snapshot', () => {
     const { asFragment } = render(
@@ -21,7 +23,6 @@ describe('Tooltip', () => {
   });
 
   test('should show tooltip when mouse over target', async () => {
-    const user = userEvent.setup();
     const { getByTestId, findByTestId } = render(
       <Tooltip content="I am a tooltip">Hover me</Tooltip>
     );
@@ -30,7 +31,6 @@ describe('Tooltip', () => {
   });
 
   test('should hide tooltip when mouse out target', async () => {
-    const user = userEvent.setup();
     const { getByTestId, findByTestId } = render(
       <Tooltip content="I am a tooltip">Hover me</Tooltip>
     );
@@ -44,7 +44,6 @@ describe('Tooltip', () => {
   });
 
   test('should support disabled tooltip', async () => {
-    const user = userEvent.setup();
     const { getByTestId } = render(
       <Tooltip content="I am a tooltip" disabled>
         Hover me

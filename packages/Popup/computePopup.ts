@@ -142,7 +142,7 @@ export const computePopupPosition = (
     },
   };
 
-  return placements[placement] || placements['top'];
+  return placements[placement];
 };
 
 export const computePopupArrowPosition = (
@@ -239,5 +239,5 @@ export const computePopupArrowPosition = (
     },
   };
 
-  return placements[placement] || placements['top'];
+  return placements[placement];
 };

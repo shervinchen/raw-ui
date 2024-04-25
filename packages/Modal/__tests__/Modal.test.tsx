@@ -3,6 +3,8 @@ import { render, waitFor } from '@testing-library/react';
 import { Button, Modal, ModalProps } from '../..';
 import userEvent from '@testing-library/user-event';
 
+const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+
 describe('Modal', () => {
   const closeHandler = jest.fn();
 
@@ -87,8 +89,6 @@ describe('Modal', () => {
   });
 
   test('should open modal and close modal when click target', async () => {
-    jest.useFakeTimers();
-    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const { getByTestId, findByTestId, queryByTestId } = render(
       <Component closeOnOverlayClick={true} />
     );
@@ -103,24 +103,18 @@ describe('Modal', () => {
       expect(queryByTestId('modalContainer')).not.toBeInTheDocument();
     });
     expect(closeHandler).toHaveBeenCalledTimes(1);
-    jest.useRealTimers();
   });
 
   test('should not close modal when disabled overlay clicked', async () => {
-    jest.useFakeTimers();
-    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const { getByTestId, findByTestId } = render(
       <Component closeOnOverlayClick={false} />
     );
     await user.click(getByTestId('openModal'));
     await user.click(await findByTestId('modalContainer'));
     expect(closeHandler).toHaveBeenCalledTimes(0);
-    jest.useRealTimers();
   });
 
   test('should not propagate the click event', async () => {
-    jest.useFakeTimers();
-    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     const { getByTestId, findByTestId } = render(
       <Component closeOnOverlayClick={true} />
     );
@@ -129,6 +123,5 @@ describe('Modal', () => {
     await user.click(await findByTestId('modalWrapper'));
     expect(await findByTestId('modalContainer')).toBeInTheDocument();
     expect(closeHandler).toHaveBeenCalledTimes(0);
-    jest.useRealTimers();
   });
 });

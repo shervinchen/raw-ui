@@ -11,7 +11,7 @@ const PopupArrow: FC<PopupArrowProps> = ({
   targetRef,
   placement,
   withBorder,
-  className = '',
+  className,
 }) => {
   const arrowOffset = useMemo<PopupArrowOffset>(() => {
     const { width, height } = getTargetRect(targetRef);

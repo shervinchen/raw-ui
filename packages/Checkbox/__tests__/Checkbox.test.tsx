@@ -28,6 +28,8 @@ const optionsData = [
   },
 ];
 
+const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+
 describe('Checkbox', () => {
   test('should match the snapshot', () => {
     const { asFragment } = render(<Checkbox />);
@@ -43,7 +45,7 @@ describe('Checkbox', () => {
     const clickHandler = jest.fn();
     const { container } = render(<Checkbox onClick={clickHandler} />);
     const checkbox = container.firstChild;
-    await userEvent.click(checkbox as Element);
+    await user.click(checkbox as Element);
     expect(clickHandler).toHaveBeenCalledTimes(1);
   });
 
@@ -71,7 +73,7 @@ describe('Checkbox', () => {
     const checkbox = container.firstChild;
     const checkboxInput = container.querySelector('.raw-checkbox-input');
     expect(checkboxInput).toBeDisabled();
-    await userEvent.click(checkbox as Element);
+    await user.click(checkbox as Element);
     expect(checkboxInput).not.toBeChecked();
   });
 
@@ -97,7 +99,7 @@ describe('Checkbox', () => {
     const checkbox = container.firstChild;
     const checkboxInput = container.querySelector('.raw-checkbox-input');
     expect(checkboxInput).not.toBeChecked();
-    await userEvent.click(checkbox as Element);
+    await user.click(checkbox as Element);
     expect(checkboxInput).toBeChecked();
     expect(onChange).toHaveBeenCalledTimes(1);
   });
@@ -107,7 +109,7 @@ describe('Checkbox', () => {
     const checkbox = container.firstChild;
     const checkboxInput = container.querySelector('.raw-checkbox-input');
     expect(checkboxInput).toBePartiallyChecked();
-    await userEvent.click(checkbox as Element);
+    await user.click(checkbox as Element);
     expect(checkboxInput).toBePartiallyChecked();
   });
 
@@ -130,9 +132,9 @@ describe('Checkbox', () => {
     expect(checkboxTwo).toBeChecked();
     expect(checkboxThree).not.toBeChecked();
     expect(checkboxFour).not.toBeChecked();
-    await userEvent.click(checkboxTwo);
-    await userEvent.click(checkboxThree);
-    await userEvent.click(checkboxFour);
+    await user.click(checkboxTwo);
+    await user.click(checkboxThree);
+    await user.click(checkboxFour);
     expect(checkboxOne).toBeChecked();
     expect(checkboxTwo).not.toBeChecked();
     expect(checkboxThree).toBeChecked();
@@ -169,9 +171,9 @@ describe('Checkbox', () => {
     expect(checkboxThree).not.toBeChecked();
     expect(checkboxFour).not.toBeChecked();
 
-    await userEvent.click(checkboxThree);
+    await user.click(checkboxThree);
     rerender(<Component value={checked} onChange={onChange} />);
-    await userEvent.click(checkboxFour);
+    await user.click(checkboxFour);
     rerender(<Component value={checked} onChange={onChange} />);
 
     expect(onChange).toHaveBeenCalledTimes(2);
@@ -200,10 +202,10 @@ describe('Checkbox', () => {
     expect(checkboxThree).toBeDisabled();
     expect(checkboxFour).toBeDisabled();
 
-    await userEvent.click(checkboxOne);
-    await userEvent.click(checkboxTwo);
-    await userEvent.click(checkboxThree);
-    await userEvent.click(checkboxFour);
+    await user.click(checkboxOne);
+    await user.click(checkboxTwo);
+    await user.click(checkboxThree);
+    await user.click(checkboxFour);
 
     expect(checkboxOne).not.toBeChecked();
     expect(checkboxTwo).not.toBeChecked();

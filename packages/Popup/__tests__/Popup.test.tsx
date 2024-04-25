@@ -11,6 +11,8 @@ const mockGetPopupPosition = jest.fn().mockReturnValue({
   transform: 'translate(0, 0)',
 });
 
+const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+
 const Component = ({
   visible,
   targetRef,
@@ -108,7 +110,6 @@ describe('Popup', () => {
   });
 
   test('should update popup position when document click', async () => {
-    const user = userEvent.setup();
     render(
       <Component
         visible
@@ -130,7 +131,7 @@ describe('Popup', () => {
       />
     );
     expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
-    await userEvent.hover(targetRefMock.current);
+    await user.hover(targetRefMock.current);
     expect(mockGetPopupPosition).toHaveBeenCalledTimes(2);
   });
 
@@ -169,14 +170,14 @@ describe('Popup', () => {
       />
     );
     const popup = screen.getByTestId('popup');
-    await userEvent.click(popup);
+    await user.click(popup);
     expect(popup).toBeInTheDocument();
   });
 
   test('should not trigger mouse over event when target is empty', async () => {
     render(<Component visible getPopupContainer={getPopupContainerMock} />);
     expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
-    await userEvent.hover(targetRefMock.current);
+    await user.hover(targetRefMock.current);
     expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
   });
 
@@ -190,7 +191,7 @@ describe('Popup', () => {
     );
     expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
     unmount();
-    await userEvent.hover(targetRefMock.current);
+    await user.hover(targetRefMock.current);
     expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
   });
 });

@@ -5,6 +5,8 @@ import Toggle from '..';
 import { ToggleProps, ToggleStatus } from '../Toggle.types';
 import { useToggleStyles } from '../Toggle.styles';
 
+const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+
 describe('Toggle', () => {
   test('should match the snapshot', () => {
     const { asFragment } = render(<Toggle />);
@@ -20,7 +22,7 @@ describe('Toggle', () => {
     const clickHandler = jest.fn();
     const { container } = render(<Toggle onClick={clickHandler} />);
     const toggle = container.firstChild;
-    await userEvent.click(toggle as Element);
+    await user.click(toggle as Element);
     expect(clickHandler).toHaveBeenCalledTimes(1);
   });
 
@@ -51,7 +53,7 @@ describe('Toggle', () => {
     const toggle = container.firstChild;
     const toggleInput = container.querySelector('.raw-toggle-input');
     expect(toggleInput).not.toBeChecked();
-    await userEvent.click(toggle as Element);
+    await user.click(toggle as Element);
     expect(toggleInput).toBeChecked();
     expect(onChange).toHaveBeenCalledTimes(1);
   });
@@ -61,7 +63,7 @@ describe('Toggle', () => {
     const toggle = container.firstChild;
     const toggleInput = container.querySelector('.raw-toggle-input');
     expect(toggleInput).toBeDisabled();
-    await userEvent.click(toggle as Element);
+    await user.click(toggle as Element);
     expect(toggleInput).not.toBeChecked();
   });
 

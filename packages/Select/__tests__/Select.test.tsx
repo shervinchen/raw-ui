@@ -23,6 +23,8 @@ const optionsData = [
   },
 ];
 
+const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+
 describe('Select', () => {
   test('should match the snapshot', () => {
     const { asFragment } = render(
@@ -93,7 +95,6 @@ describe('Select', () => {
   });
 
   test('should support controlled value', async () => {
-    const user = userEvent.setup();
     const onChange = jest.fn();
 
     const Component = (props: SelectProps) => {
@@ -167,7 +168,6 @@ describe('Select', () => {
   });
 
   test('should get new value when has default value and selected multiple options change', async () => {
-    const user = userEvent.setup();
     const { getByTestId, container, getAllByTestId } = render(
       <Select multiple defaultValue={['react', 'vue']}>
         {optionsData.map((item) => (
@@ -188,7 +188,6 @@ describe('Select', () => {
   });
 
   test('should get new value when not has default value and selected multiple options change', async () => {
-    const user = userEvent.setup();
     const { getByTestId, getAllByTestId, container } = render(
       <Select multiple>
         {optionsData.map((item) => (
@@ -205,7 +204,6 @@ describe('Select', () => {
   });
 
   test('should support select disabled', async () => {
-    const user = userEvent.setup();
     const { container, queryAllByTestId } = render(
       <Select disabled>
         <Select.Option value="1">Option 1</Select.Option>
@@ -218,7 +216,6 @@ describe('Select', () => {
   });
 
   test('should support option disabled', async () => {
-    const user = userEvent.setup();
     const { container, getByTestId, getAllByTestId } = render(
       <Select>
         <Select.Option value="1" disabled>
@@ -236,7 +233,6 @@ describe('Select', () => {
   });
 
   test('should hide select dropdown when click outside', async () => {
-    const user = userEvent.setup();
     const { container, queryByTestId, getByTestId } = render(
       <Select>
         <Select.Option value="1">Option 1</Select.Option>
@@ -251,7 +247,6 @@ describe('Select', () => {
   });
 
   test('should delete select tag when click delete icon', async () => {
-    const user = userEvent.setup();
     const { getByTestId, getAllByTestId } = render(
       <Select multiple defaultValue={['react', 'vue']}>
         {optionsData.map((item) => (
@@ -267,7 +262,6 @@ describe('Select', () => {
   });
 
   test('should not delete select tag when disabled and click delete icon', async () => {
-    const user = userEvent.setup();
     const { getByTestId, getAllByTestId } = render(
       <Select multiple disabled defaultValue={['react', 'vue']}>
         {optionsData.map((item) => (

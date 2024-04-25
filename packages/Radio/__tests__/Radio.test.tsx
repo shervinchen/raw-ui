@@ -5,6 +5,8 @@ import Radio from '..';
 import { RadioProps } from '../Radio.types';
 import { RadioGroupProps } from '../RadioGroup.types';
 
+const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+
 const optionsData = [
   {
     name: 'React',
@@ -39,7 +41,7 @@ describe('Radio', () => {
     const clickHandler = jest.fn();
     const { container } = render(<Radio onClick={clickHandler} />);
     const radio = container.firstChild;
-    await userEvent.click(radio as Element);
+    await user.click(radio as Element);
     expect(clickHandler).toHaveBeenCalledTimes(1);
   });
 
@@ -59,7 +61,7 @@ describe('Radio', () => {
     const radio = container.firstChild;
     const radioInput = container.querySelector('.raw-radio-input');
     expect(radioInput).toBeDisabled();
-    await userEvent.click(radio as Element);
+    await user.click(radio as Element);
     expect(radioInput).not.toBeChecked();
   });
 
@@ -86,7 +88,7 @@ describe('Radio', () => {
     const radio = container.firstChild;
     const radioInput = container.querySelector('.raw-radio-input');
     expect(radioInput).not.toBeChecked();
-    await userEvent.click(radio as Element);
+    await user.click(radio as Element);
     expect(radioInput).toBeChecked();
     expect(onChange).toHaveBeenCalledTimes(1);
   });
@@ -110,7 +112,7 @@ describe('Radio', () => {
     expect(radioTwo).not.toBeChecked();
     expect(radioThree).not.toBeChecked();
     expect(radioFour).not.toBeChecked();
-    await userEvent.click(radioTwo);
+    await user.click(radioTwo);
     expect(radioOne).not.toBeChecked();
     expect(radioTwo).toBeChecked();
     expect(radioThree).not.toBeChecked();
@@ -147,7 +149,7 @@ describe('Radio', () => {
     expect(radioThree).not.toBeChecked();
     expect(radioFour).not.toBeChecked();
 
-    await userEvent.click(radioTwo);
+    await user.click(radioTwo);
     rerender(<Component value={checked} onChange={onChange} />);
 
     expect(onChange).toHaveBeenCalledTimes(1);
@@ -176,10 +178,10 @@ describe('Radio', () => {
     expect(radioThree).toBeDisabled();
     expect(radioFour).toBeDisabled();
 
-    await userEvent.click(radioOne);
-    await userEvent.click(radioTwo);
-    await userEvent.click(radioThree);
-    await userEvent.click(radioFour);
+    await user.click(radioOne);
+    await user.click(radioTwo);
+    await user.click(radioThree);
+    await user.click(radioFour);
 
     expect(radioOne).not.toBeChecked();
     expect(radioTwo).not.toBeChecked();

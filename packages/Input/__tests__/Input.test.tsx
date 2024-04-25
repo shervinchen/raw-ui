@@ -18,6 +18,8 @@ const sizeHeightMap = {
   lg: '48px',
 };
 
+const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+
 describe('Input', () => {
   test('should match the snapshot', () => {
     const { asFragment } = render(<Input />);
@@ -39,7 +41,7 @@ describe('Input', () => {
   test('should support type text', async () => {
     const { container } = render(<Input />);
     const input = container.firstChild as Element;
-    await userEvent.type(input, 'test text');
+    await user.type(input, 'test text');
     expect(input).toHaveValue('test text');
   });
 
@@ -91,7 +93,7 @@ describe('Input', () => {
     const { container } = render(<Component onChange={onChange} />);
     const input = container.firstChild as Element;
     expect(input).toHaveValue('');
-    await userEvent.type(input, 'test text');
+    await user.type(input, 'test text');
     expect(input).toHaveValue('test text');
     expect(onChange).toHaveBeenCalledTimes(9);
   });
@@ -126,7 +128,7 @@ describe('Input', () => {
     const input = container.firstChild as Element;
     expect(input).toBeDisabled();
     expect(input).toHaveValue('');
-    await userEvent.type(input, 'test text');
+    await user.type(input, 'test text');
     expect(input).toHaveValue('');
     expect(onChange).toHaveBeenCalledTimes(0);
   });
@@ -137,7 +139,7 @@ describe('Input', () => {
     const input = container.firstChild as Element;
     expect(input).toHaveAttribute('readonly');
     expect(input).toHaveValue('');
-    await userEvent.type(input, 'test text');
+    await user.type(input, 'test text');
     expect(input).toHaveValue('');
     expect(onChange).toHaveBeenCalledTimes(0);
   });

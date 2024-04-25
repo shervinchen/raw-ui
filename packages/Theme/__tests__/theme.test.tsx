@@ -4,6 +4,8 @@ import { Button, RawUIProvider, useTheme, Theme, RawUITheme } from '../..';
 import userEvent from '@testing-library/user-event';
 import { RawUIUserTheme } from '../theme.type';
 
+const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+
 describe('Theme', () => {
   test('should support switch themes', async () => {
     const TestContent = () => {
@@ -35,7 +37,7 @@ describe('Theme', () => {
     const button = getByTestId('button');
     const text = getByTestId('text');
     expect(text.style.color).toBe('rgb(0, 0, 0)');
-    await userEvent.click(button);
+    await user.click(button);
     expect(text.style.color).toBe('rgb(255, 255, 255)');
   });
 
