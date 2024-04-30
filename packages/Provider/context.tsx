@@ -1,4 +1,4 @@
-import { Context, createContext, useContext } from 'react';
+import { Context, createContext } from 'react';
 
 export interface RawUIContextParams {
   onThemeChange?: () => void;

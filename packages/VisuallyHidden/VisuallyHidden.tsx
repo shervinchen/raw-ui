@@ -1,6 +1,4 @@
 import React, {
-  FC,
-  HTMLAttributes,
   InputHTMLAttributes,
   Ref,
   forwardRef,
