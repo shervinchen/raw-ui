@@ -10,7 +10,7 @@ const Pagination: FC<PropsWithChildren<PaginationProps>> = ({
   children,
   ...restProps
 }) => {
-  return <div></div>;
+  return <div {...restProps}></div>;
 };
 
 export default Pagination;

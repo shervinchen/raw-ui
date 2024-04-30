@@ -3,7 +3,7 @@
 exports[`Overlay should match the snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="jsx-251717942 raw-overlay"
+    class="jsx-1254007279 raw-overlay"
     data-testid="overlay"
     style="opacity: 0;"
   />

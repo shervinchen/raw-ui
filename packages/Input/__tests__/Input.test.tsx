@@ -165,7 +165,9 @@ describe('Input', () => {
         <Input.RightElement>.0</Input.RightElement>
       </Input.Group>
     );
-    const leftElement = container.querySelector('.raw-input-left-element');
+    const leftElement = container.querySelector(
+      '.raw-input-left-element'
+    ) as Element;
     expect(getComputedStyle(leftElement).pointerEvents).toBe('auto');
     expect(getComputedStyle(leftElement).cursor).toBe('pointer');
   });

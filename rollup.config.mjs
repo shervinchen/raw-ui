@@ -29,7 +29,7 @@ const config = {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
       babelHelpers: 'bundled',
     }),
-    typescript({ tsconfig: './tsconfig.json' }),
+    typescript({ tsconfig: './tsconfig.json', outputToFilesystem: true }),
     image(),
     postcss(),
     serve({

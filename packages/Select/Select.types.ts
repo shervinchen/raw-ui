@@ -1,8 +1,12 @@
 import { HTMLAttributes, MutableRefObject } from 'react';
 
-export type SelectOptionValue = string | number | undefined;
+export type SelectOptionValue = string | number | undefined | null;
 
-export type SelectValue = SelectOptionValue | SelectOptionValue[] | undefined;
+export type SelectValue =
+  | SelectOptionValue
+  | SelectOptionValue[]
+  | undefined
+  | null;
 
 export type SelectSize = 'sm' | 'md' | 'lg';
 
