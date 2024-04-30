@@ -107,7 +107,7 @@
     "rehype-pretty-code": "^0.9.7",
     "rehype-slug": "^5.1.0",
     "remark-gfm": "^3.0.1",
-    "rollup": "^3.29.4",
+    "rollup": "^4.17.2",
     "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-livereload": "^2.0.5",
     "rollup-plugin-peer-deps-external": "^2.2.4",
