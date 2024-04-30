@@ -17,4 +17,9 @@ describe('Overlay', () => {
     await user.click(getByTestId('overlay'));
     expect(mockClickFn).toHaveBeenCalledTimes(1);
   });
+
+  test('should hide the overlay when visible is undefined', () => {
+    const { queryByTestId } = render(<Overlay />);
+    expect(queryByTestId('overlay')).not.toBeInTheDocument();
+  });
 });

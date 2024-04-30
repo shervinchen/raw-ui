@@ -14,12 +14,7 @@ const ModalWrapper: FC<PropsWithChildren<ModalWrapperProps>> = ({
   ...restProps
 }) => {
   const theme = useTheme();
-  const {
-    visible = false,
-    width,
-    closeOnOverlayClick,
-    closeModal,
-  } = useModalContext();
+  const { visible, width, closeOnOverlayClick, closeModal } = useModalContext();
   const { stage, shouldMount } = useTransition(visible, 50, 350);
 
   const clickModalContainerHandler = () => {
