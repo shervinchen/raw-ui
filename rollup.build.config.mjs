@@ -10,7 +10,7 @@ import dts from 'rollup-plugin-dts';
 import { readFileSync } from 'node:fs';
 
 const packageJson = JSON.parse(
-	readFileSync(new URL('./package.json', import.meta.url))
+  readFileSync(new URL('./package.json', import.meta.url))
 );
 
 const config = [
