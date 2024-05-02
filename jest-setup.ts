@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { act } from '@testing-library/react';
+import { act } from 'react';
 
 beforeEach(() => {
   jest.useFakeTimers();
