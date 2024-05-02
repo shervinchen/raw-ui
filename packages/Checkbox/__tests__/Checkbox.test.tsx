@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Checkbox from '..';
 import { CheckboxProps } from '../Checkbox.types';
@@ -56,8 +56,8 @@ describe('Checkbox', () => {
   });
 
   test('should support label text', () => {
-    const { queryByText } = render(<Checkbox>Label</Checkbox>);
-    expect(queryByText('Label')).toBeInTheDocument();
+    render(<Checkbox>Label</Checkbox>);
+    expect(screen.queryByText('Label')).toBeInTheDocument();
   });
 
   test('should support indeterminate', () => {

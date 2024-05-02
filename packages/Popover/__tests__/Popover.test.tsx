@@ -15,12 +15,12 @@ describe('Popover', () => {
   });
 
   test('should show popover when default value is true', async () => {
-    const { findByTestId } = render(
+    render(
       <Popover defaultValue content="I am a popover">
         Click me
       </Popover>
     );
-    expect(await findByTestId('popoverContent')).toBeInTheDocument();
+    expect(await screen.findByTestId('popoverContent')).toBeInTheDocument();
   });
 
   test('should support custom class name', () => {
@@ -33,20 +33,16 @@ describe('Popover', () => {
   });
 
   test('should show popover when click target', async () => {
-    const { getByTestId, findByTestId } = render(
-      <Popover content="I am a popover">Click me</Popover>
-    );
-    await user.click(getByTestId('popoverTarget'));
-    expect(await findByTestId('popoverContent')).toBeInTheDocument();
+    render(<Popover content="I am a popover">Click me</Popover>);
+    await user.click(screen.getByTestId('popoverTarget'));
+    expect(await screen.findByTestId('popoverContent')).toBeInTheDocument();
   });
 
   test('should switch whether or not popover is visible when click target', async () => {
-    const { getByTestId, findByTestId } = render(
-      <Popover content="I am a popover">Click me</Popover>
-    );
-    const target = getByTestId('popoverTarget');
+    render(<Popover content="I am a popover">Click me</Popover>);
+    const target = screen.getByTestId('popoverTarget');
     await user.click(target);
-    expect(await findByTestId('popoverContent')).toBeInTheDocument();
+    expect(await screen.findByTestId('popoverContent')).toBeInTheDocument();
     await user.click(target);
     await waitFor(() => {
       expect(screen.queryByTestId('popoverContent')).not.toBeInTheDocument();
@@ -54,11 +50,9 @@ describe('Popover', () => {
   });
 
   test('should hide popover when click outside', async () => {
-    const { getByTestId, findByTestId } = render(
-      <Popover content="I am a popover">Click me</Popover>
-    );
-    await user.click(getByTestId('popoverTarget'));
-    expect(await findByTestId('popoverContent')).toBeInTheDocument();
+    render(<Popover content="I am a popover">Click me</Popover>);
+    await user.click(screen.getByTestId('popoverTarget'));
+    expect(await screen.findByTestId('popoverContent')).toBeInTheDocument();
     await user.click(document.body);
     await waitFor(() => {
       expect(screen.queryByTestId('popoverContent')).not.toBeInTheDocument();
@@ -66,12 +60,12 @@ describe('Popover', () => {
   });
 
   test('should support disabled popover', async () => {
-    const { getByTestId } = render(
+    render(
       <Popover content="I am a popover" disabled>
         Click me
       </Popover>
     );
-    await user.click(getByTestId('popoverTarget'));
+    await user.click(screen.getByTestId('popoverTarget'));
     await waitFor(() => {
       expect(screen.queryByTestId('popoverContent')).not.toBeInTheDocument();
     });
@@ -96,11 +90,11 @@ describe('Popover', () => {
         </Popover>
       );
     };
-    const { getByTestId, findByTestId } = render(
+    render(
       <Component content="I am a controlled popover" onChange={onChange} />
     );
-    await user.click(getByTestId('popoverTarget'));
-    expect(await findByTestId('popoverContent')).toBeInTheDocument();
+    await user.click(screen.getByTestId('popoverTarget'));
+    expect(await screen.findByTestId('popoverContent')).toBeInTheDocument();
     expect(onChange).toHaveBeenCalledTimes(1);
   });
 

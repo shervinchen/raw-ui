@@ -85,13 +85,15 @@ describe('Select', () => {
   });
 
   test('should support uncontrolled value', () => {
-    const { getByTestId } = render(
+    render(
       <Select defaultValue="1">
         <Select.Option value="1">Option 1</Select.Option>
         <Select.Option value="2">Option 2</Select.Option>
       </Select>
     );
-    expect(getByTestId('selectContainer').innerHTML).toContain('Option 1');
+    expect(screen.getByTestId('selectContainer').innerHTML).toContain(
+      'Option 1'
+    );
   });
 
   test('should support controlled value', async () => {
@@ -113,17 +115,19 @@ describe('Select', () => {
         </Select>
       );
     };
-    const { container, getByTestId, getAllByTestId } = render(
+    const { container, getAllByTestId } = render(
       <Component onChange={onChange} />
     );
     const select = container.firstChild as Element;
     await user.click(select);
     await user.click(getAllByTestId('selectOption')[0]);
-    expect(getByTestId('selectContainer').innerHTML).toContain('Option 1');
+    expect(screen.getByTestId('selectContainer').innerHTML).toContain(
+      'Option 1'
+    );
   });
 
   test('should support multiple value', () => {
-    const { getByTestId } = render(
+    render(
       <Select multiple defaultValue={['react', 'vue']}>
         {optionsData.map((item) => (
           <Select.Option value={item.value} key={item.value}>
@@ -132,12 +136,12 @@ describe('Select', () => {
         ))}
       </Select>
     );
-    expect(getByTestId('selectContainer').innerHTML).toContain('React');
-    expect(getByTestId('selectContainer').innerHTML).toContain('Vue');
+    expect(screen.getByTestId('selectContainer').innerHTML).toContain('React');
+    expect(screen.getByTestId('selectContainer').innerHTML).toContain('Vue');
   });
 
   test('should not get initial value when value is not array but multiple is true', () => {
-    const { getByTestId } = render(
+    render(
       <Select multiple defaultValue="react" value="react">
         {optionsData.map((item) => (
           <Select.Option value={item.value} key={item.value}>
@@ -146,11 +150,13 @@ describe('Select', () => {
         ))}
       </Select>
     );
-    expect(getByTestId('selectContainer').innerHTML).not.toContain('React');
+    expect(screen.getByTestId('selectContainer').innerHTML).not.toContain(
+      'React'
+    );
   });
 
   test('should not get initial value when value is array but multiple is false', () => {
-    const { getByTestId } = render(
+    render(
       <Select
         multiple={false}
         defaultValue={['react', 'vue']}
@@ -163,12 +169,16 @@ describe('Select', () => {
         ))}
       </Select>
     );
-    expect(getByTestId('selectContainer').innerHTML).not.toContain('React');
-    expect(getByTestId('selectContainer').innerHTML).not.toContain('Vue');
+    expect(screen.getByTestId('selectContainer').innerHTML).not.toContain(
+      'React'
+    );
+    expect(screen.getByTestId('selectContainer').innerHTML).not.toContain(
+      'Vue'
+    );
   });
 
   test('should get new value when has default value and selected multiple options change', async () => {
-    const { getByTestId, container, getAllByTestId } = render(
+    const { container, getAllByTestId } = render(
       <Select multiple defaultValue={['react', 'vue']}>
         {optionsData.map((item) => (
           <Select.Option value={item.value} key={item.value}>
@@ -180,15 +190,17 @@ describe('Select', () => {
     const select = container.firstChild as Element;
     await user.click(select);
     await user.click(getAllByTestId('selectOption')[0]);
-    expect(getByTestId('selectContainer').innerHTML).not.toContain('React');
-    expect(getByTestId('selectContainer').innerHTML).toContain('Vue');
+    expect(screen.getByTestId('selectContainer').innerHTML).not.toContain(
+      'React'
+    );
+    expect(screen.getByTestId('selectContainer').innerHTML).toContain('Vue');
     await user.click(getAllByTestId('selectOption')[0]);
-    expect(getByTestId('selectContainer').innerHTML).toContain('React');
-    expect(getByTestId('selectContainer').innerHTML).toContain('Vue');
+    expect(screen.getByTestId('selectContainer').innerHTML).toContain('React');
+    expect(screen.getByTestId('selectContainer').innerHTML).toContain('Vue');
   });
 
   test('should get new value when not has default value and selected multiple options change', async () => {
-    const { getByTestId, getAllByTestId, container } = render(
+    const { getAllByTestId, container } = render(
       <Select multiple>
         {optionsData.map((item) => (
           <Select.Option value={item.value} key={item.value}>
@@ -200,7 +212,7 @@ describe('Select', () => {
     const select = container.firstChild as Element;
     await user.click(select);
     await user.click(getAllByTestId('selectOption')[0]);
-    expect(getByTestId('selectContainer').innerHTML).toContain('React');
+    expect(screen.getByTestId('selectContainer').innerHTML).toContain('React');
   });
 
   test('should support select disabled', async () => {
@@ -216,7 +228,7 @@ describe('Select', () => {
   });
 
   test('should support option disabled', async () => {
-    const { container, getByTestId, getAllByTestId } = render(
+    const { container, getAllByTestId } = render(
       <Select>
         <Select.Option value="1" disabled>
           Option 1
@@ -227,13 +239,17 @@ describe('Select', () => {
     const select = container.firstChild as Element;
     await user.click(select);
     await user.click(getAllByTestId('selectOption')[0]);
-    expect(getByTestId('selectContainer').innerHTML).not.toContain('Option 1');
+    expect(screen.getByTestId('selectContainer').innerHTML).not.toContain(
+      'Option 1'
+    );
     await user.click(getAllByTestId('selectOption')[1]);
-    expect(getByTestId('selectContainer').innerHTML).toContain('Option 2');
+    expect(screen.getByTestId('selectContainer').innerHTML).toContain(
+      'Option 2'
+    );
   });
 
   test('should hide select dropdown when click outside', async () => {
-    const { container, queryByTestId, getByTestId } = render(
+    const { container } = render(
       <Select>
         <Select.Option value="1">Option 1</Select.Option>
         <Select.Option value="2">Option 2</Select.Option>
@@ -241,13 +257,13 @@ describe('Select', () => {
     );
     const select = container.firstChild as Element;
     await user.click(select);
-    expect(getByTestId('selectDropdown')).toBeInTheDocument();
+    expect(screen.getByTestId('selectDropdown')).toBeInTheDocument();
     await user.click(document.body);
-    expect(queryByTestId('selectDropdown')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('selectDropdown')).not.toBeInTheDocument();
   });
 
   test('should delete select tag when click delete icon', async () => {
-    const { getByTestId, getAllByTestId } = render(
+    const { getAllByTestId } = render(
       <Select multiple defaultValue={['react', 'vue']}>
         {optionsData.map((item) => (
           <Select.Option value={item.value} key={item.value}>
@@ -256,13 +272,15 @@ describe('Select', () => {
         ))}
       </Select>
     );
-    expect(getByTestId('selectContainer').innerHTML).toContain('React');
+    expect(screen.getByTestId('selectContainer').innerHTML).toContain('React');
     await user.click(getAllByTestId('selectTagIcon')[0]);
-    expect(getByTestId('selectContainer').innerHTML).not.toContain('React');
+    expect(screen.getByTestId('selectContainer').innerHTML).not.toContain(
+      'React'
+    );
   });
 
   test('should not delete select tag when disabled and click delete icon', async () => {
-    const { getByTestId, getAllByTestId } = render(
+    const { getAllByTestId } = render(
       <Select multiple disabled defaultValue={['react', 'vue']}>
         {optionsData.map((item) => (
           <Select.Option value={item.value} key={item.value}>
@@ -271,9 +289,9 @@ describe('Select', () => {
         ))}
       </Select>
     );
-    expect(getByTestId('selectContainer').innerHTML).toContain('React');
+    expect(screen.getByTestId('selectContainer').innerHTML).toContain('React');
     await user.click(getAllByTestId('selectTagIcon')[0]);
-    expect(getByTestId('selectContainer').innerHTML).toContain('React');
+    expect(screen.getByTestId('selectContainer').innerHTML).toContain('React');
   });
 
   test('should display placeholder when value is empty string', () => {
@@ -287,12 +305,12 @@ describe('Select', () => {
   });
 
   test('should not display placeholder or selected option when value is not undefined', () => {
-    const { queryByTestId } = render(
+    render(
       <Select defaultValue={null} placeholder="Select option">
         <Select.Option value="1">Option 1</Select.Option>
         <Select.Option value="2">Option 2</Select.Option>
       </Select>
     );
-    expect(queryByTestId('Select option')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('Select option')).not.toBeInTheDocument();
   });
 });

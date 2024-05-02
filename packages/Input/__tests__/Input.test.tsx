@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
-import { render, renderHook } from '@testing-library/react';
+import { render, screen, renderHook } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Input from '..';
 import { InputProps, InputSizes, InputTypes } from '../Input.types';
@@ -145,7 +145,7 @@ describe('Input', () => {
   });
 
   test('should support inside element', () => {
-    const { getByText } = render(
+    render(
       <Input.Group>
         <Input.LeftElement>$</Input.LeftElement>
         <Input placeholder="Enter amount" />
@@ -153,8 +153,8 @@ describe('Input', () => {
       </Input.Group>
     );
 
-    expect(getByText('$')).toBeInTheDocument();
-    expect(getByText('.0')).toBeInTheDocument();
+    expect(screen.getByText('$')).toBeInTheDocument();
+    expect(screen.getByText('.0')).toBeInTheDocument();
   });
 
   test('should inside element support clickable style', () => {
@@ -173,7 +173,7 @@ describe('Input', () => {
   });
 
   test('should support addon element', () => {
-    const { getByText } = render(
+    render(
       <Input.Group>
         <Input.LeftAddon>https://</Input.LeftAddon>
         <Input placeholder="your domain" />
@@ -181,8 +181,8 @@ describe('Input', () => {
       </Input.Group>
     );
 
-    expect(getByText('https://')).toBeInTheDocument();
-    expect(getByText('.com')).toBeInTheDocument();
+    expect(screen.getByText('https://')).toBeInTheDocument();
+    expect(screen.getByText('.com')).toBeInTheDocument();
   });
 
   test('should addon element support custom class name', () => {

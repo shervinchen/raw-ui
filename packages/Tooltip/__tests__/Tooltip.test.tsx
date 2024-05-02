@@ -23,20 +23,16 @@ describe('Tooltip', () => {
   });
 
   test('should show tooltip when mouse over target', async () => {
-    const { getByTestId, findByTestId } = render(
-      <Tooltip content="I am a tooltip">Hover me</Tooltip>
-    );
-    await user.hover(getByTestId('tooltipTarget'));
-    expect(await findByTestId('tooltipContent')).toBeInTheDocument();
+    render(<Tooltip content="I am a tooltip">Hover me</Tooltip>);
+    await user.hover(screen.getByTestId('tooltipTarget'));
+    expect(await screen.findByTestId('tooltipContent')).toBeInTheDocument();
   });
 
   test('should hide tooltip when mouse out target', async () => {
-    const { getByTestId, findByTestId } = render(
-      <Tooltip content="I am a tooltip">Hover me</Tooltip>
-    );
-    const target = getByTestId('tooltipTarget');
+    render(<Tooltip content="I am a tooltip">Hover me</Tooltip>);
+    const target = screen.getByTestId('tooltipTarget');
     await user.hover(target);
-    expect(await findByTestId('tooltipContent')).toBeInTheDocument();
+    expect(await screen.findByTestId('tooltipContent')).toBeInTheDocument();
     await user.unhover(target);
     await waitFor(() => {
       expect(screen.queryByTestId('tooltipContent')).not.toBeInTheDocument();
@@ -44,12 +40,12 @@ describe('Tooltip', () => {
   });
 
   test('should support disabled tooltip', async () => {
-    const { getByTestId } = render(
+    render(
       <Tooltip content="I am a tooltip" disabled>
         Hover me
       </Tooltip>
     );
-    await user.hover(getByTestId('tooltipTarget'));
+    await user.hover(screen.getByTestId('tooltipTarget'));
     await waitFor(() => {
       expect(screen.queryByTestId('tooltipContent')).not.toBeInTheDocument();
     });

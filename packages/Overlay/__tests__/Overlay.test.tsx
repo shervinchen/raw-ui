@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Overlay from '..';
 
@@ -13,13 +13,13 @@ describe('Overlay', () => {
 
   test('should trigger click event', async () => {
     const mockClickFn = jest.fn();
-    const { getByTestId } = render(<Overlay visible onClick={mockClickFn} />);
-    await user.click(getByTestId('overlay'));
+    render(<Overlay visible onClick={mockClickFn} />);
+    await user.click(screen.getByTestId('overlay'));
     expect(mockClickFn).toHaveBeenCalledTimes(1);
   });
 
   test('should hide the overlay when visible is undefined', () => {
-    const { queryByTestId } = render(<Overlay />);
-    expect(queryByTestId('overlay')).not.toBeInTheDocument();
+    render(<Overlay />);
+    expect(screen.queryByTestId('overlay')).not.toBeInTheDocument();
   });
 });

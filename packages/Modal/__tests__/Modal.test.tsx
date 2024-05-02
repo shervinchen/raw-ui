@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { render, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { Button, Modal, ModalProps } from '../..';
 import userEvent from '@testing-library/user-event';
 
@@ -56,7 +56,7 @@ describe('Modal', () => {
   });
 
   test('should support custom class name', () => {
-    const { getByTestId } = render(
+    render(
       <Modal visible className="custom-modal">
         <Modal.Header>Modal Title</Modal.Header>
         <Modal.Body>
@@ -68,11 +68,11 @@ describe('Modal', () => {
         </Modal.Footer>
       </Modal>
     );
-    expect(getByTestId('modalWrapper')).toHaveClass('custom-modal');
+    expect(screen.getByTestId('modalWrapper')).toHaveClass('custom-modal');
   });
 
   test('should support custom width', () => {
-    const { getByTestId } = render(
+    render(
       <Modal visible width="400px">
         <Modal.Header>Modal Title</Modal.Header>
         <Modal.Body>
@@ -84,44 +84,38 @@ describe('Modal', () => {
         </Modal.Footer>
       </Modal>
     );
-    const modalWrapper = getByTestId('modalWrapper') as Element;
+    const modalWrapper = screen.getByTestId('modalWrapper') as Element;
     expect(getComputedStyle(modalWrapper).maxWidth).toBe('400px');
   });
 
   test('should open modal and close modal when click target', async () => {
-    const { getByTestId, findByTestId, queryByTestId } = render(
-      <Component closeOnOverlayClick={true} />
-    );
-    await user.click(getByTestId('openModal'));
-    const modalContainer = await findByTestId('modalContainer');
+    render(<Component closeOnOverlayClick={true} />);
+    await user.click(screen.getByTestId('openModal'));
+    const modalContainer = await screen.findByTestId('modalContainer');
     expect(modalContainer).toBeInTheDocument();
     await user.click(modalContainer);
     // act(() => {
     //   jest.runAllTimers();
     // });
     await waitFor(() => {
-      expect(queryByTestId('modalContainer')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('modalContainer')).not.toBeInTheDocument();
     });
     expect(closeHandler).toHaveBeenCalledTimes(1);
   });
 
   test('should not close modal when disabled overlay clicked', async () => {
-    const { getByTestId, findByTestId } = render(
-      <Component closeOnOverlayClick={false} />
-    );
-    await user.click(getByTestId('openModal'));
-    await user.click(await findByTestId('modalContainer'));
+    render(<Component closeOnOverlayClick={false} />);
+    await user.click(screen.getByTestId('openModal'));
+    await user.click(await screen.findByTestId('modalContainer'));
     expect(closeHandler).toHaveBeenCalledTimes(0);
   });
 
   test('should not propagate the click event', async () => {
-    const { getByTestId, findByTestId } = render(
-      <Component closeOnOverlayClick={true} />
-    );
-    await user.click(getByTestId('openModal'));
-    expect(await findByTestId('modalContainer')).toBeInTheDocument();
-    await user.click(await findByTestId('modalWrapper'));
-    expect(await findByTestId('modalContainer')).toBeInTheDocument();
+    render(<Component closeOnOverlayClick={true} />);
+    await user.click(screen.getByTestId('openModal'));
+    expect(await screen.findByTestId('modalContainer')).toBeInTheDocument();
+    await user.click(await screen.findByTestId('modalWrapper'));
+    expect(await screen.findByTestId('modalContainer')).toBeInTheDocument();
     expect(closeHandler).toHaveBeenCalledTimes(0);
   });
 });

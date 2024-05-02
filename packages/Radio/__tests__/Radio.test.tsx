@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Radio from '..';
 import { RadioProps } from '../Radio.types';
@@ -52,8 +52,8 @@ describe('Radio', () => {
   });
 
   test('should support label text', () => {
-    const { queryByText } = render(<Radio>Label</Radio>);
-    expect(queryByText('Label')).toBeInTheDocument();
+    render(<Radio>Label</Radio>);
+    expect(screen.queryByText('Label')).toBeInTheDocument();
   });
 
   test('should support disabled', async () => {

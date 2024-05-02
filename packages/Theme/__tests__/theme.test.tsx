@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { Button, RawUIProvider, useTheme, Theme, RawUITheme } from '../..';
 import userEvent from '@testing-library/user-event';
 import { RawUIUserTheme } from '../theme.type';
@@ -33,9 +33,9 @@ describe('Theme', () => {
       );
     };
 
-    const { getByTestId } = render(<TestApp />);
-    const button = getByTestId('button');
-    const text = getByTestId('text');
+    render(<TestApp />);
+    const button = screen.getByTestId('button');
+    const text = screen.getByTestId('text');
     expect(text.style.color).toBe('rgb(0, 0, 0)');
     await user.click(button);
     expect(text.style.color).toBe('rgb(255, 255, 255)');
@@ -67,8 +67,8 @@ describe('Theme', () => {
       );
     };
 
-    const { getByTestId } = render(<TestApp />);
-    const text = getByTestId('text');
+    render(<TestApp />);
+    const text = screen.getByTestId('text');
     expect(text.style.color).toBe('rgb(0, 0, 0)');
   });
 
@@ -98,8 +98,8 @@ describe('Theme', () => {
       );
     };
 
-    const { getByTestId } = render(<TestApp />);
-    const text = getByTestId('text');
+    render(<TestApp />);
+    const text = screen.getByTestId('text');
     expect(text.style.color).toBe('rgb(0, 0, 0)');
   });
 
@@ -129,8 +129,8 @@ describe('Theme', () => {
       );
     };
 
-    const { getByTestId } = render(<TestApp />);
-    const text = getByTestId('text');
+    render(<TestApp />);
+    const text = screen.getByTestId('text');
     expect(text.style.color).toBe('rgb(0, 0, 0)');
   });
 
@@ -215,8 +215,8 @@ describe('Theme', () => {
       );
     };
 
-    const { getByTestId } = render(<TestApp />);
-    const text = getByTestId('text');
+    render(<TestApp />);
+    const text = screen.getByTestId('text');
     expect(text.style.color).toBe('rgb(0, 0, 0)');
   });
 });
