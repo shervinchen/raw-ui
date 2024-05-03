@@ -92,6 +92,7 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
         className={classes}
         onClick={clickHandler}
         disabled={disabled}
+        aria-disabled={disabled}
         {...restProps}
       >
         {loading && (

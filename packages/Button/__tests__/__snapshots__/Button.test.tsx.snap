@@ -3,6 +3,7 @@
 exports[`Button should match the snapshot 1`] = `
 <DocumentFragment>
   <button
+    aria-disabled="false"
     class="raw-button jsx-2168746361"
     type="button"
   >

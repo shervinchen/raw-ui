@@ -6,6 +6,7 @@ exports[`ButtonGroup should match the snapshot 1`] = `
     class="raw-button-group horizontal jsx-3984540175"
   >
     <button
+      aria-disabled="false"
       class="raw-button jsx-2168746361"
       type="button"
     >
@@ -17,6 +18,7 @@ exports[`ButtonGroup should match the snapshot 1`] = `
       </span>
     </button>
     <button
+      aria-disabled="false"
       class="raw-button jsx-2168746361"
       type="button"
     >
@@ -28,6 +30,7 @@ exports[`ButtonGroup should match the snapshot 1`] = `
       </span>
     </button>
     <button
+      aria-disabled="false"
       class="raw-button jsx-2168746361"
       type="button"
     >
