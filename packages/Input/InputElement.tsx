@@ -56,7 +56,14 @@ const InputLeftElement: FC<Omit<InputElementProps, 'placement'>> = ({
 }) => {
   const classes = classNames('raw-input-left-element', className);
 
-  return <InputElement className={classes} placement="left" {...resetProps} />;
+  return (
+    <InputElement
+      data-testid="inputLeftElement"
+      className={classes}
+      placement="left"
+      {...resetProps}
+    />
+  );
 };
 
 const InputRightElement: FC<Omit<InputElementProps, 'placement'>> = ({
@@ -65,7 +72,14 @@ const InputRightElement: FC<Omit<InputElementProps, 'placement'>> = ({
 }) => {
   const classes = classNames('raw-input-right-element', className);
 
-  return <InputElement className={classes} placement="right" {...resetProps} />;
+  return (
+    <InputElement
+      data-testid="inputRightElement"
+      className={classes}
+      placement="right"
+      {...resetProps}
+    />
+  );
 };
 
 export { InputLeftElement, InputRightElement };

@@ -157,6 +157,19 @@ describe('Input', () => {
     expect(screen.getByText('.0')).toBeInTheDocument();
   });
 
+  test('should inside element support clickable style', () => {
+    render(
+      <Input.Group>
+        <Input.LeftElement clickable>$</Input.LeftElement>
+        <Input placeholder="Enter amount" />
+        <Input.RightElement>.0</Input.RightElement>
+      </Input.Group>
+    );
+    const leftElement = screen.getByTestId('inputLeftElement');
+    expect(getComputedStyle(leftElement).pointerEvents).toBe('auto');
+    expect(getComputedStyle(leftElement).cursor).toBe('pointer');
+  });
+
   test('should support addon element', () => {
     render(
       <Input.Group>
