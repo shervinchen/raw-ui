@@ -37,44 +37,38 @@ describe('Checkbox', () => {
   });
 
   test('should support custom class name', () => {
-    const { container } = render(<Checkbox className="custom-checkbox" />);
-    expect(container.firstChild).toHaveClass('custom-checkbox');
+    render(<Checkbox className="custom-checkbox" />);
+    expect(screen.getByTestId('checkboxLabel')).toHaveClass('custom-checkbox');
   });
 
   test('should trigger event when clicked', async () => {
     const clickHandler = jest.fn();
-    const { container } = render(<Checkbox onClick={clickHandler} />);
-    const checkbox = container.firstChild;
-    await user.click(checkbox as Element);
+    render(<Checkbox onClick={clickHandler} />);
+    await user.click(screen.getByTestId('checkboxLabel'));
     expect(clickHandler).toHaveBeenCalledTimes(1);
   });
 
   test('should support uncontrolled value', () => {
-    const { container } = render(<Checkbox defaultChecked />);
-    const checkboxInput = container.querySelector('.raw-checkbox-input');
-    expect(checkboxInput).toBeChecked();
+    render(<Checkbox defaultChecked />);
+    expect(screen.getByRole('checkbox')).toBeChecked();
   });
 
   test('should support label text', () => {
     render(<Checkbox>Label</Checkbox>);
-    expect(screen.queryByText('Label')).toBeInTheDocument();
+    expect(screen.getByText('Label')).toBeInTheDocument();
   });
 
   test('should support indeterminate', () => {
-    const { container } = render(
-      <Checkbox indeterminate>Indeterminate</Checkbox>
-    );
-    const checkboxInput = container.querySelector('.raw-checkbox-input');
-    expect(checkboxInput).toBePartiallyChecked();
+    render(<Checkbox indeterminate>Indeterminate</Checkbox>);
+    expect(screen.getByRole('checkbox')).toBePartiallyChecked();
   });
 
   test('should support disabled', async () => {
-    const { container } = render(<Checkbox disabled />);
-    const checkbox = container.firstChild;
-    const checkboxInput = container.querySelector('.raw-checkbox-input');
-    expect(checkboxInput).toBeDisabled();
-    await user.click(checkbox as Element);
-    expect(checkboxInput).not.toBeChecked();
+    render(<Checkbox disabled />);
+    const checkbox = screen.getByRole('checkbox');
+    expect(checkbox).toBeDisabled();
+    await user.click(screen.getByTestId('checkboxLabel'));
+    expect(checkbox).not.toBeChecked();
   });
 
   test('should support controlled value', async () => {
@@ -95,22 +89,20 @@ describe('Checkbox', () => {
         </Checkbox>
       );
     };
-    const { container } = render(<Component onChange={onChange} />);
-    const checkbox = container.firstChild;
-    const checkboxInput = container.querySelector('.raw-checkbox-input');
-    expect(checkboxInput).not.toBeChecked();
-    await user.click(checkbox as Element);
-    expect(checkboxInput).toBeChecked();
+    render(<Component onChange={onChange} />);
+    const checkbox = screen.getByRole('checkbox');
+    expect(checkbox).not.toBeChecked();
+    await user.click(screen.getByTestId('checkboxLabel'));
+    expect(checkbox).toBeChecked();
     expect(onChange).toHaveBeenCalledTimes(1);
   });
 
   test('should not change value when indeterminate', async () => {
-    const { container } = render(<Checkbox indeterminate />);
-    const checkbox = container.firstChild;
-    const checkboxInput = container.querySelector('.raw-checkbox-input');
-    expect(checkboxInput).toBePartiallyChecked();
-    await user.click(checkbox as Element);
-    expect(checkboxInput).toBePartiallyChecked();
+    render(<Checkbox indeterminate />);
+    const checkbox = screen.getByRole('checkbox');
+    expect(checkbox).toBePartiallyChecked();
+    await user.click(screen.getByTestId('checkboxLabel'));
+    expect(checkbox).toBePartiallyChecked();
   });
 
   test('should support checkbox group uncontrolled value', async () => {
@@ -123,18 +115,20 @@ describe('Checkbox', () => {
         ))}
       </Checkbox.Group>
     );
-    const { container } = render(<Component />);
-    const checkboxOne = container.querySelectorAll('input')[0];
-    const checkboxTwo = container.querySelectorAll('input')[1];
-    const checkboxThree = container.querySelectorAll('input')[2];
-    const checkboxFour = container.querySelectorAll('input')[3];
+    render(<Component />);
+    const checkboxes = screen.getAllByRole('checkbox');
+    const checkboxLabels = screen.getAllByTestId('checkboxLabel');
+    const checkboxOne = checkboxes[0];
+    const checkboxTwo = checkboxes[1];
+    const checkboxThree = checkboxes[2];
+    const checkboxFour = checkboxes[3];
     expect(checkboxOne).toBeChecked();
     expect(checkboxTwo).toBeChecked();
     expect(checkboxThree).not.toBeChecked();
     expect(checkboxFour).not.toBeChecked();
-    await user.click(checkboxTwo);
-    await user.click(checkboxThree);
-    await user.click(checkboxFour);
+    await user.click(checkboxLabels[1]);
+    await user.click(checkboxLabels[2]);
+    await user.click(checkboxLabels[3]);
     expect(checkboxOne).toBeChecked();
     expect(checkboxTwo).not.toBeChecked();
     expect(checkboxThree).toBeChecked();
@@ -158,22 +152,22 @@ describe('Checkbox', () => {
       </Checkbox.Group>
     );
 
-    const { container, rerender } = render(
+    const { rerender } = render(
       <Component value={checked} onChange={onChange} />
     );
 
-    const [checkboxOne, checkboxTwo, checkboxThree, checkboxFour] = Array.from(
-      container.querySelectorAll('input')
-    );
+    const [checkboxOne, checkboxTwo, checkboxThree, checkboxFour] =
+      screen.getAllByRole('checkbox');
+    const checkboxLabels = screen.getAllByTestId('checkboxLabel');
 
     expect(checkboxOne).toBeChecked();
     expect(checkboxTwo).toBeChecked();
     expect(checkboxThree).not.toBeChecked();
     expect(checkboxFour).not.toBeChecked();
 
-    await user.click(checkboxThree);
+    await user.click(checkboxLabels[2]);
     rerender(<Component value={checked} onChange={onChange} />);
-    await user.click(checkboxFour);
+    await user.click(checkboxLabels[3]);
     rerender(<Component value={checked} onChange={onChange} />);
 
     expect(onChange).toHaveBeenCalledTimes(2);
@@ -193,19 +187,25 @@ describe('Checkbox', () => {
         </Checkbox>
       </Checkbox.Group>
     );
-    const { container } = render(<Component />);
-    const [checkboxOne, checkboxTwo, checkboxThree, checkboxFour] = Array.from(
-      container.querySelectorAll('input')
-    );
+    render(<Component />);
+    const [checkboxOne, checkboxTwo, checkboxThree, checkboxFour] =
+      screen.getAllByRole('checkbox');
+    const [
+      checkboxLabelOne,
+      checkboxLabelTwo,
+      checkboxLabelThree,
+      checkboxLabelFour,
+    ] = screen.getAllByTestId('checkboxLabel');
+
     expect(checkboxOne).toBeDisabled();
     expect(checkboxTwo).toBeDisabled();
     expect(checkboxThree).toBeDisabled();
     expect(checkboxFour).toBeDisabled();
 
-    await user.click(checkboxOne);
-    await user.click(checkboxTwo);
-    await user.click(checkboxThree);
-    await user.click(checkboxFour);
+    await user.click(checkboxLabelOne);
+    await user.click(checkboxLabelTwo);
+    await user.click(checkboxLabelThree);
+    await user.click(checkboxLabelFour);
 
     expect(checkboxOne).not.toBeChecked();
     expect(checkboxTwo).not.toBeChecked();
@@ -223,8 +223,8 @@ describe('Checkbox', () => {
         ))}
       </Checkbox.Group>
     );
-    const { container, rerender } = render(<Component layout="row" />);
-    const checkboxGroup = container.firstChild as Element;
+    const { rerender } = render(<Component layout="row" />);
+    const checkboxGroup = screen.getByTestId('checkboxGroup');
     expect(getComputedStyle(checkboxGroup).flexDirection).toBe('row');
     rerender(<Component layout="column" />);
     expect(getComputedStyle(checkboxGroup).flexDirection).toBe('column');

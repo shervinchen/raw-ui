@@ -48,7 +48,7 @@ const Checkbox: FC<PropsWithChildren<CheckboxProps>> = ({
   };
 
   return (
-    <label className={classes}>
+    <label className={classes} data-testid="checkboxLabel">
       <VisuallyHiddenInput
         ref={checkboxRef}
         className="raw-checkbox-input"
