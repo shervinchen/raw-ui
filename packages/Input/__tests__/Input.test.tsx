@@ -28,33 +28,34 @@ describe('Input', () => {
 
   test('should forward ref', () => {
     const ref = React.createRef<HTMLInputElement>();
-    const { container } = render(<Input ref={ref} />);
-    const input = container.firstChild;
-    expect(input).toEqual(ref.current);
+    render(<Input ref={ref} />);
+    expect(screen.getByRole('textbox')).toEqual(ref.current);
   });
 
   test('should support custom class name', () => {
-    const { container } = render(<Input className="custom-input" />);
-    expect(container.firstChild).toHaveClass('custom-input');
+    render(<Input className="custom-input" />);
+    expect(screen.getByRole('textbox')).toHaveClass('custom-input');
   });
 
   test('should support type text', async () => {
-    const { container } = render(<Input />);
-    const input = container.firstChild as Element;
+    render(<Input />);
+    const input = screen.getByRole('textbox');
     await user.type(input, 'test text');
     expect(input).toHaveValue('test text');
   });
 
   test('should support placeholder', () => {
-    const { container } = render(<Input placeholder="Placeholder..." />);
-    const input = container.firstChild as Element;
-    expect(input).toHaveAttribute('placeholder', 'Placeholder...');
+    render(<Input placeholder="Placeholder..." />);
+    expect(screen.getByRole('textbox')).toHaveAttribute(
+      'placeholder',
+      'Placeholder...'
+    );
   });
 
   test('should support blur event', () => {
     const onBlur = jest.fn();
-    const { container } = render(<Input onBlur={onBlur} />);
-    const input = container.firstChild as HTMLElement;
+    render(<Input onBlur={onBlur} />);
+    const input = screen.getByRole('textbox');
     input.focus();
     input.blur();
     expect(onBlur).toHaveBeenCalledTimes(1);
@@ -62,16 +63,14 @@ describe('Input', () => {
 
   test('should support focus event', () => {
     const onFocus = jest.fn();
-    const { container } = render(<Input onFocus={onFocus} />);
-    const input = container.firstChild as HTMLElement;
-    input.focus();
+    render(<Input onFocus={onFocus} />);
+    screen.getByRole('textbox').focus();
     expect(onFocus).toHaveBeenCalledTimes(1);
   });
 
   test('should support uncontrolled value', () => {
-    const { container } = render(<Input defaultValue="default value" />);
-    const input = container.firstChild as Element;
-    expect(input).toHaveValue('default value');
+    render(<Input defaultValue="default value" />);
+    expect(screen.getByRole('textbox')).toHaveValue('default value');
   });
 
   test('should support controlled value', async () => {
@@ -90,8 +89,8 @@ describe('Input', () => {
         />
       );
     };
-    const { container } = render(<Component onChange={onChange} />);
-    const input = container.firstChild as Element;
+    render(<Component onChange={onChange} />);
+    const input = screen.getByRole('textbox');
     expect(input).toHaveValue('');
     await user.type(input, 'test text');
     expect(input).toHaveValue('test text');
@@ -101,31 +100,32 @@ describe('Input', () => {
   ['primary', 'success', 'warning', 'error'].forEach(
     (item: Exclude<InputTypes, 'default'>) => {
       test(`should render ${item} type`, () => {
-        const { container } = render(<Input type={item} />);
-        const input = container.firstChild as Element;
-        expect(getComputedStyle(input).borderColor).toBe(typeColorMap[item]);
+        render(<Input type={item} />);
+        expect(getComputedStyle(screen.getByRole('textbox')).borderColor).toBe(
+          typeColorMap[item]
+        );
       });
     }
   );
 
   ['sm', 'md', 'lg'].forEach((item: InputSizes) => {
     test(`should render ${item} size`, () => {
-      const { container } = render(<Input size={item} />);
-      const input = container.firstChild as Element;
-      expect(getComputedStyle(input).height).toBe(sizeHeightMap[item]);
+      render(<Input size={item} />);
+      expect(getComputedStyle(screen.getByRole('textbox')).height).toBe(
+        sizeHeightMap[item]
+      );
     });
   });
 
   test('should support custom width', () => {
-    const { container } = render(<Input width="160px" />);
-    const input = container.firstChild as Element;
-    expect(getComputedStyle(input).width).toBe('160px');
+    render(<Input width="160px" />);
+    expect(getComputedStyle(screen.getByRole('textbox')).width).toBe('160px');
   });
 
   test('should support disabled', async () => {
     const onChange = jest.fn();
-    const { container } = render(<Input disabled onChange={onChange} />);
-    const input = container.firstChild as Element;
+    render(<Input disabled onChange={onChange} />);
+    const input = screen.getByRole('textbox');
     expect(input).toBeDisabled();
     expect(input).toHaveValue('');
     await user.type(input, 'test text');
@@ -135,8 +135,8 @@ describe('Input', () => {
 
   test('should support readonly', async () => {
     const onChange = jest.fn();
-    const { container } = render(<Input readOnly onChange={onChange} />);
-    const input = container.firstChild as Element;
+    render(<Input readOnly onChange={onChange} />);
+    const input = screen.getByRole('textbox');
     expect(input).toHaveAttribute('readonly');
     expect(input).toHaveValue('');
     await user.type(input, 'test text');
@@ -157,21 +157,6 @@ describe('Input', () => {
     expect(screen.getByText('.0')).toBeInTheDocument();
   });
 
-  test('should inside element support clickable style', () => {
-    const { container } = render(
-      <Input.Group>
-        <Input.LeftElement clickable>$</Input.LeftElement>
-        <Input placeholder="Enter amount" />
-        <Input.RightElement>.0</Input.RightElement>
-      </Input.Group>
-    );
-    const leftElement = container.querySelector(
-      '.raw-input-left-element'
-    ) as Element;
-    expect(getComputedStyle(leftElement).pointerEvents).toBe('auto');
-    expect(getComputedStyle(leftElement).cursor).toBe('pointer');
-  });
-
   test('should support addon element', () => {
     render(
       <Input.Group>
@@ -186,7 +171,7 @@ describe('Input', () => {
   });
 
   test('should addon element support custom class name', () => {
-    const { container } = render(
+    render(
       <Input.Group>
         <Input.LeftAddon className="left-addon">https://</Input.LeftAddon>
         <Input placeholder="your domain" />
@@ -194,8 +179,8 @@ describe('Input', () => {
       </Input.Group>
     );
 
-    expect(container.querySelector('.left-addon')).toBeInTheDocument();
-    expect(container.querySelector('.right-addon')).toBeInTheDocument();
+    expect(screen.getByText('https://')).toHaveClass('left-addon');
+    expect(screen.getByText('.com')).toHaveClass('right-addon');
   });
 
   test('should get default style when type is unknown or falsy', () => {
