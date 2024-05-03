@@ -46,7 +46,7 @@ const ButtonIcon: FC<PropsWithChildren<ButtonIconProps>> = ({
   );
 
   return (
-    <span className={classes}>
+    <span className={classes} data-testid="buttonIcon">
       {children}
       {styles}
     </span>

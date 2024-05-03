@@ -11,6 +11,7 @@ exports[`ButtonGroup should match the snapshot 1`] = `
     >
       <span
         class="raw-button-content"
+        data-testid="buttonContent"
       >
         One
       </span>
@@ -21,6 +22,7 @@ exports[`ButtonGroup should match the snapshot 1`] = `
     >
       <span
         class="raw-button-content"
+        data-testid="buttonContent"
       >
         Two
       </span>
@@ -31,6 +33,7 @@ exports[`ButtonGroup should match the snapshot 1`] = `
     >
       <span
         class="raw-button-content"
+        data-testid="buttonContent"
       >
         Three
       </span>

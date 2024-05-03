@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, renderHook } from '@testing-library/react';
+import { render, screen, renderHook } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Search } from 'react-feather';
 import Button from '..';
@@ -33,31 +33,30 @@ describe('Button', () => {
 
   test('should forward ref', () => {
     const ref = React.createRef<HTMLButtonElement>();
-    const { container } = render(<Button ref={ref}>Text</Button>);
-    const button = container.firstChild;
+    render(<Button ref={ref}>Text</Button>);
+    const button = screen.getByRole('button', { name: /Text/i });
     expect(button).toEqual(ref.current);
   });
 
   test('should support custom class name', () => {
-    const { container } = render(
-      <Button className="custom-button">Text</Button>
-    );
-    expect(container.firstChild).toHaveClass('custom-button');
+    render(<Button className="custom-button">Text</Button>);
+    const button = screen.getByRole('button', { name: /Text/i });
+    expect(button).toHaveClass('custom-button');
   });
 
   test('should trigger event when clicked', async () => {
     const clickHandler = jest.fn();
-    const { container } = render(<Button onClick={clickHandler}>Text</Button>);
-    const button = container.firstChild;
-    await user.click(button as Element);
+    render(<Button onClick={clickHandler}>Text</Button>);
+    const button = screen.getByRole('button', { name: /Text/i });
+    await user.click(button);
     expect(clickHandler).toHaveBeenCalledTimes(1);
   });
 
   ['primary', 'success', 'warning', 'error'].forEach(
     (item: Exclude<ButtonTypes, 'default'>) => {
       test(`should render ${item} type`, () => {
-        const { container } = render(<Button type={item}>Text</Button>);
-        const button = container.firstChild as Element;
+        render(<Button type={item}>Text</Button>);
+        const button = screen.getByRole('button', { name: /Text/i });
         expect(getComputedStyle(button).backgroundColor).toBe(
           typeColorMap[item]
         );
@@ -67,41 +66,41 @@ describe('Button', () => {
 
   ['sm', 'md', 'lg'].forEach((item: ButtonSizes) => {
     test(`should render ${item} size`, () => {
-      const { container } = render(<Button size={item}>Text</Button>);
-      const button = container.firstChild as Element;
+      render(<Button size={item}>Text</Button>);
+      const button = screen.getByRole('button', { name: /Text/i });
       expect(getComputedStyle(button).height).toBe(sizeHeightMap[item]);
     });
   });
 
   test('should render outline variant', () => {
-    const { container } = render(
+    render(
       <Button type="primary" variant="outline">
         Text
       </Button>
     );
-    const button = container.firstChild as Element;
+    const button = screen.getByRole('button', { name: /Text/i });
     expect(getComputedStyle(button).color).toBe('rgb(0, 0, 0)');
     expect(getComputedStyle(button).borderColor).toBe('#000000');
   });
 
   test('should render ghost variant', () => {
-    const { container } = render(
+    render(
       <Button type="primary" variant="ghost">
         Text
       </Button>
     );
-    const button = container.firstChild as Element;
+    const button = screen.getByRole('button', { name: /Text/i });
     expect(getComputedStyle(button).backgroundColor).toBe('transparent');
     expect(getComputedStyle(button).borderColor).toBe('transparent');
   });
 
   test('should render shadow variant', () => {
-    const { container } = render(
+    render(
       <Button type="primary" variant="shadow">
         Text
       </Button>
     );
-    const button = container.firstChild as Element;
+    const button = screen.getByRole('button', { name: /Text/i });
     expect(getComputedStyle(button).boxShadow).toBe(
       '0 5px 10px rgba(0, 0, 0, 0.12)'
     );
@@ -362,44 +361,46 @@ describe('Button', () => {
 
   test('should support loading', async () => {
     const clickHandler = jest.fn();
-    const { container } = render(
+    render(
       <Button loading onClick={clickHandler}>
         Text
       </Button>
     );
-    const button = container.firstChild;
+    const button = screen.getByRole('button', { name: /Text/i });
     expect(button).toHaveClass('raw-loading-button');
     await user.click(button as Element);
     expect(clickHandler).toHaveBeenCalledTimes(0);
   });
 
   test('should support disabled', () => {
-    const { container } = render(<Button disabled>Text</Button>);
-    const button = container.firstChild;
+    render(<Button disabled>Text</Button>);
+    const button = screen.getByRole('button', { name: /Text/i });
     expect(button).toHaveClass('raw-disabled-button');
     expect(button).toBeDisabled();
   });
 
   test('should support icon without text', () => {
-    const { container } = render(<Button icon={<Search />} />);
-    expect(container.querySelector('.raw-button-icon')).toBeTruthy();
-    expect(container.querySelector('.button-icon-single')).toBeTruthy();
-    expect(container.querySelector('.raw-button-content')).toBeFalsy();
+    render(<Button icon={<Search />} />);
+    expect(screen.getByTestId('buttonIcon')).toBeInTheDocument();
+    expect(screen.queryByTestId('buttonContent')).not.toBeInTheDocument();
+    expect(screen.getByTestId('buttonIcon')).toHaveClass('button-icon-single');
   });
 
   test('should support icon with text', () => {
-    const { container } = render(<Button icon={<Search />}>Search</Button>);
-    expect(container.querySelector('.raw-button-icon')).toBeTruthy();
-    expect(container.querySelector('.button-icon-single')).toBeFalsy();
-    expect(container.querySelector('.raw-button-content')).toBeTruthy();
+    render(<Button icon={<Search />}>Search</Button>);
+    expect(screen.getByTestId('buttonIcon')).toBeInTheDocument();
+    expect(screen.queryByTestId('buttonContent')).toBeInTheDocument();
+    expect(screen.getByTestId('buttonIcon')).not.toHaveClass(
+      'button-icon-single'
+    );
   });
 
   test('should support right icon', () => {
-    const { container } = render(
-      <Button iconRight={<Search />}>Search</Button>
+    render(<Button iconRight={<Search />}>Search</Button>);
+    expect(screen.getByTestId('buttonIcon')).toBeInTheDocument();
+    expect(screen.getByTestId('buttonIcon')).not.toHaveClass(
+      'button-icon-single'
     );
-    expect(container.querySelector('.raw-button-icon')).toBeTruthy();
-    expect(container.querySelector('.button-icon-single')).toBeFalsy();
-    expect(container.querySelector('.button-icon-right')).toBeTruthy();
+    expect(screen.getByTestId('buttonIcon')).toHaveClass('button-icon-right');
   });
 });

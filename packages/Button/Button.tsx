@@ -106,7 +106,11 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
             {icon}
           </ButtonIcon>
         )}
-        {!isChildLess && <span className="raw-button-content">{children}</span>}
+        {!isChildLess && (
+          <span className="raw-button-content" data-testid="buttonContent">
+            {children}
+          </span>
+        )}
         {iconRight && (
           <ButtonIcon
             isSingle={isChildLess}

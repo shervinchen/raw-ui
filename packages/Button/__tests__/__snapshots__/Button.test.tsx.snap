@@ -8,6 +8,7 @@ exports[`Button should match the snapshot 1`] = `
   >
     <span
       class="raw-button-content"
+      data-testid="buttonContent"
     >
       Default
     </span>
