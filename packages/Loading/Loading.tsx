@@ -15,7 +15,7 @@ const DotLoading: FC<PropsWithChildren<Omit<LoadingProps, 'type'>>> = (
   const classes = classNames('raw-dot-loading', className, resolveClassName);
 
   return (
-    <div className={classes} {...restProps}>
+    <div data-testid="dotLoading" className={classes} {...restProps}>
       <span className="raw-dot-loading-inner">
         <i />
         <i />
@@ -38,7 +38,7 @@ const SpinLoading: FC<PropsWithChildren<Omit<LoadingProps, 'type'>>> = (
   const classes = classNames('raw-spin-loading', className, resolveClassName);
 
   return (
-    <div className={classes} {...restProps}>
+    <div data-testid="spinLoading" className={classes} {...restProps}>
       <div className="raw-spin-loading-wrapper">
         <div className="raw-spin-loading-inner">
           {[...new Array<number>(12)].map((_, index) => (
