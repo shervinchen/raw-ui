@@ -1,7 +1,8 @@
 import React, { FC, PropsWithChildren, useRef } from 'react';
 import classNames from 'classnames';
+import { useClickAway } from 'react-use';
 import { PopoverProps } from './Popover.types';
-import { useClickAway, useControlled, useTransition } from '../utils/hooks';
+import { useControlled, useTransition } from '../utils/hooks';
 import Popup from '../Popup';
 import { computePopupPosition } from '../Popup/computePopup';
 import { useTheme } from '../Theme';

@@ -5,7 +5,6 @@ import { usePortal } from './usePortal';
 import { useResize } from './useResize';
 import { useClickAnyWhere } from './useClickAnyWhere';
 import { useMutationObserver } from './useMutationObserver';
-import { useClickAway } from './useClickAway';
 
 export {
   useControlled,
@@ -15,5 +14,4 @@ export {
   useResize,
   useClickAnyWhere,
   useMutationObserver,
-  useClickAway,
 };

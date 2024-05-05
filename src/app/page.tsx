@@ -1,10 +1,19 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { GitHub } from 'react-feather';
 import { Button } from './client-lib';
 import ThemeSwitch from './components/theme-switch/theme-switch';
+import { useEffect, useState } from 'react';
 
 export default function Page() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-64px)] py-0 px-6">
       <main className="flex flex-col items-center justify-center max-w-[90rem] text-center gap-6">
@@ -23,14 +32,16 @@ export default function Page() {
           A minimalist and customizable React component library for web
           applications.
         </h2>
-        <div className="flex gap-3">
-          <Link href="/guide">
-            <Button type="primary">Get Started</Button>
-          </Link>
-          <Link href="https://github.com/shervinchen/raw-ui">
-            <Button icon={<GitHub />}>Github</Button>
-          </Link>
-        </div>
+        {isClient && (
+          <div className="flex gap-3">
+            <Link href="/guide">
+              <Button type="primary">Get Started</Button>
+            </Link>
+            <Link href="https://github.com/shervinchen/raw-ui">
+              <Button icon={<GitHub />}>Github</Button>
+            </Link>
+          </div>
+        )}
       </main>
     </div>
   );

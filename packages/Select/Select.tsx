@@ -11,6 +11,7 @@ import React, {
 } from 'react';
 import { ChevronDown } from 'react-feather';
 import classNames from 'classnames';
+import { useClickAway } from 'react-use';
 import {
   SelectConfig,
   SelectOptionValue,
@@ -18,7 +19,7 @@ import {
   SelectRef,
   SelectValue,
 } from './Select.types';
-import { useClickAway, useControlled } from '../utils/hooks';
+import { useControlled } from '../utils/hooks';
 import { RawUITheme } from '../Theme/preset/preset.type';
 import { useTheme } from '../Theme/theme-context';
 import { getValidChildren } from '../utils/common';
