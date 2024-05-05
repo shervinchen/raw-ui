@@ -4,6 +4,8 @@ import React, {
   useMemo,
   PropsWithChildren,
   useRef,
+  useEffect,
+  useCallback,
 } from 'react';
 import classNames from 'classnames';
 import CheckboxIcon from './CheckboxIcon';
@@ -40,12 +42,25 @@ const Checkbox: FC<PropsWithChildren<CheckboxProps>> = ({
     return groupValue.includes(checkboxValue);
   }, [internalValue, inGroup, groupValue, checkboxValue]);
 
+  const setIndeterminate = useCallback(() => {
+    if (indeterminate) {
+      checkboxRef.current.indeterminate = true;
+    } else if (checkboxRef.current.indeterminate) {
+      checkboxRef.current.indeterminate = false;
+    }
+  }, [indeterminate]);
+
   const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     if (isDisabled) return;
+    setIndeterminate();
     if (!indeterminate) setInternalValue(event.target.checked);
     if (inGroup) onGroupChange?.(checkboxValue, event.target.checked);
     onChange?.(event);
   };
+
+  useEffect(() => {
+    setIndeterminate();
+  }, [checkboxRef, indeterminate, setIndeterminate]);
 
   return (
     <label className={classes} data-testid="checkboxLabel">

@@ -105,6 +105,14 @@ describe('Checkbox', () => {
     expect(checkbox).toBePartiallyChecked();
   });
 
+  test('should not be indeterminate when indeterminate prop is false', () => {
+    const { rerender } = render(<Checkbox indeterminate={true} />);
+    const checkbox = screen.getByRole('checkbox') as HTMLInputElement;
+    expect(checkbox).toBePartiallyChecked();
+    rerender(<Checkbox indeterminate={false} />);
+    expect(checkbox).not.toBePartiallyChecked();
+  });
+
   test('should support checkbox group uncontrolled value', async () => {
     const Component = () => (
       <Checkbox.Group defaultValue={['react', 'vue']}>
