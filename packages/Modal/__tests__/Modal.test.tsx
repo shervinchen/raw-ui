@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { Button, Modal, ModalProps } from '../..';
 import userEvent from '@testing-library/user-event';
+import { KeyCode } from '../../utils/constant';
 
 const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
 
@@ -117,5 +118,14 @@ describe('Modal', () => {
     await user.click(await screen.findByTestId('modalWrapper'));
     expect(await screen.findByTestId('modalContainer')).toBeInTheDocument();
     expect(closeHandler).toHaveBeenCalledTimes(0);
+  });
+
+  test('should close modal when press the Escape key', async () => {
+    render(<Component />);
+    await user.click(screen.getByTestId('openModal'));
+    await user.keyboard(`[${KeyCode.Escape}]`);
+    await waitFor(() => {
+      expect(screen.queryByTestId('modalContainer')).not.toBeInTheDocument();
+    });
   });
 });

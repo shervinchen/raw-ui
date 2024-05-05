@@ -2,7 +2,7 @@ import React, { FC, PropsWithChildren } from 'react';
 
 const ModalBody: FC<PropsWithChildren> = ({ children, ...restProps }) => {
   return (
-    <div className="raw-modal-body" {...restProps}>
+    <div id="raw-modal-body" className="raw-modal-body" {...restProps}>
       {children}
       <style jsx>{`
         .raw-modal-body {

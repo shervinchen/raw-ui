@@ -30,6 +30,10 @@ const ModalWrapper: FC<PropsWithChildren<ModalWrapperProps>> = ({
   return shouldMount ? (
     <RemoveScroll>
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="raw-modal-title"
+        aria-describedby="raw-modal-body"
         className="raw-modal-container"
         onClick={clickModalContainerHandler}
         data-testid="modalContainer"
