@@ -46,7 +46,7 @@ const Radio: FC<PropsWithChildren<RadioProps>> = ({
   };
 
   return (
-    <label className={radioClasses}>
+    <label className={radioClasses} data-testid="radioLabel">
       <VisuallyHiddenInput
         className="raw-radio-input"
         type="radio"

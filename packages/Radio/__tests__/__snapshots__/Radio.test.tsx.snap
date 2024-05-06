@@ -4,6 +4,7 @@ exports[`Radio should match the snapshot 1`] = `
 <DocumentFragment>
   <label
     class="jsx-2317508149 raw-radio"
+    data-testid="radioLabel"
   >
     <input
       class="jsx-1802955700 raw-radio-input"

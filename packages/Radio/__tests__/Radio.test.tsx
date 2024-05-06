@@ -33,22 +33,20 @@ describe('Radio', () => {
   });
 
   test('should support custom class name', () => {
-    const { container } = render(<Radio className="custom-radio" />);
-    expect(container.firstChild).toHaveClass('custom-radio');
+    render(<Radio className="custom-radio" />);
+    expect(screen.getByTestId('radioLabel')).toHaveClass('custom-radio');
   });
 
   test('should trigger event when clicked', async () => {
     const clickHandler = jest.fn();
-    const { container } = render(<Radio onClick={clickHandler} />);
-    const radio = container.firstChild;
-    await user.click(radio as Element);
+    render(<Radio onClick={clickHandler} />);
+    await user.click(screen.getByTestId('radioLabel'));
     expect(clickHandler).toHaveBeenCalledTimes(1);
   });
 
   test('should support uncontrolled value', () => {
-    const { container } = render(<Radio defaultChecked />);
-    const radioInput = container.querySelector('.raw-radio-input');
-    expect(radioInput).toBeChecked();
+    render(<Radio defaultChecked />);
+    expect(screen.getByRole('radio')).toBeChecked();
   });
 
   test('should support label text', () => {
@@ -57,11 +55,11 @@ describe('Radio', () => {
   });
 
   test('should support disabled', async () => {
-    const { container } = render(<Radio disabled />);
-    const radio = container.firstChild;
-    const radioInput = container.querySelector('.raw-radio-input');
+    render(<Radio disabled />);
+    const radio = screen.getByTestId('radioLabel');
+    const radioInput = screen.getByRole('radio');
     expect(radioInput).toBeDisabled();
-    await user.click(radio as Element);
+    await user.click(radio);
     expect(radioInput).not.toBeChecked();
   });
 
@@ -84,11 +82,11 @@ describe('Radio', () => {
       );
     };
 
-    const { container } = render(<Component onChange={onChange} />);
-    const radio = container.firstChild;
-    const radioInput = container.querySelector('.raw-radio-input');
+    render(<Component onChange={onChange} />);
+    const radio = screen.getByTestId('radioLabel');
+    const radioInput = screen.getByRole('radio');
     expect(radioInput).not.toBeChecked();
-    await user.click(radio as Element);
+    await user.click(radio);
     expect(radioInput).toBeChecked();
     expect(onChange).toHaveBeenCalledTimes(1);
   });
@@ -103,11 +101,9 @@ describe('Radio', () => {
         ))}
       </Radio.Group>
     );
-    const { container } = render(<Component />);
-    const radioOne = container.querySelectorAll('input')[0];
-    const radioTwo = container.querySelectorAll('input')[1];
-    const radioThree = container.querySelectorAll('input')[2];
-    const radioFour = container.querySelectorAll('input')[3];
+    render(<Component />);
+    const [radioOne, radioTwo, radioThree, radioFour] =
+      screen.getAllByRole('radio');
     expect(radioOne).toBeChecked();
     expect(radioTwo).not.toBeChecked();
     expect(radioThree).not.toBeChecked();
@@ -136,13 +132,12 @@ describe('Radio', () => {
       </Radio.Group>
     );
 
-    const { container, rerender } = render(
+    const { rerender } = render(
       <Component value={checked} onChange={onChange} />
     );
 
-    const [radioOne, radioTwo, radioThree, radioFour] = Array.from(
-      container.querySelectorAll('input')
-    );
+    const [radioOne, radioTwo, radioThree, radioFour] =
+      screen.getAllByRole('radio');
 
     expect(radioOne).toBeChecked();
     expect(radioTwo).not.toBeChecked();
@@ -169,10 +164,9 @@ describe('Radio', () => {
         </Radio>
       </Radio.Group>
     );
-    const { container } = render(<Component />);
-    const [radioOne, radioTwo, radioThree, radioFour] = Array.from(
-      container.querySelectorAll('input')
-    );
+    render(<Component />);
+    const [radioOne, radioTwo, radioThree, radioFour] =
+      screen.getAllByRole('radio');
     expect(radioOne).toBeDisabled();
     expect(radioTwo).toBeDisabled();
     expect(radioThree).toBeDisabled();
@@ -199,8 +193,8 @@ describe('Radio', () => {
         ))}
       </Radio.Group>
     );
-    const { container, rerender } = render(<Component layout="row" />);
-    const radioGroup = container.firstChild as Element;
+    const { rerender } = render(<Component layout="row" />);
+    const radioGroup = screen.getByRole('radiogroup');
     expect(getComputedStyle(radioGroup).flexDirection).toBe('row');
     rerender(<Component layout="column" />);
     expect(getComputedStyle(radioGroup).flexDirection).toBe('column');
