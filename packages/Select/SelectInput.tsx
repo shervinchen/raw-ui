@@ -5,6 +5,7 @@ import React, {
   useRef,
 } from 'react';
 import { VisuallyHiddenInput } from '../VisuallyHidden';
+import { useSelectContext } from './select-context';
 
 type SelectInputProps = {
   visible: boolean;
@@ -15,6 +16,7 @@ type SelectInputProps = {
 const SelectInput = forwardRef<HTMLInputElement | null, SelectInputProps>(
   ({ visible, onBlur, onFocus }, inputRef) => {
     const ref = useRef<HTMLInputElement | null>(null);
+    const { selectId } = useSelectContext();
 
     useImperativeHandle<HTMLInputElement | null, HTMLInputElement | null>(
       inputRef,
@@ -32,14 +34,15 @@ const SelectInput = forwardRef<HTMLInputElement | null, SelectInputProps>(
     return (
       <>
         <VisuallyHiddenInput
-          ref={ref}
-          type="search"
           role="combobox"
           aria-haspopup="listbox"
+          aria-expanded={visible}
+          aria-controls={selectId}
+          ref={ref}
+          type="search"
+          autoComplete="off"
           readOnly
           unselectable="on"
-          aria-expanded={visible}
-          data-testid="selectInput"
           onBlur={onBlur}
           onFocus={onFocus}
         />

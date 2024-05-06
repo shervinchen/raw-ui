@@ -35,6 +35,9 @@ const SelectOption: FC<PropsWithChildren<SelectOptionProps>> = ({
   return (
     <div
       data-testid="selectOption"
+      role="option"
+      aria-selected={isSelected}
+      aria-disabled={isDisabled}
       className={classes}
       {...restProps}
       onClick={clickHandler}

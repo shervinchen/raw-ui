@@ -8,6 +8,7 @@ import React, {
   useImperativeHandle,
   ReactElement,
   useCallback,
+  useId,
 } from 'react';
 import { ChevronDown } from 'react-feather';
 import classNames from 'classnames';
@@ -87,6 +88,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
     },
     ref
   ) => {
+    const selectId = `raw-select-dropdown-${useId()}`;
     const theme: RawUITheme = useTheme();
     const selectRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -143,6 +145,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
         dropdownHeight,
         getPopupContainer,
         selectDisabled: disabled,
+        selectId,
       };
     }, [
       multiple,
@@ -151,6 +154,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
       dropdownHeight,
       getPopupContainer,
       disabled,
+      selectId,
     ]);
 
     useClickAway(

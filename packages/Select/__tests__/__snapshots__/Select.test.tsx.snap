@@ -15,10 +15,11 @@ exports[`Select should match the snapshot 1`] = `
         Select option
       </span>
       <input
+        aria-controls="raw-select-dropdown-:r0:"
         aria-expanded="false"
         aria-haspopup="listbox"
+        autocomplete="off"
         class="jsx-1802955700 "
-        data-testid="selectInput"
         readonly=""
         role="combobox"
         type="search"

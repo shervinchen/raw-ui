@@ -46,4 +46,5 @@ export interface SelectConfig {
   getPopupContainer?: () => HTMLElement | null;
   dropdownHeight?: string;
   selectDisabled?: boolean;
+  selectId: string;
 }

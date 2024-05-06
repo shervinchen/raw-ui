@@ -44,7 +44,7 @@ describe('Select', () => {
         <Select.Option value="2">Option 2</Select.Option>
       </Select>
     );
-    const selectInput = screen.getByTestId('selectInput');
+    const selectInput = screen.getByRole('combobox');
     act(() => {
       ref?.current?.focus();
       expect(selectInput).toHaveFocus();
@@ -54,13 +54,13 @@ describe('Select', () => {
   });
 
   test('should support custom class name', () => {
-    const { container } = render(
+    render(
       <Select className="custom-select">
         <Select.Option value="1">Option 1</Select.Option>
         <Select.Option value="2">Option 2</Select.Option>
       </Select>
     );
-    expect(container.firstChild).toHaveClass('custom-select');
+    expect(screen.getByTestId('selectContainer')).toHaveClass('custom-select');
   });
 
   test('should support placeholder', () => {
@@ -74,13 +74,13 @@ describe('Select', () => {
   });
 
   test('should support custom width', () => {
-    const { container } = render(
+    render(
       <Select width="200px">
         <Select.Option value="1">Option 1</Select.Option>
         <Select.Option value="2">Option 2</Select.Option>
       </Select>
     );
-    const select = container.firstChild as Element;
+    const select = screen.getByTestId('selectContainer');
     expect(getComputedStyle(select).width).toBe('200px');
   });
 
@@ -115,15 +115,11 @@ describe('Select', () => {
         </Select>
       );
     };
-    const { container, getAllByTestId } = render(
-      <Component onChange={onChange} />
-    );
-    const select = container.firstChild as Element;
+    const { getAllByTestId } = render(<Component onChange={onChange} />);
+    const select = screen.getByTestId('selectContainer');
     await user.click(select);
     await user.click(getAllByTestId('selectOption')[0]);
-    expect(screen.getByTestId('selectContainer').innerHTML).toContain(
-      'Option 1'
-    );
+    expect(select.innerHTML).toContain('Option 1');
   });
 
   test('should support multiple value', () => {
@@ -178,7 +174,7 @@ describe('Select', () => {
   });
 
   test('should get new value when has default value and selected multiple options change', async () => {
-    const { container, getAllByTestId } = render(
+    const { getAllByTestId } = render(
       <Select multiple defaultValue={['react', 'vue']}>
         {optionsData.map((item) => (
           <Select.Option value={item.value} key={item.value}>
@@ -187,16 +183,14 @@ describe('Select', () => {
         ))}
       </Select>
     );
-    const select = container.firstChild as Element;
+    const select = screen.getByTestId('selectContainer');
     await user.click(select);
     await user.click(getAllByTestId('selectOption')[0]);
-    expect(screen.getByTestId('selectContainer').innerHTML).not.toContain(
-      'React'
-    );
-    expect(screen.getByTestId('selectContainer').innerHTML).toContain('Vue');
+    expect(select.innerHTML).not.toContain('React');
+    expect(select.innerHTML).toContain('Vue');
     await user.click(getAllByTestId('selectOption')[0]);
-    expect(screen.getByTestId('selectContainer').innerHTML).toContain('React');
-    expect(screen.getByTestId('selectContainer').innerHTML).toContain('Vue');
+    expect(select.innerHTML).toContain('React');
+    expect(select.innerHTML).toContain('Vue');
   });
 
   test('should get new value when not has default value and selected multiple options change', async () => {
@@ -209,26 +203,26 @@ describe('Select', () => {
         ))}
       </Select>
     );
-    const select = container.firstChild as Element;
+    const select = screen.getByTestId('selectContainer');
     await user.click(select);
     await user.click(getAllByTestId('selectOption')[0]);
-    expect(screen.getByTestId('selectContainer').innerHTML).toContain('React');
+    expect(select.innerHTML).toContain('React');
   });
 
   test('should support select disabled', async () => {
-    const { container, queryAllByTestId } = render(
+    const { queryAllByTestId } = render(
       <Select disabled>
         <Select.Option value="1">Option 1</Select.Option>
         <Select.Option value="2">Option 2</Select.Option>
       </Select>
     );
-    const select = container.firstChild as Element;
+    const select = screen.getByTestId('selectContainer');
     await user.click(select);
     expect(queryAllByTestId('selectOption').length).toBe(0);
   });
 
   test('should support option disabled', async () => {
-    const { container, getAllByTestId } = render(
+    const { getAllByTestId } = render(
       <Select>
         <Select.Option value="1" disabled>
           Option 1
@@ -236,26 +230,22 @@ describe('Select', () => {
         <Select.Option value="2">Option 2</Select.Option>
       </Select>
     );
-    const select = container.firstChild as Element;
+    const select = screen.getByTestId('selectContainer');
     await user.click(select);
     await user.click(getAllByTestId('selectOption')[0]);
-    expect(screen.getByTestId('selectContainer').innerHTML).not.toContain(
-      'Option 1'
-    );
+    expect(select.innerHTML).not.toContain('Option 1');
     await user.click(getAllByTestId('selectOption')[1]);
-    expect(screen.getByTestId('selectContainer').innerHTML).toContain(
-      'Option 2'
-    );
+    expect(select.innerHTML).toContain('Option 2');
   });
 
   test('should hide select dropdown when click outside', async () => {
-    const { container } = render(
+    render(
       <Select>
         <Select.Option value="1">Option 1</Select.Option>
         <Select.Option value="2">Option 2</Select.Option>
       </Select>
     );
-    const select = container.firstChild as Element;
+    const select = screen.getByTestId('selectContainer');
     await user.click(select);
     expect(screen.getByTestId('selectDropdown')).toBeInTheDocument();
     await user.click(document.body);
