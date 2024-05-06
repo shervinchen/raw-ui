@@ -47,7 +47,12 @@ const CheckboxGroup: FC<PropsWithChildren<CheckboxGroupProps>> = ({
 
   return (
     <CheckboxGroupContext.Provider value={checkboxGroupConfig}>
-      <div className={classes} {...restProps} data-testid="checkboxGroup">
+      <div
+        role="group"
+        className={classes}
+        {...restProps}
+        data-testid="checkboxGroup"
+      >
         {children}
         <style jsx>{`
           .raw-checkbox-group {

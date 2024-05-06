@@ -40,7 +40,7 @@ const RadioGroup: FC<PropsWithChildren<RadioGroupProps>> = ({
 
   return (
     <RadioGroupContext.Provider value={radioGroupConfig}>
-      <div className={classes} {...restProps}>
+      <div role="radiogroup" className={classes} {...restProps}>
         {children}
         <style jsx>{`
           .raw-radio-group {
