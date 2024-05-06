@@ -81,7 +81,6 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
           style={{
             opacity: stage === 'enter' ? 1 : 0,
           }}
-          data-testid="popover"
         >
           {!hideArrow && <PopoverArrow targetRef={ref} placement={placement} />}
           {content}

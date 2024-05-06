@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, useRef, useState } from 'react';
+import React, { FC, PropsWithChildren, useId, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { TooltipProps } from './Tooltip.types';
 import { useTransition } from '../utils/hooks';
@@ -17,6 +17,7 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
   children,
   ...restProps
 }) => {
+  const tooltipId = useId();
   const ref = useRef<HTMLDivElement>(null);
   const theme = useTheme();
   const [visible, setVisible] = useState(false);
@@ -33,8 +34,8 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
     <>
       <div
         data-testid="tooltipTarget"
+        aria-describedby={tooltipId}
         ref={ref}
-        className={classes}
         onMouseEnter={() => mouseHandler(true)}
         onMouseLeave={() => mouseHandler(false)}
         {...restProps}
@@ -51,11 +52,12 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
         getPopupContainer={getPopupContainer}
       >
         <div
-          className="raw-tooltip-content"
+          role="tooltip"
+          id={tooltipId}
+          className={classes}
           style={{
             opacity: stage === 'enter' ? 1 : 0,
           }}
-          data-testid="tooltipContent"
         >
           {!hideArrow && <TooltipArrow targetRef={ref} placement={placement} />}
           {content}
@@ -63,9 +65,6 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
       </Popup>
       <style jsx>{`
         .raw-tooltip {
-          display: inline-flex;
-        }
-        .raw-tooltip-content {
           background-color: ${theme.palette.foreground};
           color: ${theme.palette.background};
           border-radius: 6px;

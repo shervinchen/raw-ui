@@ -13,29 +13,30 @@ describe('Tooltip', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test('should support custom class name', () => {
-    const { container } = render(
+  test('should support custom class name', async () => {
+    render(
       <Tooltip content="I am a tooltip" className="custom-tooltip">
         Hover me
       </Tooltip>
     );
-    expect(container.firstChild).toHaveClass('custom-tooltip');
+    await user.hover(screen.getByTestId('tooltipTarget'));
+    expect(await screen.findByRole('tooltip')).toHaveClass('custom-tooltip');
   });
 
   test('should show tooltip when mouse over target', async () => {
     render(<Tooltip content="I am a tooltip">Hover me</Tooltip>);
     await user.hover(screen.getByTestId('tooltipTarget'));
-    expect(await screen.findByTestId('tooltipContent')).toBeInTheDocument();
+    expect(await screen.findByRole('tooltip')).toBeInTheDocument();
   });
 
   test('should hide tooltip when mouse out target', async () => {
     render(<Tooltip content="I am a tooltip">Hover me</Tooltip>);
     const target = screen.getByTestId('tooltipTarget');
     await user.hover(target);
-    expect(await screen.findByTestId('tooltipContent')).toBeInTheDocument();
+    expect(await screen.findByRole('tooltip')).toBeInTheDocument();
     await user.unhover(target);
     await waitFor(() => {
-      expect(screen.queryByTestId('tooltipContent')).not.toBeInTheDocument();
+      expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
     });
   });
 
@@ -47,7 +48,7 @@ describe('Tooltip', () => {
     );
     await user.hover(screen.getByTestId('tooltipTarget'));
     await waitFor(() => {
-      expect(screen.queryByTestId('tooltipContent')).not.toBeInTheDocument();
+      expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
     });
   });
 });

@@ -21,7 +21,7 @@ describe('Popover', () => {
         Click me
       </Popover>
     );
-    expect(await screen.findByTestId('popover')).toBeInTheDocument();
+    expect(await screen.findByRole('dialog')).toBeInTheDocument();
   });
 
   test('should support custom class name', async () => {
@@ -31,33 +31,33 @@ describe('Popover', () => {
       </Popover>
     );
     await user.click(screen.getByTestId('popoverTarget'));
-    expect(await screen.findByTestId('popover')).toHaveClass('custom-popover');
+    expect(await screen.findByRole('dialog')).toHaveClass('custom-popover');
   });
 
   test('should show popover when click target', async () => {
     render(<Popover content="I am a popover">Click me</Popover>);
     await user.click(screen.getByTestId('popoverTarget'));
-    expect(await screen.findByTestId('popover')).toBeInTheDocument();
+    expect(await screen.findByRole('dialog')).toBeInTheDocument();
   });
 
   test('should switch whether or not popover is visible when click target', async () => {
     render(<Popover content="I am a popover">Click me</Popover>);
     const target = screen.getByTestId('popoverTarget');
     await user.click(target);
-    expect(await screen.findByTestId('popover')).toBeInTheDocument();
+    expect(await screen.findByRole('dialog')).toBeInTheDocument();
     await user.click(target);
     await waitFor(() => {
-      expect(screen.queryByTestId('popover')).not.toBeInTheDocument();
+      expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     });
   });
 
   test('should hide popover when click outside', async () => {
     render(<Popover content="I am a popover">Click me</Popover>);
     await user.click(screen.getByTestId('popoverTarget'));
-    expect(await screen.findByTestId('popover')).toBeInTheDocument();
+    expect(await screen.findByRole('dialog')).toBeInTheDocument();
     await user.click(document.body);
     await waitFor(() => {
-      expect(screen.queryByTestId('popover')).not.toBeInTheDocument();
+      expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     });
   });
 
@@ -69,7 +69,7 @@ describe('Popover', () => {
     );
     await user.click(screen.getByTestId('popoverTarget'));
     await waitFor(() => {
-      expect(screen.queryByTestId('popover')).not.toBeInTheDocument();
+      expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     });
   });
 
@@ -96,7 +96,7 @@ describe('Popover', () => {
       <Component content="I am a controlled popover" onChange={onChange} />
     );
     await user.click(screen.getByTestId('popoverTarget'));
-    expect(await screen.findByTestId('popover')).toBeInTheDocument();
+    expect(await screen.findByRole('dialog')).toBeInTheDocument();
     expect(onChange).toHaveBeenCalledTimes(1);
   });
 
@@ -127,10 +127,10 @@ describe('Popover', () => {
         Click me
       </Popover>
     );
-    expect(screen.getByTestId('popover')).toBeInTheDocument();
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
     await user.keyboard(`[${KeyCode.Escape}]`);
     await waitFor(() => {
-      expect(screen.queryByTestId('popover')).not.toBeInTheDocument();
+      expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     });
   });
 });
