@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
-import { render, renderHook } from '@testing-library/react';
+import { render, renderHook, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Toggle from '..';
 import { ToggleProps, ToggleStatus } from '../Toggle.types';
@@ -14,21 +14,21 @@ describe('Toggle', () => {
   });
 
   test('should support custom class name', () => {
-    const { container } = render(<Toggle className="custom-toggle" />);
-    expect(container.firstChild).toHaveClass('custom-toggle');
+    render(<Toggle className="custom-toggle" />);
+    expect(screen.getByTestId('toggleLabel')).toHaveClass('custom-toggle');
   });
 
   test('should trigger event when clicked', async () => {
     const clickHandler = jest.fn();
-    const { container } = render(<Toggle onClick={clickHandler} />);
-    const toggle = container.firstChild;
-    await user.click(toggle as Element);
+    render(<Toggle onClick={clickHandler} />);
+    const toggle = screen.getByTestId('toggleLabel');
+    await user.click(toggle);
     expect(clickHandler).toHaveBeenCalledTimes(1);
   });
 
   test('should support uncontrolled value', () => {
-    const { container } = render(<Toggle defaultChecked />);
-    const toggleInput = container.querySelector('.raw-toggle-input');
+    render(<Toggle defaultChecked />);
+    const toggleInput = screen.getByRole('switch');
     expect(toggleInput).toBeChecked();
   });
 
@@ -49,21 +49,21 @@ describe('Toggle', () => {
       );
     };
 
-    const { container } = render(<Component onChange={onChange} />);
-    const toggle = container.firstChild;
-    const toggleInput = container.querySelector('.raw-toggle-input');
+    render(<Component onChange={onChange} />);
+    const toggle = screen.getByTestId('toggleLabel');
+    const toggleInput = screen.getByRole('switch');
     expect(toggleInput).not.toBeChecked();
-    await user.click(toggle as Element);
+    await user.click(toggle);
     expect(toggleInput).toBeChecked();
     expect(onChange).toHaveBeenCalledTimes(1);
   });
 
   test('should support disabled', async () => {
-    const { container } = render(<Toggle disabled />);
-    const toggle = container.firstChild;
-    const toggleInput = container.querySelector('.raw-toggle-input');
+    render(<Toggle disabled />);
+    const toggle = screen.getByTestId('toggleLabel');
+    const toggleInput = screen.getByRole('switch');
     expect(toggleInput).toBeDisabled();
-    await user.click(toggle as Element);
+    await user.click(toggle);
     expect(toggleInput).not.toBeChecked();
   });
 

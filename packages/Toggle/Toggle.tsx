@@ -31,9 +31,10 @@ const Toggle: FC<ToggleProps> = ({
   };
 
   return (
-    <label className={toggleClasses}>
+    <label className={toggleClasses} data-testid="toggleLabel">
       <VisuallyHiddenInput
         className="raw-toggle-input"
+        role="switch"
         type="checkbox"
         disabled={disabled}
         checked={internalValue}
