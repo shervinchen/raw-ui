@@ -1,12 +1,13 @@
-import React, { FC, PropsWithChildren, useRef } from 'react';
+import React, { FC, PropsWithChildren, useId, useRef } from 'react';
 import classNames from 'classnames';
-import { useClickAway } from 'react-use';
+import { useClickAway, useKeyPressEvent } from 'react-use';
 import { PopoverProps } from './Popover.types';
 import { useControlled, useTransition } from '../utils/hooks';
 import Popup from '../Popup';
 import { computePopupPosition } from '../Popup/computePopup';
 import { useTheme } from '../Theme';
 import PopoverArrow from './PopoverArrow';
+import { KeyCode } from '../utils/constant';
 
 const Popover: FC<PropsWithChildren<PopoverProps>> = ({
   content,
@@ -21,6 +22,7 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
   children,
   ...restProps
 }) => {
+  const popoverId = useId();
   const ref = useRef<HTMLDivElement>(null);
   const theme = useTheme();
   const [internalValue, setInternalValue] = useControlled<boolean>({
@@ -45,12 +47,19 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
     ['click']
   );
 
+  useKeyPressEvent(KeyCode.Escape, () => {
+    setInternalValue(false);
+    onChange?.(false);
+  });
+
   return (
     <>
       <div
+        aria-expanded={internalValue ? 'true' : 'false'}
+        aria-haspopup="dialog"
         data-testid="popoverTarget"
+        aria-controls={popoverId}
         ref={ref}
-        className={classes}
         onClick={clickHandler}
         {...restProps}
       >
@@ -66,11 +75,13 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
         getPopupContainer={getPopupContainer}
       >
         <div
-          className="raw-popover-content"
+          role="dialog"
+          id={popoverId}
+          className={classes}
           style={{
             opacity: stage === 'enter' ? 1 : 0,
           }}
-          data-testid="popoverContent"
+          data-testid="popover"
         >
           {!hideArrow && <PopoverArrow targetRef={ref} placement={placement} />}
           {content}
@@ -78,9 +89,6 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
       </Popup>
       <style jsx>{`
         .raw-popover {
-          display: inline-flex;
-        }
-        .raw-popover-content {
           background-color: ${theme.palette.background};
           color: ${theme.palette.foreground};
           border-radius: 6px;

@@ -3,7 +3,10 @@
 exports[`Popover should match the snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="jsx-3851428059 raw-popover"
+    aria-controls=":r0:"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="jsx-1622253041 "
     data-testid="popoverTarget"
   >
     Click me
