@@ -7,7 +7,6 @@ import { useInputFocusStyles, useInputStyles } from '../Input.styles';
 
 const typeColorMap = {
   primary: '#000000',
-  success: '#0070f3',
   warning: '#f5a623',
   error: '#ee0000',
 };
@@ -97,7 +96,7 @@ describe('Input', () => {
     expect(onChange).toHaveBeenCalledTimes(9);
   });
 
-  ['primary', 'success', 'warning', 'error'].forEach(
+  ['primary', 'warning', 'error'].forEach(
     (item: Exclude<InputTypes, 'default'>) => {
       test(`should render ${item} type`, () => {
         render(<Input type={item} />);

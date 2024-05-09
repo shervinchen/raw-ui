@@ -1,11 +1,6 @@
 import { InputHTMLAttributes, ChangeEvent, FocusEvent } from 'react';
 
-export type InputTypes =
-  | 'default'
-  | 'primary'
-  | 'success'
-  | 'warning'
-  | 'error';
+export type InputTypes = 'default' | 'primary' | 'warning' | 'error';
 
 export type InputSizes = 'sm' | 'md' | 'lg';
 

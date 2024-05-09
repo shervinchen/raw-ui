@@ -47,10 +47,6 @@ export const useInputStyles = ({
       color: theme.palette.foreground,
       borderColor: theme.palette.foreground,
     },
-    success: {
-      color: theme.palette.foreground,
-      borderColor: theme.palette.success5,
-    },
     warning: {
       color: theme.palette.foreground,
       borderColor: theme.palette.warning5,
@@ -90,9 +86,6 @@ export const useInputFocusStyles = ({
     },
     primary: {
       focusBorderColor: theme.palette.foreground,
-    },
-    success: {
-      focusBorderColor: theme.palette.success5,
     },
     warning: {
       focusBorderColor: theme.palette.warning5,
