@@ -83,6 +83,7 @@ import {
   DemoModalNotCloseOnOverlayClick,
   DemoModalWidth,
 } from './modal';
+import { DemoPaginationDefault } from './pagination';
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
   title,
@@ -323,6 +324,11 @@ function App() {
         </Wrapper>
         <Wrapper title="Width">
           <DemoModalWidth />
+        </Wrapper>
+      </Container>
+      <Container title="Pagination">
+        <Wrapper title="Default">
+          <DemoPaginationDefault />
         </Wrapper>
       </Container>
     </div>

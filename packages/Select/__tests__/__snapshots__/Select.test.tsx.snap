@@ -3,11 +3,11 @@
 exports[`Select should match the snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="jsx-1324625606 raw-select"
+    class="jsx-935779161 raw-select"
     data-testid="selectContainer"
   >
     <div
-      class="jsx-1324625606 raw-select-inner"
+      class="jsx-935779161 raw-select-inner"
     >
       <span
         class="raw-select-placeholder"
@@ -27,7 +27,7 @@ exports[`Select should match the snapshot 1`] = `
       />
     </div>
     <div
-      class="jsx-1324625606 raw-select-arrow"
+      class="jsx-935779161 raw-select-arrow"
     >
       <svg
         fill="none"

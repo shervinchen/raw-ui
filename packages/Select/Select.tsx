@@ -101,7 +101,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const selectClasses = classNames(
       'raw-select',
-      (selectFocus || dropdownVisible) && 'active',
+      (selectFocus || dropdownVisible) && 'raw-select-active',
       multiple && 'multiple',
       className
     );
@@ -321,13 +321,13 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
               transition: transform 0.15s ease;
               color: ${theme.palette.accents7};
             }
-            .raw-select.active,
+            .raw-select.raw-select-active,
             .raw-select:hover {
               border-color: ${disabled
                 ? theme.palette.accents2
                 : theme.palette.foreground};
             }
-            .raw-select.active .raw-select-arrow,
+            .raw-select.raw-select-active .raw-select-arrow,
             .raw-select:hover .raw-select-arrow {
               color: ${disabled
                 ? theme.palette.accents7

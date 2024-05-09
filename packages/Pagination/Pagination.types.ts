@@ -5,6 +5,7 @@ interface BasePaginationProps {
   defaultPage?: number;
   count?: number;
   limit?: number;
+  className?: string;
   onChange?: (page: number) => void;
 }
 
@@ -14,3 +15,9 @@ type NativePaginationProps = Omit<
 >;
 
 export type PaginationProps = BasePaginationProps & NativePaginationProps;
+
+export interface PaginationPagesProps {
+  pages: number[];
+  internalPage: number;
+  clickPageNumberHandler: (page: number) => void;
+}

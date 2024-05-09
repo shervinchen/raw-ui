@@ -194,7 +194,7 @@ describe('Select', () => {
   });
 
   test('should get new value when not has default value and selected multiple options change', async () => {
-    const { getAllByTestId, container } = render(
+    const { getAllByTestId } = render(
       <Select multiple>
         {optionsData.map((item) => (
           <Select.Option value={item.value} key={item.value}>

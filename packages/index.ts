@@ -39,3 +39,6 @@ export * from './Popover/Popover.types';
 
 export { default as Modal } from './Modal';
 export * from './Modal/Modal.types';
+
+export { default as Pagination } from './Pagination';
+export * from './Pagination/Pagination.types';

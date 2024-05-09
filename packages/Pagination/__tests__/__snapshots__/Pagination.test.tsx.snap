@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pagination should match the snapshot 1`] = `
+<DocumentFragment>
+  <nav
+    aria-label="pagination"
+    class="jsx-4082017107 raw-pagination"
+    role="navigation"
+  >
+    <ul
+      class="jsx-4082017107 raw-pagination-list"
+    >
+      <li
+        class="jsx-4082017107"
+      >
+        <a
+          aria-label="Go to previous page"
+          class="jsx-4082017107 raw-pagination-item raw-pagination-item-disabled jsx-2619780212"
+        >
+          <svg
+            fill="none"
+            height="16"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <polyline
+              points="15 18 9 12 15 6"
+            />
+          </svg>
+        </a>
+      </li>
+      <li
+        class="jsx-3237814599"
+      >
+        <a
+          aria-current="page"
+          class="jsx-3237814599 raw-pagination-item raw-pagination-item-active jsx-2619780212"
+        >
+          1
+        </a>
+      </li>
+      <li
+        class="jsx-4082017107"
+      >
+        <a
+          aria-label="Go to next page"
+          class="jsx-4082017107 raw-pagination-item raw-pagination-item-disabled jsx-2619780212"
+        >
+          <svg
+            fill="none"
+            height="16"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <polyline
+              points="9 18 15 12 9 6"
+            />
+          </svg>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</DocumentFragment>
+`;
