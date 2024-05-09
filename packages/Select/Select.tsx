@@ -21,13 +21,12 @@ import {
   SelectValue,
 } from './Select.types';
 import { useControlled } from '../utils/hooks';
-import { RawUITheme } from '../Theme/preset/preset.type';
-import { useTheme } from '../Theme/theme-context';
 import { getValidChildren } from '../utils/common';
 import { SelectContext } from './select-context';
 import SelectDropdown from './SelectDropdown';
 import SelectInput from './SelectInput';
 import SelectTag from './SelectTag';
+import { useSelectCSS } from './Select.styles';
 
 const getInternalValue = (multiple: boolean, value: SelectValue) => {
   if (Array.isArray(value)) {
@@ -73,6 +72,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
       defaultValue,
       value,
       width = '100%',
+      type = 'default',
       // size = "md",
       disabled = false,
       multiple = false,
@@ -89,7 +89,6 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
     ref
   ) => {
     const selectId = `raw-select-dropdown-${useId()}`;
-    const theme: RawUITheme = useTheme();
     const selectRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -99,11 +98,18 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
     });
     const [selectFocus, setSelectFocus] = useState(false);
     const [dropdownVisible, setDropdownVisible] = useState(false);
+    const { className: resolveClassName, styles } = useSelectCSS({
+      width,
+      type,
+      disabled,
+      dropdownVisible,
+    });
     const selectClasses = classNames(
       'raw-select',
       (selectFocus || dropdownVisible) && 'raw-select-active',
       multiple && 'multiple',
-      className
+      className,
+      resolveClassName
     );
 
     const clickHandler = (event: MouseEvent<HTMLDivElement>) => {
@@ -256,84 +262,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
           >
             {children}
           </SelectDropdown>
-          <style jsx>{`
-            .raw-select {
-              box-sizing: border-box;
-              display: inline-flex;
-              position: relative;
-              align-items: center;
-              width: ${width};
-              height: 40px;
-              padding-left: 12px;
-              padding-right: 40px;
-              border: 1px solid ${theme.palette.accents2};
-              border-radius: 6px;
-              background-color: ${disabled
-                ? theme.palette.accents1
-                : theme.palette.background};
-              transition: border-color 0.15s ease, color 0.15s ease,
-                box-shadow 0.15s ease;
-              cursor: ${disabled ? 'not-allowed' : 'pointer'};
-              user-select: none;
-            }
-            .raw-select.multiple {
-              height: auto;
-              min-height: 40px;
-            }
-            .raw-select-inner {
-              display: inline-flex;
-              width: 100%;
-            }
-            .raw-select :global(.raw-select-placeholder) {
-              max-width: 100%;
-              overflow: hidden;
-              white-space: nowrap;
-              text-overflow: ellipsis;
-              font-size: 14px;
-              color: ${theme.palette.accents5};
-            }
-            .raw-select :global(.raw-select-content) {
-              max-width: 100%;
-              overflow: hidden;
-              white-space: nowrap;
-              text-overflow: ellipsis;
-              font-size: 14px;
-              color: ${disabled
-                ? theme.palette.accents6
-                : theme.palette.foreground};
-            }
-            .raw-select :global(.raw-select-tag-content) {
-              display: flex;
-              flex-wrap: wrap;
-              padding-top: 4px;
-              padding-bottom: 4px;
-              margin: -2px;
-            }
-            .raw-select-arrow {
-              display: inline-flex;
-              align-items: center;
-              position: absolute;
-              right: 12px;
-              top: 50%;
-              transform: translateY(-50%)
-                rotate(${dropdownVisible ? '180' : '0'}deg);
-              pointer-events: none;
-              transition: transform 0.15s ease;
-              color: ${theme.palette.accents7};
-            }
-            .raw-select.raw-select-active,
-            .raw-select:hover {
-              border-color: ${disabled
-                ? theme.palette.accents2
-                : theme.palette.foreground};
-            }
-            .raw-select.raw-select-active .raw-select-arrow,
-            .raw-select:hover .raw-select-arrow {
-              color: ${disabled
-                ? theme.palette.accents7
-                : theme.palette.foreground};
-            }
-          `}</style>
+          {styles}
         </div>
       </SelectContext.Provider>
     );

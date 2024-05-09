@@ -32,6 +32,25 @@ export function DemoSelectDefault() {
   );
 }
 
+export function DemoSelectType() {
+  return (
+    <Unit layout="col">
+      <Select width="200px" placeholder="Default Type">
+        <Select.Option value="1">Option 1</Select.Option>
+        <Select.Option value="2">Option 2</Select.Option>
+      </Select>
+      <Select width="200px" type="warning" placeholder="Warning Type">
+        <Select.Option value="1">Option 1</Select.Option>
+        <Select.Option value="2">Option 2</Select.Option>
+      </Select>
+      <Select width="200px" type="error" placeholder="Error Type">
+        <Select.Option value="1">Option 1</Select.Option>
+        <Select.Option value="2">Option 2</Select.Option>
+      </Select>
+    </Unit>
+  );
+}
+
 export function DemoSelectSelected() {
   return (
     <Unit layout="row">

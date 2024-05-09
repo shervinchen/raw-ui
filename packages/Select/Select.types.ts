@@ -8,6 +8,8 @@ export type SelectValue =
   | undefined
   | null;
 
+export type SelectTypes = 'default' | 'warning' | 'error';
+
 export type SelectSize = 'sm' | 'md' | 'lg';
 
 export interface BaseSelectProps {
@@ -15,6 +17,7 @@ export interface BaseSelectProps {
   defaultValue?: SelectValue;
   width?: string;
   placeholder?: string;
+  type?: SelectTypes;
   size?: SelectSize;
   disabled?: boolean;
   multiple?: boolean;
@@ -47,4 +50,23 @@ export interface SelectConfig {
   dropdownHeight?: string;
   selectDisabled?: boolean;
   selectId: string;
+}
+
+export interface SelectSizeStyles {
+  fontSize?: string;
+  height?: string;
+  horizontalPadding?: string;
+}
+
+export interface SelectBasicStyles {
+  borderColor?: string;
+  color?: string;
+  backgroundColor?: string;
+  cursor?: 'pointer' | 'not-allowed';
+}
+
+export type SelectStyles = SelectSizeStyles & SelectBasicStyles;
+
+export interface SelectHoverStyles {
+  hoverBorderColor?: string;
 }

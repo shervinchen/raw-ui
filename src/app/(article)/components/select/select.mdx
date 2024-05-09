@@ -24,6 +24,28 @@ import { Select } from 'raw-ui';
 `}
 />
 
+## Types
+
+<Playground
+  scope={{ Unit, Select }}
+  code={`
+<Unit layout="col">
+  <Select width="200px" placeholder="Default Type">
+    <Select.Option value="1">Option 1</Select.Option>
+    <Select.Option value="2">Option 2</Select.Option>
+  </Select>
+  <Select width="200px" type="warning" placeholder="Warning Type">
+    <Select.Option value="1">Option 1</Select.Option>
+    <Select.Option value="2">Option 2</Select.Option>
+  </Select>
+  <Select width="200px" type="error" placeholder="Error Type">
+    <Select.Option value="1">Option 1</Select.Option>
+    <Select.Option value="2">Option 2</Select.Option>
+  </Select>
+</Unit>
+`}
+/>
+
 ## Selected
 
 <Playground
@@ -211,17 +233,18 @@ import { Select } from 'raw-ui';
 
 ### Select
 
-| Prop              | Description                                  | Type                         | Default |
-| ----------------- | -------------------------------------------- | ---------------------------- | ------- |
-| defaultValue      | default selected value (uncontrolled)        | SelectValue                  | -       |
-| value             | selected value (controlled)                  | SelectValue                  | -       |
-| placeholder       | select placeholder                           | string                       | -       |
-| width             | select width                                 | string                       | '100%'  |
-| disabled          | disable select                               | boolean                      | false   |
-| multiple          | support multiple selection                   | boolean                      | false   |
-| onChange          | change event handler                         | (value: SelectValue) => void | -       |
-| getPopupContainer | set the parent element of dropdown rendering | () => HTMLElement \| null    | -       |
-| ...               | native props                                 | React.HTMLAttributes         | -       |
+| Prop              | Description                                  | Type                              | Default   |
+| ----------------- | -------------------------------------------- | --------------------------------- | --------- |
+| type              | select type                                  | 'default' \| 'warning' \| 'error' | 'default' |
+| defaultValue      | default selected value (uncontrolled)        | SelectValue                       | -         |
+| value             | selected value (controlled)                  | SelectValue                       | -         |
+| placeholder       | select placeholder                           | string                            | -         |
+| width             | select width                                 | string                            | '100%'    |
+| disabled          | disable select                               | boolean                           | false     |
+| multiple          | support multiple selection                   | boolean                           | false     |
+| onChange          | change event handler                         | (value: SelectValue) => void      | -         |
+| getPopupContainer | set the parent element of dropdown rendering | () => HTMLElement \| null         | -         |
+| ...               | native props                                 | React.HTMLAttributes              | -         |
 
 ### Select.Option
 

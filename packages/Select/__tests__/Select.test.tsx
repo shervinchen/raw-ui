@@ -1,8 +1,14 @@
 import React, { useState, act } from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, renderHook, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Select from '..';
-import { SelectProps, SelectValue } from '../Select.types';
+import { SelectProps, SelectTypes, SelectValue } from '../Select.types';
+import { useSelectHoverStyles, useSelectStyles } from '../Select.styles';
+
+const typeColorMap = {
+  warning: '#f5a623',
+  error: '#ee0000',
+};
 
 const optionsData = [
   {
@@ -51,6 +57,54 @@ describe('Select', () => {
       ref?.current?.blur();
       expect(selectInput).not.toHaveFocus();
     });
+  });
+
+  ['warning', 'error'].forEach((item: Exclude<SelectTypes, 'default'>) => {
+    test(`should render ${item} type`, () => {
+      render(
+        <Select type={item}>
+          <Select.Option value="1">Option 1</Select.Option>
+          <Select.Option value="2">Option 2</Select.Option>
+        </Select>
+      );
+      expect(screen.getByTestId('selectContainer')).toHaveStyle(
+        `border: 1px solid ${typeColorMap[item]}`
+      );
+    });
+  });
+
+  test('should get default style when type is unknown or falsy', () => {
+    const { result: result1 } = renderHook(() =>
+      useSelectStyles({
+        type: 'unknown' as SelectTypes,
+        disabled: false,
+      })
+    );
+    const { result: result2 } = renderHook(() =>
+      useSelectStyles({
+        type: undefined as unknown as SelectTypes,
+        disabled: false,
+      })
+    );
+    expect(result1.current.borderColor).toBe('#eaeaea');
+    expect(result2.current.borderColor).toBe('#eaeaea');
+  });
+
+  test('should get default hover style when type is unknown or falsy', () => {
+    const { result: result1 } = renderHook(() =>
+      useSelectHoverStyles({
+        type: 'unknown' as SelectTypes,
+        disabled: false,
+      })
+    );
+    const { result: result2 } = renderHook(() =>
+      useSelectHoverStyles({
+        type: undefined as unknown as SelectTypes,
+        disabled: false,
+      })
+    );
+    expect(result1.current.hoverBorderColor).toBe('#666666');
+    expect(result2.current.hoverBorderColor).toBe('#666666');
   });
 
   test('should support custom class name', () => {
