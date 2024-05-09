@@ -195,8 +195,8 @@ describe('Radio', () => {
     );
     const { rerender } = render(<Component layout="row" />);
     const radioGroup = screen.getByRole('radiogroup');
-    expect(getComputedStyle(radioGroup).flexDirection).toBe('row');
+    expect(radioGroup).toHaveStyle('flex-direction: row');
     rerender(<Component layout="column" />);
-    expect(getComputedStyle(radioGroup).flexDirection).toBe('column');
+    expect(radioGroup).toHaveStyle('flex-direction: column');
   });
 });

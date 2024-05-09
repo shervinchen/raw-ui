@@ -135,7 +135,7 @@ describe('Select', () => {
       </Select>
     );
     const select = screen.getByTestId('selectContainer');
-    expect(getComputedStyle(select).width).toBe('200px');
+    expect(select).toHaveStyle('width: 200px');
   });
 
   test('should support uncontrolled value', () => {

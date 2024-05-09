@@ -58,7 +58,7 @@ const ButtonGroup: FC<PropsWithChildren<ButtonGroupProps>> = ({
 
   return (
     <ButtonGroupContext.Provider value={initialConfig}>
-      <div className={classes} {...resetProps}>
+      <div role="group" className={classes} {...resetProps}>
         {children}
         {styles}
       </div>

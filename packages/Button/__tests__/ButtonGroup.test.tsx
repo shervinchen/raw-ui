@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Button from '..';
 import { ButtonSizes, ButtonTypes } from '../Button.types';
 import { ButtonGroupVariant } from '../ButtonGroup.types';
@@ -30,42 +30,40 @@ describe('ButtonGroup', () => {
   });
 
   test('should support custom class name', () => {
-    const { container } = render(
+    render(
       <Button.Group className="custom-button-group">
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>
       </Button.Group>
     );
-    expect(container.firstChild).toHaveClass('custom-button-group');
+    expect(screen.getByRole('group')).toHaveClass('custom-button-group');
   });
 
   test('should render the correct number of child', () => {
-    const { container } = render(
+    render(
       <Button.Group>
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>
       </Button.Group>
     );
-    expect(container.querySelectorAll('.raw-button').length).toBe(3);
+    expect(screen.getAllByRole('button').length).toBe(3);
   });
 
   ['primary', 'success', 'warning', 'error'].forEach(
     (item: Exclude<ButtonTypes, 'default'>) => {
       test(`should render ${item} type`, () => {
-        const { container } = render(
+        render(
           <Button.Group type={item}>
             <Button>One</Button>
             <Button>Two</Button>
             <Button>Three</Button>
           </Button.Group>
         );
-        const buttons = container.querySelectorAll(`.raw-button`);
+        const buttons = screen.getAllByRole('button');
         buttons.forEach((button) => {
-          expect(getComputedStyle(button).backgroundColor).toBe(
-            typeColorMap[item]
-          );
+          expect(button).toHaveStyle(`background-color: ${typeColorMap[item]}`);
         });
       });
     }
@@ -73,85 +71,82 @@ describe('ButtonGroup', () => {
 
   ['sm', 'md', 'lg'].forEach((item: ButtonSizes) => {
     test(`should render ${item} size`, () => {
-      const { container } = render(
+      render(
         <Button.Group size={item}>
           <Button>One</Button>
           <Button>Two</Button>
           <Button>Three</Button>
         </Button.Group>
       );
-      const buttons = container.querySelectorAll(`.raw-button`);
+      const buttons = screen.getAllByRole('button');
       buttons.forEach((button) => {
-        expect(getComputedStyle(button).height).toBe(sizeHeightMap[item]);
+        expect(button).toHaveStyle(`height: ${sizeHeightMap[item]}`);
       });
     });
   });
 
   test('should render outline variant', () => {
-    const { container } = render(
+    render(
       <Button.Group type="primary" variant="outline">
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>
       </Button.Group>
     );
-    const buttons = container.querySelectorAll(`.raw-button`);
+    const buttons = screen.getAllByRole('button');
     buttons.forEach((button) => {
-      expect(getComputedStyle(button).color).toBe('rgb(0, 0, 0)');
+      expect(button).toHaveStyle(`color: rgb(0, 0, 0)`);
     });
   });
 
   test('should render ghost variant', () => {
-    const { container } = render(
+    render(
       <Button.Group type="primary" variant="ghost">
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>
       </Button.Group>
     );
-    const buttons = container.querySelectorAll(`.raw-button`);
+    const buttons = screen.getAllByRole('button');
     buttons.forEach((button) => {
-      expect(getComputedStyle(button).backgroundColor).toBe('transparent');
+      expect(button).toHaveStyle(`background-color: transparent`);
     });
   });
 
   test('should get default style when variant is unknown', () => {
-    const { container } = render(
+    render(
       <Button.Group variant={'unknown' as ButtonGroupVariant}>
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>
       </Button.Group>
     );
-    const buttons = container.querySelectorAll('.raw-button');
+    const buttons = screen.getAllByRole('button');
     buttons.forEach((button) => {
-      expect(getComputedStyle(button).backgroundColor).toBe(
-        'rgb(255, 255, 255)'
-      );
+      expect(button).toHaveStyle(`background-color: rgb(255, 255, 255)`);
     });
   });
 
   test('should support vertical', () => {
-    const { container } = render(
+    render(
       <Button.Group vertical>
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>
       </Button.Group>
     );
-    expect(container.firstChild).toHaveClass('vertical');
+    expect(screen.getByRole('group')).toHaveClass('vertical');
   });
 
   test('should support disabled', () => {
-    const { container } = render(
+    render(
       <Button.Group disabled>
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>
       </Button.Group>
     );
-    const buttons = container.querySelectorAll('.raw-disabled-button');
-    expect(buttons.length).toBe(3);
+    const buttons = screen.getAllByRole('button');
     buttons.forEach((button) => {
       expect(button).toBeDisabled();
     });

@@ -233,8 +233,8 @@ describe('Checkbox', () => {
     );
     const { rerender } = render(<Component layout="row" />);
     const checkboxGroup = screen.getByTestId('checkboxGroup');
-    expect(getComputedStyle(checkboxGroup).flexDirection).toBe('row');
+    expect(checkboxGroup).toHaveStyle('flex-direction: row');
     rerender(<Component layout="column" />);
-    expect(getComputedStyle(checkboxGroup).flexDirection).toBe('column');
+    expect(checkboxGroup).toHaveStyle('flex-direction: column');
   });
 });

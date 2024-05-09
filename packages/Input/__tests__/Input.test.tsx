@@ -100,8 +100,8 @@ describe('Input', () => {
     (item: Exclude<InputTypes, 'default'>) => {
       test(`should render ${item} type`, () => {
         render(<Input type={item} />);
-        expect(getComputedStyle(screen.getByRole('textbox')).borderColor).toBe(
-          typeColorMap[item]
+        expect(screen.getByRole('textbox')).toHaveStyle(
+          `border-color: ${typeColorMap[item]}`
         );
       });
     }
@@ -110,15 +110,15 @@ describe('Input', () => {
   ['sm', 'md', 'lg'].forEach((item: InputSizes) => {
     test(`should render ${item} size`, () => {
       render(<Input size={item} />);
-      expect(getComputedStyle(screen.getByRole('textbox')).height).toBe(
-        sizeHeightMap[item]
+      expect(screen.getByRole('textbox')).toHaveStyle(
+        `height: ${sizeHeightMap[item]}`
       );
     });
   });
 
   test('should support custom width', () => {
     render(<Input width="160px" />);
-    expect(getComputedStyle(screen.getByRole('textbox')).width).toBe('160px');
+    expect(screen.getByRole('textbox')).toHaveStyle('width: 160px');
   });
 
   test('should support disabled', async () => {
@@ -165,8 +165,10 @@ describe('Input', () => {
       </Input.Group>
     );
     const leftElement = screen.getByTestId('inputLeftElement');
-    expect(getComputedStyle(leftElement).pointerEvents).toBe('auto');
-    expect(getComputedStyle(leftElement).cursor).toBe('pointer');
+    expect(leftElement).toHaveStyle({
+      pointerEvents: 'auto',
+      cursor: 'pointer',
+    });
   });
 
   test('should support addon element', () => {

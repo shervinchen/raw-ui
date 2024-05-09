@@ -57,9 +57,7 @@ describe('Button', () => {
       test(`should render ${item} type`, () => {
         render(<Button type={item}>Text</Button>);
         const button = screen.getByRole('button', { name: /Text/i });
-        expect(getComputedStyle(button).backgroundColor).toBe(
-          typeColorMap[item]
-        );
+        expect(button).toHaveStyle(`background-color: ${typeColorMap[item]}`);
       });
     }
   );
@@ -68,7 +66,7 @@ describe('Button', () => {
     test(`should render ${item} size`, () => {
       render(<Button size={item}>Text</Button>);
       const button = screen.getByRole('button', { name: /Text/i });
-      expect(getComputedStyle(button).height).toBe(sizeHeightMap[item]);
+      expect(button).toHaveStyle(`height: ${sizeHeightMap[item]}`);
     });
   });
 
@@ -79,8 +77,10 @@ describe('Button', () => {
       </Button>
     );
     const button = screen.getByRole('button', { name: /Text/i });
-    expect(getComputedStyle(button).color).toBe('rgb(0, 0, 0)');
-    expect(getComputedStyle(button).borderColor).toBe('#000000');
+    expect(button).toHaveStyle({
+      color: 'rgb(0, 0, 0)',
+      borderColor: '#000000',
+    });
   });
 
   test('should render ghost variant', () => {
@@ -90,8 +90,10 @@ describe('Button', () => {
       </Button>
     );
     const button = screen.getByRole('button', { name: /Text/i });
-    expect(getComputedStyle(button).backgroundColor).toBe('transparent');
-    expect(getComputedStyle(button).borderColor).toBe('transparent');
+    expect(button).toHaveStyle({
+      backgroundColor: 'transparent',
+      borderColor: 'transparent',
+    });
   });
 
   test('should render shadow variant', () => {
@@ -101,9 +103,7 @@ describe('Button', () => {
       </Button>
     );
     const button = screen.getByRole('button', { name: /Text/i });
-    expect(getComputedStyle(button).boxShadow).toBe(
-      '0 5px 10px rgba(0, 0, 0, 0.12)'
-    );
+    expect(button).toHaveStyle('boxShadow: 0 5px 10px rgba(0, 0, 0, 0.12)');
   });
 
   test('should get default style when type is unknown or falsy', () => {

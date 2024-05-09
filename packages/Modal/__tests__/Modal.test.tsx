@@ -86,7 +86,7 @@ describe('Modal', () => {
       </Modal>
     );
     const modalWrapper = screen.getByTestId('modalWrapper') as Element;
-    expect(getComputedStyle(modalWrapper).maxWidth).toBe('400px');
+    expect(modalWrapper).toHaveStyle('max-width: 400px');
   });
 
   test('should open modal and close modal when click target', async () => {
