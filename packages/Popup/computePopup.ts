@@ -37,7 +37,10 @@ export const computePopupCoordinates = (
   getContainer?: () => HTMLElement | null
 ): PopupCoordinates => {
   const targetRect = targetRef?.current?.getBoundingClientRect() ?? null;
-  const bodyRect = document.body.getBoundingClientRect();
+  const bodyScroll = {
+    top: document.documentElement.scrollTop || document.body.scrollTop,
+    left: document.documentElement.scrollLeft || document.body.scrollLeft,
+  };
   const container = getContainer?.() ?? null;
   const { offsetTop, offsetLeft } = getElementOffset(container);
 
@@ -53,16 +56,16 @@ export const computePopupCoordinates = (
   return {
     top: container
       ? targetRect.top + container.scrollTop - offsetTop
-      : targetRect.top - bodyRect.top,
+      : targetRect.top + bodyScroll.top,
     bottom: container
       ? targetRect.bottom + container.scrollTop - offsetTop
-      : targetRect.bottom - bodyRect.top,
+      : targetRect.bottom + bodyScroll.top,
     left: container
       ? targetRect.left + container.scrollLeft - offsetLeft
-      : targetRect.left - bodyRect.left,
+      : targetRect.left + bodyScroll.left,
     right: container
       ? targetRect.right + container.scrollLeft - offsetLeft
-      : targetRect.right - bodyRect.left,
+      : targetRect.right + bodyScroll.left,
   };
 };
 
