@@ -4,7 +4,7 @@ exports[`Input should match the snapshot 1`] = `
 <DocumentFragment>
   <input
     autocomplete="off"
-    class="raw-input jsx-4270648937"
+    class="raw-input jsx-2920133267"
     placeholder=""
     type="text"
     value=""

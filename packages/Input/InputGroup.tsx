@@ -9,14 +9,14 @@ import { InputLeftElement, InputRightElement } from './InputElement';
 import { InputLeftAddon, InputRightAddon } from './InputAddon';
 
 const useComputedInputStyles = ({ type, size, disabled }: InputGroupProps) => {
-  const { height, horizontalPadding } = useInputStyles({
+  const { height } = useInputStyles({
     type,
     size,
     disabled,
   });
   const style = {
-    paddingLeft: horizontalPadding,
-    paddingRight: horizontalPadding,
+    paddingLeft: '12px',
+    paddingRight: '12px',
     borderTopRightRadius: '6px',
     borderBottomRightRadius: '6px',
     borderTopLeftRadius: '6px',

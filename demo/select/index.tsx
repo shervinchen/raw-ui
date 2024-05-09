@@ -32,7 +32,7 @@ export function DemoSelectDefault() {
   );
 }
 
-export function DemoSelectType() {
+export function DemoSelectTypes() {
   return (
     <Unit layout="col">
       <Select width="200px" placeholder="Default Type">
@@ -44,6 +44,25 @@ export function DemoSelectType() {
         <Select.Option value="2">Option 2</Select.Option>
       </Select>
       <Select width="200px" type="error" placeholder="Error Type">
+        <Select.Option value="1">Option 1</Select.Option>
+        <Select.Option value="2">Option 2</Select.Option>
+      </Select>
+    </Unit>
+  );
+}
+
+export function DemoSelectSizes() {
+  return (
+    <Unit layout="col">
+      <Select size="sm" width="200px" placeholder="Small">
+        <Select.Option value="1">Option 1</Select.Option>
+        <Select.Option value="2">Option 2</Select.Option>
+      </Select>
+      <Select size="md" width="200px" placeholder="Medium">
+        <Select.Option value="1">Option 1</Select.Option>
+        <Select.Option value="2">Option 2</Select.Option>
+      </Select>
+      <Select size="lg" width="200px" placeholder="Large">
         <Select.Option value="1">Option 1</Select.Option>
         <Select.Option value="2">Option 2</Select.Option>
       </Select>

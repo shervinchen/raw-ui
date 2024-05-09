@@ -46,6 +46,28 @@ import { Select } from 'raw-ui';
 `}
 />
 
+## Sizes
+
+<Playground
+  scope={{ Unit, Select }}
+  code={`
+<Unit layout="col">
+  <Select size="sm" width="200px" placeholder="Small">
+    <Select.Option value="1">Option 1</Select.Option>
+    <Select.Option value="2">Option 2</Select.Option>
+  </Select>
+  <Select size="md" width="200px" placeholder="Medium">
+    <Select.Option value="1">Option 1</Select.Option>
+    <Select.Option value="2">Option 2</Select.Option>
+  </Select>
+  <Select size="lg" width="200px" placeholder="Large">
+    <Select.Option value="1">Option 1</Select.Option>
+    <Select.Option value="2">Option 2</Select.Option>
+  </Select>
+</Unit>
+`}
+/>
+
 ## Selected
 
 <Playground
@@ -236,6 +258,7 @@ import { Select } from 'raw-ui';
 | Prop              | Description                                  | Type                              | Default   |
 | ----------------- | -------------------------------------------- | --------------------------------- | --------- |
 | type              | select type                                  | 'default' \| 'warning' \| 'error' | 'default' |
+| size              | select size                                  | 'sm' \| 'md' \| 'lg'              | 'md'      |
 | defaultValue      | default selected value (uncontrolled)        | SelectValue                       | -         |
 | value             | selected value (controlled)                  | SelectValue                       | -         |
 | placeholder       | select placeholder                           | string                            | -         |

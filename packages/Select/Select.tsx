@@ -73,7 +73,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
       value,
       width = '100%',
       type = 'default',
-      // size = "md",
+      size = 'md',
       disabled = false,
       multiple = false,
       // clearable = false,
@@ -101,6 +101,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
     const { className: resolveClassName, styles } = useSelectCSS({
       width,
       type,
+      size,
       disabled,
       dropdownVisible,
     });

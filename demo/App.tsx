@@ -57,7 +57,8 @@ import {
   DemoSelectMultiple,
   DemoSelectSelected,
   DemoSelectSetParentElement,
-  DemoSelectType,
+  DemoSelectSizes,
+  DemoSelectTypes,
 } from './select';
 import {
   DemoToggleChecked,
@@ -207,7 +208,10 @@ function App() {
           <DemoSelectDefault />
         </Wrapper>
         <Wrapper title="Types">
-          <DemoSelectType />
+          <DemoSelectTypes />
+        </Wrapper>
+        <Wrapper title="Sizes">
+          <DemoSelectSizes />
         </Wrapper>
         <Wrapper title="Selected">
           <DemoSelectSelected />

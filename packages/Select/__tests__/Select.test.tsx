@@ -2,12 +2,23 @@ import React, { useState, act } from 'react';
 import { render, renderHook, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Select from '..';
-import { SelectProps, SelectTypes, SelectValue } from '../Select.types';
+import {
+  SelectProps,
+  SelectSizes,
+  SelectTypes,
+  SelectValue,
+} from '../Select.types';
 import { useSelectHoverStyles, useSelectStyles } from '../Select.styles';
 
 const typeColorMap = {
   warning: '#f5a623',
   error: '#ee0000',
+};
+
+const sizeHeightMap = {
+  sm: '32px',
+  md: '40px',
+  lg: '48px',
 };
 
 const optionsData = [
@@ -105,6 +116,37 @@ describe('Select', () => {
     );
     expect(result1.current.hoverBorderColor).toBe('#666666');
     expect(result2.current.hoverBorderColor).toBe('#666666');
+  });
+
+  ['sm', 'md', 'lg'].forEach((item: SelectSizes) => {
+    test(`should render ${item} size`, () => {
+      render(
+        <Select size={item}>
+          <Select.Option value="1">Option 1</Select.Option>
+          <Select.Option value="2">Option 2</Select.Option>
+        </Select>
+      );
+      expect(screen.getByTestId('selectContainer')).toHaveStyle(
+        `height: ${sizeHeightMap[item]}`
+      );
+    });
+  });
+
+  test('should get md size when size is unknown or falsy', () => {
+    const { result: result1 } = renderHook(() =>
+      useSelectStyles({
+        size: 'unknown' as SelectSizes,
+        disabled: false,
+      })
+    );
+    const { result: result2 } = renderHook(() =>
+      useSelectStyles({
+        size: undefined as unknown as SelectSizes,
+        disabled: false,
+      })
+    );
+    expect(result1.current.height).toBe('40px');
+    expect(result2.current.height).toBe('40px');
   });
 
   test('should support custom class name', () => {

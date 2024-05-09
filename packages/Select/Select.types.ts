@@ -10,7 +10,7 @@ export type SelectValue =
 
 export type SelectTypes = 'default' | 'warning' | 'error';
 
-export type SelectSize = 'sm' | 'md' | 'lg';
+export type SelectSizes = 'sm' | 'md' | 'lg';
 
 export interface BaseSelectProps {
   value?: SelectValue;
@@ -18,7 +18,7 @@ export interface BaseSelectProps {
   width?: string;
   placeholder?: string;
   type?: SelectTypes;
-  size?: SelectSize;
+  size?: SelectSizes;
   disabled?: boolean;
   multiple?: boolean;
   clearable?: boolean;
@@ -55,7 +55,6 @@ export interface SelectConfig {
 export interface SelectSizeStyles {
   fontSize?: string;
   height?: string;
-  horizontalPadding?: string;
 }
 
 export interface SelectBasicStyles {

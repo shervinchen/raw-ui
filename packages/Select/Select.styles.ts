@@ -4,19 +4,42 @@ import {
   SelectBasicStyles,
   SelectHoverStyles,
   SelectProps,
+  SelectSizes,
+  SelectSizeStyles,
   SelectStyles,
   SelectTypes,
 } from './Select.types';
 
-type UseSelectCSSProps = Pick<SelectProps, 'width' | 'type' | 'disabled'> & {
+type UseSelectCSSProps = Pick<
+  SelectProps,
+  'width' | 'type' | 'size' | 'disabled'
+> & {
   dropdownVisible: boolean;
 };
 
 export const useSelectStyles = ({
   type,
+  size,
   disabled,
 }: SelectProps): SelectStyles => {
   const theme = useTheme();
+
+  const sizes: {
+    [key in SelectSizes]: SelectSizeStyles;
+  } = {
+    sm: {
+      fontSize: '14px',
+      height: '32px',
+    },
+    md: {
+      fontSize: '14px',
+      height: '40px',
+    },
+    lg: {
+      fontSize: '16px',
+      height: '48px',
+    },
+  };
 
   const styles: {
     [key in SelectTypes]: SelectBasicStyles;
@@ -37,6 +60,7 @@ export const useSelectStyles = ({
 
   const defaultStyles = {
     ...(styles?.[type || 'default'] ?? styles['default']),
+    ...(sizes?.[size || 'md'] ?? sizes['md']),
   };
 
   const disabledStyles: SelectBasicStyles = {
@@ -82,16 +106,19 @@ export const useSelectHoverStyles = ({
 export const useSelectCSS = ({
   width,
   type,
+  size,
   disabled,
   dropdownVisible,
 }: UseSelectCSSProps) => {
   const theme = useTheme();
   const {
+    fontSize,
+    height,
     color,
     borderColor,
     backgroundColor = theme.palette.background,
     cursor = 'pointer',
-  } = useSelectStyles({ type, disabled });
+  } = useSelectStyles({ type, size, disabled });
   const { hoverBorderColor = borderColor } = useSelectHoverStyles({
     type,
     disabled,
@@ -104,7 +131,7 @@ export const useSelectCSS = ({
       position: relative;
       align-items: center;
       width: ${width};
-      height: 40px;
+      height: ${height};
       padding-left: 12px;
       padding-right: 40px;
       border: 1px solid ${borderColor};
@@ -117,7 +144,7 @@ export const useSelectCSS = ({
     }
     .raw-select.multiple {
       height: auto;
-      min-height: 40px;
+      min-height: ${height};
     }
     .raw-select-inner {
       display: inline-flex;
@@ -128,7 +155,7 @@ export const useSelectCSS = ({
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
-      font-size: 14px;
+      font-size: ${fontSize};
       color: ${theme.palette.accents5};
     }
     .raw-select :global(.raw-select-content) {
@@ -136,7 +163,7 @@ export const useSelectCSS = ({
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
-      font-size: 14px;
+      font-size: ${fontSize};
       color: ${color};
     }
     .raw-select :global(.raw-select-tag-content) {

@@ -18,7 +18,7 @@ export function DemoInputSizes() {
   return (
     <Unit layout="col">
       <Input size="sm" placeholder="Small" />
-      <Input placeholder="Medium" />
+      <Input size="md" placeholder="Medium" />
       <Input size="lg" placeholder="Large" />
     </Unit>
   );
