@@ -101,6 +101,15 @@ export const SIDEBARS = [
           },
         ],
       },
+      {
+        name: 'Navigation',
+        children: [
+          {
+            name: 'Pagination',
+            url: '/components/pagination',
+          },
+        ],
+      },
     ],
   },
 ];

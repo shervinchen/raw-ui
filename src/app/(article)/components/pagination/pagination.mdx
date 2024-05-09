@@ -1,0 +1,62 @@
+import Unit from '@/demo/Unit';
+import { Pagination } from '@/packages';
+import Playground from '@/src/app/components/playground';
+
+# Pagination
+
+Navigation between multiple pages.
+
+## Import
+
+```tsx
+import { Pagination } from 'raw-ui';
+```
+
+## Default Page
+
+<Playground
+  scope={{ Unit, Pagination }}
+  code={`
+<Pagination defaultPage={3} count={100} />
+`}
+/>
+
+## Controlled
+
+<Playground
+  scope={{ Unit, Pagination }}
+  code={`
+() => {
+  const [page, setPage] = React.useState(1);
+
+  return (
+    <Pagination
+      page={page}
+      count={100}
+      onChange={(value) => {
+        setPage(value);
+      }}
+    />
+  );
+}
+`}
+/>
+
+## Limit
+
+<Playground
+  scope={{ Unit, Pagination }}
+  code={`
+<Pagination defaultPage={1} count={100} limit={20} />
+`}
+/>
+
+## API
+
+| Prop        | Description                          | Type                   | Default |
+| ----------- | ------------------------------------ | ---------------------- | ------- |
+| defaultPage | default selected page (uncontrolled) | number                 | 1       |
+| page        | current page (controlled)            | number                 | -       |
+| count       | total count of pages                 | number                 | 1       |
+| limit       | limit count of data items per page   | number                 | 10      |
+| onChange    | change event handler                 | (page: number) => void | -       |
