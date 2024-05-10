@@ -50,6 +50,7 @@ import {
   DemoRadioWithLabel,
 } from './radio';
 import {
+  DemoSelectClearable,
   DemoSelectControlled,
   DemoSelectDefault,
   DemoSelectDisabled,
@@ -221,6 +222,9 @@ function App() {
         </Wrapper>
         <Wrapper title="Multiple">
           <DemoSelectMultiple />
+        </Wrapper>
+        <Wrapper title="Clearable">
+          <DemoSelectClearable />
         </Wrapper>
         <Wrapper title="Disabled Select">
           <DemoSelectDisabled />

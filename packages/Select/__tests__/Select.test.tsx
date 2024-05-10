@@ -1,5 +1,5 @@
 import React, { useState, act } from 'react';
-import { render, renderHook, screen } from '@testing-library/react';
+import { fireEvent, render, renderHook, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Select from '..';
 import {
@@ -209,10 +209,10 @@ describe('Select', () => {
         </Select>
       );
     };
-    const { getAllByTestId } = render(<Component onChange={onChange} />);
+    render(<Component onChange={onChange} />);
     const select = screen.getByTestId('selectContainer');
     await user.click(select);
-    await user.click(getAllByTestId('selectOption')[0]);
+    await user.click(screen.getAllByTestId('selectOption')[0]);
     expect(select).toHaveTextContent('Option 1');
     expect(onChange).toHaveBeenCalledWith('1');
   });
@@ -263,7 +263,7 @@ describe('Select', () => {
   });
 
   test('should get new value when has default value and selected multiple options change', async () => {
-    const { getAllByTestId } = render(
+    render(
       <Select multiple defaultValue={['react', 'vue']}>
         {optionsData.map((item) => (
           <Select.Option value={item.value} key={item.value}>
@@ -274,16 +274,16 @@ describe('Select', () => {
     );
     const select = screen.getByTestId('selectContainer');
     await user.click(select);
-    await user.click(getAllByTestId('selectOption')[0]);
+    await user.click(screen.getAllByTestId('selectOption')[0]);
     expect(select).not.toHaveTextContent('React');
     expect(select).toHaveTextContent('Vue');
-    await user.click(getAllByTestId('selectOption')[0]);
+    await user.click(screen.getAllByTestId('selectOption')[0]);
     expect(select).toHaveTextContent('React');
     expect(select).toHaveTextContent('Vue');
   });
 
   test('should get new value when not has default value and selected multiple options change', async () => {
-    const { getAllByTestId } = render(
+    render(
       <Select multiple>
         {optionsData.map((item) => (
           <Select.Option value={item.value} key={item.value}>
@@ -294,7 +294,7 @@ describe('Select', () => {
     );
     const select = screen.getByTestId('selectContainer');
     await user.click(select);
-    await user.click(getAllByTestId('selectOption')[0]);
+    await user.click(screen.getAllByTestId('selectOption')[0]);
     expect(select).toHaveTextContent('React');
   });
 
@@ -311,7 +311,7 @@ describe('Select', () => {
   });
 
   test('should support option disabled', async () => {
-    const { getAllByTestId } = render(
+    render(
       <Select>
         <Select.Option value="1" disabled>
           Option 1
@@ -321,7 +321,7 @@ describe('Select', () => {
     );
     const select = screen.getByTestId('selectContainer');
     await user.click(select);
-    await user.click(getAllByTestId('selectOption')[0]);
+    await user.click(screen.getAllByTestId('selectOption')[0]);
     expect(select).not.toHaveTextContent('Option 1');
   });
 
@@ -340,7 +340,7 @@ describe('Select', () => {
   });
 
   test('should delete select tag when click delete icon', async () => {
-    const { getAllByTestId } = render(
+    render(
       <Select multiple defaultValue={['react', 'vue']}>
         {optionsData.map((item) => (
           <Select.Option value={item.value} key={item.value}>
@@ -351,12 +351,14 @@ describe('Select', () => {
     );
     const select = screen.getByTestId('selectContainer');
     expect(select).toHaveTextContent('React');
-    await user.click(getAllByTestId('selectTagIcon')[0]);
+    await act(async () => {
+      await user.click(screen.getAllByTestId('selectTagIcon')[0]);
+    });
     expect(select).not.toHaveTextContent('React');
   });
 
   test('should not delete select tag when disabled and click delete icon', async () => {
-    const { getAllByTestId } = render(
+    render(
       <Select multiple disabled defaultValue={['react', 'vue']}>
         {optionsData.map((item) => (
           <Select.Option value={item.value} key={item.value}>
@@ -367,7 +369,9 @@ describe('Select', () => {
     );
     const select = screen.getByTestId('selectContainer');
     expect(select).toHaveTextContent('React');
-    await user.click(getAllByTestId('selectTagIcon')[0]);
+    await act(async () => {
+      await user.click(screen.getAllByTestId('selectTagIcon')[0]);
+    });
     expect(select).toHaveTextContent('React');
   });
 
@@ -389,5 +393,47 @@ describe('Select', () => {
       </Select>
     );
     expect(screen.queryByTestId('Select option')).not.toBeInTheDocument();
+  });
+
+  test('should support clearable when not multiple value', async () => {
+    render(
+      <Select defaultValue="1" placeholder="Select option" clearable>
+        <Select.Option value="1">Option 1</Select.Option>
+        <Select.Option value="2">Option 2</Select.Option>
+      </Select>
+    );
+    const select = screen.getByTestId('selectContainer');
+    expect(select).toHaveTextContent('Option 1');
+    fireEvent.mouseEnter(select);
+    const selectClear = screen.getByTestId('selectClear');
+    await user.click(selectClear);
+    expect(select).not.toHaveTextContent('Option 1');
+    expect(screen.getByText('Select option')).toBeInTheDocument();
+  });
+
+  test('should support clearable when multiple value', async () => {
+    render(
+      <Select
+        defaultValue={['react', 'vue']}
+        placeholder="Select option"
+        multiple
+        clearable
+      >
+        {optionsData.map((item) => (
+          <Select.Option value={item.value} key={item.value}>
+            {item.name}
+          </Select.Option>
+        ))}
+      </Select>
+    );
+    const select = screen.getByTestId('selectContainer');
+    expect(select).toHaveTextContent('React');
+    expect(select).toHaveTextContent('Vue');
+    fireEvent.mouseEnter(select);
+    const selectClear = screen.getByTestId('selectClear');
+    await user.click(selectClear);
+    expect(select).not.toHaveTextContent('React');
+    expect(select).not.toHaveTextContent('Vue');
+    expect(screen.getByText('Select option')).toBeInTheDocument();
   });
 });

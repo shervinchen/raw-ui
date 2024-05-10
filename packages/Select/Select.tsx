@@ -10,7 +10,7 @@ import React, {
   useCallback,
   useId,
 } from 'react';
-import { ChevronDown } from 'react-feather';
+import { ChevronDown, ChevronUp, X } from 'react-feather';
 import classNames from 'classnames';
 import { useClickAway } from 'react-use';
 import {
@@ -76,7 +76,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
       size = 'md',
       disabled = false,
       multiple = false,
-      // clearable = false,
+      clearable = false,
       placeholder = 'Select option',
       className = '',
       dropdownClassName = '',
@@ -97,13 +97,13 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
       value: getInternalValue(multiple, value),
     });
     const [selectFocus, setSelectFocus] = useState(false);
+    const [selectEnter, setSelectEnter] = useState(false);
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const { className: resolveClassName, styles } = useSelectCSS({
       width,
       type,
       size,
       disabled,
-      dropdownVisible,
     });
     const selectClasses = classNames(
       'raw-select',
@@ -112,6 +112,13 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
       className,
       resolveClassName
     );
+
+    const selectClearVisible = useMemo(() => {
+      const hasValue = Array.isArray(internalValue)
+        ? (internalValue as SelectOptionValue[]).length > 0
+        : internalValue !== undefined && internalValue !== '';
+      return !disabled && hasValue && clearable;
+    }, [internalValue, disabled, clearable]);
 
     const clickHandler = (event: MouseEvent<HTMLDivElement>) => {
       event.stopPropagation();
@@ -128,13 +135,13 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
         if (!multiple) {
           setDropdownVisible(false);
         }
-        const newInternalValue = getNewInternalValue(
+        const newValue = getNewInternalValue(
           multiple,
           internalValue,
           optionValue
         );
-        setInternalValue(newInternalValue);
-        onChange?.(newInternalValue);
+        setInternalValue(newValue);
+        onChange?.(newValue);
       },
       [internalValue, multiple, onChange, setInternalValue]
     );
@@ -142,6 +149,20 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
     const focusHandler = () => setSelectFocus(true);
 
     const blurHandler = () => setSelectFocus(false);
+
+    const mouseEnterHandler = () => {
+      setSelectEnter(true);
+    };
+
+    const mouseLeaveHandler = () => {
+      setSelectEnter(false);
+    };
+
+    const clickSelectClearHandler = (event: MouseEvent<HTMLDivElement>) => {
+      event.stopPropagation();
+      setInternalValue(undefined);
+      onChange?.(undefined);
+    };
 
     const selectConfig = useMemo<SelectConfig>(() => {
       return {
@@ -182,10 +203,6 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
     );
 
     const SelectContent = (): ReactElement => {
-      if (internalValue === undefined) {
-        return <span className="raw-select-placeholder">{placeholder}</span>;
-      }
-
       const selectedOptions = getValidChildren(children).filter((option) => {
         if (Array.isArray(internalValue)) {
           return internalValue.includes(option.props.value);
@@ -194,9 +211,9 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
         }
       });
 
-      const isEmptyValue =
-        (!Array.isArray(internalValue) && internalValue === '') ||
-        (Array.isArray(internalValue) && internalValue.length === 0);
+      const isEmptyValue = Array.isArray(internalValue)
+        ? internalValue.length === 0
+        : internalValue === undefined || internalValue === '';
 
       if (selectedOptions.length === 0) {
         if (isEmptyValue) {
@@ -242,6 +259,8 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
           ref={selectRef}
           onClick={clickHandler}
           onMouseDown={mouseDownHandler}
+          onMouseEnter={mouseEnterHandler}
+          onMouseLeave={mouseLeaveHandler}
           {...restProps}
         >
           <div className="raw-select-inner">
@@ -253,18 +272,32 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
               onFocus={focusHandler}
             />
           </div>
-          <div className="raw-select-arrow">
-            <ChevronDown size={16} />
-          </div>
-          <SelectDropdown
-            ref={dropdownRef}
-            visible={dropdownVisible}
-            className={dropdownClassName}
-          >
-            {children}
-          </SelectDropdown>
+          {selectEnter && selectClearVisible ? (
+            <div
+              data-testid="selectClear"
+              className="raw-select-clear"
+              onClick={clickSelectClearHandler}
+            >
+              <X size={16} />
+            </div>
+          ) : (
+            <div className="raw-select-arrow">
+              {dropdownVisible ? (
+                <ChevronUp size={16} />
+              ) : (
+                <ChevronDown size={16} />
+              )}
+            </div>
+          )}
           {styles}
         </div>
+        <SelectDropdown
+          ref={dropdownRef}
+          visible={dropdownVisible}
+          className={dropdownClassName}
+        >
+          {children}
+        </SelectDropdown>
       </SelectContext.Provider>
     );
   }

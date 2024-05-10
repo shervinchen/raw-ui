@@ -10,13 +10,6 @@ import {
   SelectTypes,
 } from './Select.types';
 
-type UseSelectCSSProps = Pick<
-  SelectProps,
-  'width' | 'type' | 'size' | 'disabled'
-> & {
-  dropdownVisible: boolean;
-};
-
 export const useSelectStyles = ({
   type,
   size,
@@ -103,13 +96,7 @@ export const useSelectHoverStyles = ({
   return disabled ? {} : defaultStyles;
 };
 
-export const useSelectCSS = ({
-  width,
-  type,
-  size,
-  disabled,
-  dropdownVisible,
-}: UseSelectCSSProps) => {
+export const useSelectCSS = ({ width, type, size, disabled }: SelectProps) => {
   const theme = useTheme();
   const {
     fontSize,
@@ -137,8 +124,7 @@ export const useSelectCSS = ({
       border: 1px solid ${borderColor};
       border-radius: 6px;
       background-color: ${backgroundColor};
-      transition: border-color 0.15s ease, color 0.15s ease,
-        box-shadow 0.15s ease;
+      transition: border-color 0.15s ease, color 0.15s ease;
       cursor: ${cursor};
       user-select: none;
     }
@@ -179,10 +165,18 @@ export const useSelectCSS = ({
       position: absolute;
       right: 12px;
       top: 50%;
-      transform: translateY(-50%) rotate(${dropdownVisible ? '180' : '0'}deg);
+      transform: translateY(-50%);
       pointer-events: none;
-      transition: transform 0.15s ease;
       color: ${theme.palette.accents7};
+    }
+    .raw-select :global(.raw-select-clear) {
+      display: inline-flex;
+      align-items: center;
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: ${theme.palette.foreground};
     }
     .raw-select.raw-select-active,
     .raw-select:hover {

@@ -120,6 +120,35 @@ export function DemoSelectMultiple() {
   );
 }
 
+export function DemoSelectClearable() {
+  return (
+    <Unit layout="row">
+      <Select
+        width="200px"
+        placeholder="Select option"
+        defaultValue="1"
+        clearable
+      >
+        <Select.Option value="1">Option 1</Select.Option>
+        <Select.Option value="2">Option 2</Select.Option>
+      </Select>
+      <Select
+        width="200px"
+        placeholder="Select option"
+        defaultValue={['react', 'vue']}
+        multiple
+        clearable
+      >
+        {optionsData.map((item) => (
+          <Select.Option value={item.value} key={item.value}>
+            {item.name}
+          </Select.Option>
+        ))}
+      </Select>
+    </Unit>
+  );
+}
+
 export function DemoSelectDisabled() {
   return (
     <Unit layout="row">
