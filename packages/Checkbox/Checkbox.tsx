@@ -50,7 +50,7 @@ const Checkbox: FC<PropsWithChildren<CheckboxProps>> = ({
     }
   }, [indeterminate]);
 
-  const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (isDisabled) return;
     setIndeterminate();
     if (!indeterminate) setInternalValue(event.target.checked);
@@ -70,7 +70,7 @@ const Checkbox: FC<PropsWithChildren<CheckboxProps>> = ({
         type="checkbox"
         disabled={isDisabled}
         checked={selfChecked}
-        onChange={changeHandler}
+        onChange={handleChange}
         aria-checked={indeterminate ? 'mixed' : selfChecked ? 'true' : 'false'}
         {...restProps}
       />

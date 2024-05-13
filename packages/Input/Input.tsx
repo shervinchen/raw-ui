@@ -66,15 +66,15 @@ const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
       resolveClassName
     );
 
-    const focusHandler = (event: FocusEvent<HTMLInputElement>) => {
+    const handleFocus = (event: FocusEvent<HTMLInputElement>) => {
       onFocus?.(event);
     };
 
-    const blurHandler = (event: FocusEvent<HTMLInputElement>) => {
+    const handleBlur = (event: FocusEvent<HTMLInputElement>) => {
       onBlur?.(event);
     };
 
-    const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
       setInternalValue(event.target.value);
       onChange?.(event);
     };
@@ -91,9 +91,9 @@ const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
           placeholder={placeholder}
           disabled={disabled}
           readOnly={readOnly}
-          onFocus={focusHandler}
-          onBlur={blurHandler}
-          onChange={changeHandler}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onChange={handleChange}
           autoComplete={autoComplete}
           {...restProps}
         />

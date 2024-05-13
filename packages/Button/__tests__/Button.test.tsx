@@ -45,11 +45,11 @@ describe('Button', () => {
   });
 
   test('should trigger event when clicked', async () => {
-    const clickHandler = jest.fn();
-    render(<Button onClick={clickHandler}>Text</Button>);
+    const handleClick = jest.fn();
+    render(<Button onClick={handleClick}>Text</Button>);
     const button = screen.getByRole('button', { name: /Text/i });
     await user.click(button);
-    expect(clickHandler).toHaveBeenCalledTimes(1);
+    expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
   ['primary', 'success', 'warning', 'error'].forEach(
@@ -360,16 +360,16 @@ describe('Button', () => {
   });
 
   test('should support loading', async () => {
-    const clickHandler = jest.fn();
+    const handleClick = jest.fn();
     render(
-      <Button loading onClick={clickHandler}>
+      <Button loading onClick={handleClick}>
         Text
       </Button>
     );
     const button = screen.getByRole('button', { name: /Text/i });
     expect(button).toHaveClass('raw-loading-button');
     await user.click(button as Element);
-    expect(clickHandler).toHaveBeenCalledTimes(0);
+    expect(handleClick).toHaveBeenCalledTimes(0);
   });
 
   test('should support disabled', () => {

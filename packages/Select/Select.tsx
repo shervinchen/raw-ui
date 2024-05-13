@@ -120,17 +120,17 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
       return !disabled && hasValue && clearable;
     }, [internalValue, disabled, clearable]);
 
-    const clickHandler = (event: MouseEvent<HTMLDivElement>) => {
+    const handleClick = (event: MouseEvent<HTMLDivElement>) => {
       event.stopPropagation();
       if (disabled) return;
       setDropdownVisible(!dropdownVisible);
     };
 
-    const mouseDownHandler = (event: MouseEvent<HTMLDivElement>) => {
+    const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
       event.preventDefault();
     };
 
-    const changeHandler = useCallback(
+    const handleChange = useCallback(
       (optionValue?: SelectOptionValue) => {
         if (!multiple) {
           setDropdownVisible(false);
@@ -146,19 +146,19 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
       [internalValue, multiple, onChange, setInternalValue]
     );
 
-    const focusHandler = () => setSelectFocus(true);
+    const handleFocus = () => setSelectFocus(true);
 
-    const blurHandler = () => setSelectFocus(false);
+    const handleBlur = () => setSelectFocus(false);
 
-    const mouseEnterHandler = () => {
+    const handleMouseEnter = () => {
       setSelectEnter(true);
     };
 
-    const mouseLeaveHandler = () => {
+    const handleMouseLeave = () => {
       setSelectEnter(false);
     };
 
-    const clickSelectClearHandler = (event: MouseEvent<HTMLDivElement>) => {
+    const handleSelectClearClick = (event: MouseEvent<HTMLDivElement>) => {
       event.stopPropagation();
       setInternalValue(undefined);
       onChange?.(undefined);
@@ -168,7 +168,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
       return {
         multiple,
         selectValue: internalValue,
-        onSelectChange: changeHandler,
+        onSelectChange: handleChange,
         selectRef,
         dropdownHeight,
         getPopupContainer,
@@ -178,7 +178,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
     }, [
       multiple,
       internalValue,
-      changeHandler,
+      handleChange,
       dropdownHeight,
       getPopupContainer,
       disabled,
@@ -234,7 +234,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
                 key={option.props.value as SelectOptionValue}
                 disabled={disabled}
                 onDeleteTag={() => {
-                  changeHandler(option.props.value);
+                  handleChange(option.props.value);
                 }}
               >
                 {option.props.children}
@@ -257,10 +257,10 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
           data-testid="selectContainer"
           className={selectClasses}
           ref={selectRef}
-          onClick={clickHandler}
-          onMouseDown={mouseDownHandler}
-          onMouseEnter={mouseEnterHandler}
-          onMouseLeave={mouseLeaveHandler}
+          onClick={handleClick}
+          onMouseDown={handleMouseDown}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
           {...restProps}
         >
           <div className="raw-select-inner">
@@ -268,15 +268,15 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
             <SelectInput
               ref={inputRef}
               visible={dropdownVisible}
-              onBlur={blurHandler}
-              onFocus={focusHandler}
+              onBlur={handleBlur}
+              onFocus={handleFocus}
             />
           </div>
           {selectEnter && selectClearVisible ? (
             <div
               data-testid="selectClear"
               className="raw-select-clear"
-              onClick={clickSelectClearHandler}
+              onClick={handleSelectClearClick}
             >
               <X size={16} />
             </div>

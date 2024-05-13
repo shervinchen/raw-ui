@@ -7,7 +7,7 @@ import { KeyCode } from '../../utils/constant';
 const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
 
 describe('Modal', () => {
-  const closeHandler = jest.fn();
+  const handleClose = jest.fn();
 
   const Component = (props: ModalProps) => {
     const [visible, setVisible] = useState(false);
@@ -16,7 +16,7 @@ describe('Modal', () => {
 
     const closeModal = () => {
       setVisible(false);
-      closeHandler();
+      handleClose();
     };
 
     return (
@@ -101,14 +101,14 @@ describe('Modal', () => {
     await waitFor(() => {
       expect(screen.queryByTestId('modalContainer')).not.toBeInTheDocument();
     });
-    expect(closeHandler).toHaveBeenCalledTimes(1);
+    expect(handleClose).toHaveBeenCalledTimes(1);
   });
 
   test('should not close modal when disabled overlay clicked', async () => {
     render(<Component closeOnOverlayClick={false} />);
     await user.click(screen.getByTestId('openModal'));
     await user.click(await screen.findByTestId('modalContainer'));
-    expect(closeHandler).toHaveBeenCalledTimes(0);
+    expect(handleClose).toHaveBeenCalledTimes(0);
   });
 
   test('should not propagate the click event', async () => {
@@ -117,7 +117,7 @@ describe('Modal', () => {
     expect(await screen.findByTestId('modalContainer')).toBeInTheDocument();
     await user.click(await screen.findByTestId('modalWrapper'));
     expect(await screen.findByTestId('modalContainer')).toBeInTheDocument();
-    expect(closeHandler).toHaveBeenCalledTimes(0);
+    expect(handleClose).toHaveBeenCalledTimes(0);
   });
 
   test('should close modal when press the Escape key', async () => {

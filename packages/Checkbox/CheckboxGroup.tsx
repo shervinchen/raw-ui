@@ -25,7 +25,7 @@ const CheckboxGroup: FC<PropsWithChildren<CheckboxGroupProps>> = ({
   });
   const classes = classNames('raw-checkbox-group', className);
 
-  const groupChangeHandler = useCallback(
+  const handleGroupChange = useCallback(
     (checkboxValue?: CheckboxValue, checked?: boolean) => {
       const nextGroupValue = checked
         ? [...internalValue, checkboxValue]
@@ -41,9 +41,9 @@ const CheckboxGroup: FC<PropsWithChildren<CheckboxGroupProps>> = ({
       groupValue: internalValue,
       groupDisabled: disabled,
       inGroup: true,
-      onGroupChange: groupChangeHandler,
+      onGroupChange: handleGroupChange,
     };
-  }, [internalValue, disabled, groupChangeHandler]);
+  }, [internalValue, disabled, handleGroupChange]);
 
   return (
     <CheckboxGroupContext.Provider value={checkboxGroupConfig}>

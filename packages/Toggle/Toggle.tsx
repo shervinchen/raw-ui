@@ -24,7 +24,7 @@ const Toggle: FC<ToggleProps> = ({
   const toggleClasses = classNames('raw-toggle', className, resolveClassName);
   const toggleInnerClasses = classNames('raw-toggle-inner');
 
-  const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (disabled) return;
     setInternalValue(event.target.checked);
     onChange?.(event);
@@ -38,7 +38,7 @@ const Toggle: FC<ToggleProps> = ({
         type="checkbox"
         disabled={disabled}
         checked={internalValue}
-        onChange={changeHandler}
+        onChange={handleChange}
         {...restProps}
       />
       <span className={toggleInnerClasses}>

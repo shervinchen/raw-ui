@@ -26,7 +26,7 @@ const SelectOption: FC<PropsWithChildren<SelectOptionProps>> = ({
     }
   }, [multiple, selectValue, value]);
 
-  const clickHandler = (event: MouseEvent<HTMLDivElement>) => {
+  const handleClick = (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
     if (isDisabled) return;
     onSelectChange?.(value);
@@ -40,7 +40,7 @@ const SelectOption: FC<PropsWithChildren<SelectOptionProps>> = ({
       aria-disabled={isDisabled}
       className={classes}
       {...restProps}
-      onClick={clickHandler}
+      onClick={handleClick}
     >
       <div className="raw-select-option-content">
         <span className="raw-select-option-text">{children}</span>

@@ -24,7 +24,7 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
   const { stage, shouldMount } = useTransition(visible, 50, 50);
   const classes = classNames('raw-tooltip', className);
 
-  const mouseHandler = (nextValue: boolean) => {
+  const handleMouseEnterOrLeave = (nextValue: boolean) => {
     if (!disabled) {
       setVisible(nextValue);
     }
@@ -36,8 +36,8 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
         data-testid="tooltipTarget"
         aria-describedby={tooltipId}
         ref={ref}
-        onMouseEnter={() => mouseHandler(true)}
-        onMouseLeave={() => mouseHandler(false)}
+        onMouseEnter={() => handleMouseEnterOrLeave(true)}
+        onMouseLeave={() => handleMouseEnterOrLeave(false)}
         {...restProps}
       >
         {children}

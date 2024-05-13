@@ -21,7 +21,7 @@ const RadioGroup: FC<PropsWithChildren<RadioGroupProps>> = ({
   });
   const classes = classNames('raw-radio-group', className);
 
-  const groupChangeHandler = useCallback(
+  const handleGroupChange = useCallback(
     (radioValue?: RadioValue) => {
       setInternalValue(radioValue);
       onChange?.(radioValue);
@@ -34,9 +34,9 @@ const RadioGroup: FC<PropsWithChildren<RadioGroupProps>> = ({
       groupValue: internalValue,
       groupDisabled: disabled,
       inGroup: true,
-      onGroupChange: groupChangeHandler,
+      onGroupChange: handleGroupChange,
     };
-  }, [internalValue, disabled, groupChangeHandler]);
+  }, [internalValue, disabled, handleGroupChange]);
 
   return (
     <RadioGroupContext.Provider value={radioGroupConfig}>

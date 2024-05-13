@@ -15,7 +15,7 @@ const SelectTag: FC<PropsWithChildren<SelectTagProps>> = ({
 }) => {
   const theme: RawUITheme = useTheme();
 
-  const clickHandler = (event: MouseEvent<HTMLDivElement>) => {
+  const handleClick = (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
     if (disabled) return;
     onDeleteTag(event);
@@ -27,7 +27,7 @@ const SelectTag: FC<PropsWithChildren<SelectTagProps>> = ({
       <div
         data-testid="selectTagIcon"
         className="raw-select-tag-icon"
-        onClick={clickHandler}
+        onClick={handleClick}
       >
         <X size={14} />
       </div>

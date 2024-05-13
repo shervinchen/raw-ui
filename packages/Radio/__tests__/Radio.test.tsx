@@ -38,10 +38,10 @@ describe('Radio', () => {
   });
 
   test('should trigger event when clicked', async () => {
-    const clickHandler = jest.fn();
-    render(<Radio onClick={clickHandler} />);
+    const handleClick = jest.fn();
+    render(<Radio onClick={handleClick} />);
     await user.click(screen.getByTestId('radioLabel'));
-    expect(clickHandler).toHaveBeenCalledTimes(1);
+    expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
   test('should support uncontrolled value', () => {

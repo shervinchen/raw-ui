@@ -59,23 +59,23 @@ const Pagination: FC<PaginationProps> = ({
     }, []);
   }, [internalPage, pageCount, startPages, endPages]);
 
-  const clickPageNumberHandler = (pageNumber: number) => {
+  const handlePageNumberClick = (pageNumber: number) => {
     setInternalPage(pageNumber);
     onChange?.(pageNumber);
   };
 
-  const clickPreviousPageHandler = () => {
+  const handlePreviousPageClick = () => {
     if (internalPage === 1) {
       return;
     }
-    clickPageNumberHandler(internalPage - 1);
+    handlePageNumberClick(internalPage - 1);
   };
 
-  const clickNextPageHandler = () => {
+  const handleNextPageClick = () => {
     if (internalPage === pageCount) {
       return;
     }
-    clickPageNumberHandler(internalPage + 1);
+    handlePageNumberClick(internalPage + 1);
   };
 
   return (
@@ -94,7 +94,7 @@ const Pagination: FC<PaginationProps> = ({
               paginationItemClassName
             )}
             aria-label="Go to previous page"
-            onClick={clickPreviousPageHandler}
+            onClick={handlePreviousPageClick}
           >
             <ChevronLeft size={16} />
           </a>
@@ -102,7 +102,7 @@ const Pagination: FC<PaginationProps> = ({
         <PaginationPages
           pages={pages}
           internalPage={internalPage}
-          clickPageNumberHandler={clickPageNumberHandler}
+          handlePageNumberClick={handlePageNumberClick}
         />
         <li>
           <a
@@ -112,7 +112,7 @@ const Pagination: FC<PaginationProps> = ({
               paginationItemClassName
             )}
             aria-label="Go to next page"
-            onClick={clickNextPageHandler}
+            onClick={handleNextPageClick}
           >
             <ChevronRight size={16} />
           </a>

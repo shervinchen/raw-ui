@@ -19,5 +19,5 @@ export type PaginationProps = BasePaginationProps & NativePaginationProps;
 export interface PaginationPagesProps {
   pages: number[];
   internalPage: number;
-  clickPageNumberHandler: (page: number) => void;
+  handlePageNumberClick: (page: number) => void;
 }

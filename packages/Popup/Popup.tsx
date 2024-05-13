@@ -30,11 +30,11 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
     transform: 'translate(0, 0)',
   });
 
-  const clickHandler = (event: MouseEvent<HTMLDivElement>) => {
+  const handleClick = (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
   };
 
-  const mouseDownHandler = (event: MouseEvent<HTMLDivElement>) => {
+  const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
   };
 
@@ -65,8 +65,8 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
     visible ? (
       <div
         className="raw-popup"
-        onClick={clickHandler}
-        onMouseDown={mouseDownHandler}
+        onClick={handleClick}
+        onMouseDown={handleMouseDown}
         data-testid="popup"
       >
         {children}

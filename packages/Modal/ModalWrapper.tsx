@@ -17,13 +17,13 @@ const ModalWrapper: FC<PropsWithChildren<ModalWrapperProps>> = ({
   const { visible, width, closeOnOverlayClick, closeModal } = useModalContext();
   const { stage, shouldMount } = useTransition(visible, 50, 350);
 
-  const clickModalContainerHandler = () => {
+  const handleModalContainerClick = () => {
     if (closeOnOverlayClick) {
       closeModal?.();
     }
   };
 
-  const clickModalHandler = (event: MouseEvent<HTMLDivElement>) => {
+  const handleModalClick = (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
   };
 
@@ -35,12 +35,12 @@ const ModalWrapper: FC<PropsWithChildren<ModalWrapperProps>> = ({
         aria-labelledby="raw-modal-title"
         aria-describedby="raw-modal-body"
         className="raw-modal-container"
-        onClick={clickModalContainerHandler}
+        onClick={handleModalContainerClick}
         data-testid="modalContainer"
       >
         <div
           className={className}
-          onClick={clickModalHandler}
+          onClick={handleModalClick}
           style={
             stage === 'enter'
               ? {

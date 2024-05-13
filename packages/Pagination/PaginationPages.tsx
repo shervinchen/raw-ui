@@ -8,7 +8,7 @@ import { usePaginationItemStyles } from './Pagination.styles';
 const PaginationPages: FC<PaginationPagesProps> = ({
   pages,
   internalPage,
-  clickPageNumberHandler,
+  handlePageNumberClick,
 }) => {
   const theme = useTheme();
   const { className: paginationItemClassName, styles: paginationItemStyles } =
@@ -28,7 +28,7 @@ const PaginationPages: FC<PaginationPagesProps> = ({
                   paginationItemClassName
                 )}
                 aria-current={isCurrentPage ? 'page' : undefined}
-                onClick={() => clickPageNumberHandler(pageItem)}
+                onClick={() => handlePageNumberClick(pageItem)}
               >
                 {pageItem}
               </a>

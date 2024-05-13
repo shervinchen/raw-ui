@@ -19,11 +19,11 @@ describe('Toggle', () => {
   });
 
   test('should trigger event when clicked', async () => {
-    const clickHandler = jest.fn();
-    render(<Toggle onClick={clickHandler} />);
+    const handleClick = jest.fn();
+    render(<Toggle onClick={handleClick} />);
     const toggle = screen.getByTestId('toggleLabel');
     await user.click(toggle);
-    expect(clickHandler).toHaveBeenCalledTimes(1);
+    expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
   test('should support uncontrolled value', () => {

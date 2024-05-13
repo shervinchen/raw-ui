@@ -32,7 +32,7 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
   const { stage, shouldMount } = useTransition(internalValue, 50, 50);
   const classes = classNames('raw-popover', className);
 
-  const clickHandler = () => {
+  const handleClick = () => {
     if (!disabled) {
       setInternalValue(!internalValue);
       onChange?.(!internalValue);
@@ -60,7 +60,7 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
         data-testid="popoverTarget"
         aria-controls={popoverId}
         ref={ref}
-        onClick={clickHandler}
+        onClick={handleClick}
         {...restProps}
       >
         {children}

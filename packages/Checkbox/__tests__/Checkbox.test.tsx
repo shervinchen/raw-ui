@@ -42,10 +42,10 @@ describe('Checkbox', () => {
   });
 
   test('should trigger event when clicked', async () => {
-    const clickHandler = jest.fn();
-    render(<Checkbox onClick={clickHandler} />);
+    const handleClick = jest.fn();
+    render(<Checkbox onClick={handleClick} />);
     await user.click(screen.getByTestId('checkboxLabel'));
-    expect(clickHandler).toHaveBeenCalledTimes(1);
+    expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
   test('should support uncontrolled value', () => {

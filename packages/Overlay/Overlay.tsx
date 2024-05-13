@@ -11,7 +11,7 @@ const Overlay: FC<OverlayProps> = ({
   const theme = useTheme();
   const { stage, shouldMount } = useTransition(visible, 50, 350);
 
-  const clickHandler = (event: MouseEvent<HTMLDivElement>) => {
+  const handleClick = (event: MouseEvent<HTMLDivElement>) => {
     onClick?.(event);
   };
 
@@ -19,7 +19,7 @@ const Overlay: FC<OverlayProps> = ({
     <div
       data-testid="overlay"
       className="raw-overlay"
-      onClick={clickHandler}
+      onClick={handleClick}
       style={{
         opacity: stage === 'enter' ? 0.25 : 0,
       }}

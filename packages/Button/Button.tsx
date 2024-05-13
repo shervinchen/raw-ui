@@ -78,7 +78,7 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
       resolveClassName
     );
 
-    const clickHandler = (event: MouseEvent<HTMLButtonElement>) => {
+    const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
       if (loading || disabled) return;
       onClick?.(event);
     };
@@ -90,7 +90,7 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
         ref={buttonRef}
         type={htmlType}
         className={classes}
-        onClick={clickHandler}
+        onClick={handleClick}
         disabled={disabled}
         aria-disabled={disabled}
         {...restProps}
