@@ -38,6 +38,7 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
         ref={ref}
         onMouseEnter={() => handleMouseEnterOrLeave(true)}
         onMouseLeave={() => handleMouseEnterOrLeave(false)}
+        className="raw-tooltip-target"
         {...restProps}
       >
         {children}
@@ -71,6 +72,9 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
           font-size: 14px;
           padding: 8px 12px;
           transition: opacity 0.05s ease;
+        }
+        .raw-tooltip-target {
+          display: inline-flex;
         }
       `}</style>
     </>

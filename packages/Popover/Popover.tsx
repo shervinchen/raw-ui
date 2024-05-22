@@ -61,6 +61,7 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
         aria-controls={popoverId}
         ref={ref}
         onClick={handleClick}
+        className="raw-popover-target"
         {...restProps}
       >
         {children}
@@ -96,6 +97,9 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
           font-size: 14px;
           padding: 8px 12px;
           transition: opacity 0.05s ease;
+        }
+        .raw-popover-target {
+          display: inline-flex;
         }
       `}</style>
     </>

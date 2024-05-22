@@ -4,7 +4,7 @@ exports[`Tooltip should match the snapshot 1`] = `
 <DocumentFragment>
   <div
     aria-describedby=":r0:"
-    class="jsx-838803725 "
+    class="jsx-1795543492 raw-tooltip-target"
     data-testid="tooltipTarget"
   >
     Hover me
