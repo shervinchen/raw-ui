@@ -351,9 +351,8 @@ describe('Select', () => {
     );
     const select = screen.getByTestId('selectContainer');
     expect(select).toHaveTextContent('React');
-    await act(async () => {
-      await user.click(screen.getAllByTestId('selectTagIcon')[0]);
-    });
+    fireEvent.mouseEnter(select);
+    await user.click(screen.getAllByTestId('selectTagIcon')[0]);
     expect(select).not.toHaveTextContent('React');
   });
 
@@ -369,9 +368,8 @@ describe('Select', () => {
     );
     const select = screen.getByTestId('selectContainer');
     expect(select).toHaveTextContent('React');
-    await act(async () => {
-      await user.click(screen.getAllByTestId('selectTagIcon')[0]);
-    });
+    fireEvent.mouseEnter(select);
+    await user.click(screen.getAllByTestId('selectTagIcon')[0]);
     expect(select).toHaveTextContent('React');
   });
 

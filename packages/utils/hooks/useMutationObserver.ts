@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect } from 'react';
+import { useEffect } from 'react';
 
 const defaultOptions: MutationObserverInit = {
   attributes: true,
@@ -7,17 +7,18 @@ const defaultOptions: MutationObserverInit = {
 };
 
 export const useMutationObserver = (
-  ref: MutableRefObject<HTMLElement | null> | undefined,
+  element: HTMLElement | null | undefined,
   callback: MutationCallback,
   options: MutationObserverInit = defaultOptions
 ) => {
   useEffect(() => {
-    if (!ref?.current) return;
+    if (!element) return;
+
     const observer = new MutationObserver(callback);
-    observer.observe(ref.current, options);
+    observer.observe(element, options);
+
     return () => {
       observer.disconnect();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ref]);
+  }, [element, callback, options]);
 };

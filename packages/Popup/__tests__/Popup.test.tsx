@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Popup from '..';
 import { MutableRefObject, useRef } from 'react';
@@ -109,19 +109,6 @@ describe('Popup', () => {
     expect(mockGetPopupPosition).toHaveBeenCalledTimes(2);
   });
 
-  test('should update popup position when document click', async () => {
-    render(
-      <Component
-        visible
-        targetRef={targetRefMock}
-        getPopupContainer={getPopupContainerMock}
-      />
-    );
-    expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
-    await user.click(document.body);
-    expect(mockGetPopupPosition).toHaveBeenCalledTimes(2);
-  });
-
   test('should update popup position when mouse over', async () => {
     render(
       <Component
@@ -133,6 +120,45 @@ describe('Popup', () => {
     expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
     await user.hover(targetRefMock.current);
     expect(mockGetPopupPosition).toHaveBeenCalledTimes(2);
+  });
+
+  test('should update popup position when document size change', async () => {
+    render(
+      <Component visible targetRef={targetRefMock} getPopupContainer={null} />
+    );
+    expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
+    document.body.style.height = '10000px';
+    await waitFor(() => {
+      expect(mockGetPopupPosition).toHaveBeenCalledTimes(2);
+    });
+  });
+
+  test('should update popup position when container size change', async () => {
+    render(
+      <div
+        id="parentElement"
+        style={{
+          position: 'relative',
+          overflowY: 'auto',
+          width: '400px',
+          height: '200px',
+        }}
+      >
+        <Component
+          visible
+          targetRef={targetRefMock}
+          getPopupContainer={() => document.querySelector('#parentElement')}
+        />
+      </div>
+    );
+    expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
+    const parentElement = document.querySelector(
+      '#parentElement'
+    ) as HTMLElement;
+    parentElement.style.height = '10000px';
+    await waitFor(() => {
+      expect(mockGetPopupPosition).toHaveBeenCalledTimes(2);
+    });
   });
 
   test('should render to specified container', () => {

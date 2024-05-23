@@ -8,12 +8,7 @@ import React, {
 } from 'react';
 import { createPortal } from 'react-dom';
 import { PopupProps, PopupPosition } from './Popup.types';
-import {
-  useClickAnyWhere,
-  useMutationObserver,
-  usePortal,
-  useResize,
-} from '../utils/hooks';
+import { useMutationObserver, usePortal, useResize } from '../utils/hooks';
 
 const Popup: FC<PropsWithChildren<PopupProps>> = ({
   name,
@@ -29,6 +24,7 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
     top: 0,
     transform: 'translate(0, 0)',
   });
+  const container = getPopupContainer?.() ?? document.body;
 
   const handleClick = (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
@@ -44,11 +40,13 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
 
   useResize(updatePopupPosition);
 
-  useClickAnyWhere(() => {
-    updatePopupPosition();
-  });
+  useMutationObserver(targetRef?.current, updatePopupPosition);
 
-  useMutationObserver(targetRef, updatePopupPosition);
+  useMutationObserver(container, updatePopupPosition, {
+    attributes: true,
+    childList: false,
+    subtree: false,
+  });
 
   useEffect(() => {
     const targetNode = targetRef?.current ?? null;
