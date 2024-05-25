@@ -25,7 +25,7 @@ export const usePaginationItemStyles = () => {
       text-decoration: none;
       cursor: pointer;
     }
-    .raw-pagination-item-disabled {
+    .raw-pagination-item.raw-pagination-item-disabled {
       background-color: ${theme.palette.accents2};
       color: ${theme.palette.accents5};
       cursor: not-allowed;

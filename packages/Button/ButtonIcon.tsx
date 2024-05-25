@@ -1,10 +1,10 @@
-import React, { FC, PropsWithChildren } from 'react';
+import React, { cloneElement, FC } from 'react';
 import css from 'styled-jsx/css';
 import classNames from 'classnames';
 
 import { ButtonIconProps } from './Button.types';
 
-const ButtonIcon: FC<PropsWithChildren<ButtonIconProps>> = ({
+const ButtonIcon: FC<ButtonIconProps> = ({
   isRight = false,
   isSingle,
   height,
@@ -47,7 +47,7 @@ const ButtonIcon: FC<PropsWithChildren<ButtonIconProps>> = ({
 
   return (
     <span className={classes} data-testid="buttonIcon">
-      {children}
+      {cloneElement(children, { 'aria-hidden': true })}
       {styles}
     </span>
   );

@@ -34,10 +34,10 @@ const VisuallyHiddenInput = forwardRef<
   );
 });
 
-// const VisuallyHidden: FC<HTMLAttributes<HTMLSpanElement>> = (props) => {
+// const VisuallyHidden: FC<> = ({ as: Tag = 'span', ...props }) => {
 //   return (
 //     <>
-//       <span {...props} />
+//       <Tag {...props} />
 //       <style jsx>{`
 //         border: 0;
 //         clip: rect(0, 0, 0, 0);

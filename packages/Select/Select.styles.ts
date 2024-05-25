@@ -132,7 +132,7 @@ export const useSelectCSS = ({ width, type, size, disabled }: SelectProps) => {
       height: auto;
       min-height: ${height};
     }
-    .raw-select-inner {
+    .raw-select :global(.raw-select-inner) {
       display: inline-flex;
       width: 100%;
     }

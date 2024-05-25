@@ -3,7 +3,7 @@
 exports[`Select should match the snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="raw-select jsx-2767690895"
+    class="raw-select jsx-3333946092"
     data-testid="selectContainer"
   >
     <div

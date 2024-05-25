@@ -42,3 +42,6 @@ export * from './Modal/Modal.types';
 
 export { default as Pagination } from './Pagination';
 export * from './Pagination/Pagination.types';
+
+export { default as Tabs } from './Tabs';
+export * from './Tabs/Tabs.types';
