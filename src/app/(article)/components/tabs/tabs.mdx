@@ -1,0 +1,141 @@
+import Unit from '@/demo/Unit';
+import { Tabs } from '@/packages';
+import Playground from '@/src/app/components/playground';
+
+# Tabs
+
+Display tab content.
+
+## Import
+
+```tsx
+import { Tabs } from 'raw-ui';
+```
+
+## Default
+
+<Playground
+  scope={{ Unit, Tabs }}
+  code={`
+<Tabs defaultValue="1">
+  <Tabs.Tab label="Tab 1" value="1">
+    Content of Tab Pane 1
+  </Tabs.Tab>
+  <Tabs.Tab label="Tab 2" value="2">
+    Content of Tab Pane 2
+  </Tabs.Tab>
+  <Tabs.Tab label="Tab 3" value="3">
+    Content of Tab Pane 3
+  </Tabs.Tab>
+</Tabs>
+`}
+/>
+
+## Controlled
+
+<Playground
+  scope={{ Unit, Tabs }}
+  code={`
+() => {
+  const [value, setValue] = React.useState('1');
+
+  return (
+    <Tabs
+      value={value}
+      onChange={(newValue) => {
+        setValue(newValue);
+      }}
+    >
+      <Tabs.Tab label="Tab 1" value="1">
+        Content of Tab Pane 1
+      </Tabs.Tab>
+      <Tabs.Tab label="Tab 2" value="2">
+        Content of Tab Pane 2
+      </Tabs.Tab>
+      <Tabs.Tab label="Tab 3" value="3">
+        Content of Tab Pane 3
+      </Tabs.Tab>
+    </Tabs>
+  );
+}
+`}
+/>
+
+## Disabled all tabs
+
+<Playground
+  scope={{ Unit, Tabs }}
+  code={`
+<Tabs defaultValue="1" disabled>
+  <Tabs.Tab label="Tab 1" value="1">
+    Content of Tab Pane 1
+  </Tabs.Tab>
+  <Tabs.Tab label="Tab 2" value="2">
+    Content of Tab Pane 2
+  </Tabs.Tab>
+  <Tabs.Tab label="Tab 3" value="3">
+    Content of Tab Pane 3
+  </Tabs.Tab>
+</Tabs>
+`}
+/>
+
+## Disabled specific tab
+
+<Playground
+  scope={{ Unit, Tabs }}
+  code={`
+<Tabs defaultValue="1">
+  <Tabs.Tab label="Tab 1" value="1">
+    Content of Tab Pane 1
+  </Tabs.Tab>
+  <Tabs.Tab label="Tab 2" value="2" disabled>
+    Content of Tab Pane 2
+  </Tabs.Tab>
+  <Tabs.Tab label="Tab 3" value="3">
+    Content of Tab Pane 3
+  </Tabs.Tab>
+</Tabs>
+`}
+/>
+
+## Vertical
+
+<Playground
+  scope={{ Unit, Tabs }}
+  code={`
+<Tabs defaultValue="1" vertical>
+  <Tabs.Tab label="Tab 1" value="1">
+    Content of Tab Pane 1
+  </Tabs.Tab>
+  <Tabs.Tab label="Tab 2" value="2">
+    Content of Tab Pane 2
+  </Tabs.Tab>
+  <Tabs.Tab label="Tab 3" value="3">
+    Content of Tab Pane 3
+  </Tabs.Tab>
+</Tabs>
+`}
+/>
+
+## API
+
+### Tabs
+
+| Prop         | Description                           | Type                    | Default |
+| ------------ | ------------------------------------- | ----------------------- | ------- |
+| defaultValue | default selected value (uncontrolled) | string                  | -       |
+| value        | selected value (controlled)           | string                  | -       |
+| disabled     | disable all tabs                      | boolean                 | false   |
+| vertical     | show all tabs vertically              | boolean                 | false   |
+| onChange     | change event handler                  | (value: string) => void | -       |
+| ...          | native props                          | React.HTMLAttributes    | -       |
+
+### Tabs.Tab
+
+| Prop     | Description                 | Type                 | Default |
+| -------- | --------------------------- | -------------------- | ------- |
+| label    | display tab's label         | React.ReactNode      | -       |
+| value    | unique identification value | string               | -       |
+| disabled | disable current tab         | boolean              | false   |
+| ...      | native props                | React.HTMLAttributes | -       |

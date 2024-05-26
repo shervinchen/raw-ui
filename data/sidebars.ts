@@ -108,6 +108,10 @@ export const SIDEBARS = [
             name: 'Pagination',
             url: '/components/pagination',
           },
+          {
+            name: 'Tabs',
+            url: '/components/tabs',
+          },
         ],
       },
     ],
