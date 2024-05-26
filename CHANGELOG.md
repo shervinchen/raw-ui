@@ -1,5 +1,11 @@
 # raw-ui
 
+## 0.6.0
+
+### Minor Changes
+
+- Add Tabs component
+
 ## 0.5.0
 
 ### Minor Changes
