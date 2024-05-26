@@ -137,9 +137,11 @@ const useIntersectionObserver = (
       if (visibleHeadings.length === 1) {
         setActiveId(visibleHeadings[0].target.id);
       } else if (visibleHeadings.length > 1) {
-        const sortedVisibleHeadings = visibleHeadings.sort(
-          (a, b) => getIndexFromId(a.target.id) - getIndexFromId(b.target.id)
-        );
+        const sortedVisibleHeadings = visibleHeadings
+          .filter((item) => getIndexFromId(item.target.id) !== -1)
+          .sort(
+            (a, b) => getIndexFromId(a.target.id) - getIndexFromId(b.target.id)
+          );
         setActiveId(sortedVisibleHeadings[0].target.id);
       }
     };
