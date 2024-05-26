@@ -8,7 +8,7 @@ const TabsItem: FC<PropsWithChildren<TabsItemProps>> = ({
   className = '',
   children,
 }) => {
-  const { selectValue } = useTabsContext();
+  const { tabsId, selectValue } = useTabsContext();
   const classes = classNames(
     'raw-tabs-panel',
     selectValue === value && 'raw-tabs-panel-active',
@@ -16,7 +16,13 @@ const TabsItem: FC<PropsWithChildren<TabsItemProps>> = ({
   );
 
   return (
-    <div role="tabpanel" className={classes}>
+    <div
+      role="tabpanel"
+      id={`raw-tabs-panel-${value}-${tabsId}`}
+      aria-labelledby={`raw-tabs-nav-item-${value}-${tabsId}`}
+      aria-hidden={selectValue !== value}
+      className={classes}
+    >
       {children}
       <style jsx>
         {`

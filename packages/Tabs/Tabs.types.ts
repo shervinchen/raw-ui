@@ -31,5 +31,6 @@ export type TabsProps = BaseTabsProps & NativeTabsProps;
 export type TabsItemProps = BaseTabsItemProps & NativeTabsItemProps;
 
 export interface TabsConfig {
+  tabsId: string;
   selectValue?: string;
 }

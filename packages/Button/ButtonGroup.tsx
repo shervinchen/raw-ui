@@ -50,8 +50,8 @@ const ButtonGroup: FC<PropsWithChildren<ButtonGroupProps>> = ({
 
   const classes = classNames(
     'raw-button-group',
-    vertical && 'vertical',
-    !vertical && 'horizontal',
+    vertical && 'raw-button-group-vertical',
+    !vertical && 'raw-button-group-horizontal',
     className,
     resolveClassName
   );

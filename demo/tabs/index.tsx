@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Unit from '../Unit';
 import { Tabs } from '@/packages';
 
@@ -16,6 +17,29 @@ export function DemoTabsDefault() {
         </Tabs.Tab>
       </Tabs>
     </Unit>
+  );
+}
+
+export function DemoTabsControlled() {
+  const [value, setValue] = useState('1');
+
+  return (
+    <Tabs
+      value={value}
+      onChange={(newValue) => {
+        setValue(newValue);
+      }}
+    >
+      <Tabs.Tab label="Tab 1" value="1">
+        Content of Tab Pane 1
+      </Tabs.Tab>
+      <Tabs.Tab label="Tab 2" value="2">
+        Content of Tab Pane 2
+      </Tabs.Tab>
+      <Tabs.Tab label="Tab 3" value="3">
+        Content of Tab Pane 3
+      </Tabs.Tab>
+    </Tabs>
   );
 }
 

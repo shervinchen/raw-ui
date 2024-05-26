@@ -57,35 +57,36 @@ export const useButtonGroupCSS = (props: ButtonGroupProps) => {
       :global(.raw-button:not(.raw-disabled-button):focus::after) {
       border: 1px solid ${hoverBorderColor};
     }
-    .horizontal :global(.raw-button:not(:first-child)) {
+    .raw-button-group-horizontal :global(.raw-button:not(:first-child)) {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
-    .horizontal :global(.raw-button:not(:last-child)) {
+    .raw-button-group-horizontal :global(.raw-button:not(:last-child)) {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
     }
-    .horizontal :global(.raw-button:not(:first-child)::before) {
+    .raw-button-group-horizontal
+      :global(.raw-button:not(:first-child)::before) {
       border-left-width: 0;
     }
-    .horizontal :global(.raw-button:not(:first-child)::after) {
+    .raw-button-group-horizontal :global(.raw-button:not(:first-child)::after) {
       left: -1px;
     }
-    .vertical {
+    .raw-button-group-vertical {
       flex-direction: column;
     }
-    .vertical :global(.raw-button:not(:first-child)) {
+    .raw-button-group-vertical :global(.raw-button:not(:first-child)) {
       border-top-left-radius: 0;
       border-top-right-radius: 0;
     }
-    .vertical :global(.raw-button:not(:last-child)) {
+    .raw-button-group-vertical :global(.raw-button:not(:last-child)) {
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
     }
-    .vertical :global(.raw-button:not(:first-child)::before) {
+    .raw-button-group-vertical :global(.raw-button:not(:first-child)::before) {
       border-top-width: 0;
     }
-    .vertical :global(.raw-button:not(:first-child)::after) {
+    .raw-button-group-vertical :global(.raw-button:not(:first-child)::after) {
       top: -1px;
     }
   `;

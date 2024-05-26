@@ -87,7 +87,12 @@ import {
   DemoModalWidth,
 } from './modal';
 import { DemoPaginationDefault } from './pagination';
-import { DemoTabsDefault, DemoTabsDisabled, DemoTabsVertical } from './tabs';
+import {
+  DemoTabsControlled,
+  DemoTabsDefault,
+  DemoTabsDisabled,
+  DemoTabsVertical,
+} from './tabs';
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
   title,
@@ -347,6 +352,9 @@ function App() {
       <Container title="Tabs">
         <Wrapper title="Default">
           <DemoTabsDefault />
+        </Wrapper>
+        <Wrapper title="Controlled">
+          <DemoTabsControlled />
         </Wrapper>
         <Wrapper title="Disabled">
           <DemoTabsDisabled />

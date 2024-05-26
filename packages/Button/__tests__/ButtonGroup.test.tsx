@@ -135,7 +135,7 @@ describe('ButtonGroup', () => {
         <Button>Three</Button>
       </Button.Group>
     );
-    expect(screen.getByRole('group')).toHaveClass('vertical');
+    expect(screen.getByRole('group')).toHaveClass('raw-button-group-vertical');
   });
 
   test('should support disabled', () => {

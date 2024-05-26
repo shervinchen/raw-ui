@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tabs should match the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="jsx-2406371952 raw-tabs"
+    data-testid="tabs"
+  >
+    <div
+      aria-orientation="horizontal"
+      class="jsx-2406371952 raw-tabs-nav"
+      role="tablist"
+    >
+      <div
+        aria-controls="raw-tabs-panel-1-:r0:"
+        aria-disabled="false"
+        aria-selected="true"
+        class="jsx-2406371952 raw-tabs-nav-item raw-tabs-nav-item-active"
+        id="raw-tabs-nav-item-1-:r0:"
+        role="tab"
+      >
+        Tab 1
+      </div>
+      <div
+        aria-controls="raw-tabs-panel-2-:r0:"
+        aria-disabled="false"
+        aria-selected="false"
+        class="jsx-2406371952 raw-tabs-nav-item"
+        id="raw-tabs-nav-item-2-:r0:"
+        role="tab"
+      >
+        Tab 2
+      </div>
+      <div
+        aria-controls="raw-tabs-panel-3-:r0:"
+        aria-disabled="false"
+        aria-selected="false"
+        class="jsx-2406371952 raw-tabs-nav-item"
+        id="raw-tabs-nav-item-3-:r0:"
+        role="tab"
+      >
+        Tab 3
+      </div>
+      <div
+        class="jsx-2406371952 raw-tabs-nav-bar"
+        style="width: 0px; height: 2px; transform: translateX(0px);"
+      />
+    </div>
+    <div
+      class="jsx-2406371952 raw-tabs-content"
+    >
+      <div
+        aria-hidden="false"
+        aria-labelledby="raw-tabs-nav-item-1-:r0:"
+        class="jsx-286161192 raw-tabs-panel raw-tabs-panel-active"
+        id="raw-tabs-panel-1-:r0:"
+        role="tabpanel"
+      >
+        Content of Tab Pane 1
+      </div>
+      <div
+        aria-hidden="true"
+        aria-labelledby="raw-tabs-nav-item-2-:r0:"
+        class="jsx-286161192 raw-tabs-panel"
+        id="raw-tabs-panel-2-:r0:"
+        role="tabpanel"
+      >
+        Content of Tab Pane 2
+      </div>
+      <div
+        aria-hidden="true"
+        aria-labelledby="raw-tabs-nav-item-3-:r0:"
+        class="jsx-286161192 raw-tabs-panel"
+        id="raw-tabs-panel-3-:r0:"
+        role="tabpanel"
+      >
+        Content of Tab Pane 3
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

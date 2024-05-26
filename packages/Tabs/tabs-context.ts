@@ -1,7 +1,9 @@
 import { createContext, useContext } from 'react';
 import { TabsConfig } from './Tabs.types';
 
-const defaultContext: TabsConfig = {};
+const defaultContext: TabsConfig = {
+  tabsId: '',
+};
 
 export const TabsContext = createContext<TabsConfig>(defaultContext);
 

@@ -2,6 +2,7 @@ import React, {
   FC,
   PropsWithChildren,
   useCallback,
+  useId,
   useMemo,
   useState,
 } from 'react';
@@ -26,6 +27,7 @@ const Tabs: FC<PropsWithChildren<TabsProps>> = ({
     defaultValue,
     value,
   });
+  const tabsId = useId();
   const theme = useTheme();
   const classes = classNames(
     'raw-tabs',
@@ -50,31 +52,32 @@ const Tabs: FC<PropsWithChildren<TabsProps>> = ({
     });
   }, [children]);
 
+  const selectedNavIndex = useMemo(() => {
+    return tabsNav.findIndex((item) => item.value === internalValue);
+  }, [tabsNav, internalValue]);
+
   const tabsConfig: TabsConfig = {
+    tabsId,
     selectValue: internalValue,
   };
 
   const tabsNavRef = useCallback(
     (node: HTMLDivElement) => {
-      const navItems = [...(node?.children ?? [])] as HTMLDivElement[];
-      const selectedNavIndex = tabsNav.findIndex(
-        (item) => item.value === internalValue
+      const navItems = ([...(node?.children ?? [])] as HTMLDivElement[]).filter(
+        (item) => item?.classList.contains('raw-tabs-nav-item')
       );
-      const selectedNavItem = navItems
-        .filter((item) => item.role === 'tab')
-        .find((_, index) => index === selectedNavIndex);
-      if (selectedNavItem) {
-        const { offsetLeft, offsetTop } = selectedNavItem;
-        const { width, height } = selectedNavItem.getBoundingClientRect();
-        setNavBarPosition({
-          width,
-          height,
-          left: offsetLeft,
-          top: offsetTop,
-        });
-      }
+      const { width = 0, height = 0 } =
+        navItems[0]?.getBoundingClientRect() ?? {};
+      const { offsetLeft = 0, offsetTop = 0 } =
+        navItems?.find((_, index) => index === selectedNavIndex) ?? {};
+      setNavBarPosition({
+        width,
+        height,
+        left: offsetLeft,
+        top: offsetTop,
+      });
     },
-    [internalValue, tabsNav]
+    [selectedNavIndex]
   );
 
   const handleTabsNavItemClick = (value: string, disabled: boolean) => {
@@ -86,11 +89,20 @@ const Tabs: FC<PropsWithChildren<TabsProps>> = ({
 
   return (
     <TabsContext.Provider value={tabsConfig}>
-      <div className={classes} {...restProps}>
-        <div role="tablist" ref={tabsNavRef} className="raw-tabs-nav">
+      <div data-testid="tabs" className={classes} {...restProps}>
+        <div
+          role="tablist"
+          aria-orientation={vertical ? 'vertical' : 'horizontal'}
+          ref={tabsNavRef}
+          className="raw-tabs-nav"
+        >
           {tabsNav.map((item) => (
             <div
               role="tab"
+              id={`raw-tabs-nav-item-${item.value}-${tabsId}`}
+              aria-controls={`raw-tabs-panel-${item.value}-${tabsId}`}
+              aria-selected={internalValue === item.value}
+              aria-disabled={tabsDisabled || item.disabled}
               className={classNames(
                 'raw-tabs-nav-item',
                 internalValue === item.value && 'raw-tabs-nav-item-active',
@@ -102,16 +114,18 @@ const Tabs: FC<PropsWithChildren<TabsProps>> = ({
               {item.label}
             </div>
           ))}
-          <div
-            className="raw-tabs-nav-bar"
-            style={{
-              width: vertical ? '2px' : navBarPosition.width,
-              height: vertical ? navBarPosition.height : '2px',
-              transform: vertical
-                ? `translateY(${navBarPosition.top}px)`
-                : `translateX(${navBarPosition.left}px)`,
-            }}
-          />
+          {selectedNavIndex !== -1 && (
+            <div
+              className="raw-tabs-nav-bar"
+              style={{
+                width: vertical ? '2px' : navBarPosition.width,
+                height: vertical ? navBarPosition.height : '2px',
+                transform: vertical
+                  ? `translateY(${navBarPosition.top}px)`
+                  : `translateX(${navBarPosition.left}px)`,
+              }}
+            />
+          )}
         </div>
         <div className="raw-tabs-content">{children}</div>
         <style jsx>
@@ -174,14 +188,15 @@ const Tabs: FC<PropsWithChildren<TabsProps>> = ({
             .raw-tabs.raw-tabs-vertical .raw-tabs-nav-item {
               padding: 6px 12px;
             }
-            .raw-tabs-nav-item.raw-tabs-nav-item-active {
+            .raw-tabs .raw-tabs-nav-item.raw-tabs-nav-item-active {
               color: ${theme.palette.foreground};
             }
-            .raw-tabs-nav-item.raw-tabs-nav-item-disabled {
+            .raw-tabs .raw-tabs-nav-item.raw-tabs-nav-item-disabled {
               color: ${theme.palette.accents5};
               cursor: not-allowed;
             }
-            .raw-tabs-nav-item:not(.raw-tabs-nav-item-active):not(
+            .raw-tabs
+              .raw-tabs-nav-item:not(.raw-tabs-nav-item-active):not(
                 .raw-tabs-nav-item-disabled
               ):hover {
               color: ${theme.palette.foreground};
