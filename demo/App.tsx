@@ -93,6 +93,14 @@ import {
   DemoTabsDisabled,
   DemoTabsVertical,
 } from './tabs';
+import {
+  DemoGridAlign,
+  DemoGridBasic,
+  DemoGridGutter,
+  DemoGridJustify,
+  DemoGridOffset,
+  DemoGridOrder,
+} from './grid';
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
   title,
@@ -361,6 +369,26 @@ function App() {
         </Wrapper>
         <Wrapper title="Vertical">
           <DemoTabsVertical />
+        </Wrapper>
+      </Container>
+      <Container title="Grid">
+        <Wrapper title="Basic">
+          <DemoGridBasic />
+        </Wrapper>
+        <Wrapper title="Gutter">
+          <DemoGridGutter />
+        </Wrapper>
+        <Wrapper title="Offset">
+          <DemoGridOffset />
+        </Wrapper>
+        <Wrapper title="Order">
+          <DemoGridOrder />
+        </Wrapper>
+        <Wrapper title="Align">
+          <DemoGridAlign />
+        </Wrapper>
+        <Wrapper title="Justify">
+          <DemoGridJustify />
         </Wrapper>
       </Container>
     </div>

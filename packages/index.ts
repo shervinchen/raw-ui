@@ -45,3 +45,6 @@ export * from './Pagination/Pagination.types';
 
 export { default as Tabs } from './Tabs';
 export * from './Tabs/Tabs.types';
+
+export { default as Grid } from './Grid';
+export * from './Grid/Grid.types';

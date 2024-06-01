@@ -64,7 +64,7 @@ const Tabs: FC<PropsWithChildren<TabsProps>> = ({
   const tabsNavRef = useCallback(
     (node: HTMLDivElement) => {
       const navItems = ([...(node?.children ?? [])] as HTMLDivElement[]).filter(
-        (item) => item?.classList.contains('raw-tabs-nav-item')
+        (item) => item?.classList?.contains('raw-tabs-nav-item')
       );
       const { width = 0, height = 0 } =
         navItems[0]?.getBoundingClientRect() ?? {};
