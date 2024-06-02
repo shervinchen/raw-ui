@@ -1,8 +1,8 @@
+import { isPlainObject } from 'lodash';
 import { RawUITheme } from './preset/preset.type';
 import lightTheme from './preset/default';
 import darkTheme from './preset/dark';
 import { RawUIUserTheme } from './theme.type';
-import { isObject } from '../utils/common';
 
 const mergeTheme = <T extends Record<string, unknown>>(
   source: T,
@@ -17,7 +17,7 @@ const mergeTheme = <T extends Record<string, unknown>>(
     const sourceValue = source[key];
     const targetValue = target[key];
 
-    if (isObject(sourceValue) && isObject(targetValue)) {
+    if (isPlainObject(sourceValue) && isPlainObject(targetValue)) {
       result[key] = mergeTheme(sourceValue as Record<string, unknown>, {
         ...(targetValue as Record<string, unknown>),
       });
@@ -59,8 +59,8 @@ const createFromCustom = (
   customTheme: RawUIUserTheme
 ): RawUITheme => {
   if (
-    !isObject(baseTheme) ||
-    !isObject(customTheme) ||
+    !isPlainObject(baseTheme) ||
+    !isPlainObject(customTheme) ||
     !isAvailableThemeType(customTheme.type)
   ) {
     throw new Error('Duplicate or unavailable theme type');

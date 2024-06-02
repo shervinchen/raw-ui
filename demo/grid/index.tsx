@@ -331,3 +331,34 @@ export function DemoGridJustify() {
     </>
   );
 }
+
+export function DemoGridResponsive() {
+  return (
+    <Grid gutter={[{ xs: 8, sm: 16, md: 24, lg: 32, xl: 40, xxl: 48 }, 16]}>
+      <Grid.Col span={{ xs: 2, sm: 8, md: 4, lg: 10, xl: 6, xxl: 6 }}>
+        <LightBox>Col</LightBox>
+      </Grid.Col>
+      <Grid.Col span={{ xs: 4, sm: 10, md: 2, lg: 8, xl: 6, xxl: 6 }}>
+        <DarkBox>Col</DarkBox>
+      </Grid.Col>
+      <Grid.Col span={{ xs: 8, sm: 4, md: 10, lg: 2, xl: 6, xxl: 6 }}>
+        <LightBox>Col</LightBox>
+      </Grid.Col>
+      <Grid.Col span={{ xs: 10, sm: 2, md: 8, lg: 4, xl: 6, xxl: 6 }}>
+        <DarkBox>Col</DarkBox>
+      </Grid.Col>
+      <Grid.Col span={{ xs: 2, sm: 8, md: 4, lg: 10, xl: 6, xxl: 6 }}>
+        <LightBox>Col</LightBox>
+      </Grid.Col>
+      <Grid.Col span={{ xs: 4, sm: 10, md: 2, lg: 8, xl: 6, xxl: 6 }}>
+        <DarkBox>Col</DarkBox>
+      </Grid.Col>
+      <Grid.Col span={{ xs: 8, sm: 4, md: 10, lg: 2, xl: 6, xxl: 6 }}>
+        <LightBox>Col</LightBox>
+      </Grid.Col>
+      <Grid.Col span={{ xs: 10, sm: 2, md: 8, lg: 4, xl: 6, xxl: 6 }}>
+        <DarkBox>Col</DarkBox>
+      </Grid.Col>
+    </Grid>
+  );
+}

@@ -100,6 +100,7 @@ import {
   DemoGridJustify,
   DemoGridOffset,
   DemoGridOrder,
+  DemoGridResponsive,
 } from './grid';
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
@@ -389,6 +390,9 @@ function App() {
         </Wrapper>
         <Wrapper title="Justify">
           <DemoGridJustify />
+        </Wrapper>
+        <Wrapper title="Responsive">
+          <DemoGridResponsive />
         </Wrapper>
       </Container>
     </div>

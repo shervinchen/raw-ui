@@ -1,74 +1,153 @@
 import React, { FC, PropsWithChildren } from 'react';
 import classNames from 'classnames';
-import { GridConfig, GridProps } from './Grid.types';
+import {
+  AlignResponsiveStyle,
+  GridConfig,
+  GridProps,
+  GutterResponsiveStyle,
+  JustifyResponsiveStyle,
+} from './Grid.types';
 import { GridContext } from './grid-context';
-
-const isLegalGutter = (gutter) => {
-  return Number.isInteger(gutter) && gutter >= 0;
-};
+import {
+  alignStyleMap,
+  getGridResponsiveStyle,
+  justifyStyleMap,
+} from './Grid.styles';
 
 const Grid: FC<PropsWithChildren<GridProps>> = ({
   gutter = [0, 0],
-  align = 'top',
-  justify = 'start',
+  align = 'normal',
+  justify = 'normal',
   className = '',
-  style,
   children,
   ...restProps
 }) => {
   const classes = classNames(
     'raw-grid',
-    align && `raw-grid-align-${align}`,
-    justify && `raw-grid-justify-${justify}`,
+    'raw-grid-gutter-side',
+    'raw-grid-gutter-vertical',
+    'raw-grid-align',
+    'raw-grid-justify',
     className
   );
-  const horizontalGutter = isLegalGutter(gutter?.[0]) ? gutter[0] : 0;
-  const verticalGutter = isLegalGutter(gutter?.[1]) ? gutter[1] : 0;
-  const rowStyle = {
-    marginLeft: `-${horizontalGutter / 2}px`,
-    marginRight: `-${horizontalGutter / 2}px`,
-    rowGap: `${verticalGutter}px`,
-  };
+
+  const horizontalGutterResponsiveStyle = getGridResponsiveStyle(
+    'gutter',
+    gutter?.[0]
+  ) as GutterResponsiveStyle;
+  const verticalGutterResponsiveStyle = getGridResponsiveStyle(
+    'gutter',
+    gutter?.[1]
+  ) as GutterResponsiveStyle;
+  const alignResponsiveStyle = getGridResponsiveStyle(
+    'align',
+    align
+  ) as AlignResponsiveStyle;
+  const justifyResponsiveStyle = getGridResponsiveStyle(
+    'justify',
+    justify
+  ) as JustifyResponsiveStyle;
 
   const gridConfig: GridConfig = {
-    horizontalGutter,
+    horizontalGutterResponsiveStyle,
   };
 
   return (
     <GridContext.Provider value={gridConfig}>
-      <div className={classes} style={{ ...rowStyle, ...style }} {...restProps}>
+      <div className={classes} {...restProps}>
         {children}
         <style jsx>{`
           .raw-grid {
             display: flex;
             flex-flow: row wrap;
           }
-          .raw-grid-align-top {
-            align-items: flex-start;
+          .raw-grid-gutter-side {
+            margin-left: -${horizontalGutterResponsiveStyle.xs / 2}px;
+            margin-right: -${horizontalGutterResponsiveStyle.xs / 2}px;
           }
-          .raw-grid-align-center {
-            align-items: center;
+          .raw-grid-gutter-vertical {
+            row-gap: ${verticalGutterResponsiveStyle.xs}px;
           }
-          .raw-grid-align-bottom {
-            align-items: flex-end;
+          .raw-grid-align {
+            align-items: ${alignStyleMap[alignResponsiveStyle.xs]};
           }
-          .raw-grid-justify-start {
-            justify-content: flex-start;
+          .raw-grid-justify {
+            justify-content: ${justifyStyleMap[justifyResponsiveStyle.xs]};
           }
-          .raw-grid-justify-center {
-            justify-content: center;
+          @media (min-width: 576px) {
+            .raw-grid-gutter-side {
+              margin-left: -${horizontalGutterResponsiveStyle.sm / 2}px;
+              margin-right: -${horizontalGutterResponsiveStyle.sm / 2}px;
+            }
+            .raw-grid-gutter-vertical {
+              row-gap: ${verticalGutterResponsiveStyle.sm}px;
+            }
+            .raw-grid-align {
+              align-items: ${alignStyleMap[alignResponsiveStyle.sm]};
+            }
+            .raw-grid-justify {
+              justify-content: ${justifyStyleMap[justifyResponsiveStyle.sm]};
+            }
           }
-          .raw-grid-justify-end {
-            justify-content: flex-end;
+          @media (min-width: 768px) {
+            .raw-grid-gutter-side {
+              margin-left: -${horizontalGutterResponsiveStyle.md / 2}px;
+              margin-right: -${horizontalGutterResponsiveStyle.md / 2}px;
+            }
+            .raw-grid-gutter-vertical {
+              row-gap: ${verticalGutterResponsiveStyle.md}px;
+            }
+            .raw-grid-align {
+              align-items: ${alignStyleMap[alignResponsiveStyle.md]};
+            }
+            .raw-grid-justify {
+              justify-content: ${justifyStyleMap[justifyResponsiveStyle.md]};
+            }
           }
-          .raw-grid-justify-space-between {
-            justify-content: space-between;
+          @media (min-width: 992px) {
+            .raw-grid-gutter-side {
+              margin-left: -${horizontalGutterResponsiveStyle.lg / 2}px;
+              margin-right: -${horizontalGutterResponsiveStyle.lg / 2}px;
+            }
+            .raw-grid-gutter-vertical {
+              row-gap: ${verticalGutterResponsiveStyle.lg}px;
+            }
+            .raw-grid-align {
+              align-items: ${alignStyleMap[alignResponsiveStyle.lg]};
+            }
+            .raw-grid-justify {
+              justify-content: ${justifyStyleMap[justifyResponsiveStyle.lg]};
+            }
           }
-          .raw-grid-justify-space-around {
-            justify-content: space-around;
+          @media (min-width: 1200px) {
+            .raw-grid-gutter-side {
+              margin-left: -${horizontalGutterResponsiveStyle.xl / 2}px;
+              margin-right: -${horizontalGutterResponsiveStyle.xl / 2}px;
+            }
+            .raw-grid-gutter-vertical {
+              row-gap: ${verticalGutterResponsiveStyle.xl}px;
+            }
+            .raw-grid-align {
+              align-items: ${alignStyleMap[alignResponsiveStyle.xl]};
+            }
+            .raw-grid-justify {
+              justify-content: ${justifyStyleMap[justifyResponsiveStyle.xl]};
+            }
           }
-          .raw-grid-justify-space-evenly {
-            justify-content: space-evenly;
+          @media (min-width: 1600px) {
+            .raw-grid-gutter-side {
+              margin-left: -${horizontalGutterResponsiveStyle.xxl / 2}px;
+              margin-right: -${horizontalGutterResponsiveStyle.xxl / 2}px;
+            }
+            .raw-grid-gutter-vertical {
+              row-gap: ${verticalGutterResponsiveStyle.xxl}px;
+            }
+            .raw-grid-align {
+              align-items: ${alignStyleMap[alignResponsiveStyle.xxl]};
+            }
+            .raw-grid-justify {
+              justify-content: ${justifyStyleMap[justifyResponsiveStyle.xxl]};
+            }
           }
         `}</style>
       </div>

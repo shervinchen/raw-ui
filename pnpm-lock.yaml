@@ -11,6 +11,9 @@ importers:
       classnames:
         specifier: ^2.3.2
         version: 2.3.2
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       react-feather:
         specifier: ^2.0.10
         version: 2.0.10(react@18.3.1)
@@ -96,6 +99,9 @@ importers:
       '@types/jest':
         specifier: ^29.5.12
         version: 29.5.12
+      '@types/lodash':
+        specifier: ^4.17.4
+        version: 4.17.4
       '@types/mdx':
         specifier: ^2.0.5
         version: 2.0.5
@@ -1605,6 +1611,9 @@ packages:
 
   '@types/json5@0.0.29':
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
+
+  '@types/lodash@4.17.4':
+    resolution: {integrity: sha512-wYCP26ZLxaT3R39kiN2+HcJ4kTd3U1waI/cY7ivWYqFP6pW3ZNpvi6Wd6PHZx7T/t8z0vlkXMg3QYLa7DZ/IJQ==}
 
   '@types/mdast@3.0.11':
     resolution: {integrity: sha512-Y/uImid8aAwrEA24/1tcRZwpxX3pIFTSilcNDKSPn+Y2iDywSEachzRuvgAYYLR3wpGXAsMbv5lvKLDZLeYPAw==}
@@ -7641,6 +7650,8 @@ snapshots:
   '@types/json-schema@7.0.15': {}
 
   '@types/json5@0.0.29': {}
+
+  '@types/lodash@4.17.4': {}
 
   '@types/mdast@3.0.11':
     dependencies:
