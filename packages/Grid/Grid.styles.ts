@@ -37,24 +37,31 @@ export const justifyStyleMap: {
   'space-evenly': 'space-evenly',
 };
 
-const isLegalGutterNumber = (value) => {
-  return Number.isInteger(value) && value >= 0;
+const isLegalGutterNumber = (value: ResponsiveValue<number>) => {
+  return Number.isInteger(value) && (value as number) >= 0;
 };
 
-const isLegalColPropertyValue = (value) => {
-  return Number.isInteger(value) && value >= 1 && value <= GRID_SIZE;
+const isLegalColPropertyValue = (value: ResponsiveValue<number>) => {
+  return (
+    Number.isInteger(value) &&
+    (value as number) >= 1 &&
+    (value as number) <= GRID_SIZE
+  );
 };
 
 const isLegalGridPropertyValue = (
   type: 'gutter' | 'align' | 'justify',
-  value
+  value:
+    | ResponsiveValue<number>
+    | ResponsiveValue<AlignValue>
+    | ResponsiveValue<JustifyValue>
 ) => {
   const keys = {
     align: Aligns,
     justify: Justifies,
   };
   return type === 'gutter'
-    ? isLegalGutterNumber(value)
+    ? isLegalGutterNumber(value as ResponsiveValue<number>)
     : isString(value) && Object.keys(keys[type]).includes(value);
 };
 

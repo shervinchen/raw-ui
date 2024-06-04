@@ -42,7 +42,7 @@ const GridCol: FC<PropsWithChildren<GridColProps>> = ({
   ) as ColOrderResponsiveStyle;
 
   return (
-    <div className={classes} {...restProps}>
+    <div data-testid="gridCol" className={classes} {...restProps}>
       {children}
       <style jsx>{`
         .raw-grid-col {

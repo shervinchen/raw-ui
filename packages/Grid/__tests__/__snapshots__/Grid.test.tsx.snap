@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Grid should match the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="jsx-3953341048 raw-grid raw-grid-gutter-side raw-grid-gutter-vertical raw-grid-align raw-grid-justify"
+    data-testid="grid"
+  >
+    <div
+      class="jsx-125401513 raw-grid-col raw-grid-col-span raw-grid-col-offset raw-grid-col-order raw-grid-gutter-horizontal"
+      data-testid="gridCol"
+    >
+      <div>
+        col
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

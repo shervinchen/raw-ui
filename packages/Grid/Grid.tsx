@@ -54,7 +54,7 @@ const Grid: FC<PropsWithChildren<GridProps>> = ({
 
   return (
     <GridContext.Provider value={gridConfig}>
-      <div className={classes} {...restProps}>
+      <div data-testid="grid" className={classes} {...restProps}>
         {children}
         <style jsx>{`
           .raw-grid {
