@@ -30,13 +30,13 @@ export enum Justifies {
   'space-evenly' = 'space-evenly',
 }
 
-export type AlignValue = keyof typeof Aligns;
-export type JustifyValue = keyof typeof Justifies;
+export type Align = keyof typeof Aligns;
+export type Justify = keyof typeof Justifies;
 
 interface BaseGridProps {
   gutter?: Gutter;
-  align?: ResponsiveValue<AlignValue>;
-  justify?: ResponsiveValue<JustifyValue>;
+  align?: ResponsiveValue<Align>;
+  justify?: ResponsiveValue<Justify>;
   className?: string;
 }
 
@@ -106,9 +106,9 @@ export interface GridConfig {
 }
 
 export type AlignResponsiveStyle = {
-  [key in BreakPoint]: AlignValue;
+  [key in BreakPoint]: Align;
 };
 
 export type JustifyResponsiveStyle = {
-  [key in BreakPoint]: JustifyValue;
+  [key in BreakPoint]: Justify;
 };

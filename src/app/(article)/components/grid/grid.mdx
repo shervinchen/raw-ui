@@ -1,0 +1,416 @@
+import Unit from '@/demo/Unit';
+import { LightBox, DarkBox, rowStyle, box60, box80, box100, box120 } from '@/demo/grid'
+import { Grid } from '@/packages';
+import Playground from '@/src/app/components/playground';
+
+# Grid
+
+Grid system used to create complex layouts.
+
+## Import
+
+```tsx
+import { Grid } from 'raw-ui';
+```
+
+## Basic
+
+<Playground
+  scope={{ Grid, LightBox, DarkBox, rowStyle }}
+  code={`
+<>
+  <Grid style={rowStyle}>
+    <Grid.Col span={24}>
+      <LightBox>col</LightBox>
+    </Grid.Col>
+  </Grid>
+  <Grid style={rowStyle}>
+    <Grid.Col span={12}>
+      <LightBox>col-12</LightBox>
+    </Grid.Col>
+    <Grid.Col span={12}>
+      <DarkBox>col-12</DarkBox>
+    </Grid.Col>
+  </Grid>
+  <Grid style={rowStyle}>
+    <Grid.Col span={8}>
+      <LightBox>col-8</LightBox>
+    </Grid.Col>
+    <Grid.Col span={8}>
+      <DarkBox>col-8</DarkBox>
+    </Grid.Col>
+    <Grid.Col span={8}>
+      <LightBox>col-8</LightBox>
+    </Grid.Col>
+  </Grid>
+  <Grid style={rowStyle}>
+    <Grid.Col span={6}>
+      <LightBox>col-6</LightBox>
+    </Grid.Col>
+    <Grid.Col span={6}>
+      <DarkBox>col-6</DarkBox>
+    </Grid.Col>
+    <Grid.Col span={6}>
+      <LightBox>col-6</LightBox>
+    </Grid.Col>
+    <Grid.Col span={6}>
+      <DarkBox>col-6</DarkBox>
+    </Grid.Col>
+  </Grid>
+</>
+`}
+/>
+
+## Gutter
+
+<Playground
+  scope={{ Grid, LightBox, DarkBox, rowStyle }}
+  code={`
+<Grid gutter={[16, 24]} style={rowStyle}>
+  <Grid.Col span={6}>
+    <LightBox>col-6</LightBox>
+  </Grid.Col>
+  <Grid.Col span={6}>
+    <LightBox>col-6</LightBox>
+  </Grid.Col>
+  <Grid.Col span={6}>
+    <LightBox>col-6</LightBox>
+  </Grid.Col>
+  <Grid.Col span={6}>
+    <LightBox>col-6</LightBox>
+  </Grid.Col>
+  <Grid.Col span={6}>
+    <LightBox>col-6</LightBox>
+  </Grid.Col>
+  <Grid.Col span={6}>
+    <LightBox>col-6</LightBox>
+  </Grid.Col>
+  <Grid.Col span={6}>
+    <LightBox>col-6</LightBox>
+  </Grid.Col>
+  <Grid.Col span={6}>
+    <LightBox>col-6</LightBox>
+  </Grid.Col>
+</Grid>
+`}
+/>
+
+## Offset
+
+<Playground
+  scope={{ Grid, LightBox, DarkBox, rowStyle }}
+  code={`
+<>
+  <Grid style={rowStyle}>
+    <Grid.Col span={8}>
+      <LightBox>col-8</LightBox>
+    </Grid.Col>
+    <Grid.Col span={8} offset={8}>
+      <DarkBox>col-8 col-offset-8</DarkBox>
+    </Grid.Col>
+  </Grid>
+  <Grid style={rowStyle}>
+    <Grid.Col span={6} offset={6}>
+      <LightBox>col-6 col-offset-6</LightBox>
+    </Grid.Col>
+    <Grid.Col span={6} offset={6}>
+      <DarkBox>col-6 col-offset-6</DarkBox>
+    </Grid.Col>
+  </Grid>
+  <Grid style={rowStyle}>
+    <Grid.Col span={12} offset={6}>
+      <LightBox>col-12 col-offset-6</LightBox>
+    </Grid.Col>
+  </Grid>
+</>
+`}
+/>
+
+## Order
+
+<Playground
+  scope={{ Grid, LightBox, DarkBox, rowStyle }}
+  code={`
+<Grid>
+  <Grid.Col span={6} order={4}>
+    <LightBox>1 col-order-4</LightBox>
+  </Grid.Col>
+  <Grid.Col span={6} order={3}>
+    <DarkBox>2 col-order-3</DarkBox>
+  </Grid.Col>
+  <Grid.Col span={6} order={2}>
+    <LightBox>3 col-order-2</LightBox>
+  </Grid.Col>
+  <Grid.Col span={6} order={1}>
+    <DarkBox>4 col-order-1</DarkBox>
+  </Grid.Col>
+</Grid>
+`}
+/>
+
+## Align
+
+<Playground
+  scope={{ Grid, LightBox, DarkBox, rowStyle, box60, box80, box100, box120 }}
+  code={`
+<>
+  <Grid align="top" style={rowStyle}>
+    <Grid.Col span={4}>
+      <LightBox style={box100}>col-4</LightBox>
+    </Grid.Col>
+    <Grid.Col span={4}>
+      <DarkBox style={box60}>col-4</DarkBox>
+    </Grid.Col>
+    <Grid.Col span={4}>
+      <LightBox style={box120}>col-4</LightBox>
+    </Grid.Col>
+    <Grid.Col span={4}>
+      <DarkBox style={box80}>col-4</DarkBox>
+    </Grid.Col>
+  </Grid>
+  <Grid align="center" style={rowStyle}>
+    <Grid.Col span={4}>
+      <LightBox style={box100}>col-4</LightBox>
+    </Grid.Col>
+    <Grid.Col span={4}>
+      <DarkBox style={box60}>col-4</DarkBox>
+    </Grid.Col>
+    <Grid.Col span={4}>
+      <LightBox style={box120}>col-4</LightBox>
+    </Grid.Col>
+    <Grid.Col span={4}>
+      <DarkBox style={box80}>col-4</DarkBox>
+    </Grid.Col>
+  </Grid>
+  <Grid align="bottom" style={rowStyle}>
+    <Grid.Col span={4}>
+      <LightBox style={box100}>col-4</LightBox>
+    </Grid.Col>
+    <Grid.Col span={4}>
+      <DarkBox style={box60}>col-4</DarkBox>
+    </Grid.Col>
+    <Grid.Col span={4}>
+      <LightBox style={box120}>col-4</LightBox>
+    </Grid.Col>
+    <Grid.Col span={4}>
+      <DarkBox style={box80}>col-4</DarkBox>
+    </Grid.Col>
+  </Grid>
+</>
+`}
+/>
+
+## Justify
+
+<Playground
+  scope={{ Grid, LightBox, DarkBox, rowStyle, box60, box80, box100, box120 }}
+  code={`
+<>
+  <Grid justify="start" style={rowStyle}>
+    <Grid.Col span={4}>
+      <LightBox style={box100}>col-4</LightBox>
+    </Grid.Col>
+    <Grid.Col span={4}>
+      <DarkBox style={box60}>col-4</DarkBox>
+    </Grid.Col>
+    <Grid.Col span={4}>
+      <LightBox style={box120}>col-4</LightBox>
+    </Grid.Col>
+    <Grid.Col span={4}>
+      <DarkBox style={box80}>col-4</DarkBox>
+    </Grid.Col>
+  </Grid>
+  <Grid justify="center" style={rowStyle}>
+    <Grid.Col span={4}>
+      <LightBox style={box100}>col-4</LightBox>
+    </Grid.Col>
+    <Grid.Col span={4}>
+      <DarkBox style={box60}>col-4</DarkBox>
+    </Grid.Col>
+    <Grid.Col span={4}>
+      <LightBox style={box120}>col-4</LightBox>
+    </Grid.Col>
+    <Grid.Col span={4}>
+      <DarkBox style={box80}>col-4</DarkBox>
+    </Grid.Col>
+  </Grid>
+  <Grid justify="end" style={rowStyle}>
+    <Grid.Col span={4}>
+      <LightBox style={box100}>col-4</LightBox>
+    </Grid.Col>
+    <Grid.Col span={4}>
+      <DarkBox style={box60}>col-4</DarkBox>
+    </Grid.Col>
+    <Grid.Col span={4}>
+      <LightBox style={box120}>col-4</LightBox>
+    </Grid.Col>
+    <Grid.Col span={4}>
+      <DarkBox style={box80}>col-4</DarkBox>
+    </Grid.Col>
+  </Grid>
+  <Grid justify="space-between" style={rowStyle}>
+    <Grid.Col span={4}>
+      <LightBox style={box100}>col-4</LightBox>
+    </Grid.Col>
+    <Grid.Col span={4}>
+      <DarkBox style={box60}>col-4</DarkBox>
+    </Grid.Col>
+    <Grid.Col span={4}>
+      <LightBox style={box120}>col-4</LightBox>
+    </Grid.Col>
+    <Grid.Col span={4}>
+      <DarkBox style={box80}>col-4</DarkBox>
+    </Grid.Col>
+  </Grid>
+  <Grid justify="space-around" style={rowStyle}>
+    <Grid.Col span={4}>
+      <LightBox style={box100}>col-4</LightBox>
+    </Grid.Col>
+    <Grid.Col span={4}>
+      <DarkBox style={box60}>col-4</DarkBox>
+    </Grid.Col>
+    <Grid.Col span={4}>
+      <LightBox style={box120}>col-4</LightBox>
+    </Grid.Col>
+    <Grid.Col span={4}>
+      <DarkBox style={box80}>col-4</DarkBox>
+    </Grid.Col>
+  </Grid>
+  <Grid justify="space-evenly" style={rowStyle}>
+    <Grid.Col span={4}>
+      <LightBox style={box100}>col-4</LightBox>
+    </Grid.Col>
+    <Grid.Col span={4}>
+      <DarkBox style={box60}>col-4</DarkBox>
+    </Grid.Col>
+    <Grid.Col span={4}>
+      <LightBox style={box120}>col-4</LightBox>
+    </Grid.Col>
+    <Grid.Col span={4}>
+      <DarkBox style={box80}>col-4</DarkBox>
+    </Grid.Col>
+  </Grid>
+</>
+`}
+/>
+
+## Responsive
+
+<Playground
+  scope={{ Grid, LightBox, DarkBox, rowStyle, box60, box80, box100, box120 }}
+  code={`
+<Grid gutter={[{ xs: 8, sm: 16, md: 24, lg: 32, xl: 40, xxl: 48 }, 16]}>
+  <Grid.Col span={{ xs: 4, sm: 8, md: 4, lg: 6, xl: 6, xxl: 6 }}>
+    <LightBox>Col</LightBox>
+  </Grid.Col>
+  <Grid.Col span={{ xs: 6, sm: 6, md: 8, lg: 8, xl: 6, xxl: 6 }}>
+    <DarkBox>Col</DarkBox>
+  </Grid.Col>
+  <Grid.Col span={{ xs: 6, sm: 4, md: 6, lg: 6, xl: 6, xxl: 6 }}>
+    <LightBox>Col</LightBox>
+  </Grid.Col>
+  <Grid.Col span={{ xs: 8, sm: 6, md: 6, lg: 4, xl: 6, xxl: 6 }}>
+    <DarkBox>Col</DarkBox>
+  </Grid.Col>
+  <Grid.Col span={{ xs: 4, sm: 8, md: 4, lg: 6, xl: 6, xxl: 6 }}>
+    <LightBox>Col</LightBox>
+  </Grid.Col>
+  <Grid.Col span={{ xs: 6, sm: 6, md: 8, lg: 8, xl: 6, xxl: 6 }}>
+    <DarkBox>Col</DarkBox>
+  </Grid.Col>
+  <Grid.Col span={{ xs: 6, sm: 4, md: 6, lg: 6, xl: 6, xxl: 6 }}>
+    <LightBox>Col</LightBox>
+  </Grid.Col>
+  <Grid.Col span={{ xs: 8, sm: 6, md: 6, lg: 4, xl: 6, xxl: 6 }}>
+    <DarkBox>Col</DarkBox>
+  </Grid.Col>
+</Grid>
+`}
+/>
+
+## API
+
+### Grid
+
+| Prop         | Description            | Type                       | Default  |
+| ------------ | ---------------------- | -------------------------- | -------- |
+| gutter       | spacing between grids  | Gutter                     | [0, 0]   |
+| align        | vertical alignment     | ResponsiveValue\<Align\>   | 'normal' |
+| justify      | horizontal arrangement | ResponsiveValue\<Justify\> | 'normal' |
+| ...          | native props           | React.HTMLAttributes       | -       |
+
+### Grid.Col
+
+| Prop         | Description                                                   | Type                      | Default  | Range  |
+| ------------ | ------------------------------------------------------------- | ------------------------- | -------- | ------ |
+| offset       | The number of cells to offset Col from the left               | ResponsiveValue\<number\> | 0        | 1 - 24 |
+| order        | The order of Col                                              | ResponsiveValue\<number\> | 0        | 1 - 24 |
+| span         | The number of cells to occupy, 0 corresponds to display: none | ResponsiveValue\<number\> | -        | 1 - 24 |
+
+## Type
+
+```tsx
+import { BreakPoint, ResponsiveValue, Gutter, Align, Justify } from 'raw-ui';
+```
+
+### BreakPoint
+
+- xs: screen width < 576px
+- sm: screen width ≥ 576px
+- md: screen width ≥ 768px
+- lg: screen width ≥ 992px
+- xl: screen width ≥ 1200px
+- xxl: screen width ≥ 1600px
+
+```tsx
+enum BreakPoints {
+  xs = 'xs',
+  sm = 'sm',
+  md = 'md',
+  lg = 'lg',
+  xl = 'xl',
+  xxl = 'xxl',
+}
+type BreakPoint = keyof typeof BreakPoints;
+```
+
+### ResponsiveValue
+
+```tsx
+type ResponsiveValue<T> = T | { [key in BreakPoint]?: T };
+```
+
+### Gutter
+
+```tsx
+type Gutter = [ResponsiveValue<number>, ResponsiveValue<number>];
+```
+
+### Align
+
+```tsx
+enum Aligns {
+  normal = 'normal',
+  top = 'top',
+  center = 'center',
+  bottom = 'bottom',
+}
+
+type Align = keyof typeof Aligns;
+```
+
+### Justify
+
+```tsx
+enum Justifies {
+  normal = 'normal',
+  start = 'start',
+  center = 'center',
+  end = 'end',
+  'space-between' = 'space-between',
+  'space-around' = 'space-around',
+  'space-evenly' = 'space-evenly',
+}
+
+type Justify = keyof typeof Justifies;
+```

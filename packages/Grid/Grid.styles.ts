@@ -2,7 +2,7 @@ import { isPlainObject, isString } from 'lodash';
 import {
   AlignResponsiveStyle,
   Aligns,
-  AlignValue,
+  Align,
   BreakPoints,
   ColResponsiveStyle,
   ColSpanStyle,
@@ -10,14 +10,14 @@ import {
   GutterResponsiveStyle,
   Justifies,
   JustifyResponsiveStyle,
-  JustifyValue,
+  Justify,
   ResponsiveValue,
 } from './Grid.types';
 
 const GRID_SIZE = 24;
 
 export const alignStyleMap: {
-  [key in AlignValue]: string;
+  [key in Align]: string;
 } = {
   normal: 'normal',
   top: 'flex-start',
@@ -26,7 +26,7 @@ export const alignStyleMap: {
 };
 
 export const justifyStyleMap: {
-  [key in JustifyValue]: string;
+  [key in Justify]: string;
 } = {
   normal: 'normal',
   start: 'flex-start',
@@ -53,8 +53,8 @@ const isLegalGridPropertyValue = (
   type: 'gutter' | 'align' | 'justify',
   value:
     | ResponsiveValue<number>
-    | ResponsiveValue<AlignValue>
-    | ResponsiveValue<JustifyValue>
+    | ResponsiveValue<Align>
+    | ResponsiveValue<Justify>
 ) => {
   const keys = {
     align: Aligns,
@@ -155,8 +155,8 @@ export const getGridResponsiveStyle = (
   type: 'gutter' | 'align' | 'justify',
   value:
     | ResponsiveValue<number>
-    | ResponsiveValue<AlignValue>
-    | ResponsiveValue<JustifyValue>
+    | ResponsiveValue<Align>
+    | ResponsiveValue<Justify>
 ) => {
   const gridResponsiveStyle:
     | GutterResponsiveStyle
@@ -196,8 +196,8 @@ export const getGridResponsiveStyle = (
       ) {
         gridResponsiveStyle[breakPoint] = value[breakPoint] as
           | number
-          | AlignValue
-          | JustifyValue;
+          | Align
+          | Justify;
       }
     });
     return gridResponsiveStyle;

@@ -142,7 +142,7 @@ const useIntersectionObserver = (
           .sort(
             (a, b) => getIndexFromId(a.target.id) - getIndexFromId(b.target.id)
           );
-        setActiveId(sortedVisibleHeadings[0].target.id);
+        setActiveId(sortedVisibleHeadings[0]?.target?.id);
       }
     };
 

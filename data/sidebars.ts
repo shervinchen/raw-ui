@@ -47,6 +47,15 @@ export const SIDEBARS = [
         ],
       },
       {
+        name: 'Layout',
+        children: [
+          {
+            name: 'Grid',
+            url: '/components/grid',
+          },
+        ],
+      },
+      {
         name: 'Data Entry',
         children: [
           {
