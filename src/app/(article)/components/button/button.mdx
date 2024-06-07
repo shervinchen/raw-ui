@@ -1,6 +1,5 @@
 import { Search } from 'react-feather';
-import Unit from '@/demo/Unit';
-import { Button } from '@/packages';
+import { Button, Grid } from '@/packages';
 import Playground from '@/src/app/components/playground';
 
 # Button
@@ -16,28 +15,44 @@ import { Button } from 'raw-ui';
 ## Types
 
 <Playground
-  scope={{ Unit, Button }}
+  scope={{ Grid, Button }}
   code={`
-<Unit layout="row">
-  <Button>Default</Button>
-  <Button type="primary">Primary</Button>
-  <Button type="success">Success</Button>
-  <Button type="warning">Warning</Button>
-  <Button type="error">Error</Button>
-</Unit>
+<Grid gutter={[32, 0]}>
+  <Grid.Col>
+    <Button>Default</Button>
+  </Grid.Col>
+  <Grid.Col>
+    <Button type="primary">Primary</Button>
+  </Grid.Col>
+  <Grid.Col>
+    <Button type="success">Success</Button>
+  </Grid.Col>
+  <Grid.Col>
+    <Button type="warning">Warning</Button>
+  </Grid.Col>
+  <Grid.Col>
+    <Button type="error">Error</Button>
+  </Grid.Col>
+</Grid>
 `}
 />
 
 ## Sizes
 
 <Playground
-  scope={{ Unit, Button }}
+  scope={{ Grid, Button }}
   code={`
-<Unit layout="row">
-  <Button size="sm">Small</Button>
-  <Button size="md">Medium</Button>
-  <Button size="lg">Large</Button>
-</Unit>
+<Grid gutter={[32, 0]} align="center">
+  <Grid.Col>
+    <Button size="sm">Small</Button>
+  </Grid.Col>
+  <Grid.Col>
+    <Button size="md">Medium</Button>
+  </Grid.Col>
+  <Grid.Col>
+    <Button size="lg">Large</Button>
+  </Grid.Col>
+</Grid>
 `}
 />
 
@@ -46,130 +61,188 @@ import { Button } from 'raw-ui';
 ### Outline
 
 <Playground
-  scope={{ Unit, Button }}
+  scope={{ Grid, Button }}
   code={`
-<Unit layout="row">
-  <Button type="primary" variant="outline">
-    Primary
-  </Button>
-  <Button type="success" variant="outline">
-    Success
-  </Button>
-  <Button type="warning" variant="outline">
-    Warning
-  </Button>
-  <Button type="error" variant="outline">
-    Error
-  </Button>
-</Unit>
+<Grid gutter={[32, 0]}>
+  <Grid.Col>
+    <Button type="primary" variant="outline">
+      Primary
+    </Button>
+  </Grid.Col>
+  <Grid.Col>
+    <Button type="success" variant="outline">
+      Success
+    </Button>
+  </Grid.Col>
+  <Grid.Col>
+    <Button type="warning" variant="outline">
+      Warning
+    </Button>
+  </Grid.Col>
+  <Grid.Col>
+    <Button type="error" variant="outline">
+      Error
+    </Button>
+  </Grid.Col>
+</Grid>
 `}
 />
 
 ### Ghost
 
 <Playground
-  scope={{ Unit, Button }}
+  scope={{ Grid, Button }}
   code={`
-<Unit layout="row">
-  <Button variant="ghost">Default</Button>
-  <Button type="primary" variant="ghost">
-    Primary
-  </Button>
-  <Button type="success" variant="ghost">
-    Success
-  </Button>
-  <Button type="warning" variant="ghost">
-    Warning
-  </Button>
-  <Button type="error" variant="ghost">
-    Error
-  </Button>
-</Unit>
+<Grid gutter={[32, 0]}>
+  <Grid.Col>
+    <Button variant="ghost">Default</Button>
+  </Grid.Col>
+  <Grid.Col>
+    <Button type="primary" variant="ghost">
+      Primary
+    </Button>
+  </Grid.Col>
+  <Grid.Col>
+    <Button type="success" variant="ghost">
+      Success
+    </Button>
+  </Grid.Col>
+  <Grid.Col>
+    <Button type="warning" variant="ghost">
+      Warning
+    </Button>
+  </Grid.Col>
+  <Grid.Col>
+    <Button type="error" variant="ghost">
+      Error
+    </Button>
+  </Grid.Col>
+</Grid>
 `}
 />
 
 ### Shadow
 
 <Playground
-  scope={{ Unit, Button }}
+  scope={{ Grid, Button }}
   code={`
-<Unit layout="row">
-  <Button variant="shadow">Default</Button>
-  <Button type="primary" variant="shadow">
-    Primary
-  </Button>
-  <Button type="success" variant="shadow">
-    Success
-  </Button>
-  <Button type="warning" variant="shadow">
-    Warning
-  </Button>
-  <Button type="error" variant="shadow">
-    Error
-  </Button>
-</Unit>
+<Grid gutter={[32, 0]}>
+  <Grid.Col>
+    <Button variant="shadow">Default</Button>
+  </Grid.Col>
+  <Grid.Col>
+    <Button type="primary" variant="shadow">
+      Primary
+    </Button>
+  </Grid.Col>
+  <Grid.Col>
+    <Button type="success" variant="shadow">
+      Success
+    </Button>
+  </Grid.Col>
+  <Grid.Col>
+    <Button type="warning" variant="shadow">
+      Warning
+    </Button>
+  </Grid.Col>
+  <Grid.Col>
+    <Button type="error" variant="shadow">
+      Error
+    </Button>
+  </Grid.Col>
+</Grid>
   `}
 />
 
 ## Loading
 
 <Playground
-  scope={{ Unit, Button }}
+  scope={{ Grid, Button }}
   code={`
-<Unit layout="row">
-  <Button loading>Default</Button>
-  <Button type="primary" loading>
-    Primary
-  </Button>
-  <Button type="success" variant="outline" loading>
-    Success
-  </Button>
-  <Button type="warning" variant="ghost" loading>
-    Warning
-  </Button>
-  <Button type="error" variant="shadow" loading>
-    Error
-  </Button>
-</Unit>
+<Grid gutter={[32, 0]}>
+  <Grid.Col>
+    <Button loading>Default</Button>
+  </Grid.Col>
+  <Grid.Col>
+    <Button type="primary" loading>
+      Primary
+    </Button>
+  </Grid.Col>
+  <Grid.Col>
+    <Button type="success" variant="outline" loading>
+      Success
+    </Button>
+  </Grid.Col>
+  <Grid.Col>
+    <Button type="warning" variant="ghost" loading>
+      Warning
+    </Button>
+  </Grid.Col>
+  <Grid.Col>
+    <Button type="error" variant="shadow" loading>
+      Error
+    </Button>
+  </Grid.Col>
+</Grid>
   `}
 />
 
 ## Disabled
 
 <Playground
-  scope={{ Unit, Button }}
+  scope={{ Grid, Button }}
   code={`
-<Unit layout="row">
-  <Button disabled>Default</Button>
-  <Button type="primary" disabled>
-    Primary
-  </Button>
-  <Button type="primary" variant="outline" disabled>
-    Outline
-  </Button>
-  <Button type="primary" variant="ghost" disabled>
-    Ghost
-  </Button>
-  <Button type="primary" variant="shadow" disabled>
-    Shadow
-  </Button>
-</Unit>
+<Grid gutter={[32, 0]}>
+  <Grid.Col>
+    <Button disabled>Default</Button>
+  </Grid.Col>
+  <Grid.Col>
+    <Button type="primary" disabled>
+      Primary
+    </Button>
+  </Grid.Col>
+  <Grid.Col>
+    <Button type="primary" variant="outline" disabled>
+      Outline
+    </Button>
+  </Grid.Col>
+  <Grid.Col>
+    <Button type="primary" variant="ghost" disabled>
+      Ghost
+    </Button>
+  </Grid.Col>
+  <Grid.Col>
+    <Button type="primary" variant="shadow" disabled>
+      Shadow
+    </Button>
+  </Grid.Col>
+</Grid>
   `}
 />
 
 ## Icons
 
 <Playground
-  scope={{ Unit, Button, Search }}
+  scope={{ Grid, Button, Search }}
   code={`
-<Unit layout="row">
-  <Button icon={<Search />} />
-  <Button icon={<Search />}>Search</Button>
-  <Button iconRight={<Search />}>Search</Button>
-  <Button type="primary" icon={<Search />} />
-  <Button type="primary" icon={<Search />}>
-    Search
-  </Button>
+<Grid gutter={[32, 0]}>
+  <Grid.Col>
+    <Button icon={<Search />} />
+  </Grid.Col>
+  <Grid.Col>
+    <Button icon={<Search />}>Search</Button>
+  </Grid.Col>
+  <Grid.Col>
+    <Button iconRight={<Search />}>Search</Button>
+  </Grid.Col>
+  <Grid.Col>
+    <Button type="primary" icon={<Search />} />
+  </Grid.Col>
+  <Grid.Col>
+    <Button type="primary" icon={<Search />}>
+      Search
+    </Button>
+  </Grid.Col>
 </Unit>
   `}
 />

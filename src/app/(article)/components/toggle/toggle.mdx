@@ -1,5 +1,4 @@
-import Unit from '@/demo/Unit';
-import { Toggle } from '@/packages';
+import { Grid, Toggle } from '@/packages';
 import Playground from '@/src/app/components/playground';
 
 # Toggle
@@ -15,7 +14,7 @@ import { Toggle } from 'raw-ui';
 ## Default
 
 <Playground
-  scope={{ Unit, Toggle }}
+  scope={{ Toggle }}
   code={`
 <Toggle />
 `}
@@ -24,7 +23,7 @@ import { Toggle } from 'raw-ui';
 ## Checked
 
 <Playground
-  scope={{ Unit, Toggle }}
+  scope={{ Toggle }}
   code={`
 <Toggle defaultChecked />
 `}
@@ -33,20 +32,18 @@ import { Toggle } from 'raw-ui';
 ## Controlled
 
 <Playground
-  scope={{ Unit, Toggle }}
+  scope={{ Toggle }}
   code={`
 () => {
   const [value, setValue] = React.useState(false);
 
   return (
-    <Unit layout="row">
-      <Toggle
-        checked={value}
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-          setValue(event.target.checked);
-        }}
-      />
-    </Unit>
+    <Toggle
+      checked={value}
+      onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+        setValue(event.target.checked);
+      }}
+    />
   );
 }
 `}
@@ -55,12 +52,16 @@ import { Toggle } from 'raw-ui';
 ## Disabled
 
 <Playground
-  scope={{ Unit, Toggle }}
+  scope={{ Grid, Toggle }}
   code={`
-<Unit layout="row">
-  <Toggle disabled />
-  <Toggle defaultChecked disabled />
-</Unit>
+<Grid gutter={[32, 0]}>
+  <Grid.Col>
+    <Toggle disabled />
+  </Grid.Col>
+  <Grid.Col>
+    <Toggle defaultChecked disabled />
+  </Grid.Col>
+</Grid>
 `}
 />
 

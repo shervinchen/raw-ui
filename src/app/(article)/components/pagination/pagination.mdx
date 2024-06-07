@@ -1,4 +1,3 @@
-import Unit from '@/demo/Unit';
 import { Pagination } from '@/packages';
 import Playground from '@/src/app/components/playground';
 
@@ -15,7 +14,7 @@ import { Pagination } from 'raw-ui';
 ## Default page
 
 <Playground
-  scope={{ Unit, Pagination }}
+  scope={{ Pagination }}
   code={`
 <Pagination defaultPage={3} count={100} />
 `}
@@ -24,7 +23,7 @@ import { Pagination } from 'raw-ui';
 ## Controlled
 
 <Playground
-  scope={{ Unit, Pagination }}
+  scope={{ Pagination }}
   code={`
 () => {
   const [page, setPage] = React.useState(1);
@@ -45,7 +44,7 @@ import { Pagination } from 'raw-ui';
 ## Limit
 
 <Playground
-  scope={{ Unit, Pagination }}
+  scope={{ Pagination }}
   code={`
 <Pagination defaultPage={1} count={100} limit={20} />
 `}

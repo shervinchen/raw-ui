@@ -44,7 +44,7 @@ const RadioGroup: FC<PropsWithChildren<RadioGroupProps>> = ({
         {children}
         <style jsx>{`
           .raw-radio-group {
-            display: flex;
+            display: inline-flex;
             flex-direction: ${layout};
             gap: 32px;
           }

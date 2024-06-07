@@ -1,5 +1,4 @@
-import Unit from '@/demo/Unit';
-import { Button } from '@/packages';
+import { Grid, Button } from '@/packages';
 import Playground from '@/src/app/components/playground';
 
 # ButtonGroup
@@ -15,34 +14,44 @@ import { Button } from 'raw-ui';
 ## Types
 
 <Playground
-  scope={{ Unit, Button }}
+  scope={{ Grid, Button }}
   code={`
-<Unit layout="col">
-  <Button.Group>
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-  <Button.Group type="primary">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-  <Button.Group type="success">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-  <Button.Group type="warning">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-  <Button.Group type="error">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
+<Grid gutter={[0, 32]}>
+  <Grid.Col span={24}>
+    <Button.Group>
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button>Three</Button>
+    </Button.Group>
+  </Grid.Col>
+  <Grid.Col span={24}>
+    <Button.Group type="primary">
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button>Three</Button>
+    </Button.Group>
+  </Grid.Col>
+  <Grid.Col span={24}>
+    <Button.Group type="success">
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button>Three</Button>
+    </Button.Group>
+  </Grid.Col>
+  <Grid.Col span={24}>
+    <Button.Group type="warning">
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button>Three</Button>
+    </Button.Group>
+  </Grid.Col>
+  <Grid.Col span={24}>
+    <Button.Group type="error">
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button>Three</Button>
+    </Button.Group>
+  </Grid.Col>
 </Unit>
 `}
 />
@@ -50,25 +59,31 @@ import { Button } from 'raw-ui';
 ## Size
 
 <Playground
-  scope={{ Unit, Button }}
+  scope={{ Grid, Button }}
   code={`
-<Unit layout="row">
-  <Button.Group size="sm">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-  <Button.Group size="md">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-  <Button.Group size="lg">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-</Unit>
+<Grid gutter={[32, 0]} align="center">
+  <Grid.Col>
+    <Button.Group size="sm">
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button>Three</Button>
+    </Button.Group>
+  </Grid.Col>
+  <Grid.Col>
+    <Button.Group size="md">
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button>Three</Button>
+    </Button.Group>
+  </Grid.Col>
+  <Grid.Col>
+    <Button.Group size="lg">
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button>Three</Button>
+    </Button.Group>
+  </Grid.Col>
+</Grid>
 `}
 />
 
@@ -77,95 +92,109 @@ import { Button } from 'raw-ui';
 ### Outline
 
 <Playground
-  scope={{ Unit, Button }}
+  scope={{ Grid, Button }}
   code={`
-<Unit layout="col">
-  <Button.Group type="primary" variant="outline">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-  <Button.Group type="success" variant="outline">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-  <Button.Group type="warning" variant="outline">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-  <Button.Group type="error" variant="outline">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-</Unit>
+<Grid gutter={[0, 32]}>
+  <Grid.Col span={24}>
+    <Button.Group type="primary" variant="outline">
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button>Three</Button>
+    </Button.Group>
+  </Grid.Col>
+  <Grid.Col span={24}>
+    <Button.Group type="success" variant="outline">
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button>Three</Button>
+    </Button.Group>
+  </Grid.Col>
+  <Grid.Col span={24}>
+    <Button.Group type="warning" variant="outline">
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button>Three</Button>
+    </Button.Group>
+  </Grid.Col>
+  <Grid.Col span={24}>
+    <Button.Group type="error" variant="outline">
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button>Three</Button>
+    </Button.Group>
+  </Grid.Col>
+</Grid>
 `}
 />
 
 ### Ghost
 
 <Playground
-  scope={{ Unit, Button }}
+  scope={{ Grid, Button }}
   code={`
-<Unit layout="col">
-  <Button.Group variant="ghost">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-  <Button.Group type="primary" variant="ghost">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-  <Button.Group type="success" variant="ghost">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-  <Button.Group type="warning" variant="ghost">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-  <Button.Group type="error" variant="ghost">
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-</Unit>
+<Grid gutter={[0, 32]}>
+  <Grid.Col span={24}>
+    <Button.Group variant="ghost">
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button>Three</Button>
+    </Button.Group>
+  </Grid.Col>
+  <Grid.Col span={24}>
+    <Button.Group type="primary" variant="ghost">
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button>Three</Button>
+    </Button.Group>
+  </Grid.Col>
+  <Grid.Col span={24}>
+    <Button.Group type="success" variant="ghost">
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button>Three</Button>
+    </Button.Group>
+  </Grid.Col>
+  <Grid.Col span={24}>
+    <Button.Group type="warning" variant="ghost">
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button>Three</Button>
+    </Button.Group>
+  </Grid.Col>
+  <Grid.Col span={24}>
+    <Button.Group type="error" variant="ghost">
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button>Three</Button>
+    </Button.Group>
+  </Grid.Col>
+</Grid>
 `}
 />
 
 ## Vertical
 
 <Playground
-  scope={{ Unit, Button }}
+  scope={{ Button }}
   code={`
-<Unit layout="row">
-  <Button.Group vertical>
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-</Unit>
+<Button.Group vertical>
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</Button.Group>
 `}
 />
 
 ## Disabled
 
 <Playground
-  scope={{ Unit, Button }}
+  scope={{ Button }}
   code={`
-<Unit layout="row">
-  <Button.Group disabled>
-    <Button>One</Button>
-    <Button>Two</Button>
-    <Button>Three</Button>
-  </Button.Group>
-</Unit>
+<Button.Group disabled>
+  <Button>One</Button>
+  <Button>Two</Button>
+  <Button>Three</Button>
+</Button.Group>
 `}
 />
 

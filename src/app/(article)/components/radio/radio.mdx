@@ -1,5 +1,4 @@
-import Unit from '@/demo/Unit';
-import { Radio } from '@/packages';
+import { Grid, Radio } from '@/packages';
 import Playground from '@/src/app/components/playground';
 
 # Radio
@@ -15,7 +14,7 @@ import { Radio } from 'raw-ui';
 ## Default
 
 <Playground
-  scope={{ Unit, Radio }}
+  scope={{ Radio }}
   code={`
 <Radio />
 `}
@@ -24,7 +23,7 @@ import { Radio } from 'raw-ui';
 ## Checked
 
 <Playground
-  scope={{ Unit, Radio }}
+  scope={{ Radio }}
   code={`
 <Radio defaultChecked />
 `}
@@ -33,7 +32,7 @@ import { Radio } from 'raw-ui';
 ## With label
 
 <Playground
-  scope={{ Unit, Radio }}
+  scope={{ Radio }}
   code={`
 <Radio>Label</Radio>
 `}
@@ -42,7 +41,7 @@ import { Radio } from 'raw-ui';
 ## Controlled
 
 <Playground
-  scope={{ Unit, Radio }}
+  scope={{ Radio }}
   code={`
 () => {
   const [value, setValue] = React.useState(false);
@@ -64,21 +63,25 @@ import { Radio } from 'raw-ui';
 ## Disabled
 
 <Playground
-  scope={{ Unit, Radio }}
+  scope={{ Grid, Radio }}
   code={`
-<Unit layout="row">
-  <Radio disabled>Disabled</Radio>
-  <Radio defaultChecked disabled>
-    Disabled
-  </Radio>
-</Unit>
+<Grid gutter={[32, 0]}>
+  <Grid.Col>
+    <Radio disabled>Disabled</Radio>
+  </Grid.Col>
+  <Grid.Col>
+    <Radio defaultChecked disabled>
+      Disabled
+    </Radio>
+  </Grid.Col>
+</Grid>
 `}
 />
 
 ## Group
 
 <Playground
-  scope={{ Unit, Radio }}
+  scope={{ Grid, Radio }}
   code={`
 () => {
   const optionsData = React.useMemo(() => [
@@ -103,41 +106,49 @@ import { Radio } from 'raw-ui';
   const [radioGroupValue, setRadioGroupValue] = React.useState<RadioValue>('angular');
 
   return (
-    <Unit layout="col">
-      <Radio.Group defaultValue="vue">
-        {optionsData.map((item) => (
-          <Radio value={item.value} key={item.value}>
-            {item.name}
-          </Radio>
-        ))}
-      </Radio.Group>
-      <Radio.Group
-        value={radioGroupValue}
-        onChange={(groupValue) => {
-          setRadioGroupValue(groupValue);
-        }}
-      >
-        {optionsData.map((item) => (
-          <Radio value={item.value} key={item.value}>
-            {item.name}
-          </Radio>
-        ))}
-      </Radio.Group>
-      <Radio.Group defaultValue="svelte" disabled>
-        {optionsData.map((item) => (
-          <Radio value={item.value} key={item.value}>
-            {item.name}
-          </Radio>
-        ))}
-      </Radio.Group>
-      <Radio.Group defaultValue="vue" layout="column">
-        {optionsData.map((item) => (
-          <Radio value={item.value} key={item.value}>
-            {item.name}
-          </Radio>
-        ))}
-      </Radio.Group>
-    </Unit>
+    <Grid gutter={[0, 32]}>
+      <Grid.Col span={24}>
+        <Radio.Group defaultValue="vue">
+          {optionsData.map((item) => (
+            <Radio value={item.value} key={item.value}>
+              {item.name}
+            </Radio>
+          ))}
+        </Radio.Group>
+      </Grid.Col>
+      <Grid.Col span={24}>
+        <Radio.Group
+          value={radioGroupValue}
+          onChange={(groupValue) => {
+            setRadioGroupValue(groupValue);
+          }}
+        >
+          {optionsData.map((item) => (
+            <Radio value={item.value} key={item.value}>
+              {item.name}
+            </Radio>
+          ))}
+        </Radio.Group>
+      </Grid.Col>
+      <Grid.Col span={24}>
+        <Radio.Group defaultValue="svelte" disabled>
+          {optionsData.map((item) => (
+            <Radio value={item.value} key={item.value}>
+              {item.name}
+            </Radio>
+          ))}
+        </Radio.Group>
+      </Grid.Col>
+      <Grid.Col span={24}>
+        <Radio.Group defaultValue="vue" layout="column">
+          {optionsData.map((item) => (
+            <Radio value={item.value} key={item.value}>
+              {item.name}
+            </Radio>
+          ))}
+        </Radio.Group>
+      </Grid.Col>
+    </Grid>
   );
 }
 `}

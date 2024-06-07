@@ -56,7 +56,7 @@ const CheckboxGroup: FC<PropsWithChildren<CheckboxGroupProps>> = ({
         {children}
         <style jsx>{`
           .raw-checkbox-group {
-            display: flex;
+            display: inline-flex;
             flex-direction: ${layout};
             gap: 32px;
           }

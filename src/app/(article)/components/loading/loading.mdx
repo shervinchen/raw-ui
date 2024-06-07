@@ -1,5 +1,4 @@
-import Unit from '@/demo/Unit';
-import { Loading } from '@/packages';
+import { Grid, Loading } from '@/packages';
 import Playground from '@/src/app/components/playground';
 
 # Loading
@@ -15,44 +14,68 @@ import { Loading } from 'raw-ui';
 ## Types
 
 <Playground
-  scope={{ Unit, Loading }}
+  scope={{ Grid, Loading }}
   code={`
-<Unit layout="row">
-  <Loading />
-  <Loading type="spin" />
-</Unit>
+<Grid gutter={[32, 0]} align="center">
+  <Grid.Col>
+    <Loading />
+  </Grid.Col>
+  <Grid.Col>
+    <Loading type="spin" />
+  </Grid.Col>
+</Grid>
 `}
 />
 
 ## Sizes
 
 <Playground
-  scope={{ Unit, Loading }}
+  scope={{ Grid, Loading }}
   code={`
-<>
-  <Unit layout="row">
-    <Loading size={4} />
-    <Loading size={6} />
-    <Loading size={8} />
-  </Unit>
-  <Unit layout="row">
-    <Loading type="spin" size={16} />
-    <Loading type="spin" size={20} />
-    <Loading type="spin" size={32} />
-  </Unit>
-</>
+<Grid gutter={[0, 32]}>
+  <Grid.Col span={24}>
+    <Grid gutter={[32, 0]} align="center">
+      <Grid.Col>
+        <Loading size={4} />
+      </Grid.Col>
+      <Grid.Col>
+        <Loading size={6} />
+      </Grid.Col>
+      <Grid.Col>
+        <Loading size={8} />
+      </Grid.Col>
+    </Grid>
+  </Grid.Col>
+  <Grid.Col span={24}>
+    <Grid gutter={[32, 0]} align="center">
+      <Grid.Col>
+        <Loading type="spin" size={16} />
+      </Grid.Col>
+      <Grid.Col>
+        <Loading type="spin" size={20} />
+      </Grid.Col>
+      <Grid.Col>
+        <Loading type="spin" size={32} />
+      </Grid.Col>
+    </Grid>
+  </Grid.Col>
+</Grid>
 `}
 />
 
 ## With text
 
 <Playground
-  scope={{ Unit, Loading }}
+  scope={{ Grid, Loading }}
   code={`
-<Unit layout="row">
-  <Loading>Loading</Loading>
-  <Loading type="spin">Loading</Loading>
-</Unit>
+<Grid gutter={[32, 0]} align="center">
+  <Grid.Col>
+    <Loading>Loading</Loading>
+  </Grid.Col>
+  <Grid.Col>
+    <Loading type="spin">Loading</Loading>
+  </Grid.Col>
+</Grid>
 `}
 />
 

@@ -1,4 +1,3 @@
-import Unit from '@/demo/Unit';
 import { Tabs } from '@/packages';
 import Playground from '@/src/app/components/playground';
 
@@ -15,7 +14,7 @@ import { Tabs } from 'raw-ui';
 ## Default
 
 <Playground
-  scope={{ Unit, Tabs }}
+  scope={{ Tabs }}
   code={`
 <Tabs defaultValue="1">
   <Tabs.Tab label="Tab 1" value="1">
@@ -34,7 +33,7 @@ import { Tabs } from 'raw-ui';
 ## Controlled
 
 <Playground
-  scope={{ Unit, Tabs }}
+  scope={{ Tabs }}
   code={`
 () => {
   const [value, setValue] = React.useState('1');
@@ -64,7 +63,7 @@ import { Tabs } from 'raw-ui';
 ## Disabled all tabs
 
 <Playground
-  scope={{ Unit, Tabs }}
+  scope={{ Tabs }}
   code={`
 <Tabs defaultValue="1" disabled>
   <Tabs.Tab label="Tab 1" value="1">
@@ -83,7 +82,7 @@ import { Tabs } from 'raw-ui';
 ## Disabled specific tab
 
 <Playground
-  scope={{ Unit, Tabs }}
+  scope={{ Tabs }}
   code={`
 <Tabs defaultValue="1">
   <Tabs.Tab label="Tab 1" value="1">
@@ -102,7 +101,7 @@ import { Tabs } from 'raw-ui';
 ## Vertical
 
 <Playground
-  scope={{ Unit, Tabs }}
+  scope={{ Tabs }}
   code={`
 <Tabs defaultValue="1" vertical>
   <Tabs.Tab label="Tab 1" value="1">

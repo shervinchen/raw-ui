@@ -57,10 +57,6 @@ const App = () => (
 
 [https://raw-ui.vercel.app](https://raw-ui.vercel.app)
 
-## 参考
-
-这是一个社区项目，与 Vercel 没有关系，但确实从 [Vercel Design](https://vercel.com/design) 得到了一些灵感
-
 ## 许可
 
 [MIT](https://github.com/shervinchen/raw-ui/blob/main/LICENSE)

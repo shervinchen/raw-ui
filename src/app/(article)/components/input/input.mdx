@@ -1,6 +1,5 @@
 import { AlertCircle, Eye, EyeOff, Search, X } from 'react-feather';
-import Unit from '@/demo/Unit';
-import { Input } from '@/packages';
+import { Grid, Input } from '@/packages';
 import Playground from '@/src/app/components/playground';
 
 # Input
@@ -16,34 +15,48 @@ import { Input } from 'raw-ui';
 ## Types
 
 <Playground
-  scope={{ Unit, Input }}
+  scope={{ Grid, Input }}
   code={`
-<Unit layout="col">
-  <Input placeholder="Default Type" />
-  <Input type="primary" placeholder="Primary Type" />
-  <Input type="warning" placeholder="Warning Type" />
-  <Input type="error" placeholder="Error Type" />
-</Unit>
+<Grid gutter={[0, 32]}>
+  <Grid.Col span={24}>
+    <Input placeholder="Default Type" />
+  </Grid.Col>
+  <Grid.Col span={24}>
+    <Input type="primary" placeholder="Primary Type" />
+  </Grid.Col>
+  <Grid.Col span={24}>
+    <Input type="warning" placeholder="Warning Type" />
+  </Grid.Col>
+  <Grid.Col span={24}>
+    <Input type="error" placeholder="Error Type" />
+  </Grid.Col>
+</Grid>
 `}
 />
 
 ## Sizes
 
 <Playground
-  scope={{ Unit, Input }}
+  scope={{ Grid, Input }}
   code={`
-<Unit layout="col">
-  <Input size="sm" placeholder="Small" />
-  <Input size="md" placeholder="Medium" />
-  <Input size="lg" placeholder="Large" />
-</Unit>
+<Grid gutter={[0, 32]}>
+  <Grid.Col span={24}>
+    <Input size="sm" placeholder="Small" />
+  </Grid.Col>
+  <Grid.Col span={24}>
+    <Input size="md" placeholder="Medium" />
+  </Grid.Col>
+  <Grid.Col span={24}>
+    <Input size="lg" placeholder="Large" />
+  </Grid.Col>
+</Grid>
 `}
 />
 
 ## Width
 
 <Playground
-  scope={{ Unit, Input }}
+  scope={{ Input }}
   code={`
 <Input width="160px" placeholder="Customized width" />
 `}
@@ -52,19 +65,23 @@ import { Input } from 'raw-ui';
 ## Disabled
 
 <Playground
-  scope={{ Unit, Input }}
+  scope={{ Grid, Input }}
   code={`
-<Unit layout="col">
-  <Input placeholder="Disabled with placeholder" disabled />
-  <Input defaultValue="Disabled with value" disabled />
-</Unit>
+<Grid gutter={[0, 32]}>
+  <Grid.Col span={24}>
+    <Input placeholder="Disabled with placeholder" disabled />
+  </Grid.Col>
+  <Grid.Col span={24}>
+    <Input defaultValue="Disabled with value" disabled />
+  </Grid.Col>
+</Grid>
 `}
 />
 
 ## Read only
 
 <Playground
-  scope={{ Unit, Input }}
+  scope={{ Input }}
   code={`
 <Input defaultValue="Read only with value" readOnly />
 `}
@@ -73,7 +90,7 @@ import { Input } from 'raw-ui';
 ## Default value
 
 <Playground
-  scope={{ Unit, Input }}
+  scope={{ Input }}
   code={`
 <Input defaultValue="default value" placeholder="Placeholder..." />
 `}
@@ -82,7 +99,7 @@ import { Input } from 'raw-ui';
 ## Controlled
 
 <Playground
-  scope={{ Unit, Input }}
+  scope={{ Input }}
   code={`
 () => {
   const [value, setValue] = React.useState('');
@@ -103,57 +120,69 @@ import { Input } from 'raw-ui';
 ## Inside element
 
 <Playground
-  scope={{ Unit, Input, AlertCircle, Search }}
+  scope={{ Grid, Input, AlertCircle, Search }}
   code={`
-<Unit layout="col">
-  <Input.Group>
-    <Input.LeftElement>
-      <Search size={16} />
-    </Input.LeftElement>
-    <Input placeholder="Inside left element" />
-  </Input.Group>
-  <Input.Group>
-    <Input placeholder="Inside right element" />
-    <Input.RightElement>
-      <AlertCircle size={16} />
-    </Input.RightElement>
-  </Input.Group>
-  <Input.Group>
-    <Input.LeftElement>$</Input.LeftElement>
-    <Input placeholder="Enter amount" />
-    <Input.RightElement>.0</Input.RightElement>
-  </Input.Group>
-</Unit>
+<Grid gutter={[0, 32]}>
+  <Grid.Col span={24}>
+    <Input.Group>
+      <Input.LeftElement>
+        <Search size={16} />
+      </Input.LeftElement>
+      <Input placeholder="Inside left element" />
+    </Input.Group>
+  </Grid.Col>
+  <Grid.Col span={24}>
+    <Input.Group>
+      <Input placeholder="Inside right element" />
+      <Input.RightElement>
+        <AlertCircle size={16} />
+      </Input.RightElement>
+    </Input.Group>
+  </Grid.Col>
+  <Grid.Col span={24}>
+    <Input.Group>
+      <Input.LeftElement>$</Input.LeftElement>
+      <Input placeholder="Enter amount" />
+      <Input.RightElement>.0</Input.RightElement>
+    </Input.Group>
+  </Grid.Col>
+</Grid>
 `}
 />
 
 ## Addon
 
 <Playground
-  scope={{ Unit, Input }}
+  scope={{ Grid, Input }}
   code={`
-<Unit layout="col">
-  <Input.Group>
-    <Input.LeftAddon>username</Input.LeftAddon>
-    <Input placeholder="Put in the username" />
-  </Input.Group>
-  <Input.Group>
-    <Input placeholder="https://github" />
-    <Input.RightAddon>.com</Input.RightAddon>
-  </Input.Group>
-  <Input.Group>
-    <Input.LeftAddon>https://</Input.LeftAddon>
-    <Input placeholder="your domain" />
-    <Input.RightAddon>.com</Input.RightAddon>
-  </Input.Group>
-</Unit>
+<Grid gutter={[0, 32]}>
+  <Grid.Col span={24}>
+    <Input.Group>
+      <Input.LeftAddon>username</Input.LeftAddon>
+      <Input placeholder="Put in the username" />
+    </Input.Group>
+  </Grid.Col>
+  <Grid.Col span={24}>
+    <Input.Group>
+      <Input placeholder="https://github" />
+      <Input.RightAddon>.com</Input.RightAddon>
+    </Input.Group>
+  </Grid.Col>
+  <Grid.Col span={24}>
+    <Input.Group>
+      <Input.LeftAddon>https://</Input.LeftAddon>
+      <Input placeholder="your domain" />
+      <Input.RightAddon>.com</Input.RightAddon>
+    </Input.Group>
+  </Grid.Col>
+</Grid>
 `}
 />
 
 ## Password
 
 <Playground
-  scope={{ Unit, Input, Eye, EyeOff }}
+  scope={{ Input, Eye, EyeOff }}
   code={`
 () => {
   const [visible, setVisible] = React.useState(false);
@@ -176,7 +205,7 @@ import { Input } from 'raw-ui';
 ## Clearable
 
 <Playground
-  scope={{ Unit, Input, X }}
+  scope={{ Input, X }}
   code={`
 () => {
   const [value, setValue] = React.useState('');

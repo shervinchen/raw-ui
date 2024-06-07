@@ -1,5 +1,4 @@
-import Unit from '@/demo/Unit';
-import { Popover } from '@/packages';
+import { Grid, Popover } from '@/packages';
 import Playground from '@/src/app/components/playground';
 
 # Popover
@@ -46,90 +45,122 @@ import { Popover } from 'raw-ui';
 ## Placement
 
 <Playground
-  scope={{ Unit, Popover }}
+  scope={{ Grid, Popover }}
   code={`
-<Unit layout="col">
-  <Unit layout="row">
-    <Popover
-      content="I am a popover with different placement"
-      placement="topLeft"
-    >
-      Top Left
-    </Popover>
-    <Popover
-      content="I am a popover with different placement"
-      placement="top"
-    >
-      Top
-    </Popover>
-    <Popover
-      content="I am a popover with different placement"
-      placement="topRight"
-    >
-      Top Right
-    </Popover>
-  </Unit>
-  <Unit layout="row">
-    <Popover
-      content="I am a popover with different placement"
-      placement="bottomLeft"
-    >
-      Bottom Left
-    </Popover>
-    <Popover
-      content="I am a popover with different placement"
-      placement="bottom"
-    >
-      Bottom
-    </Popover>
-    <Popover
-      content="I am a popover with different placement"
-      placement="bottomRight"
-    >
-      Bottom Right
-    </Popover>
-  </Unit>
-  <Unit layout="row">
-    <Popover
-      content="I am a popover with different placement"
-      placement="leftTop"
-    >
-      Left Top
-    </Popover>
-    <Popover
-      content="I am a popover with different placement"
-      placement="left"
-    >
-      Left
-    </Popover>
-    <Popover
-      content="I am a popover with different placement"
-      placement="leftBottom"
-    >
-      Left Bottom
-    </Popover>
-  </Unit>
-  <Unit layout="row">
-    <Popover
-      content="I am a popover with different placement"
-      placement="rightTop"
-    >
-      Right Top
-    </Popover>
-    <Popover
-      content="I am a popover with different placement"
-      placement="right"
-    >
-      Right
-    </Popover>
-    <Popover
-      content="I am a popover with different placement"
-      placement="rightBottom"
-    >
-      Right Bottom
-    </Popover>
-  </Unit>
-</Unit>
+<Grid gutter={[0, 32]}>
+  <Grid.Col span={24}>
+    <Grid gutter={[32, 0]}>
+      <Grid.Col>
+        <Popover
+          content="I am a popover with different placement"
+          placement="topLeft"
+        >
+          Top Left
+        </Popover>
+      </Grid.Col>
+      <Grid.Col>
+        <Popover
+          content="I am a popover with different placement"
+          placement="top"
+        >
+          Top
+        </Popover>
+      </Grid.Col>
+      <Grid.Col>
+        <Popover
+          content="I am a popover with different placement"
+          placement="topRight"
+        >
+          Top Right
+        </Popover>
+      </Grid.Col>
+    </Grid>
+  </Grid.Col>
+  <Grid.Col span={24}>
+    <Grid gutter={[32, 0]}>
+      <Grid.Col>
+        <Popover
+          content="I am a popover with different placement"
+          placement="bottomLeft"
+        >
+          Bottom Left
+        </Popover>
+      </Grid.Col>
+      <Grid.Col>
+        <Popover
+          content="I am a popover with different placement"
+          placement="bottom"
+        >
+          Bottom
+        </Popover>
+      </Grid.Col>
+      <Grid.Col>
+        <Popover
+          content="I am a popover with different placement"
+          placement="bottomRight"
+        >
+          Bottom Right
+        </Popover>
+      </Grid.Col>
+    </Grid>
+  </Grid.Col>
+  <Grid.Col span={24}>
+    <Grid gutter={[32, 0]}>
+      <Grid.Col>
+        <Popover
+          content="I am a popover with different placement"
+          placement="leftTop"
+        >
+          Left Top
+        </Popover>
+      </Grid.Col>
+      <Grid.Col>
+        <Popover
+          content="I am a popover with different placement"
+          placement="left"
+        >
+          Left
+        </Popover>
+      </Grid.Col>
+      <Grid.Col>
+        <Popover
+          content="I am a popover with different placement"
+          placement="leftBottom"
+        >
+          Left Bottom
+        </Popover>
+      </Grid.Col>
+    </Grid>
+  </Grid.Col>
+  <Grid.Col span={24}>
+    <Grid gutter={[32, 0]}>
+      <Grid.Col>
+        <Popover
+          content="I am a popover with different placement"
+          placement="rightTop"
+        >
+          Right Top
+        </Popover>
+      </Grid.Col>
+      <Grid.Col>
+        <Popover
+          content="I am a popover with different placement"
+          placement="right"
+        >
+          Right
+        </Popover>
+      </Grid.Col>
+      <Grid.Col>
+        <Popover
+          content="I am a popover with different placement"
+          placement="rightBottom"
+        >
+          Right Bottom
+        </Popover>
+      </Grid.Col>
+    </Grid>
+  </Grid.Col>
+</Grid>
 `}
 />
 
