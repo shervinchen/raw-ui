@@ -1,5 +1,11 @@
 # raw-ui
 
+## 0.7.0
+
+### Minor Changes
+
+- Add Grid component
+
 ## 0.6.0
 
 ### Minor Changes
