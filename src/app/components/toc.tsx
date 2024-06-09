@@ -164,6 +164,7 @@ export default function Toc() {
   const pathname = usePathname();
   const [activeId, setActiveId] = useState();
   const { nestedHeadings } = useHeadingsData(pathname);
+  const headings = nestedHeadings[0]?.items ?? [];
 
   useIntersectionObserver(setActiveId, pathname);
 
@@ -172,7 +173,9 @@ export default function Toc() {
       aria-label="table of contents"
       className="xl:block hidden w-64 sticky top-16 h-[calc(100vh-64px)] overflow-y-auto py-4 text-sm scrollbar"
     >
-      <Headings headings={nestedHeadings[0]?.items ?? []} activeId={activeId} />
+      {headings.length > 1 && (
+        <Headings headings={headings} activeId={activeId} />
+      )}
     </nav>
   );
 }

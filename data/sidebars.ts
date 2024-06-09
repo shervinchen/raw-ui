@@ -13,6 +13,10 @@ export const SIDEBARS = [
             name: 'Installation',
             url: '/guide/installation',
           },
+          {
+            name: 'Server Render',
+            url: '/guide/server-render',
+          },
         ],
       },
       {

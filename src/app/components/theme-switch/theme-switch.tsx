@@ -1,22 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
+import { useIsClient } from '../../utils';
 
 const ThemeSwitch = ({ lightComponent, darkComponent }) => {
-  const [mounted, setMounted] = useState(false);
+  const isClient = useIsClient();
   const { theme } = useTheme();
 
-  // useEffect only runs on the client, so now we can safely show the UI
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
-
-  return <>{theme === 'light' ? lightComponent : darkComponent}</>;
+  return <>{isClient && theme === 'dark' ? darkComponent : lightComponent}</>;
 };
 
 export default ThemeSwitch;
