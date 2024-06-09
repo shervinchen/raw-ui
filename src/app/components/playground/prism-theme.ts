@@ -29,7 +29,7 @@ export const getPrismTheme = (theme: RawUITheme): PrismTheme => ({
     {
       types: ['function'],
       style: {
-        color: theme.palette.success5,
+        color: theme.palette.success,
       },
     },
     {
@@ -41,7 +41,7 @@ export const getPrismTheme = (theme: RawUITheme): PrismTheme => ({
     {
       types: ['attr-name'],
       style: {
-        color: theme.palette.warning5,
+        color: theme.palette.warning,
       },
     },
     {

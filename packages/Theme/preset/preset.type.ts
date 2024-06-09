@@ -12,24 +12,30 @@ export interface RawUIThemePalette {
   background: string;
   foreground: string;
   link: string;
-  success1: string;
-  success2: string;
-  success3: string;
-  success4: string;
-  success5: string;
-  success6: string;
-  warning1: string;
-  warning2: string;
-  warning3: string;
-  warning4: string;
-  warning5: string;
-  warning6: string;
-  error1: string;
-  error2: string;
-  error3: string;
-  error4: string;
-  error5: string;
-  error6: string;
+  successLighter: string;
+  successLight: string;
+  success: string;
+  successDark: string;
+  warningLighter: string;
+  warningLight: string;
+  warning: string;
+  warningDark: string;
+  errorLighter: string;
+  errorLight: string;
+  error: string;
+  errorDark: string;
+  cyanLighter: string;
+  cyanLight: string;
+  cyan: string;
+  cyanDark: string;
+  violetLighter: string;
+  violetLight: string;
+  violet: string;
+  violetDark: string;
+  highlightPurple: string;
+  highlightMagenta: string;
+  highlightPink: string;
+  highlightYellow: string;
 }
 
 export interface RawUIThemeTokens {

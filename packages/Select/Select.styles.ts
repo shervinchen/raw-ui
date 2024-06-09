@@ -43,11 +43,11 @@ export const useSelectStyles = ({
     },
     warning: {
       color: theme.palette.foreground,
-      borderColor: theme.palette.warning5,
+      borderColor: theme.palette.warning,
     },
     error: {
       color: theme.palette.foreground,
-      borderColor: theme.palette.error5,
+      borderColor: theme.palette.error,
     },
   };
 
@@ -82,10 +82,10 @@ export const useSelectHoverStyles = ({
       hoverBorderColor: theme.palette.accents7,
     },
     warning: {
-      hoverBorderColor: theme.palette.warning5,
+      hoverBorderColor: theme.palette.warning,
     },
     error: {
-      hoverBorderColor: theme.palette.error5,
+      hoverBorderColor: theme.palette.error,
     },
   };
 

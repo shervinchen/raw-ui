@@ -24,30 +24,45 @@ const normalColor: ColorMap = {
 };
 
 const successColor: ColorMap = {
-  success1: 'Success 1',
-  success2: 'Success 2',
-  success3: 'Success 3',
-  success4: 'Success 4',
-  success5: 'Success 5',
-  success6: 'Success 6',
+  successLighter: 'Success Lighter',
+  successLight: 'Success Light',
+  success: 'Success',
+  successDark: 'Success Dark',
 };
 
 const warningColor: ColorMap = {
-  warning1: 'Warning 1',
-  warning2: 'Warning 2',
-  warning3: 'Warning 3',
-  warning4: 'Warning 4',
-  warning5: 'Warning 5',
-  warning6: 'Warning 6',
+  warningLighter: 'Warning Lighter',
+  warningLight: 'Warning Light',
+  warning: 'Warning',
+  warningDark: 'Warning Dark',
 };
 
 const errorColor: ColorMap = {
-  error1: 'Error 1',
-  error2: 'Error 2',
-  error3: 'Error 3',
-  error4: 'Error 4',
-  error5: 'Error 5',
-  error6: 'Error 6',
+  errorLighter: 'Error Lighter',
+  errorLight: 'Error Light',
+  error: 'Error',
+  errorDark: 'Error Dark',
+};
+
+const cyanColor: ColorMap = {
+  cyanLighter: 'Cyan Lighter',
+  cyanLight: 'Cyan Light',
+  cyan: 'Cyan',
+  cyanDark: 'Cyan Dark',
+};
+
+const violetColor: ColorMap = {
+  violetLighter: 'Violet Lighter',
+  violetLight: 'Violet Light',
+  violet: 'Violet',
+  violetDark: 'Violet Dark',
+};
+
+const highlightColor: ColorMap = {
+  highlightPurple: 'Highlight Purple',
+  highlightMagenta: 'Highlight Magenta',
+  highlightPink: 'Highlight Pink',
+  highlightYellow: 'Highlight Yellow',
 };
 
 export const colors: Colors = {
@@ -55,4 +70,7 @@ export const colors: Colors = {
   success: successColor,
   warning: warningColor,
   error: errorColor,
+  cyan: cyanColor,
+  violet: violetColor,
+  highlight: highlightColor,
 };

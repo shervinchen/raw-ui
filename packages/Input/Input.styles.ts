@@ -46,11 +46,11 @@ export const useInputStyles = ({
     },
     warning: {
       color: theme.palette.foreground,
-      borderColor: theme.palette.warning5,
+      borderColor: theme.palette.warning,
     },
     error: {
       color: theme.palette.foreground,
-      borderColor: theme.palette.error5,
+      borderColor: theme.palette.error,
     },
   };
   const defaultStyles = {
@@ -85,10 +85,10 @@ export const useInputFocusStyles = ({
       focusBorderColor: theme.palette.foreground,
     },
     warning: {
-      focusBorderColor: theme.palette.warning5,
+      focusBorderColor: theme.palette.warning,
     },
     error: {
-      focusBorderColor: theme.palette.error5,
+      focusBorderColor: theme.palette.error,
     },
   };
   const defaultStyles = {
