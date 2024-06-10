@@ -48,6 +48,10 @@ export const SIDEBARS = [
             name: 'Button',
             url: '/components/button',
           },
+          {
+            name: 'Icon',
+            url: '/components/icon',
+          },
         ],
       },
       {
