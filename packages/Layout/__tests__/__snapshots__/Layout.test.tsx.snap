@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Layout should match the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="jsx-813210850 raw-layout"
+    data-testid="layout"
+  >
+    <header
+      class="jsx-4037815597 raw-layout-header"
+      data-testid="layoutHeader"
+    >
+      Header
+    </header>
+    <div
+      class="jsx-813210850 raw-layout raw-layout-has-sidebar"
+      data-testid="layout"
+    >
+      <aside
+        class="jsx-2255274172 raw-layout-sidebar"
+        data-testid="layoutSidebar"
+      >
+        Sidebar
+      </aside>
+      <main
+        class="jsx-1245817261 raw-layout-content"
+        data-testid="layoutContent"
+      >
+        Content
+      </main>
+    </div>
+    <footer
+      class="jsx-2757715662 raw-layout-footer"
+      data-testid="layoutFooter"
+    >
+      Footer
+    </footer>
+  </div>
+</DocumentFragment>
+`;

@@ -10,7 +10,7 @@ const Sidebar: FC<PropsWithChildren<SidebarProps>> = ({
   const classes = classNames('raw-layout-sidebar', className);
 
   return (
-    <aside className={classes} {...restProps}>
+    <aside data-testid="layoutSidebar" className={classes} {...restProps}>
       {children}
       <style jsx>{`
         .raw-layout-sidebar {

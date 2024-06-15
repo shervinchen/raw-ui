@@ -19,7 +19,7 @@ const Layout: FC<PropsWithChildren<LayoutProps>> = ({
   );
 
   return (
-    <div className={classes} {...restProps}>
+    <div data-testid="layout" className={classes} {...restProps}>
       {children}
       <style jsx>{`
         .raw-layout {

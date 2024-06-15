@@ -10,7 +10,7 @@ const Content: FC<PropsWithChildren<ContentProps>> = ({
   const classes = classNames('raw-layout-content', className);
 
   return (
-    <main className={classes} {...restProps}>
+    <main data-testid="layoutContent" className={classes} {...restProps}>
       {children}
       <style jsx>{`
         .raw-layout-content {

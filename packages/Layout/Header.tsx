@@ -10,7 +10,7 @@ const Header: FC<PropsWithChildren<HeaderProps>> = ({
   const classes = classNames('raw-layout-header', className);
 
   return (
-    <header className={classes} {...restProps}>
+    <header data-testid="layoutHeader" className={classes} {...restProps}>
       {children}
       <style jsx>{`
         .raw-layout-header {

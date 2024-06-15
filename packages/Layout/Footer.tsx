@@ -10,7 +10,7 @@ const Footer: FC<PropsWithChildren<FooterProps>> = ({
   const classes = classNames('raw-layout-footer', className);
 
   return (
-    <footer className={classes} {...restProps}>
+    <footer data-testid="layoutFooter" className={classes} {...restProps}>
       {children}
       <style jsx>{`
         .raw-layout-footer {
