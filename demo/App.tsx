@@ -102,6 +102,7 @@ import {
   DemoGridOrder,
   DemoGridResponsive,
 } from './grid';
+import { DemoLayoutBasic } from './layout';
 
 const Container: FC<PropsWithChildren<{ title: string }>> = ({
   title,
@@ -393,6 +394,11 @@ function App() {
         </Wrapper>
         <Wrapper title="Responsive">
           <DemoGridResponsive />
+        </Wrapper>
+      </Container>
+      <Container title="Layout">
+        <Wrapper title="Basic">
+          <DemoLayoutBasic />
         </Wrapper>
       </Container>
     </div>

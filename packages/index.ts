@@ -48,3 +48,6 @@ export * from './Tabs/Tabs.types';
 
 export { default as Grid } from './Grid';
 export * from './Grid/Grid.types';
+
+export { default as Layout } from './Layout';
+export * from './Layout/Layout.types';
