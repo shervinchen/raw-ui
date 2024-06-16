@@ -1,5 +1,9 @@
-import '@testing-library/jest-dom';
 import { act } from 'react';
+import { TextEncoder, TextDecoder } from 'util';
+import '@testing-library/jest-dom';
+
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder;
 
 beforeEach(() => {
   jest.useFakeTimers();

@@ -1,7 +1,7 @@
 import { Grid, Layout, RawUITheme, useTheme } from '@/packages';
 import { CSSProperties } from 'react';
 
-const headerStyle = (theme: RawUITheme): CSSProperties => ({
+export const headerStyle = (theme: RawUITheme): CSSProperties => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -10,7 +10,7 @@ const headerStyle = (theme: RawUITheme): CSSProperties => ({
   backgroundColor: theme.palette.accents4,
 });
 
-const contentStyle = (theme: RawUITheme): CSSProperties => ({
+export const contentStyle = (theme: RawUITheme): CSSProperties => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -19,7 +19,7 @@ const contentStyle = (theme: RawUITheme): CSSProperties => ({
   backgroundColor: theme.palette.accents6,
 });
 
-const sidebarStyle = (theme: RawUITheme): CSSProperties => ({
+export const sidebarStyle = (theme: RawUITheme): CSSProperties => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -28,7 +28,7 @@ const sidebarStyle = (theme: RawUITheme): CSSProperties => ({
   backgroundColor: theme.palette.accents5,
 });
 
-const footerStyle = (theme: RawUITheme): CSSProperties => ({
+export const footerStyle = (theme: RawUITheme): CSSProperties => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',

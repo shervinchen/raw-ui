@@ -61,6 +61,10 @@ export const SIDEBARS = [
             name: 'Grid',
             url: '/components/grid',
           },
+          {
+            name: 'Layout',
+            url: '/components/layout',
+          },
         ],
       },
       {

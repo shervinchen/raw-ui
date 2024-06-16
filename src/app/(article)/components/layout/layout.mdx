@@ -1,0 +1,99 @@
+import { Grid, Layout, useTheme } from '@/packages';
+import Playground from '@/src/app/components/playground';
+import { headerStyle, contentStyle, sidebarStyle, footerStyle } from '@/demo/layout'
+
+# Layout
+
+Used to divide the overall layout of the page.
+
+## Import
+
+```tsx
+import { Layout } from 'raw-ui';
+```
+
+## Basic
+
+<Playground
+  scope={{ Grid, Layout, useTheme, headerStyle, contentStyle, sidebarStyle, footerStyle }}
+  code={`
+() => {
+  const theme = useTheme();
+
+  return (
+    <Grid gutter={[16, 16]}>
+      <Grid.Col span={12}>
+        <Layout>
+          <Layout.Header style={headerStyle(theme)}>Header</Layout.Header>
+          <Layout.Content style={contentStyle(theme)}>Content</Layout.Content>
+          <Layout.Footer style={footerStyle(theme)}>Footer</Layout.Footer>
+        </Layout>
+      </Grid.Col>
+      <Grid.Col span={12}>
+        <Layout>
+          <Layout.Header style={headerStyle(theme)}>Header</Layout.Header>
+          <Layout>
+            <Layout.Sidebar style={sidebarStyle(theme)}>Sidebar</Layout.Sidebar>
+            <Layout.Content style={contentStyle(theme)}>Content</Layout.Content>
+          </Layout>
+          <Layout.Footer style={footerStyle(theme)}>Footer</Layout.Footer>
+        </Layout>
+      </Grid.Col>
+      <Grid.Col span={12}>
+        <Layout>
+          <Layout.Header style={headerStyle(theme)}>Header</Layout.Header>
+          <Layout>
+            <Layout.Content style={contentStyle(theme)}>Content</Layout.Content>
+            <Layout.Sidebar style={sidebarStyle(theme)}>Sidebar</Layout.Sidebar>
+          </Layout>
+          <Layout.Footer style={footerStyle(theme)}>Footer</Layout.Footer>
+        </Layout>
+      </Grid.Col>
+      <Grid.Col span={12}>
+        <Layout>
+          <Layout.Sidebar style={sidebarStyle(theme)}>Sidebar</Layout.Sidebar>
+          <Layout>
+            <Layout.Header style={headerStyle(theme)}>Header</Layout.Header>
+            <Layout.Content style={contentStyle(theme)}>Content</Layout.Content>
+            <Layout.Footer style={footerStyle(theme)}>Footer</Layout.Footer>
+          </Layout>
+        </Layout>
+      </Grid.Col>
+    </Grid>
+  );
+}
+`}
+/>
+
+## API
+
+### Layout
+
+| Prop         | Description            | Type                       | Default  |
+| ------------ | ---------------------- | -------------------------- | -------- |
+| ...          | native props           | React.HTMLAttributes       | -        |
+
+### Layout.Header
+
+| Prop         | Description            | Type                       | Default  |
+| ------------ | ---------------------- | -------------------------- | -------- |
+| ...          | native props           | React.HTMLAttributes       | -        |
+
+### Layout.Sidebar
+
+| Prop         | Description            | Type                       | Default  |
+| ------------ | ---------------------- | -------------------------- | -------- |
+| ...          | native props           | React.HTMLAttributes       | -        |
+
+### Layout.Content
+
+| Prop         | Description            | Type                       | Default  |
+| ------------ | ---------------------- | -------------------------- | -------- |
+| ...          | native props           | React.HTMLAttributes       | -        |
+
+### Layout.Footer
+
+| Prop         | Description            | Type                       | Default  |
+| ------------ | ---------------------- | -------------------------- | -------- |
+| ...          | native props           | React.HTMLAttributes       | -        |
+
