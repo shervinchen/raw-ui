@@ -36,7 +36,12 @@ export function DemoButtonGroupTypes() {
 
 export function DemoButtonGroupSizes() {
   return (
-    <Unit layout="row">
+    <Unit layout="col">
+      <Button.Group size="xs">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </Button.Group>
       <Button.Group size="sm">
         <Button>One</Button>
         <Button>Two</Button>
@@ -48,6 +53,11 @@ export function DemoButtonGroupSizes() {
         <Button>Three</Button>
       </Button.Group>
       <Button.Group size="lg">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </Button.Group>
+      <Button.Group size="xl">
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>

@@ -1,6 +1,6 @@
 import { MouseEventHandler, ButtonHTMLAttributes, ReactElement } from 'react';
 
-export type ButtonSizes = 'sm' | 'md' | 'lg';
+export type ButtonSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export type ButtonTypes =
   | 'default'

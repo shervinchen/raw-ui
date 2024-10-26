@@ -21,20 +21,30 @@ export const useButtonStyles = (props: ButtonProps): ButtonStyles => {
   const sizes: {
     [key in ButtonSizes]: ButtonSizeStyles;
   } = {
-    sm: {
+    xs: {
       fontSize: '12px',
-      height: '34px',
+      height: '24px',
       horizontalPadding: '12px',
+    },
+    sm: {
+      fontSize: '14px',
+      height: '28px',
+      horizontalPadding: '16px',
     },
     md: {
       fontSize: '14px',
-      height: '40px',
-      horizontalPadding: '16px',
+      height: '32px',
+      horizontalPadding: '20px',
     },
     lg: {
+      fontSize: '14px',
+      height: '36px',
+      horizontalPadding: '24px',
+    },
+    xl: {
       fontSize: '16px',
-      height: '46px',
-      horizontalPadding: '20px',
+      height: '40px',
+      horizontalPadding: '28px',
     },
   };
 

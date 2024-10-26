@@ -61,23 +61,37 @@ import { Button } from 'raw-ui';
 <Playground
   scope={{ Grid, Button }}
   code={`
-<Grid gutter={[32, 0]} align="center">
-  <Grid.Col>
+<Grid gutter={[0, 32]} align="center">
+  <Grid.Col span={24}>
+    <Button.Group size="xs">
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button>Three</Button>
+    </Button.Group>
+  </Grid.Col>
+  <Grid.Col span={24}>
     <Button.Group size="sm">
       <Button>One</Button>
       <Button>Two</Button>
       <Button>Three</Button>
     </Button.Group>
   </Grid.Col>
-  <Grid.Col>
+  <Grid.Col span={24}>
     <Button.Group size="md">
       <Button>One</Button>
       <Button>Two</Button>
       <Button>Three</Button>
     </Button.Group>
   </Grid.Col>
-  <Grid.Col>
+  <Grid.Col span={24}>
     <Button.Group size="lg">
+      <Button>One</Button>
+      <Button>Two</Button>
+      <Button>Three</Button>
+    </Button.Group>
+  </Grid.Col>
+  <Grid.Col span={24}>
+    <Button.Group size="xl">
       <Button>One</Button>
       <Button>Two</Button>
       <Button>Three</Button>

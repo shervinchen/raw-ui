@@ -18,9 +18,11 @@ export function DemoButtonTypes() {
 export function DemoButtonSizes() {
   return (
     <Unit layout="row">
+      <Button size="xs">Extra Small</Button>
       <Button size="sm">Small</Button>
       <Button size="md">Medium</Button>
       <Button size="lg">Large</Button>
+      <Button size="xl">Extra Large</Button>
     </Unit>
   );
 }

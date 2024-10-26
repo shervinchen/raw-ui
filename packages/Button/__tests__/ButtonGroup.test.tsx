@@ -12,9 +12,11 @@ const typeColorMap = {
 };
 
 const sizeHeightMap = {
-  sm: '34px',
-  md: '40px',
-  lg: '46px',
+  xs: '24px',
+  sm: '28px',
+  md: '32px',
+  lg: '36px',
+  xl: '40px',
 };
 
 describe('ButtonGroup', () => {
@@ -69,7 +71,7 @@ describe('ButtonGroup', () => {
     }
   );
 
-  ['sm', 'md', 'lg'].forEach((item: ButtonSizes) => {
+  ['xs', 'sm', 'md', 'lg', 'xl'].forEach((item: ButtonSizes) => {
     test(`should render ${item} size`, () => {
       render(
         <Button.Group size={item}>

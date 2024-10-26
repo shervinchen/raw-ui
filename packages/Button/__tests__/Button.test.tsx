@@ -18,9 +18,11 @@ const typeColorMap = {
 };
 
 const sizeHeightMap = {
-  sm: '34px',
-  md: '40px',
-  lg: '46px',
+  xs: '24px',
+  sm: '28px',
+  md: '32px',
+  lg: '36px',
+  xl: '40px',
 };
 
 const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
@@ -62,7 +64,7 @@ describe('Button', () => {
     }
   );
 
-  ['sm', 'md', 'lg'].forEach((item: ButtonSizes) => {
+  ['xs', 'sm', 'md', 'lg', 'xl'].forEach((item: ButtonSizes) => {
     test(`should render ${item} size`, () => {
       render(<Button size={item}>Text</Button>);
       const button = screen.getByRole('button', { name: /Text/i });
@@ -355,8 +357,8 @@ describe('Button', () => {
         disabled: false,
       })
     );
-    expect(result1.current.height).toBe('40px');
-    expect(result2.current.height).toBe('40px');
+    expect(result1.current.height).toBe('32px');
+    expect(result2.current.height).toBe('32px');
   });
 
   test('should support loading', async () => {
