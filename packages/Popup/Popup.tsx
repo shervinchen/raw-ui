@@ -12,6 +12,7 @@ import {
   useMutationObserver,
   usePortal,
   useResize,
+  useResizeObserver,
   useSSR,
 } from '../utils/hooks';
 
@@ -47,6 +48,8 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
   useResize(updatePopupPosition);
 
   useMutationObserver(targetRef?.current, updatePopupPosition);
+
+  useResizeObserver(targetRef?.current, updatePopupPosition);
 
   useMutationObserver(container, updatePopupPosition, {
     attributes: true,

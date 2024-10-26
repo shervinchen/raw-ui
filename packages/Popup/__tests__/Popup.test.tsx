@@ -122,6 +122,21 @@ describe('Popup', () => {
     expect(mockGetPopupPosition).toHaveBeenCalledTimes(2);
   });
 
+  test('should update popup position when targetRef size change', async () => {
+    render(
+      <Component
+        visible
+        targetRef={targetRefMock}
+        getPopupContainer={getPopupContainerMock}
+      />
+    );
+    expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
+    targetRefMock.current.style.height = '200px';
+    await waitFor(() => {
+      expect(mockGetPopupPosition).toHaveBeenCalledTimes(2);
+    });
+  });
+
   test('should update popup position when document size change', async () => {
     render(
       <Component visible targetRef={targetRefMock} getPopupContainer={null} />

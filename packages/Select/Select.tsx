@@ -181,6 +181,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
       multiple,
       internalValue,
       handleChange,
+      selectRef,
       dropdownHeight,
       getPopupContainer,
       type,
