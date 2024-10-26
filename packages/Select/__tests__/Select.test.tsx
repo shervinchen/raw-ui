@@ -16,9 +16,11 @@ const typeColorMap = {
 };
 
 const sizeHeightMap = {
-  sm: '32px',
-  md: '40px',
-  lg: '48px',
+  xs: '24px',
+  sm: '28px',
+  md: '32px',
+  lg: '36px',
+  xl: '40px',
 };
 
 const optionsData = [
@@ -118,7 +120,7 @@ describe('Select', () => {
     expect(result2.current.hoverBorderColor).toBe('#666666');
   });
 
-  ['sm', 'md', 'lg'].forEach((item: SelectSizes) => {
+  ['xs', 'sm', 'md', 'lg', 'xl'].forEach((item: SelectSizes) => {
     test(`should render ${item} size`, () => {
       render(
         <Select size={item}>
@@ -145,8 +147,8 @@ describe('Select', () => {
         disabled: false,
       })
     );
-    expect(result1.current.height).toBe('40px');
-    expect(result2.current.height).toBe('40px');
+    expect(result1.current.height).toBe('32px');
+    expect(result2.current.height).toBe('32px');
   });
 
   test('should support custom class name', () => {

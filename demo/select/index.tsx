@@ -54,6 +54,10 @@ export function DemoSelectTypes() {
 export function DemoSelectSizes() {
   return (
     <Unit layout="col">
+      <Select size="xs" width="200px" placeholder="Extra Small">
+        <Select.Option value="1">Option 1</Select.Option>
+        <Select.Option value="2">Option 2</Select.Option>
+      </Select>
       <Select size="sm" width="200px" placeholder="Small">
         <Select.Option value="1">Option 1</Select.Option>
         <Select.Option value="2">Option 2</Select.Option>
@@ -63,6 +67,10 @@ export function DemoSelectSizes() {
         <Select.Option value="2">Option 2</Select.Option>
       </Select>
       <Select size="lg" width="200px" placeholder="Large">
+        <Select.Option value="1">Option 1</Select.Option>
+        <Select.Option value="2">Option 2</Select.Option>
+      </Select>
+      <Select size="xl" width="200px" placeholder="Extra Large">
         <Select.Option value="1">Option 1</Select.Option>
         <Select.Option value="2">Option 2</Select.Option>
       </Select>

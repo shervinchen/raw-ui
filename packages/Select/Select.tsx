@@ -172,7 +172,9 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
         selectRef,
         dropdownHeight,
         getPopupContainer,
-        selectDisabled: disabled,
+        type,
+        size,
+        disabled,
         selectId,
       };
     }, [
@@ -181,6 +183,8 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
       handleChange,
       dropdownHeight,
       getPopupContainer,
+      type,
+      size,
       disabled,
       selectId,
     ]);

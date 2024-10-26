@@ -5,6 +5,7 @@ import { SelectOptionProps } from './SelectOption.types';
 import { RawUITheme } from '../Theme/preset/preset.type';
 import { useTheme } from '../Theme/theme-context';
 import { useSelectContext } from './select-context';
+import { useSelectStyles } from './Select.styles';
 
 const SelectOption: FC<PropsWithChildren<SelectOptionProps>> = ({
   value,
@@ -14,8 +15,19 @@ const SelectOption: FC<PropsWithChildren<SelectOptionProps>> = ({
   ...restProps
 }) => {
   const theme: RawUITheme = useTheme();
-  const { multiple, selectValue, onSelectChange, selectDisabled } =
-    useSelectContext();
+  const {
+    multiple,
+    selectValue,
+    onSelectChange,
+    type,
+    size,
+    disabled: selectDisabled,
+  } = useSelectContext();
+  const { fontSize, height, paddingLeft } = useSelectStyles({
+    type,
+    size,
+    disabled: selectDisabled,
+  });
   const classes = classNames('raw-select-option', className);
   const isDisabled = selectDisabled || disabled;
   const isSelected = useMemo(() => {
@@ -56,9 +68,9 @@ const SelectOption: FC<PropsWithChildren<SelectOptionProps>> = ({
           display: flex;
           align-items: center;
           width: 100%;
-          height: 40px;
-          padding: 0 12px;
-          font-size: 14px;
+          height: ${height};
+          padding: 0 ${paddingLeft};
+          font-size: ${fontSize};
           color: ${isDisabled
             ? theme.palette.accents6
             : theme.palette.accents7};

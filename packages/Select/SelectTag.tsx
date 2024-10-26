@@ -2,6 +2,8 @@ import React, { FC, PropsWithChildren, MouseEvent } from 'react';
 import { X } from 'react-feather';
 import { RawUITheme } from '../Theme/preset/preset.type';
 import { useTheme } from '../Theme/theme-context';
+import { useSelectStyles } from './Select.styles';
+import { useSelectContext } from './select-context';
 
 interface SelectTagProps {
   disabled: boolean;
@@ -14,6 +16,12 @@ const SelectTag: FC<PropsWithChildren<SelectTagProps>> = ({
   children,
 }) => {
   const theme: RawUITheme = useTheme();
+  const { type, size, disabled: selectDisabled } = useSelectContext();
+  const { fontSize } = useSelectStyles({
+    type,
+    size,
+    disabled: selectDisabled,
+  });
 
   const handleClick = (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
@@ -44,7 +52,7 @@ const SelectTag: FC<PropsWithChildren<SelectTagProps>> = ({
           background-color: ${theme.palette.accents2};
         }
         .raw-select-tag-text {
-          font-size: 14px;
+          font-size: ${fontSize};
           color: ${disabled ? theme.palette.accents6 : theme.palette.accents8};
         }
         .raw-select-tag-icon {

@@ -4,7 +4,7 @@ import { SelectConfig } from './Select.types';
 const defaultContext: SelectConfig = {
   selectId: '',
   multiple: false,
-  selectDisabled: false,
+  disabled: false,
 };
 
 export const SelectContext = createContext<SelectConfig>(defaultContext);

@@ -6,7 +6,7 @@ export type SelectValue = SelectOptionValue | SelectOptionValue[];
 
 export type SelectTypes = 'default' | 'warning' | 'error';
 
-export type SelectSizes = 'sm' | 'md' | 'lg';
+export type SelectSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export interface BaseSelectProps {
   value?: SelectValue;
@@ -44,13 +44,18 @@ export interface SelectConfig {
   selectRef?: MutableRefObject<HTMLElement | null>;
   getPopupContainer?: () => HTMLElement | null;
   dropdownHeight?: string;
-  selectDisabled?: boolean;
+  type?: SelectTypes;
+  size?: SelectSizes;
+  disabled?: boolean;
   selectId: string;
 }
 
 export interface SelectSizeStyles {
   fontSize?: string;
   height?: string;
+  paddingLeft?: string;
+  paddingRight?: string;
+  iconRight?: string;
 }
 
 export interface SelectBasicStyles {

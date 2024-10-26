@@ -20,17 +20,40 @@ export const useSelectStyles = ({
   const sizes: {
     [key in SelectSizes]: SelectSizeStyles;
   } = {
+    xs: {
+      fontSize: '12px',
+      height: '24px',
+      paddingLeft: '8px',
+      paddingRight: '32px',
+      iconRight: '8px',
+    },
     sm: {
       fontSize: '14px',
-      height: '32px',
+      height: '28px',
+      paddingLeft: '8px',
+      paddingRight: '32px',
+      iconRight: '8px',
     },
     md: {
       fontSize: '14px',
-      height: '40px',
+      height: '32px',
+      paddingLeft: '12px',
+      paddingRight: '40px',
+      iconRight: '12px',
     },
     lg: {
+      fontSize: '14px',
+      height: '36px',
+      paddingLeft: '12px',
+      paddingRight: '40px',
+      iconRight: '12px',
+    },
+    xl: {
       fontSize: '16px',
-      height: '48px',
+      height: '40px',
+      paddingLeft: '12px',
+      paddingRight: '40px',
+      iconRight: '12px',
     },
   };
 
@@ -101,6 +124,9 @@ export const useSelectCSS = ({ width, type, size, disabled }: SelectProps) => {
   const {
     fontSize,
     height,
+    paddingLeft,
+    paddingRight,
+    iconRight,
     color,
     borderColor,
     backgroundColor = theme.palette.background,
@@ -119,8 +145,8 @@ export const useSelectCSS = ({ width, type, size, disabled }: SelectProps) => {
       align-items: center;
       width: ${width};
       height: ${height};
-      padding-left: 12px;
-      padding-right: 40px;
+      padding-left: ${paddingLeft};
+      padding-right: ${paddingRight};
       border: 1px solid ${borderColor};
       border-radius: 6px;
       background-color: ${backgroundColor};
@@ -163,7 +189,7 @@ export const useSelectCSS = ({ width, type, size, disabled }: SelectProps) => {
       display: inline-flex;
       align-items: center;
       position: absolute;
-      right: 12px;
+      right: ${iconRight};
       top: 50%;
       transform: translateY(-50%);
       pointer-events: none;
@@ -173,7 +199,7 @@ export const useSelectCSS = ({ width, type, size, disabled }: SelectProps) => {
       display: inline-flex;
       align-items: center;
       position: absolute;
-      right: 12px;
+      right: ${iconRight};
       top: 50%;
       transform: translateY(-50%);
       color: ${theme.palette.foreground};

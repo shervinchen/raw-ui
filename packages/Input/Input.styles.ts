@@ -28,7 +28,7 @@ export const useInputStyles = ({
     sm: {
       fontSize: '14px',
       height: '28px',
-      horizontalPadding: '12px',
+      horizontalPadding: '8px',
     },
     md: {
       fontSize: '14px',
@@ -43,7 +43,7 @@ export const useInputStyles = ({
     xl: {
       fontSize: '16px',
       height: '40px',
-      horizontalPadding: '16px',
+      horizontalPadding: '12px',
     },
   };
   const styles: {
