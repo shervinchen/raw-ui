@@ -26,6 +26,8 @@ export const useSelectStyles = ({
       paddingLeft: '8px',
       paddingRight: '32px',
       iconRight: '8px',
+      tagContentVerticalPadding: '2px',
+      tagHeight: '18px',
     },
     sm: {
       fontSize: '14px',
@@ -33,6 +35,8 @@ export const useSelectStyles = ({
       paddingLeft: '8px',
       paddingRight: '32px',
       iconRight: '8px',
+      tagContentVerticalPadding: '2px',
+      tagHeight: '22px',
     },
     md: {
       fontSize: '14px',
@@ -40,6 +44,8 @@ export const useSelectStyles = ({
       paddingLeft: '12px',
       paddingRight: '40px',
       iconRight: '12px',
+      tagContentVerticalPadding: '2px',
+      tagHeight: '26px',
     },
     lg: {
       fontSize: '14px',
@@ -47,6 +53,8 @@ export const useSelectStyles = ({
       paddingLeft: '12px',
       paddingRight: '40px',
       iconRight: '12px',
+      tagContentVerticalPadding: '2px',
+      tagHeight: '30px',
     },
     xl: {
       fontSize: '16px',
@@ -54,6 +62,8 @@ export const useSelectStyles = ({
       paddingLeft: '12px',
       paddingRight: '40px',
       iconRight: '12px',
+      tagContentVerticalPadding: '2px',
+      tagHeight: '34px',
     },
   };
 
@@ -127,6 +137,7 @@ export const useSelectCSS = ({ width, type, size, disabled }: SelectProps) => {
     paddingLeft,
     paddingRight,
     iconRight,
+    tagContentVerticalPadding,
     color,
     borderColor,
     backgroundColor = theme.palette.background,
@@ -181,8 +192,8 @@ export const useSelectCSS = ({ width, type, size, disabled }: SelectProps) => {
     .raw-select :global(.raw-select-tag-content) {
       display: flex;
       flex-wrap: wrap;
-      padding-top: 4px;
-      padding-bottom: 4px;
+      padding-top: ${tagContentVerticalPadding};
+      padding-bottom: ${tagContentVerticalPadding};
       margin: -2px;
     }
     .raw-select :global(.raw-select-arrow) {

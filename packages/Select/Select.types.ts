@@ -56,6 +56,8 @@ export interface SelectSizeStyles {
   paddingLeft?: string;
   paddingRight?: string;
   iconRight?: string;
+  tagContentVerticalPadding?: string;
+  tagHeight?: string;
 }
 
 export interface SelectBasicStyles {

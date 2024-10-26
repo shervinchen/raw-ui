@@ -17,7 +17,7 @@ const SelectTag: FC<PropsWithChildren<SelectTagProps>> = ({
 }) => {
   const theme: RawUITheme = useTheme();
   const { type, size, disabled: selectDisabled } = useSelectContext();
-  const { fontSize } = useSelectStyles({
+  const { fontSize, tagHeight } = useSelectStyles({
     type,
     size,
     disabled: selectDisabled,
@@ -47,7 +47,7 @@ const SelectTag: FC<PropsWithChildren<SelectTagProps>> = ({
           gap: 6px;
           padding: 6px;
           margin: 2px;
-          height: 28px;
+          height: ${tagHeight};
           border-radius: 6px;
           background-color: ${theme.palette.accents2};
         }
