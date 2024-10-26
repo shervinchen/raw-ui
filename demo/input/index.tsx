@@ -17,9 +17,11 @@ export function DemoInputTypes() {
 export function DemoInputSizes() {
   return (
     <Unit layout="col">
+      <Input size="xs" placeholder="Extra Small" />
       <Input size="sm" placeholder="Small" />
       <Input size="md" placeholder="Medium" />
       <Input size="lg" placeholder="Large" />
+      <Input size="xl" placeholder="Extra Large" />
     </Unit>
   );
 }

@@ -12,9 +12,11 @@ const typeColorMap = {
 };
 
 const sizeHeightMap = {
-  sm: '32px',
-  md: '40px',
-  lg: '48px',
+  xs: '24px',
+  sm: '28px',
+  md: '32px',
+  lg: '36px',
+  xl: '40px',
 };
 
 const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
@@ -107,7 +109,7 @@ describe('Input', () => {
     }
   );
 
-  ['sm', 'md', 'lg'].forEach((item: InputSizes) => {
+  ['xs', 'sm', 'md', 'lg', 'xl'].forEach((item: InputSizes) => {
     test(`should render ${item} size`, () => {
       render(<Input size={item} />);
       expect(screen.getByRole('textbox')).toHaveStyle(
@@ -231,8 +233,8 @@ describe('Input', () => {
         disabled: false,
       })
     );
-    expect(result1.current.height).toBe('40px');
-    expect(result2.current.height).toBe('40px');
+    expect(result1.current.height).toBe('32px');
+    expect(result2.current.height).toBe('32px');
   });
 
   test('should get default focus style when type is unknown or falsy', () => {

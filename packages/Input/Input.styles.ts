@@ -20,17 +20,30 @@ export const useInputStyles = ({
   const sizes: {
     [key in InputSizes]: InputSizeStyles;
   } = {
+    xs: {
+      fontSize: '12px',
+      height: '24px',
+      horizontalPadding: '8px',
+    },
     sm: {
       fontSize: '14px',
-      height: '32px',
+      height: '28px',
+      horizontalPadding: '12px',
     },
     md: {
       fontSize: '14px',
-      height: '40px',
+      height: '32px',
+      horizontalPadding: '12px',
     },
     lg: {
+      fontSize: '14px',
+      height: '36px',
+      horizontalPadding: '12px',
+    },
+    xl: {
       fontSize: '16px',
-      height: '48px',
+      height: '40px',
+      horizontalPadding: '16px',
     },
   };
   const styles: {
@@ -103,6 +116,7 @@ export const useInputCSS = ({ type, size, width, disabled }: InputProps) => {
   const {
     fontSize,
     height,
+    horizontalPadding,
     color,
     borderColor,
     backgroundColor = 'transparent',
@@ -118,7 +132,7 @@ export const useInputCSS = ({ type, size, width, disabled }: InputProps) => {
       box-sizing: border-box;
       display: inline-flex;
       height: ${height};
-      padding: 0 12px;
+      padding: 0 ${horizontalPadding};
       line-height: normal;
       box-shadow: none;
       font-size: ${fontSize};

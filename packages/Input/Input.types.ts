@@ -2,7 +2,7 @@ import { InputHTMLAttributes, ChangeEvent, FocusEvent } from 'react';
 
 export type InputTypes = 'default' | 'primary' | 'warning' | 'error';
 
-export type InputSizes = 'sm' | 'md' | 'lg';
+export type InputSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export interface BaseInputProps {
   value?: string;
@@ -31,6 +31,7 @@ export type InputProps = BaseInputProps & NativeInputProps;
 export interface InputSizeStyles {
   fontSize?: string;
   height?: string;
+  horizontalPadding?: string;
 }
 
 export interface InputBasicStyles {
