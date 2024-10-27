@@ -45,7 +45,7 @@ const SelectTag: FC<PropsWithChildren<SelectTagProps>> = ({
           justify-items: center;
           align-items: center;
           gap: 6px;
-          padding: 6px;
+          padding: 0 6px;
           margin: 2px;
           height: ${tagHeight};
           border-radius: 6px;
