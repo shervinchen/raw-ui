@@ -47,8 +47,8 @@ const PaginationPages: FC<PaginationPagesProps> = ({
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 32px;
+            height: 32px;
           }
         `}
       </style>

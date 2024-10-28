@@ -10,8 +10,8 @@ export const usePaginationItemStyles = () => {
       align-items: center;
       justify-content: center;
       white-space: nowrap;
-      min-width: 40px;
-      height: 40px;
+      min-width: 32px;
+      height: 32px;
       padding: 0 8px;
       border: 1px solid ${theme.palette.accents2};
       border-radius: 6px;
