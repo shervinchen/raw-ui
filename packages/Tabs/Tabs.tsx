@@ -175,7 +175,7 @@ const Tabs: FC<PropsWithChildren<TabsProps>> = ({
             }
             .raw-tabs .raw-tabs-nav-item {
               padding: 12px 0;
-              font-size: 16px;
+              font-size: 14px;
               color: ${theme.palette.accents7};
               background-color: transparent;
               white-space: nowrap;
