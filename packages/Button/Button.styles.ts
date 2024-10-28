@@ -34,17 +34,17 @@ export const useButtonStyles = (props: ButtonProps): ButtonStyles => {
     md: {
       fontSize: '14px',
       height: '32px',
-      horizontalPadding: '20px',
+      horizontalPadding: '16px',
     },
     lg: {
       fontSize: '14px',
       height: '36px',
-      horizontalPadding: '24px',
+      horizontalPadding: '16px',
     },
     xl: {
       fontSize: '16px',
       height: '40px',
-      horizontalPadding: '28px',
+      horizontalPadding: '20px',
     },
   };
 
