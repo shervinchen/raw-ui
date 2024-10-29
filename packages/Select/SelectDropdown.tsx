@@ -11,7 +11,7 @@ import { RawUITheme } from '../Theme/preset/preset.type';
 import { useTheme } from '../Theme/theme-context';
 import { useSelectContext } from './select-context';
 import Popup from '../Popup';
-import { computePopupCoordinates } from '../Popup/computePopup';
+import { computeTargetPosition } from '../Popup/computePopup';
 
 const SelectDropdown = forwardRef<
   HTMLDivElement | null,
@@ -39,7 +39,7 @@ const SelectDropdown = forwardRef<
       visible={visible}
       targetRef={selectRef}
       getPopupPosition={() => {
-        const { bottom, left } = computePopupCoordinates(
+        const { bottom, left } = computeTargetPosition(
           selectRef,
           getPopupContainer
         );

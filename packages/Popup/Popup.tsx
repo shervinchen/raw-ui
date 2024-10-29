@@ -9,6 +9,7 @@ import React, {
 import { createPortal } from 'react-dom';
 import { PopupProps, PopupPosition } from './Popup.types';
 import {
+  useIntersectionObserver,
   useMutationObserver,
   usePortal,
   useResize,
@@ -47,14 +48,19 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
 
   useResize(updatePopupPosition);
 
-  useMutationObserver(targetRef?.current, updatePopupPosition);
-
-  useResizeObserver(targetRef?.current, updatePopupPosition);
-
   useMutationObserver(container, updatePopupPosition, {
     attributes: true,
     childList: false,
     subtree: false,
+  });
+
+  useMutationObserver(targetRef?.current, updatePopupPosition);
+
+  useResizeObserver(targetRef?.current, updatePopupPosition);
+
+  useIntersectionObserver(targetRef?.current, updatePopupPosition, {
+    root: null,
+    threshold: 0,
   });
 
   useEffect(() => {

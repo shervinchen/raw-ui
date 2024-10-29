@@ -2,7 +2,7 @@ import { MutableRefObject } from 'react';
 import {
   PopupArrowOffset,
   PopupArrowPosition,
-  PopupCoordinates,
+  TargetPosition,
   PopupPlacement,
   PopupPosition,
 } from './Popup.types';
@@ -32,10 +32,10 @@ const getElementOffset = (element?: HTMLElement | null) => {
   return { offsetTop: top, offsetLeft: left };
 };
 
-export const computePopupCoordinates = (
+export const computeTargetPosition = (
   targetRef?: MutableRefObject<HTMLElement | null>,
   getContainer?: () => HTMLElement | null
-): PopupCoordinates => {
+): TargetPosition => {
   const targetRect = targetRef?.current?.getBoundingClientRect() ?? null;
   const bodyScroll = {
     top: document.documentElement.scrollTop || document.body.scrollTop,
@@ -74,7 +74,7 @@ export const computePopupPosition = (
   targetRef?: MutableRefObject<HTMLElement | null>,
   getPopupContainer?: () => HTMLElement | null
 ) => {
-  const { top, bottom, left, right } = computePopupCoordinates(
+  const { top, bottom, left, right } = computeTargetPosition(
     targetRef,
     getPopupContainer
   );

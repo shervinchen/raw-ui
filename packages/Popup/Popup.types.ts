@@ -1,6 +1,6 @@
 import { MutableRefObject } from 'react';
 
-export type PopupCoordinates = {
+export type TargetPosition = {
   top: number;
   left: number;
   bottom: number;

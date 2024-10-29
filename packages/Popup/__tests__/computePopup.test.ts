@@ -1,4 +1,4 @@
-import { computePopupCoordinates, getTargetRect } from '../computePopup';
+import { computeTargetPosition, getTargetRect } from '../computePopup';
 
 describe('computePopup.test', () => {
   test('should get default value of target rect when target ref is null', () => {
@@ -7,8 +7,8 @@ describe('computePopup.test', () => {
     expect(height).toBe(0);
   });
 
-  test('should get default value of popup coordinates when target ref is null', () => {
-    const { top, bottom, left, right } = computePopupCoordinates(
+  test('should get default value of target position when target ref is null', () => {
+    const { top, bottom, left, right } = computeTargetPosition(
       undefined,
       undefined
     );
