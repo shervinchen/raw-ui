@@ -29,7 +29,7 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
     defaultValue,
     value,
   });
-  const { stage, shouldMount } = useTransition(internalValue, 50, 50);
+  const { stage, shouldMount } = useTransition(internalValue, 0, 50);
   const classes = classNames('raw-popover', className);
 
   const handleClick = () => {

@@ -21,7 +21,7 @@ const SelectDropdown = forwardRef<
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const { multiple, dropdownHeight, selectRef, getPopupContainer, selectId } =
     useSelectContext();
-  const { stage: dropdownTransitionStage } = useTransition(visible, 50, 0);
+  const { stage: dropdownTransitionStage } = useTransition(visible, 0, 0);
   const dropdownClasses = classNames('raw-select-dropdown', className);
   const selectRect = selectRef?.current?.getBoundingClientRect() ?? null;
   const dropdownWidth = selectRect

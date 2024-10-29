@@ -21,7 +21,7 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
   const ref = useRef<HTMLDivElement>(null);
   const theme = useTheme();
   const [visible, setVisible] = useState(false);
-  const { stage, shouldMount } = useTransition(visible, 50, 50);
+  const { stage, shouldMount } = useTransition(visible, 0, 50);
   const classes = classNames('raw-tooltip', className);
 
   const handleMouseEnterOrLeave = (nextValue: boolean) => {
