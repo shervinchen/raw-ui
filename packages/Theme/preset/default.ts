@@ -26,18 +26,6 @@ export const palette: RawUIThemePalette = {
   errorLight: '#ff1a1a',
   error: '#ee0000',
   errorDark: '#c50000',
-  cyanLighter: '#aaffec',
-  cyanLight: '#79ffe1',
-  cyan: '#50e3c2',
-  cyanDark: '#29bc9b',
-  violetLighter: '#e3d7fc',
-  violetLight: '#8a63d2',
-  violet: '#7928ca',
-  violetDark: '#4c2889',
-  highlightPurple: '#f81ce5',
-  highlightMagenta: '#eb367f',
-  highlightPink: '#ff0080',
-  highlightYellow: '#fff500',
 };
 
 export const tokens: RawUIThemeTokens = {

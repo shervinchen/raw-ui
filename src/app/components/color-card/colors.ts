@@ -44,33 +44,9 @@ const errorColor: ColorMap = {
   errorDark: 'Error Dark',
 };
 
-const cyanColor: ColorMap = {
-  cyanLighter: 'Cyan Lighter',
-  cyanLight: 'Cyan Light',
-  cyan: 'Cyan',
-  cyanDark: 'Cyan Dark',
-};
-
-const violetColor: ColorMap = {
-  violetLighter: 'Violet Lighter',
-  violetLight: 'Violet Light',
-  violet: 'Violet',
-  violetDark: 'Violet Dark',
-};
-
-const highlightColor: ColorMap = {
-  highlightPurple: 'Highlight Purple',
-  highlightMagenta: 'Highlight Magenta',
-  highlightPink: 'Highlight Pink',
-  highlightYellow: 'Highlight Yellow',
-};
-
 export const colors: Colors = {
   normal: normalColor,
   success: successColor,
   warning: warningColor,
   error: errorColor,
-  cyan: cyanColor,
-  violet: violetColor,
-  highlight: highlightColor,
 };

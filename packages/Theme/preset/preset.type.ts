@@ -24,18 +24,6 @@ export interface RawUIThemePalette {
   errorLight: string;
   error: string;
   errorDark: string;
-  cyanLighter: string;
-  cyanLight: string;
-  cyan: string;
-  cyanDark: string;
-  violetLighter: string;
-  violetLight: string;
-  violet: string;
-  violetDark: string;
-  highlightPurple: string;
-  highlightMagenta: string;
-  highlightPink: string;
-  highlightYellow: string;
 }
 
 export interface RawUIThemeTokens {
