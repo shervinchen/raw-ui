@@ -2,34 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --shiki-color-text: #888;
-  --shiki-color-background: #fafafa;
-  --shiki-token-constant: #444;
-  --shiki-token-string: #444;
-  --shiki-token-comment: rgba(153, 153, 153, 0.5);
-  --shiki-token-keyword: #f81ce5;
-  --shiki-token-parameter: #f5a623;
-  --shiki-token-function: #0070f3;
-  --shiki-token-string-expression: #444;
-  --shiki-token-punctuation: #999;
-  --shiki-token-link: #0070f3;
-}
-
-.dark {
-  --shiki-color-text: #dcdcdc;
-  --shiki-color-background: #333;
-  --shiki-token-constant: #888;
-  --shiki-token-string: #888;
-  --shiki-token-comment: rgba(231, 231, 231, 0.5);
-  --shiki-token-keyword: #f81ce5;
-  --shiki-token-parameter: #f5a623;
-  --shiki-token-function: #0070f3;
-  --shiki-token-string-expression: #dcdcdc;
-  --shiki-token-punctuation: #e7e7e7;
-  --shiki-token-link: #0070f3;
-}
-
 body {
   min-height: 100%;
 }

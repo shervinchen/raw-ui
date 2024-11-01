@@ -6,7 +6,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 const options = {
   // Use one of Shiki's packaged themes
-  theme: 'css-variables',
+  theme: 'dracula',
   // Or your own JSON theme
   // theme: JSON.parse(
   //   fs.readFileSync(require.resolve('./themes/dark.json'), 'utf-8')
