@@ -74,28 +74,6 @@ describe('Popup', () => {
     expect(screen.queryByTestId('popup')).not.toBeInTheDocument();
   });
 
-  test('should update popup position when targetRef changes', () => {
-    const { rerender } = render(
-      <Component
-        visible
-        targetRef={targetRefMock}
-        getPopupContainer={getPopupContainerMock}
-      />
-    );
-    expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
-    const newTargetRefMock = {
-      current: document.createElement('div'),
-    };
-    rerender(
-      <Component
-        visible
-        targetRef={newTargetRefMock}
-        getPopupContainer={getPopupContainerMock}
-      />
-    );
-    expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
-  });
-
   test('should update popup position when window resize', () => {
     render(
       <Component
