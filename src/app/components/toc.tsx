@@ -79,7 +79,6 @@ const Headings = ({
         <a
           href={`#${heading.id}`}
           className={classNames(
-            'hover:text-gray-900 dark:hover:text-gray-100',
             {
               2: 'pl-0',
               3: 'pl-4',
@@ -88,8 +87,8 @@ const Headings = ({
               6: 'pl-16',
             }[heading.level],
             activeId === heading.id
-              ? 'text-[#0070f3]'
-              : 'text-gray-600 dark:text-gray-400'
+              ? 'text-black dark:text-[#fff] font-semibold'
+              : 'text-[#666] dark:text-[#666] hover:text-black dark:hover:text-[#fff]'
           )}
           onClick={(e) => {
             e.preventDefault();

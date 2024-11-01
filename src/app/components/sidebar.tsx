@@ -23,8 +23,8 @@ export default function Sidebar() {
                 href={link.url}
                 className={
                   pathname === link.url
-                    ? 'py-1 px-0 text-base text-[#0070f3] active:font-semibold'
-                    : 'py-1 px-0 text-base text-[#444] dark:text-[#888] active:font-semibold'
+                    ? 'py-1 px-0 text-base text-black dark:text-[#fff] font-semibold'
+                    : 'py-1 px-0 text-base text-[#666] dark:text-[#666] hover:text-black dark:hover:text-[#fff]'
                 }
                 key={link.name}
               >
