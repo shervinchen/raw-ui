@@ -133,16 +133,17 @@ export const getColResponsiveStyle = (
 
   if (isPlainObject(value)) {
     const breakPoints = Object.keys(BreakPoints);
-    Object.keys(value).map((breakPoint: BreakPoint) => {
-      if (type === 'span' && value[breakPoint] === 0) {
+    const responsiveValue = value as { [key in BreakPoint]?: number };
+    Object.keys(responsiveValue).map((breakPoint: BreakPoint) => {
+      if (type === 'span' && responsiveValue[breakPoint] === 0) {
         responsiveStyle[breakPoint] = hideSpanStyle;
       } else if (
         breakPoints.includes(breakPoint) &&
-        isLegalColPropertyValue(value[breakPoint])
+        isLegalColPropertyValue(responsiveValue[breakPoint])
       ) {
         responsiveStyle[breakPoint] = calculateColStyle(
           type,
-          value[breakPoint]
+          responsiveValue[breakPoint]
         );
       }
     });
@@ -190,12 +191,15 @@ export const getGridResponsiveStyle = (
 
   if (isPlainObject(value)) {
     const breakPoints = Object.keys(BreakPoints);
-    Object.keys(value).map((breakPoint: BreakPoint) => {
+    const responsiveValue = value as {
+      [key in BreakPoint]?: number | Align | Justify;
+    };
+    Object.keys(responsiveValue).map((breakPoint: BreakPoint) => {
       if (
         breakPoints.includes(breakPoint) &&
-        isLegalGridPropertyValue(type, value[breakPoint])
+        isLegalGridPropertyValue(type, responsiveValue[breakPoint])
       ) {
-        gridResponsiveStyle[breakPoint] = value[breakPoint] as
+        gridResponsiveStyle[breakPoint] = responsiveValue[breakPoint] as
           | number
           | Align
           | Justify;
