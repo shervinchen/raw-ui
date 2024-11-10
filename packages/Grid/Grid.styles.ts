@@ -38,11 +38,11 @@ export const justifyStyleMap: {
   'space-evenly': 'space-evenly',
 };
 
-const isLegalGutterNumber = (value: ResponsiveValue<number>) => {
+const isLegalGutterNumber = (value?: ResponsiveValue<number>) => {
   return Number.isInteger(value) && (value as number) >= 0;
 };
 
-const isLegalColPropertyValue = (value: ResponsiveValue<number>) => {
+const isLegalColPropertyValue = (value?: ResponsiveValue<number>) => {
   return (
     Number.isInteger(value) &&
     (value as number) >= 1 &&
@@ -52,7 +52,7 @@ const isLegalColPropertyValue = (value: ResponsiveValue<number>) => {
 
 const isLegalGridPropertyValue = (
   type: 'gutter' | 'align' | 'justify',
-  value:
+  value?:
     | ResponsiveValue<number>
     | ResponsiveValue<Align>
     | ResponsiveValue<Justify>
@@ -143,7 +143,7 @@ export const getColResponsiveStyle = (
       ) {
         responsiveStyle[breakPoint] = calculateColStyle(
           type,
-          responsiveValue[breakPoint]
+          responsiveValue[breakPoint] as number
         );
       }
     });
