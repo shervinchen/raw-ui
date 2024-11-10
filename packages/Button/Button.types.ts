@@ -1,4 +1,9 @@
-import { MouseEventHandler, ButtonHTMLAttributes, ReactElement } from 'react';
+import {
+  MouseEventHandler,
+  ReactElement,
+  ComponentPropsWithoutRef,
+} from 'react';
+import { Merge } from '../utils';
 
 export type ButtonSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
@@ -16,7 +21,7 @@ export interface BaseButtonProps {
   size?: ButtonSizes;
   type?: ButtonTypes;
   variant?: ButtonVariants;
-  htmlType?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
+  htmlType?: ComponentPropsWithoutRef<'button'>['type'];
   loading?: boolean;
   disabled?: boolean;
   icon?: ReactElement;
@@ -24,12 +29,10 @@ export interface BaseButtonProps {
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-type NativeButtonProps = Omit<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  keyof BaseButtonProps
+export type ButtonProps = Merge<
+  ComponentPropsWithoutRef<'button'>,
+  BaseButtonProps
 >;
-
-export type ButtonProps = BaseButtonProps & NativeButtonProps;
 
 export interface ButtonLoadingProps {
   color?: string;

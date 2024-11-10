@@ -1,4 +1,5 @@
-import { ChangeEvent, InputHTMLAttributes } from 'react';
+import { ChangeEvent, ComponentPropsWithoutRef } from 'react';
+import { Merge } from '../utils';
 
 export type RadioValue = string | number | undefined;
 
@@ -11,9 +12,7 @@ export interface BaseRadioProps {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-type NativeRadioProps = Omit<
-  InputHTMLAttributes<HTMLInputElement>,
-  keyof BaseRadioProps
+export type RadioProps = Merge<
+  ComponentPropsWithoutRef<'input'>,
+  BaseRadioProps
 >;
-
-export type RadioProps = BaseRadioProps & NativeRadioProps;

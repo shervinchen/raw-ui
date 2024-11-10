@@ -1,4 +1,5 @@
-import { HTMLAttributes, MutableRefObject } from 'react';
+import { ComponentPropsWithoutRef, MutableRefObject } from 'react';
+import { Merge } from '../utils';
 
 export type SelectOptionValue = string | number | undefined | null;
 
@@ -25,17 +26,10 @@ export interface BaseSelectProps {
   onChange?: (value: SelectValue) => void;
 }
 
-type NativeSelectProps = Omit<
-  HTMLAttributes<HTMLDivElement>,
-  keyof BaseSelectProps
+export type SelectProps = Merge<
+  ComponentPropsWithoutRef<'div'>,
+  BaseSelectProps
 >;
-
-export type SelectProps = BaseSelectProps & NativeSelectProps;
-
-export type SelectRef = {
-  focus: () => void;
-  blur: () => void;
-};
 
 export interface SelectConfig {
   multiple?: boolean;

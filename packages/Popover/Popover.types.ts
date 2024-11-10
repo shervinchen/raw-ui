@@ -1,5 +1,6 @@
-import { HTMLAttributes, MutableRefObject, ReactNode } from 'react';
+import { ComponentPropsWithoutRef, MutableRefObject, ReactNode } from 'react';
 import { PopupPlacement } from '../Popup/Popup.types';
+import { Merge } from '../utils';
 
 export type PopoverPlacement = PopupPlacement;
 
@@ -15,12 +16,10 @@ interface BasePopoverProps {
   getPopupContainer?: () => HTMLElement | null;
 }
 
-type NativePopoverProps = Omit<
-  HTMLAttributes<HTMLDivElement>,
-  keyof BasePopoverProps
+export type PopoverProps = Merge<
+  ComponentPropsWithoutRef<'div'>,
+  BasePopoverProps
 >;
-
-export type PopoverProps = BasePopoverProps & NativePopoverProps;
 
 export interface PopoverArrowProps {
   placement: PopupPlacement;

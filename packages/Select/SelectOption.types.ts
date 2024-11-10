@@ -1,4 +1,5 @@
-import { HTMLAttributes } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
+import { Merge } from '../utils';
 
 interface BaseSelectOptionProps {
   value?: string | number;
@@ -6,9 +7,7 @@ interface BaseSelectOptionProps {
   className?: string;
 }
 
-type NativeSelectOptionProps = Omit<
-  HTMLAttributes<HTMLDivElement>,
-  keyof BaseSelectOptionProps
+export type SelectOptionProps = Merge<
+  ComponentPropsWithoutRef<'div'>,
+  BaseSelectOptionProps
 >;
-
-export type SelectOptionProps = BaseSelectOptionProps & NativeSelectOptionProps;

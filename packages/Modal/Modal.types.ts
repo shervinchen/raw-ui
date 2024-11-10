@@ -1,4 +1,5 @@
-import { HTMLAttributes } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
+import { Merge } from '../utils';
 
 interface BaseModalProps {
   visible?: boolean;
@@ -8,9 +9,4 @@ interface BaseModalProps {
   onClose?: () => void;
 }
 
-type NativeModalProps = Omit<
-  HTMLAttributes<HTMLDivElement>,
-  keyof BaseModalProps
->;
-
-export type ModalProps = BaseModalProps & NativeModalProps;
+export type ModalProps = Merge<ComponentPropsWithoutRef<'div'>, BaseModalProps>;

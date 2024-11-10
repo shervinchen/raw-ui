@@ -1,5 +1,6 @@
-import { HTMLAttributes } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 import { CheckboxValue } from './Checkbox.types';
+import { Merge } from '../utils';
 
 export type CheckboxGroupValue = (CheckboxValue | undefined)[];
 
@@ -12,13 +13,10 @@ interface BaseCheckboxGroupProps {
   className?: string;
 }
 
-type NativeCheckboxGroupProps = Omit<
-  HTMLAttributes<HTMLDivElement>,
-  keyof BaseCheckboxGroupProps
+export type CheckboxGroupProps = Merge<
+  ComponentPropsWithoutRef<'div'>,
+  BaseCheckboxGroupProps
 >;
-
-export type CheckboxGroupProps = BaseCheckboxGroupProps &
-  NativeCheckboxGroupProps;
 
 export interface CheckboxGroupConfig {
   groupDisabled: boolean;

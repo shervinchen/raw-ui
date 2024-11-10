@@ -1,4 +1,5 @@
-import { HTMLAttributes } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
+import { Merge } from '../utils';
 
 interface BasePaginationProps {
   page?: number;
@@ -9,12 +10,10 @@ interface BasePaginationProps {
   onChange?: (page: number) => void;
 }
 
-type NativePaginationProps = Omit<
-  HTMLAttributes<HTMLElement>,
-  keyof BasePaginationProps
+export type PaginationProps = Merge<
+  ComponentPropsWithoutRef<'nav'>,
+  BasePaginationProps
 >;
-
-export type PaginationProps = BasePaginationProps & NativePaginationProps;
 
 export interface PaginationPagesProps {
   pages: number[];

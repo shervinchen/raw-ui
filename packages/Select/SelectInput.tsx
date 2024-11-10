@@ -1,4 +1,5 @@
 import React, {
+  ComponentPropsWithRef,
   forwardRef,
   useEffect,
   useImperativeHandle,
@@ -13,15 +14,15 @@ type SelectInputProps = {
   onFocus: () => void;
 };
 
-const SelectInput = forwardRef<HTMLInputElement | null, SelectInputProps>(
-  ({ visible, onBlur, onFocus }, inputRef) => {
+const SelectInput = forwardRef(
+  (
+    { visible, onBlur, onFocus }: SelectInputProps,
+    inputRef: ComponentPropsWithRef<'input'>['ref']
+  ) => {
     const ref = useRef<HTMLInputElement | null>(null);
     const { selectId } = useSelectContext();
 
-    useImperativeHandle<HTMLInputElement | null, HTMLInputElement | null>(
-      inputRef,
-      () => ref.current
-    );
+    useImperativeHandle(inputRef, () => ref.current);
 
     useEffect(() => {
       if (visible) {

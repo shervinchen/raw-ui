@@ -7,7 +7,7 @@ exports[`Toggle should match the snapshot 1`] = `
     data-testid="toggleLabel"
   >
     <input
-      class="jsx-1802955700 raw-toggle-input"
+      class="jsx-3265204931 raw-toggle-input"
       role="switch"
       type="checkbox"
     />

@@ -1,13 +1,12 @@
-import { HTMLAttributes, MouseEvent } from 'react';
+import { ComponentPropsWithoutRef, MouseEvent } from 'react';
+import { Merge } from '../utils';
 
 interface BaseOverlayProps {
   visible?: boolean;
   onClick?: (event: MouseEvent<HTMLDivElement>) => void;
 }
 
-type NativeOverlayProps = Omit<
-  HTMLAttributes<HTMLDivElement>,
-  keyof BaseOverlayProps
+export type OverlayProps = Merge<
+  ComponentPropsWithoutRef<'div'>,
+  BaseOverlayProps
 >;
-
-export type OverlayProps = BaseOverlayProps & NativeOverlayProps;

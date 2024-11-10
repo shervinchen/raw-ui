@@ -1,4 +1,5 @@
-import { HTMLAttributes, ReactNode } from 'react';
+import { ComponentPropsWithoutRef, ReactNode } from 'react';
+import { Merge } from '../utils';
 
 interface BaseTabsProps {
   value?: string;
@@ -16,19 +17,12 @@ interface BaseTabsItemProps {
   className?: string;
 }
 
-type NativeTabsProps = Omit<
-  HTMLAttributes<HTMLDivElement>,
-  keyof BaseTabsProps
+export type TabsProps = Merge<ComponentPropsWithoutRef<'div'>, BaseTabsProps>;
+
+export type TabsItemProps = Merge<
+  ComponentPropsWithoutRef<'div'>,
+  BaseTabsItemProps
 >;
-
-type NativeTabsItemProps = Omit<
-  HTMLAttributes<HTMLDivElement>,
-  keyof BaseTabsItemProps
->;
-
-export type TabsProps = BaseTabsProps & NativeTabsProps;
-
-export type TabsItemProps = BaseTabsItemProps & NativeTabsItemProps;
 
 export interface TabsConfig {
   tabsId: string;

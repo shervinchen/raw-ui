@@ -1,20 +1,8 @@
-import React, { FC, PropsWithChildren, HTMLAttributes } from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 import classNames from 'classnames';
 import { useInputGroupContext } from './input-group-context';
 import { useInputStyles } from './Input.styles';
-
-interface BaseInputElementProps {
-  className?: string;
-  clickable?: boolean;
-  placement?: 'left' | 'right';
-}
-
-type NativeInputElementProps = Omit<
-  HTMLAttributes<HTMLDivElement>,
-  keyof BaseInputElementProps
->;
-
-type InputElementProps = BaseInputElementProps & NativeInputElementProps;
+import { InputElementProps } from './Input.types';
 
 const InputElement: FC<PropsWithChildren<InputElementProps>> = ({
   placement,

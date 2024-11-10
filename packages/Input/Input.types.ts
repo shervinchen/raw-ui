@@ -1,10 +1,11 @@
-import { InputHTMLAttributes, ChangeEvent, FocusEvent } from 'react';
+import { ChangeEvent, FocusEvent, ComponentPropsWithoutRef } from 'react';
+import { Merge } from '../utils';
 
 export type InputTypes = 'default' | 'primary' | 'warning' | 'error';
 
 export type InputSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
-export interface BaseInputProps {
+interface BaseInputProps {
   value?: string;
   defaultValue?: string;
   placeholder?: string;
@@ -21,12 +22,30 @@ export interface BaseInputProps {
   autoComplete?: string;
 }
 
-type NativeInputProps = Omit<
-  InputHTMLAttributes<HTMLInputElement>,
-  keyof BaseInputProps
+interface BaseInputAddonProps {
+  className?: string;
+}
+
+interface BaseInputElementProps {
+  className?: string;
+  clickable?: boolean;
+  placement?: 'left' | 'right';
+}
+
+export type InputProps = Merge<
+  ComponentPropsWithoutRef<'input'>,
+  BaseInputProps
 >;
 
-export type InputProps = BaseInputProps & NativeInputProps;
+export type InputAddonProps = Merge<
+  ComponentPropsWithoutRef<'div'>,
+  BaseInputAddonProps
+>;
+
+export type InputElementProps = Merge<
+  ComponentPropsWithoutRef<'div'>,
+  BaseInputElementProps
+>;
 
 export interface InputSizeStyles {
   fontSize?: string;

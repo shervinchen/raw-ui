@@ -1,6 +1,5 @@
 import React, {
   forwardRef,
-  PropsWithChildren,
   MouseEvent,
   useMemo,
   useState,
@@ -9,6 +8,7 @@ import React, {
   ReactElement,
   useCallback,
   useId,
+  ComponentPropsWithRef,
 } from 'react';
 import { ChevronDown, ChevronUp, X } from 'react-feather';
 import classNames from 'classnames';
@@ -17,7 +17,6 @@ import {
   SelectConfig,
   SelectOptionValue,
   SelectProps,
-  SelectRef,
   SelectValue,
 } from './Select.types';
 import { useControlled } from '../utils/hooks';
@@ -66,7 +65,7 @@ const sortSelectedOptions = (
   );
 };
 
-const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
+const Select = forwardRef(
   (
     {
       defaultValue,
@@ -85,8 +84,8 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
       onChange,
       children,
       ...restProps
-    },
-    ref
+    }: SelectProps,
+    ref: ComponentPropsWithRef<'div'>['ref']
   ) => {
     const selectId = `raw-select-dropdown-${useId()}`;
     const selectRef = useRef<HTMLDivElement>(null);
@@ -198,14 +197,7 @@ const Select = forwardRef<SelectRef, PropsWithChildren<SelectProps>>(
       ['mousedown']
     );
 
-    useImperativeHandle(
-      ref,
-      () => ({
-        focus: () => inputRef.current?.focus(),
-        blur: () => inputRef.current?.blur(),
-      }),
-      [inputRef]
-    );
+    useImperativeHandle(ref, () => inputRef.current);
 
     const SelectContent = (): ReactElement => {
       const selectedOptions = getValidChildren(children).filter((option) => {

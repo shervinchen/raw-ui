@@ -1,4 +1,5 @@
-import { HTMLAttributes } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
+import { Merge } from '../utils';
 
 export type LoadingType = 'dot' | 'spin';
 
@@ -9,9 +10,7 @@ export interface BaseLoadingProps {
   size?: number;
 }
 
-type NativeLoadingProps = Omit<
-  HTMLAttributes<HTMLDivElement>,
-  keyof BaseLoadingProps
+export type LoadingProps = Merge<
+  ComponentPropsWithoutRef<'div'>,
+  BaseLoadingProps
 >;
-
-export type LoadingProps = BaseLoadingProps & NativeLoadingProps;

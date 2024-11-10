@@ -1,11 +1,10 @@
 import React, {
-  PropsWithChildren,
   forwardRef,
-  Ref,
   ChangeEvent,
   FocusEvent,
   useImperativeHandle,
   useRef,
+  ComponentPropsWithRef,
 } from 'react';
 import classNames from 'classnames';
 import { InputProps } from './Input.types';
@@ -28,8 +27,8 @@ const mergeInputGroupProps = (
   };
 };
 
-const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
-  (inputProps, ref: Ref<HTMLInputElement | null>) => {
+const Input = forwardRef(
+  (inputProps: InputProps, ref: ComponentPropsWithRef<'input'>['ref']) => {
     const inputGroupConfig = useInputGroupContext();
     const {
       type = 'default',

@@ -1,5 +1,6 @@
-import { HTMLAttributes } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 import { RadioValue } from './Radio.types';
+import { Merge } from '../utils';
 
 interface BaseRadioGroupProps {
   defaultValue?: RadioValue;
@@ -10,12 +11,10 @@ interface BaseRadioGroupProps {
   className?: string;
 }
 
-type NativeRadioGroupProps = Omit<
-  HTMLAttributes<HTMLDivElement>,
-  keyof BaseRadioGroupProps
+export type RadioGroupProps = Merge<
+  ComponentPropsWithoutRef<'div'>,
+  BaseRadioGroupProps
 >;
-
-export type RadioGroupProps = BaseRadioGroupProps & NativeRadioGroupProps;
 
 export interface RadioGroupConfig {
   groupDisabled: boolean;

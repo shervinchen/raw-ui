@@ -1,4 +1,5 @@
-import { HTMLAttributes } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
+import { Merge } from '../utils';
 
 interface BaseLayoutProps {
   className?: string;
@@ -20,33 +21,23 @@ interface BaseSidebarProps {
   className?: string;
 }
 
-type NativeLayoutProps = Omit<
-  HTMLAttributes<HTMLDivElement>,
-  keyof BaseLayoutProps
+export type LayoutProps = Merge<
+  ComponentPropsWithoutRef<'div'>,
+  BaseLayoutProps
 >;
-
-type NativeHeaderProps = Omit<
-  HTMLAttributes<HTMLElement>,
-  keyof BaseHeaderProps
+export type HeaderProps = Merge<
+  ComponentPropsWithoutRef<'header'>,
+  BaseHeaderProps
 >;
-
-type NativeContentProps = Omit<
-  HTMLAttributes<HTMLElement>,
-  keyof BaseContentProps
+export type ContentProps = Merge<
+  ComponentPropsWithoutRef<'main'>,
+  BaseContentProps
 >;
-
-type NativeFooterProps = Omit<
-  HTMLAttributes<HTMLElement>,
-  keyof BaseFooterProps
+export type FooterProps = Merge<
+  ComponentPropsWithoutRef<'footer'>,
+  BaseFooterProps
 >;
-
-type NativeSidebarProps = Omit<
-  HTMLAttributes<HTMLElement>,
-  keyof BaseSidebarProps
+export type SidebarProps = Merge<
+  ComponentPropsWithoutRef<'aside'>,
+  BaseSidebarProps
 >;
-
-export type LayoutProps = BaseLayoutProps & NativeLayoutProps;
-export type HeaderProps = BaseHeaderProps & NativeHeaderProps;
-export type ContentProps = BaseContentProps & NativeContentProps;
-export type FooterProps = BaseFooterProps & NativeFooterProps;
-export type SidebarProps = BaseSidebarProps & NativeSidebarProps;

@@ -8,7 +8,7 @@ exports[`Checkbox should match the snapshot 1`] = `
   >
     <input
       aria-checked="false"
-      class="jsx-1802955700 raw-checkbox-input"
+      class="jsx-3265204931 raw-checkbox-input"
       type="checkbox"
     />
     <span

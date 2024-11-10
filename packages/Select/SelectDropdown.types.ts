@@ -1,14 +1,12 @@
-import { HTMLAttributes } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
+import { Merge } from '../utils';
 
 export interface BaseSelectDropdownProps {
   visible: boolean;
   className?: string;
 }
 
-type NativeSelectDropdownProps = Omit<
-  HTMLAttributes<HTMLDivElement>,
-  keyof BaseSelectDropdownProps
+export type SelectDropdownProps = Merge<
+  ComponentPropsWithoutRef<'div'>,
+  BaseSelectDropdownProps
 >;
-
-export type SelectDropdownProps = BaseSelectDropdownProps &
-  NativeSelectDropdownProps;

@@ -1,20 +1,10 @@
-import React, { FC, PropsWithChildren, HTMLAttributes } from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 import classNames from 'classnames';
 import { useInputGroupContext } from './input-group-context';
 import { useInputStyles } from './Input.styles';
 import { useTheme } from '../Theme/theme-context';
 import { RawUITheme } from '../Theme/preset/preset.type';
-
-interface BaseInputAddonProps {
-  className?: string;
-}
-
-type NativeInputAddonProps = Omit<
-  HTMLAttributes<HTMLDivElement>,
-  keyof BaseInputAddonProps
->;
-
-type InputAddonProps = BaseInputAddonProps & NativeInputAddonProps;
+import { InputAddonProps } from './Input.types';
 
 const InputAddon: FC<PropsWithChildren<InputAddonProps>> = ({
   className,

@@ -1,4 +1,5 @@
-import { CSSProperties, HTMLAttributes } from 'react';
+import { ComponentPropsWithoutRef, CSSProperties } from 'react';
+import { Merge } from '../utils';
 
 export enum BreakPoints {
   xs = 'xs',
@@ -48,18 +49,11 @@ interface BaseGridColProps {
   style?: CSSProperties;
 }
 
-type NativeGridProps = Omit<
-  HTMLAttributes<HTMLDivElement>,
-  keyof BaseGridProps
+export type GridProps = Merge<ComponentPropsWithoutRef<'div'>, BaseGridProps>;
+export type GridColProps = Merge<
+  ComponentPropsWithoutRef<'div'>,
+  BaseGridColProps
 >;
-
-type NativeGridColProps = Omit<
-  HTMLAttributes<HTMLDivElement>,
-  keyof BaseGridColProps
->;
-
-export type GridProps = BaseGridProps & NativeGridProps;
-export type GridColProps = BaseGridColProps & NativeGridColProps;
 
 export interface ColSpanStyle {
   display: string;

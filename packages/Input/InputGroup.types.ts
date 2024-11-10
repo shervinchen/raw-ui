@@ -1,5 +1,6 @@
-import { HTMLAttributes } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 import { InputSizes, InputTypes } from './Input.types';
+import { Merge } from '../utils';
 
 interface BaseInputGroupProps {
   className?: string;
@@ -9,12 +10,10 @@ interface BaseInputGroupProps {
   disabled?: boolean;
 }
 
-type NativeInputGroupProps = Omit<
-  HTMLAttributes<HTMLDivElement>,
-  keyof BaseInputGroupProps
+export type InputGroupProps = Merge<
+  ComponentPropsWithoutRef<'div'>,
+  BaseInputGroupProps
 >;
-
-export type InputGroupProps = BaseInputGroupProps & NativeInputGroupProps;
 
 export interface InputGroupConfig {
   size?: InputSizes;

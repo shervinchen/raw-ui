@@ -1,5 +1,6 @@
-import { HTMLAttributes } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 import { ButtonSizes, ButtonTypes } from './Button.types';
+import { Merge } from '../utils';
 
 export type ButtonGroupVariant = 'default' | 'outline' | 'ghost';
 
@@ -12,12 +13,10 @@ interface BaseButtonGroupProps {
   vertical?: boolean;
 }
 
-type NativeButtonGroupProps = Omit<
-  HTMLAttributes<HTMLDivElement>,
-  keyof BaseButtonGroupProps
+export type ButtonGroupProps = Merge<
+  ComponentPropsWithoutRef<'div'>,
+  BaseButtonGroupProps
 >;
-
-export type ButtonGroupProps = BaseButtonGroupProps & NativeButtonGroupProps;
 
 export interface ButtonGroupConfig {
   size?: ButtonSizes;

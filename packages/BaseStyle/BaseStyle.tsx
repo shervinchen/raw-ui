@@ -1,7 +1,7 @@
 import React, { FC, PropsWithChildren } from 'react';
 import { useTheme } from '../Theme';
 
-const BaseStyle: FC<PropsWithChildren<unknown>> = ({ children }) => {
+const BaseStyle: FC<PropsWithChildren> = ({ children }) => {
   const theme = useTheme();
 
   return (

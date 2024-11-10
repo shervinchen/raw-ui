@@ -1,4 +1,5 @@
-import { ChangeEvent, InputHTMLAttributes } from 'react';
+import { ChangeEvent, ComponentPropsWithoutRef } from 'react';
+import { Merge } from '../utils';
 
 export type CheckboxValue = string | number | undefined;
 
@@ -12,12 +13,10 @@ export interface BaseCheckboxProps {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-type NativeCheckboxProps = Omit<
-  InputHTMLAttributes<HTMLInputElement>,
-  keyof BaseCheckboxProps
+export type CheckboxProps = Merge<
+  ComponentPropsWithoutRef<'input'>,
+  BaseCheckboxProps
 >;
-
-export type CheckboxProps = BaseCheckboxProps & NativeCheckboxProps;
 
 export interface CheckboxIconProps {
   checked?: boolean;

@@ -1,5 +1,6 @@
-import { HTMLAttributes, MutableRefObject, ReactNode } from 'react';
+import { ComponentPropsWithoutRef, MutableRefObject, ReactNode } from 'react';
 import { PopupPlacement } from '../Popup/Popup.types';
+import { Merge } from '../utils';
 
 export type TooltipPlacement = PopupPlacement;
 
@@ -12,12 +13,10 @@ interface BaseTooltipProps {
   getPopupContainer?: () => HTMLElement | null;
 }
 
-type NativeTooltipProps = Omit<
-  HTMLAttributes<HTMLDivElement>,
-  keyof BaseTooltipProps
+export type TooltipProps = Merge<
+  ComponentPropsWithoutRef<'div'>,
+  BaseTooltipProps
 >;
-
-export type TooltipProps = BaseTooltipProps & NativeTooltipProps;
 
 export interface TooltipArrowProps {
   placement: PopupPlacement;

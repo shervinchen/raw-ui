@@ -1,11 +1,10 @@
 import React, {
   forwardRef,
-  Ref,
-  PropsWithChildren,
   Children,
   MouseEvent,
   useRef,
   useImperativeHandle,
+  ComponentPropsWithRef,
 } from 'react';
 import classNames from 'classnames';
 
@@ -30,8 +29,8 @@ const mergeButtonGroupProps = (
   };
 };
 
-const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(
-  (buttonProps, ref: Ref<HTMLButtonElement | null>) => {
+const Button = forwardRef(
+  (buttonProps: ButtonProps, ref: ComponentPropsWithRef<'button'>['ref']) => {
     const buttonGroupConfig = useButtonGroupContext();
     const {
       className = '',

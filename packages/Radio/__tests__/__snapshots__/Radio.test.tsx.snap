@@ -7,7 +7,7 @@ exports[`Radio should match the snapshot 1`] = `
     data-testid="radioLabel"
   >
     <input
-      class="jsx-1802955700 raw-radio-input"
+      class="jsx-3265204931 raw-radio-input"
       type="radio"
     />
     <span

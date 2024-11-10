@@ -1,4 +1,5 @@
-import { ChangeEvent, InputHTMLAttributes } from 'react';
+import { ChangeEvent, ComponentPropsWithoutRef } from 'react';
+import { Merge } from '../utils';
 
 export interface BaseToggleProps {
   checked?: boolean;
@@ -8,12 +9,10 @@ export interface BaseToggleProps {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-type NativeToggleProps = Omit<
-  InputHTMLAttributes<HTMLInputElement>,
-  keyof BaseToggleProps
+export type ToggleProps = Merge<
+  ComponentPropsWithoutRef<'input'>,
+  BaseToggleProps
 >;
-
-export type ToggleProps = BaseToggleProps & NativeToggleProps;
 
 export interface ToggleStyles {
   borderColor?: string;
