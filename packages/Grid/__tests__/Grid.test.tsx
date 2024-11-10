@@ -7,7 +7,7 @@ describe('Grid', () => {
   test('should match the snapshot', () => {
     const { asFragment } = render(
       <Grid>
-        <Grid.Col>
+        <Grid.Col span={24}>
           <div>col</div>
         </Grid.Col>
       </Grid>
@@ -18,7 +18,7 @@ describe('Grid', () => {
   test('should support custom class name', () => {
     render(
       <Grid className="custom-grid">
-        <Grid.Col className="custom-grid-col">
+        <Grid.Col span={24} className="custom-grid-col">
           <div>col</div>
         </Grid.Col>
       </Grid>
@@ -115,7 +115,7 @@ describe('Grid', () => {
   test('should support set regular align items', () => {
     render(
       <Grid align="top">
-        <Grid.Col>
+        <Grid.Col span={24}>
           <div>col</div>
         </Grid.Col>
       </Grid>
@@ -137,7 +137,7 @@ describe('Grid', () => {
           xxl: 'normal',
         }}
       >
-        <Grid.Col>
+        <Grid.Col span={24}>
           <div>col</div>
         </Grid.Col>
       </Grid>
@@ -150,7 +150,7 @@ describe('Grid', () => {
   test('should support set regular justify content', () => {
     render(
       <Grid justify="start">
-        <Grid.Col>
+        <Grid.Col span={24}>
           <div>col</div>
         </Grid.Col>
       </Grid>
@@ -172,7 +172,7 @@ describe('Grid', () => {
           xxl: 'space-evenly',
         }}
       >
-        <Grid.Col>
+        <Grid.Col span={24}>
           <div>col</div>
         </Grid.Col>
       </Grid>
@@ -249,7 +249,10 @@ describe('Grid', () => {
   test('should support set responsive offset of grid col', () => {
     render(
       <Grid>
-        <Grid.Col offset={{ xs: 2, sm: 8, md: 4, lg: 10, xl: 6, xxl: 6 }}>
+        <Grid.Col
+          span={24}
+          offset={{ xs: 2, sm: 8, md: 4, lg: 10, xl: 6, xxl: 6 }}
+        >
           <div>col</div>
         </Grid.Col>
       </Grid>

@@ -43,10 +43,11 @@ const Checkbox: FC<PropsWithChildren<CheckboxProps>> = ({
   }, [internalValue, inGroup, groupValue, checkboxValue]);
 
   const setIndeterminate = useCallback(() => {
+    const checkBox = checkboxRef.current as HTMLInputElement;
     if (indeterminate) {
-      checkboxRef.current!.indeterminate = true;
-    } else if (checkboxRef.current!.indeterminate) {
-      checkboxRef.current!.indeterminate = false;
+      checkBox.indeterminate = true;
+    } else if (checkBox.indeterminate) {
+      checkBox.indeterminate = false;
     }
   }, [indeterminate]);
 

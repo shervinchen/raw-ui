@@ -1,4 +1,4 @@
-import React, { useState, act } from 'react';
+import React, { useState } from 'react';
 import { fireEvent, render, renderHook, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Select from '..';

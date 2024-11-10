@@ -7,7 +7,7 @@ exports[`Grid should match the snapshot 1`] = `
     data-testid="grid"
   >
     <div
-      class="jsx-125401513 raw-grid-col raw-grid-col-span raw-grid-col-offset raw-grid-col-order raw-grid-gutter-horizontal"
+      class="jsx-2108396841 raw-grid-col raw-grid-col-span raw-grid-col-offset raw-grid-col-order raw-grid-gutter-horizontal"
       data-testid="gridCol"
     >
       <div>
