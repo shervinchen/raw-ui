@@ -22,7 +22,7 @@ const SelectInput = forwardRef(
     const ref = useRef<HTMLInputElement | null>(null);
     const { selectId } = useSelectContext();
 
-    useImperativeHandle(inputRef, () => ref.current);
+    useImperativeHandle(inputRef, () => ref.current as HTMLInputElement);
 
     useEffect(() => {
       if (visible) {

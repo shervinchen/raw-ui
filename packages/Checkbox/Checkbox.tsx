@@ -44,9 +44,9 @@ const Checkbox: FC<PropsWithChildren<CheckboxProps>> = ({
 
   const setIndeterminate = useCallback(() => {
     if (indeterminate) {
-      checkboxRef.current.indeterminate = true;
-    } else if (checkboxRef.current.indeterminate) {
-      checkboxRef.current.indeterminate = false;
+      checkboxRef.current!.indeterminate = true;
+    } else if (checkboxRef.current!.indeterminate) {
+      checkboxRef.current!.indeterminate = false;
     }
   }, [indeterminate]);
 

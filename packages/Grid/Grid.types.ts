@@ -44,7 +44,7 @@ export interface BaseGridProps {
 export interface BaseGridColProps {
   offset?: ResponsiveValue<number>;
   order?: ResponsiveValue<number>;
-  span?: ResponsiveValue<number>;
+  span: ResponsiveValue<number>;
   className?: string;
   style?: CSSProperties;
 }

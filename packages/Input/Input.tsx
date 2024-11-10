@@ -78,7 +78,7 @@ const Input = forwardRef(
       onChange?.(event);
     };
 
-    useImperativeHandle(ref, () => inputRef.current);
+    useImperativeHandle(ref, () => inputRef.current as HTMLInputElement);
 
     return (
       <>

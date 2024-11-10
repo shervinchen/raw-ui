@@ -82,7 +82,7 @@ const Button = forwardRef(
       onClick?.(event);
     };
 
-    useImperativeHandle(ref, () => buttonRef.current);
+    useImperativeHandle(ref, () => buttonRef.current as HTMLButtonElement);
 
     return (
       <button

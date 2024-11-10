@@ -29,7 +29,7 @@ const SelectDropdown = forwardRef(
       ? selectRect.width || selectRect.right - selectRect.left
       : 0;
 
-    useImperativeHandle(ref, () => dropdownRef.current);
+    useImperativeHandle(ref, () => dropdownRef.current as HTMLDivElement);
 
     return (
       <Popup

@@ -44,7 +44,7 @@ export interface ButtonIconProps {
   isSingle?: boolean;
   height?: string;
   horizontalPadding?: string;
-  children?: ReactElement;
+  children: ReactElement;
 }
 
 export interface ButtonSizeStyles {

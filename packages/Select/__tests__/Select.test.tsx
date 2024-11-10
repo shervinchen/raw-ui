@@ -56,20 +56,14 @@ describe('Select', () => {
   });
 
   test('should forward ref', () => {
-    const ref = React.createRef<HTMLInputElement>();
+    const ref = React.createRef<HTMLDivElement>();
     render(
       <Select ref={ref}>
         <Select.Option value="1">Option 1</Select.Option>
         <Select.Option value="2">Option 2</Select.Option>
       </Select>
     );
-    const selectInput = screen.getByRole('combobox');
-    act(() => {
-      ref?.current?.focus();
-      expect(selectInput).toHaveFocus();
-      ref?.current?.blur();
-      expect(selectInput).not.toHaveFocus();
-    });
+    expect(screen.getByTestId('selectContainer')).toEqual(ref.current);
   });
 
   ['warning', 'error'].forEach((item: Exclude<SelectTypes, 'default'>) => {

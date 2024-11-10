@@ -117,7 +117,11 @@ describe('Popup', () => {
 
   test('should update popup position when document size change', async () => {
     render(
-      <Component visible targetRef={targetRefMock} getPopupContainer={null} />
+      <Component
+        visible
+        targetRef={targetRefMock}
+        getPopupContainer={getPopupContainerMock}
+      />
     );
     expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
     document.body.style.height = '10000px';

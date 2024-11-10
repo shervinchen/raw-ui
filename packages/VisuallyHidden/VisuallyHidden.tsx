@@ -13,7 +13,7 @@ const VisuallyHiddenInput = forwardRef(
   ) => {
     const inputRef = useRef<HTMLInputElement>(null);
 
-    useImperativeHandle(ref, () => inputRef.current);
+    useImperativeHandle(ref, () => inputRef.current as HTMLInputElement);
 
     return (
       <>

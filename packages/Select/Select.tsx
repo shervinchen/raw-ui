@@ -197,7 +197,7 @@ const Select = forwardRef(
       ['mousedown']
     );
 
-    useImperativeHandle(ref, () => inputRef.current);
+    useImperativeHandle(ref, () => selectRef.current as HTMLDivElement);
 
     const SelectContent = (): ReactElement => {
       const selectedOptions = getValidChildren(children).filter((option) => {

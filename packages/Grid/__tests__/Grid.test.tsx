@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Grid from '..';
+import { Align, Justify, ResponsiveValue } from '../Grid.types';
 
 describe('Grid', () => {
   test('should match the snapshot', () => {
@@ -324,8 +325,8 @@ describe('Grid', () => {
     const { rerender } = render(
       <Grid
         gutter={[-1, -1]}
-        align={'unknown' as unknown}
-        justify={'unknown' as unknown}
+        align={'unknown' as unknown as ResponsiveValue<Align>}
+        justify={'unknown' as unknown as ResponsiveValue<Justify>}
       >
         <Grid.Col span={6}>
           <div>col-6</div>
@@ -367,8 +368,8 @@ describe('Grid', () => {
     rerender(
       <Grid
         gutter={[{ xs: -1 }, { xs: -1 }]}
-        align={{ xs: 'unknown' } as unknown}
-        justify={{ xs: 'unknown' } as unknown}
+        align={{ xs: 'unknown' } as unknown as ResponsiveValue<Align>}
+        justify={{ xs: 'unknown' } as unknown as ResponsiveValue<Justify>}
       >
         <Grid.Col span={6}>
           <div>col-6</div>

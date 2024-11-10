@@ -1,4 +1,4 @@
-const isValidHex = (hex) => /^#([A-Fa-f0-9]{3,4}){1,2}$/.test(hex);
+const isValidHex = (hex: string) => /^#([A-Fa-f0-9]{3,4}){1,2}$/.test(hex);
 
 const getChunksFromString = (st: string, chunkSize: number) =>
   st.match(new RegExp(`.{${chunkSize}}`, 'g'));
@@ -21,7 +21,7 @@ const hexToRGBA = (hex: string, alpha: number) => {
     throw new Error('Invalid HEX');
   }
   const chunkSize = Math.floor((hex.length - 1) / 3);
-  const hexArr = getChunksFromString(hex.slice(1), chunkSize);
+  const hexArr = getChunksFromString(hex.slice(1), chunkSize) ?? [];
   const [r, g, b, a] = hexArr.map(convertHexUnitTo256);
   return `rgba(${r}, ${g}, ${b}, ${getAlphaFloat(a, alpha)})`;
 };
