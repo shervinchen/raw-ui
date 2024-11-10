@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef, MouseEvent } from 'react';
 import { Merge } from '../utils';
 
-interface BaseOverlayProps {
+export interface BaseOverlayProps {
   visible?: boolean;
   onClick?: (event: MouseEvent<HTMLDivElement>) => void;
 }

@@ -4,7 +4,7 @@ import { Merge } from '../utils';
 
 export type PopoverPlacement = PopupPlacement;
 
-interface BasePopoverProps {
+export interface BasePopoverProps {
   content: ReactNode;
   value?: boolean;
   defaultValue?: boolean;

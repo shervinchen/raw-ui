@@ -4,7 +4,7 @@ import { Merge } from '../utils';
 
 export type TooltipPlacement = PopupPlacement;
 
-interface BaseTooltipProps {
+export interface BaseTooltipProps {
   content: ReactNode;
   placement?: PopupPlacement;
   hideArrow?: boolean;

@@ -34,14 +34,14 @@ export enum Justifies {
 export type Align = keyof typeof Aligns;
 export type Justify = keyof typeof Justifies;
 
-interface BaseGridProps {
+export interface BaseGridProps {
   gutter?: Gutter;
   align?: ResponsiveValue<Align>;
   justify?: ResponsiveValue<Justify>;
   className?: string;
 }
 
-interface BaseGridColProps {
+export interface BaseGridColProps {
   offset?: ResponsiveValue<number>;
   order?: ResponsiveValue<number>;
   span?: ResponsiveValue<number>;

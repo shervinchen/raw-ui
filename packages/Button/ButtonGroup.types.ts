@@ -4,7 +4,7 @@ import { Merge } from '../utils';
 
 export type ButtonGroupVariant = 'default' | 'outline' | 'ghost';
 
-interface BaseButtonGroupProps {
+export interface BaseButtonGroupProps {
   className?: string;
   size?: ButtonSizes;
   type?: ButtonTypes;

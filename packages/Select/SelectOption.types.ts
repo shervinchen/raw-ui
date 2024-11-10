@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef } from 'react';
 import { Merge } from '../utils';
 
-interface BaseSelectOptionProps {
+export interface BaseSelectOptionProps {
   value?: string | number;
   disabled?: boolean;
   className?: string;

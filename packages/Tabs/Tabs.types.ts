@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef, ReactNode } from 'react';
 import { Merge } from '../utils';
 
-interface BaseTabsProps {
+export interface BaseTabsProps {
   value?: string;
   defaultValue?: string;
   className?: string;
@@ -10,7 +10,7 @@ interface BaseTabsProps {
   onChange?: (value: string) => void;
 }
 
-interface BaseTabsItemProps {
+export interface BaseTabsItemProps {
   label: ReactNode;
   value: string;
   disabled?: boolean;

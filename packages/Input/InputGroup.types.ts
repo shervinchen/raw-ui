@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef } from 'react';
 import { InputSizes, InputTypes } from './Input.types';
 import { Merge } from '../utils';
 
-interface BaseInputGroupProps {
+export interface BaseInputGroupProps {
   className?: string;
   size?: InputSizes;
   type?: InputTypes;

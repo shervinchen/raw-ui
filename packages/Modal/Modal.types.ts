@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef } from 'react';
 import { Merge } from '../utils';
 
-interface BaseModalProps {
+export interface BaseModalProps {
   visible?: boolean;
   width?: string;
   closeOnOverlayClick?: boolean;

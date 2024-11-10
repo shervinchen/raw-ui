@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef } from 'react';
 import { Merge } from '../utils';
 
-interface BasePaginationProps {
+export interface BasePaginationProps {
   page?: number;
   defaultPage?: number;
   count?: number;

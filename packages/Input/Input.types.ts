@@ -5,7 +5,7 @@ export type InputTypes = 'default' | 'primary' | 'warning' | 'error';
 
 export type InputSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
-interface BaseInputProps {
+export interface BaseInputProps {
   value?: string;
   defaultValue?: string;
   placeholder?: string;
@@ -22,11 +22,11 @@ interface BaseInputProps {
   autoComplete?: string;
 }
 
-interface BaseInputAddonProps {
+export interface BaseInputAddonProps {
   className?: string;
 }
 
-interface BaseInputElementProps {
+export interface BaseInputElementProps {
   className?: string;
   clickable?: boolean;
   placement?: 'left' | 'right';

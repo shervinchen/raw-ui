@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef } from 'react';
 import { RadioValue } from './Radio.types';
 import { Merge } from '../utils';
 
-interface BaseRadioGroupProps {
+export interface BaseRadioGroupProps {
   defaultValue?: RadioValue;
   value?: RadioValue;
   disabled?: boolean;

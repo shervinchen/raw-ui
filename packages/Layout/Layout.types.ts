@@ -1,23 +1,23 @@
 import { ComponentPropsWithoutRef } from 'react';
 import { Merge } from '../utils';
 
-interface BaseLayoutProps {
+export interface BaseLayoutProps {
   className?: string;
 }
 
-interface BaseHeaderProps {
+export interface BaseHeaderProps {
   className?: string;
 }
 
-interface BaseContentProps {
+export interface BaseContentProps {
   className?: string;
 }
 
-interface BaseFooterProps {
+export interface BaseFooterProps {
   className?: string;
 }
 
-interface BaseSidebarProps {
+export interface BaseSidebarProps {
   className?: string;
 }
 

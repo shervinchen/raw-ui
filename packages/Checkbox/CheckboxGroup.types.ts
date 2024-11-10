@@ -4,7 +4,7 @@ import { Merge } from '../utils';
 
 export type CheckboxGroupValue = (CheckboxValue | undefined)[];
 
-interface BaseCheckboxGroupProps {
+export interface BaseCheckboxGroupProps {
   defaultValue?: CheckboxGroupValue;
   value?: CheckboxGroupValue;
   disabled?: boolean;
