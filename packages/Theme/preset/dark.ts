@@ -3,9 +3,10 @@ import {
   RawUITheme,
   RawUIThemePalette,
   RawUIThemeTokens,
+  RawUIThemeZIndex,
   Shade,
 } from './preset.type';
-import { palette as defaultPalette } from './default';
+import { palette as defaultPalette, zIndex as defaultZIndex } from './default';
 
 const swapShade = (shade: Shade) =>
   shade === '50'
@@ -54,6 +55,7 @@ export const theme: RawUITheme = {
   type: 'dark',
   palette,
   tokens,
+  zIndex: defaultZIndex,
 };
 
 export default theme;

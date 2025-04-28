@@ -50,8 +50,20 @@ export interface RawUIThemeTokens {
   };
 }
 
+export interface RawUIThemeZIndex {
+  base: number;
+  dropdown: number;
+  sticky: number;
+  overlay: number;
+  modal: number;
+  popover: number;
+  toast: number;
+  tooltip: number;
+}
+
 export interface RawUITheme {
   type: string;
   palette: RawUIThemePalette;
   tokens: RawUIThemeTokens;
+  zIndex: RawUIThemeZIndex;
 }

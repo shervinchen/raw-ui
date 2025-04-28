@@ -1,15 +1,17 @@
 'use client';
 
+import { useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { GitHub, Moon, Sun } from 'react-feather';
-import { useTheme } from 'next-themes';
+import { useTheme as useNextTheme } from 'next-themes';
+import { useTheme } from '@/packages';
 import ThemeSwitch from './theme-switch/theme-switch';
-import { useMemo } from 'react';
 
 export default function Navbar() {
-  const { setTheme } = useTheme();
+  const { setTheme } = useNextTheme();
+  const theme = useTheme();
   const pathname = usePathname();
   const routeName = pathname.split('/')[1];
 
@@ -31,7 +33,10 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="sticky top-0 w-full bg-white dark:bg-black	shadow-[inset_0_-1px_0_0_#eaeaea] dark:shadow-[inset_0_-1px_0_0_#333] z-[100]">
+    <header
+      className="sticky top-0 w-full bg-white dark:bg-black	shadow-[inset_0_-1px_0_0_#eaeaea] dark:shadow-[inset_0_-1px_0_0_#333]"
+      style={{ zIndex: theme.zIndex.sticky }}
+    >
       <nav className="flex items-center max-w-[90rem] h-16 py-0 px-6 mx-auto">
         <Link href="/" className="flex items-center gap-2	mr-auto">
           <ThemeSwitch

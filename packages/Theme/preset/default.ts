@@ -1,4 +1,9 @@
-import { RawUITheme, RawUIThemePalette, RawUIThemeTokens } from './preset.type';
+import {
+  RawUITheme,
+  RawUIThemePalette,
+  RawUIThemeTokens,
+  RawUIThemeZIndex,
+} from './preset.type';
 
 export const palette: RawUIThemePalette = {
   white: '#ffffff',
@@ -301,10 +306,22 @@ export const tokens: RawUIThemeTokens = {
   },
 };
 
+export const zIndex: RawUIThemeZIndex = {
+  base: 0,
+  dropdown: 1000,
+  sticky: 1100,
+  overlay: 1200,
+  modal: 1300,
+  popover: 1400,
+  toast: 1500,
+  tooltip: 1600,
+};
+
 export const theme: RawUITheme = {
   type: 'light',
   palette,
   tokens,
+  zIndex,
 };
 
 export default theme;

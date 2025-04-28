@@ -66,7 +66,7 @@ const ModalWrapper: FC<PropsWithChildren<ModalWrapperProps>> = ({
             bottom: 0;
             width: 100%;
             height: 100%;
-            z-index: 1000;
+            z-index: ${theme.zIndex.modal};
             display: flex;
             align-items: center;
             justify-content: center;

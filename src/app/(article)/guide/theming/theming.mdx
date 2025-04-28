@@ -80,7 +80,8 @@ When you need to know the detailed type definition when modifying the theme, you
 import {
   RawUITheme,
   RawUIThemePalette,
-  RawUIThemeTokens
+  RawUIThemeTokens,
+  RawUIThemeZIndex
 } from 'raw-ui';
 
 const myPalette: Partial<RawUIThemePalette> = {
@@ -91,10 +92,15 @@ const myTokens: Partial<RawUIThemeTokens> = {
   ...
 };
 
+const myZIndex: Partial<RawUIThemeZIndex> = {
+  ...
+};
+
 const myTheme: RawUITheme = {
   type: 'myTheme',
   palette: myPalette,
-  tokens: myTokens
+  tokens: myTokens,
+  zIndex: myZIndex
 };
 ```
 
