@@ -51,7 +51,7 @@ export const useInputStyles = ({
   } = {
     default: {
       color: theme.palette.foreground,
-      borderColor: theme.palette.accents2,
+      borderColor: theme.palette.neutral['200'],
     },
     primary: {
       color: theme.palette.foreground,
@@ -59,11 +59,11 @@ export const useInputStyles = ({
     },
     warning: {
       color: theme.palette.foreground,
-      borderColor: theme.palette.warning,
+      borderColor: theme.palette.yellow['500'],
     },
     error: {
       color: theme.palette.foreground,
-      borderColor: theme.palette.error,
+      borderColor: theme.palette.red['500'],
     },
   };
   const defaultStyles = {
@@ -71,9 +71,9 @@ export const useInputStyles = ({
     ...(sizes?.[size || 'md'] ?? sizes['md']),
   };
   const disabledStyles: InputBasicStyles = {
-    backgroundColor: theme.palette.accents1,
-    borderColor: theme.palette.accents2,
-    color: theme.palette.accents7,
+    backgroundColor: theme.palette.neutral['50'],
+    borderColor: theme.palette.neutral['200'],
+    color: theme.palette.neutral['600'],
     cursor: 'not-allowed',
   };
 
@@ -92,16 +92,16 @@ export const useInputFocusStyles = ({
     [key in InputTypes]: InputFocusStyles;
   } = {
     default: {
-      focusBorderColor: theme.palette.accents7,
+      focusBorderColor: theme.palette.neutral['600'],
     },
     primary: {
       focusBorderColor: theme.palette.foreground,
     },
     warning: {
-      focusBorderColor: theme.palette.warning,
+      focusBorderColor: theme.palette.yellow['500'],
     },
     error: {
-      focusBorderColor: theme.palette.error,
+      focusBorderColor: theme.palette.red['500'],
     },
   };
   const defaultStyles = {
@@ -153,7 +153,7 @@ export const useInputCSS = ({ type, size, width, disabled }: InputProps) => {
     }
 
     .raw-input::placeholder {
-      color: ${theme.palette.accents5};
+      color: ${theme.palette.neutral['400']};
     }
   `;
 };

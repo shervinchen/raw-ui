@@ -72,15 +72,15 @@ export const useSelectStyles = ({
   } = {
     default: {
       color: theme.palette.foreground,
-      borderColor: theme.palette.accents2,
+      borderColor: theme.palette.neutral['200'],
     },
     warning: {
       color: theme.palette.foreground,
-      borderColor: theme.palette.warning,
+      borderColor: theme.palette.yellow['500'],
     },
     error: {
       color: theme.palette.foreground,
-      borderColor: theme.palette.error,
+      borderColor: theme.palette.red['500'],
     },
   };
 
@@ -90,9 +90,9 @@ export const useSelectStyles = ({
   };
 
   const disabledStyles: SelectBasicStyles = {
-    backgroundColor: theme.palette.accents1,
-    borderColor: theme.palette.accents2,
-    color: theme.palette.accents6,
+    backgroundColor: theme.palette.neutral['50'],
+    borderColor: theme.palette.neutral['200'],
+    color: theme.palette.neutral['500'],
     cursor: 'not-allowed',
   };
 
@@ -112,13 +112,13 @@ export const useSelectHoverStyles = ({
     [key in SelectTypes]: SelectHoverStyles;
   } = {
     default: {
-      hoverBorderColor: theme.palette.accents7,
+      hoverBorderColor: theme.palette.neutral['600'],
     },
     warning: {
-      hoverBorderColor: theme.palette.warning,
+      hoverBorderColor: theme.palette.yellow['500'],
     },
     error: {
-      hoverBorderColor: theme.palette.error,
+      hoverBorderColor: theme.palette.red['500'],
     },
   };
 
@@ -179,7 +179,7 @@ export const useSelectCSS = ({ width, type, size, disabled }: SelectProps) => {
       white-space: nowrap;
       text-overflow: ellipsis;
       font-size: ${fontSize};
-      color: ${theme.palette.accents5};
+      color: ${theme.palette.neutral['400']};
     }
     .raw-select :global(.raw-select-content) {
       max-width: 100%;
@@ -204,7 +204,7 @@ export const useSelectCSS = ({ width, type, size, disabled }: SelectProps) => {
       top: 50%;
       transform: translateY(-50%);
       pointer-events: none;
-      color: ${theme.palette.accents7};
+      color: ${theme.palette.neutral['600']};
     }
     .raw-select :global(.raw-select-clear) {
       display: inline-flex;
@@ -221,7 +221,9 @@ export const useSelectCSS = ({ width, type, size, disabled }: SelectProps) => {
     }
     .raw-select.raw-select-active :global(.raw-select-arrow),
     .raw-select:hover :global(.raw-select-arrow) {
-      color: ${disabled ? theme.palette.accents7 : theme.palette.foreground};
+      color: ${disabled
+        ? theme.palette.neutral['600']
+        : theme.palette.foreground};
     }
   `;
 };

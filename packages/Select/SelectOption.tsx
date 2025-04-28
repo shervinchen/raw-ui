@@ -58,7 +58,7 @@ const SelectOption: FC<PropsWithChildren<SelectOptionProps>> = ({
         <span className="raw-select-option-text">{children}</span>
         {isSelected && (
           <div className="raw-select-option-check">
-            <Check size={16} color={theme.palette.accents7} />
+            <Check size={16} color={theme.palette.neutral['600']} />
           </div>
         )}
       </div>
@@ -72,8 +72,8 @@ const SelectOption: FC<PropsWithChildren<SelectOptionProps>> = ({
           padding: 0 ${paddingLeft};
           font-size: ${fontSize};
           color: ${isDisabled
-            ? theme.palette.accents6
-            : theme.palette.accents7};
+            ? theme.palette.neutral['500']
+            : theme.palette.neutral['600']};
           background-color: ${theme.palette.background};
           border-radius: 6px;
           transition: background-color 0.15s ease;
@@ -83,7 +83,7 @@ const SelectOption: FC<PropsWithChildren<SelectOptionProps>> = ({
         .raw-select-option:hover {
           background-color: ${isDisabled
             ? theme.palette.background
-            : theme.palette.accents2};
+            : theme.palette.neutral['200']};
         }
         .raw-select-option-content {
           display: flex;

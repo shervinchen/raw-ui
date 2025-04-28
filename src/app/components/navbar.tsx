@@ -42,7 +42,9 @@ export default function Navbar() {
               <Image src="/logo.svg" alt="logo" width={24} height={24} />
             }
           />
-          <span className="text-lg font-bold dark:text-white">Raw UI</span>
+          <span className="text-lg font-bold whitespace-nowrap dark:text-white">
+            Raw UI
+          </span>
         </Link>
         <div className="flex items-center gap-4">
           {navs.map((nav) => (

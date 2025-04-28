@@ -11,8 +11,8 @@ import {
 import { useSelectHoverStyles, useSelectStyles } from '../Select.styles';
 
 const typeColorMap = {
-  warning: '#f5a623',
-  error: '#ee0000',
+  warning: '#eab308',
+  error: '#ef4444',
 };
 
 const sizeHeightMap = {
@@ -93,8 +93,8 @@ describe('Select', () => {
         disabled: false,
       })
     );
-    expect(result1.current.borderColor).toBe('#eaeaea');
-    expect(result2.current.borderColor).toBe('#eaeaea');
+    expect(result1.current.borderColor).toBe('#e5e5e5');
+    expect(result2.current.borderColor).toBe('#e5e5e5');
   });
 
   test('should get default hover style when type is unknown or falsy', () => {
@@ -110,8 +110,8 @@ describe('Select', () => {
         disabled: false,
       })
     );
-    expect(result1.current.hoverBorderColor).toBe('#666666');
-    expect(result2.current.hoverBorderColor).toBe('#666666');
+    expect(result1.current.hoverBorderColor).toBe('#525252');
+    expect(result2.current.hoverBorderColor).toBe('#525252');
   });
 
   ['xs', 'sm', 'md', 'lg', 'xl'].forEach((item: SelectSizes) => {

@@ -19,7 +19,7 @@ const ModalCloseButton = () => {
           align-items: center;
           justify-content: center;
           cursor: pointer;
-          color: ${theme.palette.accents7};
+          color: ${theme.palette.neutral['600']};
           transition-property: color;
           transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
           transition-duration: 0.15s;

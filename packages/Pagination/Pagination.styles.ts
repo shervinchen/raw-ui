@@ -13,10 +13,10 @@ export const usePaginationItemStyles = () => {
       min-width: 32px;
       height: 32px;
       padding: 0 8px;
-      border: 1px solid ${theme.palette.accents2};
+      border: 1px solid ${theme.palette.neutral['200']};
       border-radius: 6px;
       font-size: 14px;
-      color: ${theme.palette.accents7};
+      color: ${theme.palette.neutral['600']};
       background-color: ${theme.palette.background};
       transition-property: border-color, background, color;
       transition-duration: 0.2s;
@@ -26,8 +26,8 @@ export const usePaginationItemStyles = () => {
       cursor: pointer;
     }
     .raw-pagination-item.raw-pagination-item-disabled {
-      background-color: ${theme.palette.accents2};
-      color: ${theme.palette.accents5};
+      background-color: ${theme.palette.neutral['200']};
+      color: ${theme.palette.neutral['400']};
       cursor: not-allowed;
     }
     .raw-pagination-item.raw-pagination-item-active {
@@ -44,7 +44,7 @@ export const usePaginationItemStyles = () => {
     .raw-pagination-item:not(.raw-pagination-item-active):not(
         .raw-pagination-item-disabled
       ):active {
-      background-color: ${theme.palette.accents2};
+      background-color: ${theme.palette.neutral['200']};
     }
   `;
 };

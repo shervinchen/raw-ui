@@ -22,7 +22,7 @@ const DynamicLive: FC<Props> = ({ code, scope }) => {
       </div>
       <LiveEditor
         language="tsx"
-        className={`border border-solid border-[${theme.palette.accents2}] rounded-md`}
+        className={`border border-solid border-[${theme.palette.neutral['200']}] rounded-md`}
       />
     </LiveProvider>
   );

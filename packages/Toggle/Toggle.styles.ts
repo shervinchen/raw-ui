@@ -16,8 +16,8 @@ export const useToggleStyles = ({
     [key in ToggleStatus]: ToggleStyles;
   } = {
     unChecked: {
-      backgroundColor: theme.palette.accents2,
-      borderColor: theme.palette.accents2,
+      backgroundColor: theme.palette.neutral['200'],
+      borderColor: theme.palette.neutral['200'],
     },
     checked: {
       backgroundColor: theme.palette.foreground,
@@ -28,12 +28,12 @@ export const useToggleStyles = ({
   const defaultStyles = styles?.[status || 'unChecked'] ?? styles['unChecked'];
   const disabledStyles = {
     unChecked: {
-      backgroundColor: theme.palette.accents1,
-      borderColor: theme.palette.accents2,
+      backgroundColor: theme.palette.neutral['50'],
+      borderColor: theme.palette.neutral['200'],
     },
     checked: {
-      backgroundColor: theme.palette.accents6,
-      borderColor: theme.palette.accents6,
+      backgroundColor: theme.palette.neutral['500'],
+      borderColor: theme.palette.neutral['500'],
     },
   };
 
@@ -79,7 +79,7 @@ export const useToggleCSS = ({ checked, disabled }: ToggleProps) => {
       transition: transform 150ms cubic-bezier(0, 0, 0.2, 1);
       border-radius: 50%;
       background-color: ${disabled
-        ? theme.palette.accents2
+        ? theme.palette.neutral['200']
         : theme.palette.background};
       transform: ${checked ? 'translate(14px, -50%)' : 'translate(0, -50%)'};
     }

@@ -27,6 +27,10 @@ const App = () => {
 };
 ```
 
+## Dark Mode
+
+Raw UI has implemented automatic palette color conversion to support dark mode(50 -> 950, 100 -> 900, ..., 900 -> 100, 950 -> 50), and you can also define the colors for dark mode yourself.
+
 ## Customizing theme
 
 Customizing a theme is very simple in Raw UI, you just need to provide a new theme object, and all the components will change automatically.
@@ -37,7 +41,9 @@ import { RawUIProvider, Theme } from 'raw-ui';
 const myTheme = Theme.createFromLight({
   type: 'myTheme',
   palette: {
-    accents1: '#000',
+    neutral: {
+      50: '#ffffff'
+    },
   },
 });
 
@@ -57,7 +63,9 @@ const myBaseTheme = { ... }
 const myTheme = Theme.createFromCustom(myBaseTheme, {
   type: 'myTheme',
   palette: {
-    accents1: '#000',
+    neutral: {
+      50: '#ffffff'
+    },
   },
 })
 ```
@@ -101,7 +109,7 @@ const MyComponent = () => {
   const theme = useTheme();
 
   return (
-    <div style={{ color: theme.palette.success }}>
+    <div style={{ color: theme.palette.blue['500'] }}>
       <span>hello world!</span>
     </div>
   )
@@ -122,4 +130,4 @@ import { Theme } from 'raw-ui';
 - `Theme.isAvailableThemeType` - Check if the name of the theme is available.
 - `Theme.hasUserCustomTheme` - Check if a list of themes has a custom.
 - `Theme.getPresetThemes` - Get a default list of themes.
-- `Theme.getPresetStaticTheme` - Get the theme loaded by Geist UI default.
+- `Theme.getPresetStaticTheme` - Get the theme loaded by Raw UI default.

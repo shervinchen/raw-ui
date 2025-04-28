@@ -12,7 +12,6 @@ import {
   ButtonHoverStyles,
   ButtonActiveStyles,
 } from './Button.types';
-import { hexToRGBA } from '../utils/common';
 
 export const useButtonStyles = (props: ButtonProps): ButtonStyles => {
   const theme: RawUITheme = useTheme();
@@ -56,22 +55,22 @@ export const useButtonStyles = (props: ButtonProps): ButtonStyles => {
     default: {
       default: {
         backgroundColor: theme.palette.background,
-        color: theme.palette.accents7,
-        borderColor: theme.palette.accents2,
+        color: theme.palette.neutral['600'],
+        borderColor: theme.palette.neutral['200'],
       },
       outline: {
         backgroundColor: theme.palette.background,
-        color: theme.palette.accents7,
-        borderColor: theme.palette.accents2,
+        color: theme.palette.neutral['600'],
+        borderColor: theme.palette.neutral['200'],
       },
       ghost: {
         backgroundColor: 'transparent',
-        color: theme.palette.accents7,
+        color: theme.palette.neutral['600'],
         borderColor: 'transparent',
       },
       shadow: {
         backgroundColor: theme.palette.background,
-        color: theme.palette.accents7,
+        color: theme.palette.neutral['600'],
         borderColor: theme.palette.background,
         boxShadow: theme.tokens.shadow.sm,
       },
@@ -101,70 +100,70 @@ export const useButtonStyles = (props: ButtonProps): ButtonStyles => {
     },
     success: {
       default: {
-        backgroundColor: theme.palette.success,
+        backgroundColor: theme.palette.blue['500'],
         color: theme.palette.background,
-        borderColor: theme.palette.success,
+        borderColor: theme.palette.blue['500'],
       },
       outline: {
         backgroundColor: 'transparent',
-        color: theme.palette.success,
-        borderColor: theme.palette.success,
+        color: theme.palette.blue['500'],
+        borderColor: theme.palette.blue['500'],
       },
       ghost: {
         backgroundColor: 'transparent',
-        color: theme.palette.success,
+        color: theme.palette.blue['500'],
         borderColor: 'transparent',
       },
       shadow: {
-        backgroundColor: theme.palette.success,
+        backgroundColor: theme.palette.blue['500'],
         color: theme.palette.background,
-        borderColor: theme.palette.success,
+        borderColor: theme.palette.blue['500'],
         boxShadow: theme.tokens.shadow.sm,
       },
     },
     warning: {
       default: {
-        backgroundColor: theme.palette.warning,
+        backgroundColor: theme.palette.yellow['500'],
         color: theme.palette.background,
-        borderColor: theme.palette.warning,
+        borderColor: theme.palette.yellow['500'],
       },
       outline: {
         backgroundColor: 'transparent',
-        color: theme.palette.warning,
-        borderColor: theme.palette.warning,
+        color: theme.palette.yellow['500'],
+        borderColor: theme.palette.yellow['500'],
       },
       ghost: {
         backgroundColor: 'transparent',
-        color: theme.palette.warning,
+        color: theme.palette.yellow['500'],
         borderColor: 'transparent',
       },
       shadow: {
-        backgroundColor: theme.palette.warning,
+        backgroundColor: theme.palette.yellow['500'],
         color: theme.palette.background,
-        borderColor: theme.palette.warning,
+        borderColor: theme.palette.yellow['500'],
         boxShadow: theme.tokens.shadow.sm,
       },
     },
     error: {
       default: {
-        backgroundColor: theme.palette.error,
+        backgroundColor: theme.palette.red['500'],
         color: theme.palette.background,
-        borderColor: theme.palette.error,
+        borderColor: theme.palette.red['500'],
       },
       outline: {
         backgroundColor: 'transparent',
-        color: theme.palette.error,
-        borderColor: theme.palette.error,
+        color: theme.palette.red['500'],
+        borderColor: theme.palette.red['500'],
       },
       ghost: {
         backgroundColor: 'transparent',
-        color: theme.palette.error,
+        color: theme.palette.red['500'],
         borderColor: 'transparent',
       },
       shadow: {
-        backgroundColor: theme.palette.error,
+        backgroundColor: theme.palette.red['500'],
         color: theme.palette.background,
-        borderColor: theme.palette.error,
+        borderColor: theme.palette.red['500'],
         boxShadow: theme.tokens.shadow.sm,
       },
     },
@@ -205,7 +204,7 @@ export const useButtonStyles = (props: ButtonProps): ButtonStyles => {
     },
     success: {
       default: {
-        backgroundColor: theme.palette.success,
+        backgroundColor: theme.palette.blue['500'],
       },
       outline: {
         backgroundColor: theme.palette.background,
@@ -214,12 +213,12 @@ export const useButtonStyles = (props: ButtonProps): ButtonStyles => {
         backgroundColor: theme.palette.background,
       },
       shadow: {
-        backgroundColor: theme.palette.success,
+        backgroundColor: theme.palette.blue['500'],
       },
     },
     warning: {
       default: {
-        backgroundColor: theme.palette.warning,
+        backgroundColor: theme.palette.yellow['500'],
       },
       outline: {
         backgroundColor: theme.palette.background,
@@ -228,12 +227,12 @@ export const useButtonStyles = (props: ButtonProps): ButtonStyles => {
         backgroundColor: theme.palette.background,
       },
       shadow: {
-        backgroundColor: theme.palette.warning,
+        backgroundColor: theme.palette.yellow['500'],
       },
     },
     error: {
       default: {
-        backgroundColor: theme.palette.error,
+        backgroundColor: theme.palette.red['500'],
       },
       outline: {
         backgroundColor: theme.palette.background,
@@ -242,7 +241,7 @@ export const useButtonStyles = (props: ButtonProps): ButtonStyles => {
         backgroundColor: theme.palette.background,
       },
       shadow: {
-        backgroundColor: theme.palette.error,
+        backgroundColor: theme.palette.red['500'],
       },
     },
   };
@@ -251,22 +250,22 @@ export const useButtonStyles = (props: ButtonProps): ButtonStyles => {
     [key in ButtonVariants]: ButtonBasicStyles;
   } = {
     default: {
-      backgroundColor: theme.palette.accents2,
-      color: theme.palette.accents5,
-      borderColor: theme.palette.accents2,
+      backgroundColor: theme.palette.neutral['200'],
+      color: theme.palette.neutral['400'],
+      borderColor: theme.palette.neutral['200'],
     },
     outline: {
-      backgroundColor: theme.palette.accents1,
-      color: theme.palette.accents5,
-      borderColor: theme.palette.accents2,
+      backgroundColor: theme.palette.neutral['50'],
+      color: theme.palette.neutral['400'],
+      borderColor: theme.palette.neutral['200'],
     },
     ghost: {
-      color: theme.palette.accents5,
+      color: theme.palette.neutral['400'],
     },
     shadow: {
-      backgroundColor: theme.palette.accents2,
-      color: theme.palette.accents5,
-      borderColor: theme.palette.accents2,
+      backgroundColor: theme.palette.neutral['200'],
+      color: theme.palette.neutral['400'],
+      borderColor: theme.palette.neutral['200'],
     },
   };
 
@@ -315,8 +314,8 @@ export const useButtonHoverStyles = (props: ButtonProps): ButtonHoverStyles => {
         hoverBorderColor: theme.palette.foreground,
       },
       ghost: {
-        hoverBackgroundColor: theme.palette.accents3,
-        hoverColor: theme.palette.accents7,
+        hoverBackgroundColor: theme.palette.neutral['200'],
+        hoverColor: theme.palette.neutral['600'],
       },
       shadow: {
         hoverBoxShadow: theme.tokens.shadow.md,
@@ -333,7 +332,7 @@ export const useButtonHoverStyles = (props: ButtonProps): ButtonHoverStyles => {
         hoverBackgroundColor: theme.palette.foreground,
       },
       ghost: {
-        hoverBackgroundColor: theme.palette.accents3,
+        hoverBackgroundColor: theme.palette.neutral['200'],
       },
       shadow: {
         hoverBoxShadow: theme.tokens.shadow.md,
@@ -342,15 +341,15 @@ export const useButtonHoverStyles = (props: ButtonProps): ButtonHoverStyles => {
     },
     success: {
       default: {
-        hoverColor: theme.palette.success,
+        hoverColor: theme.palette.blue['500'],
         hoverBackgroundColor: theme.palette.background,
       },
       outline: {
         hoverColor: theme.palette.background,
-        hoverBackgroundColor: theme.palette.success,
+        hoverBackgroundColor: theme.palette.blue['500'],
       },
       ghost: {
-        hoverBackgroundColor: theme.palette.successLighter,
+        hoverBackgroundColor: theme.palette.blue['100'],
       },
       shadow: {
         hoverBoxShadow: theme.tokens.shadow.md,
@@ -359,15 +358,15 @@ export const useButtonHoverStyles = (props: ButtonProps): ButtonHoverStyles => {
     },
     warning: {
       default: {
-        hoverColor: theme.palette.warning,
+        hoverColor: theme.palette.yellow['500'],
         hoverBackgroundColor: theme.palette.background,
       },
       outline: {
         hoverColor: theme.palette.background,
-        hoverBackgroundColor: theme.palette.warning,
+        hoverBackgroundColor: theme.palette.yellow['500'],
       },
       ghost: {
-        hoverBackgroundColor: theme.palette.warningLighter,
+        hoverBackgroundColor: theme.palette.yellow['100'],
       },
       shadow: {
         hoverBoxShadow: theme.tokens.shadow.md,
@@ -376,15 +375,15 @@ export const useButtonHoverStyles = (props: ButtonProps): ButtonHoverStyles => {
     },
     error: {
       default: {
-        hoverColor: theme.palette.error,
+        hoverColor: theme.palette.red['500'],
         hoverBackgroundColor: theme.palette.background,
       },
       outline: {
         hoverColor: theme.palette.background,
-        hoverBackgroundColor: theme.palette.error,
+        hoverBackgroundColor: theme.palette.red['500'],
       },
       ghost: {
-        hoverBackgroundColor: theme.palette.errorLighter,
+        hoverBackgroundColor: theme.palette.red['100'],
       },
       shadow: {
         hoverBoxShadow: theme.tokens.shadow.md,
@@ -412,13 +411,13 @@ export const useButtonActiveStyles = (
   } = {
     default: {
       default: {
-        activeBackgroundColor: theme.palette.accents2,
+        activeBackgroundColor: theme.palette.neutral['200'],
       },
       outline: {
-        activeBackgroundColor: theme.palette.accents2,
+        activeBackgroundColor: theme.palette.neutral['200'],
       },
       ghost: {
-        activeBackgroundColor: theme.palette.accents4,
+        activeBackgroundColor: theme.palette.neutral['300'],
       },
       shadow: {
         activeBoxShadow: theme.tokens.shadow.sm,
@@ -427,13 +426,13 @@ export const useButtonActiveStyles = (
     },
     primary: {
       default: {
-        activeBackgroundColor: theme.palette.accents2,
+        activeBackgroundColor: theme.palette.neutral['200'],
       },
       outline: {
-        activeBackgroundColor: theme.palette.accents9,
+        activeBackgroundColor: theme.palette.neutral['800'],
       },
       ghost: {
-        activeBackgroundColor: theme.palette.accents4,
+        activeBackgroundColor: theme.palette.neutral['300'],
       },
       shadow: {
         activeBoxShadow: theme.tokens.shadow.sm,
@@ -442,13 +441,13 @@ export const useButtonActiveStyles = (
     },
     success: {
       default: {
-        activeBackgroundColor: theme.palette.successLighter,
+        activeBackgroundColor: theme.palette.blue['200'],
       },
       outline: {
-        activeBackgroundColor: theme.palette.successLight,
+        activeBackgroundColor: theme.palette.blue['400'],
       },
       ghost: {
-        activeBackgroundColor: hexToRGBA(theme.palette.success, 0.3),
+        activeBackgroundColor: theme.palette.blue['200'],
       },
       shadow: {
         activeBoxShadow: theme.tokens.shadow.sm,
@@ -457,13 +456,13 @@ export const useButtonActiveStyles = (
     },
     warning: {
       default: {
-        activeBackgroundColor: theme.palette.warningLighter,
+        activeBackgroundColor: theme.palette.yellow['200'],
       },
       outline: {
-        activeBackgroundColor: theme.palette.warningLight,
+        activeBackgroundColor: theme.palette.yellow['400'],
       },
       ghost: {
-        activeBackgroundColor: hexToRGBA(theme.palette.warning, 0.3),
+        activeBackgroundColor: theme.palette.yellow['200'],
       },
       shadow: {
         activeBoxShadow: theme.tokens.shadow.sm,
@@ -472,13 +471,13 @@ export const useButtonActiveStyles = (
     },
     error: {
       default: {
-        activeBackgroundColor: theme.palette.errorLighter,
+        activeBackgroundColor: theme.palette.red['200'],
       },
       outline: {
-        activeBackgroundColor: theme.palette.errorLight,
+        activeBackgroundColor: theme.palette.red['400'],
       },
       ghost: {
-        activeBackgroundColor: hexToRGBA(theme.palette.error, 0.3),
+        activeBackgroundColor: theme.palette.red['200'],
       },
       shadow: {
         activeBoxShadow: theme.tokens.shadow.sm,

@@ -12,9 +12,9 @@ import {
 
 const typeColorMap = {
   primary: 'rgb(0, 0, 0)',
-  success: 'rgb(0, 112, 243)',
-  warning: 'rgb(245, 166, 35)',
-  error: 'rgb(238, 0, 0)',
+  success: 'rgb(59, 130, 246)',
+  warning: 'rgb(234, 179, 8)',
+  error: 'rgb(239, 68, 68)',
 };
 
 const sizeHeightMap = {
@@ -219,8 +219,8 @@ describe('Button', () => {
         disabled: true,
       })
     );
-    expect(result1.current.backgroundColor).toBe('#eaeaea');
-    expect(result2.current.backgroundColor).toBe('#eaeaea');
+    expect(result1.current.backgroundColor).toBe('#e5e5e5');
+    expect(result2.current.backgroundColor).toBe('#e5e5e5');
   });
 
   test('should get default disabled style when variant is unknown or falsy', () => {
@@ -242,8 +242,8 @@ describe('Button', () => {
         disabled: true,
       })
     );
-    expect(result1.current.backgroundColor).toBe('#eaeaea');
-    expect(result2.current.backgroundColor).toBe('#eaeaea');
+    expect(result1.current.backgroundColor).toBe('#e5e5e5');
+    expect(result2.current.backgroundColor).toBe('#e5e5e5');
   });
 
   test('should get default hover style when type is unknown or falsy', () => {
@@ -311,8 +311,8 @@ describe('Button', () => {
         disabled: false,
       })
     );
-    expect(result1.current.activeBackgroundColor).toBe('#eaeaea');
-    expect(result2.current.activeBackgroundColor).toBe('#eaeaea');
+    expect(result1.current.activeBackgroundColor).toBe('#e5e5e5');
+    expect(result2.current.activeBackgroundColor).toBe('#e5e5e5');
   });
 
   test('should get default active style when variant is unknown or falsy', () => {
@@ -334,8 +334,8 @@ describe('Button', () => {
         disabled: false,
       })
     );
-    expect(result1.current.activeBackgroundColor).toBe('#eaeaea');
-    expect(result2.current.activeBackgroundColor).toBe('#eaeaea');
+    expect(result1.current.activeBackgroundColor).toBe('#e5e5e5');
+    expect(result2.current.activeBackgroundColor).toBe('#e5e5e5');
   });
 
   test('should get md size when size is unknown or falsy', () => {

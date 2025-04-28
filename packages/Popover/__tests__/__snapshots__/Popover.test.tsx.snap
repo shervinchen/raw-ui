@@ -6,7 +6,7 @@ exports[`Popover should match the snapshot 1`] = `
     aria-controls=":r0:"
     aria-expanded="false"
     aria-haspopup="dialog"
-    class="jsx-752255633 raw-popover-target"
+    class="jsx-1530822796 raw-popover-target"
     data-testid="popoverTarget"
   >
     Click me

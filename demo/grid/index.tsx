@@ -42,9 +42,9 @@ export const LightBox = ({ children, ...restProps }) => {
       <style jsx>{`
         .box {
           padding: 16px 0;
-          color: ${theme.palette.accents6};
+          color: ${theme.palette.neutral['500']};
           text-align: center;
-          background-color: ${theme.palette.accents4};
+          background-color: ${theme.palette.neutral['300']};
         }
       `}</style>
     </div>
@@ -60,9 +60,9 @@ export const DarkBox = ({ children, ...restProps }) => {
       <style jsx>{`
         .box {
           padding: 16px 0;
-          color: ${theme.palette.accents4};
+          color: ${theme.palette.neutral['300']};
           text-align: center;
-          background-color: ${theme.palette.accents6};
+          background-color: ${theme.palette.neutral['500']};
         }
       `}</style>
     </div>

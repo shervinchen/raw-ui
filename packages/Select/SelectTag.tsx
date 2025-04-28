@@ -49,22 +49,24 @@ const SelectTag: FC<PropsWithChildren<SelectTagProps>> = ({
           margin: 2px;
           height: ${tagHeight};
           border-radius: 6px;
-          background-color: ${theme.palette.accents2};
+          background-color: ${theme.palette.neutral['200']};
         }
         .raw-select-tag-text {
           font-size: ${fontSize};
-          color: ${disabled ? theme.palette.accents6 : theme.palette.accents8};
+          color: ${disabled
+            ? theme.palette.neutral['500']
+            : theme.palette.neutral['700']};
         }
         .raw-select-tag-icon {
           display: inline-flex;
           align-items: center;
           transition: color 0.15s ease;
           cursor: ${disabled ? 'not-allowed' : 'pointer'};
-          color: ${theme.palette.accents5};
+          color: ${theme.palette.neutral['400']};
         }
         .raw-select-tag-icon:hover {
           color: ${disabled
-            ? theme.palette.accents5
+            ? theme.palette.neutral['400']
             : theme.palette.foreground};
         }
       `}</style>

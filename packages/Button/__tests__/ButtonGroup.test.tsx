@@ -6,9 +6,9 @@ import { ButtonGroupVariant } from '../ButtonGroup.types';
 
 const typeColorMap = {
   primary: 'rgb(0, 0, 0)',
-  success: 'rgb(0, 112, 243)',
-  warning: 'rgb(245, 166, 35)',
-  error: 'rgb(238, 0, 0)',
+  success: 'rgb(59, 130, 246)',
+  warning: 'rgb(234, 179, 8)',
+  error: 'rgb(239, 68, 68)',
 };
 
 const sizeHeightMap = {

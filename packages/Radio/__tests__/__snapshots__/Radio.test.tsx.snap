@@ -3,7 +3,7 @@
 exports[`Radio should match the snapshot 1`] = `
 <DocumentFragment>
   <label
-    class="jsx-2317508149 raw-radio"
+    class="jsx-3760073067 raw-radio"
     data-testid="radioLabel"
   >
     <input
@@ -11,7 +11,7 @@ exports[`Radio should match the snapshot 1`] = `
       type="radio"
     />
     <span
-      class="jsx-2317508149 raw-radio-inner"
+      class="jsx-3760073067 raw-radio-inner"
     />
   </label>
 </DocumentFragment>

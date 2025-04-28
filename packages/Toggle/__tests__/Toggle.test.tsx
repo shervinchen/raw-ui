@@ -82,8 +82,8 @@ describe('Toggle', () => {
       })
     );
 
-    expect(result1.current.backgroundColor).toBe('#eaeaea');
-    expect(result2.current.backgroundColor).toBe('#eaeaea');
+    expect(result1.current.backgroundColor).toBe('#e5e5e5');
+    expect(result2.current.backgroundColor).toBe('#e5e5e5');
   });
 
   test('should get default disabled style when status is unknown or falsy', () => {

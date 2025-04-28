@@ -45,7 +45,9 @@ describe('Theme', () => {
     const myTheme = Theme.createFromLight({
       type: 'myTheme',
       palette: {
-        accents1: '#000',
+        neutral: {
+          50: '#ffffff',
+        },
       },
     });
 
@@ -53,7 +55,7 @@ describe('Theme', () => {
       const theme = useTheme();
 
       return (
-        <p data-testid="text" style={{ color: theme.palette.accents1 }}>
+        <p data-testid="text" style={{ color: theme.palette.neutral['50'] }}>
           text
         </p>
       );
@@ -69,14 +71,16 @@ describe('Theme', () => {
 
     render(<TestApp />);
     const text = screen.getByTestId('text');
-    expect(text.style.color).toBe('rgb(0, 0, 0)');
+    expect(text.style.color).toBe('rgb(255, 255, 255)');
   });
 
   test('should support create theme from dark', () => {
     const myTheme = Theme.createFromDark({
       type: 'myTheme',
       palette: {
-        accents1: '#000',
+        neutral: {
+          50: '#000000',
+        },
       },
     });
 
@@ -84,7 +88,7 @@ describe('Theme', () => {
       const theme = useTheme();
 
       return (
-        <p data-testid="text" style={{ color: theme.palette.accents1 }}>
+        <p data-testid="text" style={{ color: theme.palette.neutral['50'] }}>
           text
         </p>
       );
@@ -107,7 +111,9 @@ describe('Theme', () => {
     const myTheme = Theme.createFromCustom(Theme.getPresetStaticTheme(), {
       type: 'myTheme',
       palette: {
-        accents1: '#000',
+        neutral: {
+          50: '#ffffff',
+        },
       },
     });
 
@@ -115,7 +121,7 @@ describe('Theme', () => {
       const theme = useTheme();
 
       return (
-        <p data-testid="text" style={{ color: theme.palette.accents1 }}>
+        <p data-testid="text" style={{ color: theme.palette.neutral['50'] }}>
           text
         </p>
       );
@@ -131,7 +137,7 @@ describe('Theme', () => {
 
     render(<TestApp />);
     const text = screen.getByTestId('text');
-    expect(text.style.color).toBe('rgb(0, 0, 0)');
+    expect(text.style.color).toBe('rgb(255, 255, 255)');
   });
 
   test('should not support duplicate or unavailable theme', () => {
@@ -139,7 +145,9 @@ describe('Theme', () => {
       Theme.createFromCustom(Theme.getPresetStaticTheme(), {
         type: 'light',
         palette: {
-          accents1: '#000',
+          neutral: {
+            50: '#ffffff',
+          },
         },
       });
     }).toThrow('Duplicate or unavailable theme type');
@@ -147,7 +155,9 @@ describe('Theme', () => {
       Theme.createFromCustom(null as unknown as RawUITheme, {
         type: 'light',
         palette: {
-          accents1: '#000',
+          neutral: {
+            50: '#ffffff',
+          },
         },
       });
     }).toThrow('Duplicate or unavailable theme type');
@@ -172,7 +182,9 @@ describe('Theme', () => {
     const myTheme = Theme.createFromCustom(Theme.getPresetStaticTheme(), {
       type: 'myTheme',
       palette: {
-        accents1: '#000',
+        neutral: {
+          50: '#ffffff',
+        },
       },
     });
     expect(

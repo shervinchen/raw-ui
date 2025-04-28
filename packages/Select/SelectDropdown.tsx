@@ -67,7 +67,7 @@ const SelectDropdown = forwardRef(
               padding: 8px;
               margin-top: 2px;
               border-radius: 6px;
-              border: 1px solid ${theme.palette.accents2};
+              border: 1px solid ${theme.palette.neutral['200']};
               box-shadow: ${theme.tokens.shadow.sm};
               background-color: ${theme.palette.background};
               max-height: ${dropdownHeight};

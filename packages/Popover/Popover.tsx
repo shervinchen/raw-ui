@@ -92,7 +92,7 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
           background-color: ${theme.palette.background};
           color: ${theme.palette.foreground};
           border-radius: 6px;
-          border: 1px solid ${theme.palette.accents2};
+          border: 1px solid ${theme.palette.neutral['200']};
           box-shadow: ${theme.tokens.shadow.sm};
           font-size: 14px;
           padding: 8px 12px;

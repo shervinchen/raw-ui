@@ -1,31 +1,17 @@
-import ColorCard from '@/src/app/components/color-card/color-card';
+import ColorPalette from '@/src/app/components/color-palette/color-palette';
 
 # Colors
 
-You can use any color anywhere, all colors change with the theme.
+Raw UI provides a set of colors based on the Tailwind CSS color palette by default, you can also customize it to fit your design, all colors change with the theme.
 
 ```tsx
 import { useTheme } from 'raw-ui';
 
 const myComponent = () => {
-  const { palette } = useTheme();
+  const theme = useTheme();
 
-  return <p style={{ color: palette.accents_1 }}>myComponent</p>
+  return <p style={{ color: theme.palette.neutral['600'] }}>myComponent</p>
 };
 ```
 
-## Normal
-
-<ColorCard type="normal" />
-
-## Success
-
-<ColorCard type="success" />
-
-## Warning
-
-<ColorCard type="warning" />
-
-## Error
-
-<ColorCard type="error" />
+<ColorPalette />

@@ -34,7 +34,10 @@ const PaginationPages: FC<PaginationPagesProps> = ({
               </a>
             ) : (
               <span className="raw-pagination-ellipsis">
-                <MoreHorizontal size={16} color={theme.palette.accents7} />
+                <MoreHorizontal
+                  size={16}
+                  color={theme.palette.neutral['600']}
+                />
               </span>
             )}
           </li>

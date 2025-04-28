@@ -6,8 +6,8 @@ export const headerStyle = (theme: RawUITheme): CSSProperties => ({
   alignItems: 'center',
   justifyContent: 'center',
   height: '64px',
-  color: theme.palette.accents6,
-  backgroundColor: theme.palette.accents4,
+  color: theme.palette.neutral['500'],
+  backgroundColor: theme.palette.neutral['300'],
 });
 
 export const contentStyle = (theme: RawUITheme): CSSProperties => ({
@@ -15,8 +15,8 @@ export const contentStyle = (theme: RawUITheme): CSSProperties => ({
   alignItems: 'center',
   justifyContent: 'center',
   minHeight: '120px',
-  color: theme.palette.accents4,
-  backgroundColor: theme.palette.accents6,
+  color: theme.palette.neutral['300'],
+  backgroundColor: theme.palette.neutral['500'],
 });
 
 export const sidebarStyle = (theme: RawUITheme): CSSProperties => ({
@@ -24,8 +24,8 @@ export const sidebarStyle = (theme: RawUITheme): CSSProperties => ({
   alignItems: 'center',
   justifyContent: 'center',
   width: '25%',
-  color: theme.palette.accents3,
-  backgroundColor: theme.palette.accents5,
+  color: theme.palette.neutral['200'],
+  backgroundColor: theme.palette.neutral['400'],
 });
 
 export const footerStyle = (theme: RawUITheme): CSSProperties => ({
@@ -33,8 +33,8 @@ export const footerStyle = (theme: RawUITheme): CSSProperties => ({
   alignItems: 'center',
   justifyContent: 'center',
   height: '64px',
-  color: theme.palette.accents6,
-  backgroundColor: theme.palette.accents4,
+  color: theme.palette.neutral['500'],
+  backgroundColor: theme.palette.neutral['300'],
 });
 
 export function DemoLayoutBasic() {

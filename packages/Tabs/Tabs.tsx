@@ -157,7 +157,7 @@ const Tabs: FC<PropsWithChildren<TabsProps>> = ({
               content: '';
               width: 100%;
               height: 1px;
-              border-bottom: 1px solid ${theme.palette.accents2};
+              border-bottom: 1px solid ${theme.palette.neutral['200']};
             }
             .raw-tabs.raw-tabs-vertical .raw-tabs-nav {
               flex-direction: column;
@@ -171,12 +171,12 @@ const Tabs: FC<PropsWithChildren<TabsProps>> = ({
               width: 1px;
               height: 100%;
               border-bottom: none;
-              border-right: 1px solid ${theme.palette.accents2};
+              border-right: 1px solid ${theme.palette.neutral['200']};
             }
             .raw-tabs .raw-tabs-nav-item {
               padding: 12px 0;
               font-size: 14px;
-              color: ${theme.palette.accents7};
+              color: ${theme.palette.neutral['600']};
               background-color: transparent;
               white-space: nowrap;
               user-select: none;
@@ -192,7 +192,7 @@ const Tabs: FC<PropsWithChildren<TabsProps>> = ({
               color: ${theme.palette.foreground};
             }
             .raw-tabs .raw-tabs-nav-item.raw-tabs-nav-item-disabled {
-              color: ${theme.palette.accents5};
+              color: ${theme.palette.neutral['400']};
               cursor: not-allowed;
             }
             .raw-tabs

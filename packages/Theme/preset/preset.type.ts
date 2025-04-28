@@ -1,29 +1,45 @@
+export type Shade =
+  | '50'
+  | '100'
+  | '200'
+  | '300'
+  | '400'
+  | '500'
+  | '600'
+  | '700'
+  | '800'
+  | '900'
+  | '950';
+
+export type ColorShades = Record<Shade, string>;
+
 export interface RawUIThemePalette {
-  accents1: string;
-  accents2: string;
-  accents3: string;
-  accents4: string;
-  accents5: string;
-  accents6: string;
-  accents7: string;
-  accents8: string;
-  accents9: string;
-  accents10: string;
+  white: string;
+  black: string;
   background: string;
   foreground: string;
-  link: string;
-  successLighter: string;
-  successLight: string;
-  success: string;
-  successDark: string;
-  warningLighter: string;
-  warningLight: string;
-  warning: string;
-  warningDark: string;
-  errorLighter: string;
-  errorLight: string;
-  error: string;
-  errorDark: string;
+  slate: ColorShades;
+  gray: ColorShades;
+  zinc: ColorShades;
+  neutral: ColorShades;
+  stone: ColorShades;
+  red: ColorShades;
+  orange: ColorShades;
+  amber: ColorShades;
+  yellow: ColorShades;
+  lime: ColorShades;
+  green: ColorShades;
+  emerald: ColorShades;
+  teal: ColorShades;
+  cyan: ColorShades;
+  sky: ColorShades;
+  blue: ColorShades;
+  indigo: ColorShades;
+  violet: ColorShades;
+  purple: ColorShades;
+  fuchsia: ColorShades;
+  pink: ColorShades;
+  rose: ColorShades;
 }
 
 export interface RawUIThemeTokens {

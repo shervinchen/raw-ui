@@ -168,13 +168,15 @@ export default function Toc() {
   useIntersectionObserver(setActiveId, pathname);
 
   return (
-    <nav
-      aria-label="table of contents"
-      className="xl:block hidden w-64 sticky top-16 h-[calc(100vh-64px)] overflow-y-auto py-4 text-sm scrollbar"
-    >
+    <>
       {headings.length > 1 && (
-        <Headings headings={headings} activeId={activeId} />
+        <nav
+          aria-label="table of contents"
+          className="xl:block hidden w-64 sticky top-16 h-[calc(100vh-64px)] overflow-y-auto py-4 text-sm scrollbar"
+        >
+          <Headings headings={headings} activeId={activeId} />
+        </nav>
       )}
-    </nav>
+    </>
   );
 }

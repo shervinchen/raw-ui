@@ -28,9 +28,9 @@ const InputAddon: FC<PropsWithChildren<InputAddonProps>> = ({
           pointer-events: none;
           padding: 0 12px;
           font-size: ${fontSize};
-          color: ${theme.palette.accents6};
-          background-color: ${theme.palette.accents1};
-          border: 1px solid ${theme.palette.accents2};
+          color: ${theme.palette.neutral['500']};
+          background-color: ${theme.palette.neutral['50']};
+          border: 1px solid ${theme.palette.neutral['200']};
         }
         .raw-input-left-addon {
           border-right: 0;
