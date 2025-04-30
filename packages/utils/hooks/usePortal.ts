@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useId } from 'react';
 import { useSSR } from './useSSR';
 
 const namespace = 'raw-ui';
@@ -13,7 +13,8 @@ export const usePortal = (
   name: string,
   getContainer?: () => HTMLElement | null
 ): HTMLElement | null => {
-  const id = `${namespace}-${name}`;
+  const uniqueId = useId();
+  const id = `${namespace}-${name}-${CSS.escape(uniqueId)}`;
   const { isBrowser } = useSSR();
   const [portal, setPortal] = useState<HTMLElement | null>(
     isBrowser ? createElement(id) : null
@@ -29,6 +30,12 @@ export const usePortal = (
     }
 
     setPortal(element);
+
+    return () => {
+      if (hasElement) {
+        container.removeChild(element);
+      }
+    };
   }, [getContainer, id]);
 
   return portal;
