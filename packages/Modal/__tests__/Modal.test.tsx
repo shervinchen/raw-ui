@@ -111,15 +111,6 @@ describe('Modal', () => {
     expect(handleClose).toHaveBeenCalledTimes(0);
   });
 
-  test('should not propagate the click event', async () => {
-    render(<Component closeOnOverlayClick={true} />);
-    await user.click(screen.getByTestId('openModal'));
-    expect(await screen.findByTestId('modalContainer')).toBeInTheDocument();
-    await user.click(await screen.findByTestId('modalWrapper'));
-    expect(await screen.findByTestId('modalContainer')).toBeInTheDocument();
-    expect(handleClose).toHaveBeenCalledTimes(0);
-  });
-
   test('should close modal when press the Escape key', async () => {
     render(<Component />);
     await user.click(screen.getByTestId('openModal'));

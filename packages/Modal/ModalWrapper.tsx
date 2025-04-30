@@ -1,5 +1,6 @@
-import React, { FC, PropsWithChildren, MouseEvent } from 'react';
+import React, { FC, PropsWithChildren, useRef } from 'react';
 import { RemoveScroll } from 'react-remove-scroll';
+import { useClickAway } from 'react-use';
 import { useTheme } from '../Theme';
 import { useTransition } from '../utils/hooks';
 import { useModalContext } from './modal-context';
@@ -16,16 +17,17 @@ const ModalWrapper: FC<PropsWithChildren<ModalWrapperProps>> = ({
   const theme = useTheme();
   const { visible, width, closeOnOverlayClick, closeModal } = useModalContext();
   const { stage, shouldMount } = useTransition(visible, 50, 350);
+  const ref = useRef<HTMLDivElement>(null);
 
-  const handleModalContainerClick = () => {
-    if (closeOnOverlayClick) {
-      closeModal?.();
-    }
-  };
-
-  const handleModalClick = (event: MouseEvent<HTMLDivElement>) => {
-    event.stopPropagation();
-  };
+  useClickAway(
+    ref,
+    () => {
+      if (closeOnOverlayClick) {
+        closeModal?.();
+      }
+    },
+    ['click']
+  );
 
   return shouldMount ? (
     <RemoveScroll>
@@ -35,12 +37,10 @@ const ModalWrapper: FC<PropsWithChildren<ModalWrapperProps>> = ({
         aria-labelledby="raw-modal-title"
         aria-describedby="raw-modal-body"
         className="raw-modal-container"
-        onClick={handleModalContainerClick}
         data-testid="modalContainer"
       >
         <div
           className={className}
-          onClick={handleModalClick}
           style={
             stage === 'enter'
               ? {
@@ -53,6 +53,7 @@ const ModalWrapper: FC<PropsWithChildren<ModalWrapperProps>> = ({
                 }
           }
           data-testid="modalWrapper"
+          ref={ref}
           {...restProps}
         >
           {children}
