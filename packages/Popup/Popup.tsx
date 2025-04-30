@@ -44,7 +44,17 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
   };
 
   const updatePopupPosition = useCallback(() => {
-    setPopupPosition(getPopupPosition());
+    const newPosition = getPopupPosition();
+    setPopupPosition((prevPosition) => {
+      if (
+        prevPosition.left !== newPosition.left ||
+        prevPosition.top !== newPosition.top ||
+        prevPosition.transform !== newPosition.transform
+      ) {
+        return newPosition;
+      }
+      return prevPosition;
+    });
   }, [getPopupPosition]);
 
   useResize(updatePopupPosition);
@@ -73,6 +83,7 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
   }, [targetRef, updatePopupPosition]);
 
   if (!targetRef) return null;
+
   if (!portal) return null;
 
   return createPortal(
