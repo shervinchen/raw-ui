@@ -160,15 +160,48 @@ import { Tooltip } from 'raw-ui';
 `}
 />
 
+## Set parent element
+
+The tooltip popup is rendered below the body element by default and outside the parent element, it may cause the tooltip popup to be cut off(when the parent element can be scrolled). To avoid this, you can set the parent element using the `getPopupContainer` prop.
+
+When you set a new parent element, the tooltip popup will be rendered under this parent element. Since the tooltip popup uses `absolute` positioning, you need to set `relative` positioning for the parent element.
+
+<Playground
+  scope={{ Tooltip }}
+  code={`
+<div
+  id="parentElement"
+  style={{
+    position: 'relative',
+    overflowY: 'auto',
+    width: '400px',
+    height: '200px',
+  }}
+>
+  <div
+    style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '400px',
+    }}
+  >
+    <Tooltip content="I am a tooltip" getPopupContainer={() => document.querySelector('#parentElement')}>Hover me</Tooltip>
+  </div>
+</div>
+`}
+/>
+
 ## API
 
-| Prop           | Description                              | Type                                                   | Default |
-| -------------- | ---------------------------------------- | ------------------------------------------------------ | ------- |
-| content        | content of tooltip                       | React.ReactNode                                        | -       |
-| hideArrow      | hide tooltip arrow                       | boolean                                                | false   |
-| disabled       | disable tooltip                          | boolean                                                | false   |
-| placement      | position of the tooltip                  | TooltipPlacement                                       | 'top'   |
-| ...            | native props                             | React.HTMLAttributes                                   | -       |
+| Prop              | Description                                       | Type                                                   | Default |
+| ----------------- | ------------------------------------------------- | ------------------------------------------------------ | ------- |
+| content           | content of tooltip                                | React.ReactNode                                        | -       |
+| hideArrow         | hide tooltip arrow                                | boolean                                                | false   |
+| disabled          | disable tooltip                                   | boolean                                                | false   |
+| placement         | position of the tooltip                           | TooltipPlacement                                       | 'top'   |
+| getPopupContainer | set the parent element of tooltip popup rendering | () => HTMLElement \| null                              | -       |
+| ...               | native props                                      | React.HTMLAttributes                                   | -       |
 
 ## Type
 

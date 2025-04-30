@@ -301,6 +301,10 @@ import { Select } from 'raw-ui';
 
 ## Set parent element
 
+The dropdown popup is rendered below the body element by default and outside the parent element, it may cause the dropdown popup to be cut off(when the parent element can be scrolled). To avoid this, you can set the parent element using the `getPopupContainer` prop.
+
+When you set a new parent element, the dropdown popup will be rendered under this parent element. Since the dropdown popup uses `absolute` positioning, you need to set `relative` positioning for the parent element.
+
 <Playground
   scope={{ Select }}
   code={`

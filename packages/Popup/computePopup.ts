@@ -27,9 +27,13 @@ export const getTargetRect = (
 };
 
 const getElementOffset = (element?: HTMLElement | null) => {
-  if (!element) return { offsetTop: 0, offsetLeft: 0 };
+  if (!element) return { top: 0, left: 0 };
   const { top, left } = element.getBoundingClientRect();
-  return { offsetTop: top, offsetLeft: left };
+  return { top, left };
+};
+
+const isStaticPositioned = (element: Element): boolean => {
+  return window.getComputedStyle(element).position === 'static';
 };
 
 export const computeTargetPosition = (
@@ -37,12 +41,14 @@ export const computeTargetPosition = (
   getContainer?: () => HTMLElement | null
 ): TargetPosition => {
   const targetRect = targetRef?.current?.getBoundingClientRect() ?? null;
+  const bodyRect = document.body.getBoundingClientRect();
   const bodyScroll = {
     top: document.documentElement.scrollTop || document.body.scrollTop,
     left: document.documentElement.scrollLeft || document.body.scrollLeft,
   };
+  const isBodyStaticPositioned = isStaticPositioned(document.body);
   const container = getContainer?.() ?? null;
-  const { offsetTop, offsetLeft } = getElementOffset(container);
+  const containerOffset = getElementOffset(container);
 
   if (!targetRect) {
     return {
@@ -55,17 +61,25 @@ export const computeTargetPosition = (
 
   return {
     top: container
-      ? targetRect.top + container.scrollTop - offsetTop
-      : targetRect.top + bodyScroll.top,
+      ? targetRect.top + container.scrollTop - containerOffset.top
+      : isBodyStaticPositioned
+      ? targetRect.top + bodyScroll.top
+      : targetRect.top - bodyRect.top,
     bottom: container
-      ? targetRect.bottom + container.scrollTop - offsetTop
-      : targetRect.bottom + bodyScroll.top,
+      ? targetRect.bottom + container.scrollTop - containerOffset.top
+      : isBodyStaticPositioned
+      ? targetRect.bottom + bodyScroll.top
+      : targetRect.top - bodyRect.top,
     left: container
-      ? targetRect.left + container.scrollLeft - offsetLeft
-      : targetRect.left + bodyScroll.left,
+      ? targetRect.left + container.scrollLeft - containerOffset.left
+      : isBodyStaticPositioned
+      ? targetRect.left + bodyScroll.left
+      : targetRect.left - bodyRect.left,
     right: container
-      ? targetRect.right + container.scrollLeft - offsetLeft
-      : targetRect.right + bodyScroll.left,
+      ? targetRect.right + container.scrollLeft - containerOffset.left
+      : isBodyStaticPositioned
+      ? targetRect.right + bodyScroll.left
+      : targetRect.right - bodyRect.left,
   };
 };
 

@@ -46,6 +46,7 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
       <Popup
         name="tooltip"
         visible={shouldMount}
+        zIndex={theme.zIndex.tooltip}
         targetRef={ref}
         getPopupPosition={() =>
           computePopupPosition(placement, ref, getPopupContainer)

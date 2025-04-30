@@ -35,6 +35,7 @@ const SelectDropdown = forwardRef(
       <Popup
         name="dropdown"
         visible={visible}
+        zIndex={theme.zIndex.dropdown}
         targetRef={selectRef}
         getPopupPosition={() => {
           const { bottom, left } = computeTargetPosition(

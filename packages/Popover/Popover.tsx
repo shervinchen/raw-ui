@@ -69,6 +69,7 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
       <Popup
         name="popover"
         visible={shouldMount}
+        zIndex={theme.zIndex.popover}
         targetRef={ref}
         getPopupPosition={() =>
           computePopupPosition(placement, ref, getPopupContainer)

@@ -20,6 +20,7 @@ import {
 const Popup: FC<PropsWithChildren<PopupProps>> = ({
   name,
   visible,
+  zIndex,
   targetRef,
   getPopupPosition,
   getPopupContainer,
@@ -89,6 +90,7 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
             top: ${popupPosition.top}px;
             left: ${popupPosition.left}px;
             transform: ${popupPosition.transform};
+            z-index: ${zIndex};
           }
         `}</style>
       </div>

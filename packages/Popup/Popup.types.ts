@@ -30,6 +30,7 @@ export type PopupPlacement =
 export interface PopupProps {
   name: string;
   visible: boolean;
+  zIndex: number;
   targetRef?: MutableRefObject<HTMLElement | null>;
   getPopupPosition: () => PopupPosition;
   getPopupContainer?: () => HTMLElement | null;
