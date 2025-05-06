@@ -1,12 +1,23 @@
 import { ComponentPropsWithoutRef, MutableRefObject, ReactNode } from 'react';
-import { PopupPlacement } from '../Popup/Popup.types';
 import { Merge } from '../utils';
 
-export type TooltipPlacement = PopupPlacement;
+export type TooltipPlacement =
+  | 'top'
+  | 'topLeft'
+  | 'topRight'
+  | 'left'
+  | 'leftTop'
+  | 'leftBottom'
+  | 'bottom'
+  | 'bottomLeft'
+  | 'bottomRight'
+  | 'right'
+  | 'rightTop'
+  | 'rightBottom';
 
 export interface BaseTooltipProps {
   content: ReactNode;
-  placement?: PopupPlacement;
+  placement?: TooltipPlacement;
   hideArrow?: boolean;
   disabled?: boolean;
   className?: string;
@@ -19,6 +30,19 @@ export type TooltipProps = Merge<
 >;
 
 export interface TooltipArrowProps {
-  placement: PopupPlacement;
+  placement: TooltipPlacement;
   targetRef: MutableRefObject<HTMLElement | null>;
+}
+
+export interface TooltipArrowOffset {
+  x: string;
+  y: string;
+}
+
+export interface TooltipArrowPosition {
+  top: string;
+  left: string;
+  right: string;
+  bottom: string;
+  transform: string;
 }

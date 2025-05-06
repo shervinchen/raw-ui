@@ -1,14 +1,25 @@
 import { ComponentPropsWithoutRef, MutableRefObject, ReactNode } from 'react';
-import { PopupPlacement } from '../Popup/Popup.types';
 import { Merge } from '../utils';
 
-export type PopoverPlacement = PopupPlacement;
+export type PopoverPlacement =
+  | 'top'
+  | 'topLeft'
+  | 'topRight'
+  | 'left'
+  | 'leftTop'
+  | 'leftBottom'
+  | 'bottom'
+  | 'bottomLeft'
+  | 'bottomRight'
+  | 'right'
+  | 'rightTop'
+  | 'rightBottom';
 
 export interface BasePopoverProps {
   content: ReactNode;
   value?: boolean;
   defaultValue?: boolean;
-  placement?: PopupPlacement;
+  placement?: PopoverPlacement;
   hideArrow?: boolean;
   disabled?: boolean;
   className?: string;
@@ -22,11 +33,19 @@ export type PopoverProps = Merge<
 >;
 
 export interface PopoverArrowProps {
-  placement: PopupPlacement;
+  placement: PopoverPlacement;
   targetRef: MutableRefObject<HTMLElement | null>;
 }
 
 export interface PopoverArrowOffset {
   x: string;
   y: string;
+}
+
+export interface PopoverArrowPosition {
+  top: string;
+  left: string;
+  right: string;
+  bottom: string;
+  transform: string;
 }

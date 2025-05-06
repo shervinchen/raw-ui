@@ -189,17 +189,12 @@ import { Popover } from 'raw-ui';
 
 ## Set parent element
 
-The popover popup is rendered below the body element by default and outside the parent element, it may cause the popover popup to be cut off(when the parent element can be scrolled). To avoid this, you can set the parent element using the `getPopupContainer` prop.
-
-When you set a new parent element, the popover popup will be rendered under this parent element. Since the popover popup uses `absolute` positioning, you need to set `relative` positioning for the parent element.
-
 <Playground
   scope={{ Popover }}
   code={`
 <div
   id="parentElement"
   style={{
-    position: 'relative',
     overflowY: 'auto',
     width: '400px',
     height: '200px',
@@ -221,17 +216,17 @@ When you set a new parent element, the popover popup will be rendered under this
 
 ## API
 
-| Prop              | Description                                       | Type                                                   | Default |
-| ----------------- | ------------------------------------------------- | ------------------------------------------------------ | ------- |
-| content           | content of popover                                | React.ReactNode                                        | -       |
-| defaultValue      | default visible or not (uncontrolled)             | boolean                                                | false   |
-| value             | visible or not (controlled)                       | boolean                                                | -       |
-| hideArrow         | hide popover arrow                                | boolean                                                | false   |
-| disabled          | disable popover                                   | boolean                                                | false   |
-| placement         | position of the popover                           | PopoverPlacement                                       | 'top'   |
-| onChange          | change event handler                              | (value: boolean) => void                               | -       |
-| getPopupContainer | set the parent element of popover popup rendering | () => HTMLElement \| null                              | -       |
-| ...               | native props                                      | React.HTMLAttributes                                   | -       |
+| Prop              | Description                               | Type                                                   | Default |
+| ----------------- | ----------------------------------------- | ------------------------------------------------------ | ------- |
+| content           | content of popover                        | React.ReactNode                                        | -       |
+| defaultValue      | default visible or not (uncontrolled)     | boolean                                                | false   |
+| value             | visible or not (controlled)               | boolean                                                | -       |
+| hideArrow         | hide popover arrow                        | boolean                                                | false   |
+| disabled          | disable popover                           | boolean                                                | false   |
+| placement         | position of the popover                   | PopoverPlacement                                       | 'top'   |
+| onChange          | change event handler                      | (value: boolean) => void                               | -       |
+| getPopupContainer | set the parent element of popup rendering | () => HTMLElement \| null                              | -       |
+| ...               | native props                              | React.HTMLAttributes                                   | -       |
 
 ## Type
 

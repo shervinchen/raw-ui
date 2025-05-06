@@ -4,18 +4,17 @@ import React, {
   useEffect,
   useState,
   MouseEvent,
+  useRef,
   useCallback,
 } from 'react';
 import { createPortal } from 'react-dom';
 import { PopupProps, PopupPosition } from './Popup.types';
 import {
   useIntersectionObserver,
-  useMutationObserver,
   usePortal,
-  useResize,
   useResizeObserver,
-  useSSR,
 } from '../utils/hooks';
+import { getOverflowAncestors, OverflowAncestors } from './utils/dom';
 
 const Popup: FC<PropsWithChildren<PopupProps>> = ({
   name,
@@ -26,14 +25,13 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
   getPopupContainer,
   children,
 }) => {
-  const { isBrowser } = useSSR();
   const portal = usePortal(name, getPopupContainer);
   const [popupPosition, setPopupPosition] = useState<PopupPosition>({
-    left: 0,
     top: 0,
-    transform: 'translate(0, 0)',
+    left: 0,
   });
-  const container = isBrowser ? getPopupContainer?.() ?? document.body : null;
+  const popupRef = useRef<HTMLDivElement>(null);
+  const ancestors = useRef<OverflowAncestors>([]);
 
   const handleClick = (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
@@ -44,12 +42,11 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
   };
 
   const updatePopupPosition = useCallback(() => {
-    const newPosition = getPopupPosition();
+    const newPosition = getPopupPosition(popupRef);
     setPopupPosition((prevPosition) => {
       if (
         prevPosition.left !== newPosition.left ||
-        prevPosition.top !== newPosition.top ||
-        prevPosition.transform !== newPosition.transform
+        prevPosition.top !== newPosition.top
       ) {
         return newPosition;
       }
@@ -57,17 +54,25 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
     });
   }, [getPopupPosition]);
 
-  useResize(updatePopupPosition);
+  const bindAncestorsListeners = useCallback(() => {
+    ancestors.current.forEach((ancestor) => {
+      ancestor.addEventListener('scroll', updatePopupPosition, {
+        passive: true,
+      });
+      ancestor.addEventListener('resize', updatePopupPosition);
+    });
+  }, [updatePopupPosition]);
 
-  useMutationObserver(container, updatePopupPosition, {
-    attributes: true,
-    childList: false,
-    subtree: false,
-  });
-
-  useMutationObserver(targetRef?.current, updatePopupPosition);
+  const unbindAncestorsListeners = useCallback(() => {
+    ancestors.current.forEach((ancestor) => {
+      ancestor.removeEventListener('scroll', updatePopupPosition);
+      ancestor.removeEventListener('resize', updatePopupPosition);
+    });
+  }, [updatePopupPosition]);
 
   useResizeObserver(targetRef?.current, updatePopupPosition);
+
+  useResizeObserver(popupRef?.current, updatePopupPosition);
 
   useIntersectionObserver(targetRef?.current, updatePopupPosition, {
     root: null,
@@ -75,20 +80,37 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
   });
 
   useEffect(() => {
-    const targetNode = targetRef?.current ?? null;
-    targetNode?.addEventListener('mouseenter', updatePopupPosition);
+    if (visible) {
+      updatePopupPosition();
+      bindAncestorsListeners();
+    }
+
     return () => {
-      targetNode?.removeEventListener('mouseenter', updatePopupPosition);
+      unbindAncestorsListeners();
     };
-  }, [targetRef, updatePopupPosition]);
+  }, [
+    visible,
+    updatePopupPosition,
+    bindAncestorsListeners,
+    unbindAncestorsListeners,
+  ]);
 
-  if (!targetRef) return null;
-
-  if (!portal) return null;
+  if (!portal || !targetRef?.current) return null;
 
   return createPortal(
     visible ? (
       <div
+        ref={(element) => {
+          popupRef.current = element;
+          ancestors.current = [
+            ...(targetRef?.current
+              ? getOverflowAncestors(targetRef?.current)
+              : []),
+            ...(popupRef?.current
+              ? getOverflowAncestors(popupRef?.current)
+              : []),
+          ];
+        }}
         className="raw-popup"
         onClick={handleClick}
         onMouseDown={handleMouseDown}
@@ -98,9 +120,13 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
         <style jsx>{`
           .raw-popup {
             position: absolute;
-            top: ${popupPosition.top}px;
-            left: ${popupPosition.left}px;
-            transform: ${popupPosition.transform};
+            top: 0;
+            left: 0;
+            transform: translate3d(
+              ${popupPosition.left}px,
+              ${popupPosition.top}px,
+              0
+            );
             z-index: ${zIndex};
           }
         `}</style>

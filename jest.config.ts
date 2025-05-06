@@ -31,6 +31,7 @@ const config: Config = {
   coveragePathIgnorePatterns: [
     '<rootDir>/node_modules/',
     '<rootDir>/packages/utils/',
+    '<rootDir>/packages/Popup/utils/',
   ],
 
   // Indicates which provider should be used to instrument code for coverage

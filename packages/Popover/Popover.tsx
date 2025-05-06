@@ -4,7 +4,7 @@ import { useClickAway, useKeyPressEvent } from 'react-use';
 import { PopoverProps } from './Popover.types';
 import { useControlled, useTransition } from '../utils/hooks';
 import Popup from '../Popup';
-import { computePopupPosition } from '../Popup/computePopup';
+import { computePopoverPosition } from './computePopoverPosition';
 import { useTheme } from '../Theme';
 import PopoverArrow from './PopoverArrow';
 import { KeyCode } from '../utils/constant';
@@ -71,8 +71,8 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
         visible={shouldMount}
         zIndex={theme.zIndex.popover}
         targetRef={ref}
-        getPopupPosition={() =>
-          computePopupPosition(placement, ref, getPopupContainer)
+        getPopupPosition={(popupRef) =>
+          computePopoverPosition(placement, ref, popupRef)
         }
         getPopupContainer={getPopupContainer}
       >

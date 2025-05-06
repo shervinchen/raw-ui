@@ -11,7 +11,7 @@ import { RawUITheme } from '../Theme/preset/preset.type';
 import { useTheme } from '../Theme/theme-context';
 import { useSelectContext } from './select-context';
 import Popup from '../Popup';
-import { computeTargetPosition } from '../Popup/computePopup';
+import { computePopupRect } from '../Popup/computePopupRect';
 
 const SelectDropdown = forwardRef(
   (
@@ -37,15 +37,11 @@ const SelectDropdown = forwardRef(
         visible={visible}
         zIndex={theme.zIndex.dropdown}
         targetRef={selectRef}
-        getPopupPosition={() => {
-          const { bottom, left } = computeTargetPosition(
-            selectRef,
-            getPopupContainer
-          );
+        getPopupPosition={(popupRef) => {
+          const { bottom, left } = computePopupRect(selectRef, popupRef);
           return {
             top: bottom,
             left,
-            transform: 'translate(0, 0)',
           };
         }}
         getPopupContainer={getPopupContainer}

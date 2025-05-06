@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { TooltipProps } from './Tooltip.types';
 import { useTransition } from '../utils/hooks';
 import Popup from '../Popup';
-import { computePopupPosition } from '../Popup/computePopup';
+import { computeTooltipPosition } from './computeTooltipPosition';
 import TooltipArrow from './TooltipArrow';
 import { useTheme } from '../Theme';
 
@@ -48,8 +48,8 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
         visible={shouldMount}
         zIndex={theme.zIndex.tooltip}
         targetRef={ref}
-        getPopupPosition={() =>
-          computePopupPosition(placement, ref, getPopupContainer)
+        getPopupPosition={(popupRef) =>
+          computeTooltipPosition(placement, ref, popupRef)
         }
         getPopupContainer={getPopupContainer}
       >

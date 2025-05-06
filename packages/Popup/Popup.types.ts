@@ -1,6 +1,6 @@
 import { MutableRefObject } from 'react';
 
-export type TargetPosition = {
+export type PopupRect = {
   top: number;
   left: number;
   bottom: number;
@@ -10,48 +10,15 @@ export type TargetPosition = {
 export type PopupPosition = {
   top: number;
   left: number;
-  transform: string;
 };
-
-export type PopupPlacement =
-  | 'top'
-  | 'topLeft'
-  | 'topRight'
-  | 'left'
-  | 'leftTop'
-  | 'leftBottom'
-  | 'bottom'
-  | 'bottomLeft'
-  | 'bottomRight'
-  | 'right'
-  | 'rightTop'
-  | 'rightBottom';
 
 export interface PopupProps {
   name: string;
   visible: boolean;
   zIndex: number;
   targetRef?: MutableRefObject<HTMLElement | null>;
-  getPopupPosition: () => PopupPosition;
+  getPopupPosition: (
+    popupRef: MutableRefObject<HTMLElement | null>
+  ) => PopupPosition;
   getPopupContainer?: () => HTMLElement | null;
-}
-
-export interface PopupArrowPosition {
-  top: string;
-  left: string;
-  right: string;
-  bottom: string;
-  transform: string;
-}
-
-export interface PopupArrowOffset {
-  x: string;
-  y: string;
-}
-
-export interface PopupArrowProps {
-  placement: PopupPlacement;
-  targetRef: MutableRefObject<HTMLElement | null>;
-  withBorder: boolean;
-  className?: string;
 }

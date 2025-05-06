@@ -1,13 +1,19 @@
-import { CSSProperties, FC } from 'react';
-import css from 'styled-jsx/css';
-import { PopoverArrowProps } from './Popover.types';
-import PopupArrow from '../Popup/PopupArrow';
+import { CSSProperties, FC, useMemo } from 'react';
+import {
+  PopoverArrowProps,
+  PopoverArrowOffset,
+  PopoverPlacement,
+} from './Popover.types';
 import { RawUITheme, useTheme } from '../Theme';
-import { PopupPlacement } from '../Popup/Popup.types';
+import { getRectSize } from '../Popup/computePopupRect';
+import {
+  arrowSize,
+  computePopoverArrowPosition,
+} from './computePopoverPosition';
 
 const getArrowBorderColor = (
   theme: RawUITheme
-): { [key in PopupPlacement]: CSSProperties } => {
+): { [key in PopoverPlacement]: CSSProperties } => {
   return {
     top: {
       borderTop: 'transparent',
@@ -87,28 +93,40 @@ const getArrowBorderColor = (
 const PopoverArrow: FC<PopoverArrowProps> = ({ targetRef, placement }) => {
   const theme = useTheme();
   const arrowBorderColor = getArrowBorderColor(theme);
-
-  const { className, styles } = css.resolve`
-    .raw-popup-arrow {
-      background-color: ${theme.palette.background};
-      border: 1px solid;
-      border-top-color: ${arrowBorderColor[placement].borderTop};
-      border-left-color: ${arrowBorderColor[placement].borderLeft};
-      border-bottom-color: ${arrowBorderColor[placement].borderBottom};
-      border-right-color: ${arrowBorderColor[placement].borderRight};
-    }
-  `;
+  const arrowOffset = useMemo<PopoverArrowOffset>(() => {
+    const { width, height } = getRectSize(targetRef);
+    return {
+      x: `${width / 2}px`,
+      y: `${height / 2}px`,
+    };
+  }, [targetRef]);
+  const { left, top, right, bottom, transform } = computePopoverArrowPosition(
+    arrowOffset,
+    `${arrowSize / 2 + 1}px`,
+    placement
+  );
 
   return (
-    <>
-      <PopupArrow
-        targetRef={targetRef}
-        placement={placement}
-        className={className}
-        withBorder
-      />
-      {styles}
-    </>
+    <span className="raw-popover-arrow">
+      <style jsx>{`
+        .raw-popover-arrow {
+          width: ${arrowSize}px;
+          height: ${arrowSize}px;
+          position: absolute;
+          left: ${left};
+          top: ${top};
+          right: ${right};
+          bottom: ${bottom};
+          transform: ${transform};
+          background-color: ${theme.palette.background};
+          border: 1px solid;
+          border-top-color: ${arrowBorderColor[placement].borderTop};
+          border-left-color: ${arrowBorderColor[placement].borderLeft};
+          border-bottom-color: ${arrowBorderColor[placement].borderBottom};
+          border-right-color: ${arrowBorderColor[placement].borderRight};
+        }
+      `}</style>
+    </span>
   );
 };
 

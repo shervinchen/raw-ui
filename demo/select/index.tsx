@@ -200,7 +200,6 @@ export function DemoSelectSetParentElement() {
       <div
         id="parentElement"
         style={{
-          position: 'relative',
           overflowY: 'auto',
           width: '400px',
           height: '200px',

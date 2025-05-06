@@ -301,17 +301,12 @@ import { Select } from 'raw-ui';
 
 ## Set parent element
 
-The dropdown popup is rendered below the body element by default and outside the parent element, it may cause the dropdown popup to be cut off(when the parent element can be scrolled). To avoid this, you can set the parent element using the `getPopupContainer` prop.
-
-When you set a new parent element, the dropdown popup will be rendered under this parent element. Since the dropdown popup uses `absolute` positioning, you need to set `relative` positioning for the parent element.
-
 <Playground
   scope={{ Select }}
   code={`
 <div
   id="parentElement"
   style={{
-    position: 'relative',
     overflowY: 'auto',
     width: '400px',
     height: '200px',
@@ -342,20 +337,20 @@ When you set a new parent element, the dropdown popup will be rendered under thi
 
 ### Select
 
-| Prop              | Description                                  | Type                                 | Default   |
-| ----------------- | -------------------------------------------- | ------------------------------------ | --------- |
-| type              | select type                                  | 'default' \| 'warning' \| 'error'    | 'default' |
-| size              | select size                                  | 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' | 'md'      |
-| defaultValue      | default selected value (uncontrolled)        | SelectValue                          | -         |
-| value             | selected value (controlled)                  | SelectValue                          | -         |
-| placeholder       | select placeholder                           | string                               | -         |
-| width             | select width                                 | string                               | '100%'    |
-| disabled          | disable select                               | boolean                              | false     |
-| multiple          | support multiple selection                   | boolean                              | false     |
-| clearable         | whether to show the clear icon               | boolean                              | false     |
-| onChange          | change event handler                         | (value: SelectValue) => void         | -         |
-| getPopupContainer | set the parent element of dropdown rendering | () => HTMLElement \| null            | -         |
-| ...               | native props                                 | React.HTMLAttributes                 | -         |
+| Prop              | Description                               | Type                                 | Default   |
+| ----------------- | ----------------------------------------- | ------------------------------------ | --------- |
+| type              | select type                               | 'default' \| 'warning' \| 'error'    | 'default' |
+| size              | select size                               | 'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' | 'md'      |
+| defaultValue      | default selected value (uncontrolled)     | SelectValue                          | -         |
+| value             | selected value (controlled)               | SelectValue                          | -         |
+| placeholder       | select placeholder                        | string                               | -         |
+| width             | select width                              | string                               | '100%'    |
+| disabled          | disable select                            | boolean                              | false     |
+| multiple          | support multiple selection                | boolean                              | false     |
+| clearable         | whether to show the clear icon            | boolean                              | false     |
+| onChange          | change event handler                      | (value: SelectValue) => void         | -         |
+| getPopupContainer | set the parent element of popup rendering | () => HTMLElement \| null            | -         |
+| ...               | native props                              | React.HTMLAttributes                 | -         |
 
 ### Select.Option
 

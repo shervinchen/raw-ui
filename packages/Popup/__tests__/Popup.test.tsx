@@ -1,14 +1,11 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import React, { MutableRefObject, useRef } from 'react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Popup from '..';
-import { MutableRefObject, useRef } from 'react';
 
 const mockGetPopupPosition = jest.fn().mockReturnValue({
   top: 0,
   left: 0,
-  bottom: 0,
-  right: 0,
-  transform: 'translate(0, 0)',
 });
 
 const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
@@ -26,6 +23,7 @@ const Component = ({
     <Popup
       name="testPopup"
       visible={visible}
+      zIndex={1000}
       targetRef={targetRef}
       getPopupPosition={mockGetPopupPosition}
       getPopupContainer={getPopupContainer}
@@ -74,7 +72,7 @@ describe('Popup', () => {
     expect(screen.queryByTestId('popup')).not.toBeInTheDocument();
   });
 
-  test('should update popup position when window resize', () => {
+  test('should update popup position when first render', () => {
     render(
       <Component
         visible
@@ -83,79 +81,6 @@ describe('Popup', () => {
       />
     );
     expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
-    fireEvent(window, new Event('resize'));
-    expect(mockGetPopupPosition).toHaveBeenCalledTimes(2);
-  });
-
-  test('should update popup position when mouse over', async () => {
-    render(
-      <Component
-        visible
-        targetRef={targetRefMock}
-        getPopupContainer={getPopupContainerMock}
-      />
-    );
-    expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
-    await user.hover(targetRefMock.current);
-    expect(mockGetPopupPosition).toHaveBeenCalledTimes(2);
-  });
-
-  test('should update popup position when targetRef size change', async () => {
-    render(
-      <Component
-        visible
-        targetRef={targetRefMock}
-        getPopupContainer={getPopupContainerMock}
-      />
-    );
-    expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
-    targetRefMock.current.style.height = '200px';
-    await waitFor(() => {
-      expect(mockGetPopupPosition).toHaveBeenCalledTimes(2);
-    });
-  });
-
-  test('should update popup position when document size change', async () => {
-    render(
-      <Component
-        visible
-        targetRef={targetRefMock}
-        getPopupContainer={getPopupContainerMock}
-      />
-    );
-    expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
-    document.body.style.height = '10000px';
-    await waitFor(() => {
-      expect(mockGetPopupPosition).toHaveBeenCalledTimes(2);
-    });
-  });
-
-  test('should update popup position when container size change', async () => {
-    render(
-      <div
-        id="parentElement"
-        style={{
-          position: 'relative',
-          overflowY: 'auto',
-          width: '400px',
-          height: '200px',
-        }}
-      >
-        <Component
-          visible
-          targetRef={targetRefMock}
-          getPopupContainer={() => document.querySelector('#parentElement')}
-        />
-      </div>
-    );
-    expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
-    const parentElement = document.querySelector(
-      '#parentElement'
-    ) as HTMLElement;
-    parentElement.style.height = '10000px';
-    await waitFor(() => {
-      expect(mockGetPopupPosition).toHaveBeenCalledTimes(2);
-    });
   });
 
   test('should render to specified container', () => {
@@ -185,36 +110,60 @@ describe('Popup', () => {
   });
 
   test('should prevent event on popup', async () => {
+    const handleClick = jest.fn();
+    const handleMouseDown = jest.fn();
     render(
-      <Component
-        visible
-        targetRef={targetRefMock}
-        getPopupContainer={getPopupContainerMock}
-      />
+      <div onClick={handleClick} onMouseDown={handleMouseDown}>
+        <Component
+          visible
+          targetRef={targetRefMock}
+          getPopupContainer={getPopupContainerMock}
+        />
+      </div>
     );
     const popup = screen.getByTestId('popup');
+    fireEvent.mouseDown(popup);
     await user.click(popup);
-    expect(popup).toBeInTheDocument();
+    expect(handleClick).not.toHaveBeenCalled();
+    expect(handleMouseDown).not.toHaveBeenCalled();
   });
 
-  test('should not trigger mouse over event when target is empty', async () => {
-    render(<Component visible getPopupContainer={getPopupContainerMock} />);
-    expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
-    await user.hover(targetRefMock.current);
-    expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
-  });
+  test('should not trigger overflow ancestor scroll event when targetRef is null', () => {
+    const ScrollableComponent = () => {
+      const targetRef = useRef<HTMLDivElement>(null);
 
-  test('should not trigger mouse over event when event is removed', async () => {
-    const { unmount } = render(
-      <Component
-        visible
-        targetRef={targetRefMock}
-        getPopupContainer={getPopupContainerMock}
-      />
-    );
-    expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
-    unmount();
-    await user.hover(targetRefMock.current);
+      return (
+        <div
+          data-testid="parentElement"
+          style={{
+            overflowY: 'auto',
+            width: '400px',
+            height: '200px',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: '400px',
+            }}
+          >
+            <div ref={targetRef} style={{ height: '100px' }} />
+            <Component
+              visible
+              targetRef={null}
+              getPopupContainer={getPopupContainerMock}
+            />
+          </div>
+        </div>
+      );
+    };
+    render(<ScrollableComponent />);
+    const parentElement = screen.getByTestId('parentElement');
+    fireEvent.scroll(parentElement, {
+      target: { scrollTop: 100 },
+    });
     expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
   });
 });
