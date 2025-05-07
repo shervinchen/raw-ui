@@ -18,7 +18,7 @@ const SelectOption: FC<PropsWithChildren<SelectOptionProps>> = ({
   const {
     multiple,
     selectValue,
-    onSelectChange,
+    handleSelectChange,
     type,
     size,
     disabled: selectDisabled,
@@ -41,7 +41,7 @@ const SelectOption: FC<PropsWithChildren<SelectOptionProps>> = ({
   const handleClick = (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
     if (isDisabled) return;
-    onSelectChange?.(value);
+    handleSelectChange?.(value);
   };
 
   return (

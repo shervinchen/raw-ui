@@ -34,7 +34,7 @@ export type SelectProps = Merge<
 export interface SelectConfig {
   multiple?: boolean;
   selectValue?: SelectValue;
-  onSelectChange?: (optionValue?: SelectOptionValue) => void;
+  handleSelectChange?: (optionValue?: SelectOptionValue) => void;
   selectRef?: MutableRefObject<HTMLElement | null>;
   getPopupContainer?: () => HTMLElement | null;
   dropdownHeight?: string;

@@ -15,6 +15,7 @@ import {
   useResizeObserver,
 } from '../utils/hooks';
 import { getOverflowAncestors, OverflowAncestors } from './utils/dom';
+import { useModalContext } from '../Modal/modal-context';
 
 const Popup: FC<PropsWithChildren<PopupProps>> = ({
   name,
@@ -25,7 +26,15 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
   getPopupContainer,
   children,
 }) => {
-  const portal = usePortal(name, getPopupContainer);
+  const { getPopupContainerInModal } = useModalContext();
+  const portal = usePortal(
+    name,
+    getPopupContainer?.()
+      ? getPopupContainer
+      : getPopupContainerInModal?.()
+      ? getPopupContainerInModal
+      : getPopupContainer
+  );
   const [popupPosition, setPopupPosition] = useState<PopupPosition>({
     top: 0,
     left: 0,

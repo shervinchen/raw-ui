@@ -167,7 +167,7 @@ const Select = forwardRef(
       return {
         multiple,
         selectValue: internalValue,
-        onSelectChange: handleChange,
+        handleSelectChange: handleChange,
         selectRef,
         dropdownHeight,
         getPopupContainer,

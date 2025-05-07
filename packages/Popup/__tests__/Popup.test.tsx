@@ -1,7 +1,10 @@
 import React, { MutableRefObject, useRef } from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Popup from '..';
+import Popup from '../Popup';
+import Modal from '../../Modal';
+import Button from '../../Button';
+import Popover from '../../Popover';
 
 const mockGetPopupPosition = jest.fn().mockReturnValue({
   top: 0,
@@ -165,5 +168,25 @@ describe('Popup', () => {
       target: { scrollTop: 100 },
     });
     expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
+  });
+
+  test('should render the popup container in modal', async () => {
+    render(
+      <Modal visible>
+        <Modal.Header>Modal Title</Modal.Header>
+        <Modal.Body>
+          <div>This is a modal.</div>
+          <Popover content="I am a popover">Click me</Popover>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button>Cancel</Button>
+          <Button type="primary">Confirm</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+
+    const modalWrapper = screen.getByTestId('modalWrapper');
+    await user.click(screen.getByTestId('popoverTarget'));
+    expect(modalWrapper.contains(screen.getByTestId('popup'))).toBeTruthy();
   });
 });
