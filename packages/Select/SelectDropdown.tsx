@@ -20,8 +20,14 @@ const SelectDropdown = forwardRef(
   ) => {
     const theme: RawUITheme = useTheme();
     const dropdownRef = useRef<HTMLDivElement | null>(null);
-    const { multiple, dropdownHeight, selectRef, getPopupContainer, selectId } =
-      useSelectContext();
+    const {
+      multiple,
+      dropdownHeight,
+      strategy,
+      selectRef,
+      getPopupContainer,
+      selectId,
+    } = useSelectContext();
     const { stage: dropdownTransitionStage } = useTransition(visible, 0, 0);
     const dropdownClasses = classNames('raw-select-dropdown', className);
     const selectRect = selectRef?.current?.getBoundingClientRect() ?? null;
@@ -36,9 +42,14 @@ const SelectDropdown = forwardRef(
         name="dropdown"
         visible={visible}
         zIndex={theme.zIndex.dropdown}
+        strategy={strategy}
         targetRef={selectRef}
         getPopupPosition={(popupRef) => {
-          const { bottom, left } = computePopupRect(selectRef, popupRef);
+          const { bottom, left } = computePopupRect(
+            strategy,
+            selectRef,
+            popupRef
+          );
           return {
             top: bottom,
             left,

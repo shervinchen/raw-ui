@@ -12,6 +12,7 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
   placement = 'top',
   hideArrow = false,
   disabled = false,
+  strategy = 'absolute',
   className = '',
   getPopupContainer,
   children,
@@ -47,9 +48,10 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
         name="tooltip"
         visible={shouldMount}
         zIndex={theme.zIndex.tooltip}
+        strategy={strategy}
         targetRef={ref}
         getPopupPosition={(popupRef) =>
-          computeTooltipPosition(placement, ref, popupRef)
+          computeTooltipPosition(placement, strategy, ref, popupRef)
         }
         getPopupContainer={getPopupContainer}
       >

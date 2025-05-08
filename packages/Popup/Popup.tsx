@@ -21,6 +21,7 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
   name,
   visible,
   zIndex,
+  strategy = 'absolute',
   targetRef,
   getPopupPosition,
   getPopupContainer,
@@ -128,7 +129,7 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
         {children}
         <style jsx>{`
           .raw-popup {
-            position: absolute;
+            position: ${strategy};
             top: 0;
             left: 0;
             transform: translate3d(

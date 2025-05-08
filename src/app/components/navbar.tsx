@@ -33,10 +33,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header
-      className="sticky top-0 w-full bg-white dark:bg-black	shadow-[inset_0_-1px_0_0_#eaeaea] dark:shadow-[inset_0_-1px_0_0_#333]"
-      style={{ zIndex: theme.zIndex.sticky }}
-    >
+    <header className="sticky top-0 w-full bg-white dark:bg-black	shadow-[inset_0_-1px_0_0_#eaeaea] dark:shadow-[inset_0_-1px_0_0_#333] z-[100]">
       <nav className="flex items-center max-w-[90rem] h-16 py-0 px-6 mx-auto">
         <Link href="/" className="flex items-center gap-2	mr-auto">
           <ThemeSwitch

@@ -216,17 +216,18 @@ import { Popover } from 'raw-ui';
 
 ## API
 
-| Prop              | Description                               | Type                                                   | Default |
-| ----------------- | ----------------------------------------- | ------------------------------------------------------ | ------- |
-| content           | content of popover                        | React.ReactNode                                        | -       |
-| defaultValue      | default visible or not (uncontrolled)     | boolean                                                | false   |
-| value             | visible or not (controlled)               | boolean                                                | -       |
-| hideArrow         | hide popover arrow                        | boolean                                                | false   |
-| disabled          | disable popover                           | boolean                                                | false   |
-| placement         | position of the popover                   | PopoverPlacement                                       | 'top'   |
-| onChange          | change event handler                      | (value: boolean) => void                               | -       |
-| getPopupContainer | set the parent element of popup rendering | () => HTMLElement \| null                              | -       |
-| ...               | native props                              | React.HTMLAttributes                                   | -       |
+| Prop              | Description                               | Type                                                   | Default    |
+| ----------------- | ----------------------------------------- | ------------------------------------------------------ | ---------- |
+| content           | content of popover                        | React.ReactNode                                        | -          |
+| defaultValue      | default visible or not (uncontrolled)     | boolean                                                | false      |
+| value             | visible or not (controlled)               | boolean                                                | -          |
+| hideArrow         | hide popover arrow                        | boolean                                                | false      |
+| disabled          | disable popover                           | boolean                                                | false      |
+| placement         | position of the popover                   | PopoverPlacement                                       | 'top'      |
+| strategy          | The positioning strategy of popup         | 'absolute' \| 'fixed'                                  | 'absolute' |
+| onChange          | change event handler                      | (value: boolean) => void                               | -          |
+| getPopupContainer | set the parent element of popup rendering | () => HTMLElement \| null                              | -          |
+| ...               | native props                              | React.HTMLAttributes                                   | -          |
 
 ## Type
 

@@ -189,14 +189,15 @@ import { Tooltip } from 'raw-ui';
 
 ## API
 
-| Prop              | Description                               | Type                                                   | Default |
-| ----------------- | ----------------------------------------- | ------------------------------------------------------ | ------- |
-| content           | content of tooltip                        | React.ReactNode                                        | -       |
-| hideArrow         | hide tooltip arrow                        | boolean                                                | false   |
-| disabled          | disable tooltip                           | boolean                                                | false   |
-| placement         | position of the tooltip                   | TooltipPlacement                                       | 'top'   |
-| getPopupContainer | set the parent element of popup rendering | () => HTMLElement \| null                              | -       |
-| ...               | native props                              | React.HTMLAttributes                                   | -       |
+| Prop              | Description                               | Type                                                   | Default    |
+| ----------------- | ----------------------------------------- | ------------------------------------------------------ | ---------- |
+| content           | content of tooltip                        | React.ReactNode                                        | -          |
+| hideArrow         | hide tooltip arrow                        | boolean                                                | false      |
+| disabled          | disable tooltip                           | boolean                                                | false      |
+| placement         | position of the tooltip                   | TooltipPlacement                                       | 'top'      |
+| strategy          | The positioning strategy of popup         | 'absolute' \| 'fixed'                                  | 'absolute' |
+| getPopupContainer | set the parent element of popup rendering | () => HTMLElement \| null                              | -          |
+| ...               | native props                              | React.HTMLAttributes                                   | -          |
 
 ## Type
 

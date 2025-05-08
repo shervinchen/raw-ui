@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef, MutableRefObject, ReactNode } from 'react';
 import { Merge } from '../utils';
+import { Strategy } from '../Popup/utils/common';
 
 export type TooltipPlacement =
   | 'top'
@@ -20,6 +21,7 @@ export interface BaseTooltipProps {
   placement?: TooltipPlacement;
   hideArrow?: boolean;
   disabled?: boolean;
+  strategy?: Strategy;
   className?: string;
   getPopupContainer?: () => HTMLElement | null;
 }

@@ -16,6 +16,7 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
   placement = 'top',
   hideArrow = false,
   disabled = false,
+  strategy = 'absolute',
   className = '',
   getPopupContainer,
   onChange,
@@ -70,9 +71,10 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
         name="popover"
         visible={shouldMount}
         zIndex={theme.zIndex.popover}
+        strategy={strategy}
         targetRef={ref}
         getPopupPosition={(popupRef) =>
-          computePopoverPosition(placement, ref, popupRef)
+          computePopoverPosition(placement, strategy, ref, popupRef)
         }
         getPopupContainer={getPopupContainer}
       >

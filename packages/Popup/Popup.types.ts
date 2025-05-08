@@ -1,4 +1,5 @@
 import { MutableRefObject } from 'react';
+import { Strategy } from './utils/common';
 
 export type PopupRect = {
   top: number;
@@ -16,6 +17,7 @@ export interface PopupProps {
   name: string;
   visible: boolean;
   zIndex: number;
+  strategy?: Strategy;
   targetRef?: MutableRefObject<HTMLElement | null>;
   getPopupPosition: (
     popupRef: MutableRefObject<HTMLElement | null>

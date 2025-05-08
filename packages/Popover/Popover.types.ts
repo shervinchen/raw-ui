@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef, MutableRefObject, ReactNode } from 'react';
 import { Merge } from '../utils';
+import { Strategy } from '../Popup/utils/common';
 
 export type PopoverPlacement =
   | 'top'
@@ -22,6 +23,7 @@ export interface BasePopoverProps {
   placement?: PopoverPlacement;
   hideArrow?: boolean;
   disabled?: boolean;
+  strategy?: Strategy;
   className?: string;
   onChange?: (value: boolean) => void;
   getPopupContainer?: () => HTMLElement | null;

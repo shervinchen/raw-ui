@@ -8,7 +8,11 @@ describe('computePopupRect.test', () => {
   });
 
   test('should get default value of target position when target ref is null', () => {
-    const { top, bottom, left, right } = computePopupRect(undefined, undefined);
+    const { top, bottom, left, right } = computePopupRect(
+      'absolute',
+      undefined,
+      undefined
+    );
     expect(top).toBe(0);
     expect(bottom).toBe(0);
     expect(left).toBe(0);

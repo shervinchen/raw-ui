@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef, MutableRefObject } from 'react';
 import { Merge } from '../utils';
+import { Strategy } from '../Popup/utils/common';
 
 export type SelectOptionValue = string | number | undefined | null;
 
@@ -19,6 +20,7 @@ export interface BaseSelectProps {
   disabled?: boolean;
   multiple?: boolean;
   clearable?: boolean;
+  strategy?: Strategy;
   className?: string;
   dropdownClassName?: string;
   dropdownHeight?: string;
@@ -38,6 +40,7 @@ export interface SelectConfig {
   selectRef?: MutableRefObject<HTMLElement | null>;
   getPopupContainer?: () => HTMLElement | null;
   dropdownHeight?: string;
+  strategy?: Strategy;
   type?: SelectTypes;
   size?: SelectSizes;
   disabled?: boolean;

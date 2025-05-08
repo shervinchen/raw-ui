@@ -2,6 +2,7 @@ import { MutableRefObject } from 'react';
 import { PopupRect } from './Popup.types';
 import { getRectRelativeToOffsetParent } from './utils/getRectRelativeToOffsetParent';
 import { getOffsetParent } from './utils/getOffsetParent';
+import { Strategy } from './utils/common';
 
 export const getRectSize = (ref?: MutableRefObject<HTMLElement | null>) => {
   const rect = ref?.current?.getBoundingClientRect() ?? null;
@@ -15,6 +16,7 @@ export const getRectSize = (ref?: MutableRefObject<HTMLElement | null>) => {
 };
 
 export const computePopupRect = (
+  strategy: Strategy,
   targetRef?: MutableRefObject<HTMLElement | null>,
   popupRef?: MutableRefObject<HTMLElement | null>
 ): PopupRect => {
@@ -30,7 +32,7 @@ export const computePopupRect = (
   const rect = getRectRelativeToOffsetParent(
     targetRef?.current,
     getOffsetParent(popupRef?.current),
-    'absolute'
+    strategy
   );
 
   return {

@@ -6,9 +6,7 @@ const ModalBody: FC<PropsWithChildren> = ({ children, ...restProps }) => {
   const { handleSetPopupContainerInModal } = useModalContext();
 
   useEffect(() => {
-    if (ref.current) {
-      handleSetPopupContainerInModal(ref.current);
-    }
+    handleSetPopupContainerInModal(ref.current);
   }, [handleSetPopupContainerInModal]);
 
   return (

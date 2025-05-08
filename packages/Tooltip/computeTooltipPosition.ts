@@ -6,15 +6,21 @@ import {
 } from './Tooltip.types';
 import { computePopupRect, getRectSize } from '../Popup/computePopupRect';
 import { PopupPosition } from '../Popup/Popup.types';
+import { Strategy } from '../Popup/utils/common';
 
 export const arrowSize = 8;
 
 export const computeTooltipPosition = (
   placement: TooltipPlacement,
+  strategy: Strategy,
   targetRef?: MutableRefObject<HTMLElement | null>,
   popupRef?: MutableRefObject<HTMLElement | null>
 ) => {
-  const { top, bottom, left, right } = computePopupRect(targetRef, popupRef);
+  const { top, bottom, left, right } = computePopupRect(
+    strategy,
+    targetRef,
+    popupRef
+  );
   const { width: targetWidth, height: targetHeight } = getRectSize(targetRef);
   const { width: popupWidth, height: popupHeight } = getRectSize(popupRef);
 
