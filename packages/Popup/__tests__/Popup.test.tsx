@@ -2,9 +2,6 @@ import React, { MutableRefObject, useRef } from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Popup from '../Popup';
-import Modal from '../../Modal';
-import Button from '../../Button';
-import Popover from '../../Popover';
 
 const mockGetPopupPosition = jest.fn().mockReturnValue({
   top: 0,
@@ -16,10 +13,12 @@ const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
 const Component = ({
   visible,
   targetRef,
+  targetElement,
   getPopupContainer,
 }: {
   visible: boolean;
   targetRef?: MutableRefObject<HTMLElement | null>;
+  targetElement?: HTMLElement | null;
   getPopupContainer: () => HTMLElement | null;
 }) => {
   return (
@@ -28,6 +27,7 @@ const Component = ({
       visible={visible}
       zIndex={1000}
       targetRef={targetRef}
+      targetElement={targetElement}
       getPopupPosition={mockGetPopupPosition}
       getPopupContainer={getPopupContainer}
     >
@@ -131,9 +131,9 @@ describe('Popup', () => {
     expect(handleMouseDown).not.toHaveBeenCalled();
   });
 
-  test('should not trigger overflow ancestor scroll event when targetRef is null', () => {
+  test('should not trigger overflow ancestor scroll event when targetElement is null', () => {
     const ScrollableComponent = () => {
-      const targetRef = useRef<HTMLDivElement>(null);
+      const targetRef = useRef<HTMLDivElement | null>(null);
 
       return (
         <div
@@ -155,7 +155,8 @@ describe('Popup', () => {
             <div ref={targetRef} style={{ height: '100px' }} />
             <Component
               visible
-              targetRef={null}
+              targetRef={targetRef}
+              targetElement={null}
               getPopupContainer={getPopupContainerMock}
             />
           </div>
@@ -168,25 +169,5 @@ describe('Popup', () => {
       target: { scrollTop: 100 },
     });
     expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
-  });
-
-  test('should render the popup container in modal', async () => {
-    render(
-      <Modal visible>
-        <Modal.Header>Modal Title</Modal.Header>
-        <Modal.Body>
-          <div>This is a modal.</div>
-          <Popover content="I am a popover">Click me</Popover>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button>Cancel</Button>
-          <Button type="primary">Confirm</Button>
-        </Modal.Footer>
-      </Modal>
-    );
-
-    const modalWrapper = screen.getByTestId('modalWrapper');
-    await user.click(screen.getByTestId('popoverTarget'));
-    expect(modalWrapper.contains(screen.getByTestId('popup'))).toBeTruthy();
   });
 });

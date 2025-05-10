@@ -1,10 +1,4 @@
-import React, {
-  FC,
-  PropsWithChildren,
-  useCallback,
-  useMemo,
-  useState,
-} from 'react';
+import React, { FC, PropsWithChildren, useCallback, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import classNames from 'classnames';
 import { useKeyPressEvent } from 'react-use';
@@ -25,13 +19,11 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
   children,
   ...restProps
 }) => {
-  const modalPortal = usePortal('modal');
+  const portal = usePortal('modal');
   const [internalVisible, setInternalVisible] = useControlled<boolean>({
     defaultValue: false,
     value: visible,
   });
-  const [popupContainerInModal, setPopupContainerInModal] =
-    useState<HTMLDivElement | null>(null);
   const classes = classNames('raw-modal-wrapper', className);
 
   const closeModal = useCallback(() => {
@@ -39,34 +31,21 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
     onClose?.();
   }, [onClose, setInternalVisible]);
 
-  const handleSetPopupContainerInModal = useCallback((portal) => {
-    setPopupContainerInModal(portal);
-  }, []);
-
   const modalConfig: ModalConfig = useMemo(
     () => ({
       visible: internalVisible,
       width,
       closeOnOverlayClick,
-      getPopupContainerInModal: () => popupContainerInModal,
-      handleSetPopupContainerInModal,
       closeModal,
     }),
-    [
-      internalVisible,
-      width,
-      closeOnOverlayClick,
-      popupContainerInModal,
-      handleSetPopupContainerInModal,
-      closeModal,
-    ]
+    [internalVisible, width, closeOnOverlayClick, closeModal]
   );
 
   useKeyPressEvent(KeyCode.Escape, () => {
     closeModal();
   });
 
-  if (!modalPortal) return null;
+  if (!portal) return null;
 
   return createPortal(
     <ModalContext.Provider value={modalConfig}>
@@ -76,7 +55,7 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
         {children}
       </ModalWrapper>
     </ModalContext.Provider>,
-    modalPortal
+    portal
   );
 };
 

@@ -26,6 +26,8 @@ import SelectDropdown from './SelectDropdown';
 import SelectInput from './SelectInput';
 import SelectTag from './SelectTag';
 import { useSelectCSS } from './Select.styles';
+import { useTheme } from '../Theme';
+import { getZIndexByClosestFloating } from '../Popup/getClosestFloatingZIndex';
 
 const getInternalValue = (multiple: boolean, value: SelectValue) => {
   if (Array.isArray(value)) {
@@ -89,7 +91,8 @@ const Select = forwardRef(
     ref: ComponentPropsWithRef<'div'>['ref']
   ) => {
     const selectId = `raw-select-dropdown-${useId()}`;
-    const selectRef = useRef<HTMLDivElement>(null);
+    const theme = useTheme();
+    const selectTargetRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const [internalValue, setInternalValue] = useControlled<SelectValue>({
@@ -99,6 +102,10 @@ const Select = forwardRef(
     const [selectFocus, setSelectFocus] = useState(false);
     const [selectEnter, setSelectEnter] = useState(false);
     const [dropdownVisible, setDropdownVisible] = useState(false);
+    const [selectTarget, setSelectTarget] = useState<HTMLDivElement | null>(
+      null
+    );
+    const [zIndex, setZIndex] = useState(theme.zIndex.dropdown);
     const { className: resolveClassName, styles } = useSelectCSS({
       width,
       type,
@@ -164,14 +171,29 @@ const Select = forwardRef(
       onChange?.(undefined);
     };
 
+    const setSelectTargetRef = useCallback(
+      (element: HTMLDivElement | null) => {
+        selectTargetRef.current = element;
+        const closestZIndex = getZIndexByClosestFloating(
+          selectTargetRef.current,
+          theme.zIndex.dropdown
+        );
+        setZIndex(closestZIndex);
+        setSelectTarget(element);
+      },
+      [theme]
+    );
+
     const selectConfig = useMemo<SelectConfig>(() => {
       return {
         multiple,
         selectValue: internalValue,
         handleSelectChange: handleChange,
-        selectRef,
+        selectTargetRef,
+        selectTarget,
         dropdownHeight,
         strategy,
+        zIndex,
         getPopupContainer,
         type,
         size,
@@ -182,9 +204,11 @@ const Select = forwardRef(
       multiple,
       internalValue,
       handleChange,
-      selectRef,
+      selectTargetRef,
+      selectTarget,
       dropdownHeight,
       strategy,
+      zIndex,
       getPopupContainer,
       type,
       size,
@@ -193,14 +217,14 @@ const Select = forwardRef(
     ]);
 
     useClickAway(
-      selectRef,
+      selectTargetRef,
       () => {
         setDropdownVisible(false);
       },
       ['mousedown']
     );
 
-    useImperativeHandle(ref, () => selectRef.current as HTMLDivElement);
+    useImperativeHandle(ref, () => selectTargetRef.current as HTMLDivElement);
 
     const SelectContent = (): ReactElement => {
       const selectedOptions = getValidChildren(children).filter((option) => {
@@ -256,7 +280,7 @@ const Select = forwardRef(
         <div
           data-testid="selectContainer"
           className={selectClasses}
-          ref={selectRef}
+          ref={setSelectTargetRef}
           onClick={handleClick}
           onMouseDown={handleMouseDown}
           onMouseEnter={handleMouseEnter}

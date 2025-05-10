@@ -9,6 +9,10 @@ import {
   SelectValue,
 } from '../Select.types';
 import { useSelectHoverStyles, useSelectStyles } from '../Select.styles';
+import Modal from '../../Modal';
+import Button from '../../Button';
+import Popover from '../../Popover';
+import { Theme } from '../../Theme';
 
 const typeColorMap = {
   warning: '#eab308',
@@ -429,5 +433,55 @@ describe('Select', () => {
     expect(select).not.toHaveTextContent('React');
     expect(select).not.toHaveTextContent('Vue');
     expect(screen.getByText('Select option')).toBeInTheDocument();
+  });
+
+  test('should set popup zIndex by closest floating container', async () => {
+    render(
+      <Modal visible>
+        <Modal.Header>Modal Title</Modal.Header>
+        <Modal.Body>
+          <Select>
+            <Select.Option value="1">Option 1</Select.Option>
+            <Select.Option value="2">Option 2</Select.Option>
+          </Select>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button>Cancel</Button>
+          <Button type="primary">Confirm</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+    const select = screen.getByTestId('selectContainer');
+    await user.click(select);
+    const popup = screen.getByTestId('popup');
+    expect(popup).toHaveStyle({
+      zIndex: Theme.getPresetStaticTheme().zIndex.modal + 1,
+    });
+  });
+
+  test('should set popup zIndex by closest floating container with popup', async () => {
+    render(
+      <Popover
+        defaultValue
+        content={
+          <Select>
+            <Select.Option value="1">Option 1</Select.Option>
+            <Select.Option value="2">Option 2</Select.Option>
+          </Select>
+        }
+      >
+        Click me
+      </Popover>
+    );
+    const select = screen.getByTestId('selectContainer');
+    await user.click(select);
+    const popups = screen.getAllByTestId('popup');
+    popups.forEach((popup) => {
+      if (popup.innerHTML.indexOf('Option 1') !== -1) {
+        expect(popup).toHaveStyle({
+          zIndex: Theme.getPresetStaticTheme().zIndex.popover + 1,
+        });
+      }
+    });
   });
 });

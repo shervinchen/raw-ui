@@ -1,18 +1,18 @@
-import { useEffect } from 'react';
+import { MutableRefObject, useEffect } from 'react';
 
 export const useIntersectionObserver = (
-  element: HTMLElement | null | undefined,
+  ref: MutableRefObject<HTMLElement | null>,
   callback: IntersectionObserverCallback,
   options: IntersectionObserverInit
 ) => {
   useEffect(() => {
-    if (!element) return;
+    if (!ref.current) return;
 
     const observer = new IntersectionObserver(callback, options);
-    observer.observe(element);
+    observer.observe(ref.current);
 
     return () => {
       observer.disconnect();
     };
-  }, [element, callback, options]);
+  }, [ref, callback, options]);
 };

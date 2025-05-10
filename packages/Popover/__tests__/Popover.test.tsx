@@ -4,6 +4,9 @@ import userEvent from '@testing-library/user-event';
 import Popover from '..';
 import { PopoverProps } from '../Popover.types';
 import { KeyCode } from '../../utils/constant';
+import Modal from '../../Modal';
+import Button from '../../Button';
+import { Theme } from '../../Theme';
 
 const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
 
@@ -131,6 +134,50 @@ describe('Popover', () => {
     await user.keyboard(`[${KeyCode.Escape}]`);
     await waitFor(() => {
       expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    });
+  });
+
+  test('should set popup zIndex by closest floating container', () => {
+    render(
+      <Modal visible>
+        <Modal.Header>Modal Title</Modal.Header>
+        <Modal.Body>
+          <Popover defaultValue content="I am a popover">
+            Click me
+          </Popover>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button>Cancel</Button>
+          <Button type="primary">Confirm</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+    const popup = screen.getByTestId('popup');
+    expect(popup).toHaveStyle({
+      zIndex: Theme.getPresetStaticTheme().zIndex.modal + 1,
+    });
+  });
+
+  test('should set popup zIndex by closest floating container with popup', () => {
+    render(
+      <Popover
+        defaultValue
+        content={
+          <Popover defaultValue content="I am a popover">
+            Click me
+          </Popover>
+        }
+      >
+        Click me
+      </Popover>
+    );
+    const popups = screen.getAllByTestId('popup');
+    popups.forEach((popup) => {
+      if (popup.innerHTML.indexOf('I am a popover') !== -1) {
+        expect(popup).toHaveStyle({
+          zIndex: Theme.getPresetStaticTheme().zIndex.popover + 1,
+        });
+      }
     });
   });
 });

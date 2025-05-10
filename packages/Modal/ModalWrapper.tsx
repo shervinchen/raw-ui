@@ -36,7 +36,7 @@ const ModalWrapper: FC<PropsWithChildren<ModalWrapperProps>> = ({
         aria-modal="true"
         aria-labelledby="raw-modal-title"
         aria-describedby="raw-modal-body"
-        className="raw-modal-container"
+        className="raw-modal"
         data-testid="modalContainer"
       >
         <div
@@ -59,7 +59,7 @@ const ModalWrapper: FC<PropsWithChildren<ModalWrapperProps>> = ({
           {children}
         </div>
         <style jsx>{`
-          .raw-modal-container {
+          .raw-modal {
             position: fixed;
             top: 0;
             left: 0;

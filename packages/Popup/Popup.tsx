@@ -15,7 +15,6 @@ import {
   useResizeObserver,
 } from '../utils/hooks';
 import { getOverflowAncestors, OverflowAncestors } from './utils/dom';
-import { useModalContext } from '../Modal/modal-context';
 
 const Popup: FC<PropsWithChildren<PopupProps>> = ({
   name,
@@ -23,25 +22,18 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
   zIndex,
   strategy = 'absolute',
   targetRef,
+  targetElement,
   getPopupPosition,
   getPopupContainer,
   children,
 }) => {
-  const { getPopupContainerInModal } = useModalContext();
-  const portal = usePortal(
-    name,
-    getPopupContainer?.()
-      ? getPopupContainer
-      : getPopupContainerInModal?.()
-      ? getPopupContainerInModal
-      : getPopupContainer
-  );
+  const portal = usePortal(name, getPopupContainer);
   const [popupPosition, setPopupPosition] = useState<PopupPosition>({
     top: 0,
     left: 0,
   });
   const popupRef = useRef<HTMLDivElement>(null);
-  const ancestors = useRef<OverflowAncestors>([]);
+  const [popupElement, setPopupElement] = useState<HTMLDivElement | null>(null);
 
   const handleClick = (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
@@ -51,7 +43,7 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
     event.stopPropagation();
   };
 
-  const updatePopupPosition = useCallback(() => {
+  const updatePopupPosition = () => {
     const newPosition = getPopupPosition(popupRef);
     setPopupPosition((prevPosition) => {
       if (
@@ -62,65 +54,57 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
       }
       return prevPosition;
     });
-  }, [getPopupPosition]);
+  };
 
-  const bindAncestorsListeners = useCallback(() => {
-    ancestors.current.forEach((ancestor) => {
+  const setPopupRef = useCallback((element: HTMLDivElement | null) => {
+    popupRef.current = element;
+    updatePopupPosition();
+    setPopupElement(element);
+  }, []);
+
+  const bindAncestorsListeners = (ancestors) => {
+    ancestors.forEach((ancestor) => {
       ancestor.addEventListener('scroll', updatePopupPosition, {
         passive: true,
       });
       ancestor.addEventListener('resize', updatePopupPosition);
     });
-  }, [updatePopupPosition]);
+  };
 
-  const unbindAncestorsListeners = useCallback(() => {
-    ancestors.current.forEach((ancestor) => {
+  const unbindAncestorsListeners = (ancestors) => {
+    ancestors.forEach((ancestor) => {
       ancestor.removeEventListener('scroll', updatePopupPosition);
       ancestor.removeEventListener('resize', updatePopupPosition);
     });
-  }, [updatePopupPosition]);
+  };
 
-  useResizeObserver(targetRef?.current, updatePopupPosition);
+  useResizeObserver(targetRef, updatePopupPosition);
 
-  useResizeObserver(popupRef?.current, updatePopupPosition);
+  useResizeObserver(popupRef, updatePopupPosition);
 
-  useIntersectionObserver(targetRef?.current, updatePopupPosition, {
+  useIntersectionObserver(targetRef, updatePopupPosition, {
     root: null,
     threshold: 0,
   });
 
   useEffect(() => {
-    if (visible) {
-      updatePopupPosition();
-      bindAncestorsListeners();
-    }
+    const ancestors: OverflowAncestors = [
+      ...(targetElement ? getOverflowAncestors(targetElement) : []),
+      ...(popupElement ? getOverflowAncestors(popupElement) : []),
+    ];
+    bindAncestorsListeners(ancestors);
 
     return () => {
-      unbindAncestorsListeners();
+      unbindAncestorsListeners(ancestors);
     };
-  }, [
-    visible,
-    updatePopupPosition,
-    bindAncestorsListeners,
-    unbindAncestorsListeners,
-  ]);
+  }, [targetElement, popupElement]);
 
-  if (!portal || !targetRef?.current) return null;
+  if (!portal || !targetRef.current) return null;
 
   return createPortal(
     visible ? (
       <div
-        ref={(element) => {
-          popupRef.current = element;
-          ancestors.current = [
-            ...(targetRef?.current
-              ? getOverflowAncestors(targetRef?.current)
-              : []),
-            ...(popupRef?.current
-              ? getOverflowAncestors(popupRef?.current)
-              : []),
-          ];
-        }}
+        ref={setPopupRef}
         className="raw-popup"
         onClick={handleClick}
         onMouseDown={handleMouseDown}

@@ -1,21 +1,8 @@
-import React, { FC, PropsWithChildren, useEffect, useRef } from 'react';
-import { useModalContext } from './modal-context';
+import React, { FC, PropsWithChildren } from 'react';
 
 const ModalBody: FC<PropsWithChildren> = ({ children, ...restProps }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { handleSetPopupContainerInModal } = useModalContext();
-
-  useEffect(() => {
-    handleSetPopupContainerInModal(ref.current);
-  }, [handleSetPopupContainerInModal]);
-
   return (
-    <div
-      ref={ref}
-      id="raw-modal-body"
-      className="raw-modal-body"
-      {...restProps}
-    >
+    <div id="raw-modal-body" className="raw-modal-body" {...restProps}>
       {children}
       <style jsx>{`
         .raw-modal-body {

@@ -37,7 +37,9 @@ export interface SelectConfig {
   multiple?: boolean;
   selectValue?: SelectValue;
   handleSelectChange?: (optionValue?: SelectOptionValue) => void;
-  selectRef?: MutableRefObject<HTMLElement | null>;
+  selectTargetRef?: MutableRefObject<HTMLElement | null>;
+  selectTarget?: HTMLElement | null;
+  zIndex?: number;
   getPopupContainer?: () => HTMLElement | null;
   dropdownHeight?: string;
   strategy?: Strategy;

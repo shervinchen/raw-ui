@@ -24,13 +24,15 @@ const SelectDropdown = forwardRef(
       multiple,
       dropdownHeight,
       strategy,
-      selectRef,
+      selectTargetRef,
+      selectTarget,
+      zIndex,
       getPopupContainer,
       selectId,
     } = useSelectContext();
     const { stage: dropdownTransitionStage } = useTransition(visible, 0, 0);
     const dropdownClasses = classNames('raw-select-dropdown', className);
-    const selectRect = selectRef?.current?.getBoundingClientRect() ?? null;
+    const selectRect = selectTargetRef.current?.getBoundingClientRect() ?? null;
     const dropdownWidth = selectRect
       ? selectRect.width || selectRect.right - selectRect.left
       : 0;
@@ -41,13 +43,14 @@ const SelectDropdown = forwardRef(
       <Popup
         name="dropdown"
         visible={visible}
-        zIndex={theme.zIndex.dropdown}
+        zIndex={zIndex}
         strategy={strategy}
-        targetRef={selectRef}
+        targetRef={selectTargetRef}
+        targetElement={selectTarget}
         getPopupPosition={(popupRef) => {
           const { bottom, left } = computePopupRect(
             strategy,
-            selectRef,
+            selectTargetRef,
             popupRef
           );
           return {

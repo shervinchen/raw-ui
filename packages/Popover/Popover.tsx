@@ -1,4 +1,11 @@
-import React, { FC, PropsWithChildren, useId, useRef } from 'react';
+import React, {
+  FC,
+  PropsWithChildren,
+  useCallback,
+  useId,
+  useRef,
+  useState,
+} from 'react';
 import classNames from 'classnames';
 import { useClickAway, useKeyPressEvent } from 'react-use';
 import { PopoverProps } from './Popover.types';
@@ -8,6 +15,7 @@ import { computePopoverPosition } from './computePopoverPosition';
 import { useTheme } from '../Theme';
 import PopoverArrow from './PopoverArrow';
 import { KeyCode } from '../utils/constant';
+import { getZIndexByClosestFloating } from '../Popup/getClosestFloatingZIndex';
 
 const Popover: FC<PropsWithChildren<PopoverProps>> = ({
   content,
@@ -24,14 +32,31 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
   ...restProps
 }) => {
   const popoverId = useId();
-  const ref = useRef<HTMLDivElement>(null);
+  const popoverTargetRef = useRef<HTMLDivElement>(null);
   const theme = useTheme();
   const [internalValue, setInternalValue] = useControlled<boolean>({
     defaultValue,
     value,
   });
   const { stage, shouldMount } = useTransition(internalValue, 0, 50);
+  const [popoverTarget, setPopoverTarget] = useState<HTMLDivElement | null>(
+    null
+  );
+  const [zIndex, setZIndex] = useState(theme.zIndex.popover);
   const classes = classNames('raw-popover', className);
+
+  const setPopoverTargetRef = useCallback(
+    (element: HTMLDivElement | null) => {
+      popoverTargetRef.current = element;
+      const closestZIndex = getZIndexByClosestFloating(
+        popoverTargetRef.current,
+        theme.zIndex.popover
+      );
+      setZIndex(closestZIndex);
+      setPopoverTarget(element);
+    },
+    [theme]
+  );
 
   const handleClick = () => {
     if (!disabled) {
@@ -41,7 +66,7 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
   };
 
   useClickAway(
-    ref,
+    popoverTargetRef,
     () => {
       setInternalValue(false);
     },
@@ -60,7 +85,7 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
         aria-haspopup="dialog"
         data-testid="popoverTarget"
         aria-controls={popoverId}
-        ref={ref}
+        ref={setPopoverTargetRef}
         onClick={handleClick}
         className="raw-popover-target"
         {...restProps}
@@ -70,11 +95,17 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
       <Popup
         name="popover"
         visible={shouldMount}
-        zIndex={theme.zIndex.popover}
+        zIndex={zIndex}
         strategy={strategy}
-        targetRef={ref}
+        targetRef={popoverTargetRef}
+        targetElement={popoverTarget}
         getPopupPosition={(popupRef) =>
-          computePopoverPosition(placement, strategy, ref, popupRef)
+          computePopoverPosition(
+            placement,
+            strategy,
+            popoverTargetRef,
+            popupRef
+          )
         }
         getPopupContainer={getPopupContainer}
       >
@@ -86,7 +117,9 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
             opacity: stage === 'enter' ? 1 : 0,
           }}
         >
-          {!hideArrow && <PopoverArrow targetRef={ref} placement={placement} />}
+          {!hideArrow && (
+            <PopoverArrow targetRef={popoverTargetRef} placement={placement} />
+          )}
           {content}
         </div>
       </Popup>

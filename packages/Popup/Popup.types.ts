@@ -19,6 +19,7 @@ export interface PopupProps {
   zIndex: number;
   strategy?: Strategy;
   targetRef?: MutableRefObject<HTMLElement | null>;
+  targetElement?: HTMLElement | null;
   getPopupPosition: (
     popupRef: MutableRefObject<HTMLElement | null>
   ) => PopupPosition;

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { MutableRefObject, useEffect } from 'react';
 
 const defaultOptions: MutationObserverInit = {
   attributes: true,
@@ -7,18 +7,18 @@ const defaultOptions: MutationObserverInit = {
 };
 
 export const useMutationObserver = (
-  element: HTMLElement | null | undefined,
+  ref: MutableRefObject<HTMLElement | null>,
   callback: MutationCallback,
   options: MutationObserverInit = defaultOptions
 ) => {
   useEffect(() => {
-    if (!element) return;
+    if (!ref.current) return;
 
     const observer = new MutationObserver(callback);
-    observer.observe(element, options);
+    observer.observe(ref.current, options);
 
     return () => {
       observer.disconnect();
     };
-  }, [element, callback, options]);
+  }, [ref, callback, options]);
 };

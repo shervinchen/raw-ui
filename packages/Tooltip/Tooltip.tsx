@@ -1,4 +1,11 @@
-import React, { FC, PropsWithChildren, useId, useRef, useState } from 'react';
+import React, {
+  FC,
+  PropsWithChildren,
+  useCallback,
+  useId,
+  useRef,
+  useState,
+} from 'react';
 import classNames from 'classnames';
 import { TooltipProps } from './Tooltip.types';
 import { useTransition } from '../utils/hooks';
@@ -6,6 +13,7 @@ import Popup from '../Popup';
 import { computeTooltipPosition } from './computeTooltipPosition';
 import TooltipArrow from './TooltipArrow';
 import { useTheme } from '../Theme';
+import { getZIndexByClosestFloating } from '../Popup/getClosestFloatingZIndex';
 
 const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
   content,
@@ -19,9 +27,13 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
   ...restProps
 }) => {
   const tooltipId = useId();
-  const ref = useRef<HTMLDivElement>(null);
+  const tooltipTargetRef = useRef<HTMLDivElement>(null);
   const theme = useTheme();
   const [visible, setVisible] = useState(false);
+  const [tooltipTarget, setTooltipTarget] = useState<HTMLDivElement | null>(
+    null
+  );
+  const [zIndex, setZIndex] = useState(theme.zIndex.tooltip);
   const { stage, shouldMount } = useTransition(visible, 0, 50);
   const classes = classNames('raw-tooltip', className);
 
@@ -31,12 +43,25 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
     }
   };
 
+  const setTooltipTargetRef = useCallback(
+    (element: HTMLDivElement | null) => {
+      tooltipTargetRef.current = element;
+      const closestZIndex = getZIndexByClosestFloating(
+        tooltipTargetRef.current,
+        theme.zIndex.tooltip
+      );
+      setZIndex(closestZIndex);
+      setTooltipTarget(element);
+    },
+    [theme]
+  );
+
   return (
     <>
       <div
         data-testid="tooltipTarget"
         aria-describedby={tooltipId}
-        ref={ref}
+        ref={setTooltipTargetRef}
         onMouseEnter={() => handleMouseEnterOrLeave(true)}
         onMouseLeave={() => handleMouseEnterOrLeave(false)}
         className="raw-tooltip-target"
@@ -47,11 +72,17 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
       <Popup
         name="tooltip"
         visible={shouldMount}
-        zIndex={theme.zIndex.tooltip}
+        zIndex={zIndex}
         strategy={strategy}
-        targetRef={ref}
+        targetRef={tooltipTargetRef}
+        targetElement={tooltipTarget}
         getPopupPosition={(popupRef) =>
-          computeTooltipPosition(placement, strategy, ref, popupRef)
+          computeTooltipPosition(
+            placement,
+            strategy,
+            tooltipTargetRef,
+            popupRef
+          )
         }
         getPopupContainer={getPopupContainer}
       >
@@ -63,7 +94,9 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
             opacity: stage === 'enter' ? 1 : 0,
           }}
         >
-          {!hideArrow && <TooltipArrow targetRef={ref} placement={placement} />}
+          {!hideArrow && (
+            <TooltipArrow targetRef={tooltipTargetRef} placement={placement} />
+          )}
           {content}
         </div>
       </Popup>
