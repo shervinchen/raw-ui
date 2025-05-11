@@ -13,13 +13,13 @@ export const arrowSize = 8;
 export const computeTooltipPosition = (
   placement: TooltipPlacement,
   strategy: Strategy,
-  targetRef?: MutableRefObject<HTMLElement | null>,
-  popupRef?: MutableRefObject<HTMLElement | null>
+  targetRef: MutableRefObject<HTMLElement | null>,
+  popupRef: MutableRefObject<HTMLElement | null>,
 ) => {
   const { top, bottom, left, right } = computePopupRect(
     strategy,
     targetRef,
-    popupRef
+    popupRef,
   );
   const { width: targetWidth, height: targetHeight } = getRectSize(targetRef);
   const { width: popupWidth, height: popupHeight } = getRectSize(popupRef);
@@ -83,7 +83,7 @@ export const computeTooltipPosition = (
 export const computeTooltipArrowPosition = (
   arrowOffset: TooltipArrowOffset,
   arrowDistance: string,
-  placement: TooltipPlacement
+  placement: TooltipPlacement,
 ) => {
   const placements: {
     [key in TooltipPlacement]: TooltipArrowPosition;

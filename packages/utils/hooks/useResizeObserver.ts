@@ -1,17 +1,17 @@
-import { MutableRefObject, useEffect } from 'react';
+import { useEffect } from 'react';
 
 export const useResizeObserver = (
-  ref: MutableRefObject<HTMLElement | null>,
-  callback: ResizeObserverCallback
+  element: HTMLElement | null,
+  callback: ResizeObserverCallback,
 ) => {
   useEffect(() => {
-    if (!ref.current) return;
+    if (!element) return;
 
     const observer = new ResizeObserver(callback);
-    observer.observe(ref.current);
+    observer.observe(element);
 
     return () => {
       observer.disconnect();
     };
-  }, [ref, callback]);
+  }, [element, callback]);
 };

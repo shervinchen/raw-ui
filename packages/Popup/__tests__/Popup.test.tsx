@@ -17,8 +17,8 @@ const Component = ({
   getPopupContainer,
 }: {
   visible: boolean;
-  targetRef?: MutableRefObject<HTMLElement | null>;
-  targetElement?: HTMLElement | null;
+  targetRef: MutableRefObject<HTMLElement | null>;
+  targetElement: HTMLElement | null;
   getPopupContainer: () => HTMLElement | null;
 }) => {
   return (
@@ -47,8 +47,9 @@ describe('Popup', () => {
       <Component
         visible
         targetRef={targetRefMock}
+        targetElement={null}
         getPopupContainer={getPopupContainerMock}
-      />
+      />,
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -58,8 +59,9 @@ describe('Popup', () => {
       <Component
         visible
         targetRef={targetRefMock}
+        targetElement={null}
         getPopupContainer={getPopupContainerMock}
-      />
+      />,
     );
     expect(screen.queryByTestId('popup')).toBeInTheDocument();
   });
@@ -69,8 +71,9 @@ describe('Popup', () => {
       <Component
         visible={false}
         targetRef={targetRefMock}
+        targetElement={null}
         getPopupContainer={getPopupContainerMock}
-      />
+      />,
     );
     expect(screen.queryByTestId('popup')).not.toBeInTheDocument();
   });
@@ -80,8 +83,9 @@ describe('Popup', () => {
       <Component
         visible
         targetRef={targetRefMock}
+        targetElement={null}
         getPopupContainer={getPopupContainerMock}
-      />
+      />,
     );
     expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
   });
@@ -98,6 +102,7 @@ describe('Popup', () => {
             <Component
               visible
               targetRef={ref}
+              targetElement={null}
               getPopupContainer={() => customContainerRef.current}
             />
           </div>
@@ -108,7 +113,7 @@ describe('Popup', () => {
     expect(
       screen
         .getByTestId('customContainer')
-        .contains(screen.getByTestId('popup'))
+        .contains(screen.getByTestId('popup')),
     ).toBeTruthy();
   });
 
@@ -120,9 +125,10 @@ describe('Popup', () => {
         <Component
           visible
           targetRef={targetRefMock}
+          targetElement={null}
           getPopupContainer={getPopupContainerMock}
         />
-      </div>
+      </div>,
     );
     const popup = screen.getByTestId('popup');
     fireEvent.mouseDown(popup);

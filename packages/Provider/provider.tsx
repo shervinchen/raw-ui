@@ -5,7 +5,7 @@ import { RawUIContent } from './context';
 
 export type RawUIProviderProps = {
   themes?: Array<RawUITheme>;
-  themeType?: string | 'dark' | 'light';
+  themeType?: string;
 };
 
 const RawUIProvider: FC<PropsWithChildren<RawUIProviderProps>> = ({

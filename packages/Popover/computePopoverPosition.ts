@@ -13,13 +13,13 @@ export const arrowSize = 8;
 export const computePopoverPosition = (
   placement: PopoverPlacement,
   strategy: Strategy,
-  targetRef?: MutableRefObject<HTMLElement | null>,
-  popupRef?: MutableRefObject<HTMLElement | null>
+  targetRef: MutableRefObject<HTMLElement | null>,
+  popupRef: MutableRefObject<HTMLElement | null>,
 ) => {
   const { top, bottom, left, right } = computePopupRect(
     strategy,
     targetRef,
-    popupRef
+    popupRef,
   );
   const { width: targetWidth, height: targetHeight } = getRectSize(targetRef);
   const { width: popupWidth, height: popupHeight } = getRectSize(popupRef);
@@ -83,7 +83,7 @@ export const computePopoverPosition = (
 export const computePopoverArrowPosition = (
   arrowOffset: PopoverArrowOffset,
   arrowDistance: string,
-  placement: PopoverPlacement
+  placement: PopoverPlacement,
 ) => {
   const placements: {
     [key in PopoverPlacement]: PopoverArrowPosition;

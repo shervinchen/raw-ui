@@ -40,7 +40,7 @@ const getInternalValue = (multiple: boolean, value: SelectValue) => {
 const getNewInternalValue = (
   multiple: boolean,
   prevValue: SelectValue,
-  nextValue: SelectOptionValue
+  nextValue: SelectOptionValue,
 ) => {
   if (multiple) {
     if (Array.isArray(prevValue)) {
@@ -58,12 +58,12 @@ const getNewInternalValue = (
 
 const sortSelectedOptions = (
   selectedValue: SelectOptionValue[],
-  selectedOption: ReactElement[]
+  selectedOption: ReactElement[],
 ): ReactElement[] => {
   return selectedOption.sort(
     (a, b) =>
       selectedValue.indexOf(a.props.value) -
-      selectedValue.indexOf(b.props.value)
+      selectedValue.indexOf(b.props.value),
   );
 };
 
@@ -88,11 +88,11 @@ const Select = forwardRef(
       children,
       ...restProps
     }: SelectProps,
-    ref: ComponentPropsWithRef<'div'>['ref']
+    ref: ComponentPropsWithRef<'div'>['ref'],
   ) => {
     const selectId = `raw-select-dropdown-${useId()}`;
     const theme = useTheme();
-    const selectTargetRef = useRef<HTMLDivElement>(null);
+    const selectTargetRef = useRef<HTMLDivElement | null>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const [internalValue, setInternalValue] = useControlled<SelectValue>({
@@ -103,7 +103,7 @@ const Select = forwardRef(
     const [selectEnter, setSelectEnter] = useState(false);
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const [selectTarget, setSelectTarget] = useState<HTMLDivElement | null>(
-      null
+      null,
     );
     const [zIndex, setZIndex] = useState(theme.zIndex.dropdown);
     const { className: resolveClassName, styles } = useSelectCSS({
@@ -117,7 +117,7 @@ const Select = forwardRef(
       (selectFocus || dropdownVisible) && 'raw-select-active',
       multiple && 'multiple',
       className,
-      resolveClassName
+      resolveClassName,
     );
 
     const selectClearVisible = useMemo(() => {
@@ -145,12 +145,12 @@ const Select = forwardRef(
         const newValue = getNewInternalValue(
           multiple,
           internalValue,
-          optionValue
+          optionValue,
         );
         setInternalValue(newValue);
         onChange?.(newValue);
       },
-      [internalValue, multiple, onChange, setInternalValue]
+      [internalValue, multiple, onChange, setInternalValue],
     );
 
     const handleFocus = () => setSelectFocus(true);
@@ -176,12 +176,12 @@ const Select = forwardRef(
         selectTargetRef.current = element;
         const closestZIndex = getZIndexByClosestFloating(
           selectTargetRef.current,
-          theme.zIndex.dropdown
+          theme.zIndex.dropdown,
         );
         setZIndex(closestZIndex);
         setSelectTarget(element);
       },
-      [theme]
+      [theme],
     );
 
     const selectConfig = useMemo<SelectConfig>(() => {
@@ -216,13 +216,9 @@ const Select = forwardRef(
       selectId,
     ]);
 
-    useClickAway(
-      selectTargetRef,
-      () => {
-        setDropdownVisible(false);
-      },
-      ['mousedown']
-    );
+    useClickAway(selectTargetRef, () => {
+      setDropdownVisible(false);
+    }, ['mousedown']);
 
     useImperativeHandle(ref, () => selectTargetRef.current as HTMLDivElement);
 
@@ -252,7 +248,7 @@ const Select = forwardRef(
           <div className="raw-select-tag-content">
             {sortSelectedOptions(
               internalValue as SelectOptionValue[],
-              selectedOptions
+              selectedOptions,
             ).map((option) => (
               <SelectTag
                 key={option.props.value as SelectOptionValue}
@@ -324,7 +320,7 @@ const Select = forwardRef(
         </SelectDropdown>
       </SelectContext.Provider>
     );
-  }
+  },
 );
 
 Select.displayName = 'RawSelect';

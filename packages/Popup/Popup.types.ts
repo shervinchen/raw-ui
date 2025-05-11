@@ -16,12 +16,12 @@ export type PopupPosition = {
 export interface PopupProps {
   name: string;
   visible: boolean;
-  zIndex: number;
+  zIndex?: number;
   strategy?: Strategy;
-  targetRef?: MutableRefObject<HTMLElement | null>;
-  targetElement?: HTMLElement | null;
+  targetRef: MutableRefObject<HTMLElement | null>;
+  targetElement: HTMLElement | null;
   getPopupPosition: (
-    popupRef: MutableRefObject<HTMLElement | null>
+    popupRef: MutableRefObject<HTMLDivElement | null>,
   ) => PopupPosition;
   getPopupContainer?: () => HTMLElement | null;
 }

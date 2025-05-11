@@ -6,12 +6,10 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { GitHub, Moon, Sun } from 'react-feather';
 import { useTheme as useNextTheme } from 'next-themes';
-import { useTheme } from '@/packages';
 import ThemeSwitch from './theme-switch/theme-switch';
 
 export default function Navbar() {
   const { setTheme } = useNextTheme();
-  const theme = useTheme();
   const pathname = usePathname();
   const routeName = pathname.split('/')[1];
 

@@ -1,5 +1,6 @@
 import React, {
   FC,
+  MutableRefObject,
   PropsWithChildren,
   useCallback,
   useId,
@@ -32,7 +33,7 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
   ...restProps
 }) => {
   const popoverId = useId();
-  const popoverTargetRef = useRef<HTMLDivElement>(null);
+  const popoverTargetRef = useRef<HTMLDivElement | null>(null);
   const theme = useTheme();
   const [internalValue, setInternalValue] = useControlled<boolean>({
     defaultValue,
@@ -40,7 +41,7 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
   });
   const { stage, shouldMount } = useTransition(internalValue, 0, 50);
   const [popoverTarget, setPopoverTarget] = useState<HTMLDivElement | null>(
-    null
+    null,
   );
   const [zIndex, setZIndex] = useState(theme.zIndex.popover);
   const classes = classNames('raw-popover', className);
@@ -50,12 +51,24 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
       popoverTargetRef.current = element;
       const closestZIndex = getZIndexByClosestFloating(
         popoverTargetRef.current,
-        theme.zIndex.popover
+        theme.zIndex.popover,
       );
       setZIndex(closestZIndex);
       setPopoverTarget(element);
     },
-    [theme]
+    [theme],
+  );
+
+  const getPopupPosition = useCallback(
+    (popupRef: MutableRefObject<HTMLDivElement | null>) => {
+      return computePopoverPosition(
+        placement,
+        strategy,
+        popoverTargetRef,
+        popupRef,
+      );
+    },
+    [placement, strategy],
   );
 
   const handleClick = () => {
@@ -65,13 +78,9 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
     }
   };
 
-  useClickAway(
-    popoverTargetRef,
-    () => {
-      setInternalValue(false);
-    },
-    ['click']
-  );
+  useClickAway(popoverTargetRef, () => {
+    setInternalValue(false);
+  }, ['click']);
 
   useKeyPressEvent(KeyCode.Escape, () => {
     setInternalValue(false);
@@ -99,14 +108,7 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
         strategy={strategy}
         targetRef={popoverTargetRef}
         targetElement={popoverTarget}
-        getPopupPosition={(popupRef) =>
-          computePopoverPosition(
-            placement,
-            strategy,
-            popoverTargetRef,
-            popupRef
-          )
-        }
+        getPopupPosition={getPopupPosition}
         getPopupContainer={getPopupContainer}
       >
         <div

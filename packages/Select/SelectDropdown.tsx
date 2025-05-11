@@ -3,6 +3,8 @@ import React, {
   useRef,
   useImperativeHandle,
   ComponentPropsWithRef,
+  useCallback,
+  MutableRefObject,
 } from 'react';
 import classNames from 'classnames';
 import { SelectDropdownProps } from './SelectDropdown.types';
@@ -16,7 +18,7 @@ import { computePopupRect } from '../Popup/computePopupRect';
 const SelectDropdown = forwardRef(
   (
     { visible, className, children }: SelectDropdownProps,
-    ref: ComponentPropsWithRef<'div'>['ref']
+    ref: ComponentPropsWithRef<'div'>['ref'],
   ) => {
     const theme: RawUITheme = useTheme();
     const dropdownRef = useRef<HTMLDivElement | null>(null);
@@ -37,6 +39,21 @@ const SelectDropdown = forwardRef(
       ? selectRect.width || selectRect.right - selectRect.left
       : 0;
 
+    const getPopupPosition = useCallback(
+      (popupRef: MutableRefObject<HTMLDivElement | null>) => {
+        const { bottom, left } = computePopupRect(
+          strategy,
+          selectTargetRef,
+          popupRef,
+        );
+        return {
+          top: bottom,
+          left,
+        };
+      },
+      [strategy, selectTargetRef],
+    );
+
     useImperativeHandle(ref, () => dropdownRef.current as HTMLDivElement);
 
     return (
@@ -47,17 +64,7 @@ const SelectDropdown = forwardRef(
         strategy={strategy}
         targetRef={selectTargetRef}
         targetElement={selectTarget}
-        getPopupPosition={(popupRef) => {
-          const { bottom, left } = computePopupRect(
-            strategy,
-            selectTargetRef,
-            popupRef
-          );
-          return {
-            top: bottom,
-            left,
-          };
-        }}
+        getPopupPosition={getPopupPosition}
         getPopupContainer={getPopupContainer}
       >
         <div
@@ -89,7 +96,7 @@ const SelectDropdown = forwardRef(
         </div>
       </Popup>
     );
-  }
+  },
 );
 
 SelectDropdown.displayName = 'RawSelectDropdown';

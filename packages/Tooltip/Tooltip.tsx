@@ -1,5 +1,6 @@
 import React, {
   FC,
+  MutableRefObject,
   PropsWithChildren,
   useCallback,
   useId,
@@ -27,11 +28,11 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
   ...restProps
 }) => {
   const tooltipId = useId();
-  const tooltipTargetRef = useRef<HTMLDivElement>(null);
+  const tooltipTargetRef = useRef<HTMLDivElement | null>(null);
   const theme = useTheme();
   const [visible, setVisible] = useState(false);
   const [tooltipTarget, setTooltipTarget] = useState<HTMLDivElement | null>(
-    null
+    null,
   );
   const [zIndex, setZIndex] = useState(theme.zIndex.tooltip);
   const { stage, shouldMount } = useTransition(visible, 0, 50);
@@ -48,12 +49,24 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
       tooltipTargetRef.current = element;
       const closestZIndex = getZIndexByClosestFloating(
         tooltipTargetRef.current,
-        theme.zIndex.tooltip
+        theme.zIndex.tooltip,
       );
       setZIndex(closestZIndex);
       setTooltipTarget(element);
     },
-    [theme]
+    [theme],
+  );
+
+  const getPopupPosition = useCallback(
+    (popupRef: MutableRefObject<HTMLDivElement | null>) => {
+      return computeTooltipPosition(
+        placement,
+        strategy,
+        tooltipTargetRef,
+        popupRef,
+      );
+    },
+    [placement, strategy],
   );
 
   return (
@@ -76,14 +89,7 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
         strategy={strategy}
         targetRef={tooltipTargetRef}
         targetElement={tooltipTarget}
-        getPopupPosition={(popupRef) =>
-          computeTooltipPosition(
-            placement,
-            strategy,
-            tooltipTargetRef,
-            popupRef
-          )
-        }
+        getPopupPosition={getPopupPosition}
         getPopupContainer={getPopupContainer}
       >
         <div

@@ -4,7 +4,7 @@ import { getRectRelativeToOffsetParent } from './utils/getRectRelativeToOffsetPa
 import { getOffsetParent } from './utils/getOffsetParent';
 import { Strategy } from './utils/common';
 
-export const getRectSize = (ref?: MutableRefObject<HTMLElement | null>) => {
+export const getRectSize = (ref: MutableRefObject<HTMLElement | null>) => {
   const rect = ref.current?.getBoundingClientRect() ?? null;
   const width = rect ? rect.width || rect.right - rect.left : 0;
   const height = rect ? rect.height || rect.bottom - rect.top : 0;
@@ -17,8 +17,8 @@ export const getRectSize = (ref?: MutableRefObject<HTMLElement | null>) => {
 
 export const computePopupRect = (
   strategy: Strategy,
-  targetRef?: MutableRefObject<HTMLElement | null>,
-  popupRef?: MutableRefObject<HTMLElement | null>
+  targetRef: MutableRefObject<HTMLElement | null>,
+  popupRef: MutableRefObject<HTMLElement | null>,
 ): PopupRect => {
   if (!targetRef.current || !popupRef.current) {
     return {
@@ -32,7 +32,7 @@ export const computePopupRect = (
   const rect = getRectRelativeToOffsetParent(
     targetRef.current,
     getOffsetParent(popupRef.current),
-    strategy
+    strategy,
   );
 
   return {

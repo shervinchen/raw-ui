@@ -9,12 +9,9 @@ import React, {
 } from 'react';
 import { createPortal } from 'react-dom';
 import { PopupProps, PopupPosition } from './Popup.types';
-import {
-  useIntersectionObserver,
-  usePortal,
-  useResizeObserver,
-} from '../utils/hooks';
+import { usePortal, useResizeObserver } from '../utils/hooks';
 import { getOverflowAncestors, OverflowAncestors } from './utils/dom';
+import { observeMove } from './utils/observeMove';
 
 const Popup: FC<PropsWithChildren<PopupProps>> = ({
   name,
@@ -32,7 +29,7 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
     top: 0,
     left: 0,
   });
-  const popupRef = useRef<HTMLDivElement>(null);
+  const popupRef = useRef<HTMLDivElement | null>(null);
   const [popupElement, setPopupElement] = useState<HTMLDivElement | null>(null);
 
   const handleClick = (event: MouseEvent<HTMLDivElement>) => {
@@ -43,61 +40,67 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
     event.stopPropagation();
   };
 
-  const updatePopupPosition = () => {
+  const updatePopupPosition = useCallback(() => {
     const newPosition = getPopupPosition(popupRef);
-    setPopupPosition((prevPosition) => {
-      if (
-        prevPosition.left !== newPosition.left ||
-        prevPosition.top !== newPosition.top
-      ) {
-        return newPosition;
-      }
-      return prevPosition;
-    });
-  };
+    setPopupPosition(newPosition);
+  }, [getPopupPosition]);
 
-  const setPopupRef = useCallback((element: HTMLDivElement | null) => {
-    popupRef.current = element;
-    updatePopupPosition();
-    setPopupElement(element);
-  }, []);
+  const setPopupRef = useCallback(
+    (element: HTMLDivElement | null) => {
+      popupRef.current = element;
+      updatePopupPosition();
+      setPopupElement(element);
+    },
+    [updatePopupPosition],
+  );
 
-  const bindAncestorsListeners = (ancestors) => {
-    ancestors.forEach((ancestor) => {
-      ancestor.addEventListener('scroll', updatePopupPosition, {
-        passive: true,
+  const bindAncestorsListeners = useCallback(
+    (ancestors: OverflowAncestors) => {
+      ancestors.forEach((ancestor) => {
+        ancestor.addEventListener('scroll', updatePopupPosition, {
+          passive: true,
+        });
+        ancestor.addEventListener('resize', updatePopupPosition);
       });
-      ancestor.addEventListener('resize', updatePopupPosition);
-    });
-  };
+    },
+    [updatePopupPosition],
+  );
 
-  const unbindAncestorsListeners = (ancestors) => {
-    ancestors.forEach((ancestor) => {
-      ancestor.removeEventListener('scroll', updatePopupPosition);
-      ancestor.removeEventListener('resize', updatePopupPosition);
-    });
-  };
+  const unbindAncestorsListeners = useCallback(
+    (ancestors: OverflowAncestors) => {
+      ancestors.forEach((ancestor) => {
+        ancestor.removeEventListener('scroll', updatePopupPosition);
+        ancestor.removeEventListener('resize', updatePopupPosition);
+      });
+    },
+    [updatePopupPosition],
+  );
 
-  useResizeObserver(targetRef, updatePopupPosition);
+  useResizeObserver(targetElement, updatePopupPosition);
 
-  useResizeObserver(popupRef, updatePopupPosition);
-
-  useIntersectionObserver(targetRef, updatePopupPosition, {
-    root: null,
-    threshold: 0,
-  });
+  useResizeObserver(popupElement, updatePopupPosition);
 
   useEffect(() => {
     const ancestors: OverflowAncestors = [
       ...(targetElement ? getOverflowAncestors(targetElement) : []),
       ...(popupElement ? getOverflowAncestors(popupElement) : []),
     ];
+    const cleanupIo = targetElement
+      ? observeMove(targetElement, updatePopupPosition)
+      : null;
     bindAncestorsListeners(ancestors);
 
     return () => {
+      cleanupIo?.();
       unbindAncestorsListeners(ancestors);
     };
-  }, [targetElement, popupElement]);
+  }, [
+    targetElement,
+    popupElement,
+    updatePopupPosition,
+    bindAncestorsListeners,
+    unbindAncestorsListeners,
+  ]);
 
   if (!portal || !targetRef.current) return null;
 
@@ -126,7 +129,7 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
         `}</style>
       </div>
     ) : null,
-    portal
+    portal,
   );
 };
 
