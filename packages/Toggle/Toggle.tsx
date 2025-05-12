@@ -25,7 +25,6 @@ const Toggle: FC<ToggleProps> = ({
   const toggleInnerClasses = classNames('raw-toggle-inner');
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (disabled) return;
     setInternalValue(event.target.checked);
     onChange?.(event);
   };

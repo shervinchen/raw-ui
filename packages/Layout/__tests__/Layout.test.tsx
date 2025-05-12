@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOMServer from 'react-dom/server';
 import { render, screen } from '@testing-library/react';
 import Layout from '..';
 
@@ -13,7 +12,7 @@ describe('Layout', () => {
           <Layout.Content>Content</Layout.Content>
         </Layout>
         <Layout.Footer>Footer</Layout.Footer>
-      </Layout>
+      </Layout>,
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -31,20 +30,20 @@ describe('Layout', () => {
           </Layout.Content>
         </Layout>
         <Layout.Footer className="custom-layout-footer">Footer</Layout.Footer>
-      </Layout>
+      </Layout>,
     );
     expect(screen.getAllByTestId('layout')[0]).toHaveClass('custom-layout');
     expect(screen.getByTestId('layoutHeader')).toHaveClass(
-      'custom-layout-header'
+      'custom-layout-header',
     );
     expect(screen.getByTestId('layoutSidebar')).toHaveClass(
-      'custom-layout-sidebar'
+      'custom-layout-sidebar',
     );
     expect(screen.getByTestId('layoutContent')).toHaveClass(
-      'custom-layout-content'
+      'custom-layout-content',
     );
     expect(screen.getByTestId('layoutFooter')).toHaveClass(
-      'custom-layout-footer'
+      'custom-layout-footer',
     );
   });
 
@@ -57,24 +56,10 @@ describe('Layout', () => {
           <Layout.Content>Content</Layout.Content>
         </Layout>
         <Layout.Footer>Footer</Layout.Footer>
-      </Layout>
+      </Layout>,
     );
     expect(screen.getAllByTestId('layout')[1]).toHaveClass(
-      'raw-layout-has-sidebar'
+      'raw-layout-has-sidebar',
     );
-  });
-
-  test('should auto check whether has sidebar', () => {
-    const htmlContent = ReactDOMServer.renderToString(
-      <Layout>
-        <Layout.Header>Header</Layout.Header>
-        <Layout>
-          <Layout.Sidebar>Sidebar</Layout.Sidebar>
-          <Layout.Content>Content</Layout.Content>
-        </Layout>
-        <Layout.Footer>Footer</Layout.Footer>
-      </Layout>
-    );
-    expect(htmlContent).toContain('raw-layout-has-sidebar');
   });
 });

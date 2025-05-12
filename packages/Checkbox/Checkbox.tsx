@@ -52,7 +52,6 @@ const Checkbox: FC<PropsWithChildren<CheckboxProps>> = ({
   }, [indeterminate]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (isDisabled) return;
     setIndeterminate();
     if (!indeterminate) setInternalValue(event.target.checked);
     if (inGroup) onGroupChange?.(checkboxValue, event.target.checked);

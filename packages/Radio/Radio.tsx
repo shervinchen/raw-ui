@@ -35,11 +35,10 @@ const Radio: FC<PropsWithChildren<RadioProps>> = ({
   const radioClasses = classNames('raw-radio', className);
   const radioInnerClasses = classNames(
     'raw-radio-inner',
-    selfChecked && 'checked'
+    selfChecked && 'checked',
   );
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (isDisabled) return;
     setInternalValue(event.target.checked);
     if (inGroup) onGroupChange?.(radioValue);
     onChange?.(event);
