@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useRef } from 'react';
+import React, { useRef } from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Popup from '../Popup';
@@ -12,12 +12,10 @@ const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
 
 const Component = ({
   visible,
-  targetRef,
   targetElement,
   getPopupContainer,
 }: {
   visible: boolean;
-  targetRef: MutableRefObject<HTMLElement | null>;
   targetElement: HTMLElement | null;
   getPopupContainer: () => HTMLElement | null;
 }) => {
@@ -26,7 +24,6 @@ const Component = ({
       name="testPopup"
       visible={visible}
       zIndex={1000}
-      targetRef={targetRef}
       targetElement={targetElement}
       getPopupPosition={mockGetPopupPosition}
       getPopupContainer={getPopupContainer}
@@ -37,17 +34,14 @@ const Component = ({
 };
 
 describe('Popup', () => {
-  const targetRefMock = {
-    current: document.createElement('div'),
-  };
+  const targetElement = document.createElement('div');
   const getPopupContainerMock = jest.fn();
 
   test('should match the snapshot', () => {
     const { asFragment } = render(
       <Component
         visible
-        targetRef={targetRefMock}
-        targetElement={null}
+        targetElement={targetElement}
         getPopupContainer={getPopupContainerMock}
       />,
     );
@@ -58,8 +52,7 @@ describe('Popup', () => {
     render(
       <Component
         visible
-        targetRef={targetRefMock}
-        targetElement={null}
+        targetElement={targetElement}
         getPopupContainer={getPopupContainerMock}
       />,
     );
@@ -70,7 +63,17 @@ describe('Popup', () => {
     render(
       <Component
         visible={false}
-        targetRef={targetRefMock}
+        targetElement={targetElement}
+        getPopupContainer={getPopupContainerMock}
+      />,
+    );
+    expect(screen.queryByTestId('popup')).not.toBeInTheDocument();
+  });
+
+  test('should not render content when targetElement is null', () => {
+    render(
+      <Component
+        visible
         targetElement={null}
         getPopupContainer={getPopupContainerMock}
       />,
@@ -82,8 +85,7 @@ describe('Popup', () => {
     render(
       <Component
         visible
-        targetRef={targetRefMock}
-        targetElement={null}
+        targetElement={targetElement}
         getPopupContainer={getPopupContainerMock}
       />,
     );
@@ -92,17 +94,15 @@ describe('Popup', () => {
 
   test('should render to specified container', () => {
     const Container = () => {
-      const ref = useRef<HTMLDivElement>(null);
       const customContainerRef = useRef<HTMLDivElement>(null);
 
       return (
         <div>
           <div ref={customContainerRef} data-testid="customContainer" />
-          <div ref={ref}>
+          <div>
             <Component
               visible
-              targetRef={ref}
-              targetElement={null}
+              targetElement={targetElement}
               getPopupContainer={() => customContainerRef.current}
             />
           </div>
@@ -124,8 +124,7 @@ describe('Popup', () => {
       <div onClick={handleClick} onMouseDown={handleMouseDown}>
         <Component
           visible
-          targetRef={targetRefMock}
-          targetElement={null}
+          targetElement={targetElement}
           getPopupContainer={getPopupContainerMock}
         />
       </div>,
@@ -139,8 +138,6 @@ describe('Popup', () => {
 
   test('should not trigger overflow ancestor scroll event when targetElement is null', () => {
     const ScrollableComponent = () => {
-      const targetRef = useRef<HTMLDivElement | null>(null);
-
       return (
         <div
           data-testid="parentElement"
@@ -158,10 +155,8 @@ describe('Popup', () => {
               height: '400px',
             }}
           >
-            <div ref={targetRef} style={{ height: '100px' }} />
             <Component
               visible
-              targetRef={targetRef}
               targetElement={null}
               getPopupContainer={getPopupContainerMock}
             />
@@ -174,6 +169,6 @@ describe('Popup', () => {
     fireEvent.scroll(parentElement, {
       target: { scrollTop: 100 },
     });
-    expect(mockGetPopupPosition).toHaveBeenCalledTimes(1);
+    expect(mockGetPopupPosition).toHaveBeenCalledTimes(0);
   });
 });

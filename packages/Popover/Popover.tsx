@@ -33,13 +33,13 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
   ...restProps
 }) => {
   const popoverId = useId();
-  const popoverTargetRef = useRef<HTMLDivElement | null>(null);
   const theme = useTheme();
   const [internalValue, setInternalValue] = useControlled<boolean>({
     defaultValue,
     value,
   });
   const { stage, shouldMount } = useTransition(internalValue, 0, 50);
+  const popoverTargetRef = useRef<HTMLDivElement | null>(null);
   const [popoverTarget, setPopoverTarget] = useState<HTMLDivElement | null>(
     null,
   );
@@ -106,7 +106,6 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
         visible={shouldMount}
         zIndex={zIndex}
         strategy={strategy}
-        targetRef={popoverTargetRef}
         targetElement={popoverTarget}
         getPopupPosition={getPopupPosition}
         getPopupContainer={getPopupContainer}

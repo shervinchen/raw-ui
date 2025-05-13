@@ -4,8 +4,8 @@ import React, {
   useEffect,
   useState,
   MouseEvent,
-  useRef,
   useCallback,
+  useRef,
 } from 'react';
 import { createPortal } from 'react-dom';
 import { PopupProps, PopupPosition } from './Popup.types';
@@ -18,19 +18,18 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
   visible,
   zIndex,
   strategy = 'absolute',
-  targetRef,
   targetElement,
   getPopupPosition,
   getPopupContainer,
   children,
 }) => {
   const portal = usePortal(name, getPopupContainer);
+  const popupRef = useRef<HTMLDivElement | null>(null);
+  const [popupElement, setPopupElement] = useState<HTMLDivElement | null>(null);
   const [popupPosition, setPopupPosition] = useState<PopupPosition>({
     top: 0,
     left: 0,
   });
-  const popupRef = useRef<HTMLDivElement | null>(null);
-  const [popupElement, setPopupElement] = useState<HTMLDivElement | null>(null);
 
   const handleClick = (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
@@ -81,28 +80,38 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
   useResizeObserver(popupElement, updatePopupPosition);
 
   useEffect(() => {
-    const ancestors: OverflowAncestors = [
-      ...(targetElement ? getOverflowAncestors(targetElement) : []),
-      ...(popupElement ? getOverflowAncestors(popupElement) : []),
-    ];
     const cleanupIo = targetElement
       ? observeMove(targetElement, updatePopupPosition)
       : null;
-    bindAncestorsListeners(ancestors);
 
     return () => {
       cleanupIo?.();
-      unbindAncestorsListeners(ancestors);
     };
   }, [
     targetElement,
-    popupElement,
     updatePopupPosition,
     bindAncestorsListeners,
     unbindAncestorsListeners,
   ]);
 
-  if (!portal || !targetRef.current) return null;
+  useEffect(() => {
+    const ancestors: OverflowAncestors = [
+      ...(targetElement ? getOverflowAncestors(targetElement) : []),
+      ...(popupElement ? getOverflowAncestors(popupElement) : []),
+    ];
+    bindAncestorsListeners(ancestors);
+
+    return () => {
+      unbindAncestorsListeners(ancestors);
+    };
+  }, [
+    targetElement,
+    popupElement,
+    bindAncestorsListeners,
+    unbindAncestorsListeners,
+  ]);
+
+  if (!portal || !targetElement) return null;
 
   return createPortal(
     visible ? (

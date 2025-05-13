@@ -62,7 +62,6 @@ const SelectDropdown = forwardRef(
         visible={visible}
         zIndex={zIndex}
         strategy={strategy}
-        targetRef={selectTargetRef}
         targetElement={selectTarget}
         getPopupPosition={getPopupPosition}
         getPopupContainer={getPopupContainer}

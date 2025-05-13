@@ -87,7 +87,6 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
         visible={shouldMount}
         zIndex={zIndex}
         strategy={strategy}
-        targetRef={tooltipTargetRef}
         targetElement={tooltipTarget}
         getPopupPosition={getPopupPosition}
         getPopupContainer={getPopupContainer}
