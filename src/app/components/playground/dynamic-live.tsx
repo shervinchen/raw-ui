@@ -3,8 +3,7 @@
 import { FC } from 'react';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import { themes } from 'prism-react-renderer';
-import { RawUITheme } from '@/packages/Theme/preset/preset.type';
-import { useTheme } from '@/packages/Theme/theme-context';
+import { useTheme } from 'next-themes';
 
 interface Props {
   code?: string;
@@ -12,17 +11,21 @@ interface Props {
 }
 
 const DynamicLive: FC<Props> = ({ code, scope }) => {
-  const theme: RawUITheme = useTheme();
+  const { theme } = useTheme();
 
   return (
-    <LiveProvider code={code} scope={scope} theme={themes.dracula}>
+    <LiveProvider
+      code={code}
+      scope={scope}
+      theme={theme === 'light' ? themes.oneLight : themes.oneDark}
+    >
       <div>
         <LivePreview />
         <LiveError className="bg-white text-[#e00] border-2 border-dotted border-[#e00]" />
       </div>
       <LiveEditor
         language="tsx"
-        className={`border border-solid border-[${theme.palette.neutral['200']}] rounded-md`}
+        className={`border border-solid border-transparent rounded-md`}
       />
     </LiveProvider>
   );

@@ -63,3 +63,23 @@ h6 {
 .prose *:hover > .anchor {
   @apply visible no-underline;
 }
+
+html.light pre {
+  background-color: var(--shiki-light-bg);
+}
+
+html.dark pre {
+  background-color: var(--shiki-dark-bg);
+}
+
+html.light code[data-theme*=' '],
+html.light code[data-theme*=' '] span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
+}
+
+html.dark code[data-theme*=' '],
+html.dark code[data-theme*=' '] span {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg);
+}
