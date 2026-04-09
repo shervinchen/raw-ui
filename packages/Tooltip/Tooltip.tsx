@@ -10,6 +10,11 @@ import React, {
 import classNames from 'classnames';
 import { TooltipProps } from './Tooltip.types';
 import { useTransition } from '../utils/hooks';
+import {
+  Canceller,
+  clearAnimationFrameTimeout,
+  setAnimationFrameTimeout,
+} from '../utils/hooks/useTransition';
 import Popup from '../Popup';
 import { computeTooltipPosition } from './computeTooltipPosition';
 import TooltipArrow from './TooltipArrow';
@@ -35,12 +40,22 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
     null,
   );
   const [zIndex, setZIndex] = useState(theme.zIndex.tooltip);
-  const { stage, shouldMount } = useTransition(visible, 0, 50);
+  const { stage, shouldMount } = useTransition(visible, 0, 15);
+  const timer = useRef<Canceller>({});
   const classes = classNames('raw-tooltip', className);
 
-  const handleMouseEnterOrLeave = (nextValue: boolean) => {
+  const showTooltip = () => {
     if (!disabled) {
-      setVisible(nextValue);
+      clearAnimationFrameTimeout(timer.current);
+      setVisible(true);
+    }
+  };
+
+  const hideTooltip = () => {
+    if (!disabled) {
+      timer.current = setAnimationFrameTimeout(() => {
+        setVisible(false);
+      }, 100);
     }
   };
 
@@ -75,8 +90,8 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
         data-testid="tooltipTarget"
         aria-describedby={tooltipId}
         ref={setTooltipTargetRef}
-        onMouseEnter={() => handleMouseEnterOrLeave(true)}
-        onMouseLeave={() => handleMouseEnterOrLeave(false)}
+        onMouseEnter={showTooltip}
+        onMouseLeave={hideTooltip}
         className="raw-tooltip-target"
         {...restProps}
       >
@@ -94,6 +109,8 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
         <div
           role="tooltip"
           id={tooltipId}
+          onMouseEnter={showTooltip}
+          onMouseLeave={hideTooltip}
           className={classes}
           style={{
             opacity: stage === 'enter' ? 1 : 0,
@@ -112,7 +129,7 @@ const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
           border-radius: 6px;
           font-size: 14px;
           padding: 8px 12px;
-          transition: opacity 0.05s ease;
+          transition: opacity 0.15s ease;
         }
         .raw-tooltip-target {
           display: inline-flex;

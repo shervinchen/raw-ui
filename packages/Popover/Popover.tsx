@@ -38,7 +38,7 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
     defaultValue,
     value,
   });
-  const { stage, shouldMount } = useTransition(internalValue, 0, 50);
+  const { stage, shouldMount } = useTransition(internalValue, 0, 15);
   const popoverTargetRef = useRef<HTMLDivElement | null>(null);
   const [popoverTarget, setPopoverTarget] = useState<HTMLDivElement | null>(
     null,
@@ -133,7 +133,7 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
           box-shadow: ${theme.tokens.shadow.sm};
           font-size: 14px;
           padding: 8px 12px;
-          transition: opacity 0.05s ease;
+          transition: opacity 0.15s ease;
         }
         .raw-popover-target {
           display: inline-flex;

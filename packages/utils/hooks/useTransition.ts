@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
-type Canceller = {
+export type Canceller = {
   id?: number;
 };
 
-function setAnimationFrameTimeout(callback: () => void, timeout = 0) {
+export const setAnimationFrameTimeout = (callback: () => void, timeout = 0) => {
   const startTime = performance.now();
   const canceller: Canceller = {};
 
@@ -20,18 +20,18 @@ function setAnimationFrameTimeout(callback: () => void, timeout = 0) {
 
   call();
   return canceller;
-}
+};
 
-function clearAnimationFrameTimeout(canceller: Canceller) {
+export const clearAnimationFrameTimeout = (canceller: Canceller) => {
   if (canceller.id) cancelAnimationFrame(canceller.id);
-}
+};
 
 export type Stage = 'from' | 'enter' | 'leave';
 
 export const useTransition = (
   state: boolean,
   enterTimeout: number,
-  leaveTimeout: number
+  leaveTimeout: number,
 ) => {
   const [stage, setStage] = useState<Stage>(state ? 'enter' : 'from');
   const timer = useRef<Canceller>({});
@@ -58,7 +58,7 @@ export const useTransition = (
         clearAnimationFrameTimeout(timer.current);
       };
     },
-    [state, enterTimeout, leaveTimeout]
+    [state, enterTimeout, leaveTimeout],
   );
 
   return {

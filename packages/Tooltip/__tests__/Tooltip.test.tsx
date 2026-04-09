@@ -11,7 +11,7 @@ const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
 describe('Tooltip', () => {
   test('should match the snapshot', () => {
     const { asFragment } = render(
-      <Tooltip content="I am a tooltip">Hover me</Tooltip>
+      <Tooltip content="I am a tooltip">Hover me</Tooltip>,
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -20,7 +20,7 @@ describe('Tooltip', () => {
     render(
       <Tooltip content="I am a tooltip" className="custom-tooltip">
         Hover me
-      </Tooltip>
+      </Tooltip>,
     );
     await user.hover(screen.getByTestId('tooltipTarget'));
     expect(await screen.findByRole('tooltip')).toHaveClass('custom-tooltip');
@@ -47,9 +47,26 @@ describe('Tooltip', () => {
     render(
       <Tooltip content="I am a tooltip" disabled>
         Hover me
-      </Tooltip>
+      </Tooltip>,
     );
     await user.hover(screen.getByTestId('tooltipTarget'));
+    await waitFor(() => {
+      expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+    });
+  });
+
+  test('should not trigger mouse leave event when disabled', async () => {
+    render(
+      <Tooltip content="I am a tooltip" disabled>
+        Hover me
+      </Tooltip>,
+    );
+    const target = screen.getByTestId('tooltipTarget');
+    await user.hover(target);
+    await waitFor(() => {
+      expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
+    });
+    await user.unhover(target);
     await waitFor(() => {
       expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
     });
@@ -66,7 +83,7 @@ describe('Tooltip', () => {
           <Button>Cancel</Button>
           <Button type="primary">Confirm</Button>
         </Modal.Footer>
-      </Modal>
+      </Modal>,
     );
     await user.hover(screen.getByTestId('tooltipTarget'));
     const popup = screen.getByTestId('popup');
