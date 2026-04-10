@@ -83,15 +83,15 @@ const SelectContent = ({
   selectChildren: React.ReactNode;
   handleChange: (value: SelectOptionValue) => void;
 }): ReactElement => {
-  const selectedOptions: ReactElement<SelectOptionProps>[] = getValidChildren(
-    selectChildren,
-  ).filter((option: ReactElement<SelectOptionProps>) => {
-    if (Array.isArray(internalValue)) {
-      return internalValue.includes(option.props.value);
-    } else {
-      return internalValue === option.props.value;
-    }
-  });
+  const selectedOptions = getValidChildren(selectChildren).filter(
+    (option: ReactElement<SelectOptionProps>) => {
+      if (Array.isArray(internalValue)) {
+        return internalValue.includes(option.props.value);
+      } else {
+        return internalValue === option.props.value;
+      }
+    },
+  ) as ReactElement<SelectOptionProps>[];
 
   const isEmptyValue = Array.isArray(internalValue)
     ? internalValue.length === 0

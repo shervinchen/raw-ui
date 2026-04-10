@@ -5,9 +5,10 @@
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "jsx": "preserve",
+    "types": ["node", "react", "jest", "@testing-library/jest-dom"],
     "experimentalDecorators": true,
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "baseUrl": "./",
     "paths": {
       "*": ["*"],
