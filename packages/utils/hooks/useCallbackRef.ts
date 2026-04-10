@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from 'react';
 
 export function useCallbackRef<T extends (...args: any[]) => any>(
   callback: T | undefined,
-  deps: React.DependencyList = []
+  deps: React.DependencyList = [],
 ) {
   const callbackRef = useRef(callback);
 
@@ -10,6 +10,6 @@ export function useCallbackRef<T extends (...args: any[]) => any>(
     callbackRef.current = callback;
   });
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line
   return useCallback(((...args) => callbackRef.current?.(...args)) as T, deps);
 }

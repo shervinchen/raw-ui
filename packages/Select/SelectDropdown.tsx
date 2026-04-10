@@ -24,6 +24,7 @@ const SelectDropdown = forwardRef(
     const dropdownRef = useRef<HTMLDivElement | null>(null);
     const {
       multiple,
+      dropdownWidth,
       dropdownHeight,
       strategy,
       selectTargetRef,
@@ -34,10 +35,6 @@ const SelectDropdown = forwardRef(
     } = useSelectContext();
     const { stage: dropdownTransitionStage } = useTransition(visible, 0, 0);
     const dropdownClasses = classNames('raw-select-dropdown', className);
-    const selectRect = selectTargetRef.current?.getBoundingClientRect() ?? null;
-    const dropdownWidth = selectRect
-      ? selectRect.width || selectRect.right - selectRect.left
-      : 0;
 
     const getPopupPosition = useCallback(
       (popupRef: MutableRefObject<HTMLDivElement | null>) => {

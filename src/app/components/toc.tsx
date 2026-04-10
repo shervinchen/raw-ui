@@ -5,6 +5,7 @@ import {
   MutableRefObject,
   SetStateAction,
   useEffect,
+  useReducer,
   useRef,
   useState,
 } from 'react';
@@ -19,7 +20,7 @@ interface Heading {
 }
 
 const getNestedHeadings = (
-  headingElements: HTMLHeadingElement[]
+  headingElements: HTMLHeadingElement[],
 ): Heading[] => {
   const headings: Heading[] = [];
   let stack: Heading[] = [];
@@ -51,19 +52,12 @@ const getNestedHeadings = (
   return headings;
 };
 
-const useHeadingsData = (pathname: string) => {
-  const [nestedHeadings, setNestedHeadings] = useState<Heading[]>([]);
+const getHeadingsData = () => {
+  const headingElements = Array.from(
+    document.querySelectorAll<HTMLHeadingElement>('h1,h2,h3,h4,h5,h6'),
+  );
 
-  useEffect(() => {
-    const headingElements = Array.from(
-      document.querySelectorAll<HTMLHeadingElement>('h1,h2,h3,h4,h5,h6')
-    );
-
-    const newNestedHeadings = getNestedHeadings(headingElements);
-    setNestedHeadings(newNestedHeadings);
-  }, [pathname]);
-
-  return { nestedHeadings };
+  return { nestedHeadings: getNestedHeadings(headingElements) };
 };
 
 const Headings = ({
@@ -88,7 +82,7 @@ const Headings = ({
             }[heading.level],
             activeId === heading.id
               ? 'text-black dark:text-[#fff] font-semibold'
-              : 'text-[#666] dark:text-[#666] hover:text-black dark:hover:text-[#fff]'
+              : 'text-[#666] dark:text-[#666] hover:text-black dark:hover:text-[#fff]',
           )}
           onClick={(e) => {
             e.preventDefault();
@@ -109,7 +103,7 @@ const Headings = ({
 
 const useIntersectionObserver = (
   setActiveId: Dispatch<SetStateAction<string>>,
-  pathname: string
+  pathname: string,
 ) => {
   const headingElementsRef: MutableRefObject<{
     [key: string]: IntersectionObserverEntry;
@@ -117,7 +111,7 @@ const useIntersectionObserver = (
 
   useEffect(() => {
     const callback: IntersectionObserverCallback = (
-      headings: IntersectionObserverEntry[]
+      headings: IntersectionObserverEntry[],
     ) => {
       headingElementsRef.current = headings.reduce((map, headingElement) => {
         map[headingElement.target.id] = headingElement;
@@ -139,7 +133,7 @@ const useIntersectionObserver = (
         const sortedVisibleHeadings = visibleHeadings
           .filter((item) => getIndexFromId(item.target.id) !== -1)
           .sort(
-            (a, b) => getIndexFromId(a.target.id) - getIndexFromId(b.target.id)
+            (a, b) => getIndexFromId(a.target.id) - getIndexFromId(b.target.id),
           );
         setActiveId(sortedVisibleHeadings[0]?.target?.id);
       }
@@ -150,7 +144,7 @@ const useIntersectionObserver = (
     });
 
     const headingElements = Array.from(
-      document.querySelectorAll('h2,h3,h4,h5,h6')
+      document.querySelectorAll('h2,h3,h4,h5,h6'),
     );
 
     headingElements.forEach((element) => observer.observe(element));
@@ -162,8 +156,13 @@ const useIntersectionObserver = (
 export default function Toc() {
   const pathname = usePathname();
   const [activeId, setActiveId] = useState();
-  const { nestedHeadings } = useHeadingsData(pathname);
+  const [, forceUpdate] = useReducer((p) => p + 1, 0);
+  const { nestedHeadings } = getHeadingsData();
   const headings = nestedHeadings[0]?.items ?? [];
+
+  useEffect(() => {
+    forceUpdate();
+  }, [pathname]);
 
   useIntersectionObserver(setActiveId, pathname);
 

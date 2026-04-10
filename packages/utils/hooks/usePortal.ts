@@ -1,5 +1,4 @@
-import { useEffect, useState, useId } from 'react';
-import { useSSR } from './useSSR';
+import { useEffect, useState, useId, useRef } from 'react';
 
 const namespace = 'raw-ui';
 
@@ -11,29 +10,31 @@ const createElement = (id: string): HTMLElement => {
 
 export const usePortal = (
   name: string,
-  getContainer?: () => HTMLElement | null
+  getContainer?: () => HTMLElement | null,
 ): HTMLElement | null => {
   const uniqueId = useId();
   const id = `${namespace}-${name}-${CSS.escape(uniqueId)}`;
-  const { isBrowser } = useSSR();
-  const [portal, setPortal] = useState<HTMLElement | null>(
-    isBrowser ? createElement(id) : null
-  );
+  const [portal, setPortal] = useState<HTMLElement | null>(null);
+  const elementRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const container = getContainer?.() ?? document.body;
-    const hasElement = container.querySelector<HTMLElement>(`#${id}`);
-    const element = hasElement || createElement(id);
+    const existElement = container.querySelector<HTMLElement>(`#${id}`);
 
-    if (!hasElement) {
-      container.appendChild(element);
+    if (!elementRef.current) {
+      elementRef.current = existElement || createElement(id);
     }
 
-    setPortal(element);
+    if (!existElement) {
+      container.appendChild(elementRef.current);
+    }
+
+    setPortal(elementRef.current);
 
     return () => {
-      if (hasElement) {
-        container.removeChild(element);
+      if (elementRef.current) {
+        container.removeChild(elementRef.current);
+        elementRef.current = null;
       }
     };
   }, [getContainer, id]);

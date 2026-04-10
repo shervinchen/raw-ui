@@ -4,13 +4,9 @@ import { useInputGroupContext } from './input-group-context';
 import { useInputStyles } from './Input.styles';
 import { InputElementProps } from './Input.types';
 
-const InputElement: FC<PropsWithChildren<InputElementProps>> = ({
-  placement,
-  clickable = false,
-  className,
-  children,
-  ...resetProps
-}) => {
+const InputElement: FC<
+  PropsWithChildren<InputElementProps & { placement?: 'left' | 'right' }>
+> = ({ placement, clickable = false, className, children, ...resetProps }) => {
   const { type, size, disabled } = useInputGroupContext();
   const { fontSize, height, color } = useInputStyles({ type, size, disabled });
   const classes = classNames('raw-input-element', className);
@@ -38,7 +34,7 @@ const InputElement: FC<PropsWithChildren<InputElementProps>> = ({
   );
 };
 
-const InputLeftElement: FC<Omit<InputElementProps, 'placement'>> = ({
+const InputLeftElement: FC<InputElementProps> = ({
   className = '',
   ...resetProps
 }) => {
@@ -54,7 +50,7 @@ const InputLeftElement: FC<Omit<InputElementProps, 'placement'>> = ({
   );
 };
 
-const InputRightElement: FC<Omit<InputElementProps, 'placement'>> = ({
+const InputRightElement: FC<InputElementProps> = ({
   className = '',
   ...resetProps
 }) => {

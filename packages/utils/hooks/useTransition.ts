@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useReducer, useRef } from 'react';
 
 export type Canceller = {
   id?: number;
@@ -28,29 +28,59 @@ export const clearAnimationFrameTimeout = (canceller: Canceller) => {
 
 export type Stage = 'from' | 'enter' | 'leave';
 
+type TransitionState = {
+  stage: Stage;
+  shouldMount: boolean;
+};
+
+type TransitionAction =
+  | { type: 'ENTER_START' }
+  | { type: 'ENTER_DONE' }
+  | { type: 'LEAVE_START' }
+  | { type: 'LEAVE_DONE' };
+
+function transitionReducer(
+  state: TransitionState,
+  action: TransitionAction,
+): TransitionState {
+  switch (action.type) {
+    case 'ENTER_START':
+      return { stage: 'from', shouldMount: true };
+    case 'ENTER_DONE':
+      return { ...state, stage: 'enter' };
+    case 'LEAVE_START':
+      return { ...state, stage: 'leave' };
+    case 'LEAVE_DONE':
+      return { ...state, shouldMount: false };
+    default:
+      return state;
+  }
+}
+
 export const useTransition = (
   state: boolean,
   enterTimeout: number,
   leaveTimeout: number,
 ) => {
-  const [stage, setStage] = useState<Stage>(state ? 'enter' : 'from');
+  const [{ stage, shouldMount }, dispatch] = useReducer(transitionReducer, {
+    stage: state ? 'enter' : 'from',
+    shouldMount: state,
+  });
   const timer = useRef<Canceller>({});
-  const [shouldMount, setShouldMount] = useState(state);
 
   useEffect(
     function handleStateChange() {
       clearAnimationFrameTimeout(timer.current);
 
       if (state) {
-        setStage('from');
-        setShouldMount(true);
+        dispatch({ type: 'ENTER_START' });
         timer.current = setAnimationFrameTimeout(() => {
-          setStage('enter');
+          dispatch({ type: 'ENTER_DONE' });
         }, enterTimeout);
       } else {
-        setStage('leave');
+        dispatch({ type: 'LEAVE_START' });
         timer.current = setAnimationFrameTimeout(() => {
-          setShouldMount(false);
+          dispatch({ type: 'LEAVE_DONE' });
         }, leaveTimeout);
       }
 

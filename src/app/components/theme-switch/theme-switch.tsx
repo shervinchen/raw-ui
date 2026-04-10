@@ -1,13 +1,13 @@
 'use client';
 
 import { useTheme } from 'next-themes';
-import { useIsClient } from '../../utils';
+import { useSSR } from '@/packages/utils';
 
 const ThemeSwitch = ({ lightComponent, darkComponent }) => {
-  const isClient = useIsClient();
+  const isBrowser = useSSR().isBrowser;
   const { theme } = useTheme();
 
-  return <>{isClient && theme === 'dark' ? darkComponent : lightComponent}</>;
+  return <>{isBrowser && theme === 'dark' ? darkComponent : lightComponent}</>;
 };
 
 export default ThemeSwitch;

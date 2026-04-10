@@ -29,7 +29,6 @@ export interface BaseInputAddonProps {
 export interface BaseInputElementProps {
   className?: string;
   clickable?: boolean;
-  placement?: 'left' | 'right';
 }
 
 export type InputProps = Merge<

@@ -41,6 +41,7 @@ export interface SelectConfig {
   selectTarget: HTMLElement | null;
   zIndex?: number;
   getPopupContainer?: () => HTMLElement | null;
+  dropdownWidth?: number;
   dropdownHeight?: string;
   strategy: Strategy;
   type?: SelectTypes;

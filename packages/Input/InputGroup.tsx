@@ -1,4 +1,10 @@
-import React, { FC, PropsWithChildren, cloneElement, useMemo } from 'react';
+import React, {
+  FC,
+  PropsWithChildren,
+  ReactElement,
+  cloneElement,
+  useMemo,
+} from 'react';
 import classNames from 'classnames';
 import { InputGroupConfig, InputGroupProps } from './InputGroup.types';
 import { InputGroupContext } from './input-group-context';
@@ -7,6 +13,7 @@ import { useInputStyles } from './Input.styles';
 import Input from './Input';
 import { InputLeftElement, InputRightElement } from './InputElement';
 import { InputLeftAddon, InputRightAddon } from './InputAddon';
+import { InputAddonProps, InputElementProps, InputProps } from './Input.types';
 
 const useComputedInputStyles = ({ type, size, disabled }: InputGroupProps) => {
   const { height, horizontalPadding } = useInputStyles({
@@ -73,7 +80,7 @@ const InputGroup: FC<PropsWithChildren<InputGroupProps>> = ({
       disabled,
       isInputGroup: true,
     }),
-    [disabled, readOnly, size, type]
+    [disabled, readOnly, size, type],
   );
 
   const classes = classNames('raw-input-group', className);
@@ -97,11 +104,13 @@ const InputGroup: FC<PropsWithChildren<InputGroupProps>> = ({
 
   const computedInputStyle = useComputedInputStyle();
 
-  const cloneChildren = getValidChildren(children).map((child) => {
-    return child.type !== Input
-      ? child
-      : cloneElement(child, { style: computedInputStyle });
-  });
+  const cloneChildren = getValidChildren(children).map(
+    (child: ReactElement<InputProps | InputAddonProps | InputElementProps>) => {
+      return child.type !== Input
+        ? child
+        : cloneElement(child, { style: computedInputStyle });
+    },
+  );
 
   return (
     <InputGroupContext.Provider value={initialConfig}>

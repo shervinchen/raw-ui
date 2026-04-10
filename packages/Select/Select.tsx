@@ -28,6 +28,7 @@ import SelectTag from './SelectTag';
 import { useSelectCSS } from './Select.styles';
 import { useTheme } from '../Theme';
 import { getZIndexByClosestFloating } from '../Popup/getClosestFloatingZIndex';
+import { SelectOptionProps } from './SelectOption.types';
 
 const getInternalValue = (multiple: boolean, value: SelectValue) => {
   if (Array.isArray(value)) {
@@ -58,13 +59,78 @@ const getNewInternalValue = (
 
 const sortSelectedOptions = (
   selectedValue: SelectOptionValue[],
-  selectedOption: ReactElement[],
+  selectedOption: ReactElement<SelectOptionProps>[],
 ): ReactElement[] => {
   return selectedOption.sort(
     (a, b) =>
       selectedValue.indexOf(a.props.value) -
       selectedValue.indexOf(b.props.value),
   );
+};
+
+const SelectContent = ({
+  internalValue,
+  multiple,
+  disabled,
+  placeholder,
+  selectChildren,
+  handleChange,
+}: {
+  internalValue: SelectValue;
+  multiple: boolean;
+  disabled: boolean;
+  placeholder: string;
+  selectChildren: React.ReactNode;
+  handleChange: (value: SelectOptionValue) => void;
+}): ReactElement => {
+  const selectedOptions: ReactElement<SelectOptionProps>[] = getValidChildren(
+    selectChildren,
+  ).filter((option: ReactElement<SelectOptionProps>) => {
+    if (Array.isArray(internalValue)) {
+      return internalValue.includes(option.props.value);
+    } else {
+      return internalValue === option.props.value;
+    }
+  });
+
+  const isEmptyValue = Array.isArray(internalValue)
+    ? internalValue.length === 0
+    : internalValue === undefined || internalValue === '';
+
+  if (selectedOptions.length === 0) {
+    if (isEmptyValue) {
+      return <span className="raw-select-placeholder">{placeholder}</span>;
+    } else {
+      return <span className="raw-select-content"></span>;
+    }
+  }
+
+  if (multiple) {
+    return (
+      <div className="raw-select-tag-content">
+        {sortSelectedOptions(
+          internalValue as SelectOptionValue[],
+          selectedOptions,
+        ).map((option: ReactElement<SelectOptionProps>) => (
+          <SelectTag
+            key={option.props.value}
+            disabled={disabled}
+            onDeleteTag={() => {
+              handleChange(option.props.value);
+            }}
+          >
+            {option.props.children}
+          </SelectTag>
+        ))}
+      </div>
+    );
+  } else {
+    return (
+      <span className="raw-select-content">
+        {selectedOptions[0].props.children}
+      </span>
+    );
+  }
 };
 
 const Select = forwardRef(
@@ -105,6 +171,7 @@ const Select = forwardRef(
     const [selectTarget, setSelectTarget] = useState<HTMLDivElement | null>(
       null,
     );
+    const [dropdownWidth, setDropdownWidth] = useState(0);
     const [zIndex, setZIndex] = useState(theme.zIndex.dropdown);
     const { className: resolveClassName, styles } = useSelectCSS({
       width,
@@ -173,11 +240,16 @@ const Select = forwardRef(
 
     const setSelectTargetRef = useCallback(
       (element: HTMLDivElement | null) => {
+        const selectRect = element?.getBoundingClientRect() ?? null;
+        const dropdownWidth = selectRect
+          ? selectRect.width || selectRect.right - selectRect.left
+          : 0;
         selectTargetRef.current = element;
         const closestZIndex = getZIndexByClosestFloating(
           selectTargetRef.current,
           theme.zIndex.dropdown,
         );
+        setDropdownWidth(dropdownWidth);
         setZIndex(closestZIndex);
         setSelectTarget(element);
       },
@@ -191,6 +263,7 @@ const Select = forwardRef(
         handleSelectChange: handleChange,
         selectTargetRef,
         selectTarget,
+        dropdownWidth,
         dropdownHeight,
         strategy,
         zIndex,
@@ -206,6 +279,7 @@ const Select = forwardRef(
       handleChange,
       selectTargetRef,
       selectTarget,
+      dropdownWidth,
       dropdownHeight,
       strategy,
       zIndex,
@@ -222,55 +296,6 @@ const Select = forwardRef(
 
     useImperativeHandle(ref, () => selectTargetRef.current as HTMLDivElement);
 
-    const SelectContent = (): ReactElement => {
-      const selectedOptions = getValidChildren(children).filter((option) => {
-        if (Array.isArray(internalValue)) {
-          return internalValue.includes(option.props.value);
-        } else {
-          return internalValue === option.props.value;
-        }
-      });
-
-      const isEmptyValue = Array.isArray(internalValue)
-        ? internalValue.length === 0
-        : internalValue === undefined || internalValue === '';
-
-      if (selectedOptions.length === 0) {
-        if (isEmptyValue) {
-          return <span className="raw-select-placeholder">{placeholder}</span>;
-        } else {
-          return <span className="raw-select-content"></span>;
-        }
-      }
-
-      if (multiple) {
-        return (
-          <div className="raw-select-tag-content">
-            {sortSelectedOptions(
-              internalValue as SelectOptionValue[],
-              selectedOptions,
-            ).map((option) => (
-              <SelectTag
-                key={option.props.value as SelectOptionValue}
-                disabled={disabled}
-                onDeleteTag={() => {
-                  handleChange(option.props.value);
-                }}
-              >
-                {option.props.children}
-              </SelectTag>
-            ))}
-          </div>
-        );
-      } else {
-        return (
-          <span className="raw-select-content">
-            {selectedOptions[0].props.children}
-          </span>
-        );
-      }
-    };
-
     return (
       <SelectContext.Provider value={selectConfig}>
         <div
@@ -284,7 +309,14 @@ const Select = forwardRef(
           {...restProps}
         >
           <div className="raw-select-inner">
-            <SelectContent />
+            <SelectContent
+              internalValue={internalValue}
+              multiple={multiple}
+              placeholder={placeholder}
+              selectChildren={children}
+              disabled={disabled}
+              handleChange={handleChange}
+            />
             <SelectInput
               ref={inputRef}
               visible={dropdownVisible}

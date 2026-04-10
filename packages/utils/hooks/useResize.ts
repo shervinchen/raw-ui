@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 export const useResize = (
   handler: () => void,
-  immediatelyInvoke = true
+  immediatelyInvoke = true,
 ): void => {
   useEffect(() => {
     if (immediatelyInvoke) {
@@ -11,6 +11,6 @@ export const useResize = (
 
     window.addEventListener('resize', handler);
     return () => window.removeEventListener('resize', handler);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, []);
 };

@@ -54,7 +54,7 @@ describe('Select', () => {
       <Select>
         <Select.Option value="1">Option 1</Select.Option>
         <Select.Option value="2">Option 2</Select.Option>
-      </Select>
+      </Select>,
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -65,7 +65,7 @@ describe('Select', () => {
       <Select ref={ref}>
         <Select.Option value="1">Option 1</Select.Option>
         <Select.Option value="2">Option 2</Select.Option>
-      </Select>
+      </Select>,
     );
     expect(screen.getByTestId('selectContainer')).toEqual(ref.current);
   });
@@ -76,10 +76,10 @@ describe('Select', () => {
         <Select type={item}>
           <Select.Option value="1">Option 1</Select.Option>
           <Select.Option value="2">Option 2</Select.Option>
-        </Select>
+        </Select>,
       );
       expect(screen.getByTestId('selectContainer')).toHaveStyle(
-        `border: 1px solid ${typeColorMap[item]}`
+        `border: 1px solid ${typeColorMap[item]}`,
       );
     });
   });
@@ -89,13 +89,13 @@ describe('Select', () => {
       useSelectStyles({
         type: 'unknown' as SelectTypes,
         disabled: false,
-      })
+      }),
     );
     const { result: result2 } = renderHook(() =>
       useSelectStyles({
         type: undefined as unknown as SelectTypes,
         disabled: false,
-      })
+      }),
     );
     expect(result1.current.borderColor).toBe('#e5e5e5');
     expect(result2.current.borderColor).toBe('#e5e5e5');
@@ -106,13 +106,13 @@ describe('Select', () => {
       useSelectHoverStyles({
         type: 'unknown' as SelectTypes,
         disabled: false,
-      })
+      }),
     );
     const { result: result2 } = renderHook(() =>
       useSelectHoverStyles({
         type: undefined as unknown as SelectTypes,
         disabled: false,
-      })
+      }),
     );
     expect(result1.current.hoverBorderColor).toBe('#525252');
     expect(result2.current.hoverBorderColor).toBe('#525252');
@@ -124,10 +124,10 @@ describe('Select', () => {
         <Select size={item}>
           <Select.Option value="1">Option 1</Select.Option>
           <Select.Option value="2">Option 2</Select.Option>
-        </Select>
+        </Select>,
       );
       expect(screen.getByTestId('selectContainer')).toHaveStyle(
-        `height: ${sizeHeightMap[item]}`
+        `height: ${sizeHeightMap[item]}`,
       );
     });
   });
@@ -137,13 +137,13 @@ describe('Select', () => {
       useSelectStyles({
         size: 'unknown' as SelectSizes,
         disabled: false,
-      })
+      }),
     );
     const { result: result2 } = renderHook(() =>
       useSelectStyles({
         size: undefined as unknown as SelectSizes,
         disabled: false,
-      })
+      }),
     );
     expect(result1.current.height).toBe('32px');
     expect(result2.current.height).toBe('32px');
@@ -154,7 +154,7 @@ describe('Select', () => {
       <Select className="custom-select">
         <Select.Option value="1">Option 1</Select.Option>
         <Select.Option value="2">Option 2</Select.Option>
-      </Select>
+      </Select>,
     );
     expect(screen.getByTestId('selectContainer')).toHaveClass('custom-select');
   });
@@ -164,7 +164,7 @@ describe('Select', () => {
       <Select placeholder="Select option">
         <Select.Option value="1">Option 1</Select.Option>
         <Select.Option value="2">Option 2</Select.Option>
-      </Select>
+      </Select>,
     );
     expect(screen.getByText('Select option')).toBeInTheDocument();
   });
@@ -174,7 +174,7 @@ describe('Select', () => {
       <Select width="200px">
         <Select.Option value="1">Option 1</Select.Option>
         <Select.Option value="2">Option 2</Select.Option>
-      </Select>
+      </Select>,
     );
     const select = screen.getByTestId('selectContainer');
     expect(select).toHaveStyle('width: 200px');
@@ -185,7 +185,7 @@ describe('Select', () => {
       <Select defaultValue="1">
         <Select.Option value="1">Option 1</Select.Option>
         <Select.Option value="2">Option 2</Select.Option>
-      </Select>
+      </Select>,
     );
     expect(screen.getByText('Option 1')).toBeInTheDocument();
   });
@@ -225,7 +225,7 @@ describe('Select', () => {
             {item.name}
           </Select.Option>
         ))}
-      </Select>
+      </Select>,
     );
     expect(screen.getByText('React')).toBeInTheDocument();
     expect(screen.getByText('Vue')).toBeInTheDocument();
@@ -239,7 +239,7 @@ describe('Select', () => {
             {item.name}
           </Select.Option>
         ))}
-      </Select>
+      </Select>,
     );
     expect(screen.queryByText('React')).not.toBeInTheDocument();
   });
@@ -256,7 +256,7 @@ describe('Select', () => {
             {item.name}
           </Select.Option>
         ))}
-      </Select>
+      </Select>,
     );
     expect(screen.queryByText('React')).not.toBeInTheDocument();
     expect(screen.queryByText('Vue')).not.toBeInTheDocument();
@@ -270,7 +270,7 @@ describe('Select', () => {
             {item.name}
           </Select.Option>
         ))}
-      </Select>
+      </Select>,
     );
     const select = screen.getByTestId('selectContainer');
     await user.click(select);
@@ -290,7 +290,7 @@ describe('Select', () => {
             {item.name}
           </Select.Option>
         ))}
-      </Select>
+      </Select>,
     );
     const select = screen.getByTestId('selectContainer');
     await user.click(select);
@@ -303,7 +303,7 @@ describe('Select', () => {
       <Select disabled>
         <Select.Option value="1">Option 1</Select.Option>
         <Select.Option value="2">Option 2</Select.Option>
-      </Select>
+      </Select>,
     );
     const select = screen.getByTestId('selectContainer');
     await user.click(select);
@@ -317,7 +317,7 @@ describe('Select', () => {
           Option 1
         </Select.Option>
         <Select.Option value="2">Option 2</Select.Option>
-      </Select>
+      </Select>,
     );
     const select = screen.getByTestId('selectContainer');
     await user.click(select);
@@ -330,7 +330,7 @@ describe('Select', () => {
       <Select>
         <Select.Option value="1">Option 1</Select.Option>
         <Select.Option value="2">Option 2</Select.Option>
-      </Select>
+      </Select>,
     );
     const select = screen.getByTestId('selectContainer');
     await user.click(select);
@@ -347,7 +347,7 @@ describe('Select', () => {
             {item.name}
           </Select.Option>
         ))}
-      </Select>
+      </Select>,
     );
     const select = screen.getByTestId('selectContainer');
     expect(select).toHaveTextContent('React');
@@ -364,7 +364,7 @@ describe('Select', () => {
             {item.name}
           </Select.Option>
         ))}
-      </Select>
+      </Select>,
     );
     const select = screen.getByTestId('selectContainer');
     expect(select).toHaveTextContent('React');
@@ -378,7 +378,7 @@ describe('Select', () => {
       <Select defaultValue="" placeholder="Select option">
         <Select.Option value="1">Option 1</Select.Option>
         <Select.Option value="2">Option 2</Select.Option>
-      </Select>
+      </Select>,
     );
     expect(screen.getByText('Select option')).toBeInTheDocument();
   });
@@ -388,7 +388,7 @@ describe('Select', () => {
       <Select defaultValue={null} placeholder="Select option">
         <Select.Option value="1">Option 1</Select.Option>
         <Select.Option value="2">Option 2</Select.Option>
-      </Select>
+      </Select>,
     );
     expect(screen.queryByTestId('Select option')).not.toBeInTheDocument();
   });
@@ -398,7 +398,7 @@ describe('Select', () => {
       <Select defaultValue="1" placeholder="Select option" clearable>
         <Select.Option value="1">Option 1</Select.Option>
         <Select.Option value="2">Option 2</Select.Option>
-      </Select>
+      </Select>,
     );
     const select = screen.getByTestId('selectContainer');
     expect(select).toHaveTextContent('Option 1');
@@ -422,7 +422,7 @@ describe('Select', () => {
             {item.name}
           </Select.Option>
         ))}
-      </Select>
+      </Select>,
     );
     const select = screen.getByTestId('selectContainer');
     expect(select).toHaveTextContent('React');
@@ -449,7 +449,7 @@ describe('Select', () => {
           <Button>Cancel</Button>
           <Button type="primary">Confirm</Button>
         </Modal.Footer>
-      </Modal>
+      </Modal>,
     );
     const select = screen.getByTestId('selectContainer');
     await user.click(select);
@@ -471,7 +471,7 @@ describe('Select', () => {
         }
       >
         Click me
-      </Popover>
+      </Popover>,
     );
     const select = screen.getByTestId('selectContainer');
     await user.click(select);

@@ -4,6 +4,7 @@ import {
   ComponentPropsWithoutRef,
 } from 'react';
 import { Merge } from '../utils';
+import { IconProps } from 'react-feather';
 
 export type ButtonSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
@@ -24,8 +25,8 @@ export interface BaseButtonProps {
   htmlType?: ComponentPropsWithoutRef<'button'>['type'];
   loading?: boolean;
   disabled?: boolean;
-  icon?: ReactElement;
-  iconRight?: ReactElement;
+  icon?: ReactElement<IconProps>;
+  iconRight?: ReactElement<IconProps>;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
@@ -44,7 +45,7 @@ export interface ButtonIconProps {
   isSingle?: boolean;
   height?: string;
   horizontalPadding?: string;
-  children: ReactElement;
+  children: ReactElement<IconProps>;
 }
 
 export interface ButtonSizeStyles {

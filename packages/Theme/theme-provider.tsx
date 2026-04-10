@@ -1,10 +1,4 @@
-import React, {
-  FC,
-  PropsWithChildren,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import React, { FC, PropsWithChildren, useMemo } from 'react';
 
 import { ThemeContext } from './theme-context';
 import BaseStyle from '../BaseStyle';
@@ -17,9 +11,21 @@ const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = ({
   themeType,
   themes = [],
 }) => {
-  const [allThemes, setAllThemes] = useState<AllThemesConfig>({
-    themes: Theme.getPresetThemes(),
-  });
+  const allThemes = useMemo<AllThemesConfig>(() => {
+    if (!themes?.length) {
+      return {
+        themes: Theme.getPresetThemes(),
+      };
+    }
+    const safeThemes = themes.filter((themeItem) => {
+      if (!themeItem) return false;
+      return Theme.isAvailableThemeType(themeItem.type);
+    });
+    const nextThemes = Theme.getPresetThemes().concat(safeThemes);
+    return {
+      themes: nextThemes,
+    };
+  }, [themes]);
 
   const currentTheme = useMemo<RawUITheme>(() => {
     const theme = allThemes.themes.find((themeItem) => {
@@ -28,21 +34,6 @@ const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = ({
     if (theme) return theme;
     return Theme.getPresetStaticTheme();
   }, [allThemes, themeType]);
-
-  useEffect(() => {
-    if (!themes?.length) return;
-    setAllThemes((last) => {
-      const safeThemes = themes.filter((themeItem) => {
-        if (!themeItem) return false;
-        return Theme.isAvailableThemeType(themeItem.type);
-      });
-      const nextThemes = Theme.getPresetThemes().concat(safeThemes);
-      return {
-        ...last,
-        themes: nextThemes,
-      };
-    });
-  }, [themes]);
 
   return (
     <ThemeContext.Provider value={currentTheme}>
