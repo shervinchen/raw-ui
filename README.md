@@ -8,8 +8,8 @@
   <p>A minimalist and customizable React component library for web applications.</p>
   <p>
     <a href="https://www.npmjs.com/package/raw-ui"><img src="https://img.shields.io/npm/dm/raw-ui.svg?style=flat"></a>
-    <a href="https://codecov.io/gh/shervinchen/raw-ui"><img src="https://img.shields.io/codecov/c/github/shervinchen/raw-ui/master.svg"/></a>
-    <a href="https://gitHub.com/shervinchen/raw-ui/issues"><img src="https://img.shields.io/github/issues/shervinchen/raw-ui"></a>
+    <a href="https://codecov.io/gh/shervinchen/raw-ui"><img src="https://codecov.io/gh/shervinchen/raw-ui/graph/badge.svg?token=ZYX416DXWZ"/></a>
+    <a href="https://github.com/shervinchen/raw-ui/issues"><img src="https://img.shields.io/github/issues/shervinchen/raw-ui"></a>
     <a href="https://github.com/shervinchen/raw-ui/blob/main/LICENSE"><img src="https://img.shields.io/github/license/shervinchen/raw-ui"></a>
   </p>
   <p>English | <a href="./README.zh-CN.md">中文</a></p>
