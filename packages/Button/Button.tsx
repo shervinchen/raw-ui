@@ -1,10 +1,8 @@
 import React, {
-  forwardRef,
   Children,
   MouseEvent,
   useRef,
   useImperativeHandle,
-  ComponentPropsWithRef,
 } from 'react';
 import classNames from 'classnames';
 
@@ -17,7 +15,7 @@ import { ButtonGroupConfig } from './ButtonGroup.types';
 
 const mergeButtonGroupProps = (
   buttonProps: ButtonProps,
-  config: ButtonGroupConfig
+  config: ButtonGroupConfig,
 ): ButtonProps => {
   if (!config.isButtonGroup) return buttonProps;
   return {
@@ -29,103 +27,103 @@ const mergeButtonGroupProps = (
   };
 };
 
-const Button = forwardRef(
-  (buttonProps: ButtonProps, ref: ComponentPropsWithRef<'button'>['ref']) => {
-    const buttonGroupConfig = useButtonGroupContext();
-    const {
-      className = '',
-      size = 'md',
-      type = 'default',
-      variant = 'default',
-      htmlType = 'button',
-      loading = false,
-      disabled = false,
-      icon,
-      iconRight,
-      onClick,
-      children,
-      ...restProps
-    } = mergeButtonGroupProps(buttonProps, buttonGroupConfig);
-    const buttonRef = useRef<HTMLButtonElement>(null);
+const Button = (buttonProps: ButtonProps) => {
+  const buttonGroupConfig = useButtonGroupContext();
+  const {
+    className = '',
+    size = 'md',
+    type = 'default',
+    variant = 'default',
+    htmlType = 'button',
+    loading = false,
+    disabled = false,
+    icon,
+    iconRight,
+    onClick,
+    children,
+    ref,
+    ...restProps
+  } = mergeButtonGroupProps(buttonProps, buttonGroupConfig);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
-    const { horizontalPadding, height, color, backgroundColor } =
-      useButtonStyles({
-        type,
-        size,
-        variant,
-        loading,
-        disabled,
-      });
-
-    const { className: resolveClassName, styles } = useButtonCSS({
+  const { horizontalPadding, height, color, backgroundColor } = useButtonStyles(
+    {
       type,
       size,
       variant,
       loading,
       disabled,
-    });
+    },
+  );
 
-    const isChildLess = Children.count(children) === 0;
-    const isRight = Boolean(iconRight);
+  const { className: resolveClassName, styles } = useButtonCSS({
+    type,
+    size,
+    variant,
+    loading,
+    disabled,
+  });
 
-    const classes = classNames(
-      'raw-button',
-      loading && 'raw-loading-button',
-      disabled && 'raw-disabled-button',
-      isChildLess && 'raw-childless-button',
-      className,
-      resolveClassName
-    );
+  const isChildLess = Children.count(children) === 0;
+  const isRight = Boolean(iconRight);
 
-    const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
-      if (loading || disabled) return;
-      onClick?.(event);
-    };
+  const classes = classNames(
+    'raw-button',
+    loading && 'raw-loading-button',
+    disabled && 'raw-disabled-button',
+    isChildLess && 'raw-childless-button',
+    className,
+    resolveClassName,
+  );
 
-    useImperativeHandle(ref, () => buttonRef.current as HTMLButtonElement);
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+    if (loading || disabled) return;
+    onClick?.(event);
+  };
 
-    return (
-      <button
-        ref={buttonRef}
-        type={htmlType}
-        className={classes}
-        onClick={handleClick}
-        disabled={disabled}
-        aria-disabled={disabled}
-        {...restProps}
-      >
-        {loading && (
-          <ButtonLoading color={color} backgroundColor={backgroundColor} />
-        )}
-        {icon && (
-          <ButtonIcon
-            isSingle={isChildLess}
-            height={height}
-            horizontalPadding={horizontalPadding}
-          >
-            {icon}
-          </ButtonIcon>
-        )}
-        {!isChildLess && (
-          <span className="raw-button-content" data-testid="buttonContent">
-            {children}
-          </span>
-        )}
-        {iconRight && (
-          <ButtonIcon
-            isSingle={isChildLess}
-            isRight={isRight && !isChildLess}
-            height={height}
-            horizontalPadding={horizontalPadding}
-          >
-            {iconRight}
-          </ButtonIcon>
-        )}
-        {styles}
-      </button>
-    );
-  }
-);
+  useImperativeHandle(ref, () => buttonRef.current as HTMLButtonElement);
+
+  return (
+    <button
+      ref={buttonRef}
+      type={htmlType}
+      className={classes}
+      onClick={handleClick}
+      disabled={disabled}
+      aria-disabled={disabled}
+      {...restProps}
+    >
+      {loading && (
+        <ButtonLoading color={color} backgroundColor={backgroundColor} />
+      )}
+      {icon && (
+        <ButtonIcon
+          isSingle={isChildLess}
+          height={height}
+          horizontalPadding={horizontalPadding}
+        >
+          {icon}
+        </ButtonIcon>
+      )}
+      {!isChildLess && (
+        <span className="raw-button-content" data-testid="buttonContent">
+          {children}
+        </span>
+      )}
+      {iconRight && (
+        <ButtonIcon
+          isSingle={isChildLess}
+          isRight={isRight && !isChildLess}
+          height={height}
+          horizontalPadding={horizontalPadding}
+        >
+          {iconRight}
+        </ButtonIcon>
+      )}
+      {styles}
+    </button>
+  );
+};
 
 Button.displayName = 'RawButton';
 

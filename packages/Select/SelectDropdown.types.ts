@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { ComponentPropsWithRef } from 'react';
 import { Merge } from '../utils';
 
 export interface BaseSelectDropdownProps {
@@ -7,6 +7,6 @@ export interface BaseSelectDropdownProps {
 }
 
 export type SelectDropdownProps = Merge<
-  ComponentPropsWithoutRef<'div'>,
+  ComponentPropsWithRef<'div'>,
   BaseSelectDropdownProps
 >;

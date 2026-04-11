@@ -1,4 +1,4 @@
-import { MutableRefObject } from 'react';
+import { RefObject } from 'react';
 import {
   PopoverPlacement,
   PopoverArrowOffset,
@@ -13,8 +13,8 @@ export const arrowSize = 8;
 export const computePopoverPosition = (
   placement: PopoverPlacement,
   strategy: Strategy,
-  targetRef: MutableRefObject<HTMLElement | null>,
-  popupRef: MutableRefObject<HTMLElement | null>,
+  targetRef: RefObject<HTMLElement | null>,
+  popupRef: RefObject<HTMLElement | null>,
 ) => {
   const { top, bottom, left, right } = computePopupRect(
     strategy,

@@ -1,4 +1,9 @@
-import { ChangeEvent, FocusEvent, ComponentPropsWithoutRef } from 'react';
+import {
+  ChangeEvent,
+  FocusEvent,
+  ComponentPropsWithoutRef,
+  ComponentPropsWithRef,
+} from 'react';
 import { Merge } from '../utils';
 
 export type InputTypes = 'default' | 'primary' | 'warning' | 'error';
@@ -31,10 +36,7 @@ export interface BaseInputElementProps {
   clickable?: boolean;
 }
 
-export type InputProps = Merge<
-  ComponentPropsWithoutRef<'input'>,
-  BaseInputProps
->;
+export type InputProps = Merge<ComponentPropsWithRef<'input'>, BaseInputProps>;
 
 export type InputAddonProps = Merge<
   ComponentPropsWithoutRef<'div'>,

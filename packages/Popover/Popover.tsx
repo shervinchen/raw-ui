@@ -1,6 +1,6 @@
 import React, {
   FC,
-  MutableRefObject,
+  RefObject,
   PropsWithChildren,
   useCallback,
   useId,
@@ -60,7 +60,7 @@ const Popover: FC<PropsWithChildren<PopoverProps>> = ({
   );
 
   const getPopupPosition = useCallback(
-    (popupRef: MutableRefObject<HTMLDivElement | null>) => {
+    (popupRef: RefObject<HTMLDivElement | null>) => {
       return computePopoverPosition(
         placement,
         strategy,

@@ -1,10 +1,10 @@
-import { MutableRefObject } from 'react';
+import { RefObject } from 'react';
 import { PopupRect } from './Popup.types';
 import { getRectRelativeToOffsetParent } from './utils/getRectRelativeToOffsetParent';
 import { getOffsetParent } from './utils/getOffsetParent';
 import { Strategy } from './utils/common';
 
-export const getRectSize = (ref: MutableRefObject<HTMLElement | null>) => {
+export const getRectSize = (ref: RefObject<HTMLElement | null>) => {
   const rect = ref.current?.getBoundingClientRect() ?? null;
   const width = rect ? rect.width || rect.right - rect.left : 0;
   const height = rect ? rect.height || rect.bottom - rect.top : 0;
@@ -17,8 +17,8 @@ export const getRectSize = (ref: MutableRefObject<HTMLElement | null>) => {
 
 export const computePopupRect = (
   strategy: Strategy,
-  targetRef: MutableRefObject<HTMLElement | null>,
-  popupRef: MutableRefObject<HTMLElement | null>,
+  targetRef: RefObject<HTMLElement | null>,
+  popupRef: RefObject<HTMLElement | null>,
 ): PopupRect => {
   if (!targetRef.current || !popupRef.current) {
     return {

@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, MutableRefObject, ReactNode } from 'react';
+import { ComponentPropsWithoutRef, RefObject, ReactNode } from 'react';
 import { Merge } from '../utils';
 import { Strategy } from '../Popup/utils/common';
 
@@ -33,7 +33,7 @@ export type TooltipProps = Merge<
 
 export interface TooltipArrowProps {
   placement: TooltipPlacement;
-  targetRef: MutableRefObject<HTMLElement | null>;
+  targetRef: RefObject<HTMLElement | null>;
 }
 
 export interface TooltipArrowOffset {

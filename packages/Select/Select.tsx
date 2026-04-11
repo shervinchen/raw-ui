@@ -1,5 +1,4 @@
 import React, {
-  forwardRef,
   MouseEvent,
   useMemo,
   useState,
@@ -8,7 +7,6 @@ import React, {
   ReactElement,
   useCallback,
   useId,
-  ComponentPropsWithRef,
 } from 'react';
 import { ChevronDown, ChevronUp, X } from 'react-feather';
 import classNames from 'classnames';
@@ -133,150 +131,129 @@ const SelectContent = ({
   }
 };
 
-const Select = forwardRef(
-  (
-    {
-      defaultValue,
-      value,
-      width = '100%',
-      type = 'default',
-      size = 'md',
-      disabled = false,
-      multiple = false,
-      clearable = false,
-      placeholder = 'Select option',
-      strategy = 'absolute',
-      className = '',
-      dropdownClassName = '',
-      dropdownHeight = 'none',
-      getPopupContainer,
-      onChange,
-      children,
-      ...restProps
-    }: SelectProps,
-    ref: ComponentPropsWithRef<'div'>['ref'],
-  ) => {
-    const selectId = `raw-select-dropdown-${useId()}`;
-    const theme = useTheme();
-    const selectTargetRef = useRef<HTMLDivElement | null>(null);
-    const inputRef = useRef<HTMLInputElement>(null);
-    const dropdownRef = useRef<HTMLDivElement>(null);
-    const [internalValue, setInternalValue] = useControlled<SelectValue>({
-      defaultValue: getInternalValue(multiple, defaultValue),
-      value: getInternalValue(multiple, value),
-    });
-    const [selectFocus, setSelectFocus] = useState(false);
-    const [selectEnter, setSelectEnter] = useState(false);
-    const [dropdownVisible, setDropdownVisible] = useState(false);
-    const [selectTarget, setSelectTarget] = useState<HTMLDivElement | null>(
-      null,
-    );
-    const [dropdownWidth, setDropdownWidth] = useState(0);
-    const [zIndex, setZIndex] = useState(theme.zIndex.dropdown);
-    const { className: resolveClassName, styles } = useSelectCSS({
-      width,
-      type,
-      size,
-      disabled,
-    });
-    const selectClasses = classNames(
-      'raw-select',
-      (selectFocus || dropdownVisible) && 'raw-select-active',
-      multiple && 'multiple',
-      className,
-      resolveClassName,
-    );
+const Select = ({
+  defaultValue,
+  value,
+  width = '100%',
+  type = 'default',
+  size = 'md',
+  disabled = false,
+  multiple = false,
+  clearable = false,
+  placeholder = 'Select option',
+  strategy = 'absolute',
+  className = '',
+  dropdownClassName = '',
+  dropdownHeight = 'none',
+  getPopupContainer,
+  onChange,
+  children,
+  ref,
+  ...restProps
+}: SelectProps) => {
+  const selectId = `raw-select-dropdown-${useId()}`;
+  const theme = useTheme();
+  const selectTargetRef = useRef<HTMLDivElement | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [internalValue, setInternalValue] = useControlled<SelectValue>({
+    defaultValue: getInternalValue(multiple, defaultValue),
+    value: getInternalValue(multiple, value),
+  });
+  const [selectFocus, setSelectFocus] = useState(false);
+  const [selectEnter, setSelectEnter] = useState(false);
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [selectTarget, setSelectTarget] = useState<HTMLDivElement | null>(null);
+  const [dropdownWidth, setDropdownWidth] = useState(0);
+  const [zIndex, setZIndex] = useState(theme.zIndex.dropdown);
+  const { className: resolveClassName, styles } = useSelectCSS({
+    width,
+    type,
+    size,
+    disabled,
+  });
+  const selectClasses = classNames(
+    'raw-select',
+    (selectFocus || dropdownVisible) && 'raw-select-active',
+    multiple && 'multiple',
+    className,
+    resolveClassName,
+  );
 
-    const selectClearVisible = useMemo(() => {
-      const hasValue = Array.isArray(internalValue)
-        ? (internalValue as SelectOptionValue[]).length > 0
-        : internalValue !== undefined && internalValue !== '';
-      return !disabled && hasValue && clearable;
-    }, [internalValue, disabled, clearable]);
+  const selectClearVisible = useMemo(() => {
+    const hasValue = Array.isArray(internalValue)
+      ? (internalValue as SelectOptionValue[]).length > 0
+      : internalValue !== undefined && internalValue !== '';
+    return !disabled && hasValue && clearable;
+  }, [internalValue, disabled, clearable]);
 
-    const handleClick = (event: MouseEvent<HTMLDivElement>) => {
-      event.stopPropagation();
-      if (disabled) return;
-      setDropdownVisible(!dropdownVisible);
-    };
+  const handleClick = (event: MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+    if (disabled) return;
+    setDropdownVisible(!dropdownVisible);
+  };
 
-    const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
-      event.preventDefault();
-    };
+  const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
+    event.preventDefault();
+  };
 
-    const handleChange = useCallback(
-      (optionValue?: SelectOptionValue) => {
-        if (!multiple) {
-          setDropdownVisible(false);
-        }
-        const newValue = getNewInternalValue(
-          multiple,
-          internalValue,
-          optionValue,
-        );
-        setInternalValue(newValue);
-        onChange?.(newValue);
-      },
-      [internalValue, multiple, onChange, setInternalValue],
-    );
-
-    const handleFocus = () => setSelectFocus(true);
-
-    const handleBlur = () => setSelectFocus(false);
-
-    const handleMouseEnter = () => {
-      setSelectEnter(true);
-    };
-
-    const handleMouseLeave = () => {
-      setSelectEnter(false);
-    };
-
-    const handleSelectClearClick = (event: MouseEvent<HTMLDivElement>) => {
-      event.stopPropagation();
-      setInternalValue(undefined);
-      onChange?.(undefined);
-    };
-
-    const setSelectTargetRef = useCallback(
-      (element: HTMLDivElement | null) => {
-        const selectRect = element?.getBoundingClientRect() ?? null;
-        const dropdownWidth = selectRect
-          ? selectRect.width || selectRect.right - selectRect.left
-          : 0;
-        selectTargetRef.current = element;
-        const closestZIndex = getZIndexByClosestFloating(
-          selectTargetRef.current,
-          theme.zIndex.dropdown,
-        );
-        setDropdownWidth(dropdownWidth);
-        setZIndex(closestZIndex);
-        setSelectTarget(element);
-      },
-      [theme],
-    );
-
-    const selectConfig = useMemo<SelectConfig>(() => {
-      return {
+  const handleChange = useCallback(
+    (optionValue?: SelectOptionValue) => {
+      if (!multiple) {
+        setDropdownVisible(false);
+      }
+      const newValue = getNewInternalValue(
         multiple,
-        selectValue: internalValue,
-        handleSelectChange: handleChange,
-        selectTargetRef,
-        selectTarget,
-        dropdownWidth,
-        dropdownHeight,
-        strategy,
-        zIndex,
-        getPopupContainer,
-        type,
-        size,
-        disabled,
-        selectId,
-      };
-    }, [
+        internalValue,
+        optionValue,
+      );
+      setInternalValue(newValue);
+      onChange?.(newValue);
+    },
+    [internalValue, multiple, onChange, setInternalValue],
+  );
+
+  const handleFocus = () => setSelectFocus(true);
+
+  const handleBlur = () => setSelectFocus(false);
+
+  const handleMouseEnter = () => {
+    setSelectEnter(true);
+  };
+
+  const handleMouseLeave = () => {
+    setSelectEnter(false);
+  };
+
+  const handleSelectClearClick = (event: MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+    setInternalValue(undefined);
+    onChange?.(undefined);
+  };
+
+  const setSelectTargetRef = useCallback(
+    (element: HTMLDivElement | null) => {
+      const selectRect = element?.getBoundingClientRect() ?? null;
+      const dropdownWidth = selectRect
+        ? selectRect.width || selectRect.right - selectRect.left
+        : 0;
+      selectTargetRef.current = element;
+      const closestZIndex = getZIndexByClosestFloating(
+        selectTargetRef.current,
+        theme.zIndex.dropdown,
+      );
+      setDropdownWidth(dropdownWidth);
+      setZIndex(closestZIndex);
+      setSelectTarget(element);
+    },
+    [theme],
+  );
+
+  const selectConfig = useMemo<SelectConfig>(() => {
+    return {
       multiple,
-      internalValue,
-      handleChange,
+      selectValue: internalValue,
+      handleSelectChange: handleChange,
       selectTargetRef,
       selectTarget,
       dropdownWidth,
@@ -288,72 +265,87 @@ const Select = forwardRef(
       size,
       disabled,
       selectId,
-    ]);
+    };
+  }, [
+    multiple,
+    internalValue,
+    handleChange,
+    selectTargetRef,
+    selectTarget,
+    dropdownWidth,
+    dropdownHeight,
+    strategy,
+    zIndex,
+    getPopupContainer,
+    type,
+    size,
+    disabled,
+    selectId,
+  ]);
 
-    useClickAway(selectTargetRef, () => {
-      setDropdownVisible(false);
-    }, ['mousedown']);
+  useClickAway(selectTargetRef, () => {
+    setDropdownVisible(false);
+  }, ['mousedown']);
 
-    useImperativeHandle(ref, () => selectTargetRef.current as HTMLDivElement);
+  useImperativeHandle(ref, () => selectTargetRef.current as HTMLDivElement);
 
-    return (
-      <SelectContext.Provider value={selectConfig}>
-        <div
-          data-testid="selectContainer"
-          className={selectClasses}
-          ref={setSelectTargetRef}
-          onClick={handleClick}
-          onMouseDown={handleMouseDown}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          {...restProps}
-        >
-          <div className="raw-select-inner">
-            <SelectContent
-              internalValue={internalValue}
-              multiple={multiple}
-              placeholder={placeholder}
-              selectChildren={children}
-              disabled={disabled}
-              handleChange={handleChange}
-            />
-            <SelectInput
-              ref={inputRef}
-              visible={dropdownVisible}
-              onBlur={handleBlur}
-              onFocus={handleFocus}
-            />
-          </div>
-          {selectEnter && selectClearVisible ? (
-            <div
-              data-testid="selectClear"
-              className="raw-select-clear"
-              onClick={handleSelectClearClick}
-            >
-              <X size={16} />
-            </div>
-          ) : (
-            <div className="raw-select-arrow">
-              {dropdownVisible ? (
-                <ChevronUp size={16} />
-              ) : (
-                <ChevronDown size={16} />
-              )}
-            </div>
-          )}
-          {styles}
+  return (
+    <SelectContext.Provider value={selectConfig}>
+      <div
+        data-testid="selectContainer"
+        className={selectClasses}
+        ref={setSelectTargetRef}
+        onClick={handleClick}
+        onMouseDown={handleMouseDown}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        {...restProps}
+      >
+        <div className="raw-select-inner">
+          <SelectContent
+            internalValue={internalValue}
+            multiple={multiple}
+            placeholder={placeholder}
+            selectChildren={children}
+            disabled={disabled}
+            handleChange={handleChange}
+          />
+          <SelectInput
+            ref={inputRef}
+            visible={dropdownVisible}
+            onBlur={handleBlur}
+            onFocus={handleFocus}
+          />
         </div>
-        <SelectDropdown
-          ref={dropdownRef}
-          visible={dropdownVisible}
-          className={dropdownClassName}
-        >
-          {children}
-        </SelectDropdown>
-      </SelectContext.Provider>
-    );
-  },
-);
+        {selectEnter && selectClearVisible ? (
+          <div
+            data-testid="selectClear"
+            className="raw-select-clear"
+            onClick={handleSelectClearClick}
+          >
+            <X size={16} />
+          </div>
+        ) : (
+          <div className="raw-select-arrow">
+            {dropdownVisible ? (
+              <ChevronUp size={16} />
+            ) : (
+              <ChevronDown size={16} />
+            )}
+          </div>
+        )}
+        {styles}
+      </div>
+      <SelectDropdown
+        ref={dropdownRef}
+        visible={dropdownVisible}
+        className={dropdownClassName}
+      >
+        {children}
+      </SelectDropdown>
+    </SelectContext.Provider>
+  );
+};
 
 Select.displayName = 'RawSelect';
 

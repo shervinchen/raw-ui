@@ -2,7 +2,7 @@
 
 import {
   Dispatch,
-  MutableRefObject,
+  RefObject,
   SetStateAction,
   startTransition,
   useEffect,
@@ -112,7 +112,7 @@ const useIntersectionObserver = (
   setActiveId: Dispatch<SetStateAction<string>>,
   pathname: string,
 ) => {
-  const headingElementsRef: MutableRefObject<{
+  const headingElementsRef: RefObject<{
     [key: string]: IntersectionObserverEntry;
   }> = useRef({});
 

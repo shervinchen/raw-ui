@@ -1,4 +1,4 @@
-import { MutableRefObject } from 'react';
+import { RefObject } from 'react';
 import { Strategy } from './utils/common';
 
 export type PopupRect = {
@@ -20,7 +20,7 @@ export interface PopupProps {
   strategy?: Strategy;
   targetElement: HTMLElement | null;
   getPopupPosition: (
-    popupRef: MutableRefObject<HTMLDivElement | null>,
+    popupRef: RefObject<HTMLDivElement | null>,
   ) => PopupPosition;
   getPopupContainer?: () => HTMLElement | null;
 }

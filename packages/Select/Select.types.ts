@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, MutableRefObject } from 'react';
+import { ComponentPropsWithRef, RefObject } from 'react';
 import { Merge } from '../utils';
 import { Strategy } from '../Popup/utils/common';
 
@@ -28,16 +28,13 @@ export interface BaseSelectProps {
   onChange?: (value: SelectValue) => void;
 }
 
-export type SelectProps = Merge<
-  ComponentPropsWithoutRef<'div'>,
-  BaseSelectProps
->;
+export type SelectProps = Merge<ComponentPropsWithRef<'div'>, BaseSelectProps>;
 
 export interface SelectConfig {
   multiple?: boolean;
   selectValue?: SelectValue;
   handleSelectChange?: (optionValue?: SelectOptionValue) => void;
-  selectTargetRef: MutableRefObject<HTMLElement | null>;
+  selectTargetRef: RefObject<HTMLElement | null>;
   selectTarget: HTMLElement | null;
   zIndex?: number;
   getPopupContainer?: () => HTMLElement | null;

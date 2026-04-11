@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, MutableRefObject, ReactNode } from 'react';
+import { ComponentPropsWithoutRef, RefObject, ReactNode } from 'react';
 import { Merge } from '../utils';
 import { Strategy } from '../Popup/utils/common';
 
@@ -36,7 +36,7 @@ export type PopoverProps = Merge<
 
 export interface PopoverArrowProps {
   placement: PopoverPlacement;
-  targetRef: MutableRefObject<HTMLElement | null>;
+  targetRef: RefObject<HTMLElement | null>;
 }
 
 export interface PopoverArrowOffset {

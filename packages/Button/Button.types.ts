@@ -1,8 +1,4 @@
-import {
-  MouseEventHandler,
-  ReactElement,
-  ComponentPropsWithoutRef,
-} from 'react';
+import { MouseEventHandler, ReactElement, ComponentPropsWithRef } from 'react';
 import { Merge } from '../utils';
 import { IconProps } from 'react-feather';
 
@@ -22,7 +18,7 @@ export interface BaseButtonProps {
   size?: ButtonSizes;
   type?: ButtonTypes;
   variant?: ButtonVariants;
-  htmlType?: ComponentPropsWithoutRef<'button'>['type'];
+  htmlType?: ComponentPropsWithRef<'button'>['type'];
   loading?: boolean;
   disabled?: boolean;
   icon?: ReactElement<IconProps>;
@@ -31,7 +27,7 @@ export interface BaseButtonProps {
 }
 
 export type ButtonProps = Merge<
-  ComponentPropsWithoutRef<'button'>,
+  ComponentPropsWithRef<'button'>,
   BaseButtonProps
 >;
 
