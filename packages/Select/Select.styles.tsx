@@ -161,7 +161,9 @@ export const useSelectCSS = ({ width, type, size, disabled }: SelectProps) => {
       border: 1px solid ${borderColor};
       border-radius: 6px;
       background-color: ${backgroundColor};
-      transition: border-color 0.15s ease, color 0.15s ease;
+      transition:
+        border-color 0.15s ease,
+        color 0.15s ease;
       cursor: ${cursor};
       user-select: none;
     }

@@ -16,7 +16,7 @@ import { Radio } from 'raw-ui';
 <Playground
   scope={{ Radio }}
   code={`
-<Radio />
+  <Radio />
 `}
 />
 
@@ -25,7 +25,7 @@ import { Radio } from 'raw-ui';
 <Playground
   scope={{ Radio }}
   code={`
-<Radio defaultChecked />
+  <Radio defaultChecked />
 `}
 />
 
@@ -34,7 +34,7 @@ import { Radio } from 'raw-ui';
 <Playground
   scope={{ Radio }}
   code={`
-<Radio>Label</Radio>
+  <Radio>Label</Radio>
 `}
 />
 
@@ -43,20 +43,20 @@ import { Radio } from 'raw-ui';
 <Playground
   scope={{ Radio }}
   code={`
-() => {
-  const [value, setValue] = React.useState(false);
+  () => {
+    const [value, setValue] = React.useState(false);
 
-  return (
-    <Radio
-      checked={value}
-      onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(event.target.checked);
-      }}
-    >
-      Controlled
-    </Radio>
-  );
-}
+    return (
+      <Radio
+        checked={value}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          setValue(event.target.checked);
+        }}
+      >
+        Controlled
+      </Radio>
+    );
+  }
 `}
 />
 
@@ -65,16 +65,16 @@ import { Radio } from 'raw-ui';
 <Playground
   scope={{ Grid, Radio }}
   code={`
-<Grid gutter={[32, 0]}>
-  <Grid.Col>
-    <Radio disabled>Disabled</Radio>
-  </Grid.Col>
-  <Grid.Col>
-    <Radio defaultChecked disabled>
-      Disabled
-    </Radio>
-  </Grid.Col>
-</Grid>
+  <Grid gutter={[32, 0]}>
+    <Grid.Col>
+      <Radio disabled>Disabled</Radio>
+    </Grid.Col>
+    <Grid.Col>
+      <Radio defaultChecked disabled>
+        Disabled
+      </Radio>
+    </Grid.Col>
+  </Grid>
 `}
 />
 
@@ -83,74 +83,74 @@ import { Radio } from 'raw-ui';
 <Playground
   scope={{ Grid, Radio }}
   code={`
-() => {
-  const optionsData = React.useMemo(() => [
-    {
-      name: 'React',
-      value: 'react',
-    },
-    {
-      name: 'Vue',
-      value: 'vue',
-    },
-    {
-      name: 'Angular',
-      value: 'angular',
-    },
-    {
-      name: 'Svelte',
-      value: 'svelte',
-    },
-  ], []);
+  () => {
+    const optionsData = React.useMemo(() => [
+      {
+        name: 'React',
+        value: 'react',
+      },
+      {
+        name: 'Vue',
+        value: 'vue',
+      },
+      {
+        name: 'Angular',
+        value: 'angular',
+      },
+      {
+        name: 'Svelte',
+        value: 'svelte',
+      },
+    ], []);
 
-  const [radioGroupValue, setRadioGroupValue] = React.useState<RadioValue>('angular');
+    const [radioGroupValue, setRadioGroupValue] = React.useState<RadioValue>('angular');
 
-  return (
-    <Grid gutter={[0, 32]}>
-      <Grid.Col span={24}>
-        <Radio.Group defaultValue="vue">
-          {optionsData.map((item) => (
-            <Radio value={item.value} key={item.value}>
-              {item.name}
-            </Radio>
-          ))}
-        </Radio.Group>
-      </Grid.Col>
-      <Grid.Col span={24}>
-        <Radio.Group
-          value={radioGroupValue}
-          onChange={(groupValue) => {
-            setRadioGroupValue(groupValue);
-          }}
-        >
-          {optionsData.map((item) => (
-            <Radio value={item.value} key={item.value}>
-              {item.name}
-            </Radio>
-          ))}
-        </Radio.Group>
-      </Grid.Col>
-      <Grid.Col span={24}>
-        <Radio.Group defaultValue="svelte" disabled>
-          {optionsData.map((item) => (
-            <Radio value={item.value} key={item.value}>
-              {item.name}
-            </Radio>
-          ))}
-        </Radio.Group>
-      </Grid.Col>
-      <Grid.Col span={24}>
-        <Radio.Group defaultValue="vue" layout="column">
-          {optionsData.map((item) => (
-            <Radio value={item.value} key={item.value}>
-              {item.name}
-            </Radio>
-          ))}
-        </Radio.Group>
-      </Grid.Col>
-    </Grid>
-  );
-}
+    return (
+      <Grid gutter={[0, 32]}>
+        <Grid.Col span={24}>
+          <Radio.Group defaultValue="vue">
+            {optionsData.map((item) => (
+              <Radio value={item.value} key={item.value}>
+                {item.name}
+              </Radio>
+            ))}
+          </Radio.Group>
+        </Grid.Col>
+        <Grid.Col span={24}>
+          <Radio.Group
+            value={radioGroupValue}
+            onChange={(groupValue) => {
+              setRadioGroupValue(groupValue);
+            }}
+          >
+            {optionsData.map((item) => (
+              <Radio value={item.value} key={item.value}>
+                {item.name}
+              </Radio>
+            ))}
+          </Radio.Group>
+        </Grid.Col>
+        <Grid.Col span={24}>
+          <Radio.Group defaultValue="svelte" disabled>
+            {optionsData.map((item) => (
+              <Radio value={item.value} key={item.value}>
+                {item.name}
+              </Radio>
+            ))}
+          </Radio.Group>
+        </Grid.Col>
+        <Grid.Col span={24}>
+          <Radio.Group defaultValue="vue" layout="column">
+            {optionsData.map((item) => (
+              <Radio value={item.value} key={item.value}>
+                {item.name}
+              </Radio>
+            ))}
+          </Radio.Group>
+        </Grid.Col>
+      </Grid>
+    );
+  }
 `}
 />
 

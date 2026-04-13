@@ -55,7 +55,7 @@ const isLegalGridPropertyValue = (
   value?:
     | ResponsiveValue<number>
     | ResponsiveValue<Align>
-    | ResponsiveValue<Justify>
+    | ResponsiveValue<Justify>,
 ) => {
   const keys = {
     align: Aligns,
@@ -68,7 +68,7 @@ const isLegalGridPropertyValue = (
 
 const calculateColStyle = (
   type: 'span' | 'offset' | 'order',
-  value: number
+  value: number,
 ) => {
   return {
     span: {
@@ -87,7 +87,7 @@ const calculateColStyle = (
 
 export const getColResponsiveStyle = (
   type: 'span' | 'offset' | 'order',
-  value: ResponsiveValue<number>
+  value: ResponsiveValue<number>,
 ) => {
   const defaultStyle: ColStyle = {
     span: {
@@ -143,7 +143,7 @@ export const getColResponsiveStyle = (
       ) {
         responsiveStyle[breakPoint] = calculateColStyle(
           type,
-          responsiveValue[breakPoint] as number
+          responsiveValue[breakPoint] as number,
         );
       }
     });
@@ -158,7 +158,7 @@ export const getGridResponsiveStyle = (
   value:
     | ResponsiveValue<number>
     | ResponsiveValue<Align>
-    | ResponsiveValue<Justify>
+    | ResponsiveValue<Justify>,
 ) => {
   const gridResponsiveStyle:
     | GutterResponsiveStyle

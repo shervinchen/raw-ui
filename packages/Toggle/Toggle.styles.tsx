@@ -40,7 +40,7 @@ export const useToggleStyles = ({
   return {
     ...defaultStyles,
     ...(disabled
-      ? disabledStyles?.[status || 'unChecked'] ?? disabledStyles['unChecked']
+      ? (disabledStyles?.[status || 'unChecked'] ?? disabledStyles['unChecked'])
       : {}),
   };
 };
@@ -75,7 +75,9 @@ export const useToggleCSS = ({ checked, disabled }: ToggleProps) => {
       height: 12px;
       top: 50%;
       left: 0;
-      box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%), 0 1px 3px 0 rgb(0 0 0 / 10%);
+      box-shadow:
+        0 1px 2px 0 rgb(0 0 0 / 20%),
+        0 1px 3px 0 rgb(0 0 0 / 10%);
       transition: transform 150ms cubic-bezier(0, 0, 0.2, 1);
       border-radius: 50%;
       background-color: ${disabled

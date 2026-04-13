@@ -17,51 +17,51 @@ import { Layout } from 'raw-ui';
 <Playground
   scope={{ Grid, Layout, useTheme, headerStyle, contentStyle, sidebarStyle, footerStyle }}
   code={`
-() => {
-  const theme = useTheme();
+  () => {
+    const theme = useTheme();
 
-  return (
-    <Grid gutter={[16, 16]}>
-      <Grid.Col span={12}>
-        <Layout>
-          <Layout.Header style={headerStyle(theme)}>Header</Layout.Header>
-          <Layout.Content style={contentStyle(theme)}>Content</Layout.Content>
-          <Layout.Footer style={footerStyle(theme)}>Footer</Layout.Footer>
-        </Layout>
-      </Grid.Col>
-      <Grid.Col span={12}>
-        <Layout>
-          <Layout.Header style={headerStyle(theme)}>Header</Layout.Header>
-          <Layout>
-            <Layout.Sidebar style={sidebarStyle(theme)}>Sidebar</Layout.Sidebar>
-            <Layout.Content style={contentStyle(theme)}>Content</Layout.Content>
-          </Layout>
-          <Layout.Footer style={footerStyle(theme)}>Footer</Layout.Footer>
-        </Layout>
-      </Grid.Col>
-      <Grid.Col span={12}>
-        <Layout>
-          <Layout.Header style={headerStyle(theme)}>Header</Layout.Header>
-          <Layout>
-            <Layout.Content style={contentStyle(theme)}>Content</Layout.Content>
-            <Layout.Sidebar style={sidebarStyle(theme)}>Sidebar</Layout.Sidebar>
-          </Layout>
-          <Layout.Footer style={footerStyle(theme)}>Footer</Layout.Footer>
-        </Layout>
-      </Grid.Col>
-      <Grid.Col span={12}>
-        <Layout>
-          <Layout.Sidebar style={sidebarStyle(theme)}>Sidebar</Layout.Sidebar>
+    return (
+      <Grid gutter={[16, 16]}>
+        <Grid.Col span={12}>
           <Layout>
             <Layout.Header style={headerStyle(theme)}>Header</Layout.Header>
             <Layout.Content style={contentStyle(theme)}>Content</Layout.Content>
             <Layout.Footer style={footerStyle(theme)}>Footer</Layout.Footer>
           </Layout>
-        </Layout>
-      </Grid.Col>
-    </Grid>
-  );
-}
+        </Grid.Col>
+        <Grid.Col span={12}>
+          <Layout>
+            <Layout.Header style={headerStyle(theme)}>Header</Layout.Header>
+            <Layout>
+              <Layout.Sidebar style={sidebarStyle(theme)}>Sidebar</Layout.Sidebar>
+              <Layout.Content style={contentStyle(theme)}>Content</Layout.Content>
+            </Layout>
+            <Layout.Footer style={footerStyle(theme)}>Footer</Layout.Footer>
+          </Layout>
+        </Grid.Col>
+        <Grid.Col span={12}>
+          <Layout>
+            <Layout.Header style={headerStyle(theme)}>Header</Layout.Header>
+            <Layout>
+              <Layout.Content style={contentStyle(theme)}>Content</Layout.Content>
+              <Layout.Sidebar style={sidebarStyle(theme)}>Sidebar</Layout.Sidebar>
+            </Layout>
+            <Layout.Footer style={footerStyle(theme)}>Footer</Layout.Footer>
+          </Layout>
+        </Grid.Col>
+        <Grid.Col span={12}>
+          <Layout>
+            <Layout.Sidebar style={sidebarStyle(theme)}>Sidebar</Layout.Sidebar>
+            <Layout>
+              <Layout.Header style={headerStyle(theme)}>Header</Layout.Header>
+              <Layout.Content style={contentStyle(theme)}>Content</Layout.Content>
+              <Layout.Footer style={footerStyle(theme)}>Footer</Layout.Footer>
+            </Layout>
+          </Layout>
+        </Grid.Col>
+      </Grid>
+    );
+  }
 `}
 />
 

@@ -16,7 +16,7 @@ import { Checkbox } from 'raw-ui';
 <Playground
   scope={{ Checkbox }}
   code={`
-<Checkbox />
+  <Checkbox />
 `}
 />
 
@@ -25,7 +25,7 @@ import { Checkbox } from 'raw-ui';
 <Playground
   scope={{ Checkbox }}
   code={`
-<Checkbox defaultChecked />
+  <Checkbox defaultChecked />
 `}
 />
 
@@ -34,7 +34,7 @@ import { Checkbox } from 'raw-ui';
 <Playground
   scope={{ Checkbox }}
   code={`
-<Checkbox>Label</Checkbox>
+  <Checkbox>Label</Checkbox>
 `}
 />
 
@@ -43,20 +43,20 @@ import { Checkbox } from 'raw-ui';
 <Playground
   scope={{ Checkbox }}
   code={`
-() => {
-  const [checkboxValue, setCheckboxValue] = React.useState(false);
+  () => {
+    const [checkboxValue, setCheckboxValue] = React.useState(false);
 
-  return (
-    <Checkbox
-      checked={checkboxValue}
-      onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-        setCheckboxValue(event.target.checked);
-      }}
-    >
-      Controlled
-    </Checkbox>
-  );
-}
+    return (
+      <Checkbox
+        checked={checkboxValue}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          setCheckboxValue(event.target.checked);
+        }}
+      >
+        Controlled
+      </Checkbox>
+    );
+  }
 `}
 />
 
@@ -65,7 +65,7 @@ import { Checkbox } from 'raw-ui';
 <Playground
   scope={{ Checkbox }}
   code={`
-<Checkbox indeterminate>Indeterminate</Checkbox>
+  <Checkbox indeterminate>Indeterminate</Checkbox>
 `}
 />
 
@@ -74,21 +74,21 @@ import { Checkbox } from 'raw-ui';
 <Playground
   scope={{ Grid, Checkbox }}
   code={`
-<Grid gutter={[32, 0]}>
-  <Grid.Col>
-    <Checkbox disabled>Disabled</Checkbox>
-  </Grid.Col>
-  <Grid.Col>
-    <Checkbox defaultChecked disabled>
-      Disabled
-    </Checkbox>
-  </Grid.Col>
-  <Grid.Col>
-    <Checkbox indeterminate disabled>
-      Disabled
-    </Checkbox>
-  </Grid.Col>
-</Grid>
+  <Grid gutter={[32, 0]}>
+    <Grid.Col>
+      <Checkbox disabled>Disabled</Checkbox>
+    </Grid.Col>
+    <Grid.Col>
+      <Checkbox defaultChecked disabled>
+        Disabled
+      </Checkbox>
+    </Grid.Col>
+    <Grid.Col>
+      <Checkbox indeterminate disabled>
+        Disabled
+      </Checkbox>
+    </Grid.Col>
+  </Grid>
 `}
 />
 
@@ -97,78 +97,78 @@ import { Checkbox } from 'raw-ui';
 <Playground
   scope={{ Grid, Checkbox }}
   code={`
-() => {
-  const optionsData = React.useMemo(() => [
-    {
-      name: 'React',
-      value: 'react',
-    },
-    {
-      name: 'Vue',
-      value: 'vue',
-    },
-    {
-      name: 'Angular',
-      value: 'angular',
-    },
-    {
-      name: 'Svelte',
-      value: 'svelte',
-    },
-  ], []);
+  () => {
+    const optionsData = React.useMemo(() => [
+      {
+        name: 'React',
+        value: 'react',
+      },
+      {
+        name: 'Vue',
+        value: 'vue',
+      },
+      {
+        name: 'Angular',
+        value: 'angular',
+      },
+      {
+        name: 'Svelte',
+        value: 'svelte',
+      },
+    ], []);
 
-  const [checkboxGroupValue, setCheckboxGroupValue] =
-    React.useState<CheckboxGroupValue>(['react', 'angular']);
+    const [checkboxGroupValue, setCheckboxGroupValue] =
+      React.useState<CheckboxGroupValue>(['react', 'angular']);
 
-  return (
-    <Grid gutter={[0, 32]}>
-      <Grid.Col span={24}>
-        <Checkbox.Group defaultValue={['vue', 'svelte']}>
-          {optionsData.map((item) => (
-            <Checkbox value={item.value} key={item.value}>
-              {item.name}
-            </Checkbox>
-          ))}
-        </Checkbox.Group>
-      </Grid.Col>
-      <Grid.Col span={24}>
-        <Checkbox.Group
-          value={checkboxGroupValue}
-          onChange={(groupValue) => {
-            setCheckboxGroupValue(groupValue);
-          }}
-        >
-          {optionsData.map((item) => (
-            <Checkbox value={item.value} key={item.value}>
-              {item.name}
-            </Checkbox>
-          ))}
-        </Checkbox.Group>
-      </Grid.Col>
-      <Grid.Col span={24}>
-        <Checkbox.Group
-          defaultValue={['react', 'vue', 'angular', 'svelte']}
-          disabled
-        >
-          {optionsData.map((item) => (
-            <Checkbox value={item.value} key={item.value}>
-              {item.name}
-            </Checkbox>
-          ))}
-        </Checkbox.Group>
-      </Grid.Col>
-      <Grid.Col span={24}>
-        <Checkbox.Group defaultValue={['vue', 'svelte']} layout="column">
-          {optionsData.map((item) => (
-            <Checkbox value={item.value} key={item.value}>
-              {item.name}
-            </Checkbox>
-          ))}
-        </Checkbox.Group>
-      </Grid.Col>
-    </Grid>
-  );
-}
+    return (
+      <Grid gutter={[0, 32]}>
+        <Grid.Col span={24}>
+          <Checkbox.Group defaultValue={['vue', 'svelte']}>
+            {optionsData.map((item) => (
+              <Checkbox value={item.value} key={item.value}>
+                {item.name}
+              </Checkbox>
+            ))}
+          </Checkbox.Group>
+        </Grid.Col>
+        <Grid.Col span={24}>
+          <Checkbox.Group
+            value={checkboxGroupValue}
+            onChange={(groupValue) => {
+              setCheckboxGroupValue(groupValue);
+            }}
+          >
+            {optionsData.map((item) => (
+              <Checkbox value={item.value} key={item.value}>
+                {item.name}
+              </Checkbox>
+            ))}
+          </Checkbox.Group>
+        </Grid.Col>
+        <Grid.Col span={24}>
+          <Checkbox.Group
+            defaultValue={['react', 'vue', 'angular', 'svelte']}
+            disabled
+          >
+            {optionsData.map((item) => (
+              <Checkbox value={item.value} key={item.value}>
+                {item.name}
+              </Checkbox>
+            ))}
+          </Checkbox.Group>
+        </Grid.Col>
+        <Grid.Col span={24}>
+          <Checkbox.Group defaultValue={['vue', 'svelte']} layout="column">
+            {optionsData.map((item) => (
+              <Checkbox value={item.value} key={item.value}>
+                {item.name}
+              </Checkbox>
+            ))}
+          </Checkbox.Group>
+        </Grid.Col>
+      </Grid>
+    );
+  }
 `}
 />
 
@@ -177,62 +177,62 @@ import { Checkbox } from 'raw-ui';
 <Playground
   scope={{ Grid, Checkbox }}
   code={`
-() => {
-  const optionsData = React.useMemo(() => [
-    {
-      name: 'React',
-      value: 'react',
-    },
-    {
-      name: 'Vue',
-      value: 'vue',
-    },
-    {
-      name: 'Angular',
-      value: 'angular',
-    },
-    {
-      name: 'Svelte',
-      value: 'svelte',
-    },
-  ], []);
+  () => {
+    const optionsData = React.useMemo(() => [
+      {
+        name: 'React',
+        value: 'react',
+      },
+      {
+        name: 'Vue',
+        value: 'vue',
+      },
+      {
+        name: 'Angular',
+        value: 'angular',
+      },
+      {
+        name: 'Svelte',
+        value: 'svelte',
+      },
+    ], []);
 
-  const [checkboxGroupValue, setCheckboxGroupValue] =
-    React.useState<CheckboxGroupValue>(['react', 'angular']);
+    const [checkboxGroupValue, setCheckboxGroupValue] =
+      React.useState<CheckboxGroupValue>(['react', 'angular']);
 
-  return (
-    <Grid gutter={[0, 32]}>
-      <Grid.Col span={24}>
-        <Checkbox
-          indeterminate={
-            checkboxGroupValue.length > 0 &&
-            checkboxGroupValue.length < optionsData.length
-          }
-          checked={checkboxGroupValue.length === optionsData.length}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setCheckboxGroupValue(
-              event.target.checked ? optionsData.map((item) => item.value) : []
-            );
-          }}
-        >
-          Check All
-        </Checkbox>
-      </Grid.Col>
-      <Grid.Col span={24}>
-        <Checkbox.Group
-          value={checkboxGroupValue}
-          onChange={setCheckboxGroupValue}
-        >
-          {optionsData.map((item) => (
-            <Checkbox value={item.value} key={item.value}>
-              {item.name}
-            </Checkbox>
-          ))}
-        </Checkbox.Group>
-      </Grid.Col>
-    </Grid>
-  );
-}
+    return (
+      <Grid gutter={[0, 32]}>
+        <Grid.Col span={24}>
+          <Checkbox
+            indeterminate={
+              checkboxGroupValue.length > 0 &&
+              checkboxGroupValue.length < optionsData.length
+            }
+            checked={checkboxGroupValue.length === optionsData.length}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              setCheckboxGroupValue(
+                event.target.checked ? optionsData.map((item) => item.value) : []
+              );
+            }}
+          >
+            Check All
+          </Checkbox>
+        </Grid.Col>
+        <Grid.Col span={24}>
+          <Checkbox.Group
+            value={checkboxGroupValue}
+            onChange={setCheckboxGroupValue}
+          >
+            {optionsData.map((item) => (
+              <Checkbox value={item.value} key={item.value}>
+                {item.name}
+              </Checkbox>
+            ))}
+          </Checkbox.Group>
+        </Grid.Col>
+      </Grid>
+    );
+  }
 `}
 />
 

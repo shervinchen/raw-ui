@@ -16,14 +16,14 @@ import { Loading } from 'raw-ui';
 <Playground
   scope={{ Grid, Loading }}
   code={`
-<Grid gutter={[32, 0]} align="center">
-  <Grid.Col>
-    <Loading />
-  </Grid.Col>
-  <Grid.Col>
-    <Loading type="spin" />
-  </Grid.Col>
-</Grid>
+  <Grid gutter={[32, 0]} align="center">
+    <Grid.Col>
+      <Loading />
+    </Grid.Col>
+    <Grid.Col>
+      <Loading type="spin" />
+    </Grid.Col>
+  </Grid>
 `}
 />
 
@@ -32,34 +32,34 @@ import { Loading } from 'raw-ui';
 <Playground
   scope={{ Grid, Loading }}
   code={`
-<Grid gutter={[0, 32]}>
-  <Grid.Col span={24}>
-    <Grid gutter={[32, 0]} align="center">
-      <Grid.Col>
-        <Loading size={4} />
-      </Grid.Col>
-      <Grid.Col>
-        <Loading size={6} />
-      </Grid.Col>
-      <Grid.Col>
-        <Loading size={8} />
-      </Grid.Col>
-    </Grid>
-  </Grid.Col>
-  <Grid.Col span={24}>
-    <Grid gutter={[32, 0]} align="center">
-      <Grid.Col>
-        <Loading type="spin" size={16} />
-      </Grid.Col>
-      <Grid.Col>
-        <Loading type="spin" size={20} />
-      </Grid.Col>
-      <Grid.Col>
-        <Loading type="spin" size={32} />
-      </Grid.Col>
-    </Grid>
-  </Grid.Col>
-</Grid>
+  <Grid gutter={[0, 32]}>
+    <Grid.Col span={24}>
+      <Grid gutter={[32, 0]} align="center">
+        <Grid.Col>
+          <Loading size={4} />
+        </Grid.Col>
+        <Grid.Col>
+          <Loading size={6} />
+        </Grid.Col>
+        <Grid.Col>
+          <Loading size={8} />
+        </Grid.Col>
+      </Grid>
+    </Grid.Col>
+    <Grid.Col span={24}>
+      <Grid gutter={[32, 0]} align="center">
+        <Grid.Col>
+          <Loading type="spin" size={16} />
+        </Grid.Col>
+        <Grid.Col>
+          <Loading type="spin" size={20} />
+        </Grid.Col>
+        <Grid.Col>
+          <Loading type="spin" size={32} />
+        </Grid.Col>
+      </Grid>
+    </Grid.Col>
+  </Grid>
 `}
 />
 
@@ -68,14 +68,14 @@ import { Loading } from 'raw-ui';
 <Playground
   scope={{ Grid, Loading }}
   code={`
-<Grid gutter={[32, 0]} align="center">
-  <Grid.Col>
-    <Loading>Loading</Loading>
-  </Grid.Col>
-  <Grid.Col>
-    <Loading type="spin">Loading</Loading>
-  </Grid.Col>
-</Grid>
+  <Grid gutter={[32, 0]} align="center">
+    <Grid.Col>
+      <Loading>Loading</Loading>
+    </Grid.Col>
+    <Grid.Col>
+      <Loading type="spin">Loading</Loading>
+    </Grid.Col>
+  </Grid>
 `}
 />
 

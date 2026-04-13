@@ -16,33 +16,33 @@ import { Modal } from 'raw-ui';
 <Playground
   scope={{ Button, Modal }}
   code={`
-() => {
-  const [visible, setVisible] = React.useState(false);
+  () => {
+    const [visible, setVisible] = React.useState(false);
 
-  const openModal = () => setVisible(true);
+    const openModal = () => setVisible(true);
 
-  const closeModal = () => {
-    setVisible(false);
-  };
+    const closeModal = () => {
+      setVisible(false);
+    };
 
-  return (
-    <>
-      <Button onClick={openModal}>Open Modal</Button>
-      <Modal visible={visible} onClose={closeModal}>
-        <Modal.Header>Modal Title</Modal.Header>
-        <Modal.Body>
-          <div>This is a modal.</div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={closeModal}>Cancel</Button>
-          <Button type="primary" onClick={closeModal}>
-            Confirm
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </>
-  );
-}
+    return (
+      <>
+        <Button onClick={openModal}>Open Modal</Button>
+        <Modal visible={visible} onClose={closeModal}>
+          <Modal.Header>Modal Title</Modal.Header>
+          <Modal.Body>
+            <div>This is a modal.</div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={closeModal}>Cancel</Button>
+            <Button type="primary" onClick={closeModal}>
+              Confirm
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </>
+    );
+  }
 `}
 />
 
@@ -51,37 +51,37 @@ import { Modal } from 'raw-ui';
 <Playground
   scope={{ Button, Modal }}
   code={`
-() => {
-  const [visible, setVisible] = React.useState(false);
+  () => {
+    const [visible, setVisible] = React.useState(false);
 
-  const openModal = () => setVisible(true);
+    const openModal = () => setVisible(true);
 
-  const closeModal = () => {
-    setVisible(false);
-  };
+    const closeModal = () => {
+      setVisible(false);
+    };
 
-  return (
-    <>
-      <Button onClick={openModal}>Open Modal</Button>
-      <Modal
-        visible={visible}
-        onClose={closeModal}
-        closeOnOverlayClick={false}
-      >
-        <Modal.Header>Modal Title</Modal.Header>
-        <Modal.Body>
-          <div>This is a modal.</div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={closeModal}>Cancel</Button>
-          <Button type="primary" onClick={closeModal}>
-            Confirm
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </>
-  );
-}
+    return (
+      <>
+        <Button onClick={openModal}>Open Modal</Button>
+        <Modal
+          visible={visible}
+          onClose={closeModal}
+          closeOnOverlayClick={false}
+        >
+          <Modal.Header>Modal Title</Modal.Header>
+          <Modal.Body>
+            <div>This is a modal.</div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={closeModal}>Cancel</Button>
+            <Button type="primary" onClick={closeModal}>
+              Confirm
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </>
+    );
+  }
 `}
 />
 

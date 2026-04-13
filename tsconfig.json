@@ -13,7 +13,7 @@
   ],
   "compilerOptions": {
     "target": "ESNext",
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "lib": [
       "DOM",
       "DOM.Iterable",

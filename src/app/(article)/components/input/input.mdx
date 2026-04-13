@@ -17,20 +17,20 @@ import { Input } from 'raw-ui';
 <Playground
   scope={{ Grid, Input }}
   code={`
-<Grid gutter={[0, 32]}>
-  <Grid.Col span={24}>
-    <Input placeholder="Default Type" />
-  </Grid.Col>
-  <Grid.Col span={24}>
-    <Input type="primary" placeholder="Primary Type" />
-  </Grid.Col>
-  <Grid.Col span={24}>
-    <Input type="warning" placeholder="Warning Type" />
-  </Grid.Col>
-  <Grid.Col span={24}>
-    <Input type="error" placeholder="Error Type" />
-  </Grid.Col>
-</Grid>
+  <Grid gutter={[0, 32]}>
+    <Grid.Col span={24}>
+      <Input placeholder="Default Type" />
+    </Grid.Col>
+    <Grid.Col span={24}>
+      <Input type="primary" placeholder="Primary Type" />
+    </Grid.Col>
+    <Grid.Col span={24}>
+      <Input type="warning" placeholder="Warning Type" />
+    </Grid.Col>
+    <Grid.Col span={24}>
+      <Input type="error" placeholder="Error Type" />
+    </Grid.Col>
+  </Grid>
 `}
 />
 
@@ -39,23 +39,23 @@ import { Input } from 'raw-ui';
 <Playground
   scope={{ Grid, Input }}
   code={`
-<Grid gutter={[0, 32]}>
-  <Grid.Col span={24}>
-    <Input size="xs" placeholder="Extra Small" />
-  </Grid.Col>
-  <Grid.Col span={24}>
-    <Input size="sm" placeholder="Small" />
-  </Grid.Col>
-  <Grid.Col span={24}>
-    <Input size="md" placeholder="Medium" />
-  </Grid.Col>
-  <Grid.Col span={24}>
-    <Input size="lg" placeholder="Large" />
-  </Grid.Col>
-  <Grid.Col span={24}>
-    <Input size="xl" placeholder="Extra Large" />
-  </Grid.Col>
-</Grid>
+  <Grid gutter={[0, 32]}>
+    <Grid.Col span={24}>
+      <Input size="xs" placeholder="Extra Small" />
+    </Grid.Col>
+    <Grid.Col span={24}>
+      <Input size="sm" placeholder="Small" />
+    </Grid.Col>
+    <Grid.Col span={24}>
+      <Input size="md" placeholder="Medium" />
+    </Grid.Col>
+    <Grid.Col span={24}>
+      <Input size="lg" placeholder="Large" />
+    </Grid.Col>
+    <Grid.Col span={24}>
+      <Input size="xl" placeholder="Extra Large" />
+    </Grid.Col>
+  </Grid>
 `}
 />
 
@@ -64,7 +64,7 @@ import { Input } from 'raw-ui';
 <Playground
   scope={{ Input }}
   code={`
-<Input width="160px" placeholder="Customized width" />
+  <Input width="160px" placeholder="Customized width" />
 `}
 />
 
@@ -73,14 +73,14 @@ import { Input } from 'raw-ui';
 <Playground
   scope={{ Grid, Input }}
   code={`
-<Grid gutter={[0, 32]}>
-  <Grid.Col span={24}>
-    <Input placeholder="Disabled with placeholder" disabled />
-  </Grid.Col>
-  <Grid.Col span={24}>
-    <Input defaultValue="Disabled with value" disabled />
-  </Grid.Col>
-</Grid>
+  <Grid gutter={[0, 32]}>
+    <Grid.Col span={24}>
+      <Input placeholder="Disabled with placeholder" disabled />
+    </Grid.Col>
+    <Grid.Col span={24}>
+      <Input defaultValue="Disabled with value" disabled />
+    </Grid.Col>
+  </Grid>
 `}
 />
 
@@ -89,7 +89,7 @@ import { Input } from 'raw-ui';
 <Playground
   scope={{ Input }}
   code={`
-<Input defaultValue="Read only with value" readOnly />
+  <Input defaultValue="Read only with value" readOnly />
 `}
 />
 
@@ -98,7 +98,7 @@ import { Input } from 'raw-ui';
 <Playground
   scope={{ Input }}
   code={`
-<Input defaultValue="default value" placeholder="Placeholder..." />
+  <Input defaultValue="default value" placeholder="Placeholder..." />
 `}
 />
 
@@ -107,19 +107,19 @@ import { Input } from 'raw-ui';
 <Playground
   scope={{ Input }}
   code={`
-() => {
-  const [value, setValue] = React.useState('');
+  () => {
+    const [value, setValue] = React.useState('');
 
-  return (
-    <Input
-      value={value}
-      onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(event.target.value);
-      }}
-      placeholder="Placeholder..."
-    />
-  );
-}
+    return (
+      <Input
+        value={value}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          setValue(event.target.value);
+        }}
+        placeholder="Placeholder..."
+      />
+    );
+  }
 `}
 />
 
@@ -128,31 +128,31 @@ import { Input } from 'raw-ui';
 <Playground
   scope={{ Grid, Input, AlertCircle, Search }}
   code={`
-<Grid gutter={[0, 32]}>
-  <Grid.Col span={24}>
-    <Input.Group>
-      <Input.LeftElement>
-        <Search size={16} />
-      </Input.LeftElement>
-      <Input placeholder="Inside left element" />
-    </Input.Group>
-  </Grid.Col>
-  <Grid.Col span={24}>
-    <Input.Group>
-      <Input placeholder="Inside right element" />
-      <Input.RightElement>
-        <AlertCircle size={16} />
-      </Input.RightElement>
-    </Input.Group>
-  </Grid.Col>
-  <Grid.Col span={24}>
-    <Input.Group>
-      <Input.LeftElement>$</Input.LeftElement>
-      <Input placeholder="Enter amount" />
-      <Input.RightElement>.0</Input.RightElement>
-    </Input.Group>
-  </Grid.Col>
-</Grid>
+  <Grid gutter={[0, 32]}>
+    <Grid.Col span={24}>
+      <Input.Group>
+        <Input.LeftElement>
+          <Search size={16} />
+        </Input.LeftElement>
+        <Input placeholder="Inside left element" />
+      </Input.Group>
+    </Grid.Col>
+    <Grid.Col span={24}>
+      <Input.Group>
+        <Input placeholder="Inside right element" />
+        <Input.RightElement>
+          <AlertCircle size={16} />
+        </Input.RightElement>
+      </Input.Group>
+    </Grid.Col>
+    <Grid.Col span={24}>
+      <Input.Group>
+        <Input.LeftElement>$</Input.LeftElement>
+        <Input placeholder="Enter amount" />
+        <Input.RightElement>.0</Input.RightElement>
+      </Input.Group>
+    </Grid.Col>
+  </Grid>
 `}
 />
 
@@ -161,27 +161,27 @@ import { Input } from 'raw-ui';
 <Playground
   scope={{ Grid, Input }}
   code={`
-<Grid gutter={[0, 32]}>
-  <Grid.Col span={24}>
-    <Input.Group>
-      <Input.LeftAddon>username</Input.LeftAddon>
-      <Input placeholder="Put in the username" />
-    </Input.Group>
-  </Grid.Col>
-  <Grid.Col span={24}>
-    <Input.Group>
-      <Input placeholder="https://github" />
-      <Input.RightAddon>.com</Input.RightAddon>
-    </Input.Group>
-  </Grid.Col>
-  <Grid.Col span={24}>
-    <Input.Group>
-      <Input.LeftAddon>https://</Input.LeftAddon>
-      <Input placeholder="your domain" />
-      <Input.RightAddon>.com</Input.RightAddon>
-    </Input.Group>
-  </Grid.Col>
-</Grid>
+  <Grid gutter={[0, 32]}>
+    <Grid.Col span={24}>
+      <Input.Group>
+        <Input.LeftAddon>username</Input.LeftAddon>
+        <Input placeholder="Put in the username" />
+      </Input.Group>
+    </Grid.Col>
+    <Grid.Col span={24}>
+      <Input.Group>
+        <Input placeholder="https://github" />
+        <Input.RightAddon>.com</Input.RightAddon>
+      </Input.Group>
+    </Grid.Col>
+    <Grid.Col span={24}>
+      <Input.Group>
+        <Input.LeftAddon>https://</Input.LeftAddon>
+        <Input placeholder="your domain" />
+        <Input.RightAddon>.com</Input.RightAddon>
+      </Input.Group>
+    </Grid.Col>
+  </Grid>
 `}
 />
 
@@ -190,21 +190,21 @@ import { Input } from 'raw-ui';
 <Playground
   scope={{ Input, Eye, EyeOff }}
   code={`
-() => {
-  const [visible, setVisible] = React.useState(false);
+  () => {
+    const [visible, setVisible] = React.useState(false);
 
-  return (
-    <Input.Group>
-      <Input
-        htmlType={visible ? 'text' : 'password'}
-        placeholder="Enter password"
-      />
-      <Input.RightElement clickable onClick={() => setVisible(!visible)}>
-        {visible ? <EyeOff size={16} /> : <Eye size={16} />}
-      </Input.RightElement>
-    </Input.Group>
-  );
-}
+    return (
+      <Input.Group>
+        <Input
+          htmlType={visible ? 'text' : 'password'}
+          placeholder="Enter password"
+        />
+        <Input.RightElement clickable onClick={() => setVisible(!visible)}>
+          {visible ? <EyeOff size={16} /> : <Eye size={16} />}
+        </Input.RightElement>
+      </Input.Group>
+    );
+  }
 `}
 />
 
@@ -213,26 +213,26 @@ import { Input } from 'raw-ui';
 <Playground
   scope={{ Input, X }}
   code={`
-() => {
-  const [value, setValue] = React.useState('');
+  () => {
+    const [value, setValue] = React.useState('');
 
-  return (
-    <Input.Group>
-      <Input
-        value={value}
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-          setValue(event.target.value)
-        }
-        placeholder="Clearable input"
-      />
-      {value !== '' && (
-        <Input.RightElement clickable onClick={() => setValue('')}>
-          <X size={16} />
-        </Input.RightElement>
-      )}
-    </Input.Group>
-  );
-}
+    return (
+      <Input.Group>
+        <Input
+          value={value}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setValue(event.target.value)
+          }
+          placeholder="Clearable input"
+        />
+        {value !== '' && (
+          <Input.RightElement clickable onClick={() => setValue('')}>
+            <X size={16} />
+          </Input.RightElement>
+        )}
+      </Input.Group>
+    );
+  }
 `}
 />
 

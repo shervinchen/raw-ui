@@ -24,6 +24,7 @@ const config = {
     resolve(),
     commonjs(),
     babel({
+      configFile: './babel.config.rollup.js',
       include: ['demo/**/*', 'packages/**/*'],
       exclude: '**/node_modules/**',
       extensions: ['.js', '.jsx', '.ts', '.tsx'],

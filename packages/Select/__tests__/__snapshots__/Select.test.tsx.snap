@@ -3,7 +3,7 @@
 exports[`Select should match the snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="raw-select jsx-1830070921"
+    class="raw-select jsx-1337716769"
     data-testid="selectContainer"
   >
     <div
@@ -19,7 +19,7 @@ exports[`Select should match the snapshot 1`] = `
         aria-expanded="false"
         aria-haspopup="listbox"
         autocomplete="off"
-        class="jsx-1802955700 "
+        class="jsx-3147105568 raw-visually-hidden-input"
         readonly=""
         role="combobox"
         type="search"

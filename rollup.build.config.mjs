@@ -35,6 +35,7 @@ const config = [
       resolve(),
       commonjs(),
       babel({
+        configFile: './babel.config.rollup.js',
         presets: ['@babel/preset-env'],
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
         exclude: '**/node_modules/**',

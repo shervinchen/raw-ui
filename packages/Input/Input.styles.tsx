@@ -144,7 +144,9 @@ export const useInputCSS = ({ type, size, width, disabled }: InputProps) => {
       width: ${width};
       min-width: 0;
       appearance: none;
-      transition: border 0.2s ease 0s, color 0.2s ease 0s;
+      transition:
+        border 0.2s ease 0s,
+        color 0.2s ease 0s;
       cursor: ${cursor};
     }
 

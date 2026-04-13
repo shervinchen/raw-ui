@@ -288,8 +288,8 @@ export const useButtonStyles = (props: ButtonProps): ButtonStyles => {
       ? {
           ...(type === 'default'
             ? disabledStyles['outline']
-            : disabledStyles?.[variant || 'default'] ??
-              disabledStyles['default']),
+            : (disabledStyles?.[variant || 'default'] ??
+              disabledStyles['default'])),
           cursor: 'not-allowed',
         }
       : {}),
@@ -400,7 +400,7 @@ export const useButtonHoverStyles = (props: ButtonProps): ButtonHoverStyles => {
 };
 
 export const useButtonActiveStyles = (
-  props: ButtonProps
+  props: ButtonProps,
 ): ButtonActiveStyles => {
   const theme: RawUITheme = useTheme();
   const { type, variant, loading, disabled } = props;
@@ -555,8 +555,8 @@ export const useButtonCSS = (props: ButtonProps) => {
       color: ${color};
       box-shadow: ${boxShadow};
       cursor: ${cursor};
-      transition-property: border-color, background, color, transform,
-        box-shadow;
+      transition-property:
+        border-color, background, color, transform, box-shadow;
       transition-duration: 0.2s;
       transition-timing-function: ease;
       text-transform: capitalize;

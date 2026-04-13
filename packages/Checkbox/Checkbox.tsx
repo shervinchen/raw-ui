@@ -66,7 +66,6 @@ const Checkbox: FC<PropsWithChildren<CheckboxProps>> = ({
     <label className={classes} data-testid="checkboxLabel">
       <VisuallyHiddenInput
         ref={checkboxRef}
-        className="raw-checkbox-input"
         type="checkbox"
         disabled={isDisabled}
         checked={selfChecked}

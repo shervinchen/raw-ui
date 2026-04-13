@@ -16,10 +16,10 @@ import { Select } from 'raw-ui';
 <Playground
   scope={{ Select }}
   code={`
-<Select width="200px" placeholder="Select option">
-  <Select.Option value="1">Option 1</Select.Option>
-  <Select.Option value="2">Option 2</Select.Option>
-</Select>
+  <Select width="200px" placeholder="Select option">
+    <Select.Option value="1">Option 1</Select.Option>
+    <Select.Option value="2">Option 2</Select.Option>
+  </Select>
 `}
 />
 
@@ -28,26 +28,26 @@ import { Select } from 'raw-ui';
 <Playground
   scope={{ Grid, Select }}
   code={`
-<Grid gutter={[0, 32]}>
-  <Grid.Col span={24}>
-    <Select width="200px" placeholder="Default Type">
-      <Select.Option value="1">Option 1</Select.Option>
-      <Select.Option value="2">Option 2</Select.Option>
-    </Select>
-  </Grid.Col>
-  <Grid.Col span={24}>
-    <Select width="200px" type="warning" placeholder="Warning Type">
-      <Select.Option value="1">Option 1</Select.Option>
-      <Select.Option value="2">Option 2</Select.Option>
-    </Select>
-  </Grid.Col>
-  <Grid.Col span={24}>
-    <Select width="200px" type="error" placeholder="Error Type">
-      <Select.Option value="1">Option 1</Select.Option>
-      <Select.Option value="2">Option 2</Select.Option>
-    </Select>
-  </Grid.Col>
-</Grid>
+  <Grid gutter={[0, 32]}>
+    <Grid.Col span={24}>
+      <Select width="200px" placeholder="Default Type">
+        <Select.Option value="1">Option 1</Select.Option>
+        <Select.Option value="2">Option 2</Select.Option>
+      </Select>
+    </Grid.Col>
+    <Grid.Col span={24}>
+      <Select width="200px" type="warning" placeholder="Warning Type">
+        <Select.Option value="1">Option 1</Select.Option>
+        <Select.Option value="2">Option 2</Select.Option>
+      </Select>
+    </Grid.Col>
+    <Grid.Col span={24}>
+      <Select width="200px" type="error" placeholder="Error Type">
+        <Select.Option value="1">Option 1</Select.Option>
+        <Select.Option value="2">Option 2</Select.Option>
+      </Select>
+    </Grid.Col>
+  </Grid>
 `}
 />
 
@@ -56,38 +56,38 @@ import { Select } from 'raw-ui';
 <Playground
   scope={{ Grid, Select }}
   code={`
-<Grid gutter={[0, 32]}>
-  <Grid.Col span={24}>
-    <Select size="xs" width="200px" placeholder="Extra Small">
-      <Select.Option value="1">Option 1</Select.Option>
-      <Select.Option value="2">Option 2</Select.Option>
-    </Select>
-  </Grid.Col>
-  <Grid.Col span={24}>
-    <Select size="sm" width="200px" placeholder="Small">
-      <Select.Option value="1">Option 1</Select.Option>
-      <Select.Option value="2">Option 2</Select.Option>
-    </Select>
-  </Grid.Col>
-  <Grid.Col span={24}>
-    <Select size="md" width="200px" placeholder="Medium">
-      <Select.Option value="1">Option 1</Select.Option>
-      <Select.Option value="2">Option 2</Select.Option>
-    </Select>
-  </Grid.Col>
-  <Grid.Col span={24}>
-    <Select size="lg" width="200px" placeholder="Large">
-      <Select.Option value="1">Option 1</Select.Option>
-      <Select.Option value="2">Option 2</Select.Option>
-    </Select>
-  </Grid.Col>
-  <Grid.Col span={24}>
-    <Select size="xl" width="200px" placeholder="Extra Large">
-      <Select.Option value="1">Option 1</Select.Option>
-      <Select.Option value="2">Option 2</Select.Option>
-    </Select>
-  </Grid.Col>
-</Grid>
+  <Grid gutter={[0, 32]}>
+    <Grid.Col span={24}>
+      <Select size="xs" width="200px" placeholder="Extra Small">
+        <Select.Option value="1">Option 1</Select.Option>
+        <Select.Option value="2">Option 2</Select.Option>
+      </Select>
+    </Grid.Col>
+    <Grid.Col span={24}>
+      <Select size="sm" width="200px" placeholder="Small">
+        <Select.Option value="1">Option 1</Select.Option>
+        <Select.Option value="2">Option 2</Select.Option>
+      </Select>
+    </Grid.Col>
+    <Grid.Col span={24}>
+      <Select size="md" width="200px" placeholder="Medium">
+        <Select.Option value="1">Option 1</Select.Option>
+        <Select.Option value="2">Option 2</Select.Option>
+      </Select>
+    </Grid.Col>
+    <Grid.Col span={24}>
+      <Select size="lg" width="200px" placeholder="Large">
+        <Select.Option value="1">Option 1</Select.Option>
+        <Select.Option value="2">Option 2</Select.Option>
+      </Select>
+    </Grid.Col>
+    <Grid.Col span={24}>
+      <Select size="xl" width="200px" placeholder="Extra Large">
+        <Select.Option value="1">Option 1</Select.Option>
+        <Select.Option value="2">Option 2</Select.Option>
+      </Select>
+    </Grid.Col>
+  </Grid>
 `}
 />
 
@@ -96,10 +96,10 @@ import { Select } from 'raw-ui';
 <Playground
   scope={{ Select }}
   code={`
-<Select width="200px" placeholder="Select option" defaultValue="1">
-  <Select.Option value="1">Option 1</Select.Option>
-  <Select.Option value="2">Option 2</Select.Option>
-</Select>
+  <Select width="200px" placeholder="Select option" defaultValue="1">
+    <Select.Option value="1">Option 1</Select.Option>
+    <Select.Option value="2">Option 2</Select.Option>
+  </Select>
 `}
 />
 
@@ -108,23 +108,23 @@ import { Select } from 'raw-ui';
 <Playground
   scope={{ Select }}
   code={`
-() => {
-  const [selectValue, setSelectValue] = React.useState<SelectValue>();
+  () => {
+    const [selectValue, setSelectValue] = React.useState<SelectValue>();
 
-  return (
-    <Select
-      width="200px"
-      placeholder="Select option"
-      value={selectValue}
-      onChange={(value) => {
-        setSelectValue(value);
-      }}
-    >
-      <Select.Option value="1">Option 1</Select.Option>
-      <Select.Option value="2">Option 2</Select.Option>
-    </Select>
-  );
-}
+    return (
+      <Select
+        width="200px"
+        placeholder="Select option"
+        value={selectValue}
+        onChange={(value) => {
+          setSelectValue(value);
+        }}
+      >
+        <Select.Option value="1">Option 1</Select.Option>
+        <Select.Option value="2">Option 2</Select.Option>
+      </Select>
+    );
+  }
 `}
 />
 
@@ -133,41 +133,41 @@ import { Select } from 'raw-ui';
 <Playground
   scope={{ Select }}
   code={`
-() => {
-  const optionsData = React.useMemo(() => [
-    {
-      name: 'React',
-      value: 'react',
-    },
-    {
-      name: 'Vue',
-      value: 'vue',
-    },
-    {
-      name: 'Angular',
-      value: 'angular',
-    },
-    {
-      name: 'Svelte',
-      value: 'svelte',
-    },
-  ], []);
+  () => {
+    const optionsData = React.useMemo(() => [
+      {
+        name: 'React',
+        value: 'react',
+      },
+      {
+        name: 'Vue',
+        value: 'vue',
+      },
+      {
+        name: 'Angular',
+        value: 'angular',
+      },
+      {
+        name: 'Svelte',
+        value: 'svelte',
+      },
+    ], []);
 
-  return (
-    <Select
-      width="200px"
-      placeholder="Select option"
-      multiple
-      defaultValue={['react', 'vue']}
-    >
-      {optionsData.map((item) => (
-        <Select.Option value={item.value} key={item.value}>
-          {item.name}
-        </Select.Option>
-      ))}
-    </Select>
-  );
-}
+    return (
+      <Select
+        width="200px"
+        placeholder="Select option"
+        multiple
+        defaultValue={['react', 'vue']}
+      >
+        {optionsData.map((item) => (
+          <Select.Option value={item.value} key={item.value}>
+            {item.name}
+          </Select.Option>
+        ))}
+      </Select>
+    );
+  }
 `}
 />
 
@@ -176,57 +176,57 @@ import { Select } from 'raw-ui';
 <Playground
   scope={{ Grid, Select }}
   code={`
-() => {
-  const optionsData = React.useMemo(() => [
-    {
-      name: 'React',
-      value: 'react',
-    },
-    {
-      name: 'Vue',
-      value: 'vue',
-    },
-    {
-      name: 'Angular',
-      value: 'angular',
-    },
-    {
-      name: 'Svelte',
-      value: 'svelte',
-    },
-  ], []);
+  () => {
+    const optionsData = React.useMemo(() => [
+      {
+        name: 'React',
+        value: 'react',
+      },
+      {
+        name: 'Vue',
+        value: 'vue',
+      },
+      {
+        name: 'Angular',
+        value: 'angular',
+      },
+      {
+        name: 'Svelte',
+        value: 'svelte',
+      },
+    ], []);
 
-  return (
-    <Grid gutter={[32, 0]}>
-      <Grid.Col>
-        <Select
-          width="200px"
-          placeholder="Select option"
-          defaultValue="1"
-          clearable
-        >
-          <Select.Option value="1">Option 1</Select.Option>
-          <Select.Option value="2">Option 2</Select.Option>
-        </Select>
-      </Grid.Col>
-      <Grid.Col>
-        <Select
-          width="200px"
-          placeholder="Select option"
-          defaultValue={['react', 'vue']}
-          multiple
-          clearable
-        >
-          {optionsData.map((item) => (
-            <Select.Option value={item.value} key={item.value}>
-              {item.name}
-            </Select.Option>
-          ))}
-        </Select>
-      </Grid.Col>
-    </Grid>
-  );
-}
+    return (
+      <Grid gutter={[32, 0]}>
+        <Grid.Col>
+          <Select
+            width="200px"
+            placeholder="Select option"
+            defaultValue="1"
+            clearable
+          >
+            <Select.Option value="1">Option 1</Select.Option>
+            <Select.Option value="2">Option 2</Select.Option>
+          </Select>
+        </Grid.Col>
+        <Grid.Col>
+          <Select
+            width="200px"
+            placeholder="Select option"
+            defaultValue={['react', 'vue']}
+            multiple
+            clearable
+          >
+            {optionsData.map((item) => (
+              <Select.Option value={item.value} key={item.value}>
+                {item.name}
+              </Select.Option>
+            ))}
+          </Select>
+        </Grid.Col>
+      </Grid>
+    );
+  }
 `}
 />
 
@@ -236,52 +236,52 @@ import { Select } from 'raw-ui';
 <Playground
   scope={{ Grid, Select }}
   code={`
-() => {
-  const optionsData = React.useMemo(() => [
-    {
-      name: 'React',
-      value: 'react',
-    },
-    {
-      name: 'Vue',
-      value: 'vue',
-    },
-    {
-      name: 'Angular',
-      value: 'angular',
-    },
-    {
-      name: 'Svelte',
-      value: 'svelte',
-    },
-  ], []);
+  () => {
+    const optionsData = React.useMemo(() => [
+      {
+        name: 'React',
+        value: 'react',
+      },
+      {
+        name: 'Vue',
+        value: 'vue',
+      },
+      {
+        name: 'Angular',
+        value: 'angular',
+      },
+      {
+        name: 'Svelte',
+        value: 'svelte',
+      },
+    ], []);
 
-  return (
-    <Grid gutter={[32, 0]}>
-      <Grid.Col>
-        <Select width="200px" placeholder="Select option" disabled>
-          <Select.Option value="1">Option 1</Select.Option>
-          <Select.Option value="2">Option 2</Select.Option>
-        </Select>
-      </Grid.Col>
-      <Grid.Col>
-        <Select
-          width="200px"
-          placeholder="Select option"
-          disabled
-          multiple
-          defaultValue={['react', 'vue']}
-        >
-          {optionsData.map((item) => (
-            <Select.Option value={item.value} key={item.value}>
-              {item.name}
-            </Select.Option>
-          ))}
-        </Select>
-      </Grid.Col>
-    </Grid>
-  );
-}
+    return (
+      <Grid gutter={[32, 0]}>
+        <Grid.Col>
+          <Select width="200px" placeholder="Select option" disabled>
+            <Select.Option value="1">Option 1</Select.Option>
+            <Select.Option value="2">Option 2</Select.Option>
+          </Select>
+        </Grid.Col>
+        <Grid.Col>
+          <Select
+            width="200px"
+            placeholder="Select option"
+            disabled
+            multiple
+            defaultValue={['react', 'vue']}
+          >
+            {optionsData.map((item) => (
+              <Select.Option value={item.value} key={item.value}>
+                {item.name}
+              </Select.Option>
+            ))}
+          </Select>
+        </Grid.Col>
+      </Grid>
+    );
+  }
 `}
 />
 
@@ -290,12 +290,12 @@ import { Select } from 'raw-ui';
 <Playground
   scope={{ Select }}
   code={`
-<Select width="200px" placeholder="Select option">
-  <Select.Option value="1" disabled>
-    Option 1
-  </Select.Option>
-  <Select.Option value="2">Option 2</Select.Option>
-</Select>
+  <Select width="200px" placeholder="Select option">
+    <Select.Option value="1" disabled>
+      Option 1
+    </Select.Option>
+    <Select.Option value="2">Option 2</Select.Option>
+  </Select>
 `}
 />
 
@@ -304,32 +304,32 @@ import { Select } from 'raw-ui';
 <Playground
   scope={{ Select }}
   code={`
-<div
-  id="parentElement"
-  style={{
-    overflowY: 'auto',
-    width: '400px',
-    height: '200px',
-  }}
->
   <div
+    id="parentElement"
     style={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '400px',
+      overflowY: 'auto',
+      width: '400px',
+      height: '200px',
     }}
   >
-    <Select
-      width="200px"
-      placeholder="Select option"
-      getPopupContainer={() => document.querySelector('#parentElement')}
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '400px',
+      }}
     >
-      <Select.Option value="1">Option 1</Select.Option>
-      <Select.Option value="2">Option 2</Select.Option>
-    </Select>
+      <Select
+        width="200px"
+        placeholder="Select option"
+        getPopupContainer={() => document.querySelector('#parentElement')}
+      >
+        <Select.Option value="1">Option 1</Select.Option>
+        <Select.Option value="2">Option 2</Select.Option>
+      </Select>
+    </div>
   </div>
-</div>
 `}
 />
 

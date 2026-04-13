@@ -16,7 +16,7 @@ import { Toggle } from 'raw-ui';
 <Playground
   scope={{ Toggle }}
   code={`
-<Toggle />
+  <Toggle />
 `}
 />
 
@@ -25,7 +25,7 @@ import { Toggle } from 'raw-ui';
 <Playground
   scope={{ Toggle }}
   code={`
-<Toggle defaultChecked />
+  <Toggle defaultChecked />
 `}
 />
 
@@ -34,18 +34,18 @@ import { Toggle } from 'raw-ui';
 <Playground
   scope={{ Toggle }}
   code={`
-() => {
-  const [value, setValue] = React.useState(false);
+  () => {
+    const [value, setValue] = React.useState(false);
 
-  return (
-    <Toggle
-      checked={value}
-      onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(event.target.checked);
-      }}
-    />
-  );
-}
+    return (
+      <Toggle
+        checked={value}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          setValue(event.target.checked);
+        }}
+      />
+    );
+  }
 `}
 />
 
@@ -54,14 +54,14 @@ import { Toggle } from 'raw-ui';
 <Playground
   scope={{ Grid, Toggle }}
   code={`
-<Grid gutter={[32, 0]}>
-  <Grid.Col>
-    <Toggle disabled />
-  </Grid.Col>
-  <Grid.Col>
-    <Toggle defaultChecked disabled />
-  </Grid.Col>
-</Grid>
+  <Grid gutter={[32, 0]}>
+    <Grid.Col>
+      <Toggle disabled />
+    </Grid.Col>
+    <Grid.Col>
+      <Toggle defaultChecked disabled />
+    </Grid.Col>
+  </Grid>
 `}
 />
 

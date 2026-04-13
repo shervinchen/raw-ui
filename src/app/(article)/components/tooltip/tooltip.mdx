@@ -16,7 +16,7 @@ import { Tooltip } from 'raw-ui';
 <Playground
   scope={{ Tooltip }}
   code={`
-<Tooltip content="I am a tooltip">Hover me</Tooltip>
+  <Tooltip content="I am a tooltip">Hover me</Tooltip>
 `}
 />
 
@@ -25,7 +25,7 @@ import { Tooltip } from 'raw-ui';
 <Playground
   scope={{ Tooltip }}
   code={`
-<Tooltip content="I am a tooltip" hideArrow>Hover me</Tooltip>
+  <Tooltip content="I am a tooltip" hideArrow>Hover me</Tooltip>
 `}
 />
 
@@ -34,7 +34,7 @@ import { Tooltip } from 'raw-ui';
 <Playground
   scope={{ Tooltip }}
   code={`
-<Tooltip content="I am a tooltip" disabled>Hover me</Tooltip>
+  <Tooltip content="I am a tooltip" disabled>Hover me</Tooltip>
 `}
 />
 
@@ -43,120 +43,120 @@ import { Tooltip } from 'raw-ui';
 <Playground
   scope={{ Grid, Tooltip }}
   code={`
-<Grid gutter={[0, 32]}>
-  <Grid.Col span={24}>
-    <Grid gutter={[32, 0]}>
-      <Grid.Col>
-        <Tooltip
-          content="I am a tooltip with different placement"
-          placement="topLeft"
-        >
-          Top Left
-        </Tooltip>
-      </Grid.Col>
-      <Grid.Col>
-        <Tooltip
-          content="I am a tooltip with different placement"
-          placement="top"
-        >
-          Top
-        </Tooltip>
-      </Grid.Col>
-      <Grid.Col>
-        <Tooltip
-          content="I am a tooltip with different placement"
-          placement="topRight"
-        >
-          Top Right
-        </Tooltip>
-      </Grid.Col>
-    </Grid>
-  </Grid.Col>
-  <Grid.Col span={24}>
-    <Grid gutter={[32, 0]}>
-      <Grid.Col>
-        <Tooltip
-          content="I am a tooltip with different placement"
-          placement="bottomLeft"
-        >
-          Bottom Left
-        </Tooltip>
-      </Grid.Col>
-      <Grid.Col>
-        <Tooltip
-          content="I am a tooltip with different placement"
-          placement="bottom"
-        >
-          Bottom
-        </Tooltip>
-      </Grid.Col>
-      <Grid.Col>
-        <Tooltip
-          content="I am a tooltip with different placement"
-          placement="bottomRight"
-        >
-          Bottom Right
-        </Tooltip>
-      </Grid.Col>
-    </Grid>
-  </Grid.Col>
-  <Grid.Col span={24}>
-    <Grid gutter={[32, 0]}>
-      <Grid.Col>
-        <Tooltip
-          content="I am a tooltip with different placement"
-          placement="leftTop"
-        >
-          Left Top
-        </Tooltip>
-      </Grid.Col>
-      <Grid.Col>
-        <Tooltip
-          content="I am a tooltip with different placement"
-          placement="left"
-        >
-          Left
-        </Tooltip>
-      </Grid.Col>
-      <Grid.Col>
-        <Tooltip
-          content="I am a tooltip with different placement"
-          placement="leftBottom"
-        >
-          Left Bottom
-        </Tooltip>
-      </Grid.Col>
-    </Grid>
-  </Grid.Col>
-  <Grid.Col span={24}>
-    <Grid gutter={[32, 0]}>
-      <Grid.Col>
-        <Tooltip
-          content="I am a tooltip with different placement"
-          placement="rightTop"
-        >
-          Right Top
-        </Tooltip>
-      </Grid.Col>
-      <Grid.Col>
-        <Tooltip
-          content="I am a tooltip with different placement"
-          placement="right"
-        >
-          Right
-        </Tooltip>
-      </Grid.Col>
-      <Grid.Col>
-        <Tooltip
-          content="I am a tooltip with different placement"
-          placement="rightBottom"
-        >
-          Right Bottom
-        </Tooltip>
-      </Grid.Col>
-    </Grid>
-  </Grid.Col>
-</Grid>
+  <Grid gutter={[0, 32]}>
+    <Grid.Col span={24}>
+      <Grid gutter={[32, 0]}>
+        <Grid.Col>
+          <Tooltip
+            content="I am a tooltip with different placement"
+            placement="topLeft"
+          >
+            Top Left
+          </Tooltip>
+        </Grid.Col>
+        <Grid.Col>
+          <Tooltip
+            content="I am a tooltip with different placement"
+            placement="top"
+          >
+            Top
+          </Tooltip>
+        </Grid.Col>
+        <Grid.Col>
+          <Tooltip
+            content="I am a tooltip with different placement"
+            placement="topRight"
+          >
+            Top Right
+          </Tooltip>
+        </Grid.Col>
+      </Grid>
+    </Grid.Col>
+    <Grid.Col span={24}>
+      <Grid gutter={[32, 0]}>
+        <Grid.Col>
+          <Tooltip
+            content="I am a tooltip with different placement"
+            placement="bottomLeft"
+          >
+            Bottom Left
+          </Tooltip>
+        </Grid.Col>
+        <Grid.Col>
+          <Tooltip
+            content="I am a tooltip with different placement"
+            placement="bottom"
+          >
+            Bottom
+          </Tooltip>
+        </Grid.Col>
+        <Grid.Col>
+          <Tooltip
+            content="I am a tooltip with different placement"
+            placement="bottomRight"
+          >
+            Bottom Right
+          </Tooltip>
+        </Grid.Col>
+      </Grid>
+    </Grid.Col>
+    <Grid.Col span={24}>
+      <Grid gutter={[32, 0]}>
+        <Grid.Col>
+          <Tooltip
+            content="I am a tooltip with different placement"
+            placement="leftTop"
+          >
+            Left Top
+          </Tooltip>
+        </Grid.Col>
+        <Grid.Col>
+          <Tooltip
+            content="I am a tooltip with different placement"
+            placement="left"
+          >
+            Left
+          </Tooltip>
+        </Grid.Col>
+        <Grid.Col>
+          <Tooltip
+            content="I am a tooltip with different placement"
+            placement="leftBottom"
+          >
+            Left Bottom
+          </Tooltip>
+        </Grid.Col>
+      </Grid>
+    </Grid.Col>
+    <Grid.Col span={24}>
+      <Grid gutter={[32, 0]}>
+        <Grid.Col>
+          <Tooltip
+            content="I am a tooltip with different placement"
+            placement="rightTop"
+          >
+            Right Top
+          </Tooltip>
+        </Grid.Col>
+        <Grid.Col>
+          <Tooltip
+            content="I am a tooltip with different placement"
+            placement="right"
+          >
+            Right
+          </Tooltip>
+        </Grid.Col>
+        <Grid.Col>
+          <Tooltip
+            content="I am a tooltip with different placement"
+            placement="rightBottom"
+          >
+            Right Bottom
+          </Tooltip>
+        </Grid.Col>
+      </Grid>
+    </Grid.Col>
+  </Grid>
 `}
 />
 
@@ -165,25 +165,25 @@ import { Tooltip } from 'raw-ui';
 <Playground
   scope={{ Tooltip }}
   code={`
-<div
-  id="parentElement"
-  style={{
-    overflowY: 'auto',
-    width: '400px',
-    height: '200px',
-  }}
->
   <div
+    id="parentElement"
     style={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '400px',
+      overflowY: 'auto',
+      width: '400px',
+      height: '200px',
     }}
   >
-    <Tooltip content="I am a tooltip" getPopupContainer={() => document.querySelector('#parentElement')}>Hover me</Tooltip>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '400px',
+      }}
+    >
+      <Tooltip content="I am a tooltip" getPopupContainer={() => document.querySelector('#parentElement')}>Hover me</Tooltip>
+    </div>
   </div>
-</div>
 `}
 />
 

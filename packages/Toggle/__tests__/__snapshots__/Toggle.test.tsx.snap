@@ -3,11 +3,11 @@
 exports[`Toggle should match the snapshot 1`] = `
 <DocumentFragment>
   <label
-    class="raw-toggle jsx-1138055301"
+    class="raw-toggle jsx-2947239695"
     data-testid="toggleLabel"
   >
     <input
-      class="jsx-1802955700 raw-toggle-input"
+      class="jsx-3147105568 raw-visually-hidden-input"
       role="switch"
       type="checkbox"
     />

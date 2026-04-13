@@ -14,18 +14,24 @@ const VisuallyHiddenInput = ({
 
   return (
     <>
-      <input ref={inputRef} {...restProps} />
+      <input
+        ref={inputRef}
+        className="raw-visually-hidden-input"
+        {...restProps}
+      />
       <style jsx>
         {`
-          border: 0;
-          clip: rect(0, 0, 0, 0);
-          height: 1px;
-          width: 1px;
-          margin: -1px;
-          padding: 0;
-          overflow: hidden;
-          white-space: nowrap;
-          position: absolute;
+          .raw-visually-hidden-input {
+            border: 0;
+            clip: rect(0, 0, 0, 0);
+            height: 1px;
+            width: 1px;
+            margin: -1px;
+            padding: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            position: absolute;
+          }
         `}
       </style>
     </>
