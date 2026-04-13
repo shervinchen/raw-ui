@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Button from '..';
 import { ButtonSizes, ButtonTypes } from '../Button.types';
@@ -26,7 +25,7 @@ describe('ButtonGroup', () => {
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>
-      </Button.Group>
+      </Button.Group>,
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -37,7 +36,7 @@ describe('ButtonGroup', () => {
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>
-      </Button.Group>
+      </Button.Group>,
     );
     expect(screen.getByRole('group')).toHaveClass('custom-button-group');
   });
@@ -48,7 +47,7 @@ describe('ButtonGroup', () => {
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>
-      </Button.Group>
+      </Button.Group>,
     );
     expect(screen.getAllByRole('button').length).toBe(3);
   });
@@ -61,14 +60,14 @@ describe('ButtonGroup', () => {
             <Button>One</Button>
             <Button>Two</Button>
             <Button>Three</Button>
-          </Button.Group>
+          </Button.Group>,
         );
         const buttons = screen.getAllByRole('button');
         buttons.forEach((button) => {
           expect(button).toHaveStyle(`background-color: ${typeColorMap[item]}`);
         });
       });
-    }
+    },
   );
 
   ['xs', 'sm', 'md', 'lg', 'xl'].forEach((item: ButtonSizes) => {
@@ -78,7 +77,7 @@ describe('ButtonGroup', () => {
           <Button>One</Button>
           <Button>Two</Button>
           <Button>Three</Button>
-        </Button.Group>
+        </Button.Group>,
       );
       const buttons = screen.getAllByRole('button');
       buttons.forEach((button) => {
@@ -93,7 +92,7 @@ describe('ButtonGroup', () => {
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>
-      </Button.Group>
+      </Button.Group>,
     );
     const buttons = screen.getAllByRole('button');
     buttons.forEach((button) => {
@@ -107,7 +106,7 @@ describe('ButtonGroup', () => {
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>
-      </Button.Group>
+      </Button.Group>,
     );
     const buttons = screen.getAllByRole('button');
     buttons.forEach((button) => {
@@ -121,7 +120,7 @@ describe('ButtonGroup', () => {
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>
-      </Button.Group>
+      </Button.Group>,
     );
     const buttons = screen.getAllByRole('button');
     buttons.forEach((button) => {
@@ -135,7 +134,7 @@ describe('ButtonGroup', () => {
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>
-      </Button.Group>
+      </Button.Group>,
     );
     expect(screen.getByRole('group')).toHaveClass('raw-button-group-vertical');
   });
@@ -146,7 +145,7 @@ describe('ButtonGroup', () => {
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>
-      </Button.Group>
+      </Button.Group>,
     );
     const buttons = screen.getAllByRole('button');
     buttons.forEach((button) => {

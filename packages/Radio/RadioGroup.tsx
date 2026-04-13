@@ -1,4 +1,6 @@
-import React, { FC, PropsWithChildren, useCallback, useMemo } from 'react';
+'use client';
+
+import { FC, PropsWithChildren, useCallback, useMemo } from 'react';
 import classNames from 'classnames';
 import { RadioGroupConfig, RadioGroupProps } from './RadioGroup.types';
 import { useControlled } from '../utils/hooks';
@@ -26,7 +28,7 @@ const RadioGroup: FC<PropsWithChildren<RadioGroupProps>> = ({
       setInternalValue(radioValue);
       onChange?.(radioValue);
     },
-    [onChange, setInternalValue]
+    [onChange, setInternalValue],
   );
 
   const radioGroupConfig = useMemo<RadioGroupConfig>(() => {

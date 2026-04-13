@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Grid from '..';
 import { Align, Justify, ResponsiveValue } from '../Grid.types';
@@ -10,7 +9,7 @@ describe('Grid', () => {
         <Grid.Col span={24}>
           <div>col</div>
         </Grid.Col>
-      </Grid>
+      </Grid>,
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -21,7 +20,7 @@ describe('Grid', () => {
         <Grid.Col span={24} className="custom-grid-col">
           <div>col</div>
         </Grid.Col>
-      </Grid>
+      </Grid>,
     );
     expect(screen.getByTestId('grid')).toHaveClass('custom-grid');
     expect(screen.getByTestId('gridCol')).toHaveClass('custom-grid-col');
@@ -54,7 +53,7 @@ describe('Grid', () => {
         <Grid.Col span={6}>
           <div>col-6</div>
         </Grid.Col>
-      </Grid>
+      </Grid>,
     );
     expect(screen.getByTestId('grid')).toHaveStyle({
       rowGap: '24px',
@@ -99,7 +98,7 @@ describe('Grid', () => {
         <Grid.Col span={6}>
           <div>col-6</div>
         </Grid.Col>
-      </Grid>
+      </Grid>,
     );
     expect(screen.getByTestId('grid')).toHaveStyle({
       rowGap: '8px',
@@ -118,7 +117,7 @@ describe('Grid', () => {
         <Grid.Col span={24}>
           <div>col</div>
         </Grid.Col>
-      </Grid>
+      </Grid>,
     );
     expect(screen.getByTestId('grid')).toHaveStyle({
       alignItems: 'flex-start',
@@ -140,7 +139,7 @@ describe('Grid', () => {
         <Grid.Col span={24}>
           <div>col</div>
         </Grid.Col>
-      </Grid>
+      </Grid>,
     );
     expect(screen.getByTestId('grid')).toHaveStyle({
       alignItems: 'flex-start',
@@ -153,7 +152,7 @@ describe('Grid', () => {
         <Grid.Col span={24}>
           <div>col</div>
         </Grid.Col>
-      </Grid>
+      </Grid>,
     );
     expect(screen.getByTestId('grid')).toHaveStyle({
       justifyContent: 'flex-start',
@@ -175,7 +174,7 @@ describe('Grid', () => {
         <Grid.Col span={24}>
           <div>col</div>
         </Grid.Col>
-      </Grid>
+      </Grid>,
     );
     expect(screen.getByTestId('grid')).toHaveStyle({
       justifyContent: 'flex-start',
@@ -188,7 +187,7 @@ describe('Grid', () => {
         <Grid.Col span={24}>
           <div>col</div>
         </Grid.Col>
-      </Grid>
+      </Grid>,
     );
     expect(screen.getAllByTestId('gridCol')[0]).toHaveStyle({
       flex: '0 0 100%',
@@ -202,7 +201,7 @@ describe('Grid', () => {
         <Grid.Col span={{ xs: 2, sm: 8, md: 4, lg: 10, xl: 6, xxl: 6 }}>
           <div>col</div>
         </Grid.Col>
-      </Grid>
+      </Grid>,
     );
     expect(screen.getAllByTestId('gridCol')[0]).toHaveStyle({
       flex: `0 0 ${(2 / 24) * 100}%`,
@@ -216,7 +215,7 @@ describe('Grid', () => {
         <Grid.Col span={0}>
           <div>col</div>
         </Grid.Col>
-      </Grid>
+      </Grid>,
     );
     expect(screen.getAllByTestId('gridCol')[0]).toHaveStyle({
       display: 'none',
@@ -226,7 +225,7 @@ describe('Grid', () => {
         <Grid.Col span={{ xs: 0, sm: 0, md: 0, lg: 0, xl: 0, xxl: 0 }}>
           <div>col</div>
         </Grid.Col>
-      </Grid>
+      </Grid>,
     );
     expect(screen.getAllByTestId('gridCol')[0]).toHaveStyle({
       display: 'none',
@@ -239,7 +238,7 @@ describe('Grid', () => {
         <Grid.Col span={8} offset={8}>
           <div>col</div>
         </Grid.Col>
-      </Grid>
+      </Grid>,
     );
     expect(screen.getAllByTestId('gridCol')[0]).toHaveStyle({
       marginInlineStart: `${(8 / 24) * 100}%`,
@@ -255,7 +254,7 @@ describe('Grid', () => {
         >
           <div>col</div>
         </Grid.Col>
-      </Grid>
+      </Grid>,
     );
     expect(screen.getAllByTestId('gridCol')[0]).toHaveStyle({
       marginInlineStart: `${(2 / 24) * 100}%`,
@@ -277,7 +276,7 @@ describe('Grid', () => {
         <Grid.Col span={6} order={1}>
           <div>col-order-1</div>
         </Grid.Col>
-      </Grid>
+      </Grid>,
     );
     expect(screen.getAllByTestId('gridCol')[0]).toHaveStyle({
       order: 4,
@@ -308,7 +307,7 @@ describe('Grid', () => {
         <Grid.Col span={6} order={{ xs: 1, sm: 4, md: 3, lg: 2 }}>
           <div>col-order-1</div>
         </Grid.Col>
-      </Grid>
+      </Grid>,
     );
     expect(screen.getAllByTestId('gridCol')[0]).toHaveStyle({
       order: 4,
@@ -355,7 +354,7 @@ describe('Grid', () => {
         <Grid.Col span={6}>
           <div>col-6</div>
         </Grid.Col>
-      </Grid>
+      </Grid>,
     );
     expect(screen.getByTestId('grid')).toHaveStyle({
       rowGap: '0px',
@@ -398,7 +397,7 @@ describe('Grid', () => {
         <Grid.Col span={6}>
           <div>col-6</div>
         </Grid.Col>
-      </Grid>
+      </Grid>,
     );
     expect(screen.getByTestId('grid')).toHaveStyle({
       rowGap: '0px',
@@ -419,7 +418,7 @@ describe('Grid', () => {
         <Grid.Col span={-1} offset={-1} order={-1}>
           <div>col</div>
         </Grid.Col>
-      </Grid>
+      </Grid>,
     );
     expect(screen.getAllByTestId('gridCol')[0]).toHaveStyle({
       flex: '0 1 auto',
@@ -432,7 +431,7 @@ describe('Grid', () => {
         <Grid.Col span={{ xs: -1 }} offset={{ xs: -1 }} order={{ xs: -1 }}>
           <div>col</div>
         </Grid.Col>
-      </Grid>
+      </Grid>,
     );
     expect(screen.getAllByTestId('gridCol')[0]).toHaveStyle({
       flex: '0 1 auto',

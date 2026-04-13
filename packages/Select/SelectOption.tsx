@@ -1,4 +1,6 @@
-import React, { FC, PropsWithChildren, MouseEvent, useMemo } from 'react';
+'use client';
+
+import { FC, PropsWithChildren, MouseEvent, useMemo } from 'react';
 import { Check } from 'react-feather';
 import classNames from 'classnames';
 import { SelectOptionProps } from './SelectOption.types';

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Checkbox from '..';
@@ -161,7 +161,7 @@ describe('Checkbox', () => {
     );
 
     const { rerender } = render(
-      <Component value={checked} onChange={onChange} />
+      <Component value={checked} onChange={onChange} />,
     );
 
     const [checkboxOne, checkboxTwo, checkboxThree, checkboxFour] =

@@ -1,9 +1,6 @@
-import React, {
-  Children,
-  MouseEvent,
-  useRef,
-  useImperativeHandle,
-} from 'react';
+'use client';
+
+import { Children, MouseEvent, useRef, useImperativeHandle } from 'react';
 import classNames from 'classnames';
 
 import { useButtonStyles, useButtonCSS } from './Button.styles';

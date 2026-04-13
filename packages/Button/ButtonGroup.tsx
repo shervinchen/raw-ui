@@ -1,4 +1,6 @@
-import React, { FC, PropsWithChildren, useMemo } from 'react';
+'use client';
+
+import { FC, PropsWithChildren, useMemo } from 'react';
 import classNames from 'classnames';
 
 import { ButtonGroupContext } from './button-group-context';
@@ -26,7 +28,7 @@ const ButtonGroup: FC<PropsWithChildren<ButtonGroupProps>> = ({
   ...resetProps
 }) => {
   const buttonGroupVariant: ButtonGroupVariant = buttonGroupVariants.includes(
-    variant
+    variant,
   )
     ? variant
     : 'default';
@@ -38,7 +40,7 @@ const ButtonGroup: FC<PropsWithChildren<ButtonGroupProps>> = ({
       disabled,
       isButtonGroup: true,
     }),
-    [disabled, size, type, buttonGroupVariant]
+    [disabled, size, type, buttonGroupVariant],
   );
 
   const { className: resolveClassName, styles } = useButtonGroupCSS({
@@ -53,7 +55,7 @@ const ButtonGroup: FC<PropsWithChildren<ButtonGroupProps>> = ({
     vertical && 'raw-button-group-vertical',
     !vertical && 'raw-button-group-horizontal',
     className,
-    resolveClassName
+    resolveClassName,
   );
 
   return (

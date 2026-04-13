@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren } from 'react';
 
 const Unit: FC<
   PropsWithChildren<{ title?: string; layout: 'row' | 'col' }>

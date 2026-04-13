@@ -1,4 +1,6 @@
-import React, { FC, PropsWithChildren, useCallback, useMemo } from 'react';
+'use client';
+
+import { FC, PropsWithChildren, useCallback, useMemo } from 'react';
 import classNames from 'classnames';
 import {
   CheckboxGroupConfig,
@@ -33,7 +35,7 @@ const CheckboxGroup: FC<PropsWithChildren<CheckboxGroupProps>> = ({
       setInternalValue(nextGroupValue);
       onChange?.(nextGroupValue);
     },
-    [internalValue, onChange, setInternalValue]
+    [internalValue, onChange, setInternalValue],
   );
 
   const checkboxGroupConfig = useMemo<CheckboxGroupConfig>(() => {

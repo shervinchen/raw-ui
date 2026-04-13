@@ -1,4 +1,6 @@
-import React, { FC, PropsWithChildren } from 'react';
+'use client';
+
+import { FC, PropsWithChildren } from 'react';
 
 const ModalFooter: FC<PropsWithChildren> = ({ children, ...restProps }) => {
   return (

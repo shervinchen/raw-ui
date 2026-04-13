@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { AlertCircle, Eye, EyeOff, Search, X } from 'react-feather';
 import Unit from '../Unit';
 import { Input } from '@/packages';

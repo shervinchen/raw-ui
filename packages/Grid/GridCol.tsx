@@ -1,4 +1,6 @@
-import React, { FC, PropsWithChildren } from 'react';
+'use client';
+
+import { FC, PropsWithChildren } from 'react';
 import classNames from 'classnames';
 import {
   ColOffsetResponsiveStyle,
@@ -25,20 +27,20 @@ const GridCol: FC<PropsWithChildren<GridColProps>> = ({
     'raw-grid-col-offset',
     'raw-grid-col-order',
     'raw-grid-gutter-horizontal',
-    className
+    className,
   );
 
   const colSpanResponsiveStyle = getColResponsiveStyle(
     'span',
-    span
+    span,
   ) as ColSpanResponsiveStyle;
   const colOffsetResponsiveStyle = getColResponsiveStyle(
     'offset',
-    offset
+    offset,
   ) as ColOffsetResponsiveStyle;
   const colOrderResponsiveStyle = getColResponsiveStyle(
     'order',
-    order
+    order,
   ) as ColOrderResponsiveStyle;
 
   return (

@@ -1,4 +1,6 @@
-import React, { FC, PropsWithChildren } from 'react';
+'use client';
+
+import { FC, PropsWithChildren } from 'react';
 import classNames from 'classnames';
 import {
   AlignResponsiveStyle,
@@ -28,24 +30,24 @@ const Grid: FC<PropsWithChildren<GridProps>> = ({
     'raw-grid-gutter-vertical',
     'raw-grid-align',
     'raw-grid-justify',
-    className
+    className,
   );
 
   const horizontalGutterResponsiveStyle = getGridResponsiveStyle(
     'gutter',
-    gutter?.[0]
+    gutter?.[0],
   ) as GutterResponsiveStyle;
   const verticalGutterResponsiveStyle = getGridResponsiveStyle(
     'gutter',
-    gutter?.[1]
+    gutter?.[1],
   ) as GutterResponsiveStyle;
   const alignResponsiveStyle = getGridResponsiveStyle(
     'align',
-    align
+    align,
   ) as AlignResponsiveStyle;
   const justifyResponsiveStyle = getGridResponsiveStyle(
     'justify',
-    justify
+    justify,
   ) as JustifyResponsiveStyle;
 
   const gridConfig: GridConfig = {

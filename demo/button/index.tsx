@@ -1,4 +1,3 @@
-import React from 'react';
 import { Search } from 'react-feather';
 import Unit from '../Unit';
 import { Button } from '@/packages';

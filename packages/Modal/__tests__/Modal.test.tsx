@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { Button, Modal, ModalProps } from '../..';
 import userEvent from '@testing-library/user-event';
@@ -51,7 +51,7 @@ describe('Modal', () => {
           <Button>Cancel</Button>
           <Button type="primary">Confirm</Button>
         </Modal.Footer>
-      </Modal>
+      </Modal>,
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -67,7 +67,7 @@ describe('Modal', () => {
           <Button>Cancel</Button>
           <Button type="primary">Confirm</Button>
         </Modal.Footer>
-      </Modal>
+      </Modal>,
     );
     expect(screen.getByTestId('modalWrapper')).toHaveClass('custom-modal');
   });
@@ -83,7 +83,7 @@ describe('Modal', () => {
           <Button>Cancel</Button>
           <Button type="primary">Confirm</Button>
         </Modal.Footer>
-      </Modal>
+      </Modal>,
     );
     const modalWrapper = screen.getByTestId('modalWrapper') as Element;
     expect(modalWrapper).toHaveStyle('max-width: 400px');

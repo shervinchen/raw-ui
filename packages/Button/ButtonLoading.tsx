@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import css from 'styled-jsx/css';
 import classNames from 'classnames';
 

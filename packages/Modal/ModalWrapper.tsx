@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, useRef } from 'react';
+import { FC, PropsWithChildren, useRef } from 'react';
 import { RemoveScroll } from 'react-remove-scroll';
 import { useClickAway } from 'react-use';
 import { useTheme } from '../Theme';
@@ -19,15 +19,11 @@ const ModalWrapper: FC<PropsWithChildren<ModalWrapperProps>> = ({
   const { stage, shouldMount } = useTransition(visible, 50, 350);
   const ref = useRef<HTMLDivElement>(null);
 
-  useClickAway(
-    ref,
-    () => {
-      if (closeOnOverlayClick) {
-        closeModal?.();
-      }
-    },
-    ['click']
-  );
+  useClickAway(ref, () => {
+    if (closeOnOverlayClick) {
+      closeModal?.();
+    }
+  }, ['click']);
 
   return shouldMount ? (
     <RemoveScroll>
@@ -85,7 +81,8 @@ const ModalWrapper: FC<PropsWithChildren<ModalWrapperProps>> = ({
             color: ${theme.palette.foreground};
             font-size: 16px;
             box-shadow: ${theme.tokens.shadow.lg};
-            transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+            transition:
+              opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
               transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             margin: auto;
           }

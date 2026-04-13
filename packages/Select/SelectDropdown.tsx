@@ -1,9 +1,4 @@
-import React, {
-  useRef,
-  useImperativeHandle,
-  useCallback,
-  RefObject,
-} from 'react';
+import { useRef, useImperativeHandle, useCallback, RefObject } from 'react';
 import classNames from 'classnames';
 import { SelectDropdownProps } from './SelectDropdown.types';
 import { useTransition } from '../utils/hooks';

@@ -1,4 +1,6 @@
-import React, {
+'use client';
+
+import {
   FC,
   RefObject,
   PropsWithChildren,

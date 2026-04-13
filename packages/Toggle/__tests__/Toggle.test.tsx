@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { render, renderHook, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Toggle from '..';
@@ -72,14 +72,14 @@ describe('Toggle', () => {
       useToggleStyles({
         status: 'unknown' as ToggleStatus,
         disabled: false,
-      })
+      }),
     );
 
     const { result: result2 } = renderHook(() =>
       useToggleStyles({
         status: undefined as unknown as ToggleStatus,
         disabled: false,
-      })
+      }),
     );
 
     expect(result1.current.backgroundColor).toBe('#e5e5e5');
@@ -91,14 +91,14 @@ describe('Toggle', () => {
       useToggleStyles({
         status: 'unknown' as ToggleStatus,
         disabled: true,
-      })
+      }),
     );
 
     const { result: result2 } = renderHook(() =>
       useToggleStyles({
         status: undefined as unknown as ToggleStatus,
         disabled: true,
-      })
+      }),
     );
 
     expect(result1.current.backgroundColor).toBe('#fafafa');

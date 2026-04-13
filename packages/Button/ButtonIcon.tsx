@@ -1,4 +1,4 @@
-import React, { cloneElement, FC } from 'react';
+import { cloneElement, FC } from 'react';
 import css from 'styled-jsx/css';
 import classNames from 'classnames';
 
@@ -42,7 +42,7 @@ const ButtonIcon: FC<ButtonIconProps> = ({
       'button-icon-right': isRight,
       'button-icon-single': isSingle,
     },
-    className
+    className,
   );
 
   return (

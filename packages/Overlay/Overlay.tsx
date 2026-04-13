@@ -1,4 +1,4 @@
-import React, { FC, MouseEvent } from 'react';
+import { FC, MouseEvent } from 'react';
 import { OverlayProps } from './Overlay.types';
 import { useTheme } from '../Theme';
 import { useTransition } from '../utils/hooks';

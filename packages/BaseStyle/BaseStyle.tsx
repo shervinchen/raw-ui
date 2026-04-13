@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren } from 'react';
 import { useTheme } from '../Theme';
 
 const BaseStyle: FC<PropsWithChildren> = ({ children }) => {
@@ -15,9 +15,19 @@ const BaseStyle: FC<PropsWithChildren> = ({ children }) => {
             line-height: 1.5;
             background-color: ${theme.palette.background};
             color: ${theme.palette.foreground};
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-              'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-              'Droid Sans', 'Helvetica Neue', sans-serif;
+            font-family:
+              'Inter',
+              -apple-system,
+              BlinkMacSystemFont,
+              'Segoe UI',
+              'Roboto',
+              'Oxygen',
+              'Ubuntu',
+              'Cantarell',
+              'Fira Sans',
+              'Droid Sans',
+              'Helvetica Neue',
+              sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;

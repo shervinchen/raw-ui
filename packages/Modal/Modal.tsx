@@ -1,4 +1,6 @@
-import React, { FC, PropsWithChildren, useCallback, useMemo } from 'react';
+'use client';
+
+import { FC, PropsWithChildren, useCallback, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import classNames from 'classnames';
 import { useKeyPressEvent } from 'react-use';
@@ -38,7 +40,7 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
       closeOnOverlayClick,
       closeModal,
     }),
-    [internalVisible, width, closeOnOverlayClick, closeModal]
+    [internalVisible, width, closeOnOverlayClick, closeModal],
   );
 
   useKeyPressEvent(KeyCode.Escape, () => {
@@ -55,7 +57,7 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
         {children}
       </ModalWrapper>
     </ModalContext.Provider>,
-    portal
+    portal,
   );
 };
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { X } from 'react-feather';
 import { useTheme } from '../Theme';
 import { useModalContext } from './modal-context';

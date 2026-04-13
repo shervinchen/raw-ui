@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import Unit from '../Unit';
 import { Toggle } from '@/packages';
 

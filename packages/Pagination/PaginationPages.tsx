@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { MoreHorizontal } from 'react-feather';
 import classNames from 'classnames';
 import { PaginationPagesProps } from './Pagination.types';
@@ -25,7 +25,7 @@ const PaginationPages: FC<PaginationPagesProps> = ({
                 className={classNames(
                   'raw-pagination-item',
                   isCurrentPage && 'raw-pagination-item-active',
-                  paginationItemClassName
+                  paginationItemClassName,
                 )}
                 aria-current={isCurrentPage ? 'page' : undefined}
                 onClick={() => handlePageNumberClick(pageItem)}

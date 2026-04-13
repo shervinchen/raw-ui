@@ -1,4 +1,6 @@
-import React, { FC, PropsWithChildren } from 'react';
+'use client';
+
+import { FC, PropsWithChildren } from 'react';
 import classNames from 'classnames';
 import { useInputGroupContext } from './input-group-context';
 import { useInputStyles } from './Input.styles';

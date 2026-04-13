@@ -1,4 +1,6 @@
-import React, { PropsWithChildren, FC } from 'react';
+'use client';
+
+import { PropsWithChildren, FC } from 'react';
 import ThemeProvider from '../Theme/theme-provider';
 import { RawUITheme } from '../Theme/preset/preset.type';
 import { RawUIContent } from './context';

@@ -1,4 +1,6 @@
-import React, {
+'use client';
+
+import {
   FC,
   PropsWithChildren,
   useCallback,
@@ -32,7 +34,7 @@ const Tabs: FC<PropsWithChildren<TabsProps>> = ({
   const classes = classNames(
     'raw-tabs',
     vertical && 'raw-tabs-vertical',
-    className
+    className,
   );
   const [navBarPosition, setNavBarPosition] = useState({
     width: 0,
@@ -64,7 +66,7 @@ const Tabs: FC<PropsWithChildren<TabsProps>> = ({
   const tabsNavRef = useCallback(
     (node: HTMLDivElement) => {
       const navItems = ([...(node?.children ?? [])] as HTMLDivElement[]).filter(
-        (item) => item?.classList?.contains('raw-tabs-nav-item')
+        (item) => item?.classList?.contains('raw-tabs-nav-item'),
       );
       const { width = 0, height = 0 } =
         navItems[0]?.getBoundingClientRect() ?? {};
@@ -77,7 +79,7 @@ const Tabs: FC<PropsWithChildren<TabsProps>> = ({
         top: offsetTop,
       });
     },
-    [selectedNavIndex]
+    [selectedNavIndex],
   );
 
   const handleTabsNavItemClick = (value: string, disabled: boolean) => {
@@ -106,7 +108,7 @@ const Tabs: FC<PropsWithChildren<TabsProps>> = ({
               className={classNames(
                 'raw-tabs-nav-item',
                 internalValue === item.value && 'raw-tabs-nav-item-active',
-                (tabsDisabled || item.disabled) && 'raw-tabs-nav-item-disabled'
+                (tabsDisabled || item.disabled) && 'raw-tabs-nav-item-disabled',
               )}
               key={item.value}
               onClick={() => handleTabsNavItemClick(item.value, item.disabled)}

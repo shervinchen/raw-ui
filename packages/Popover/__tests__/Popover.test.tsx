@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Popover from '..';
@@ -13,7 +13,7 @@ const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
 describe('Popover', () => {
   test('should match the snapshot', () => {
     const { asFragment } = render(
-      <Popover content="I am a popover">Click me</Popover>
+      <Popover content="I am a popover">Click me</Popover>,
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -22,7 +22,7 @@ describe('Popover', () => {
     render(
       <Popover defaultValue content="I am a popover">
         Click me
-      </Popover>
+      </Popover>,
     );
     expect(await screen.findByRole('dialog')).toBeInTheDocument();
   });
@@ -31,7 +31,7 @@ describe('Popover', () => {
     render(
       <Popover content="I am a popover" className="custom-popover">
         Click me
-      </Popover>
+      </Popover>,
     );
     await user.click(screen.getByTestId('popoverTarget'));
     expect(await screen.findByRole('dialog')).toHaveClass('custom-popover');
@@ -68,7 +68,7 @@ describe('Popover', () => {
     render(
       <Popover content="I am a popover" disabled>
         Click me
-      </Popover>
+      </Popover>,
     );
     await user.click(screen.getByTestId('popoverTarget'));
     await waitFor(() => {
@@ -96,7 +96,7 @@ describe('Popover', () => {
       );
     };
     render(
-      <Component content="I am a controlled popover" onChange={onChange} />
+      <Component content="I am a controlled popover" onChange={onChange} />,
     );
     await user.click(screen.getByTestId('popoverTarget'));
     expect(await screen.findByRole('dialog')).toBeInTheDocument();
@@ -120,7 +120,7 @@ describe('Popover', () => {
         >
           Click me
         </Popover>
-      </div>
+      </div>,
     );
   });
 
@@ -128,7 +128,7 @@ describe('Popover', () => {
     render(
       <Popover defaultValue content="I am a popover">
         Click me
-      </Popover>
+      </Popover>,
     );
     expect(screen.getByRole('dialog')).toBeInTheDocument();
     await user.keyboard(`[${KeyCode.Escape}]`);
@@ -150,7 +150,7 @@ describe('Popover', () => {
           <Button>Cancel</Button>
           <Button type="primary">Confirm</Button>
         </Modal.Footer>
-      </Modal>
+      </Modal>,
     );
     const popup = screen.getByTestId('popup');
     expect(popup).toHaveStyle({
@@ -169,7 +169,7 @@ describe('Popover', () => {
         }
       >
         Click me
-      </Popover>
+      </Popover>,
     );
     const popups = screen.getAllByTestId('popup');
     popups.forEach((popup) => {

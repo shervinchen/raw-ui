@@ -1,4 +1,6 @@
-import React, { FC, PropsWithChildren } from 'react';
+'use client';
+
+import { FC, PropsWithChildren } from 'react';
 import classNames from 'classnames';
 import { LayoutProps } from './Layout.types';
 import { getValidChildren } from '../utils/common';
@@ -10,12 +12,12 @@ const Layout: FC<PropsWithChildren<LayoutProps>> = ({
   ...restProps
 }) => {
   const hasSidebar = getValidChildren(children).some(
-    (child) => child.type === Sidebar
+    (child) => child.type === Sidebar,
   );
   const classes = classNames(
     'raw-layout',
     hasSidebar && 'raw-layout-has-sidebar',
-    className
+    className,
   );
 
   return (

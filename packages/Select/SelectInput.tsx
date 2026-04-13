@@ -1,4 +1,4 @@
-import React, { useEffect, useImperativeHandle, useRef } from 'react';
+import { useEffect, useImperativeHandle, useRef } from 'react';
 import { VisuallyHiddenInput } from '../VisuallyHidden';
 import { useSelectContext } from './select-context';
 import { SelectInputProps } from './SelectInput.types';

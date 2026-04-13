@@ -1,4 +1,6 @@
-import React, { FC, useMemo } from 'react';
+'use client';
+
+import { FC, useMemo } from 'react';
 import { ChevronLeft, ChevronRight } from 'react-feather';
 import classNames from 'classnames';
 import { PaginationProps } from './Pagination.types';
@@ -45,7 +47,7 @@ const Pagination: FC<PaginationProps> = ({
             : [pageCount]),
         ]
           .filter((value) => value >= 1 && value <= pageCount)
-          .sort((a, b) => a - b)
+          .sort((a, b) => a - b),
       ),
     ].reduce<number[]>((previousValue, currentValue, currentIndex, array) => {
       previousValue.push(currentValue);
@@ -91,7 +93,7 @@ const Pagination: FC<PaginationProps> = ({
             className={classNames(
               'raw-pagination-item',
               internalPage === 1 && 'raw-pagination-item-disabled',
-              paginationItemClassName
+              paginationItemClassName,
             )}
             aria-label="Go to previous page"
             onClick={handlePreviousPageClick}
@@ -109,7 +111,7 @@ const Pagination: FC<PaginationProps> = ({
             className={classNames(
               'raw-pagination-item',
               internalPage === pageCount && 'raw-pagination-item-disabled',
-              paginationItemClassName
+              paginationItemClassName,
             )}
             aria-label="Go to next page"
             onClick={handleNextPageClick}

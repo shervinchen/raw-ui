@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Loading from '..';
 import { LoadingType } from '../Loading.types';
@@ -18,7 +17,7 @@ describe('Loading', () => {
     test(`should render ${item} type`, () => {
       render(<Loading type={item} />);
       expect(screen.getByTestId(`${item}Loading`)).toHaveClass(
-        `raw-${item}-loading`
+        `raw-${item}-loading`,
       );
     });
   });

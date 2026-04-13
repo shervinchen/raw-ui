@@ -1,4 +1,6 @@
-import React, { FC, ChangeEvent, useMemo, PropsWithChildren } from 'react';
+'use client';
+
+import { FC, ChangeEvent, useMemo, PropsWithChildren } from 'react';
 import classNames from 'classnames';
 import { RadioProps } from './Radio.types';
 import { useControlled } from '../utils/hooks';

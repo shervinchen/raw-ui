@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { render, screen } from '@testing-library/react';
 import { Button, RawUIProvider, useTheme, Theme, RawUITheme } from '../..';
 import userEvent from '@testing-library/user-event';
@@ -164,7 +164,7 @@ describe('Theme', () => {
     expect(() => {
       Theme.createFromCustom(
         Theme.getPresetStaticTheme(),
-        null as unknown as RawUIUserTheme
+        null as unknown as RawUIUserTheme,
       );
     }).toThrow('Duplicate or unavailable theme type');
   });
@@ -188,20 +188,20 @@ describe('Theme', () => {
       },
     });
     expect(
-      Theme.hasUserCustomTheme([Theme.getPresetStaticTheme(), myTheme])
+      Theme.hasUserCustomTheme([Theme.getPresetStaticTheme(), myTheme]),
     ).toBe(true);
   });
 
   test('should hasUserCustomTheme return false if a list of themes do not has a custom', () => {
     expect(Theme.hasUserCustomTheme([Theme.getPresetStaticTheme()])).toBe(
-      false
+      false,
     );
     expect(Theme.hasUserCustomTheme()).toBe(false);
     expect(Theme.hasUserCustomTheme([null as unknown as RawUITheme])).toBe(
-      false
+      false,
     );
     expect(Theme.hasUserCustomTheme(null as unknown as RawUITheme[])).toBe(
-      false
+      false,
     );
   });
 

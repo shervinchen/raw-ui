@@ -1,3 +1,5 @@
+'use client';
+
 import { Context, createContext, useContext } from 'react';
 import { RawUITheme } from './preset/preset.type';
 import Theme from './theme';

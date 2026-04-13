@@ -1,4 +1,6 @@
-import React, { FC, ChangeEvent } from 'react';
+'use client';
+
+import { FC, ChangeEvent } from 'react';
 import classNames from 'classnames';
 import { ToggleProps } from './Toggle.types';
 import { useControlled } from '../utils/hooks';

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Tabs } from '../..';
@@ -19,7 +19,7 @@ describe('Tabs', () => {
         <Tabs.Tab label="Tab 3" value="3">
           Content of Tab Pane 3
         </Tabs.Tab>
-      </Tabs>
+      </Tabs>,
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -36,7 +36,7 @@ describe('Tabs', () => {
         <Tabs.Tab label="Tab 3" value="3">
           Content of Tab Pane 3
         </Tabs.Tab>
-      </Tabs>
+      </Tabs>,
     );
     expect(screen.getByTestId('tabs')).toHaveClass('custom-tabs');
   });
@@ -53,7 +53,7 @@ describe('Tabs', () => {
         <Tabs.Tab label="Tab 3" value="3">
           Content of Tab Pane 3
         </Tabs.Tab>
-      </Tabs>
+      </Tabs>,
     );
     expect(screen.getByText('Tab 2')).toHaveClass('raw-tabs-nav-item-active');
   });
@@ -104,16 +104,16 @@ describe('Tabs', () => {
         <Tabs.Tab label="Tab 3" value="3">
           Content of Tab Pane 3
         </Tabs.Tab>
-      </Tabs>
+      </Tabs>,
     );
     expect(screen.getByText('Tab 1')).not.toHaveClass(
-      'raw-tabs-nav-item-active'
+      'raw-tabs-nav-item-active',
     );
     expect(screen.getByText('Tab 2')).not.toHaveClass(
-      'raw-tabs-nav-item-active'
+      'raw-tabs-nav-item-active',
     );
     expect(screen.getByText('Tab 3')).not.toHaveClass(
-      'raw-tabs-nav-item-active'
+      'raw-tabs-nav-item-active',
     );
   });
 
@@ -136,14 +136,14 @@ describe('Tabs', () => {
         <Tabs.Tab label="Tab 3" value="3">
           Content of Tab Pane 3
         </Tabs.Tab>
-      </Tabs>
+      </Tabs>,
     );
     expect(screen.getByText('Tab 1')).toHaveClass('raw-tabs-nav-item-disabled');
     expect(screen.getByText('Tab 2')).toHaveClass('raw-tabs-nav-item-disabled');
     expect(screen.getByText('Tab 3')).toHaveClass('raw-tabs-nav-item-disabled');
     await user.click(screen.getByText('Tab 2'));
     expect(screen.getByText('Tab 2')).not.toHaveClass(
-      'raw-tabs-nav-item-active'
+      'raw-tabs-nav-item-active',
     );
   });
 
@@ -159,12 +159,12 @@ describe('Tabs', () => {
         <Tabs.Tab label="Tab 3" value="3">
           Content of Tab Pane 3
         </Tabs.Tab>
-      </Tabs>
+      </Tabs>,
     );
     expect(screen.getByText('Tab 2')).toHaveClass('raw-tabs-nav-item-disabled');
     await user.click(screen.getByText('Tab 2'));
     expect(screen.getByText('Tab 2')).not.toHaveClass(
-      'raw-tabs-nav-item-active'
+      'raw-tabs-nav-item-active',
     );
   });
 
@@ -180,7 +180,7 @@ describe('Tabs', () => {
         <Tabs.Tab label="Tab 3" value="3">
           Content of Tab Pane 3
         </Tabs.Tab>
-      </Tabs>
+      </Tabs>,
     );
 
     expect(screen.getByTestId('tabs')).toHaveClass('raw-tabs-vertical');

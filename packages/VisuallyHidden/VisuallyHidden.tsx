@@ -1,8 +1,4 @@
-import React, {
-  ComponentPropsWithRef,
-  useImperativeHandle,
-  useRef,
-} from 'react';
+import { ComponentPropsWithRef, useImperativeHandle, useRef } from 'react';
 
 const VisuallyHiddenInput = ({
   ref,

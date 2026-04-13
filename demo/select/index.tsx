@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Unit from '../Unit';
 import { Select, SelectValue } from '@/packages';
 

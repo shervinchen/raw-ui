@@ -1,4 +1,6 @@
-import React, { FC, PropsWithChildren, useMemo } from 'react';
+'use client';
+
+import { FC, PropsWithChildren, useMemo } from 'react';
 
 import { ThemeContext } from './theme-context';
 import BaseStyle from '../BaseStyle';

@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren } from 'react';
 
 const Wrapper: FC<PropsWithChildren<{ title: string }>> = ({
   title,

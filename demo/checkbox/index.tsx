@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import Unit from '../Unit';
 import { Checkbox, CheckboxGroupValue } from '@/packages';
 
@@ -144,7 +144,7 @@ export function DemoCheckboxGroupWithIndeterminate() {
         checked={checkboxGroupValue.length === optionsData.length}
         onChange={(event: ChangeEvent<HTMLInputElement>) => {
           setCheckboxGroupValue(
-            event.target.checked ? optionsData.map((item) => item.value) : []
+            event.target.checked ? optionsData.map((item) => item.value) : [],
           );
         }}
       >

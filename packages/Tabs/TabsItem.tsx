@@ -1,4 +1,6 @@
-import React, { FC, PropsWithChildren } from 'react';
+'use client';
+
+import { FC, PropsWithChildren } from 'react';
 import classNames from 'classnames';
 import { TabsItemProps } from './Tabs.types';
 import { useTabsContext } from './tabs-context';
@@ -12,7 +14,7 @@ const TabsItem: FC<PropsWithChildren<TabsItemProps>> = ({
   const classes = classNames(
     'raw-tabs-panel',
     selectValue === value && 'raw-tabs-panel-active',
-    className
+    className,
   );
 
   return (

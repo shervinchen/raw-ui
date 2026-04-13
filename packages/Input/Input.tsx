@@ -1,9 +1,6 @@
-import React, {
-  ChangeEvent,
-  FocusEvent,
-  useImperativeHandle,
-  useRef,
-} from 'react';
+'use client';
+
+import { ChangeEvent, FocusEvent, useImperativeHandle, useRef } from 'react';
 import classNames from 'classnames';
 import { InputProps } from './Input.types';
 import { useInputCSS } from './Input.styles';

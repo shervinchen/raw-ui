@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, MouseEvent } from 'react';
+import { FC, PropsWithChildren, MouseEvent } from 'react';
 import { X } from 'react-feather';
 import { RawUITheme } from '../Theme/preset/preset.type';
 import { useTheme } from '../Theme/theme-context';
