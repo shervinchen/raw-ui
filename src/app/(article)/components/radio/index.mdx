@@ -1,3 +1,4 @@
+import { useState, useMemo } from 'react';
 import { Grid, Radio } from '@/packages';
 import Playground from '@/src/app/components/playground';
 
@@ -41,15 +42,15 @@ import { Radio } from 'raw-ui';
 ## Controlled
 
 <Playground
-  scope={{ Radio }}
+  scope={{ Radio, useState }}
   code={`
   () => {
-    const [value, setValue] = React.useState(false);
+    const [value, setValue] = useState(false);
 
     return (
       <Radio
         checked={value}
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+        onChange={(event: ChangeEvent<HTMLInputElement>) => {
           setValue(event.target.checked);
         }}
       >
@@ -81,10 +82,10 @@ import { Radio } from 'raw-ui';
 ## Group
 
 <Playground
-  scope={{ Grid, Radio }}
+  scope={{ Grid, Radio, useMemo }}
   code={`
   () => {
-    const optionsData = React.useMemo(() => [
+    const optionsData = useMemo(() => [
       {
         name: 'React',
         value: 'react',
@@ -103,7 +104,7 @@ import { Radio } from 'raw-ui';
       },
     ], []);
 
-    const [radioGroupValue, setRadioGroupValue] = React.useState<RadioValue>('angular');
+    const [radioGroupValue, setRadioGroupValue] = useState<RadioValue>('angular');
 
     return (
       <Grid gutter={[0, 32]}>

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Pagination } from '@/packages';
 import Playground from '@/src/app/components/playground';
 
@@ -23,10 +24,10 @@ import { Pagination } from 'raw-ui';
 ## Controlled
 
 <Playground
-  scope={{ Pagination }}
+  scope={{ Pagination, useState }}
   code={`
   () => {
-    const [page, setPage] = React.useState(1);
+    const [page, setPage] = useState(1);
 
     return (
       <Pagination

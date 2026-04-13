@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import { ChangeEvent, createRef, useState } from 'react';
 import { render, screen, renderHook } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Input from '..';
@@ -28,7 +28,7 @@ describe('Input', () => {
   });
 
   test('should forward ref', () => {
-    const ref = React.createRef<HTMLInputElement>();
+    const ref = createRef<HTMLInputElement>();
     render(<Input ref={ref} />);
     expect(screen.getByRole('textbox')).toEqual(ref.current);
   });
@@ -49,7 +49,7 @@ describe('Input', () => {
     render(<Input placeholder="Placeholder..." />);
     expect(screen.getByRole('textbox')).toHaveAttribute(
       'placeholder',
-      'Placeholder...'
+      'Placeholder...',
     );
   });
 
@@ -103,17 +103,17 @@ describe('Input', () => {
       test(`should render ${item} type`, () => {
         render(<Input type={item} />);
         expect(screen.getByRole('textbox')).toHaveStyle(
-          `border-color: ${typeColorMap[item]}`
+          `border-color: ${typeColorMap[item]}`,
         );
       });
-    }
+    },
   );
 
   ['xs', 'sm', 'md', 'lg', 'xl'].forEach((item: InputSizes) => {
     test(`should render ${item} size`, () => {
       render(<Input size={item} />);
       expect(screen.getByRole('textbox')).toHaveStyle(
-        `height: ${sizeHeightMap[item]}`
+        `height: ${sizeHeightMap[item]}`,
       );
     });
   });
@@ -151,7 +151,7 @@ describe('Input', () => {
         <Input.LeftElement>$</Input.LeftElement>
         <Input placeholder="Enter amount" />
         <Input.RightElement>.0</Input.RightElement>
-      </Input.Group>
+      </Input.Group>,
     );
 
     expect(screen.getByText('$')).toBeInTheDocument();
@@ -164,7 +164,7 @@ describe('Input', () => {
         <Input.LeftElement clickable>$</Input.LeftElement>
         <Input placeholder="Enter amount" />
         <Input.RightElement>.0</Input.RightElement>
-      </Input.Group>
+      </Input.Group>,
     );
     const leftElement = screen.getByTestId('inputLeftElement');
     expect(leftElement).toHaveStyle({
@@ -179,7 +179,7 @@ describe('Input', () => {
         <Input.LeftAddon>https://</Input.LeftAddon>
         <Input placeholder="your domain" />
         <Input.RightAddon>.com</Input.RightAddon>
-      </Input.Group>
+      </Input.Group>,
     );
 
     expect(screen.getByText('https://')).toBeInTheDocument();
@@ -192,7 +192,7 @@ describe('Input', () => {
         <Input.LeftAddon className="left-addon">https://</Input.LeftAddon>
         <Input placeholder="your domain" />
         <Input.RightAddon className="right-addon">.com</Input.RightAddon>
-      </Input.Group>
+      </Input.Group>,
     );
 
     expect(screen.getByText('https://')).toHaveClass('left-addon');
@@ -205,14 +205,14 @@ describe('Input', () => {
         type: 'unknown' as InputTypes,
         size: 'md',
         disabled: false,
-      })
+      }),
     );
     const { result: result2 } = renderHook(() =>
       useInputStyles({
         type: undefined as unknown as InputTypes,
         size: 'md',
         disabled: false,
-      })
+      }),
     );
     expect(result1.current.borderColor).toBe('#e5e5e5');
     expect(result2.current.borderColor).toBe('#e5e5e5');
@@ -224,14 +224,14 @@ describe('Input', () => {
         type: 'default',
         size: 'unknown' as InputSizes,
         disabled: false,
-      })
+      }),
     );
     const { result: result2 } = renderHook(() =>
       useInputStyles({
         type: 'default',
         size: undefined as unknown as InputSizes,
         disabled: false,
-      })
+      }),
     );
     expect(result1.current.height).toBe('32px');
     expect(result2.current.height).toBe('32px');
@@ -242,13 +242,13 @@ describe('Input', () => {
       useInputFocusStyles({
         type: 'unknown' as InputTypes,
         disabled: false,
-      })
+      }),
     );
     const { result: result2 } = renderHook(() =>
       useInputFocusStyles({
         type: undefined as unknown as InputTypes,
         disabled: false,
-      })
+      }),
     );
     expect(result1.current.focusBorderColor).toBe('#525252');
     expect(result2.current.focusBorderColor).toBe('#525252');

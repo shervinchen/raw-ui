@@ -1,6 +1,6 @@
 'use client';
 
-import MDX from './installation.mdx';
+import MDX from './index.mdx';
 
 export default function MDXContent() {
   return <MDX />;

@@ -1,11 +1,11 @@
-import { FC } from 'react';
+import { FC, PropsWithChildren } from 'react';
 import css from 'styled-jsx/css';
 import classNames from 'classnames';
 
 import Loading from '../Loading';
 import { ButtonLoadingProps } from './Button.types';
 
-const ButtonLoading: FC<React.PropsWithChildren<ButtonLoadingProps>> = ({
+const ButtonLoading: FC<PropsWithChildren<ButtonLoadingProps>> = ({
   color,
   backgroundColor,
 }) => {

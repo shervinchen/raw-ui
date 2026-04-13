@@ -1,6 +1,6 @@
 'use client';
 
-import MDX from './pagination.mdx';
+import MDX from './index.mdx';
 
 export default function MDXContent() {
   return <MDX />;

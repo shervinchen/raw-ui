@@ -1,3 +1,4 @@
+import { useState, useMemo, use } from 'react';
 import { Grid, Select } from '@/packages';
 import Playground from '@/src/app/components/playground';
 
@@ -106,10 +107,10 @@ import { Select } from 'raw-ui';
 ## Controlled
 
 <Playground
-  scope={{ Select }}
+  scope={{ Select, useState }}
   code={`
   () => {
-    const [selectValue, setSelectValue] = React.useState<SelectValue>();
+    const [selectValue, setSelectValue] = useState<SelectValue>();
 
     return (
       <Select
@@ -131,10 +132,10 @@ import { Select } from 'raw-ui';
 ## Multiple
 
 <Playground
-  scope={{ Select }}
+  scope={{ Select, useMemo }}
   code={`
   () => {
-    const optionsData = React.useMemo(() => [
+    const optionsData = useMemo(() => [
       {
         name: 'React',
         value: 'react',
@@ -174,10 +175,10 @@ import { Select } from 'raw-ui';
 ## Clearable
 
 <Playground
-  scope={{ Grid, Select }}
+  scope={{ Grid, Select, useMemo }}
   code={`
   () => {
-    const optionsData = React.useMemo(() => [
+    const optionsData = useMemo(() => [
       {
         name: 'React',
         value: 'react',
@@ -234,10 +235,10 @@ import { Select } from 'raw-ui';
 ## Disabled select
 
 <Playground
-  scope={{ Grid, Select }}
+  scope={{ Grid, Select, useMemo }}
   code={`
   () => {
-    const optionsData = React.useMemo(() => [
+    const optionsData = useMemo(() => [
       {
         name: 'React',
         value: 'react',

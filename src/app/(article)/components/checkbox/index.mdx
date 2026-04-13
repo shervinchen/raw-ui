@@ -1,3 +1,4 @@
+import { useState, useMemo, use } from 'react';
 import { Grid, Checkbox } from '@/packages';
 import Playground from '@/src/app/components/playground';
 
@@ -41,15 +42,15 @@ import { Checkbox } from 'raw-ui';
 ## Controlled
 
 <Playground
-  scope={{ Checkbox }}
+  scope={{ Checkbox, useState }}
   code={`
   () => {
-    const [checkboxValue, setCheckboxValue] = React.useState(false);
+    const [checkboxValue, setCheckboxValue] = useState(false);
 
     return (
       <Checkbox
         checked={checkboxValue}
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+        onChange={(event: ChangeEvent<HTMLInputElement>) => {
           setCheckboxValue(event.target.checked);
         }}
       >
@@ -95,10 +96,10 @@ import { Checkbox } from 'raw-ui';
 ## Group
 
 <Playground
-  scope={{ Grid, Checkbox }}
+  scope={{ Grid, Checkbox, useMemo, useState }}
   code={`
   () => {
-    const optionsData = React.useMemo(() => [
+    const optionsData = useMemo(() => [
       {
         name: 'React',
         value: 'react',
@@ -118,7 +119,7 @@ import { Checkbox } from 'raw-ui';
     ], []);
 
     const [checkboxGroupValue, setCheckboxGroupValue] =
-      React.useState<CheckboxGroupValue>(['react', 'angular']);
+      useState<CheckboxGroupValue>(['react', 'angular']);
 
     return (
       <Grid gutter={[0, 32]}>
@@ -175,10 +176,10 @@ import { Checkbox } from 'raw-ui';
 ## Indeterminate with group
 
 <Playground
-  scope={{ Grid, Checkbox }}
+  scope={{ Grid, Checkbox, useMemo, useState }}
   code={`
   () => {
-    const optionsData = React.useMemo(() => [
+    const optionsData = useMemo(() => [
       {
         name: 'React',
         value: 'react',
@@ -198,7 +199,7 @@ import { Checkbox } from 'raw-ui';
     ], []);
 
     const [checkboxGroupValue, setCheckboxGroupValue] =
-      React.useState<CheckboxGroupValue>(['react', 'angular']);
+      useState<CheckboxGroupValue>(['react', 'angular']);
 
     return (
       <Grid gutter={[0, 32]}>
@@ -209,7 +210,7 @@ import { Checkbox } from 'raw-ui';
               checkboxGroupValue.length < optionsData.length
             }
             checked={checkboxGroupValue.length === optionsData.length}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            onChange={(event: ChangeEvent<HTMLInputElement>) => {
               setCheckboxGroupValue(
                 event.target.checked ? optionsData.map((item) => item.value) : []
               );

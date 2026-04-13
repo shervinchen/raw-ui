@@ -10,14 +10,14 @@ First, create a new registry in `app/registry.tsx`:
 ```tsx
 'use client'
 
-import React, { useState } from 'react'
+import { useState, ReactNode } from 'react'
 import { useServerInsertedHTML } from 'next/navigation'
 import { StyleRegistry, createStyleRegistry } from 'styled-jsx'
 
 export default function StyledJsxRegistry({
   children,
 }: {
-  children: React.ReactNode
+  children: ReactNode
 }) {
   // Only create stylesheet once with lazy initial state
   // x-ref: https://reactjs.org/docs/hooks-reference.html#lazy-initial-state
@@ -36,12 +36,13 @@ export default function StyledJsxRegistry({
 Then, wrap your root layout in `app/layout.tsx` with the registry:
 
 ```tsx
+import { ReactNode } from 'react'
 import StyledJsxRegistry from './registry'
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: ReactNode
 }) {
   return (
     <html>
@@ -60,7 +61,6 @@ Please refer to [Next.js](https://nextjs.org/docs/app/building-your-application/
 In the custom server, also get the style from registry and set it in the initial HTML string before sending it to the client-side:
 
 ```tsx
-import React from 'react'
 import ReactDOM from 'react-dom/server'
 import { StyleRegistry, useStyleRegistry } from 'styled-jsx'
 import App from './app'

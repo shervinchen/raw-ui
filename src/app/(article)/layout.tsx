@@ -1,9 +1,10 @@
 'use client';
 
+import { ReactNode } from 'react';
 import Sidebar from '../components/sidebar';
 import Toc from '../components/toc';
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout({ children }: { children: ReactNode }) {
   return (
     <div className="flex max-w-[90rem] mx-auto py-0 px-6">
       <Sidebar />

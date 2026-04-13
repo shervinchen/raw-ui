@@ -9,6 +9,7 @@ import {
   ReactElement,
   useCallback,
   useId,
+  ReactNode,
 } from 'react';
 import { ChevronDown, ChevronUp, X } from 'react-feather';
 import classNames from 'classnames';
@@ -80,7 +81,7 @@ const SelectContent = ({
   multiple: boolean;
   disabled: boolean;
   placeholder: string;
-  selectChildren: React.ReactNode;
+  selectChildren: ReactNode;
   handleChange: (value: SelectOptionValue) => void;
 }): ReactElement => {
   const selectedOptions = getValidChildren(selectChildren).filter(

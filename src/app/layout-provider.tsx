@@ -2,7 +2,7 @@
 
 import { ThemeProvider, useTheme } from 'next-themes';
 import Navbar from './components/navbar';
-import { RawUIProvider } from './client-lib';
+import RawUIProvider from '@/packages/Provider';
 import { useSSR } from '@/packages/utils';
 
 const LayoutContent = ({ children }) => {

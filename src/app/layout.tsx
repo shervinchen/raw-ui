@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { Metadata } from 'next';
 import StyledJsxRegistry from './registry';
 import './global.css';
@@ -9,11 +10,7 @@ export const metadata: Metadata = {
     'A minimalist and customizable React component library for web applications.',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="bg-white dark:bg-black">

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Button, Modal } from '@/packages';
 import Playground from '@/src/app/components/playground';
 
@@ -14,10 +15,10 @@ import { Modal } from 'raw-ui';
 ## Default
 
 <Playground
-  scope={{ Button, Modal }}
+  scope={{ Button, Modal, useState }}
   code={`
   () => {
-    const [visible, setVisible] = React.useState(false);
+    const [visible, setVisible] = useState(false);
 
     const openModal = () => setVisible(true);
 
@@ -49,10 +50,10 @@ import { Modal } from 'raw-ui';
 ## Not close modal on overlay click
 
 <Playground
-  scope={{ Button, Modal }}
+  scope={{ Button, Modal, useState }}
   code={`
   () => {
-    const [visible, setVisible] = React.useState(false);
+    const [visible, setVisible] = useState(false);
 
     const openModal = () => setVisible(true);
 

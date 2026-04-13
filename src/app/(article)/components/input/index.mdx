@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { AlertCircle, Eye, EyeOff, Search, X } from 'react-feather';
 import { Grid, Input } from '@/packages';
 import Playground from '@/src/app/components/playground';
@@ -105,15 +106,15 @@ import { Input } from 'raw-ui';
 ## Controlled
 
 <Playground
-  scope={{ Input }}
+  scope={{ Input, useState }}
   code={`
   () => {
-    const [value, setValue] = React.useState('');
+    const [value, setValue] = useState('');
 
     return (
       <Input
         value={value}
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+        onChange={(event: ChangeEvent<HTMLInputElement>) => {
           setValue(event.target.value);
         }}
         placeholder="Placeholder..."
@@ -188,10 +189,10 @@ import { Input } from 'raw-ui';
 ## Password
 
 <Playground
-  scope={{ Input, Eye, EyeOff }}
+  scope={{ Input, Eye, EyeOff, useState }}
   code={`
   () => {
-    const [visible, setVisible] = React.useState(false);
+    const [visible, setVisible] = useState(false);
 
     return (
       <Input.Group>
@@ -211,16 +212,16 @@ import { Input } from 'raw-ui';
 ## Clearable
 
 <Playground
-  scope={{ Input, X }}
+  scope={{ Input, X, useState }}
   code={`
   () => {
-    const [value, setValue] = React.useState('');
+    const [value, setValue] = useState('');
 
     return (
       <Input.Group>
         <Input
           value={value}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          onChange={(event: ChangeEvent<HTMLInputElement>) =>
             setValue(event.target.value)
           }
           placeholder="Clearable input"

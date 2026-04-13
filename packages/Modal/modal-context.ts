@@ -1,4 +1,4 @@
-import React from 'react';
+import { createContext, useContext } from 'react';
 
 export interface ModalConfig {
   visible: boolean;
@@ -9,9 +9,9 @@ export interface ModalConfig {
 
 const defaultContext = {};
 
-export const ModalContext = React.createContext<ModalConfig>(
-  defaultContext as ModalConfig
+export const ModalContext = createContext<ModalConfig>(
+  defaultContext as ModalConfig,
 );
 
 export const useModalContext = (): ModalConfig =>
-  React.useContext<ModalConfig>(ModalContext);
+  useContext<ModalConfig>(ModalContext);

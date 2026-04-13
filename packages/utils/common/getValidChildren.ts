@@ -1,7 +1,7 @@
-import { Children, isValidElement } from 'react';
+import { Children, isValidElement, ReactElement, ReactNode } from 'react';
 
-export default function getValidChildren(children: React.ReactNode) {
+export default function getValidChildren(children: ReactNode) {
   return Children.toArray(children).filter((child) =>
-    isValidElement(child)
-  ) as React.ReactElement[];
+    isValidElement(child),
+  ) as ReactElement[];
 }

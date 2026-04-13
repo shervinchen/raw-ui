@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen, renderHook } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Search } from 'react-feather';
@@ -9,6 +8,7 @@ import {
   useButtonHoverStyles,
   useButtonStyles,
 } from '../Button.styles';
+import { createRef } from 'react';
 
 const typeColorMap = {
   primary: 'rgb(0, 0, 0)',
@@ -34,7 +34,7 @@ describe('Button', () => {
   });
 
   test('should forward ref', () => {
-    const ref = React.createRef<HTMLButtonElement>();
+    const ref = createRef<HTMLButtonElement>();
     render(<Button ref={ref}>Text</Button>);
     const button = screen.getByRole('button', { name: /Text/i });
     expect(button).toEqual(ref.current);
@@ -61,7 +61,7 @@ describe('Button', () => {
         const button = screen.getByRole('button', { name: /Text/i });
         expect(button).toHaveStyle(`background-color: ${typeColorMap[item]}`);
       });
-    }
+    },
   );
 
   ['xs', 'sm', 'md', 'lg', 'xl'].forEach((item: ButtonSizes) => {
@@ -76,7 +76,7 @@ describe('Button', () => {
     render(
       <Button type="primary" variant="outline">
         Text
-      </Button>
+      </Button>,
     );
     const button = screen.getByRole('button', { name: /Text/i });
     expect(button).toHaveStyle({
@@ -89,7 +89,7 @@ describe('Button', () => {
     render(
       <Button type="primary" variant="ghost">
         Text
-      </Button>
+      </Button>,
     );
     const button = screen.getByRole('button', { name: /Text/i });
     expect(button).toHaveStyle({
@@ -102,7 +102,7 @@ describe('Button', () => {
     render(
       <Button type="primary" variant="shadow">
         Text
-      </Button>
+      </Button>,
     );
     const button = screen.getByRole('button', { name: /Text/i });
     expect(button).toHaveStyle('boxShadow: 0 5px 10px rgba(0, 0, 0, 0.12)');
@@ -116,7 +116,7 @@ describe('Button', () => {
         variant: 'default',
         loading: false,
         disabled: false,
-      })
+      }),
     );
     const { result: result2 } = renderHook(() =>
       useButtonStyles({
@@ -125,7 +125,7 @@ describe('Button', () => {
         variant: 'default',
         loading: false,
         disabled: false,
-      })
+      }),
     );
     expect(result1.current.backgroundColor).toBe('#ffffff');
     expect(result2.current.backgroundColor).toBe('#ffffff');
@@ -139,7 +139,7 @@ describe('Button', () => {
         variant: 'default',
         loading: true,
         disabled: false,
-      })
+      }),
     );
     const { result: result2 } = renderHook(() =>
       useButtonStyles({
@@ -148,7 +148,7 @@ describe('Button', () => {
         variant: 'default',
         loading: true,
         disabled: false,
-      })
+      }),
     );
     expect(result1.current.backgroundColor).toBe('#ffffff');
     expect(result2.current.backgroundColor).toBe('#ffffff');
@@ -162,7 +162,7 @@ describe('Button', () => {
         variant: 'unknown' as ButtonVariants,
         loading: false,
         disabled: false,
-      })
+      }),
     );
     const { result: result2 } = renderHook(() =>
       useButtonStyles({
@@ -171,7 +171,7 @@ describe('Button', () => {
         variant: undefined as unknown as ButtonVariants,
         loading: false,
         disabled: false,
-      })
+      }),
     );
     expect(result1.current.backgroundColor).toBe('#ffffff');
     expect(result2.current.backgroundColor).toBe('#ffffff');
@@ -185,7 +185,7 @@ describe('Button', () => {
         variant: 'unknown' as ButtonVariants,
         loading: true,
         disabled: false,
-      })
+      }),
     );
     const { result: result2 } = renderHook(() =>
       useButtonStyles({
@@ -194,7 +194,7 @@ describe('Button', () => {
         variant: undefined as unknown as ButtonVariants,
         loading: true,
         disabled: false,
-      })
+      }),
     );
     expect(result1.current.backgroundColor).toBe('#ffffff');
     expect(result2.current.backgroundColor).toBe('#ffffff');
@@ -208,7 +208,7 @@ describe('Button', () => {
         variant: 'default',
         loading: false,
         disabled: true,
-      })
+      }),
     );
     const { result: result2 } = renderHook(() =>
       useButtonStyles({
@@ -217,7 +217,7 @@ describe('Button', () => {
         variant: 'default',
         loading: false,
         disabled: true,
-      })
+      }),
     );
     expect(result1.current.backgroundColor).toBe('#e5e5e5');
     expect(result2.current.backgroundColor).toBe('#e5e5e5');
@@ -231,7 +231,7 @@ describe('Button', () => {
         variant: 'unknown' as ButtonVariants,
         loading: false,
         disabled: true,
-      })
+      }),
     );
     const { result: result2 } = renderHook(() =>
       useButtonStyles({
@@ -240,7 +240,7 @@ describe('Button', () => {
         variant: undefined as unknown as ButtonVariants,
         loading: false,
         disabled: true,
-      })
+      }),
     );
     expect(result1.current.backgroundColor).toBe('#e5e5e5');
     expect(result2.current.backgroundColor).toBe('#e5e5e5');
@@ -254,7 +254,7 @@ describe('Button', () => {
         variant: 'default',
         loading: false,
         disabled: false,
-      })
+      }),
     );
     const { result: result2 } = renderHook(() =>
       useButtonHoverStyles({
@@ -263,7 +263,7 @@ describe('Button', () => {
         variant: 'default',
         loading: false,
         disabled: false,
-      })
+      }),
     );
     expect(result1.current.hoverColor).toBe('#000000');
     expect(result2.current.hoverColor).toBe('#000000');
@@ -277,7 +277,7 @@ describe('Button', () => {
         variant: 'unknown' as ButtonVariants,
         loading: false,
         disabled: false,
-      })
+      }),
     );
     const { result: result2 } = renderHook(() =>
       useButtonHoverStyles({
@@ -286,7 +286,7 @@ describe('Button', () => {
         variant: undefined as unknown as ButtonVariants,
         loading: false,
         disabled: false,
-      })
+      }),
     );
     expect(result1.current.hoverColor).toBe('#000000');
     expect(result2.current.hoverColor).toBe('#000000');
@@ -300,7 +300,7 @@ describe('Button', () => {
         variant: 'default',
         loading: false,
         disabled: false,
-      })
+      }),
     );
     const { result: result2 } = renderHook(() =>
       useButtonActiveStyles({
@@ -309,7 +309,7 @@ describe('Button', () => {
         variant: 'default',
         loading: false,
         disabled: false,
-      })
+      }),
     );
     expect(result1.current.activeBackgroundColor).toBe('#e5e5e5');
     expect(result2.current.activeBackgroundColor).toBe('#e5e5e5');
@@ -323,7 +323,7 @@ describe('Button', () => {
         variant: 'unknown' as ButtonVariants,
         loading: false,
         disabled: false,
-      })
+      }),
     );
     const { result: result2 } = renderHook(() =>
       useButtonActiveStyles({
@@ -332,7 +332,7 @@ describe('Button', () => {
         variant: undefined as unknown as ButtonVariants,
         loading: false,
         disabled: false,
-      })
+      }),
     );
     expect(result1.current.activeBackgroundColor).toBe('#e5e5e5');
     expect(result2.current.activeBackgroundColor).toBe('#e5e5e5');
@@ -346,7 +346,7 @@ describe('Button', () => {
         variant: 'default',
         loading: false,
         disabled: false,
-      })
+      }),
     );
     const { result: result2 } = renderHook(() =>
       useButtonStyles({
@@ -355,7 +355,7 @@ describe('Button', () => {
         variant: 'default',
         loading: false,
         disabled: false,
-      })
+      }),
     );
     expect(result1.current.height).toBe('32px');
     expect(result2.current.height).toBe('32px');
@@ -366,7 +366,7 @@ describe('Button', () => {
     render(
       <Button loading onClick={handleClick}>
         Text
-      </Button>
+      </Button>,
     );
     const button = screen.getByRole('button', { name: /Text/i });
     expect(button).toHaveClass('raw-loading-button');
@@ -393,7 +393,7 @@ describe('Button', () => {
     expect(screen.getByTestId('buttonIcon')).toBeInTheDocument();
     expect(screen.queryByTestId('buttonContent')).toBeInTheDocument();
     expect(screen.getByTestId('buttonIcon')).not.toHaveClass(
-      'button-icon-single'
+      'button-icon-single',
     );
   });
 
@@ -401,7 +401,7 @@ describe('Button', () => {
     render(<Button iconRight={<Search />}>Search</Button>);
     expect(screen.getByTestId('buttonIcon')).toBeInTheDocument();
     expect(screen.getByTestId('buttonIcon')).not.toHaveClass(
-      'button-icon-single'
+      'button-icon-single',
     );
     expect(screen.getByTestId('buttonIcon')).toHaveClass('button-icon-right');
   });

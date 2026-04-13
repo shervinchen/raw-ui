@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { createRef, useState } from 'react';
 import { fireEvent, render, renderHook, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Select from '..';
@@ -60,7 +60,7 @@ describe('Select', () => {
   });
 
   test('should forward ref', () => {
-    const ref = React.createRef<HTMLDivElement>();
+    const ref = createRef<HTMLDivElement>();
     render(
       <Select ref={ref}>
         <Select.Option value="1">Option 1</Select.Option>

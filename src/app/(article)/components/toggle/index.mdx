@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Grid, Toggle } from '@/packages';
 import Playground from '@/src/app/components/playground';
 
@@ -32,15 +33,15 @@ import { Toggle } from 'raw-ui';
 ## Controlled
 
 <Playground
-  scope={{ Toggle }}
+  scope={{ Toggle, useState }}
   code={`
   () => {
-    const [value, setValue] = React.useState(false);
+    const [value, setValue] = useState(false);
 
     return (
       <Toggle
         checked={value}
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+        onChange={(event: ChangeEvent<HTMLInputElement>) => {
           setValue(event.target.checked);
         }}
       />

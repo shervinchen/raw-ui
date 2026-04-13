@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Tabs } from '@/packages';
 import Playground from '@/src/app/components/playground';
 
@@ -33,10 +34,10 @@ import { Tabs } from 'raw-ui';
 ## Controlled
 
 <Playground
-  scope={{ Tabs }}
+  scope={{ Tabs, useState }}
   code={`
   () => {
-    const [value, setValue] = React.useState('1');
+    const [value, setValue] = useState('1');
 
     return (
       <Tabs
