@@ -93,7 +93,7 @@ describe('Button', () => {
     );
     const button = screen.getByRole('button', { name: /Text/i });
     expect(button).toHaveStyle({
-      backgroundColor: 'transparent',
+      backgroundColor: 'rgba(0, 0, 0, 0)',
       borderColor: 'transparent',
     });
   });

@@ -19,6 +19,7 @@
       "DOM.Iterable",
       "ESNext"
     ],
+    "types": ["@types/mdx"],
     "module": "ESNext",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,

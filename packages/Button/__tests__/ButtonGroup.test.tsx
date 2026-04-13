@@ -110,7 +110,7 @@ describe('ButtonGroup', () => {
     );
     const buttons = screen.getAllByRole('button');
     buttons.forEach((button) => {
-      expect(button).toHaveStyle(`background-color: transparent`);
+      expect(button).toHaveStyle(`background-color: rgba(0, 0, 0, 0)`);
     });
   });
 

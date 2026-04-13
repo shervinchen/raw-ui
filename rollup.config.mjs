@@ -7,6 +7,7 @@ import image from '@rollup/plugin-image';
 import replace from '@rollup/plugin-replace';
 import serve from 'rollup-plugin-serve';
 import livereload from 'rollup-plugin-livereload';
+import preserveDirectives from 'rollup-preserve-directives';
 
 const config = {
   input: 'demo/index.tsx',
@@ -30,9 +31,17 @@ const config = {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
       babelHelpers: 'bundled',
     }),
-    typescript({ tsconfig: './tsconfig.json', outputToFilesystem: true }),
+    typescript({
+      tsconfig: './tsconfig.json',
+      outputToFilesystem: true,
+      compilerOptions: {
+        outDir: 'build',
+        jsx: 'preserve',
+      },
+    }),
     image(),
     postcss(),
+    preserveDirectives(),
     serve({
       contentBase: ['', 'demo'],
       host: 'localhost',

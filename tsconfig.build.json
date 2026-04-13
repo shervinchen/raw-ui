@@ -4,26 +4,25 @@
   "compilerOptions": {
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "types": ["node", "react", "jest", "@testing-library/jest-dom"],
     "experimentalDecorators": true,
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "baseUrl": "./",
+    "rootDir": "./packages",
     "paths": {
-      "*": ["*"],
-      "raw-ui": ["packages/index.ts"],
+      "raw-ui": ["./packages/index.ts"],
       "packages/*": [
-        "packages/*"
+        "./packages/*"
       ]
     },
     "resolveJsonModule": true,
     "allowJs": true,
-    "declaration": true,
-    "emitDeclarationOnly": true,
+    "declaration": false,
+    "emitDeclarationOnly": false,
     "sourceMap": true,
     "outDir": "./dist",
-    "declarationDir": "types",
+    // "declarationDir": "types",
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
