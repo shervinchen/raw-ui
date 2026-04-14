@@ -31,8 +31,8 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="sticky top-0 w-full bg-white dark:bg-black	shadow-[inset_0_-1px_0_0_#eaeaea] dark:shadow-[inset_0_-1px_0_0_#333] z-[100]">
-      <nav className="flex items-center max-w-[90rem] h-16 py-0 px-6 mx-auto">
+    <header className="sticky top-0 w-full bg-white dark:bg-black	shadow-[inset_0_-1px_0_0_#eaeaea] dark:shadow-[inset_0_-1px_0_0_#333] z-100">
+      <nav className="flex items-center max-w-360 h-16 py-0 px-6 mx-auto">
         <Link href="/" className="flex items-center gap-2	mr-auto">
           <ThemeSwitch
             lightComponent={
@@ -52,8 +52,8 @@ export default function Navbar() {
               href={`/${nav.route}`}
               className={
                 routeName === nav.route
-                  ? 'text-black dark:text-[#fff]'
-                  : 'text-[#666] hover:text-black dark:text-[#888] dark:hover:text-[#fff]'
+                  ? 'text-black dark:text-white'
+                  : 'text-[#666] hover:text-black dark:text-[#888] dark:hover:text-white'
               }
               key={nav.name}
             >

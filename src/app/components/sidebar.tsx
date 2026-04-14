@@ -7,7 +7,7 @@ import SIDEBARS from '../sidebars.json';
 export default function Sidebar() {
   const pathname = usePathname();
   const sidebarData = SIDEBARS.find(
-    (item) => item.name === pathname.split('/')[1]
+    (item) => item.name === pathname.split('/')[1],
   ).children;
 
   return (
@@ -23,8 +23,8 @@ export default function Sidebar() {
                 href={link.url}
                 className={
                   pathname === link.url
-                    ? 'py-1 px-0 text-base text-black dark:text-[#fff] font-semibold'
-                    : 'py-1 px-0 text-base text-[#666] dark:text-[#666] hover:text-black dark:hover:text-[#fff]'
+                    ? 'py-1 px-0 text-base text-black dark:text-white font-semibold'
+                    : 'py-1 px-0 text-base text-[#666] dark:text-[#666] hover:text-black dark:hover:text-white'
                 }
                 key={link.name}
               >

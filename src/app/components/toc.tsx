@@ -88,8 +88,8 @@ const Headings = ({
               6: 'pl-16',
             }[heading.level],
             activeId === heading.id
-              ? 'text-black dark:text-[#fff] font-semibold'
-              : 'text-[#666] dark:text-[#666] hover:text-black dark:hover:text-[#fff]',
+              ? 'text-black dark:text-white font-semibold'
+              : 'text-[#666] dark:text-[#666] hover:text-black dark:hover:text-white',
           )}
           onClick={(e) => {
             e.preventDefault();

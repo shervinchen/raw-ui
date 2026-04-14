@@ -27,7 +27,7 @@ const ColorPalette = () => {
               <div className="relative flex" key={shade}>
                 <div className="flex items-center gap-x-3 w-full lg:block lg:space-y-1.5">
                   <div
-                    className={`h-10 w-10 rounded ring-1 ring-inset ring-black/10 dark:ring-white/20 lg:w-full`}
+                    className={`h-10 w-10 rounded-sm ring-1 ring-inset ring-black/10 dark:ring-white/20 lg:w-full`}
                     style={{
                       backgroundColor: palette[colorKey][shade] as string,
                     }}
