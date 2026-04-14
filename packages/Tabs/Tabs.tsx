@@ -90,7 +90,7 @@ const Tabs: FC<PropsWithChildren<TabsProps>> = ({
   };
 
   return (
-    <TabsContext.Provider value={tabsConfig}>
+    <TabsContext value={tabsConfig}>
       <div data-testid="tabs" className={classes} {...restProps}>
         <div
           role="tablist"
@@ -219,7 +219,7 @@ const Tabs: FC<PropsWithChildren<TabsProps>> = ({
           `}
         </style>
       </div>
-    </TabsContext.Provider>
+    </TabsContext>
   );
 };
 

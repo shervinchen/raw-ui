@@ -55,7 +55,7 @@ const Grid: FC<PropsWithChildren<GridProps>> = ({
   };
 
   return (
-    <GridContext.Provider value={gridConfig}>
+    <GridContext value={gridConfig}>
       <div data-testid="grid" className={classes} {...restProps}>
         {children}
         <style jsx>{`
@@ -153,7 +153,7 @@ const Grid: FC<PropsWithChildren<GridProps>> = ({
           }
         `}</style>
       </div>
-    </GridContext.Provider>
+    </GridContext>
   );
 };
 

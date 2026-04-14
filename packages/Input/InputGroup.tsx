@@ -115,7 +115,7 @@ const InputGroup: FC<PropsWithChildren<InputGroupProps>> = ({
   );
 
   return (
-    <InputGroupContext.Provider value={initialConfig}>
+    <InputGroupContext value={initialConfig}>
       <div className={classes} {...resetProps}>
         {cloneChildren}
         <style jsx>{`
@@ -126,7 +126,7 @@ const InputGroup: FC<PropsWithChildren<InputGroupProps>> = ({
           }
         `}</style>
       </div>
-    </InputGroupContext.Provider>
+    </InputGroupContext>
   );
 };
 

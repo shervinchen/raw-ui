@@ -48,7 +48,7 @@ const CheckboxGroup: FC<PropsWithChildren<CheckboxGroupProps>> = ({
   }, [internalValue, disabled, handleGroupChange]);
 
   return (
-    <CheckboxGroupContext.Provider value={checkboxGroupConfig}>
+    <CheckboxGroupContext value={checkboxGroupConfig}>
       <div
         role="group"
         className={classes}
@@ -64,7 +64,7 @@ const CheckboxGroup: FC<PropsWithChildren<CheckboxGroupProps>> = ({
           }
         `}</style>
       </div>
-    </CheckboxGroupContext.Provider>
+    </CheckboxGroupContext>
   );
 };
 

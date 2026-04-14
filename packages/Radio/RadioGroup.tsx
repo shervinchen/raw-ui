@@ -41,7 +41,7 @@ const RadioGroup: FC<PropsWithChildren<RadioGroupProps>> = ({
   }, [internalValue, disabled, handleGroupChange]);
 
   return (
-    <RadioGroupContext.Provider value={radioGroupConfig}>
+    <RadioGroupContext value={radioGroupConfig}>
       <div role="radiogroup" className={classes} {...restProps}>
         {children}
         <style jsx>{`
@@ -52,7 +52,7 @@ const RadioGroup: FC<PropsWithChildren<RadioGroupProps>> = ({
           }
         `}</style>
       </div>
-    </RadioGroupContext.Provider>
+    </RadioGroupContext>
   );
 };
 

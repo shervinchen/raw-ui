@@ -38,10 +38,10 @@ const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = ({
   }, [allThemes, themeType]);
 
   return (
-    <ThemeContext.Provider value={currentTheme}>
+    <ThemeContext value={currentTheme}>
       <BaseStyle />
       {children}
-    </ThemeContext.Provider>
+    </ThemeContext>
   );
 };
 

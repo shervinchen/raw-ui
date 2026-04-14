@@ -50,13 +50,13 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
   if (!portal) return null;
 
   return createPortal(
-    <ModalContext.Provider value={modalConfig}>
+    <ModalContext value={modalConfig}>
       <Overlay visible={internalVisible} />
       <ModalWrapper className={classes} {...restProps}>
         <ModalCloseButton />
         {children}
       </ModalWrapper>
-    </ModalContext.Provider>,
+    </ModalContext>,
     portal,
   );
 };

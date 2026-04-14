@@ -293,7 +293,7 @@ const Select = ({
   useImperativeHandle(ref, () => selectTargetRef.current as HTMLDivElement);
 
   return (
-    <SelectContext.Provider value={selectConfig}>
+    <SelectContext value={selectConfig}>
       <div
         data-testid="selectContainer"
         className={selectClasses}
@@ -346,7 +346,7 @@ const Select = ({
       >
         {children}
       </SelectDropdown>
-    </SelectContext.Provider>
+    </SelectContext>
   );
 };
 

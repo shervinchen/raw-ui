@@ -18,11 +18,11 @@ const RawUIProvider: FC<PropsWithChildren<RawUIProviderProps>> = ({
   const initialValue = {};
 
   return (
-    <RawUIContent.Provider value={initialValue}>
+    <RawUIContent value={initialValue}>
       <ThemeProvider themes={themes} themeType={themeType}>
         {children}
       </ThemeProvider>
-    </RawUIContent.Provider>
+    </RawUIContent>
   );
 };
 
