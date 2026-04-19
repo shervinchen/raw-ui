@@ -63,6 +63,9 @@ const useHeadingsData = (pathname: string) => {
     startTransition(() => {
       setNestedHeadings(getNestedHeadings(els));
     });
+    return () => {
+      setNestedHeadings([]);
+    };
   }, [pathname]);
 
   return nestedHeadings;
