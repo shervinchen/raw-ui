@@ -1,9 +1,9 @@
 'use client';
 
 import {
-  RefObject,
+  Dispatch,
+  SetStateAction,
   startTransition,
-  useCallback,
   useEffect,
   useRef,
   useState,
@@ -11,8 +11,8 @@ import {
 import classNames from 'classnames';
 import { usePathname } from 'next/navigation';
 
-const SCROLL_OFFSET = 64;
 const HEADING_SELECTOR = 'h2,h3,h4,h5,h6';
+const SCROLL_OFFSET = 64;
 
 interface Heading {
   id: string;
@@ -43,7 +43,7 @@ const getNestedHeadings = (
       headings.push(heading);
     } else {
       const parent = stack[stack.length - 1];
-      parent.items ??= [];
+      parent.items = parent.items ?? [];
       parent.items.push(heading);
     }
 
@@ -68,122 +68,87 @@ const useHeadingsData = (pathname: string) => {
   return nestedHeadings;
 };
 
-const useActiveId = (
+const useIntersectionObserver = (
+  setActiveId: Dispatch<SetStateAction<string>>,
   pathname: string,
-): {
-  activeId: string;
-  scrollToHeading: (id: string) => void;
-} => {
-  const [activeId, setActiveId] = useState('');
+) => {
+  const headingElementsRef = useRef<Record<string, IntersectionObserverEntry>>(
+    {},
+  );
   const headingTopMapRef = useRef<Record<string, number>>({});
-  const headingElementsRef: RefObject<HTMLHeadingElement[]> = useRef([]);
-  const rafRef = useRef<number | null>(null);
-
-  const updateHeadingTopMap = useCallback(() => {
-    const els = headingElementsRef.current;
-    const map: Record<string, number> = {};
-    const maxScrollY = document.body.scrollHeight - window.innerHeight;
-    const threshold = maxScrollY + SCROLL_OFFSET - 1;
-
-    const overflowIndex = els.findIndex((el) => el.offsetTop > maxScrollY);
-
-    els.forEach((el, index) => {
-      if (
-        overflowIndex === -1 ||
-        index < overflowIndex ||
-        !els[overflowIndex - 1]
-      ) {
-        map[el.id] = Math.floor(el.offsetTop);
-      } else {
-        const overflowEls = els.slice(overflowIndex);
-        const step =
-          overflowEls.length > 1
-            ? (threshold - els[overflowIndex - 1].offsetTop) /
-              overflowEls.length
-            : threshold - els[overflowIndex - 1].offsetTop;
-        map[el.id] = Math.floor(
-          els[overflowIndex - 1].offsetTop + step * (index - overflowIndex + 1),
-        );
-      }
-    });
-
-    headingTopMapRef.current = map;
-  }, []);
-
-  const updateActiveId = useCallback(() => {
-    const els = headingElementsRef.current;
-
-    if (els.length === 0) return;
-
-    const scrollY = window.scrollY;
-    const map = headingTopMapRef.current;
-
-    for (let i = els.length - 1; i >= 0; i--) {
-      if (map[els[i].id] <= scrollY + SCROLL_OFFSET) {
-        setActiveId(els[i].id);
-        return;
-      }
-    }
-
-    setActiveId(els[0].id);
-  }, []);
-
-  const handleScroll = useCallback(() => {
-    if (rafRef.current !== null) return;
-    rafRef.current = requestAnimationFrame(() => {
-      updateActiveId();
-      rafRef.current = null;
-    });
-  }, [updateActiveId]);
-
-  const scrollToHeading = useCallback((id: string) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    const mappedTop = headingTopMapRef.current[id];
-    const top =
-      mappedTop !== undefined
-        ? mappedTop - SCROLL_OFFSET
-        : el.offsetTop - SCROLL_OFFSET;
-    window.scrollTo({ top, behavior: 'smooth' });
-  }, []);
 
   useEffect(() => {
-    const els = Array.from(
+    headingElementsRef.current = {};
+    headingTopMapRef.current = {};
+
+    const headingElements = Array.from(
       document.querySelectorAll<HTMLHeadingElement>(HEADING_SELECTOR),
     );
-    headingElementsRef.current = els;
+    const refreshHeadingTops = () => {
+      headingElements.forEach((el) => {
+        headingTopMapRef.current[el.id] = el.offsetTop;
+      });
+    };
+    refreshHeadingTops();
 
-    if (els.length === 0) return;
+    const getIndexFromId = (id: string): number =>
+      headingElements.findIndex((heading) => heading.id === id);
 
-    updateHeadingTopMap();
-    updateActiveId();
+    const callback: IntersectionObserverCallback = (
+      entries: IntersectionObserverEntry[],
+    ) => {
+      entries.forEach((entry) => {
+        headingElementsRef.current[entry.target.id] = entry;
+      });
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+      const visibleHeadings = Object.values(headingElementsRef.current).filter(
+        (entry) => entry.isIntersecting,
+      );
 
-    const resizeObserver = new ResizeObserver(() => {
-      updateHeadingTopMap();
-      updateActiveId();
+      if (visibleHeadings.length === 1) {
+        setActiveId(visibleHeadings[0].target.id);
+      } else if (visibleHeadings.length > 1) {
+        const sortedVisibleHeadings = visibleHeadings
+          .filter((item) => getIndexFromId(item.target.id) !== -1)
+          .sort(
+            (a, b) => getIndexFromId(a.target.id) - getIndexFromId(b.target.id),
+          );
+        setActiveId(sortedVisibleHeadings[0]?.target?.id);
+      } else {
+        const scrollY = window.scrollY;
+        const passedHeadings = headingElements
+          .filter(
+            (el) => headingTopMapRef.current[el.id] <= scrollY + SCROLL_OFFSET,
+          )
+          .at(-1);
+
+        if (passedHeadings) {
+          setActiveId(passedHeadings.id);
+        }
+      }
+    };
+
+    const observer = new IntersectionObserver(callback, {
+      rootMargin: `-${SCROLL_OFFSET}px 0px 0px`,
     });
+    headingElements.forEach((element) => observer.observe(element));
+
+    const resizeObserver = new ResizeObserver(refreshHeadingTops);
     resizeObserver.observe(document.body);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+      observer.disconnect();
       resizeObserver.disconnect();
     };
-  }, [pathname, updateHeadingTopMap, updateActiveId, handleScroll]);
-
-  return { activeId, scrollToHeading };
+  }, [setActiveId, pathname]);
 };
 
 const Headings = ({
   headings,
   activeId,
-  scrollToHeading,
 }: {
   headings: Heading[];
   activeId: string;
-  scrollToHeading: (id: string) => void;
 }) => {
   return (
     <ul>
@@ -206,17 +171,15 @@ const Headings = ({
             )}
             onClick={(e) => {
               e.preventDefault();
-              scrollToHeading(heading.id);
+              document.querySelector(`#${heading.id}`)?.scrollIntoView({
+                behavior: 'smooth',
+              });
             }}
           >
             {heading.text}
           </a>
           {heading.items && heading.items.length > 0 && (
-            <Headings
-              headings={heading.items}
-              activeId={activeId}
-              scrollToHeading={scrollToHeading}
-            />
+            <Headings headings={heading.items} activeId={activeId} />
           )}
         </li>
       ))}
@@ -226,8 +189,10 @@ const Headings = ({
 
 export default function Toc() {
   const pathname = usePathname();
+  const [activeId, setActiveId] = useState<string>('');
   const nestedHeadings = useHeadingsData(pathname);
-  const { activeId, scrollToHeading } = useActiveId(pathname);
+
+  useIntersectionObserver(setActiveId, pathname);
 
   if (
     nestedHeadings.length === 0 ||
@@ -241,11 +206,7 @@ export default function Toc() {
       aria-label="table of contents"
       className="xl:block hidden w-64 sticky top-16 h-[calc(100vh-64px)] overflow-y-auto py-4 text-sm scrollbar"
     >
-      <Headings
-        headings={nestedHeadings}
-        activeId={activeId}
-        scrollToHeading={scrollToHeading}
-      />
+      <Headings headings={nestedHeadings} activeId={activeId} />
     </nav>
   );
 }
