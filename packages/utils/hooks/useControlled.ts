@@ -23,24 +23,21 @@ export function useControlled<T>({
   const onChange = useCallbackRef(onChangeProp);
   const shouldUpdate = useCallbackRef(shouldUpdateProp);
 
-  const setValue = useCallbackRef(
-    (nextValue: SetStateAction<T>) => {
-      const setter = nextValue as SetStateFn<T>;
-      const nextState =
-        typeof nextValue === 'function' ? setter(value) : nextValue;
+  const setValue = useCallbackRef((nextValue: SetStateAction<T>) => {
+    const setter = nextValue as SetStateFn<T>;
+    const nextState =
+      typeof nextValue === 'function' ? setter(value) : nextValue;
 
-      if (!shouldUpdate(value, nextState)) {
-        return;
-      }
+    if (!shouldUpdate(value, nextState)) {
+      return;
+    }
 
-      if (!isControlled) {
-        setUnControlledState(nextState);
-      }
+    if (!isControlled) {
+      setUnControlledState(nextState);
+    }
 
-      onChange(nextState);
-    },
-    [value, isControlled, onChange, shouldUpdate]
-  );
+    onChange(nextState);
+  });
 
   return [value, setValue] as [T, Dispatch<SetStateAction<T>>];
 }

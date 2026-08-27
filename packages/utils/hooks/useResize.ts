@@ -1,16 +1,18 @@
-import { useEffect } from 'react';
+import { useEffect, useEffectEvent } from 'react';
 
 export const useResize = (
   handler: () => void,
   immediatelyInvoke = true,
 ): void => {
+  const onResize = useEffectEvent(handler);
+  const shouldInvokeImmediately = useEffectEvent(() => immediatelyInvoke);
+
   useEffect(() => {
-    if (immediatelyInvoke) {
-      handler();
+    if (shouldInvokeImmediately()) {
+      onResize();
     }
 
-    window.addEventListener('resize', handler);
-    return () => window.removeEventListener('resize', handler);
-    // eslint-disable-next-line
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
   }, []);
 };
