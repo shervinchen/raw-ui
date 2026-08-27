@@ -87,12 +87,7 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
     return () => {
       cleanupIo?.();
     };
-  }, [
-    targetElement,
-    updatePopupPosition,
-    bindAncestorsListeners,
-    unbindAncestorsListeners,
-  ]);
+  }, [targetElement, updatePopupPosition]);
 
   useEffect(() => {
     const ancestors: OverflowAncestors = [
