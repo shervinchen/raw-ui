@@ -3,9 +3,9 @@ import {
   PropsWithChildren,
   useEffect,
   useState,
-  MouseEvent,
   useCallback,
   useRef,
+  useEffectEvent,
 } from 'react';
 import { createPortal } from 'react-dom';
 import { PopupProps, PopupPosition } from './Popup.types';
@@ -31,53 +31,20 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
     left: 0,
   });
 
-  const handleClick = (event: MouseEvent<HTMLDivElement>) => {
-    event.stopPropagation();
-  };
-
-  const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
-    event.stopPropagation();
-  };
-
-  const updatePopupPosition = useCallback(() => {
+  const calculatePopupPosition = () => {
     const newPosition = getPopupPosition(popupRef);
     setPopupPosition(newPosition);
-  }, [getPopupPosition]);
+  };
+  const updatePopupPosition = useEffectEvent(calculatePopupPosition);
 
-  const setPopupRef = useCallback(
-    (element: HTMLDivElement | null) => {
-      popupRef.current = element;
-      updatePopupPosition();
-      setPopupElement(element);
-    },
-    [updatePopupPosition],
-  );
+  const setPopupRef = useCallback((element: HTMLDivElement | null) => {
+    popupRef.current = element;
+    setPopupElement(element);
+  }, []);
 
-  const bindAncestorsListeners = useCallback(
-    (ancestors: OverflowAncestors) => {
-      ancestors.forEach((ancestor) => {
-        ancestor.addEventListener('scroll', updatePopupPosition, {
-          passive: true,
-        });
-        ancestor.addEventListener('resize', updatePopupPosition);
-      });
-    },
-    [updatePopupPosition],
-  );
+  useResizeObserver(targetElement, calculatePopupPosition);
 
-  const unbindAncestorsListeners = useCallback(
-    (ancestors: OverflowAncestors) => {
-      ancestors.forEach((ancestor) => {
-        ancestor.removeEventListener('scroll', updatePopupPosition);
-        ancestor.removeEventListener('resize', updatePopupPosition);
-      });
-    },
-    [updatePopupPosition],
-  );
-
-  useResizeObserver(targetElement, updatePopupPosition);
-
-  useResizeObserver(popupElement, updatePopupPosition);
+  useResizeObserver(popupElement, calculatePopupPosition);
 
   useEffect(() => {
     const cleanupIo = targetElement
@@ -87,24 +54,34 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
     return () => {
       cleanupIo?.();
     };
-  }, [targetElement, updatePopupPosition]);
+  }, [targetElement]);
 
   useEffect(() => {
     const ancestors: OverflowAncestors = [
       ...(targetElement ? getOverflowAncestors(targetElement) : []),
       ...(popupElement ? getOverflowAncestors(popupElement) : []),
     ];
-    bindAncestorsListeners(ancestors);
+
+    ancestors.forEach((ancestor) => {
+      ancestor.addEventListener('scroll', updatePopupPosition, {
+        passive: true,
+      });
+      ancestor.addEventListener('resize', updatePopupPosition);
+    });
 
     return () => {
-      unbindAncestorsListeners(ancestors);
+      ancestors.forEach((ancestor) => {
+        ancestor.removeEventListener('scroll', updatePopupPosition);
+        ancestor.removeEventListener('resize', updatePopupPosition);
+      });
     };
-  }, [
-    targetElement,
-    popupElement,
-    bindAncestorsListeners,
-    unbindAncestorsListeners,
-  ]);
+  }, [targetElement, popupElement]);
+
+  useEffect(() => {
+    if (popupElement) {
+      updatePopupPosition();
+    }
+  }, [popupElement]);
 
   if (!portal || !targetElement) return null;
 
@@ -113,8 +90,8 @@ const Popup: FC<PropsWithChildren<PopupProps>> = ({
       <div
         ref={setPopupRef}
         className="raw-popup"
-        onClick={handleClick}
-        onMouseDown={handleMouseDown}
+        onClick={(event) => event.stopPropagation()}
+        onMouseDown={(event) => event.stopPropagation()}
         data-testid="popup"
       >
         {children}
